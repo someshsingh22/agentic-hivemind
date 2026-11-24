@@ -1,8 +1,10 @@
-"""Hypothesis -> reusable variables (features) + relationship (H0/H1 and one regression test)."""
+"""Hypothesis -> reusable variables (features) + relationship (H0/H1 and one regression test), via a pi agent."""
 
+import json
 from concurrent.futures import ThreadPoolExecutor
+from pathlib import Path
 
-from .llm import structured
+from .models import agent, pi_home
 
 SYSTEM = """You decompose ONE scientific hypothesis about a dataset into (a) the variables it needs and
 (b) the relationship it claims, expressed as a single regression test. Do not judge or rewrite the hypothesis.
@@ -33,41 +35,29 @@ RELATIONSHIP:
 - sign: "+" or "-" for the claimed direction of that coefficient on the outcome, "two_sided" if none.
 - note: assumptions, proxies, or why it is untestable; empty string otherwise."""
 
-SCHEMA = {
-    "type": "object",
-    "properties": {
-        "features": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "name": {"type": "string"},
-                    "dtype": {"enum": ["binary", "numeric"]},
-                    "definition": {"type": "string"},
-                    "kind": {"enum": ["code", "prompt"]},
-                    "spec": {"type": "string"},
-                },
-                "required": ["name", "dtype", "definition", "kind", "spec"],
-                "additionalProperties": False,
-            },
-        },
-        "h0": {"type": "string"},
-        "h1": {"type": "string"},
-        "rhs": {"type": "string"},
-        "term": {"type": ["string", "null"]},
-        "sign": {"enum": ["+", "-", "two_sided"]},
-        "note": {"type": "string"},
-    },
-    "required": ["features", "h0", "h1", "rhs", "term", "sign", "note"],
-    "additionalProperties": False,
-}
+TASK = """DATASET: {csv}
+First inspect it (e.g. with python/pandas): the columns the hypothesis needs, their dtypes, value
+ranges, and a few example values, so every feature spec is grounded in the actual data.
+{description}
+Outcome column: {target}
+
+HYPOTHESIS: {hypothesis}
+
+Write ONLY this JSON object to {path}:
+{{"features": [{{"name": str, "dtype": "binary"|"numeric", "definition": str, "kind": "code"|"prompt", "spec": str}}],
+ "h0": str, "h1": str, "rhs": str, "term": str|null, "sign": "+"|"-"|"two_sided", "note": str}}"""
 
 
-def decompose(hypothesis, env):
-    user = f"DATASET\n{env['description']}\nOutcome column: {env['target']}\n\nHYPOTHESIS\n{hypothesis}"
-    return {"hypothesis": hypothesis, **structured(SYSTEM, user, SCHEMA)}
+def decompose(i, hypothesis, env, cfg, out, home):
+    path = Path(out, "decomposed", f"{i}.json").resolve()
+    if not path.exists():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        task = TASK.format(csv=Path(env["csv"]).resolve(), description=env["description"], target=env["target"], hypothesis=hypothesis, path=path)
+        agent(task, SYSTEM, home, cfg)
+    return {"id": i, "hypothesis": hypothesis, **json.loads(path.read_text())}
 
 
-def decompose_all(hypotheses, env, workers=8):
-    with ThreadPoolExecutor(workers) as pool:
-        return list(pool.map(lambda h: decompose(h, env), hypotheses))
+def decompose_all(hypotheses, env, cfg, out):
+    home = pi_home(cfg, Path(out, "pi"))
+    with ThreadPoolExecutor(cfg["workers"]) as pool:
+        return list(pool.map(lambda ih: decompose(*ih, env, cfg, out, home), hypotheses.items()))

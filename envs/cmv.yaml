@@ -1,6 +1,8 @@
 name: cmv
 target: delta
 group: post_id
+csv: data/cmv.csv
+hypotheses: data/hypotheses_ssh_eval/cmv.json
 description: |
   2,000 Reddit r/ChangeMyView discussions (balanced). One row = one post with its counter-argument comments.
   Columns:

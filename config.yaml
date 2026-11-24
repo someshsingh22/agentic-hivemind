@@ -1,0 +1,26 @@
+out: runs
+seed: 0
+n_hypotheses: null          # null = all; else a seeded sample of n
+
+agent:                      # pi coding agent (@earendil-works/pi-coding-agent); it can read the dataset itself
+  provider: azure-anthropic
+  api: anthropic-messages
+  base_url: https://${AZURE_RESOURCE_NAME}.services.ai.azure.com/anthropic
+  api_key_env: AZURE_API_KEY
+  model: claude-sonnet-5-5
+  thinking: medium          # off | minimal | low | medium | high | xhigh
+  tools: read,bash,write
+  max_tokens: 32000
+  compat: {forceAdaptiveThinking: true}   # Sonnet 5.5 requires adaptive thinking + effort
+  workers: 8
+
+embedding:
+  base_url: https://${AZURE_RESOURCE_NAME}.services.ai.azure.com/openai/v1
+  api_key_env: AZURE_API_KEY
+  model: text-embedding-3-large
+
+dedup:
+  threshold: 0.25           # complete-linkage cosine distance
+
+test:
+  alpha: 0.05

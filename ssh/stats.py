@@ -17,7 +17,7 @@ def fit(formula, term, df, group):
     return {"coef": result.params.get(term, np.nan), "p": result.pvalues.get(term, np.nan), "n": len(y)}
 
 
-def run(plan, df, alpha=0.05):
+def run(plan, df, alpha):
     group = plan["env"]["group"]
     results = pd.DataFrame(
         {**h, **(fit(h["formula"], h["term"], df, group) if h["term"] else {"coef": np.nan, "p": np.nan, "n": 0})}

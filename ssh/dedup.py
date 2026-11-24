@@ -7,7 +7,7 @@ import numpy as np
 from scipy.cluster.hierarchy import fcluster, linkage
 from scipy.spatial.distance import squareform
 
-from .llm import embed
+from .models import embed
 
 FIELDS = ("name", "dtype", "definition", "kind", "spec")
 
@@ -24,12 +24,13 @@ def rename(text, mapping):
     return re.sub(r"\w+", lambda m: mapping.get(m[0], m[0]), text)
 
 
-def dedup(decomposed, env, threshold):
-    raw = [(i, f) for i, d in enumerate(decomposed) for f in d["features"]]
-    vectors = embed([f"{f['name']}: {f['definition']}" for _, f in raw])
-    labels = cluster(vectors, np.array([i for i, _ in raw]), np.array([f["dtype"] for _, f in raw]), threshold)
+def dedup(decomposed, env, cfg):
+    raw = [(d["id"], f) for d in decomposed for f in d["features"]]
+    vectors = embed([f"{f['name']}: {f['definition']}" for _, f in raw], cfg["embedding"])
+    owners, dtypes = np.array([i for i, _ in raw]), np.array([f["dtype"] for _, f in raw])
+    labels = cluster(vectors, owners, dtypes, cfg["dedup"]["threshold"])
 
-    canon, taken, mappings = {}, Counter(), [{} for _ in decomposed]
+    canon, taken, mappings = {}, Counter(), {d["id"]: {} for d in decomposed}
     for (i, f), label in zip(raw, labels):
         if label not in canon:
             taken[f["name"]] += 1
@@ -42,7 +43,7 @@ def dedup(decomposed, env, threshold):
 
     hypotheses = [
         {
-            "id": i,
+            "id": d["id"],
             "hypothesis": d["hypothesis"],
             "h0": rename(d["h0"], m),
             "h1": rename(d["h1"], m),
@@ -51,7 +52,7 @@ def dedup(decomposed, env, threshold):
             "sign": d["sign"],
             "note": d["note"],
         }
-        for i, (d, m) in enumerate(zip(decomposed, mappings))
+        for d, m in zip(decomposed, mappings.values())
     ]
     return {"env": {k: env[k] for k in ("name", "target", "group")}, "features": list(canon.values()), "hypotheses": hypotheses}
 

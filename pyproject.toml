@@ -3,11 +3,11 @@ name = "agentic-hivemind"
 version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = [
-    "anthropic",
     "fire",
     "numpy",
     "openai",
     "pandas",
+    "python-dotenv",
     "pyyaml",
     "scipy",
     "statsmodels",
