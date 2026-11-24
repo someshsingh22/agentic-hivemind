@@ -9,9 +9,9 @@ agent:                      # pi coding agent (@earendil-works/pi-coding-agent);
   api_key_env: AZURE_API_KEY
   model: claude-sonnet-5-5
   thinking: medium          # off | minimal | low | medium | high | xhigh
-  tools: read,bash,write
+  tools: read,bash,submit     # submit = schema-validated final answer (ssh/submit.ts)
   max_tokens: 32000
-  compat: {forceAdaptiveThinking: true}   # Sonnet 5.5 requires adaptive thinking + effort
+  compat: {forceAdaptiveThinking: true, supportsStrictTools: true}   # adaptive thinking (Sonnet 5.5); strict = constrained tool decoding
   workers: 8
 
 embedding:

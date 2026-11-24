@@ -9,8 +9,10 @@ define features & tests -> deduplicate measurements -> annotate rows (external) 
 ```
 
 1. **decompose**: a [pi](https://www.npmjs.com/package/@earendil-works/pi-coding-agent) agent (Sonnet 5.5) per
-   hypothesis. It inspects the dataset and writes reusable *features* (`name, dtype, definition, kind=code|prompt, spec`)
-   plus a *relationship*: H0/H1, an OLS formula, the tested `term`, and the claimed `sign`.
+   hypothesis. It inspects the dataset, then answers through a terminating `submit` tool (`ssh/submit.ts`) whose
+   arguments must match `ssh/schema.json`. Strict tool decoding is on, and pi returns validation errors to the model.
+   The answer has reusable *features* (`name, dtype, definition, kind=code|prompt, spec`) and a *relationship*:
+   H0/H1, an OLS formula, the tested `term`, and the claimed `sign`.
    Sessions are saved in `runs/<env>/pi/sessions`.
 2. **dedup**: embeds `name: definition` and runs complete-linkage clustering on cosine distance. Features from the same
    hypothesis, or with different dtypes, never merge. Formulas are rewritten to canonical names. Output: `plan.json`

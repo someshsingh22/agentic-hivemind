@@ -6,6 +6,8 @@ from pathlib import Path
 
 from .models import agent, pi_home
 
+SCHEMA = Path(__file__).with_name("schema.json")
+
 SYSTEM = """You decompose ONE scientific hypothesis about a dataset into (a) the variables it needs and
 (b) the relationship it claims, expressed as a single regression test. Do not judge or rewrite the hypothesis.
 
@@ -43,17 +45,15 @@ Outcome column: {target}
 
 HYPOTHESIS: {hypothesis}
 
-Write ONLY this JSON object to {path}:
-{{"features": [{{"name": str, "dtype": "binary"|"numeric", "definition": str, "kind": "code"|"prompt", "spec": str}}],
- "h0": str, "h1": str, "rhs": str, "term": str|null, "sign": "+"|"-"|"two_sided", "note": str}}"""
+Finish by calling the `submit` tool with the decomposition."""
 
 
 def decompose(i, hypothesis, env, cfg, out, home):
     path = Path(out, "decomposed", f"{i}.json").resolve()
     if not path.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
-        task = TASK.format(csv=Path(env["csv"]).resolve(), description=env["description"], target=env["target"], hypothesis=hypothesis, path=path)
-        agent(task, SYSTEM, home, cfg)
+        task = TASK.format(csv=Path(env["csv"]).resolve(), description=env["description"], target=env["target"], hypothesis=hypothesis)
+        agent(task, SYSTEM, home, cfg, SCHEMA, path)
     return {"id": i, "hypothesis": hypothesis, **json.loads(path.read_text())}
 
 

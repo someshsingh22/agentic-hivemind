@@ -1,0 +1,81 @@
+{
+  "type": "object",
+  "properties": {
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "dtype": {
+            "type": "string",
+            "enum": [
+              "binary",
+              "numeric"
+            ]
+          },
+          "definition": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "code",
+              "prompt"
+            ]
+          },
+          "spec": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "dtype",
+          "definition",
+          "kind",
+          "spec"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "h0": {
+      "type": "string"
+    },
+    "h1": {
+      "type": "string"
+    },
+    "rhs": {
+      "type": "string"
+    },
+    "term": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sign": {
+      "type": "string",
+      "enum": [
+        "+",
+        "-",
+        "two_sided"
+      ]
+    },
+    "note": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "features",
+    "h0",
+    "h1",
+    "rhs",
+    "term",
+    "sign",
+    "note"
+  ],
+  "additionalProperties": false
+}

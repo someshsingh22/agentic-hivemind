@@ -19,13 +19,14 @@ def pi_home(cfg, home):
     return home
 
 
-def agent(prompt, system, home, cfg):
-    """Run one non-interactive pi session inside `home`."""
+def agent(prompt, system, home, cfg, schema, out):
+    """Run one non-interactive pi session inside `home`; its answer is a schema-validated `submit` call saved to `out`."""
     subprocess.run(
         ["pi", "-p", "--session-dir", str(home / "sessions"), "--no-context-files", "--no-extensions", "--no-skills",
          "--provider", cfg["provider"], "--model", cfg["model"], "--thinking", cfg["thinking"],
-         "--tools", cfg["tools"], "--append-system-prompt", system, prompt],
-        cwd=home, env={**os.environ, "PI_CODING_AGENT_DIR": str(home)}, check=True, stdout=subprocess.DEVNULL,
+         "-e", str(Path(__file__).with_name("submit.ts")), "--tools", cfg["tools"], "--append-system-prompt", system, prompt],
+        cwd=home, check=True, stdout=subprocess.DEVNULL,
+        env={**os.environ, "PI_CODING_AGENT_DIR": str(home), "SUBMIT_SCHEMA": str(schema), "SUBMIT_OUT": str(out)},
     )
 
 
