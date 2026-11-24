@@ -1,0 +1,6 @@
+AGENTS.md
+CLAUDE.md
+runs/
+__pycache__/
+.venv/
+*.egg-info/
