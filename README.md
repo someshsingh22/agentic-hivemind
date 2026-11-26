@@ -42,9 +42,7 @@ Both Sonnet and the embedding endpoint use these names; the old `AZURE_*` names 
 ```bash
 npm i -g @earendil-works/pi-coding-agent
 cp .env.example .env                        # fill ANTHROPIC_FOUNDRY_API_KEY; never commit .env
-uv run python -m ssh decompose envs/cmv.yaml
-uv run python -m ssh dedup envs/cmv.yaml
-uv run python -m ssh test envs/cmv.yaml annotated.csv   # annotated.csv has one column per plan feature
+bash run_calibration.sh
 ```
 
 ## First calibration: 100 CMV hypotheses
@@ -59,12 +57,28 @@ On the experiment machine, place the supplied inputs at the paths already config
 Alternatively, edit the two input paths in `envs/cmv.yaml`. Run commands from the repository root.
 The JSON's `hypotheses` list already contains 100 entries; leave `n_hypotheses: null` to keep all of them.
 Decomposition uses the configured Sonnet 5.5 pi agent; deduplication uses `text-embedding-3-large`.
-These two commands do not call Qwen or annotate the 2,000 dataset rows:
+Use the detached launcher for the calibration. It uses the existing GPU-machine environment at
+`/mnt/localssd/namit/experigen-evals/.venv`, not a new repo-local venv:
 
 ```bash
-uv run python -m ssh decompose envs/cmv.yaml
-uv run python -m ssh dedup envs/cmv.yaml
+bash run_calibration.sh
 ```
+
+The script runs decomposition followed by deduplication under `nohup` and automatically follows its timestamped
+log in `runs/launchers/` with `tail`. It prints the worker PID, log path, and command to follow the log again.
+Ctrl-C stops only the log follower; the worker continues after disconnect. Do not launch another copy while it
+is running. If decomposition fails, deduplication does not start. While attached, the launcher returns the
+worker's exit status when the run ends.
+
+Set `VENV` to use another existing environment, or pass environment/config paths as positional arguments:
+
+```bash
+VENV=/mnt/localssd/namit/experigen-evals/.venv bash run_calibration.sh envs/cmv.yaml config.yaml
+```
+
+The launcher calls `python -u -m ssh` directly; it does not use `uv run`, install packages, or change the model
+server. Ensure the shared venv has the dependencies in `pyproject.toml`, and `pi` is on PATH.
+These two stages do not call Qwen, annotate the 2,000 dataset rows, or run SSH tests.
 
 Review and return `runs/cmv/decomposed.json`, `runs/cmv/plan.json`, and the pi sessions under
 `runs/cmv/pi/sessions/`. The plan's `members` preserve the raw measurements for reviewing each proposed merge.
