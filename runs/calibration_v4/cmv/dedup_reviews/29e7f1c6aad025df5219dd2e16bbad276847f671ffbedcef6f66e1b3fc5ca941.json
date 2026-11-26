@@ -1,0 +1,40 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Engaging a specific example/premise stated in the OP argument (any response type, endorsement not required) differs from challenging an underlying assumption (excludes factual rebuttals). Null rules also differ: empty list gives 0 vs null."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "Engagement with a specific OP example/premise is not the same as presenting a substantive reasoned counterargument; a counterargument need not cite a specific OP example, and engagement need not be a counterargument."
+    },
+    {
+      "left": 0,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "Specific-example/premise engagement versus well-reasoned counterargument to the OP's claim; different constructs. Empty-list handling also differs (0 vs null)."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "Challenge to an underlying assumption (explicitly excluding factual rebuttals) is a materially narrower subtype than any substantive counterargument, which includes factual/evidence-based ones."
+    },
+    {
+      "left": 1,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "Assumption/premise challenge is a narrower subtype than a general well-reasoned counterargument, which can be factual or conclusion-focused."
+    },
+    {
+      "left": 2,
+      "right": 3,
+      "verdict": "needs_alignment",
+      "reason": "Both measure any comment with a reasoned counterargument to the OP's view with the same sources and null rules (empty list null). Pending differences: 089 accepts argument, evidence, or example and ignores quoted text unless adopted; 098 requires addressing the OP's actual claim with coherent logic, evidence or specific examples, and explicitly excludes jokes and off-topic. The 'substantive' vs 'well-reasoned' thresholds and the actual-claim requirement need an explicit measurement decision."
+    }
+  ]
+}

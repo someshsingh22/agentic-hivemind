@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "needs_alignment",
+      "reason": "Same construct family (any comment with second-person address, OC_comments only, 0/1/null with the same empty/unparseable null rule), but the target and exclusions differ. Feature 0 counts 'you' only when directed at the OP and excludes 'you' addressed to others or third parties. Feature 1 counts address to 'the OP or reader' and so includes generic reader address. Feature 1 also explicitly excludes bot/moderator notices and '>' quoted lines; feature 0 only excludes quotations. Pending measurement decisions: whether 'reader' address counts as OP address, and whether bot/moderator notices are excluded. Retain both as written."
+    }
+  ]
+}

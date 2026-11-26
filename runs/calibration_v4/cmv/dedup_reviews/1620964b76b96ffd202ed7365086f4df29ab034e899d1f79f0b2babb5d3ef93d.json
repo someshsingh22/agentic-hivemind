@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "0 is an any-presence check for an explicit admission of uncertainty/possible error. 1 asks whether the main thesis is predominantly framed with hedged markers. Those are different extraction functions: any versus predominant framing. Marker sets also differ, since 1 counts 'I think' and 'it seems' and 0 requires explicit doubt."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "needs_alignment",
+      "reason": "Both are argument-only binary any-presence checks for the OP's explicit uncertainty about their own view, with matching null handling. The pending differences are explicit. 2 also counts 'hedged confidence' and 'to my knowledge' as markers, while 0 does not. 2 excludes moderator/bot notices and generic hypothetical hedges, while 0 excludes minor-detail hedges and generic invitations. Whether hedged confidence counts as explicit uncertainty needs an explicit decision, and the exclusion lists need harmonizing. Both keep their own rubrics as written."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "1 measures whether the main thesis is predominantly hedged. 2 measures whether at least one explicit uncertainty marker is present anywhere in the OP's text. Predominance of the thesis framing and any-presence are different extraction functions. 1 also ignores edit notes, while 2 does not separate them."
+    }
+  ]
+}

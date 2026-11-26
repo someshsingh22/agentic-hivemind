@@ -1,0 +1,40 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "needs_alignment",
+      "reason": "Same verbatim-quote-of-OP construct. Pending difference: an empty comment list gives 0 in 0 but null in 1. Also, 0 gives null only when both title and argument are missing, while 1 gives null when title/argument is missing so matching can't be assessed."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "2 also counts specific non-quoted references to identifiable OP elements ('you said X', 'your second paragraph'), which is broader than quotation only. Null rules also differ."
+    },
+    {
+      "left": 0,
+      "right": 3,
+      "verdict": "needs_alignment",
+      "reason": "Same quote-of-OP construct. Pending difference: an empty comment list gives 0 in 0 but null in 3. Other rules agree: both-missing gives null, and later edits are matched against the current text."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "2 includes specific references to OP text without quotation, which is broader than the direct quotation in 1."
+    },
+    {
+      "left": 1,
+      "right": 3,
+      "verdict": "needs_alignment",
+      "reason": "Same quote construct, and an empty list gives null in both. Pending difference: 1 gives null when title or argument is missing (wording suggests either), while 3 gives null only when both are missing. This needs an explicit decision."
+    },
+    {
+      "left": 2,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "2 counts quotes plus specific non-quoted references to identifiable OP elements, while 3 counts direct quotations only. These are different constructs."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "needs_alignment",
+      "reason": "Both are all-comments binary on OC_comments with the same null rule and a shared 'abstract only' construct. Pending differences: 0 requires only abstract NORMATIVE principles (values/rights/fairness/should), excluding any personal or factual/process/empirical detail. 1 allows abstract, theoretical or conceptual reasoning generally, and only disqualifies specific concrete VERIFIABLE examples. So the argument type (normative vs. any theoretical) and the disqualifier scope (any empirical/process detail vs. verifiable concrete example, with personal experience not named in 1) differ. Needs an explicit decision."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "0 is an all-comments, normative-only, no-concrete-detail measure. 2 is an any-comment measure of abstract reasoning, broader in type (logic, definitions, impersonal evidence) and with different quantifier and empty/zero handling. Any and all are different extraction functions."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "1 is all comments solely abstract with no concrete verifiable example. 2 is at least one comment with abstract reasoning, which allows other comments to be concrete and counts impersonal evidence as abstract. The quantifiers differ (all vs any), so these are different constructs."
+    }
+  ]
+}

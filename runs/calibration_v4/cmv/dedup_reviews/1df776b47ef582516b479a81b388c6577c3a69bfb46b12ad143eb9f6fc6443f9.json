@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an explicit assertion of absolute certainty/incontrovertibility (e.g. 'cannot be wrong', 'no possible counterargument'); ordinary confident opinion gives 0. Feature 1 is broader and different: it gives 1 for assertive or categorical framing ('definitely', 'obviously', flat assertions) with no hedging, and 0 if any hedge is present. The two can diverge in both directions: a confident, unhedged post with no absolute-certainty claim is 0 for feature 0 and 1 for feature 1, while an absolute-certainty claim alongside a hedge is 1 for feature 0 and 0 for feature 1. Different constructs and thresholds. Null handling also differs slightly: feature 0 gives null for empty input, feature 1 only for missing or unparseable."
+    }
+  ]
+}

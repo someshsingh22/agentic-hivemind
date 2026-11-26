@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "needs_alignment",
+      "reason": "Both are argument-only binary measures of OP's own central claim certainty with the same null rule, but the rubrics differ. Feature 0 returns 1 when the main thesis is mainly framed with high-modality or certainty markers. It tolerates some hedging, and it covers 'must' and 'clearly'. It excludes marked edits. Feature 1 requires an absolute, unqualified declarative and returns 1 only if the argument has no hedging or qualifying language about the main claim. A thesis with strong markers plus a qualifier would be 1 under feature 0 and 0 under feature 1. Feature 1 does not mention excluding edits. Feature 1 also does not allow high modality without absoluteness. An explicit decision on hedging tolerance and edit handling is pending. Both rubrics are kept as written."
+    }
+  ]
+}

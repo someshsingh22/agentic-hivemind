@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary on OC_comments with the same 0/null rules, but the constructs differ. Feature 0 requires concrete labor-process details (tasks, workflow, conditions, procedures of actual work) from a personal or specific person's job. Feature 1 requires any concrete personal anecdote (a specific lived experience or event) on any topic. Feature 1 is broader, since an anecdote need not involve labor process. Feature 0 is a narrower subtype that also admits specific described third persons, whereas feature 1 limits others to people the commenter personally knows, stated first-hand."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires the quoted OP text to be a specific factual claim (value judgments/opinions quoted give no credit) and the comment must refute that claim. Feature 1 accepts any quoted word, phrase or sentence from the OP's title or argument that the comment argues against, whether factual or opinion. Feature 0 is a materially narrower subtype. Null handling also differs: an empty comment list gives null in 0, while 1 specifies only missing, empty or unparseable OC_comments or OP text. Retain both as written."
+    }
+  ]
+}

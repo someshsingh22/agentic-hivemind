@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is any comment that directly counterargues the OP view (opposition, rebuttal, reasons or evidence). Feature 1 is a much narrower subtype: the comment must recount a relatable real-world personal experience (the commenter's own or a personal acquaintance's) and explicitly set it against the OP view. Feature 0 would be 1 for a comment with abstract arguments or statistics, and feature 1 would be 0 for it. The null rules also differ: feature 0 gives null for an empty OC_comments list, feature 1 gives 0. Same sources, but different constructs."
+    }
+  ]
+}

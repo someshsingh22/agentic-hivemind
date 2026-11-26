@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 counts distinct OP factual (empirical/descriptive) premises that are challenged by at least one comment, so the unit is the OP's premises. Feature 1 counts distinct counter-argument lines of reasoning across comments, so the unit is the challenges, and these can be value, logical or conclusion challenges. The sources match, but the counting units and eligibility differ. Feature 0 excludes challenges to values, reasoning or conclusions. Feature 1 includes them. Null and empty rules also differ: feature 0 gives null on empty OC_comments or a missing argument, while feature 1 gives 0 on an empty list."
+    }
+  ]
+}

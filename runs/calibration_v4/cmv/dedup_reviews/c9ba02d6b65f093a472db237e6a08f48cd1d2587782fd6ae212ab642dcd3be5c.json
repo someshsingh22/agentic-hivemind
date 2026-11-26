@@ -1,0 +1,94 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "needs_alignment",
+      "reason": "Same construct, but empty list: 0 in left vs null in right; left also lacks the quoted-OP-text exclusion and explicit personal-anecdote inclusion."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "needs_alignment",
+      "reason": "Same construct; empty OC_comments is 0 in left but null in right; left has no quoted-OP exclusion."
+    },
+    {
+      "left": 0,
+      "right": 3,
+      "verdict": "needs_alignment",
+      "reason": "Same construct; empty list 0 vs null; left lacks quoted-OP exclusion."
+    },
+    {
+      "left": 0,
+      "right": 4,
+      "verdict": "needs_alignment",
+      "reason": "Same construct; empty list 0 vs null; left lacks quoted-OP exclusion."
+    },
+    {
+      "left": 0,
+      "right": 5,
+      "verdict": "needs_alignment",
+      "reason": "Same construct; empty list 0 vs null; left lacks quoted-OP exclusion."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "equivalent",
+      "reason": "Same any-comment concrete real-world example, includes personal real anecdotes, excludes hypotheticals and quoted OP text, null on empty/missing."
+    },
+    {
+      "left": 1,
+      "right": 3,
+      "verdict": "needs_alignment",
+      "reason": "Same core predicate and null rules, but left explicitly counts personal real-life anecdotes (and laws); right says 'documented real instance' and excludes personal hypotheticals without stating whether undocumented personal anecdotes count. Needs explicit decision."
+    },
+    {
+      "left": 1,
+      "right": 4,
+      "verdict": "equivalent",
+      "reason": "Same any-comment concrete real-world example incl. personal real-life instances, excludes hypotheticals and quoted OP text, null on empty/missing/unparseable."
+    },
+    {
+      "left": 1,
+      "right": 5,
+      "verdict": "needs_alignment",
+      "reason": "Same core and null rules, but left explicitly includes personal real-life anecdotes/laws; right limits to 'documented instance' (adds country) with no personal-anecdote rule. Needs explicit decision."
+    },
+    {
+      "left": 2,
+      "right": 3,
+      "verdict": "needs_alignment",
+      "reason": "Left explicitly includes concrete personal cases; right requires 'documented real instance' and is silent on undocumented personal anecdotes."
+    },
+    {
+      "left": 2,
+      "right": 4,
+      "verdict": "equivalent",
+      "reason": "Same any-comment specific real-world/personal instance, same exclusions of generics, hypotheticals, quoted OP, same null on empty."
+    },
+    {
+      "left": 2,
+      "right": 5,
+      "verdict": "needs_alignment",
+      "reason": "Left explicitly counts personal cases; right says 'documented instance' without personal-case rule."
+    },
+    {
+      "left": 3,
+      "right": 4,
+      "verdict": "needs_alignment",
+      "reason": "Right explicitly counts personal/real-life instances; left requires 'documented real instance' and excludes personal hypotheticals; personal anecdote treatment needs explicit decision."
+    },
+    {
+      "left": 3,
+      "right": 5,
+      "verdict": "equivalent",
+      "reason": "Same any-comment specific real-world example with documented instance wording, same exclusions, quoted OP excluded, null on empty/missing; accuracy irrelevant in both."
+    },
+    {
+      "left": 4,
+      "right": 5,
+      "verdict": "needs_alignment",
+      "reason": "Left explicitly counts personal real-life instances; right limits to 'documented instance' with no personal-anecdote rule."
+    }
+  ]
+}

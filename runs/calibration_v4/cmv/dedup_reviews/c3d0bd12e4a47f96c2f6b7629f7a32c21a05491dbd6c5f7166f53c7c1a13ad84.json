@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "needs_alignment",
+      "reason": "Shared construct: any comment acknowledges validity then diverges in the same comment. Pending differences: 0 requires acknowledgment of the OP's main/core premise (not side points); 1 accepts any underlying point, concern or part of the OP's view. Null rules differ: 0 gives null if title/argument are missing and 0 for a parsed empty list; 1 ignores title/argument missingness and gives null for an empty list. Divergence type also differs: 0 allows any disagreement; 1 lists disagreement, counterexample or discrepancy."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "0 requires acknowledging the OP's core premise followed by any disagreement. 2 requires acknowledging a specific component followed by a specific counter-example (a materially narrower subtype). Their targets and follow-up requirements differ."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "1 accepts any disagreement, counterexample or discrepancy after acknowledging any valid point. 2 requires a specific identifiable component (excluding blanket 'you have a point') and a counter-example specifically. 2 is materially narrower. Null rules for empty lists and missing title/argument also differ."
+    }
+  ]
+}

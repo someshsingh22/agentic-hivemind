@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "needs_alignment",
+      "reason": "Same construct (all comments purely abstract logical refutation), same sources, all-comments scope, 1/0/null rules. Pending difference: feature 0's exclusion trigger is a named specific external program or location (plus other non-abstract content like anecdotes, statistics, named examples). Feature 1's trigger is any concrete external factual analogy or specific real-world case/example (plus concrete evidence). Feature 1 also bars factual analogies, and feature 0 explicitly singles out programs/locations. A decision is needed on whether the exclusion set (named program/location vs any real-world example or analogy) is equal. Retain both as written."
+    }
+  ]
+}

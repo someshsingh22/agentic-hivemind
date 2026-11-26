@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are all-comments binary over the same sources with matching null rules, but the exclusion differs. Feature 0 returns 0 when any comment explicitly validates the OP's personal dignity, worth or effort, and it explicitly says acknowledging a point's logic is NOT validation. Feature 1 returns 0 when any comment explicitly acknowledges a valid point or correct part of the OP's view, which is the very thing feature 0 allows. Feature 0 also requires comments to be logical/factual refutation, while feature 1 only requires them to challenge the view. These are different constructs (personal validation vs. concession of argumentative validity), not a rubric difference to align."
+    }
+  ]
+}

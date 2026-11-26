@@ -1,0 +1,40 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "0 requires a checkable procedural/process example (how a procedure operates); 1 accepts any localized example (person, place, event, anecdote). 0 is a materially narrower subtype."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "0 is limited to procedural examples; 2 accepts any checkable concrete example (data point, study, link, person, event). Narrower subtype vs broad construct."
+    },
+    {
+      "left": 0,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "0 requires verifiable procedural example; 3 accepts any specific concrete illustrative example, including scenarios and products. Different breadth."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "needs_alignment",
+      "reason": "Both are any-comment specific example presence on OC_comments with the same OP-quote exclusion and 1/0/null. Pending: 1 requires a particular localized case/person/place/event/anecdote, while 2 requires checkability and also counts data points, figures, links/citations, studies, laws. Needs an explicit decision on whether checkability and non-localized data/citations count."
+    },
+    {
+      "left": 1,
+      "right": 3,
+      "verdict": "needs_alignment",
+      "reason": "Both are any-comment specific example presence with the same source and OP-quote exclusion. Pending: 1 requires a particular identifiable/localized case, including concrete anecdotes. 3 also counts detailed concrete scenarios and products as illustrative examples. Needs an explicit decision on whether detailed non-identified scenarios count and how products and studies are treated."
+    },
+    {
+      "left": 2,
+      "right": 3,
+      "verdict": "needs_alignment",
+      "reason": "Both are any-comment concrete specific example presence on OC_comments. Pending: 2 requires the example be checkable by a reader and includes figures, links and citations. 3 requires only a specific illustrative example, with no checkability requirement, and allows detailed concrete scenarios. Needs an explicit decision on the checkability criterion."
+    }
+  ]
+}

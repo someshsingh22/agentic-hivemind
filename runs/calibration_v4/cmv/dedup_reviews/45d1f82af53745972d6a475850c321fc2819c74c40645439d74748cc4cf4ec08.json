@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments), dtype, any-comment structure and null rules, but constructs differ in breadth. Feature 0 counts any specific factual data OR verifiable citation (named studies, sources, laws, court cases, links, documented events, dates) without requiring numbers. Feature 1 requires specific numerical data/statistics used as evidence, so a named case or link with no figures counts for 0 but not 1. Feature 1 is a materially narrower subtype, so they are not interchangeable."
+    }
+  ]
+}

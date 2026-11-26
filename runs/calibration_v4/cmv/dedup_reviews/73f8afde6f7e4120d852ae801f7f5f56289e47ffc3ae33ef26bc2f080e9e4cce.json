@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs: OP's own polite apology to readers (e.g., 'sorry', 'my bad') versus OP's explicit request/demand that responders adjust tone or civility. Same source (argument) and binary/null handling, but the predicates differ; an apology is not a tone request."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+threshold,total_pairs,eligible_pairs,ineligible_pairs,reviewed_total,reviewed_eligible_total,reviewed_ineligible_total,unreviewed_eligible_total,label_coverage,reviewed_equivalent_total,reviewed_distinct_total,reviewed_uncertain_total,candidate_total,reviewed_candidate_total,true_positive,false_positive,missed,uncertain_included,precision,recall,assessment_scope
+0.1,6441,1365,5076,0,0,0,1365,0.0,0,0,0,12,0,0,0,0,0,,,human-reviewed eligible subset only; not population accuracy; no cutoff recommendation
+0.15,6441,1365,5076,0,0,0,1365,0.0,0,0,0,32,0,0,0,0,0,,,human-reviewed eligible subset only; not population accuracy; no cutoff recommendation
+0.2,6441,1365,5076,0,0,0,1365,0.0,0,0,0,70,0,0,0,0,0,,,human-reviewed eligible subset only; not population accuracy; no cutoff recommendation
+0.25,6441,1365,5076,0,0,0,1365,0.0,0,0,0,163,0,0,0,0,0,,,human-reviewed eligible subset only; not population accuracy; no cutoff recommendation
+0.3,6441,1365,5076,0,0,0,1365,0.0,0,0,0,324,0,0,0,0,0,,,human-reviewed eligible subset only; not population accuracy; no cutoff recommendation
+0.35,6441,1365,5076,0,0,0,1365,0.0,0,0,0,635,0,0,0,0,0,,,human-reviewed eligible subset only; not population accuracy; no cutoff recommendation
+0.4,6441,1365,5076,0,0,0,1365,0.0,0,0,0,985,0,0,0,0,0,,,human-reviewed eligible subset only; not population accuracy; no cutoff recommendation

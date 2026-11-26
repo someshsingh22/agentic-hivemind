@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same sources (argument,title), dtype binary, OP own voice. But constructs differ: 35 = OP acknowledges a specific counter-argument, opposing point, exception, or limitation/weakness of own view (includes self-limitation/exceptions). 64 = OP acknowledges that other reasonable perspectives/positions exist (general existence of alternatives; excludes self-weakness admissions). Neither subsumes the other; e.g. 'admittedly this fails for X' is 1 for 35 but not necessarily 64, and 'reasonable people disagree' is 64 but not necessarily a specific counterargument. Edit handling also differs: 35 ignores text marked as edits/post-initial; 64 excludes only clearly marked edits responding to commenters. Not an alignment-only gap."
+    }
+  ]
+}

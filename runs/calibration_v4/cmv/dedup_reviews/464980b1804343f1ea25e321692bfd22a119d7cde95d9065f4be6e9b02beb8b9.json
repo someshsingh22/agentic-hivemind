@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 asks whether any comment asserts the OP's claim or a premise is false or logically invalid (a counter-assertion, including purely logical disputes). Feature 1 asks whether any comment introduces a new verifiable external fact absent from the OP, and explicitly excludes pure logical reasoning. A comment can satisfy one and not the other. Null rules also differ: feature 1 returns null if title/argument is missing, while feature 0 does not."
+    }
+  ]
+}

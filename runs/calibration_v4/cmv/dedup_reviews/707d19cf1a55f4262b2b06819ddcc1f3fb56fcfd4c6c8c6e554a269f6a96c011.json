@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "needs_alignment",
+      "reason": "Both read only the argument column and return binary 0/1/null for OP's own hedging, but the rubrics differ. Feature 0 counts any softening or scope-limiting qualifier ('generally', 'mostly', 'in some cases', 'might', 'it seems'), so it is broader. Feature 1 requires explicit hedging or doubt about the OP's own view ('I might be wrong', 'I'm not sure'). Edit handling also differs: 0 says later edits are not separated and excludes only edit notes that don't state the OP's stance, while 1 ignores edit sections entirely. 0 also excludes generic 'I think' framing, and 1 excludes hedges about third-party facts and rhetorical questions. 1 explicitly bars using title or comments, and 0 is silent on that. Pending decision: whether scope-limiting qualifiers count, and how edits are treated."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "needs_alignment",
+      "reason": "Same construct (OP personal anecdote, argument-only, binary, null on missing/empty). Pending differences: 0 judges text as given including later edits, while 1 explicitly excludes EDIT/Update notes; 0 permits friend-shared experiences 'as lived by OP', while 1 requires a specific event happening to OP and excludes family/friends unless OP narrates own involvement; 0 says 'first-person experiential narrative', 1 requires 'specific' experience. Needs explicit decision on edit handling and specificity/third-party involvement."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "needs_alignment",
+      "reason": "Same broad construct (OP's own experience narrative, argument-only, binary, null on empty). Pending differences: 0 judges full text including edits (cannot separate), while 2 excludes edit notes not narrating OP's experience (edits that narrate OP experience seem to count) and moderator notices; 2 also explicitly zeroes passing identity mentions and counts events 'done by' OP; wording on 'anecdote' vs 'narrative' and edit scope differ. Needs explicit decision on edit handling and boundary rules."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "needs_alignment",
+      "reason": "Same construct and source (argument-only OP experience, binary, null on missing/empty). Pending differences: 1 requires a specific personal anecdote and excludes all edit/Update text outright, whereas 2 excludes only edit notes not narrating OP's experience; 1 explicitly excludes family/friends unless OP narrates own involvement, 2 allows 'my sister and I' style episodes; 2 includes events 'done by' OP and 'situations or episodes' (broader than a specific event). Needs explicit decision on edit scope and specificity."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an explicit question to readers soliciting counterarguments/counterexamples (solicitation act), excluding marked edits. Feature 1 measures OP acknowledging existence of counterpoints/objections/opposing views (including anticipating and addressing them) and explicitly excludes generic invitations to change view; it reads whole text including edits. Different constructs (soliciting vs acknowledging) and different edit scope."
+    }
+  ]
+}

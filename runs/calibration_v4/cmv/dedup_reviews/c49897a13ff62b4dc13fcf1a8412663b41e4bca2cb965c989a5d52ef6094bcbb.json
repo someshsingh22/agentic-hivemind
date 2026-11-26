@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "needs_alignment",
+      "reason": "Same shared construct (any comment cites specific empirical evidence; same source, binary, 0/1/null rules). Pending differences: index 1 requires the comment to be a 'counter-argument' and adds an explicit exclusion of vague 'studies show' appeals; index 0 has no counter-argument requirement and counts a 'specific documented factual case' while excluding personal anecdote without checkable specifics. Index 1 explicitly includes 'event' and 'documented observation'. These scope and eligibility wording differences need an explicit measurement decision."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "equivalent",
+      "reason": "Both read only OC_comments and return 1 if any comment itself offers specific empirical evidence (data, statistics, named study/source, documented case) to support its argument. Both exclude pure logic, hypotheticals, opinion, unverifiable anecdote and quoted OP text. Both return 0 when parseable with no qualifying comment and null when missing, empty or unparseable. Wording differences are harmless; index 2 adds 'measured observations', which is minor."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "needs_alignment",
+      "reason": "Same shared construct (any comment cites specific empirical evidence; same source and 0/1/null rules). Pending differences: index 1 requires the comment to be a counter-argument citing an 'example' and counts events, while index 2 requires evidence in support of its argument, without a counter-argument requirement. Index 2 also includes 'measured observations' and an explicit personal-anecdote exclusion. These scope and eligibility wording differences need an explicit measurement decision."
+    }
+  ]
+}

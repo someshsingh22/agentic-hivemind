@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read OC_comments and are binary, but the row functions differ. Feature 0 is 1 if any comment has calm, civil, structured reasoning against the OP, and hostile reasoning is excluded. Feature 1 is 1 only if some comment gives logical refutation AND no comment contains specific empirical evidence. That adds a dataset-wide exclusion on evidence. Feature 1 has no civility or tone requirement. Their 0 conditions differ. Feature 0 does not look at evidence, while feature 1 is 0 whenever evidence appears. The two also treat empty lists the same way, but this does not offset the construct difference."
+    }
+  ]
+}
