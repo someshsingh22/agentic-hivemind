@@ -166,3 +166,16 @@ complete-linkage boundaries, rejected/uncertain/alignment-needed pairs, complete
 and deterministic distance sampling with explicitly human-labeled threshold scoring.
 A local CLI smoke also exercised decomposition/resume, deduplication, pair exports and label scoring with
 external model/embedding boundaries stubbed. Neither check establishes Sonnet's semantic accuracy.
+
+## Invalid decomposition submissions
+
+The submit tool runs the same Python feature-contract validator before writing a decomposition.
+Rejected submissions return the contract error to the agent for correction; they do not produce a cache file.
+This catches dependency-source omissions and invalid primary/secondary metadata before terminating the session.
+The Python executable is the launcher's interpreter, not a separate system environment.
+
+For runs created before this check, validate every cached decomposition against the predictor columns saved
+in `decomposition_inputs.json`. Preserve invalid files outside `decomposed/`, then resume with the launcher.
+Valid cached files remain reusable. Do not bypass source gates or automatically add columns, dependencies or
+semantic instructions to force acceptance. This change leaves prompts, schemas and cache identity unchanged.
+

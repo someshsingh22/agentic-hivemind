@@ -1,7 +1,10 @@
 """Validate reusable measurement contracts without executing their specifications."""
 
+import json
 import re
+import sys
 from collections import deque
+from pathlib import Path
 
 
 _NAME = re.compile(r"[a-z][a-z0-9]*(?:_[a-z0-9]+)*\Z")
@@ -92,3 +95,13 @@ def validate_features(features, columns=None):
     if visited != len(features):
         raise ValueError("Feature dependencies must be acyclic")
     return features
+
+
+if __name__ == "__main__":
+    schema = json.loads(Path(sys.argv[1]).read_text())
+    columns = schema["properties"]["features"]["items"]["properties"]["source_columns"]["items"].get("enum")
+    try:
+        validate_features(json.load(sys.stdin)["features"], columns)
+    except (KeyError, ValueError) as error:
+        print(error, file=sys.stderr)
+        sys.exit(1)

@@ -3,6 +3,7 @@
 import json
 import os
 import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -27,7 +28,8 @@ def agent(prompt, system, home, cfg, schema, out):
          "--provider", cfg["provider"], "--model", cfg["model"], "--thinking", cfg["thinking"],
          "-e", str(Path(__file__).with_name("submit.ts").resolve()), "--tools", cfg["tools"], "--append-system-prompt", system, prompt],
         cwd=home, check=True, stdout=subprocess.DEVNULL,
-        env={**os.environ, "PI_CODING_AGENT_DIR": str(home), "SUBMIT_SCHEMA": str(schema), "SUBMIT_OUT": str(out)},
+        env={**os.environ, "PI_CODING_AGENT_DIR": str(home), "SUBMIT_SCHEMA": str(schema), "SUBMIT_OUT": str(out),
+             "SUBMIT_PYTHON": sys.executable, "SUBMIT_FEATURE_VALIDATOR": str(Path(__file__).with_name("features.py").resolve())},
     )
 
 
