@@ -101,6 +101,17 @@ class EquivalenceReviewerTests(unittest.TestCase):
             self.assertEqual(json.loads(review_path.read_text()), {"comparisons": first})
             self.assertEqual(agent.call_args.args[3]["tools"], "submit")
 
+    def test_pair_cache_reuses_verdict_across_threshold_trials(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            with patch.object(equivalence, "agent", side_effect=submit_review) as agent:
+                results = []
+                for threshold in (0.20, 0.25, 0.30):
+                    cfg = {**full_config(), "dedup": {"threshold": threshold}}
+                    results.append(equivalence.EquivalenceReviewer(cfg, root)(candidate_features()))
+            self.assertEqual(results, [[comparison()]] * 3)
+            self.assertEqual(agent.call_count, 1)
+
     def test_changed_full_rubric_or_hypothesis_identity_needs_new_review(self):
         changes = {
             "name": "uncertainty_revised",

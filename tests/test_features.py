@@ -132,8 +132,17 @@ class DeduplicationTests(unittest.TestCase):
     def test_complete_linkage_does_not_chain_distant_endpoints(self):
         vectors = np.array([[math.cos(a), math.sin(a)] for a in [0, 0.5, 1.0]])
         claims = [hypothesis(i, [feature(f"f{i}")]) for i in range(3)]
+        reviewer = Mock(side_effect=equivalent_review)
         with patch.object(deduplication, "embed", return_value=vectors):
-            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
+            plan = deduplication.dedup(claims, ENV, CFG, reviewer)
+        self.assertEqual(reviewer.call_count, 2)
+        self.assertEqual([[item["hypothesis_id"] for item in call.args[0]]
+                          for call in reviewer.call_args_list], [[0, 1], [1, 2]])
+        self.assertTrue(any(not pair["same_candidate_cluster"] and pair["review_verdict"]
+                            for pair in plan["feature_pairs"]))
+        for pair in plan["feature_pairs"]:
+            self.assertEqual(bool(pair["review_verdict"]),
+                             pair["eligible"] and pair["within_threshold"])
         groups = [{m["hypothesis"] for m in f["members"]} for f in plan["features"]]
         self.assertEqual(sorted(map(len, groups)), [1, 2])
         self.assertFalse(any({0, 2} <= group for group in groups))
@@ -234,19 +243,23 @@ class DeduplicationTests(unittest.TestCase):
         with patch.object(deduplication, "embed", return_value=vectors):
             plan = deduplication.dedup(claims, ENV, CFG, reviewer)
         self.assertEqual(len(plan["features"]), 1)
-        reviewer.assert_called_once()
-        review, = plan["dedup_reviews"]
-        self.assertEqual(review["features"], [
-            {"hypothesis_id": claim["id"], "feature": claim["features"][0]} for claim in claims
-        ])
+        self.assertEqual(reviewer.call_count, 6)
         expected_pairs = {(left, right) for left in range(4) for right in range(left + 1, 4)}
-        self.assertEqual({(item["left"], item["right"]) for item in review["comparisons"]}, expected_pairs)
-        self.assertEqual(len(review["comparisons"]), 6)
-        self.assertEqual({(item["left"], item["right"]) for item in review["distances"]}, expected_pairs)
-        self.assertEqual(len(review["distances"]), 6)
-        for item in review["distances"]:
-            self.assertAlmostEqual(item["cosine_distance"],
-                                   1 - vectors[item["left"]] @ vectors[item["right"]])
+        self.assertEqual(len(plan["dedup_reviews"]), 6)
+        reviewed_pairs = set()
+        for review in plan["dedup_reviews"]:
+            self.assertEqual(len(review["features"]), 2)
+            left, right = [item["hypothesis_id"] for item in review["features"]]
+            reviewed_pairs.add((left, right))
+            self.assertEqual(review["features"], [
+                {"hypothesis_id": owner, "feature": claims[owner]["features"][0]}
+                for owner in (left, right)
+            ])
+            self.assertEqual(review["comparisons"], equivalent_review([None, None]))
+            distance, = review["distances"]
+            self.assertEqual((distance["left"], distance["right"]), (0, 1))
+            self.assertAlmostEqual(distance["cosine_distance"], 1 - vectors[left] @ vectors[right])
+        self.assertEqual(reviewed_pairs, expected_pairs)
         self.assertEqual(len(plan["feature_pairs"]), 6)
         exported = {(item["left_hypothesis"], item["right_hypothesis"]): item
                     for item in plan["feature_pairs"]}
@@ -262,13 +275,14 @@ class DeduplicationTests(unittest.TestCase):
 
     def test_nontransitive_semantic_approvals_cannot_merge_all_three(self):
         claims = [hypothesis(i, [feature(name)]) for i, name in enumerate(["a", "b", "c"])]
-        decisions = [
-            {"left": 0, "right": 1, "verdict": "equivalent", "reason": "Fixture approves A/B."},
-            {"left": 1, "right": 2, "verdict": "equivalent", "reason": "Fixture approves B/C."},
-            {"left": 0, "right": 2, "verdict": "distinct", "reason": "Fixture rejects A/C."},
-        ]
+        def review(pair):
+            owners = [item["hypothesis_id"] for item in pair]
+            verdict = "distinct" if owners == [0, 2] else "equivalent"
+            return [{"left": 0, "right": 1, "verdict": verdict,
+                     "reason": f"Fixture decision for {owners}."}]
+
         with patch.object(deduplication, "embed", identical_vectors):
-            plan = deduplication.dedup(claims, ENV, CFG, lambda cluster: decisions)
+            plan = deduplication.dedup(claims, ENV, CFG, review)
         groups = [{member["hypothesis"] for member in item["members"]} for item in plan["features"]]
         self.assertEqual(sorted(map(len, groups)), [1, 2])
         self.assertFalse(any({0, 2} <= group for group in groups))
@@ -356,10 +370,15 @@ class DeduplicationTests(unittest.TestCase):
 
     def test_missing_pair_decision_fails_closed_instead_of_merging(self):
         claims = [hypothesis(i, [feature(f"f{i}")]) for i in range(3)]
-        incomplete = equivalent_review([None] * 3)[:-1]
-        with patch.object(deduplication, "embed", identical_vectors):
-            with self.assertRaises(ValueError):
-                deduplication.dedup(claims, ENV, CFG, lambda cluster: incomplete)
+        malformed = [
+            [],
+            [{"left": 0, "right": 2, "verdict": "equivalent", "reason": "Invalid pair index."}],
+            [{"left": 0, "right": 1, "verdict": "equivalent"}],
+        ]
+        for verdicts in malformed:
+            with self.subTest(verdicts=verdicts), patch.object(deduplication, "embed", identical_vectors):
+                with self.assertRaises(ValueError):
+                    deduplication.dedup(claims, ENV, CFG, lambda pair: verdicts)
 
     def test_hard_gates_do_not_send_incompatible_pairs_for_review(self):
         cases = [
@@ -386,6 +405,26 @@ class DeduplicationTests(unittest.TestCase):
                                          for claim in claims for item in claim["features"])
                     self.assertEqual(len(plan["feature_pairs"]),
                                      semantic_count * (semantic_count - 1) // 2)
+
+    def test_precomputed_vectors_follow_semantic_raw_order_without_embedding(self):
+        claims = [
+            hypothesis(0, [feature("a"), feature("count", kind="code")]),
+            hypothesis(1, [feature("b")]),
+            hypothesis(2, [feature("c")]),
+        ]
+        vectors = np.array([[1.0, 0.0], [1.0, 0.0], [-1.0, 0.0]])
+        reviewer = Mock(side_effect=equivalent_review)
+        with patch.object(deduplication, "embed", side_effect=AssertionError("Redundant embedding")):
+            plan = deduplication.dedup(claims, ENV, CFG, reviewer, vectors=vectors)
+        reviewer.assert_called_once_with([
+            {"hypothesis_id": owner, "feature": claims[owner]["features"][0]} for owner in (0, 1)
+        ])
+        self.assertEqual([(item["kind"], len(item["members"])) for item in plan["features"]],
+                         [("prompt", 2), ("code", 1), ("prompt", 1)])
+        self.assertEqual([item["term"] for item in plan["hypotheses"]], ["a", "a", "c"])
+        for pair in plan["feature_pairs"]:
+            self.assertEqual(bool(pair["review_verdict"]),
+                             pair["eligible"] and pair["within_threshold"])
 
 
 class FeatureValidationTests(unittest.TestCase):

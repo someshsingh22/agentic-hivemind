@@ -9,11 +9,19 @@ measurement_policy: |
     adopted by that speaker. For a quotation/reference-presence construct, measure the
     quotation/reference itself; endorsement is NOT required. When judging a comment's stance
     toward the OP, include the actual OP title/argument context needed to identify the target.
-  - Preserve literal initial/post-time restrictions. An unordered OC_comments list establishes
-    neither chronology nor rank; argument may contain later edits. Never infer an initial
-    snapshot, pre-event text, speaker identity or unavailable time from current text.
-  - Missing/unparseable required sources give null, not absence. Complete assessable absence
-    gives 0. Specify empty-input and unknown-input handling for the requested measurement.
+  - Use supplied current text, including marked edits, unless the hypothesis explicitly
+    restricts time. Preserve literal initial/post-time restrictions; an unavailable initial
+    snapshot is a limitation, not permission to infer it or silently use current text instead.
+    An unordered OC_comments list establishes neither chronology nor rank. Never infer
+    pre-event text, speaker identity or unavailable time.
+  - A valid empty comment list yields 0 for any/count and null for share/mean/all. Missing or
+    malformed required input yields null; complete, assessable absence yields 0. Missing OP
+    context yields null when it prevents determining the requested measurement. An observed
+    quote/reference may establish a positive match against available permitted OP title/body;
+    a negative cannot be established while a relevant permitted OP source is missing.
+  - Use canonical, concise construct definitions that preserve actual qualifiers. Illustrative
+    examples are nonexhaustive, not extra eligibility rules. "Documented example" does not by
+    itself require external verification; use only the declared supplied sources.
   - Preserve any versus all/count/share, frequent occurrence, comment count versus distinct
     argument count, and intensity versus density. Do not invent frequency cutoffs, controls,
     proxies or implicit dataset-wide references. A semantic intensity score may use a fixed,
@@ -63,15 +71,18 @@ agents:
           jointly required OP context and original sources used by any referenced features.
           Never put generated feature names here or add unused context to make source sets match.
         - definition: canonical compact line "<speaker + exact text scope>: <exact quantity>".
-          Include material intensity, scope, exclusions and units/scale anchors.
+          Reuse concise construct wording; retain material qualifiers, exclusions and units/scale
+          anchors, without turning illustrative examples into new restrictions.
         - kind: code or prompt. Code spec is a precise Python/pandas expression or complete
           deterministic recipe over declared sources or other defined features; do not execute it.
         - spec: SELF-CONTAINED measurement instructions, not a hypothesis test or restatement.
           Name all sources, attribution, text boundaries, time and required context. State the
           requested scalar output, 1/0/null cases, exclusions, eligibility, empty/malformed cases,
-          and, when relevant, denominator and overlap/deduplication rules. For numeric output,
-          give units/range and anchored meanings including zero. A prompt must read the declared
-          sources jointly and directly return the requested per-row measurement.
+          and, when relevant, denominator and overlap/deduplication rules. Apply the shared
+          empty-input and missing-context rules consistently. For numeric output, give units/range
+          and anchored meanings including zero. A prompt must read the declared sources jointly
+          and directly return the requested per-row measurement; no vectors or intermediate
+          label classes/dependency schema.
 
         RELATIONSHIP CONTRACT
         - h0/h1: exact null/alternative in feature names, one sentence each.
@@ -90,7 +101,8 @@ agents:
         - "Any comment cites a specific real-world example" is one binary prompt feature;
           "share of comments citing a specific real-world example" is a different numeric
           prompt feature. Both directly measure the requested row quantity. A functioning
-          institutional precedent is narrower than any real-world example.
+          institutional precedent is narrower than any real-world example. Named illustrative
+          cases do not restrict the construct to those cases or require outside verification.
         - OP explicit uncertainty/admission of possible error and a paraphrase about explicit
           OP doubt can share a feature if their full scope/exclusions match. Inviting critique
           OR being tentative is broader; absolute certainty is not its complement.
@@ -101,12 +113,17 @@ agents:
           with any challenge. Count distinct arguments only if the requested measurement calls
           for semantic deduplication, not by treating comment count as argument count.
         - Initial OP argument is not an inferred snapshot of edited argument or conversation.
-          Quoting and refuting an OP claim requires argument context; merely mentioning its topic
-          does not. Presence of a quote is not the commenter's endorsement.
+          Without a temporal restriction, measure supplied current text, including marked edits.
+          Quoting and refuting an OP claim requires relevant OP context; merely mentioning its
+          topic does not. A quote matching available permitted OP text can establish presence;
+          missing relevant OP text prevents establishing absence. Endorsement is not required
+          for quote presence.
       user_template: |
         DATASET: $csv
         Inspect needed predictor dtypes, structures, ranges and a few examples so specs match
-        the actual data. Do not annotate rows or run statistical tests.
+        the actual data. Do not annotate rows or run statistical tests. Apply the shared
+        empty/missing-input and current-text rules; preserve qualifiers without narrowing
+        constructs to illustrative examples.
         $description
         Available original predictor columns: $columns
         Outcome (never a measurement/annotation input): $target
@@ -127,13 +144,13 @@ agents:
         $measurement_policy
 
         INPUT AND OUTPUT
-        Input is [{hypothesis_id, feature: {all original feature fields}}]. Positions are LOCAL
-        ZERO-BASED indices, not hypothesis IDs. Evaluate every unordered pair exactly once,
-        left < right. Finish via submit with exactly:
+        Input is two entries [{hypothesis_id, feature: {all original feature fields}}].
+        Review this pair only. Positions 0 and 1 are LOCAL indices, not hypothesis IDs.
+        Finish via submit with exactly one comparison:
         {"comparisons": [{"left": 0, "right": 1, "verdict": "equivalent", "reason": "..."}]}
-        Verdict is equivalent, needs_alignment, distinct or uncertain. For fewer than two
-        features return {"comparisons": []}. Every reason states decisive agreement, exact
-        pending difference, real construct difference or unresolved ambiguity.
+        Verdict is equivalent, needs_alignment, distinct or uncertain. The reason states
+        decisive agreement, exact pending difference, real construct difference or unresolved
+        ambiguity.
 
         DECISION RULES
         - equivalent: the same full direct per-row extraction function, including the core
@@ -141,7 +158,8 @@ agents:
           differences are safe: do not demand proof that every hypothetical phrasing produces
           identical human judgment. Read definition AND spec in full; a shared name/topic alone
           is insufficient. Outcome direction and provenance do not change the measurement.
-          Do not invent a missing boundary or rule.
+          Different ordinary nonexhaustive example lists are not decisive by themselves; compare
+          the rules they illustrate. Do not invent a missing boundary or rule.
         - needs_alignment: the intended construct is shared but an explicit operational
           rubric differs (scope, eligibility, intensity cutoff, scale, timing, attribution or
           null rule). Report the EXACT pending difference and what would need an explicit
@@ -191,9 +209,11 @@ agents:
         - uncertain: nominally similar scores with no interpretable anchors or unresolved
           attribution. Uncertainty is not permission to fill in the missing rubric.
       user_template: |
-        Review every unordered pair using local zero-based indices, not hypothesis IDs.
-        Preserve all feature fields and report exact pending alignment differences.
+        Review the supplied pair using local indices 0 and 1, not hypothesis IDs.
+        Compare the same construct AND full scalar row function. Preserve all feature fields,
+        retain explicit differences and report exact pending alignment differences. Do not
+        assume missing rules match or treat ordinary nonexhaustive examples as extra restrictions.
 
         $features
 
-        Submit {"comparisons": [...]} covering every pair with a verdict and reason.
+        Submit {"comparisons": [...]} containing this pair's verdict and reason.

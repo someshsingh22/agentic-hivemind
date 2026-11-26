@@ -36,7 +36,12 @@ def rename(text, mapping):
     return re.sub(r"\w+", lambda m: mapping.get(m[0], m[0]), text)
 
 
-def dedup(decomposed, env, cfg, review_cluster):
+def dedup(decomposed, env, cfg, review_cluster, vectors=None):
+    """Review every eligible nearby pair, then merge only all-pair approvals.
+
+    Optional normalized vectors follow prompt features in decomposition/raw order.
+    Candidate complete-linkage labels are exported only as diagnostics.
+    """
     for decomposition in decomposed:
         validate_features(decomposition["features"])
         forbidden = {env["target"], env.get("group"), "post_id", "comment_id"}
@@ -49,7 +54,8 @@ def dedup(decomposed, env, cfg, review_cluster):
     semantic = [index for index, (_, feature) in enumerate(raw) if feature["kind"] == "prompt"]
     if len(semantic) > 1:
         selected = [raw[index] for index in semantic]
-        vectors = embed([f"{f['name']}: {f['definition']}" for _, f in selected], cfg["embedding"])
+        if vectors is None:
+            vectors = embed([f"{f['name']}: {f['definition']}" for _, f in selected], cfg["embedding"])
         owners = np.array([owner for owner, _ in selected])
         dtypes = np.array([f["dtype"] for _, f in selected])
         sources = np.array(["\0".join(sorted(f["source_columns"])) for _, f in selected])
@@ -57,21 +63,25 @@ def dedup(decomposed, env, cfg, review_cluster):
         approved = np.eye(len(selected), dtype=bool)
         distances = (1 - vectors @ vectors.T).clip(0, 2)
         decisions = {}
-        for label in dict.fromkeys(candidates):
-            indices = np.flatnonzero(candidates == label).tolist()
-            if len(indices) < 2:
-                continue
-            features = [{"hypothesis_id": selected[index][0], "feature": selected[index][1]} for index in indices]
-            comparisons = validate_comparisons(review_cluster(features), len(features))
-            pair_distances = []
-            for comparison in comparisons:
-                left, right = comparison["left"], comparison["right"]
-                i, j = indices[left], indices[right]
-                pair_distances.append({"left": left, "right": right, "cosine_distance": float(distances[i, j])})
+        for i in range(len(selected)):
+            for j in range(i + 1, len(selected)):
+                eligible = (owners[i] != owners[j] and dtypes[i] == dtypes[j]
+                            and sources[i] == sources[j])
+                if not eligible or distances[i, j] > cfg["dedup"]["threshold"]:
+                    continue
+                features = [{"hypothesis_id": selected[index][0], "feature": selected[index][1]}
+                            for index in (i, j)]
+                comparisons = validate_comparisons(review_cluster(features), 2)
+                comparison = comparisons[0]
                 decisions[(i, j)] = comparison
                 if comparison["verdict"] == "equivalent":
                     approved[i, j] = approved[j, i] = True
-            reviews.append({"features": features, "comparisons": comparisons, "distances": pair_distances})
+                reviews.append({
+                    "features": features,
+                    "comparisons": comparisons,
+                    "distances": [{"left": 0, "right": 1,
+                                   "cosine_distance": float(distances[i, j])}],
+                })
         final_labels = cluster(
             vectors, owners, dtypes, sources, cfg["dedup"]["threshold"], approved=approved
         )

@@ -66,4 +66,33 @@ def calibrate(labels, output):
     score_labels(labels, output)
 
 
-fire.Fire({"decompose": decompose, "dedup": dedup, "calibrate": calibrate, "test": test})
+def tune(env, config="config.yaml"):
+    """Decompose once and compare three reviewed dedup thresholds; no annotation/tests."""
+    from .calibration import write_calibration
+    from .dedup import dedup, summary
+    from .equivalence import EquivalenceReviewer
+    from .models import embed
+
+    decompose(env, config)
+    cfg, env, out = setup(env, config)
+    decomposed = read(out / "decomposed.json")["decomposed"]
+    semantic = [feature for claim in decomposed for feature in claim["features"]
+                if feature["kind"] == "prompt"]
+    vectors = embed([f"{f['name']}: {f['definition']}" for f in semantic], cfg["embedding"]) if len(semantic) > 1 else None
+    reviewer = EquivalenceReviewer(cfg, out)
+    results = {}
+    for threshold in (0.20, 0.25, 0.30):
+        trial = out / f"threshold_{threshold:.2f}"
+        trial_cfg = {**cfg, "dedup": {**cfg["dedup"], "threshold": threshold}}
+        print(f"Starting threshold {threshold:.2f}", flush=True)
+        plan = dedup(decomposed, env, trial_cfg, reviewer, vectors=vectors)
+        write(trial / "config.json", trial_cfg)
+        write(trial / "plan.json", plan)
+        write_calibration(plan, trial, threshold)
+        results[f"{threshold:.2f}"] = summary(plan)
+        write(out / "tuning_summary.json", results)
+        print(json.dumps({"threshold": threshold, **summary(plan)}), flush=True)
+    return results
+
+
+fire.Fire({"decompose": decompose, "dedup": dedup, "tune": tune, "calibrate": calibrate, "test": test})
