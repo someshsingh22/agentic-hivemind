@@ -1,0 +1,20 @@
+name: cmv
+target: delta
+group: post_id
+csv: data/cmv.csv
+hypotheses: data/hypotheses_ssh_eval/cmv.json
+description: |
+  2,000 Reddit r/ChangeMyView discussions (balanced). One row = one post with its counter-argument comments.
+  Columns:
+    - post_created_utc: Unix timestamp of the original post (no comment times).
+    - title: the original poster's (OP) post heading / claim statement.
+    - argument: the OP's explanation of their view (the post body). May contain quotes and marked edits.
+    - OC_comments: JSON-encoded list of counter-argument comments written by OTHER users (not the OP).
+      List order is not rank or chronology. Row-level measures must say whether they mean any comment,
+      all comments, an average, or a count.
+    - conversation: formatted discussion text overlapping OC_comments; may include later replies and
+      explicit view-change announcements (outcome leakage) — avoid unless interaction is required.
+    - log_length: supplied log-transformed length measure (undocumented construction).
+    - post_score: the original post's observed Reddit score at collection.
+    - delta: OUTCOME, 1 if the OP changed their view, else 0. Never a predictor.
+    - post_id, comment_id: identifiers, never predictors.
