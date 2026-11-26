@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 if any comment explicitly challenges an underlying assumption or premise of the OP's view, as opposed to disputing only facts or the conclusion. Feature 1 is 1 if any comment quotes or references a specific element of the OP's text, and endorsement or challenge is not required. A comment can quote OP text without challenging a premise. A comment can challenge a premise without quoting any specific text. Their null and empty-list rules also differ."
+    }
+  ]
+}

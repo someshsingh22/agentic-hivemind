@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different constructs. Feature 0 returns 1 if any comment explicitly engages with a specific example or premise the OP cited. That engagement can be non-critical (accepting or building on it), and generic or new arguments don't count. Feature 1 returns 1 if any comment gives a reasoned counterargument opposing the OP's view. That need not be tied to a specific OP example or premise, and agreement or acceptance doesn't count. A comment can satisfy one and not the other. For instance, a new argument against the view meets 1 but not 0, and a comment that accepts an OP premise meets 0 but not 1. The null rules also differ: feature 0 gives null for a missing argument or insufficient context, while feature 1 gives null for missing OC_comments or missing context."
+    }
+  ]
+}

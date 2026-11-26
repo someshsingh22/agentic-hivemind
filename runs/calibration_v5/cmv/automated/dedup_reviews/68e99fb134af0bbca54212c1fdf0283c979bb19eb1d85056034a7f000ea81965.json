@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 flags any comment that argues through abstract reasoning (general principles, logic, conceptual or impersonal generalization). Feature 1 flags any comment that cites a specific identifiable real-world example (event, person, case, study). Feature 1 explicitly excludes purely abstract reasoning. A comment can satisfy one without the other, and each spec says abstract reasoning is judged independently of anecdotes. The source column, dtype and null/empty rules match, but the extraction predicates differ."
+    }
+  ]
+}

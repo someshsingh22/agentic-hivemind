@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different row functions. Feature 0 is an any-comment flag for calm, measured reasoning in any comment, which may or may not disagree with the OP. It excludes aggressive tone and has no evidence condition. Feature 1 requires a comment that attacks the OP's view through logical refutation, and it also requires that no comment contains specific empirical evidence. It returns 0 if any such evidence exists. Feature 1 therefore has a different construct (refutation of the OP, not tone-measured reasoning) and an extra list-wide exclusion. The two would give different values for a calm reasoned comment that also cites data, and for an aggressive logical refutation."
+    }
+  ]
+}

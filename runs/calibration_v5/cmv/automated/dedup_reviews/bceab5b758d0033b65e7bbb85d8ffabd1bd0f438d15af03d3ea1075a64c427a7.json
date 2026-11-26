@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is 1 if any comment argues that the OP's own premises contradict each other or the OP's conclusion (a semantic argument-content judgment). Item 1 is 1 if any comment quotes OP title or argument text verbatim or near-verbatim, with no endorsement or argument required (a quotation-presence check). The two predicates have different positive conditions, and a quote does not imply a contradiction claim, or the reverse. Their null rules also differ: item 0 gives null if title and argument are both missing, and item 1 adds a rule that a clear positive match still gives 1."
+    }
+  ]
+}

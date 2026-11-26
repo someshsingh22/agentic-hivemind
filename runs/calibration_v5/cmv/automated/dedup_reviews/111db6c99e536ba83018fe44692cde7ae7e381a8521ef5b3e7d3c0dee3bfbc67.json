@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and any/binary/null rules, but eligibility differs. Feature 0 requires an analogy to a NAMED specific real-world case, event, person, institution or scientific example, and explicitly excludes vague references. It also requires the analogy to be used against the OP. Feature 1 accepts any concrete real-world case, fact or situation, including unnamed 'everyday' or specific cases, from outside the OP's scenario. It does not require naming and has no against-the-OP requirement. So 1 is broader: an unnamed everyday concrete analogy counts for 1 but not for 0."
+    }
+  ]
+}

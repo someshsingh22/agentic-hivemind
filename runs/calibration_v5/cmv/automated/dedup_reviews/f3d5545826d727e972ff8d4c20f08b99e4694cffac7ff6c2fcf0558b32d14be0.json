@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and aggregation. Item 0 is an 'any' check for whether a comment asserts the OP's claim or a stated proposition is false or logically invalid, with a carve-out for systemic-harm quantification and quoted positions. Item 1 is an 'all' check for whether every rebutting comment uses abstract or theoretical reasoning and none contains a personal anecdote. Item 1 also differs on empty-list handling: it returns null, while item 0 returns 0."
+    }
+  ]
+}

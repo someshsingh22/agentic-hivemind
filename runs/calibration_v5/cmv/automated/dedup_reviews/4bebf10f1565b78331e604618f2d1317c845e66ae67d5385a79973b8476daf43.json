@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over title/argument/OC_comments, but their constructs differ in material ways. Item 0 counts any explicit engagement (address, question, rebut, accept, build on) with a cited OP example OR premise, and engagement need not be critical. Item 1 requires a comment to refute (argue wrong, misleading, or non-supportive) a specific OP example, case or anecdote. Premises are excluded, and supportive or neutral engagement does not count. Item 0 is a broad construct and item 1 is a materially narrower subtype, so they are not interchangeable. Their null rules also differ: item 0 adds null when OP context is insufficient to determine the target."
+    }
+  ]
+}

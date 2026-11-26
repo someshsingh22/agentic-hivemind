@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty rules, but the constructs differ. Feature 0 requires external evidence (data, studies, statistics, sources/links, documented facts) from outside the OP's post, used to support a counter-argument. Feature 1 requires a specific, concrete, identifiable real-world example (event, case, person, organization, place or historical instance), and it explicitly excludes vague appeals such as 'studies show'. A named person or event cited as an anecdote counts for 1 but not clearly for 0, which needs evidence-type support. Cited documented facts or generic sources count for 0 but not for 1 unless they are specific. Feature 0 also limits support to the counter-argument, while feature 1 says 'its argument'. The eligibility rules differ materially."
+    }
+  ]
+}

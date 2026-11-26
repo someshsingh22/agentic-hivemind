@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 needs a comment that uses a first-hand (or personally known) real-world experience to contrast with the OP's view. It excludes hypotheticals, statistics and general facts. Feature 1 needs any comment with a clear, logically coherent counterargument or evidence bearing on the OP's claim, and it does not require personal experience. A well-reasoned counterargument need not be experiential, and a personal-experience contrast need not be well reasoned. The null rules also differ: feature 0 is null if OP context is missing, while feature 1 is null only if both title and argument are missing."
+    }
+  ]
+}

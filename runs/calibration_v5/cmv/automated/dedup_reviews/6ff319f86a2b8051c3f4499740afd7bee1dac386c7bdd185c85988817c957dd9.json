@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (argument) and dtype, but the row functions differ. Feature 0 returns 1 only if the OP's claims are predominantly framed with modest or uncertain markers, and 0 if they are mostly assertive or neutral. Feature 1 returns 1 if at least one explicit hedge or self-doubt marker appears, which is an any-presence rule. A post with one 'I might be wrong' but mostly confident claims scores 1 on feature 1 and 0 on feature 0. The null rules also differ: feature 0 uses 'unreadable', while feature 1 uses 'malformed'."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with matching null/empty rules, but the construct differs in scope. Left requires a specific, verifiable procedural example: a concrete instance or description of an actual procedure, process, rule, protocol or practice, such as how a legal or institutional process works. Right accepts any particular concrete case, person, organization, event or situation as an example. Right is much broader, because a named person or event that is not a procedure would count there but not on the left. Left also has an explicit rule to ignore quoted OP text, and right does not. The two are a narrower subtype versus a broad construct, so they are not interchangeable."
+    }
+  ]
+}

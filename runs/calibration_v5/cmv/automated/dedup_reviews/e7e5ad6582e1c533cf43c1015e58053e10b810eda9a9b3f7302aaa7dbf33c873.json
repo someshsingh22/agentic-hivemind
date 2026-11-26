@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The second clause differs. Feature 0 requires a counter-example, meaning a specific case or instance that contradicts the OP's view. Feature 1 accepts any narrower caveat, exception or qualification, which is broader: a qualification need not be a specific counter-example. The acknowledgment target also differs. Feature 0 needs a specific identifiable component of the argument, whereas feature 1 accepts the OP's view generally or a point of it. The null rules differ as well. Feature 0 returns null when the OP context needed to identify the component is missing, while feature 1 returns null only when OC_comments is missing or malformed."
+    }
+  ]
+}

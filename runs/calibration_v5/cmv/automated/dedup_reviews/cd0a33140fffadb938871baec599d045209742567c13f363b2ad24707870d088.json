@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different quantifiers and constructs. Left is an ANY over comments: 1 if at least one comment relies mainly on abstract normative (moral/rights/justice/value) principles, and an empty list gives 0. Right is an ALL over comments: 1 only if every comment is purely abstract or theoretical, with no specific verifiable procedural example. Right is not limited to normative principles, and it returns 0 if any comment gives such an example. Right returns null for an empty list, while left returns 0. Any versus all, different eligibility, and different empty-list handling make them distinct."
+    }
+  ]
+}

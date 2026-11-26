@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both use OC_comments with any-comment binary output and the same null/empty rules, but the qualifying evidence differs. Feature 0 requires a specific, localized instance (a named or clearly identified case, person, organization, event or situation) and excludes general trends. Feature 1 requires a concrete empirical example, and its listed types include studies, statistics and documented observations. Those can be aggregate rather than a particular localized case, so it is broader. Feature 1 also requires a counter-argument against the OP's view. Feature 0 only requires support for the comment's own counter-argument. The eligibility boundaries differ materially."
+    }
+  ]
+}

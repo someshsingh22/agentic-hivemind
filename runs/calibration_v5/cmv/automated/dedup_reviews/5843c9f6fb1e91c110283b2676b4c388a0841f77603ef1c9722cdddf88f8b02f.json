@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both use OC_comments with any-comment binary and the same empty/null rules. They differ in eligibility. Feature 0 counts any comment citing a specific real-world example in support of its argument, whatever its stance. Feature 90 requires the comment to be a specific counter-argument against the OP's view, which needs OP-stance context. It also widens the example type to statistics and documented observations. Feature 0 requires a particular identifiable instance and excludes generic references. So the counter-argument stance gate and the example-type boundary differ, and the two are not the same row function."
+    }
+  ]
+}

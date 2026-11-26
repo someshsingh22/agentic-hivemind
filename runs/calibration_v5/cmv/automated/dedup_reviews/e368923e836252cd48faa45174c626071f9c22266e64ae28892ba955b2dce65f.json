@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and row functions. Item 0 is an ANY over comments for abstract normative (moral/rights/justice/value) principles as the main argument basis, and returns 0 for an empty list. Item 1 is an ALL over comments for solely abstract logical refutation (definitions, logical structure) with no concrete external example, and returns null for an empty list. The quantifier, the construct (normative principles versus logical reasoning) and the empty-list handling all differ."
+    }
+  ]
+}

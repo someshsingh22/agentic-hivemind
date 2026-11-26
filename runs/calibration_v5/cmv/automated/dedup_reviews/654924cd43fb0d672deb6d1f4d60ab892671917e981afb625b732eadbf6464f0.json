@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read only 'argument' with the same null rule, but the constructs differ. Feature 0 requires explicit uncertainty markers about the OP's own view. It says generic hedging that does not signal uncertainty about the OP's stance does not count. Feature 1 counts any hedging or qualifying language that softens or limits a claim, such as 'generally' or 'in most cases', which are scope qualifiers and not uncertainty. Feature 1 is therefore broader and would return 1 for qualifiers that feature 0 scores 0."
+    }
+  ]
+}

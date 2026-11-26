@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 only when a comment names a specific external program or location, such as a named country, city or policy program. A named location counts even if it is not a case or example. Feature 1 is 1 when a comment cites a particular concrete case, instance, person, organization, event or situation as support. It does not require a named program or location, and it counts persons and events. Neither is a subtype of the other: a named country mention is not necessarily a localized example, and a personal anecdote or named person is not a program or location. The OC_comments source and the 1/0/null rules match, but the eligibility criteria differ materially."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and scales. Item 0 is a count (non-negative integer) of semantically deduplicated distinct counter-arguments to the OP, and an empty list gives 0. Item 1 is an anchored 0-10 cognitive-complexity score (differentiation plus integration) of the counterarguments taken together, and an empty list gives null. A count of arguments is not a quality or complexity score, and the null rules for empty lists differ."
+    }
+  ]
+}

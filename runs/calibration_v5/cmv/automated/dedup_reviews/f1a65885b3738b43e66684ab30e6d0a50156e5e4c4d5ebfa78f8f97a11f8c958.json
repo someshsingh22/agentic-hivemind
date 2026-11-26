@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both measure any-comment quotation of OP title/argument text with the same sources, exclusions and empty-list rule. Their null rules differ, though. Spec 0 returns null only when title AND argument are both missing. Spec 84 returns null when 'title/argument is missing', which reads as either one missing, so no negative can be established. If only one OP field is missing and no quote is found, 0 gives 0 and 84 likely gives null. The boundary is unresolved, so the measurements are not safely interchangeable."
+    }
+  ]
+}

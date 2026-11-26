@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and binary any-comment form, but the constructs differ in breadth. Left needs a specific, functioning institutional precedent (a concrete law, policy, court or system that operates or has operated in practice). Right accepts any external evidence: data, statistics, studies, links, or documented facts or cases. Many right-positive comments, such as a statistic, a study or a non-institutional fact, would be 0 on the left. Left also excludes proposed-only institutions, which right does not address. The left is a materially narrower subtype."
+    }
+  ]
+}

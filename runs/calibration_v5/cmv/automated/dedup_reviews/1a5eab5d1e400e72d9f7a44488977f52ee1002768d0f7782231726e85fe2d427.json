@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different quantifiers and empty-list rules. Feature 0 is an 'any' measure: 1 if at least one comment is an abstract logical rebuttal with no named example or analogy, and an empty list gives 0. Feature 92 is an 'all' measure: 1 only if every comment is solely abstract, and an empty list gives null. A row with one abstract comment and one concrete comment is 1 on feature 0 and 0 on feature 92. The eligibility rules also differ."
+    }
+  ]
+}

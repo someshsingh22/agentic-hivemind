@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty-list rules. The construct differs. Feature 0 requires specific empirical evidence: data, statistics, study findings, or documented factual cases or observations. Feature 1 accepts any concrete identifiable real-world example, including a person, organization, place, or historical instance. Such an example need not be empirical evidence. For instance, naming a company or a person as an example would count for 1 but not for 0. The two are therefore different extraction functions: empirical evidence is narrower than a real-world example."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments with the same null/empty rules, but the eligible example sets differ. Spec 72 counts 'real situation/personal experience' as a concrete example. Spec 67 lists only identifiable events, cases, persons, organizations, places, studies, statistics and historical instances, and does not list personal experience. Spec 72 also has a rule on quoted text (counted only if used as an example) and has no explicit statistic/study category. These differences change which comments score 1, so the row functions are not the same."
+    }
+  ]
+}

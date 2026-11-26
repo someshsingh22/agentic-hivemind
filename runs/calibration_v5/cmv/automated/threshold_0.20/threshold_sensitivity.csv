@@ -1,0 +1,8 @@
+threshold,total_pairs,eligible_pairs,ineligible_pairs,candidate_total,reviewed_candidate_total,equivalent_candidate_total,distinct_candidate_total,unreviewed_candidate_total
+0.1,6216,1410,4806,11,11,4,7,0
+0.15,6216,1410,4806,37,37,9,28,0
+0.2,6216,1410,4806,85,85,16,69,0
+0.25,6216,1410,4806,181,85,16,69,96
+0.3,6216,1410,4806,393,85,16,69,308
+0.35,6216,1410,4806,698,85,16,69,613
+0.4,6216,1410,4806,1023,85,16,69,938

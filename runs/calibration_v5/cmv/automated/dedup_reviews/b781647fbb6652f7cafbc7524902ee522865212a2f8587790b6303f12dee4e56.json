@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 flags any comment that gives a concrete, checkable specific case (named person, event, place, policy or personal situation) in support of its counter-argument. Item 1 flags any comment that contains specific numerical data or statistics. A comment can give a specific example with no numbers, which gets 1 on item 0 and 0 on item 1. A comment can also cite a statistic without a specific identifiable case, which gets 1 on item 1 and is not clearly 1 on item 0. Both share the OC_comments source and the any-comment, binary, empty-list-is-0 and malformed-is-null rules, but the core predicates differ."
+    }
+  ]
+}

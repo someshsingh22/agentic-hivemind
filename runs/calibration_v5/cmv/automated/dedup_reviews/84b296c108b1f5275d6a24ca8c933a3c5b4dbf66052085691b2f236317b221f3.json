@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The constructs differ. Left is 1 if any comment directly argues against the OP's view, which is a stance of challenge or rebuttal. Right is 1 if any comment explicitly quotes or references specific OP text, whether or not it endorses or challenges that text. A comment can rebut the view in general terms without quoting anything, and a comment can quote OP text while agreeing, so each predicate can be true without the other. The null and empty rules also differ. Right returns null for an empty-of-parse list, and a clear positive quote can still yield 1 when OP context is missing. Left returns null whenever OP context is missing."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 returns 1 when a comment argues that the OP's own premises contradict each other or the OP's conclusion (an internal-inconsistency argument). Item 1 returns 1 when a comment contains a direct quote that matches OP title or argument text, and endorsement or refutation is not required. A quote does not imply a contradiction claim, and a contradiction claim needs no quote. The null rules also differ: item 0 returns null only if the comments are missing or both title and argument are missing, while item 1 returns null if either title or argument is missing."
+    }
+  ]
+}

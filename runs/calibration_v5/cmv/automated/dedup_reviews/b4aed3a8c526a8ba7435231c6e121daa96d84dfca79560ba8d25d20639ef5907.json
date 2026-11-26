@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but they measure different constructs. Feature 0 asks for any concrete real-world example: a specific case, event, person, organization, statistic or personal experience used to support a point. Feature 1 asks for first-hand, personal details of a labor process, such as tasks, hours, tools and workplace conditions. Feature 1 is much narrower because it is limited to the labor domain and to first-hand or specific-person work experience. Feature 0 would be 1 for a non-labor example such as a historical event or a court case, where feature 1 would be 0. Feature 1 also explicitly excludes quoted text and bot or moderator notices. Feature 0 has no such rule."
+    }
+  ]
+}

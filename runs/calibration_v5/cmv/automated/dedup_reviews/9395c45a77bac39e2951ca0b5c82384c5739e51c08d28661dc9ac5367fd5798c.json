@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but the construct differs in breadth. Left requires a specific, verifiable procedural example, meaning an actual procedure, process, rule or practice, and excludes hypotheticals. Right accepts any specific, concrete illustrative example, including scenarios, instances and hypothetical or non-real-world ones. Right is therefore much broader. A concrete non-procedural case, or a hypothetical scenario, would score 1 on the right and 0 on the left."
+    }
+  ]
+}

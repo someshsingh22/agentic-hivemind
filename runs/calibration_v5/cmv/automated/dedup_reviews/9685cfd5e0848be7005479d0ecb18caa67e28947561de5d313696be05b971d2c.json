@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 only if a comment explicitly quotes OP title/body text and disputes that quoted material. It requires a literal quotation and can target any OP phrase. Feature 1 is 1 if a comment argues against or engages the OP's central claim at the general level, not a specific example. It needs no quotation. Feature 1 also counts mere 'engages', and it excludes comments aimed at specific examples. A quoted-phrase refutation may target a minor detail, and a main-premise challenge may have no quote. The null rules also differ."
+    }
+  ]
+}

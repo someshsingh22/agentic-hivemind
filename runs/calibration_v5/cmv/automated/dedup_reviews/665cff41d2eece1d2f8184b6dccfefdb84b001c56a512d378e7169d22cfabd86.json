@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is 1 if a comment argues the OP's own premises or claims are internally contradictory, which is a substantive logical-critique judgment. Item 1 is 1 if a comment contains a direct quotation of OP text, whatever its purpose, and endorsement or refutation is irrelevant. A quote need not point to a contradiction, and a contradiction claim need not quote. The null rules also differ: item 0 returns null only if both title and argument are missing, while item 1 returns null if either is missing and absence cannot be established."
+    }
+  ]
+}

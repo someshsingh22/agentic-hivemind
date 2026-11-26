@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an explicit assertion of absolute certainty about the OP's own view (e.g. 'I am 100% certain', 'cannot be wrong'), and tone alone doesn't count. Feature 1 fires on any single flat universal or categorical declarative statement ('always', 'never', 'everyone', 'obviously', or a bare categorical assertion), about any content. Feature 1 is much broader, so a row with 'everyone does X' scores 1 on feature 1 and 0 on feature 0. Feature 1's spec also states the two can differ for the same row. Feature 1 also returns null for empty arguments, and feature 0 doesn't state that rule."
+    }
+  ]
+}

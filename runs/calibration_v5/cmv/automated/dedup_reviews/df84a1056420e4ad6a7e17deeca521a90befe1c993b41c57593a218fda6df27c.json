@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read OC_comments and return a binary any-comment flag, but the constructs differ in scope. Item 0 requires an analogy or comparison to a named, specific real-world case, used to argue against the OP. Item 1 accepts any specific concrete example or instance, including an unnamed particular situation, place, product or study, cited in support of the comment's point. Item 1 does not require an analogy and does not require a name. Item 0 is therefore a materially narrower subtype. Item 0 also adds an against-the-OP condition, and its empty-list rule is explicit while item 1's is not."
+    }
+  ]
+}

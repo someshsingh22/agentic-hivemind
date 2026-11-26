@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The constructs differ. Item 0 asks whether any comment explicitly challenges an underlying assumption or premise of the OP's view, which is a semantic argumentative judgment. Item 1 asks whether any comment contains a verbatim or near-verbatim quotation of OP title or body text, and it explicitly says endorsement or refutation is irrelevant. A comment can quote the OP without challenging any premise, and a comment can challenge a premise without quoting. The null rules also differ."
+    }
+  ]
+}

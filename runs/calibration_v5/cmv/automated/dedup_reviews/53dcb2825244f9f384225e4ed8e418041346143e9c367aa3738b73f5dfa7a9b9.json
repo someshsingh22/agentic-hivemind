@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty rules, but the per-comment predicates differ. Feature 0 is 1 if any comment employs abstract reasoning, and it explicitly allows an anecdote in the same comment because abstract reasoning is judged independently. Feature 1 requires the comment to rebut mainly through abstract logic and to contain no named specific real-world example or analogy. That is an extra exclusion, and it is stricter than feature 0, which would count a comment with an example or analogy. Feature 1 also says 'mainly', while feature 0 has no such qualifier. Feature 0 excludes reliance on personal experience, while feature 1 excludes named real-world examples and analogies. The eligibility sets differ materially."
+    }
+  ]
+}

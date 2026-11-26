@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but the constructs differ. Left asks whether any comment cites a specific real-world example (event, person, case, study) as support. Right asks whether any comment explicitly quantifies systemic material harms to third parties, which requires numbers or measures and a systemic harm to others. Right is much narrower: a specific example without quantification scores 1 on left and 0 on right, and a quantified harm with no named example scores 0 on left and 1 on right."
+    }
+  ]
+}

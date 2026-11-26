@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different targets. Feature 0 returns 1 when a comment engages a specific OP example or premise cited in the argument. Feature 52 returns 1 when a comment engages the OP's main or central claim at the general level, and it explicitly excludes comments aimed at specific examples or anecdotes. The two can be 1 and 0 on the same row. The null rules also differ: feature 0 is null when OP context is insufficient, while feature 52 is null when the title is missing. Feature 52 also requires engagement at the general level, and feature 0 does not."
+    }
+  ]
+}

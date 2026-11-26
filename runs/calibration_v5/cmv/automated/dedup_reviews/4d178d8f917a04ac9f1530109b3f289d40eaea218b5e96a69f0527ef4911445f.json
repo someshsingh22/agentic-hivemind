@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 if any comment argues that the OP's own premises or claims contradict each other (an internal inconsistency). Feature 1 is 1 if any comment states a specific, checkable external fact that is not already in the OP's text. Feature 0 explicitly excludes counterexamples and outside facts, which are exactly what feature 1 counts. The two features also have different null rules."
+    }
+  ]
+}

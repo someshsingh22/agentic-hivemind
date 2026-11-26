@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read OC_comments with any-comment binary outputs and the same 0/null rules, but the constructs differ. Left requires a specific institutional precedent (existing law, policy, court, organization or system) presented as functioning in practice. Right accepts any concrete, checkable specific case, including a person, event, place or personal/local situation, and does not require an institution or that it function. Right is much broader. Left excludes proposed-only or non-functioning institutions. A personal anecdote would count for right but not for left."
+    }
+  ]
+}

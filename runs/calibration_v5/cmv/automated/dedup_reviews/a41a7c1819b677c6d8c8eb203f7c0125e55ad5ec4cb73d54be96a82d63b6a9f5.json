@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is a concrete real-world example (specific case, event, person, organization or personal experience). Item 1 is specific numerical data or statistics. A concrete example does not need numbers, and numbers can appear without a specific real-world case. Item 1 explicitly excludes non-quantitative examples, so the two criteria select different comments even though the source column and null/empty rules match."
+    }
+  ]
+}

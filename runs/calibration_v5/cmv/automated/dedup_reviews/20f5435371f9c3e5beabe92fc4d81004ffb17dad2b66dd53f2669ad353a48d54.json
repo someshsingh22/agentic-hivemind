@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but the constructs differ. Item 0 requires first-hand or personally situated details of a labor process: the commenter's own or a specific person's work tasks, hours, tools and conditions. Item 1 requires a specific, verifiable procedural example of how a legal, administrative, scientific or institutional process, rule or protocol works in a specific case, used as support for a rebuttal. It is not limited to labor or personal experience. A personal work anecdote may not be a checkable institutional procedure, and an institutional or legal procedure need not be personal labor. The attribution and eligibility rules also differ: item 0 excludes quoted text and bot/moderator notices, while item 1 only ignores quoted OP text."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is narrow: it returns 1 only if a comment explicitly refutes a specific example or anecdote that the OP gave in the post body, and it must identify that example and argue it is wrong or misleading. Feature 1 is broad: it returns 1 for any specific counterargument (objection, evidence, example or reasoning) aimed at any particular OP claim. Feature 1 is therefore true for many cases where feature 0 is false, such as a counterargument to a general claim, which feature 0 excludes. The null rules also differ, because feature 0 gives null for a missing argument and feature 1 gives null for missing OP context."
+    }
+  ]
+}

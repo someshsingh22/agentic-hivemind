@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 requires a verbatim or near-verbatim quote of a specific factual claim from the OP, followed by a refutation of that claim. Item 1 requires the comment to restate the OP's viewpoint in its own words in a more nuanced or steelman form, explicitly not a mere verbatim quote, and then challenge it. Quotation versus nuanced redrafting are different predicates. The null rules also differ: item 0 gives null if title or argument is missing, while item 1 gives null only if both are missing."
+    }
+  ]
+}

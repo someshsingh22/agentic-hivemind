@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 flags a concrete personal anecdote: the commenter recounts a specific experience of their own or of someone they know. Feature 1 flags third-person analytical framing: the argument is carried by they/he/it/society-style discussion rather than by addressing the OP directly. A comment can be a first-person anecdote without being third-person analysis, and the reverse also holds. The eligibility rules also differ. Feature 0 excludes hypotheticals, statistics and general claims. Feature 1 is a stylistic or addressee test with no anecdote requirement."
+    }
+  ]
+}

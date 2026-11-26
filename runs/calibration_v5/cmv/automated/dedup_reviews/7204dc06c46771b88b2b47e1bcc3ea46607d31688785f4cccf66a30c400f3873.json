@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 requires an explicit quotation of a specific OP phrase plus a dispute of that quoted text, so quotation is required. Feature 1 requires a challenge to an underlying assumption or premise, and it excludes comments that only dispute facts or the conclusion. Neither needs the other: a quote-and-refute can target a conclusion or fact, and a premise challenge needs no quote. Their null rules also differ: 0 returns null if the OP text needed to verify the quote is missing, while 1 returns null only if both title and argument are missing."
+    }
+  ]
+}

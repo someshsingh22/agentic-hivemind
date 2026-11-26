@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and row functions. Item 0 is an all-comments binary: every comment must be a refutation and none may explicitly validate the OP's dignity or effort. Item 1 is an any-comment binary: at least one comment is an abstract logical rebuttal with no named real-world example or analogy. They differ on quantifier (all vs any) and on the criterion (absence of validation vs absence of examples/analogies). They also handle the empty list differently: item 0 returns null, item 1 returns 0."
+    }
+  ]
+}

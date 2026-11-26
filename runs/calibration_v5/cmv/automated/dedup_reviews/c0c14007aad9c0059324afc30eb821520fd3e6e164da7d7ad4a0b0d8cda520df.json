@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 returns 1 if any comment engages in any way (addresses, questions, rebuts, accepts, builds on) a specific OP-cited example or premise. Feature 1 is much narrower. It needs a single comment that explicitly acknowledges a specific OP component as valid and then, after that acknowledgment, presents a counter-example. Feature 1 also excludes quoted text and bot/moderator notices. Feature 0 does not require acknowledgment, ordering, or a counter-example."
+    }
+  ]
+}

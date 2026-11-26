@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 flags any concrete, specific, checkable example (person, event, place, personal situation) used to support the counter-argument, whether or not it is a comparison. Feature 1 requires a concrete analogy: a real-world case from outside the OP's scenario, used as a comparison to the issue. Feature 1 is narrower, since it needs analogical use, an external case and a real-world factual basis. Feature 0 also counts personal or local situations and examples that are not analogies, including ones inside the OP's scenario. Feature 1 excludes restated OP examples. The eligibility rules differ, so the extraction functions differ."
+    }
+  ]
+}

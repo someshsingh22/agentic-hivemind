@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 requires an explicit acknowledgment that the OP's point or view is valid or reasonable (the cognitive or argumentative content) before a disagreement. Item 1 requires explicit validation of the OP's emotional experience or feelings before a rebuttal. Item 1 also says validation of the OP's reasoning does not count, which is exactly what item 0 measures. The two features would give different labels on the same comment."
+    }
+  ]
+}

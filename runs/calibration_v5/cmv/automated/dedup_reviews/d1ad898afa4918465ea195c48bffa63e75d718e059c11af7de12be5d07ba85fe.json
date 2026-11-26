@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left requires a comment to explicitly concede a valid point in the OP's view and then, later in the same comment, disagree. That is a concession-then-disagreement structure. Right requires a comment to explicitly challenge an underlying assumption or premise of the OP, as opposed to disputing facts or the conclusion. A comment can challenge a premise with no concession, and can concede then dispute facts only. The null rules also differ: left returns null if OP context is missing, while right returns null only if both title and argument are missing."
+    }
+  ]
+}

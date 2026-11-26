@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left is 1 if any comment uses second-person 'you/your' directed at the OP. Right is 1 if any comment's argument is carried by third-person analysis rather than by addressing the OP directly. A comment may qualify on the right even if it also uses 'you'. The two predicates are not complements and can both be 1 for the same row. Their eligibility rules also differ."
+    }
+  ]
+}

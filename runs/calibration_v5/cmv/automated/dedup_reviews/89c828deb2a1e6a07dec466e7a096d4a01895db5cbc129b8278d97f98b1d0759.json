@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an analogy or comparison to a specific, named real-world case, and the comment must be used against the OP. Feature 1 requires specific empirical evidence: statistics, data, studies or documented factual cases offered in support of the comment's argument. These are different constructs. A named analogy need not be empirical evidence, such as a historical comparison with no data. Empirical data or a study need not be an analogy. Their eligibility rules also differ: 0 requires a named case used analogically, while 1 accepts unnamed statistics or data."
+    }
+  ]
+}

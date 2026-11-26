@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 if any comment asserts the OP's claim or any specific proposition is factually or logically false or incorrect, which is broad falsity and includes factual errors. It also has a quantified-harm exclusion. Feature 1 is 1 only if a comment points to an internal contradiction or inconsistency among the OP's own premises. Feature 1 explicitly excludes plain disagreement, counterexamples and outside facts. Feature 1 is a materially narrower subtype, so the two are not equivalent despite matching sources and 0/1/null rules."
+    }
+  ]
+}

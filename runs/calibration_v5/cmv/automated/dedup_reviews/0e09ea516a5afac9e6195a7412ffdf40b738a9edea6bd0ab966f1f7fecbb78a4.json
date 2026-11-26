@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 only counts a specific institutional precedent (an existing law, policy, court, organization or system presented as functioning in practice). Item 1 counts any concrete real-world example, including specific events, persons, historical episodes and personal experience. Item 1 is therefore materially broader. A personal anecdote, a historical event or a named individual would give 1 under item 1 but 0 under item 0. The sources and null/empty rules match, but the construct scope differs."
+    }
+  ]
+}

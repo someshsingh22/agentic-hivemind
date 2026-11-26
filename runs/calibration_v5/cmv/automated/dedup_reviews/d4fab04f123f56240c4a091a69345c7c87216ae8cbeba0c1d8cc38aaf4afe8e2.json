@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs despite the same source and any/binary form. Item 0 flags hostile, angry, insulting or contemptuous tone toward the OP or others. Item 1 flags a concrete personal anecdote, meaning a specific experience of the commenter or someone they know used in a counter-argument. A comment can have either one without the other."
+    }
+  ]
+}

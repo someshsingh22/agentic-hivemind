@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 is a narrow subtype. It requires a comment to explicitly quote or near-verbatim reproduce a specific factual claim from the OP and then refute it. Quoting without refuting, refuting without a quote, and opinion or value claims all give 0. Item 1 is broader. Any comment with a concrete objection, evidence, example or reasoning aimed at a particular OP claim gives 1, with no quote requirement and no factual-claim restriction. Many rows would be 1 for item 1 and 0 for item 0, so the extraction functions differ."
+    }
+  ]
+}

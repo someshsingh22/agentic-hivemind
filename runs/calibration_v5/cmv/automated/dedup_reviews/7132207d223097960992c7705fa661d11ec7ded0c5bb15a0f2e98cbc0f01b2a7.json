@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features have different exclusion predicates and different empty-list rules. Feature 0 returns 1 only if every comment is purely abstract and none uses a specific verifiable procedural example (a procedure, process, rule or practice). Feature 59 requires at least one logical refutation and no specific empirical evidence (statistics, data, studies, documented factual cases). A procedural example is not the same as empirical evidence. Feature 59 also needs a logical refutation to be present, while feature 0 does not. An empty list gives null for feature 0 and 0 for feature 59."
+    }
+  ]
+}

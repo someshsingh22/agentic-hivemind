@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 requires a comment to quote or closely reproduce a specific factual claim from the OP and then refute it as false or unsupported. Feature 1 requires a comment to argue that the OP's own premises contradict each other or the OP's conclusion. Feature 1 needs no quote and targets internal inconsistency. It also excludes outside facts and counterexamples, which are the typical kind of refutation under feature 0. The null rules differ too: feature 0 returns null if title or argument is missing, while feature 1 returns null only if both are missing."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and null/empty rules, but different constructs. Item 0 requires an analogy or comparison to a named real-world case, used against the OP. Item 1 requires only that a comment cites a specific real-world example (event, person, study, statistic, etc.) in support of its argument, with no analogy requirement. Item 1 is therefore broader: a named example cited as direct evidence is not an analogy. Item 0 is a narrower subtype."
+    }
+  ]
+}

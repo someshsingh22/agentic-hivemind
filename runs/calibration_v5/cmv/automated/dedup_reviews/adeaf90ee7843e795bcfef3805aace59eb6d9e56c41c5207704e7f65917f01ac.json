@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and any/binary/null/empty rules, but the example construct differs. Item 0 requires a concrete REAL-WORLD example (actual case, event, person, or real personal experience) and explicitly excludes hypotheticals. Item 82 accepts any specific, particularized example, including scenarios and explicitly 'not required to be ... real-world', so hypothetical scenarios count. Item 82 is therefore broader. Quote handling also differs (item 0 counts quoted text only if used as an example by the commenter; item 82 only excludes OP-text quotes)."
+    }
+  ]
+}

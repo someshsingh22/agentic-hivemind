@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but their eligibility rules differ. Feature 0 counts any specific real-world case, event, person, organization, statistic-bearing situation or personal real-life experience, and it has no requirement for checkable particulars. Feature 71 requires a specific, identifiable example with concrete details whose particulars could be checked or observed. It says 'locally verifiable' is not defined further. It also excludes vague appeals and quoted OP text, and it requires the example to be in the comment's own voice. Feature 0 therefore accepts some examples that feature 71 may reject, such as a personal experience with few details. The undefined 'locally verifiable' boundary is a material unresolved rule. The empty-list rules also differ: feature 0 returns 0 for a valid empty list, and feature 71 folds the empty list into 0 as part of its qualifying rule. This difference is minor beside the eligibility difference."
+    }
+  ]
+}

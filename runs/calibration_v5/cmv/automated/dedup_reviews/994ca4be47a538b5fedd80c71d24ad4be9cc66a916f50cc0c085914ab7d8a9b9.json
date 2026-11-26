@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are binary any-comment features over OC_comments with matching null/empty rules, but eligibility differs. Left requires a specific identifiable real event, person, case, organization, place, study, product or documented instance. It excludes vague references. Right also counts 'real situation/personal experience' and 'data-backed situation' as examples. That admits personal anecdotes and unnamed real situations, which are not necessarily identifiable specific cases under left. So right is broader and the extraction functions differ."
+    }
+  ]
+}

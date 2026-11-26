@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left is 1 only if a comment explicitly refutes a specific OP example or anecdote, and it must argue that the example is wrong or misleading. Right is 1 if a comment contains a verbatim or near-verbatim quotation of OP title or argument text, and endorsement or refutation is irrelevant. A quote need not refute anything, and a refutation need not quote. Their null rules also differ. Left gives null if OC_comments or argument is missing. Right gives null if OC_comments is missing, or if title or argument is missing and absence cannot be established, but an observed quote still gives 1."
+    }
+  ]
+}

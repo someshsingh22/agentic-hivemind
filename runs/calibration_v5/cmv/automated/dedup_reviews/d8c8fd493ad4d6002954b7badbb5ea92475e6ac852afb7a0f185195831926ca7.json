@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 requires a specific, verifiable description of an actual procedure, process, rule or practice used as support. Item 1 only requires a named external program or named location, such as a country or city, used in the argument. A comment can name a place with no procedural example, and a procedural example can be given with no named program or location. The eligibility rules also differ: item 0 excludes hypotheticals and vague generalities, while item 1 is a named-entity presence test."
+    }
+  ]
+}

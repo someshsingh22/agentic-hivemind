@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features on OC_comments with the same null and empty rules. The construct and qualifiers differ. Item 0 requires external evidence from outside the OP's post (data, studies, statistics, sources/links, documented facts or cases) supporting a counter-argument. Item 90 requires a specific counter-argument against the OP's view that cites a concrete empirical example, which can be a specific real-world case, event or observation, with no outside-the-OP-post or sourcing requirement. Item 0 also counts general documented facts and sources/links, which need not be a specific example. Item 90 requires specificity and a concrete instance. The eligibility boundaries differ, so they are not the same row function."
+    }
+  ]
+}

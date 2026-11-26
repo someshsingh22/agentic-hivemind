@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an analogy or comparison to a named, specific real-world case, used to argue against the OP. Feature 75 (local 1) requires only that a comment cite a specific real-world example (event, person, study, place, etc.) to support or illustrate its argument. Citing an example is broader than drawing an analogy to one, and it has no against-the-OP requirement. A comment can cite a real case as direct evidence without making an analogy, so the two row functions can give different 0/1 results. Both use OC_comments, are binary, and share the same null and empty rules."
+    }
+  ]
+}

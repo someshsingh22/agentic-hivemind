@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 when a comment rebuts mainly through abstract logical reasoning and contains no named real-world example or analogy. Feature 90 (right) is 1 when a comment's counter-argument cites a concrete empirical example such as a case, event, study or statistic. They are near-complements but not equivalent. A comment can be non-abstract without citing an empirical example, for example an opinion-only or hypothetical comment. Feature 0 also requires 'mainly abstract' reasoning and excludes analogies, while feature 90 does not address analogies. A row with an abstract rebuttal in one comment and an empirical example in another is 1 on both features."
+    }
+  ]
+}

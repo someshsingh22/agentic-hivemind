@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments with the same null/empty rules, but the eligibility bar differs. Item 0 requires a specific, localized case (named or clearly identified) cited to support or illustrate the counter-argument. Item 1 adds a 'concrete, locally verifiable' requirement: checkable particulars or concrete details that could be checked or observed directly. It leaves 'locally verifiable' only loosely defined. Item 1 also says 'in its own voice' and excludes quoted OP text. Item 0 has no such attribution rule. A clearly identified but detail-poor instance could count for 0 and fail 1. The checkable-particulars qualifier is an unresolved material boundary, so the two are not the same extraction function."
+    }
+  ]
+}

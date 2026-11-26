@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is a named-entity presence check: it returns 1 if any comment names a specific program or location, even in passing. Feature 1 requires a concrete example of a specific case with checkable particulars, used as support for the counter-argument. A named program or place mention need not be a detailed example. A personal anecdote or unnamed identifiable event would count for 1 but not for 0. The two also differ in eligibility and exclusions: 1 excludes quoted OP text and requires the commenter's own voice, while 0 has different quote and bot rules. Their null and empty rules are the same, but the core predicates are not."
+    }
+  ]
+}

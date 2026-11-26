@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 detects first-hand or personally situated descriptions of how work is done or experienced (tasks, hours, tools, workplace conditions). Feature 1 detects specific empirical evidence offered in support of an argument (statistics, studies, documented cases). Personal labor anecdotes are not necessarily data or documented evidence. Statistics and studies are not necessarily personal labor details. The null and empty rules match, but the core extraction predicates differ."
+    }
+  ]
+}

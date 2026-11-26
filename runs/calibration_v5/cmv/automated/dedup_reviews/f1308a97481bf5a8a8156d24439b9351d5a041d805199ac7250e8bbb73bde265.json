@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 requires explicit validation of the OP's emotional experience or feelings, placed before a logical rebuttal. Item 1 requires acknowledgment that the OP's view or point is valid or correct, followed by a narrower caveat, and explicitly excludes a blanket rejection. Validating emotion and validating the view's correctness are different predicates. Item 0 also says validating the OP's reasoning does not count. The follow-on elements differ too: a full rebuttal versus a narrow caveat. Null rules differ as well: item 0 returns null when OP context is missing, while item 1 does not."
+    }
+  ]
+}

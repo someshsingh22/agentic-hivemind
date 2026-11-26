@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty-list rules. Feature 0 requires a specific functioning institutional precedent: a concrete existing law, policy, court or system that operates or has operated in practice. Feature 1 requires any specific empirical evidence: statistics, studies, data or documented cases. These are different constructs. A comment that cites a precedent need not give data, and a comment that gives statistics need not cite an institution. The institutional-precedent feature is a narrower subtype that only partly overlaps with the evidence feature."
+    }
+  ]
+}

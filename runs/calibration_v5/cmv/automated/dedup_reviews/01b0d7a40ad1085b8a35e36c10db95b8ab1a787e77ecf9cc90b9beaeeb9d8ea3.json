@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only OC_comments and return a binary any-comment flag for a concrete or specific real-world example (an identifiable event, person, case, organization or similar) used as support. Both exclude hypotheticals, abstract reasoning and generic assertions. Both skip external verification. Both return 0 for a valid empty or no-match list and null for a missing or malformed list. Left adds personal experience and data-backed situations, and right adds place, study and documented instance. These are nonexhaustive example lists that illustrate the same rule. Left's rule on quoted text is a minor clarification, not a different measurement."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 requires a comment to first restate or steelman the OP's view in a more nuanced form and then refute it, a specific two-step rhetorical move that excludes mere quotes or summaries. Feature 1 only requires a comment to argue against or engage the OP's central claim at the general level, rather than a specific example. A comment can address the main premise with no redrafting, and a redraft could target a narrow point. The null rules also differ: feature 0 gives null only if OC_comments is malformed or both title and argument are missing, while feature 1 gives null if any one of OC_comments, title or argument is missing."
+    }
+  ]
+}

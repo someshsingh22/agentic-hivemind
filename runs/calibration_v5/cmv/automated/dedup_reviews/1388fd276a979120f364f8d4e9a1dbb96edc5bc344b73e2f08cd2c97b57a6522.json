@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The constructs differ. Feature 0 is 1 when some comment is an abstract logical rebuttal of the OP that contains no named real-world example or analogy. It requires a rebuttal and measures abstractness, and the presence of an analogy disqualifies a comment. Feature 1 is 1 when some comment uses an analogy to a familiar scenario, with no requirement that it rebut the OP or be abstract. The two predicates are close to opposite in eligibility, so they are not the same extraction function."
+    }
+  ]
+}

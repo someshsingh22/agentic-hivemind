@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but they measure different constructs. Feature 0 asks for a specific, localized example (a named or clearly identified case, person, event or organization). Feature 1 asks for specific numerical data or statistics. A comment can cite a specific example with no numbers, and it can cite statistics with no particular instance. Feature 1 also says non-quantitative examples score 0, so the two predicates can disagree on the same row."
+    }
+  ]
+}

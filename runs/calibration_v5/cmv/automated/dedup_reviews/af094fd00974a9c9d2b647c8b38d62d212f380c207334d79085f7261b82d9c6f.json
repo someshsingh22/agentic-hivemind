@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null/empty rules, but the constructs differ. Left requires reliance on abstract normative principles (moral, ethical, rights, justice, fairness or value principles) as a substantial basis, contrasted with specific concrete examples. Right counts any abstract reasoning, including logical or conceptual argument and impersonal generalizations, contrasted only with personal experience. Right is much broader: a purely logical or conceptual argument with no normative principle would score 1 on right and 0 on left. Right also allows a comment to qualify when it has an anecdote, and judges the abstract reasoning independently of the anecdote. Left requires that normative principles be a substantial basis."
+    }
+  ]
+}

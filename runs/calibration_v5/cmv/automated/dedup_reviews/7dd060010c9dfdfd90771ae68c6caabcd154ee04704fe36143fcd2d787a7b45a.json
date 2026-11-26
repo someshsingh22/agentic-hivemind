@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 when the OP's argument contains an interrogative counter-question that challenges or probes opposing views or readers. Feature 1 is 1 when the OP explicitly acknowledges that counterpoints or objections exist or might be raised, whether or not a question is asked. A rhetorical question does not by itself acknowledge a counterpoint, and an acknowledgment such as 'some may argue' is not a question. Both read the argument column only, but the row functions are different."
+    }
+  ]
+}

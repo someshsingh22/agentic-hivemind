@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 asks whether any comment has calm, even-toned logical reasoning, so tone matters and reasons or inferences are enough. Item 1 asks whether any comment supplies specific factual data or verifiable citations, so the content must be concrete statistics, dates, links or named sources. A comment can reason logically with no data or citations, and a comment can cite data in an aggressive tone. Both use OC_comments with the same binary and null rules, but the extraction predicates differ."
+    }
+  ]
+}

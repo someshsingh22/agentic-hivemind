@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is any comment offering specific empirical evidence (statistics, data, studies, documented cases) in support of its argument. Item 1 is any comment introducing a concrete external analogy, meaning a real-world case used as a comparison to the issue. An analogy is a comparative device and need not be empirical evidence. Evidence such as statistics or study findings need not be an analogy. The two overlap only for some documented cases, so the per-row extraction functions differ."
+    }
+  ]
+}

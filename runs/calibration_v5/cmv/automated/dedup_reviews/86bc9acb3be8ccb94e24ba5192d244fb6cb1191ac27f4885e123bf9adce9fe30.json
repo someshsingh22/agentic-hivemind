@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is an any-presence check for an explicit assertion of absolute certainty or that the view cannot be wrong, and merely confident tone does not count. Feature 1 is a predominance judgment over the OP's overall framing, and it counts general high-modality markers such as 'must', 'always' and unhedged categorical claims. These are different constructs and different aggregation rules (any explicit assertion versus predominant style). A post with one 'I'm 100% certain' would be 1 under feature 0 and could be 0 under feature 1. A categorical, assertive post with no explicit certainty claim would be 0 under feature 0 and 1 under feature 1. The null rules also differ: feature 1 returns null for empty text, and feature 0 does not say how it handles empty text."
+    }
+  ]
+}

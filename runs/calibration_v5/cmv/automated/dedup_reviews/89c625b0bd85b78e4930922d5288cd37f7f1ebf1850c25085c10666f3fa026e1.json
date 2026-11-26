@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different constructs. Feature 0 returns 1 when a comment explicitly engages (addresses, rebuts, accepts or builds on) a specific example or premise the OP cited, and the engagement can be non-factual. Feature 1 returns 1 when a comment introduces a specific, checkable external factual claim that is not already in the OP's text, so it requires novelty relative to the OP. A comment can engage an OP premise without adding any new fact. A comment can also add a new fact without tying it to an OP example. The null rules also differ: feature 0 is null when OP context is insufficient to determine the target, while feature 1 is null when title or argument is missing and prevents judging distinctness."
+    }
+  ]
+}

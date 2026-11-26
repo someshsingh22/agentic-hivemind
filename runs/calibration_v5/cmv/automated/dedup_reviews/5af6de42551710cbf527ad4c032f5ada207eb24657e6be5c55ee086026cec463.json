@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features on OC_comments, but the analogy targets differ. Feature 0 requires an analogy or comparison to a specific, named real-world case, event, person, institution or scientific example. It excludes unnamed hypotheticals and vague references, and it requires the comparison to be used against the OP. Feature 1 requires an explicit analogy to a familiar everyday or well-known scenario, which need not be named. Generic hypotheticals such as 'imagine if...' count there but are excluded by feature 0. Feature 1 also excludes quoted text unless adopted. Feature 0 also counts named comparisons that are not everyday scenarios. The eligible sets differ materially, so the two do not measure the same thing."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 needs a comment to refute (argue against or debunk) a specific OP example or anecdote in the body. Feature 1 needs only that a comment quotes or references any specific OP text element, and endorsement or disagreement is not required. A quote or reference is not a refutation, and feature 1 covers any phrase, claim or sentence rather than only examples. The empty-list rules also differ: feature 0 returns 0 for an empty list, while feature 1 returns null."
+    }
+  ]
+}

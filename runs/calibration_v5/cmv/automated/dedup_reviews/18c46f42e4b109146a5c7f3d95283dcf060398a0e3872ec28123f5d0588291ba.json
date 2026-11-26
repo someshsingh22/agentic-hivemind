@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read OC_comments and give any-comment binary output with the same null and empty-list rules, but the constructs differ. Feature 0 counts any specific, localized example (a case, person, organization, event or situation) cited to support or illustrate a counter-argument, whether or not it is used as a comparison. Feature 1 requires a concrete analogy drawn from outside the OP's scenario, based on a real-world case and used as a comparison to the issue. It also excludes hypotheticals and restatement of the OP's examples. An example that sits inside the OP's own scenario, or one cited as direct evidence instead of as a comparison, could count for 0 but not for 1. Feature 1 is therefore narrower: it needs an analogy and externality, which feature 0 does not."
+    }
+  ]
+}

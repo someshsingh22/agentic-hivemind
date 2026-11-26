@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 counts only explicit verbatim or near-verbatim quotation of OP text (blockquote or quote marks), and paraphrases don't count. Feature 1 also counts explicit references to a specific OP element (e.g. 'you said X', 'your point about Y'), so it is materially broader. Their empty-list and null rules also differ: feature 0 returns 0 for a valid empty list, while feature 1 says 'empty-of-parse' gives null."
+    }
+  ]
+}

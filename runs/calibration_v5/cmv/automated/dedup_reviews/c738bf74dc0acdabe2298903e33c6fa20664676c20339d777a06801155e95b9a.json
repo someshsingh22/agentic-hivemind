@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only OC_comments and return a binary any-comment flag for a specific, concrete real-world example (person, event, case, place, study, etc.) used to support the point. Both exclude generic abstract claims, hypotheticals and vague appeals. Both say the example lists are nonexhaustive and need no external verification. Both give 0 for a valid list with no match and null for missing or malformed input. Item 0 also counts a 'specific concrete situation', and item 1 requires an 'identifiable real' instance. That difference is wording-level, not a distinct rule. Item 1's explicit empty-list=0 rule follows from item 0's valid-list rule."
+    }
+  ]
+}

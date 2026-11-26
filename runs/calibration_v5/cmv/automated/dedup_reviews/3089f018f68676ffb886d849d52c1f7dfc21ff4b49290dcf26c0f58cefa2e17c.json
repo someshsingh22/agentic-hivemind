@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments, but the constructs differ. Feature 0 accepts any specific, concrete illustrative example, including hypothetical or scenario examples, and does not need real-world verification. Feature 1 requires an analogy used as a comparison, drawn from outside the OP's scenario and grounded in a specific real-world case, fact or event. It explicitly excludes hypotheticals with no real-world basis. Feature 1 is therefore materially narrower in both type (analogy) and eligibility (real-world, external)."
+    }
+  ]
+}

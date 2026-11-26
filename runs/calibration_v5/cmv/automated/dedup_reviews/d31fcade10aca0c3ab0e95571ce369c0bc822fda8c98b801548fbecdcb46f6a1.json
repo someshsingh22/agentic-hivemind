@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty rules, but the constructs differ. Feature 0 counts a specific, localized example: a named or clearly identified case, person, event or situation, and it doesn't need to be empirical. Feature 1 requires specific empirical evidence: concrete data, statistics, study findings, or documented cases with specific details. Feature 1 would count statistics or study findings that have no single localized instance, and feature 0 would count a named anecdote or personal situation that is not documented evidence. The scopes overlap only partly."
+    }
+  ]
+}

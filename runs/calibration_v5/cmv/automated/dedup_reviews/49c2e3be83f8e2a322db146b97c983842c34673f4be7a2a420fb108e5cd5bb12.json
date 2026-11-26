@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment, validation-before-divergence binary features. They measure different things. Item 0 requires the comment to acknowledge that the OP's initial premise, meaning the central claim or assumption, is valid, correct, reasonable or true. That is a cognitive or propositional concession. Item 1 requires the comment to validate the OP's emotional experience or feelings as understandable or legitimate. It explicitly excludes validation of the OP's reasoning. Their null rules also differ: item 0 gives null if the title and argument are both missing, while item 1 gives null if OP context is missing so the judgment cannot be made."
+    }
+  ]
+}

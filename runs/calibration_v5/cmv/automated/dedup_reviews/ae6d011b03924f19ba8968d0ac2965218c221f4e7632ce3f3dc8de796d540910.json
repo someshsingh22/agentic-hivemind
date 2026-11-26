@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an explicit verbatim/near-verbatim quote of a specific factual claim from the OP and a refutation of it. Quoting without refuting, or refuting without a quote, gives 0. Opinion and value claims are excluded. Feature 1 only requires a comment to assert that the OP's claim or a proposition is false, incorrect or logically invalid. It has no quotation requirement and includes logical invalidity. It also has a systemic-harm quantification exclusion that feature 0 lacks, and different null rules (feature 1 gives null only if both title and argument are missing). Feature 1 is therefore materially broader than feature 0, so they are distinct."
+    }
+  ]
+}

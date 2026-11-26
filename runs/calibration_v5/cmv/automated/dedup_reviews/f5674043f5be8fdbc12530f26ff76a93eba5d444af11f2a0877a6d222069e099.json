@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs: item 0 flags any comment citing a specific identifiable real-world example (event, person, case, study) as support. Item 1 flags any comment using abstract reasoning (general principles, logic, conceptual argument) not grounded in personal experience. A comment can have either without the other, and abstract reasoning is judged independently of anecdotes or examples. They share the source column and the any/binary/null rules, but the extraction predicates differ."
+    }
+  ]
+}

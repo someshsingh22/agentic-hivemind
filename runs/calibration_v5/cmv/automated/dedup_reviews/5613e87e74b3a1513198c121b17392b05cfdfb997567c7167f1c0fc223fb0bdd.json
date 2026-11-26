@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 when some comment rebuts the OP mainly through abstract logical reasoning and contains no named real-world example or analogy. This is a rebuttal-style construct defined by the absence of examples. Feature 1 is 1 when some comment introduces a concrete external real-world analogy, and it has no requirement to rebut. They are not the same predicate, and the spec for 0 says a row can be 1 on both. A single comment cannot satisfy both, but different comments can, so neither feature determines the other."
+    }
+  ]
+}

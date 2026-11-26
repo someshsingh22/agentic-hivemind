@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 requires a comment to explicitly refute a specific OP example/anecdote in the post body (narrow subtype; general-claim rebuttals don't count). Item 1 asks for any well-reasoned counterargument to the OP's overall view, a much broader construct that includes general-claim rebuttals. Their null rules also differ: item 0 gives null for a missing argument, while item 1 gives null only when both title and argument are missing."
+    }
+  ]
+}

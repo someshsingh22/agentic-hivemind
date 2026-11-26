@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source and any/binary/null rules, but different constructs. Feature 0 flags a concrete real-world example (case, event, person, personal experience). Feature 1 flags specific numerical data or statistics. A comment can give a specific real-world example with no numbers, and a comment can give a number with no specific case. Feature 1 explicitly treats non-quantitative examples as 0, so the two predicates are not interchangeable."
+    }
+  ]
+}

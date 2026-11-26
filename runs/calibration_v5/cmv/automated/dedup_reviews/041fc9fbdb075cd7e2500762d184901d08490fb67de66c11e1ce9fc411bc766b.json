@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an analogy or comparison to a specific, named real-world case, person, institution or scientific example. Feature 1 requires a counter-argument that cites any concrete empirical example, and its examples include studies, statistics and documented observations. Feature 1 does not require the example to be named or used as an analogy, so statistics or unnamed studies could count for feature 1 but not for feature 0. Feature 0 requires the analogy or comparison form and a named case, so it is narrower. Source, dtype and null rules match, but the eligibility criteria differ materially."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read only OC_comments and return a binary any-comment flag with the same null and empty-list rules. The qualifying comment differs. Feature 0 counts any concrete real-world example (case, event, person, or personal experience) used as support for any point. Feature 1 requires a specific counter-argument against the OP's view that cites a concrete empirical example. Feature 1 is therefore narrower: the comment must be a counter-argument against the OP, and it must cite a case, event, study, statistic or documented observation. Feature 0 has no counter-argument requirement and explicitly includes personal experience. Feature 1 also depends on knowing the OP's view, but it reads only OC_comments, so the target of the counter-argument is not defined by any supplied source. These are different eligibility rules, so the features are distinct."
+    }
+  ]
+}

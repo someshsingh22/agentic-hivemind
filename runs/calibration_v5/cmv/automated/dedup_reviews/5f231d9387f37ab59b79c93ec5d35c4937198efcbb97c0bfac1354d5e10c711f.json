@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only OC_comments and return 1 if at least one comment cites a specific, concrete or particular example (person, event, case, place, situation) in support of its point. Both exclude generic claims, hypotheticals and vague appeals, require no external verification and treat example lists as nonexhaustive. Both return 0 when the list is valid and no comment qualifies, and null when the input is missing or malformed. Item 1 states explicitly that a valid empty list gives 0. Item 0 gives 0 for a valid list with no qualifying comment, which includes an empty one, so the two agree. Item 0 also lists 'study' and 'product', and item 1 lists 'organization'. These are nonexhaustive examples, not different rules."
+    }
+  ]
+}

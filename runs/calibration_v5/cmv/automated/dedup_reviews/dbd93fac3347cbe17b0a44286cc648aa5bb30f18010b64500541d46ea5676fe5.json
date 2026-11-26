@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but the constructs differ. Feature 0 counts any particularized example, including hypothetical or scenario cases, used to illustrate a point, and it explicitly does not require the example to be real-world. Feature 1 requires specific empirical evidence such as data, statistics, studies or documented real-world cases, and it explicitly excludes hypotheticals. A hypothetical scenario would be 1 for feature 0 and 0 for feature 1. Feature 0 also has an explicit exclusion for examples quoted from the OP that feature 1 lacks."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments), binary any-comment, and the same 0/null/empty rules, but the constructs differ. Feature 0 requires specific factual data (statistics, figures, dates) or verifiable citations (links, named sources, laws), and it excludes quoted OP text. Feature 1 requires a specific identifiable real-world example (event, person, case, organization or place used to illustrate a point). A named event or person with no statistic or citation counts for 1 but not for 0. A statistic or citation not tied to a particular instance could count for 0 but not for 1. Their eligibility rules differ, so they are not the same extraction function."
+    }
+  ]
+}

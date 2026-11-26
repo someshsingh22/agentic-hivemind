@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only OC_comments and output binary 1 if any comment cites a particular, identifiable concrete example (event, person, case, organization, etc.) in support of its argument. Both exclude hypothetical, generic or vague references and need no external verification. Both give 0 for a valid list with no such comment and for an empty list, and null for missing or malformed input. Differences are wording only: 'real-world' vs 'localized', 'study/product' listed vs 'situation' listed. Left also says quotes of others don't count unless used as an example, which is a harmless clarification."
+    }
+  ]
+}

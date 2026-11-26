@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different row functions. Feature 0 is an 'any' check for a specific concrete illustrative example, which may be hypothetical or non-real-world, and an empty list gives 0. Feature 1 is an 'all' check that every comment is solely abstract logical refutation, so it is 1 only when no comment gives a concrete external real-world analogy. Feature 1 also returns null on an empty list, where feature 0 returns 0. Feature 1 also requires every comment to argue only abstractly, which is an extra condition. Its example type is narrower (real-world case, event or fact), whereas feature 0 accepts hypothetical scenarios. The two are not simple inversions of each other."
+    }
+  ]
+}

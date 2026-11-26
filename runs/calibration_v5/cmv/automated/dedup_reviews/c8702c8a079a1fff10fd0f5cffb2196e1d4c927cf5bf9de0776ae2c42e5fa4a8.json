@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments, but eligibility differs. Item 0 counts any specific real-world example (identifiable event, person, case, organization, place, study or product, or documented instance). Item 1 requires a concrete example with 'locally verifiable' checkable particulars, and it explicitly admits personal/local situations with concrete details. It leaves 'locally verifiable' undefined, so its boundary is unresolved. The two also differ on quotes: item 0 excludes quotes of others unless the commenter uses them as a specific example, while item 1 excludes quoted OP text. Their positive sets therefore differ: item 1 admits personal anecdotes that item 0 may not treat as real-world examples, and item 0 admits studies or organizations that lack checkable particulars."
+    }
+  ]
+}

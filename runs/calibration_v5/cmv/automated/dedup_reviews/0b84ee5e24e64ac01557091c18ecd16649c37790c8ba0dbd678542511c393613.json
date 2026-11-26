@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but the constructs differ. Feature 0 requires a specific real-world example (an identifiable event, person, case, organization, place or product) cited in support of an argument. Feature 1 requires specific factual data (statistics, figures, dates) or verifiable citations (links, named sources, laws). A comment can give a named example with no data or citation, such as naming a historical event or a company. A comment can also give a statistic or a law citation without a particular real-world case. The overlap is partial, so the eligibility rules differ materially."
+    }
+  ]
+}

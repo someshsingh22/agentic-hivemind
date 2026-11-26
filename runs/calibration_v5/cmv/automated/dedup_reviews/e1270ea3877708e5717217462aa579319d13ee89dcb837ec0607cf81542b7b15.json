@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read the argument column only with the same attribution rules, but the predicates differ in breadth. Item 0 needs an explicit admission of uncertainty, possible error or lack of knowledge, and generic hedging words without an explicit admission do not count. Item 1 counts any explicit uncertainty marker, and its examples include bare 'maybe' and 'to my knowledge', which item 0 would exclude as generic hedging. The null rules also differ: item 0 returns null only if the argument is missing or malformed, while item 1 also returns null if it is empty. So item 1 is a broader, marker-based measure and the two are not the same row function."
+    }
+  ]
+}

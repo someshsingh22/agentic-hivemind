@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty-list rules. The constructs differ in scope. Left requires a specific, verifiable procedural example, meaning a concrete description of an actual process, rule, protocol or practice. Right accepts any specific empirical evidence, such as data, statistics, studies or documented cases. Right is broader: statistics or study findings that are not procedural would count there but not on the left. Left is a narrower subtype, and it also explicitly ignores quoted OP text."
+    }
+  ]
+}

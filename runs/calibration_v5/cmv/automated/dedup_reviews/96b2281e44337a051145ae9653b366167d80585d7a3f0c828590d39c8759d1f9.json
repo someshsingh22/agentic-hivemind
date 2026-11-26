@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both are any-comment binary flags over OC_comments only. Each returns 1 if at least one comment uses a specific, concrete real-world example as support. Each excludes hypotheticals, abstract claims and vague appeals. Each says verification is not required, and each returns 0 for a valid list with no such comment and null for a missing or malformed list. The wording differences are minor. Item 0 lists 'study' and 'specific concrete situation', while item 1 lists 'personal experience' and 'historical episode'. These are nonexhaustive examples, not different rules. Item 1 states that an empty list returns 0. Item 0 does not state this, but it follows from 'valid list and no comment'. Item 1's note on quoted text applies only when the quote is used as an example, which matches ordinary example-use anyway."
+    }
+  ]
+}

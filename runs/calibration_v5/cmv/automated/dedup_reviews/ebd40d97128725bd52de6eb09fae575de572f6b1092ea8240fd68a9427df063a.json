@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is 1 when a comment refutes a specific OP-provided example or anecdote, so the target is the OP's example. Item 1 is 1 when a single comment first explicitly acknowledges a specific OP component as valid and then presents its own counter-example, so it requires an acknowledgment-then-counter-example sequence and the counter-example is the commenter's. The eligibility conditions, the target, and the ordering and quotation exclusions all differ. Item 0 also explicitly excludes the commenter's own unrelated examples."
+    }
+  ]
+}

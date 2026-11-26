@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 counts only a concrete personal anecdote: the commenter's own experience or that of someone they personally know. Feature 1 is a broader and different construct: any specific, checkable example, such as a named person, event, place, policy or case, or a personal/local situation. Feature 1 would score 1 on a public policy or historical case with no personal experience, and feature 0 would score 0 on it. Feature 1 also requires 'locally verifiable' checkable particulars. This requirement is not defined further, and feature 0 does not use it. Both use any-comment binary output and the same null/empty rules, but the eligibility criteria differ materially."
+    }
+  ]
+}

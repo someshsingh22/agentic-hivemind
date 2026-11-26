@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary on OC_comments with the same null/empty rules, but the constructs differ. Feature 0 counts any concrete identifiable real-world example (event, case, person, organization, place, study, statistic, historical instance) cited in support of an argument. Feature 1 requires specific empirical evidence (data, statistics, study findings, documented cases or observations with specific details). Feature 0 would count a named person, organization, place or historical event used as an illustration with no data or findings. Feature 1 would not count that. Feature 1 also counts specific observations that are not tied to an identifiable named instance. The eligibility scopes therefore differ materially."
+    }
+  ]
+}

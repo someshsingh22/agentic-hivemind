@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null/empty rules, but the constructs differ in scope. Feature 0 counts only a concrete personal anecdote, meaning the commenter's own experience or that of someone they personally know, and it excludes hypotheticals. Feature 1 counts any specific, concrete illustrative example, including named cases, scenarios or situations, and it explicitly allows non-real-world examples such as hypotheticals. Feature 1 is therefore materially broader. Personal anecdotes are only a subtype of it."
+    }
+  ]
+}

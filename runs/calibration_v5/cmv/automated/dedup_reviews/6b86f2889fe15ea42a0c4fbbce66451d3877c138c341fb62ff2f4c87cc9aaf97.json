@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different quantifiers and null rules. Item 0 is an ALL-comments feature: it returns 1 only if every comment is solely abstract, and returns null for an empty list. Item 1 is an ANY-comment feature: it returns 1 if at least one comment qualifies, and returns 0 for an empty list. The exclusion criteria also differ. Item 0 excludes only specific verifiable procedural examples. Item 1 excludes any named real-world example or analogy, which is a different exclusion boundary."
+    }
+  ]
+}

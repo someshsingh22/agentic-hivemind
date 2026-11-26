@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs on the same source. Feature 0 requires a specific identifiable real-world example (event, person, case, study, etc.), whether or not it contains numbers. Feature 1 requires specific numerical data or statistics, and explicitly excludes non-quantitative examples. A named case with no figures scores 1 on 0 and 0 on 1. A statistic with no named case can score the reverse."
+    }
+  ]
+}

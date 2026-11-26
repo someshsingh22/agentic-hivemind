@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different quantifiers and exclusions. Feature 0 is an 'any' over a logical refutation (at least one comment) plus a global exclusion on specific empirical evidence (statistics, data, studies, documented cases). It gives 0 for an empty list. Feature 92 requires EVERY comment to argue solely through abstract logic and excludes concrete external analogies or examples (a different exclusion criterion). It gives null for an empty list. A list with one logical refutation plus other non-refutation comments (e.g. clarifying questions) is 1 under 0 but 0 under 92. The empty-list rules also conflict (0 vs null)."
+    }
+  ]
+}

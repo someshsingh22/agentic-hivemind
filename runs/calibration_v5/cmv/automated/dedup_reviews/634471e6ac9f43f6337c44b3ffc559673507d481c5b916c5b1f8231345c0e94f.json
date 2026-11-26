@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 needs a verbatim or near-verbatim quote of a specific factual claim from the OP (not opinion), and the same comment must also refute it. Quoting without refuting scores 0. Item 1 counts any explicit quote or specific reference to OP text (a phrase, example, or 'you said X'), with no factual-claim limit and no refutation requirement. Item 1 is a much broader quotation/reference-presence construct. Item 0 is the narrower subtype, so the two are not the same measurement. Their empty-list rules also differ: item 0 returns 0 for an empty list, and item 1 returns null."
+    }
+  ]
+}

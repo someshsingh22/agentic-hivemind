@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 returns 1 only if a comment explicitly challenges an underlying assumption or premise of the OP's reasoning, and it excludes challenges that only dispute facts or the conclusion. Feature 1 returns 1 for any comment with specific reasoning, evidence or an example that challenges the OP's view. That is a much broader construct and includes fact and conclusion disputes. Feature 0 is a narrower subtype, so the two are not equivalent. Their null rules also differ: feature 0 gives null only if the title and argument are both missing, while feature 1 gives null if OP context needed to identify the target is missing. Feature 1 also gives 0 for an empty list, and feature 0 does not say what an empty list returns."
+    }
+  ]
+}

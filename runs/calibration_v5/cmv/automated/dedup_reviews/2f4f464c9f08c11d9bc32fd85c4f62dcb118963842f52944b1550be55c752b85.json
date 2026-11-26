@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 needs an analogy or comparison to a specific NAMED real-world case, event, person, institution or scientific example. Feature 1 needs any concrete, checkable example in the comment's own voice. That example can be unnamed, such as a personal or local situation with details, and need not be an analogy. Feature 1 is broader on example type, because unnamed personal or local cases qualify. It also adds a 'locally verifiable' checkability criterion and an exclusion for quoted OP text. Feature 0 is narrower on form because it requires an analogy and a name. Both use OC_comments and share the 0/1/null rules, but the eligibility constructs differ materially."
+    }
+  ]
+}

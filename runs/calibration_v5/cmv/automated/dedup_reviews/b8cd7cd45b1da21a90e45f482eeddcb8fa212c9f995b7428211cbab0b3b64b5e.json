@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is abstract reasoning: general principles, logic or conceptual argument, not grounded in the commenter's personal experience. Feature 1 is third-person analysis: the argument is about people, groups, institutions or things in the third person rather than addressed to the OP, with quoted text excluded. A comment can be abstract while addressing the OP as 'you'. A comment can also be third-person while being anecdotal or concrete. Their eligibility rules and exclusions also differ, since feature 1 excludes quoted text and feature 0 does not say so. The shared source column and shared null/empty rules do not make them the same row function."
+    }
+  ]
+}

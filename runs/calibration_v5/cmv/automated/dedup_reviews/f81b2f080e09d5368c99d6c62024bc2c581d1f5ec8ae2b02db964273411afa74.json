@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments, but the eligibility rules differ. Left requires a real, particular instance (named or clearly identified case, person, organization, event or situation) and explicitly excludes hypotheticals about unspecified cases. Right counts any 'particularized scenario', and says the example need not be real-world, so it can include hypothetical scenarios. Left also requires the example to support the counter-argument, while right only requires it to illustrate or support the point. Right alone explicitly excludes examples quoted from the OP. These differences change which comments score 1."
+    }
+  ]
+}

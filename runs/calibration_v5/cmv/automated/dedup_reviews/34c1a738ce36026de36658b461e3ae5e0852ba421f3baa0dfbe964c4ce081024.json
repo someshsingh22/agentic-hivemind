@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 detects whether any comment quotes or references specific OP text, and endorsement is not required. Item 1 detects whether any comment gives reasoned evidence or argument that opposes the OP's view. A comment can quote the OP without arguing against it. A comment can also rebut the view without pointing to specific OP wording. The empty-list rules also differ: item 1 returns 0 for an empty list, while item 0 returns null."
+    }
+  ]
+}

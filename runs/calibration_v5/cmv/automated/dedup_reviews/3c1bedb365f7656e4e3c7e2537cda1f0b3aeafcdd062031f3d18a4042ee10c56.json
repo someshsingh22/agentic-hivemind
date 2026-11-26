@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 requires citing external evidence from outside the OP's post, such as data, statistics, studies, sources or links, or documented facts. Item 1 requires a concrete, specific, checkable instance, which can include personal or local situations with particulars. A statistic or study without a specific case would count for 0 but not 1. A personal anecdote with concrete details would count for 1 but not 0, because 0 excludes personal opinion without evidence. Item 1 also has its own-voice and quoted-OP exclusions and an unresolved 'locally verifiable' boundary. The source column and the null/empty rules match, but the eligibility predicates differ materially."
+    }
+  ]
+}

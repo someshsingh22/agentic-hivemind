@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and contracts. Left is an all-comments predicate (1 only if every comment is purely abstract/theoretical with no specific verifiable procedural example). It is a narrow 'procedural example' (procedure/process/rule/practice) and null for an empty list. Right is an any-comment predicate for specific empirical evidence (data, statistics, studies, real-world cases), and an empty list gives 0. The two differ in any vs all, in the evidence type (procedural example vs empirical evidence), in polarity, and in the empty-list rule (null vs 0)."
+    }
+  ]
+}

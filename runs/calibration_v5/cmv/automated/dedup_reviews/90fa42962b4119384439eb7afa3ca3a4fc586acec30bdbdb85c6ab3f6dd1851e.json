@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 returns 1 for acknowledging a counter-argument OR a limitation/weakness/exception of the OP's own position. Feature 1 covers only acknowledging that counterpoints, objections or opposing considerations exist or might be raised, and explicitly excludes hedging that does not refer to opposing points. A self-identified limitation or exception therefore counts in 0 but not in 1, so 0 is broader. Feature 0 also excludes opponent positions reported without acknowledgment of their force, while feature 1 counts any explicit acknowledgment that an objection exists, rebutted or not. Their empty-input rules also differ: 0 returns null for empty or malformed argument, while 1 returns null only for missing or malformed argument."
+    }
+  ]
+}

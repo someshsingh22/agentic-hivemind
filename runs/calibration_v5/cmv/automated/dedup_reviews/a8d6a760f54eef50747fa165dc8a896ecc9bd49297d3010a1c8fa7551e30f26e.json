@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 requires first-hand or personally situated details of a labor process (tasks, hours, tools, workplace conditions), and abstract or normative labor statements score 0. Item 1 covers any specific, checkable example (person, event, place, policy, case, or local situation) offered in support of a counter-argument, with no labor-process requirement. Item 1 also needs the example to support the counter-argument and to have checkable particulars, and it leaves 'locally verifiable' undefined. A policy or historical case would count for item 1 but not for item 0. Item 0 is a narrow subtype, and the two predicates are not interchangeable."
+    }
+  ]
+}

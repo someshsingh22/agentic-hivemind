@@ -1,0 +1,32 @@
+{
+  "0.20": {
+    "hypotheses": 100,
+    "features_raw": 132,
+    "features_unique": 124,
+    "prompt_features_raw": 112,
+    "prompt_features_unique": 104,
+    "reviewed_pairs": 85,
+    "equivalent_pairs": 16,
+    "distinct_pairs": 69
+  },
+  "0.25": {
+    "hypotheses": 100,
+    "features_raw": 132,
+    "features_unique": 124,
+    "prompt_features_raw": 112,
+    "prompt_features_unique": 104,
+    "reviewed_pairs": 181,
+    "equivalent_pairs": 20,
+    "distinct_pairs": 161
+  },
+  "0.30": {
+    "hypotheses": 100,
+    "features_raw": 132,
+    "features_unique": 123,
+    "prompt_features_raw": 112,
+    "prompt_features_unique": 103,
+    "reviewed_pairs": 393,
+    "equivalent_pairs": 22,
+    "distinct_pairs": 371
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is 1 if any comment asserts the OP's claim or a stated proposition is false or logically invalid, with a carve-out for comments that only quantify systemic harm. Item 1 is 1 if any comment quotes the OP's title or argument text verbatim, as a blockquote or in quotation marks, whether or not it endorses or refutes it. A comment can assert falsity without quoting, and can quote without asserting falsity. The eligibility rules and null handling also differ."
+    }
+  ]
+}

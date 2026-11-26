@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 requires an explicit verbatim or near-verbatim quote of a specific factual claim from the OP's title or argument, plus a refutation of that claim. Quoting without refuting, or refuting without a quote, scores 0. Item 1 counts any explicit engagement (addressing, questioning, accepting, building on, or rebutting) with a cited OP example or premise. That engagement can be a paraphrase or naming, and it need not be critical. Item 1 is therefore much broader: it drops the quote requirement, the factual-claim restriction and the refutation requirement. Its null rule also differs slightly: it returns null when OP context is insufficient to determine the target."
+    }
+  ]
+}

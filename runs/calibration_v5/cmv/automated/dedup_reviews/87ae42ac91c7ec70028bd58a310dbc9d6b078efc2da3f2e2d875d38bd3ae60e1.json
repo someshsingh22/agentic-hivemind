@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 needs a specific institutional precedent (existing law, policy, court, organization or system) presented as actually functioning in practice. Item 1 accepts any specific concrete illustrative example, including hypothetical scenarios or personal situations, with no requirement that it be real or institutional. Item 1 is therefore materially broader. Item 0 explicitly excludes hypothetical and proposed-only cases that item 1 allows. Source columns and null/empty rules match, but the constructs differ in scope and eligibility."
+    }
+  ]
+}

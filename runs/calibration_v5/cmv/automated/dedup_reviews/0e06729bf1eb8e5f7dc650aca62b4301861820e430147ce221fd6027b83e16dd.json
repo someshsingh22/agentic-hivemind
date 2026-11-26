@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and row functions. Feature 0 is 1 when the OP's claims are predominantly framed with hedged or uncertain epistemic markers. Feature 1 is 1 when at least one absolute, unqualified, universal or certain statement appears. Feature 0 is a predominance judgment and feature 1 is an any-presence test. They are not opposites. Feature 1's spec says both can be 1 on the same row, and a neutral post could be 0 on both."
+    }
+  ]
+}

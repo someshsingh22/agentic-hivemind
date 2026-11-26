@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments), dtype and any-comment/1-0-null structure, but the eligible example sets differ. #0 requires a real-world example (real event, case, person, organization, place, study, or sourced statistic, or historical instance). #0 explicitly includes real-source studies and statistics. #1 requires a particular, localized case, instance, person, organization, event, or situation, 'named or clearly identified'. #1 does not require the case to be real-world, and it does not list studies or statistics. It would admit clearly identified situations, such as a commenter's own personal anecdote, that #0 may not treat as an identifiable real-world example. Conversely, #0 admits statistics and studies, which are not localized instances. Because the eligibility boundaries are materially different and no rule resolves them, the extraction functions are not the same."
+    }
+  ]
+}

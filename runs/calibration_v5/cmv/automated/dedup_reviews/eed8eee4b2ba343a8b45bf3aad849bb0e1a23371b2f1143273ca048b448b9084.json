@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but they measure different constructs. Feature 0 needs a concrete real-world analogy from outside the OP's scenario, used as a comparison to the issue. Feature 1 needs specific empirical evidence in support of a comment's argument (data, statistics, studies, or documented cases). A comment can cite statistics or a study without drawing any analogy, and an analogy to a specific case need not be offered as empirical evidence. Feature 1 also has no outside-OP-scenario requirement, and Feature 0 excludes OP-example restatement. The eligibility rules therefore differ materially."
+    }
+  ]
+}

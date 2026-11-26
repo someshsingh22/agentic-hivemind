@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires a specific rhetorical move: a comment first restates or steelmans the OP's view in a more nuanced form and then refutes it. Feature 1 only requires any comment with a well-reasoned, relevant counterargument to the OP's view, with no restating step. Feature 1 is much broader. A comment can qualify for it without any redrafting, and it adds a quality judgment (well-reasoned) that feature 0 lacks. The sources and null rules are similar, but the extraction predicates differ."
+    }
+  ]
+}

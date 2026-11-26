@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left is 1 if any comment explicitly engages (critically or not, including accepting or building on) a specific OP-cited example or premise, and generic replies don't count. Right is 1 if any comment directly challenges the OP's view with well-reasoned, coherent counterargument, and pure agreement doesn't count. Left needs no reasoning quality or opposition. Right needs no tie to a specific cited example. The null rules also differ: left is null if argument is missing, right only if both title and argument are missing."
+    }
+  ]
+}

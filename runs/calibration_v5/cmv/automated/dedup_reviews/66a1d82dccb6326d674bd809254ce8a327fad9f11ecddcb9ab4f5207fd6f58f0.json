@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same 0/null/empty handling. Feature 1 only counts a comment that is a specific counter-argument against the OP's view and cites an empirical example. That requires identifying the OP's view, but feature 1 says 'Do not use other columns', so the OP target is unavailable and unresolved. Feature 0 counts any specific real-world example cited to support the comment's argument, with no counter-argument-to-OP requirement. Feature 0 therefore includes supportive or off-target comments that feature 1 excludes. Feature 0 also lists named organizations, places and persons, while feature 1 requires an 'empirical' example such as a case, study, statistic or documented observation. The eligibility scopes differ."
+    }
+  ]
+}

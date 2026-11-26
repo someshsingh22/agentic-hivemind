@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty rules, but the constructs differ. Left requires concrete first-hand details of a labor process (tasks, procedures, hours, tools, workplace conditions), and accepts a specific person's work experience. Right counts any concrete personal anecdote about any topic, meaning a specific event, person or situation from the commenter or someone they know, and it must be part of a counter-argument. Left is narrower by subject, since it must be about labor. Right is not limited to labor. It also lacks left's work-detail requirement, so an anecdote that isn't about work would count on the right but not on the left. Right also excludes hypotheticals explicitly, and left does not."
+    }
+  ]
+}

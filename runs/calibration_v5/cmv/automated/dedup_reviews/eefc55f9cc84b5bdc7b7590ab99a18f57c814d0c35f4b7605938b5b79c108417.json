@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 requires an analogy or comparison to a specifically named real-world case, and the comment must argue against the OP. Item 1 counts any concrete real-world example used as support. That includes unnamed real situations and personal experience, and it does not require an analogy. Item 1 is therefore broader. Item 0 also excludes vague references and unnamed cases that item 1 may accept. The two measure different eligibility, so they are not interchangeable."
+    }
+  ]
+}

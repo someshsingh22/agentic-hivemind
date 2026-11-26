@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The constructs differ. Item 0 is 1 if any comment argues against or engages the OP's main premise or central claim at the general level, as opposed to a specific example. That includes a direct challenge to the central claim or conclusion. Item 1 is 1 only if a comment explicitly challenges an underlying or foundational assumption or presupposition, and it excludes comments that only dispute facts or the conclusion. A comment attacking the OP's central claim would score 1 on item 0 but 0 on item 1. Their null rules also differ: item 0 gives null if title or argument is missing, while item 1 gives null only if both are missing."
+    }
+  ]
+}

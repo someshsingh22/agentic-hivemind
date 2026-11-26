@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "They measure different constructs. Feature 0 is quotation presence: any comment that directly quotes OP title or argument text, with no endorsement or challenge required. Feature 1 is any comment giving a reasoned, evidence-based counterargument to the OP's view, which excludes bare disagreement. A quoting comment need not argue against the OP, and a substantive counterargument need not quote. The null rules also differ. Feature 0 returns null for an empty list, which is contradictory within its own spec, while feature 1 returns 0 for an empty list."
+    }
+  ]
+}

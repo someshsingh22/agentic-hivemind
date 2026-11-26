@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments, but the constructs differ. Left requires first-hand or personally situated details of how work is done or experienced (tasks, procedures, hours, tools). Right accepts any specific real-world case, event, person, organization, historical episode or personal experience offered as support. Right is much broader: a historical episode or a company example counts there but not on the left. A personal experience that is not about labor counts on the right but not the left. The two also handle quoted text differently: left excludes quotes unless adopted, while right counts them if used as an example."
+    }
+  ]
+}

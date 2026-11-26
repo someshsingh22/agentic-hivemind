@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments with the same null/empty rules, but the eligibility differs. Item 0 requires a specific, particular case with checkable particulars (named or identifiable, concrete details), used in the commenter's own voice and to support a counter-argument. It excludes quoted OP text. Item 1 accepts any specific real-world case, event, person, organization, historical episode, or personal experience as support. It has no requirement for checkable particulars, and it allows quoted other-source text if the commenter uses it as an example. Item 0 is narrower, so the two return different values on cases like a generic personal experience or a historical episode without checkable detail."
+    }
+  ]
+}

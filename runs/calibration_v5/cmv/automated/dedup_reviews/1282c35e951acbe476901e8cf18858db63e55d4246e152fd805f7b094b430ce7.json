@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 is a narrow subtype: it requires a comment pointing to an internal contradiction or inconsistency within the OP's own premises. It explicitly excludes ordinary disagreement, counterexamples and outside facts. Item 1 is broader: any reasoned counterargument, evidence or example that challenges the OP's view counts. Many comments that satisfy item 1 (counterexamples, outside evidence) would score 0 on item 0. The null rules also differ: item 0 gives null only if the title and argument are both missing, while item 1 gives null if OP context needed to identify the target view is missing."
+    }
+  ]
+}

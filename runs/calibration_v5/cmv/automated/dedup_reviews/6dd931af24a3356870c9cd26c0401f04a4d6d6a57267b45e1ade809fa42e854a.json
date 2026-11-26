@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both are binary any-comment features over the same sources (title, argument, OC_comments) and require at least one comment that argues against the OP's stated view with reasons or evidence. Each excludes bare questions, mere disagreement, jokes and off-topic comments. Both return null for missing or malformed OC_comments or missing OP context. Both ignore conversation. The wording differs ('directly counterargues' versus 'substantive counterargument'), but the extraction function is the same. Spec 1 explicitly gives 0 for an empty list, and spec 0 gives 0 for a valid list with no match, so an empty valid list gives 0 under both."
+    }
+  ]
+}

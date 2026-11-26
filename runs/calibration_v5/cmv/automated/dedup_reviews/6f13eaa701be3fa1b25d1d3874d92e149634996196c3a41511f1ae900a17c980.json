@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is an any-comment predicate: at least one comment is an abstract logical rebuttal that itself contains no named real-world example or analogy. Feature 1 also requires at least one logical refutation, but adds a row-level exclusion: it returns 0 if any comment in the list contains specific empirical evidence (statistics, data, studies, documented cases). Feature 0 has no such row-wide gate. A row where one comment is a pure abstract rebuttal and another cites statistics is 1 for feature 0 and 0 for feature 1. The exclusion criteria also differ: feature 0 excludes named examples or analogies in the qualifying comment, while feature 1 does not exclude analogies and excludes empirical evidence anywhere in the list. The two functions are therefore materially different."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over the same sources, and both require an explicit acknowledgment of validity followed by something else in the same comment. The follow-on element differs. Item 0 accepts any disagreement, discrepancy or counter-point, which includes a full rejection of the view. Item 1 requires a narrower, specific caveat, exception or qualification and explicitly excludes a blanket rejection of the whole view. Item 1 is therefore a narrower subtype. The null rules also differ. Item 0 returns null when the OP context is missing, and item 1 returns null only when OC_comments is missing or malformed. So the row functions are not the same."
+    }
+  ]
+}

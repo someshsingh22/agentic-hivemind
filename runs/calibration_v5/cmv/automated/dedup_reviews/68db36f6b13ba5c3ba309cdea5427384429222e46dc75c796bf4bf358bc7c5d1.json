@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 requires a comment to quote OP text AND dispute/refute the quoted material. Item 1 measures quotation presence alone and explicitly says refutation is not required. Per the quotation vs. endorsement/challenge rule, the narrower quote-and-refute subtype is not the same as quote presence. The null rules also differ: item 0 gives null if the OP text needed to verify the quote is missing, while item 1 gives null only if both title and argument are missing and keeps a positive match as 1."
+    }
+  ]
+}

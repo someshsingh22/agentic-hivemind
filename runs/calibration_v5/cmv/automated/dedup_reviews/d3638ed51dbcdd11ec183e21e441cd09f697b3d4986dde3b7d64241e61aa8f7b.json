@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an explicit assertion of absolute certainty or that the view can't be wrong (e.g. '100% certain'), and returns 0 for anything lacking it. Feature 70 is a broader, different predicate: categorical assertive framing plus the absence of any hedging or self-doubt. A confident post with no hedges and no explicit certainty claim gets 0 on feature 0 but 1 on feature 70. Their 0 rules also differ: feature 70 gives 0 for any hedge, even when the OP also makes a certainty claim. Their null rules differ too, since 70 also nulls on an empty argument."
+    }
+  ]
+}

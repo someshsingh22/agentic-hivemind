@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is a narrow subtype: it requires a first-hand (or personally known) real-world experience set against the OP's view, and it excludes hypotheticals, statistics and general facts. Feature 1 is broader: any specific counterargument, whether a concrete objection, evidence, example or reasoning. A comment can qualify for 1 without any personal experience, so the two extraction functions differ in eligibility and will give different 0/1 values."
+    }
+  ]
+}

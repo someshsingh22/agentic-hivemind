@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left is 1 if any comment's main basis is abstract normative principles (moral, ethical, rights, justice or value), contrasted with a specific concrete example. Right is 1 if any comment is a rebuttal of the OP through abstract logical reasoning (definitions, inference, consistency, conceptual distinctions), with no named real-world example or analogy. Normative-principle appeals are not the same as logical or conceptual argument. Right also requires the comment to be a rebuttal and excludes any analogy; left has neither condition. Left allows precedents to be cited alongside, while right does not allow named examples. The eligibility rules differ."
+    }
+  ]
+}

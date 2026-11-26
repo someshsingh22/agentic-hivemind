@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is positive when a comment uses a specific, verifiable procedural example, meaning a concrete real process, rule or case. Feature 1 is positive when a comment rebuts mainly through abstract logic and contains no named real-world example or analogy. Feature 1 needs the absence of specific examples, so the two are close to opposite in scope. They also differ in eligibility: feature 0 covers any procedural example, while feature 1 requires a rebuttal that is mainly abstract."
+    }
+  ]
+}

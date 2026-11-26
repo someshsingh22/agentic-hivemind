@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments, but the constructs differ. Left counts any concrete real-world example, including a specific person, event or organization, and personal real-life experience (anecdotes). Right requires specific empirical evidence: statistics, data, named studies, or documented factual cases/observations. Personal anecdotes or a named person or event without data would be positive on the left but not on the right. Right is a narrower evidentiary subtype, so the eligibility rules differ."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Index 0 counts both quotes and explicit references to a specific OP element (e.g. 'you said X', 'your point about Y'), including close paraphrases. Index 1 counts only direct quotations (quotation marks or blockquote) that match OP text, and it explicitly excludes paraphrases without quoted text. That makes 0 a broader quote-or-reference construct and 1 a narrower quote-only construct. Their empty-list rules also conflict: 0 says an empty list is null, while 1 contradicts itself, saying null for an empty list and 0 for a valid empty list."
+    }
+  ]
+}

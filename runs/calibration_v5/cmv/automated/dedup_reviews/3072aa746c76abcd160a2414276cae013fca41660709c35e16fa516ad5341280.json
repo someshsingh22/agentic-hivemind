@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both are any-comment binary features over OC_comments only. Each returns 1 if at least one comment cites a specific, identifiable real case, person, event, organization or situation as support. Each excludes generic claims and hypotheticals, needs no external verification, and returns 0 for a valid empty or nonempty list with no example and null for a missing or malformed list. Spec 72 adds personal experience and historical episode as examples, and spec 69 says 'situation', which covers personal experience. These are nonexhaustive illustrations, not different rules. Spec 72's quoted-text rule matches the 'comment itself cites' framing in spec 69. The 'real-world' versus 'localized' wording is a harmless paraphrase of a specific concrete instance."
+    }
+  ]
+}

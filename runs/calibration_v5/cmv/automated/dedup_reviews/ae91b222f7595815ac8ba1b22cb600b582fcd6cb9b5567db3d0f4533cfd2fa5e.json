@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 asks for a specific, verifiable description of an actual procedure, process, rule or practice used as support for a rebuttal. Feature 1 asks for a concrete real-world case or situation drawn from outside the OP's scenario and used as a comparison (an analogy). A procedural example need not be an analogy. An external analogy need not describe a procedure. The two also differ on exclusions: 0 ignores quoted OP text, while 1 excludes restatement of the OP's examples and hypotheticals."
+    }
+  ]
+}

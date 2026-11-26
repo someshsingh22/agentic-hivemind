@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 detects a comment introducing a specific, checkable external fact (statistic, study, law) that is not in the OP text. Item 1 detects a comment quoting or referencing a specific element of the OP's title or argument. Item 0 excludes facts the OP already stated, so its target is new external content. Item 1 targets OP text itself. They also use different empty-list and null rules."
+    }
+  ]
+}

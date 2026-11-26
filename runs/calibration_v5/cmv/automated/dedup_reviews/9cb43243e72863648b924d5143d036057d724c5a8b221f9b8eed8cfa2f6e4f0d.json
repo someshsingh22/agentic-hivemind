@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but the eligibility rules differ. Feature 0 counts any specific concrete example or real-world instance, including a study or a specific situation, and requires no checkability. Feature 1 requires a specific case with checkable or observable particulars (\"locally verifiable\"), a term it leaves undefined. It also requires the comment to offer the example in its own voice and explicitly excludes quoted OP text. Feature 1 is therefore narrower, and its undefined verifiability boundary is a material unresolved rule. Feature 0 has no quote or attribution exclusion."
+    }
+  ]
+}

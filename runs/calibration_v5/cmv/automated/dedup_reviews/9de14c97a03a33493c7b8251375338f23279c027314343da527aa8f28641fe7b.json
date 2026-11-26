@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The constructs differ. Feature 0 requires a comment to restate or steelman the OP's view in a more nuanced form of its own and then refute it, excluding verbatim quotes and generic summaries. Feature 1 requires an explicit acknowledgment that the OP has a valid point (e.g. 'you're right', 'fair point') followed by disagreement, and excludes restating the OP. A comment can satisfy one without the other: a redraft with no concession, or a concession with no redraft. The null rules also differ slightly."
+    }
+  ]
+}

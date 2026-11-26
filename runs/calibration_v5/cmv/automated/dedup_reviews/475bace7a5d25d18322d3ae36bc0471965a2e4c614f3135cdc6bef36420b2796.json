@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different row functions. Left returns 1 only if every comment is a refutation (reasoning or evidence) and none explicitly validates the OP's dignity or effort. It returns null for an empty list. Right returns 1 if at least one comment is a logical refutation and no comment has specific empirical evidence. It returns 0 for an empty list. Left allows evidence-based refutations and excludes OP-validation. Right excludes empirical evidence and ignores validation. Quantifiers (all vs. at least one), exclusion criteria and empty-list handling all differ."
+    }
+  ]
+}

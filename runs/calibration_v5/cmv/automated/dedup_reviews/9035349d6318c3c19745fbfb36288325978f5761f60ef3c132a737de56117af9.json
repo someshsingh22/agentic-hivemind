@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are all-comments binary over OC_comments with the same null rule, but the disqualifying concrete element differs. Spec 0 returns 0 only for a specific, verifiable procedural example (an actual procedure, process, rule or practice that could be checked). Spec 92 returns 0 for a concrete external factual analogy or any other concrete external example based on a specific real-world case, event or fact. Spec 92 is broader and covers non-procedural real-world cases, so a comment citing a real event gives 0 in 92 but may give 1 in 0. The two features have different eligibility and thresholds."
+    }
+  ]
+}

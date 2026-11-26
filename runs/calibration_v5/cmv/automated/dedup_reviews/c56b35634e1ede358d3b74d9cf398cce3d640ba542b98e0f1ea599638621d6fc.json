@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is true if any comment explicitly engages (addresses, accepts, questions or rebuts) a specific example or premise the OP cited. Engagement need not be critical, and no restating is required. Item 1 is true only if a comment first restates the OP's view in a more nuanced or steelman form and then refutes it. That is a specific two-step rhetorical pattern and it requires refutation. The null rules also differ: item 0 returns null when the argument is missing, while item 1 returns null only when both title and argument are missing."
+    }
+  ]
+}

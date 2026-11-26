@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments with the same null/empty rules, but the eligibility thresholds differ. Left (18) counts any external evidence, including documented real-world facts or cases from outside the OP, and does not require specificity. It does not say whether a vague 'studies show' counts. Right (19) requires specific factual data or verifiable citations and explicitly excludes vague 'studies show' appeals. It also counts specifics such as dates, laws, and named sources, and excludes quoted OP text. The two therefore yield different labels on borderline comments (a general documented fact without specifics, or an unspecific claim of external evidence), so they are different measurement contracts."
+    }
+  ]
+}

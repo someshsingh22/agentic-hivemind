@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and binary any/null rules, but different constructs. Feature 0 requires a named external program or named location. Feature 1 requires a concrete identifiable real-world example, which can be an event, case, person, organization, study, statistic or historical instance. Feature 1 would be 1 for an unlocated historical event, a person or a study. Feature 0 would be 1 for a passing named-country mention even if it isn't an example cited as evidence. Neither contains the other, so the eligibility rules differ materially."
+    }
+  ]
+}

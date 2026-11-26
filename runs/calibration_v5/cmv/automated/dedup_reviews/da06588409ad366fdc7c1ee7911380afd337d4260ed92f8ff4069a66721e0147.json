@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read only the argument column, but the row functions differ. Left (30) returns 1 only if the OP's claims are predominantly framed with modest or uncertain epistemic markers, which is a density/predominance threshold. Right (34) returns 1 if any explicit uncertainty marker about the OP's own view appears, which is an any-presence rule. A post with one 'I might be wrong' and otherwise confident assertion gets 0 on the left and 1 on the right. The marker sets also differ: the right includes 'to my knowledge' and excludes generic hedges, while the left counts hedges and tentative modals. The null rules are close but not identical (left adds 'unreadable', right adds 'malformed')."
+    }
+  ]
+}

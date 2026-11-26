@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments), binary any-comment form and null/empty rules, but the construct differs. Left requires a specific institutional precedent (existing law, policy, court, organization or system) presented as functioning in practice. Right accepts any concrete real-world example (event, case, person, place, study, statistic, historical instance). The right set is materially broader, so a person, event or statistic that is not a functioning institution scores 1 on the right and 0 on the left."
+    }
+  ]
+}

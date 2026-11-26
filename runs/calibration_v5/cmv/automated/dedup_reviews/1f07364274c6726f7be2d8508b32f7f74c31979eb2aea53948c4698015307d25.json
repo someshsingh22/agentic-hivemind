@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and same any/binary/null rules, but the constructs differ. 0 requires specific empirical evidence: statistics, data, study findings, or documented factual cases. Anecdotes, hypotheticals and logical reasoning don't count. 1 requires a particular named or clearly identified case, person, organization, event or situation, cited to support or illustrate the argument. This covers anecdotes and personal situations with no data. A specific example with no statistics or study would count for 1 but not 0. A statistic with no localized instance would count for 0 but not 1."
+    }
+  ]
+}

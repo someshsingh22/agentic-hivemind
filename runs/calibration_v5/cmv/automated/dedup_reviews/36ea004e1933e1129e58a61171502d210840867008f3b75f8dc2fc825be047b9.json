@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read only 'argument' with the same null rule and OP-own-voice/quote exclusions. But 70's construct is broader: 'hedging OR self-doubt' markers, and its examples include 'it seems to me', which is a plain hedge. 34 is 'explicit uncertainty' about the OP's own view and explicitly excludes generic hedging that doesn't signal uncertainty about the OP's stance. 34 does count 'to my knowledge' and 'maybe' too, but 70's 'hedging' scope admits more markers than 34 would. The eligibility boundary differs, so these are different row functions."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The constructs differ. Left requires a comment to point out an internal logical contradiction or inconsistency among the OP's own premises, and it explicitly excludes mere disagreement and counterexamples. Right is much broader: any comment that argues against or engages the OP's central claim at a general level rather than a specific example. A comment can address the main premise without alleging any contradiction. The null rules also differ. Left gives null only if OC_comments is missing or both title and argument are missing. Right gives null if any of title, argument or OC_comments is missing."
+    }
+  ]
+}

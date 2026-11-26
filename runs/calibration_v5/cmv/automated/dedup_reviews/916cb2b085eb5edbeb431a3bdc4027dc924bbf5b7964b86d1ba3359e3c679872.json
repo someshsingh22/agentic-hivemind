@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only the argument column (OP body, current text) and return a binary 1 if the OP recounts their own personal experience, else 0. Both exclude abstract, hypothetical, third-party and unadopted quoted content, and both exclude generic opinions. Both ignore title and comments. Wording differs: 'anecdote or first-person experiential narrative' versus 'explicit narrative of personal experience'. This is a harmless paraphrase. Null handling differs slightly: one says 'missing or empty/malformed' and the other says 'missing or malformed/unreadable'. This is not a material difference."
+    }
+  ]
+}

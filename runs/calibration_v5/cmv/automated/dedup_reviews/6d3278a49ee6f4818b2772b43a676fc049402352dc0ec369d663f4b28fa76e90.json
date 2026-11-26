@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty-list handling, but they measure different constructs. Feature 0 counts only a concrete personal anecdote, meaning the commenter's own experience or that of someone they personally know. Feature 1 counts any specific concrete example or real-world instance, including named people, events, cases, places, products and studies. Feature 1 is therefore much broader. A cited study or public event would score 1 on feature 1 and 0 on feature 0, so they are a narrow subtype versus a broad construct."
+    }
+  ]
+}

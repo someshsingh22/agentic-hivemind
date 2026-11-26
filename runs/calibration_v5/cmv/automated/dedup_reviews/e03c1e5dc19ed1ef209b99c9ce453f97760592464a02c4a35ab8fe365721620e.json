@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 asks whether any comment uses a specific, verifiable procedural example, meaning a concrete description of how a process, rule or procedure actually works or worked. A named case is not required. Feature 1 asks whether any comment draws an analogy or comparison to a named, specific real-world case, event, person, institution or scientific example. It requires a named referent and an analogical or comparative use, and does not require a procedure. A comment can meet one and not the other. A procedural description of an unnamed process counts for 0 only. A named historical analogy that is not procedural counts for 1 only. Both use OC_comments with the same 0/1/null rules, but the extraction predicates differ."
+    }
+  ]
+}

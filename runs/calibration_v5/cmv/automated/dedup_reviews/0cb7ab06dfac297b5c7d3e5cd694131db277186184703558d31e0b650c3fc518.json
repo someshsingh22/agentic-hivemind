@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 requires a comment to explicitly quote a specific phrase from the OP title or body and dispute that quoted text. Quotation is mandatory, and the target can be any title or body text. Item 1 requires a comment to refute a specific example, case or anecdote the OP gave in the body. Quotation is not required, and the target is limited to examples. The title is also not a target. The null rules differ too: item 0 is null if the OP text needed to verify the quote is missing, while item 1 is null if the argument is missing."
+    }
+  ]
+}

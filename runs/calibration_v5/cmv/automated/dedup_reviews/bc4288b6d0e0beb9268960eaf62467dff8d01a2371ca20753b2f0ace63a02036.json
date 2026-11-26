@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different constructs. Feature 0 returns 1 only when a comment explicitly affirms the OP's initial premise as valid before it states its disagreement, so the order within the comment matters. Feature 1 returns 1 when a comment explicitly challenges an underlying assumption or premise of the OP's view, as opposed to only disputing facts or the conclusion. One is acknowledgment of validity, the other is a challenge to premises. They have different eligibility rules and different positive and negative cases. For example, a comment that challenges a premise without first acknowledging it scores 1 on feature 1 and 0 on feature 0. The sources match, but the measurement contracts do not."
+    }
+  ]
+}

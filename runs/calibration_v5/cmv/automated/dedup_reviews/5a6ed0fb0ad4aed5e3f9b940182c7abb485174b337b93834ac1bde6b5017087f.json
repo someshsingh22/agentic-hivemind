@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and the same 0/1/null rules, but the constructs differ. Left is any specific real-world example cited as support, including a person, study, statistic, or event. Right requires a concrete analogy: a real-world case used as a comparison to the issue, drawn from outside the OP's scenario. Right is a narrower subtype, and it adds an explicit exclusion for restating the OP's examples. A comment can cite a real example as direct evidence without making an analogy, so the two features would label such comments differently."
+    }
+  ]
+}

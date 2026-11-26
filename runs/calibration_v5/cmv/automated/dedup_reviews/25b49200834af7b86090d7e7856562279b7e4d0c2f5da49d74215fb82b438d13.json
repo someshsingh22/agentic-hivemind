@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments with the same 0/null/empty rules, but the eligibility differs materially. Spec 0 requires a real-world example (a real event, case, person, organization, place, study or statistic, or a historical instance) and explicitly excludes generic hypotheticals. Spec 1 accepts any particularized case, scenario or situation and says it need not be real-world, so a concrete invented scenario counts. Spec 1 also excludes examples quoted from the OP, a rule spec 0 lacks. Spec 1 is broader on example type, so the two give different row values for hypothetical-scenario comments."
+    }
+  ]
+}

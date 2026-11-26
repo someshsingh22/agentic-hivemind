@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different things. Feature 0 asks whether ALL comments rely solely on abstract rebuttal. It requires a specific verifiable PROCEDURAL example (procedure, process, rule or practice) to count against, so it is a narrower subtype of example. Feature 1 asks whether ANY comment gives a concrete example of a specific case (person, event, place, policy or personal situation). Feature 1 is broader in example type and is not limited to procedures. The empty-list rules also differ: feature 0 returns null for an empty list, while feature 1 returns 0. Feature 0 is also not a simple inverse of feature 1. A comment with a concrete non-procedural example would make feature 1 equal 1, yet feature 0 could still equal 1."
+    }
+  ]
+}

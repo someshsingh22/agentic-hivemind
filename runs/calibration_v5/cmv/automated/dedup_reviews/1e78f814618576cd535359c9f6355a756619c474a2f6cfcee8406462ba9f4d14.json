@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 flags explicit epistemic uncertainty markers about the OP's own view (e.g. 'I might be wrong', 'maybe'). Feature 1 flags explicit conditional statements that link an outcome to a specific antecedent ('if X then Y', 'unless'). Both read the argument column only and return 1/0/null, but a conditional is not an uncertainty marker, and the rules for what counts differ."
+    }
+  ]
+}

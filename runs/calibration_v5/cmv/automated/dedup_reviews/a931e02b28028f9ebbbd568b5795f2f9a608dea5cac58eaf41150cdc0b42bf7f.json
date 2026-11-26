@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs on the same argument column. Feature 0 is 1 when the OP uses explicit uncertainty markers about their own view, such as 'maybe', 'I might be wrong' or 'I'm not sure'. Feature 1 is 1 when the OP explicitly acknowledges a counter-argument, weakness, limitation or exception to their position. An OP can acknowledge a counterargument with confidence and no uncertainty marker. An OP can also say 'maybe' without acknowledging any counterargument. The two predicates therefore do not coincide."
+    }
+  ]
+}

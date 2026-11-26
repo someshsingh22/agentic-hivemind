@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different kinds of validation. Left requires validation of the OP's personal dignity or effort, such as praising their thoughtfulness or sincerity, or respecting them as a person. Right requires validation of the OP's emotional experience, meaning feelings stated to be understandable, valid or legitimate. Right also says validation of the OP's reasoning does not count. Each feature's examples would likely be excluded or at best borderline under the other's rule. The null rules also differ: right returns null when OP context is missing, while left returns null only for malformed or missing OC_comments."
+    }
+  ]
+}

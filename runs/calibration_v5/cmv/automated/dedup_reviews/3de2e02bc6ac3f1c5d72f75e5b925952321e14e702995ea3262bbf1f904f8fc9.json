@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 requires a comment to restate or steelman the OP's view in its own words in a more nuanced form, explicitly not a verbatim quote, and then refute it. Feature 1 requires an explicit verbatim quote of a specific OP phrase (quotation marks or blockquote) that the comment then disputes. It explicitly excludes paraphrase without quotation. The two predicates are largely mutually exclusive in their core requirement, and their null rules also differ."
+    }
+  ]
+}

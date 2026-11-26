@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires the quote to be of a specific factual claim (not opinion) AND the comment must dispute or refute it; quoting without refuting gives 0. Feature 1 counts any direct quotation of OP text, and its spec says endorsement or refutation is irrelevant. Feature 0 is a materially narrower subtype (quote plus refutation, factual claims only), so the row functions differ. The null rules also differ: feature 1 still returns 1 for an observed quote when OP text is partly missing, while feature 0 returns null."
+    }
+  ]
+}

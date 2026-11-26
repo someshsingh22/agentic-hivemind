@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is broader: it counts any specific empirical evidence, including named studies, research findings, and documented factual cases or observations, even without numbers. Feature 1 requires specific numerical data or statistics, and it explicitly excludes non-quantitative examples. A documented case with no figures gives 1 for feature 0 and 0 for feature 1. The constructs and eligibility rules differ, so the two are not equivalent."
+    }
+  ]
+}

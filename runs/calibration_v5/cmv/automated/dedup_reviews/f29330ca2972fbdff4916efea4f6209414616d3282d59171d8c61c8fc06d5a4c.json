@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are all-comments binary features over OC_comments with null for empty or missing input, but the constructs differ. Feature 0 requires every comment to rely solely on abstract normative principles (claims about what is right, fair or ought to be). It returns 0 for any concrete details or any non-normative argumentation. Feature 23 requires only abstract, theoretical or general reasoning, which is not limited to normative claims. It returns 0 only if a comment uses a specific, verifiable procedural example. A purely abstract empirical or theoretical rebuttal that is not normative would be 0 under feature 0 and 1 under feature 23. The disqualifying concrete content also differs: personal labor-process details or other concrete examples versus verifiable procedural examples. Feature 0 also has explicit quote and bot exclusions that feature 23 lacks."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read OC_comments and give any-comment binary output with the same null and empty rules, but the constructs differ. Feature 0 requires external evidence from outside the OP's post: data, statistics, studies, sources or links, or documented facts. A general documented fact counts, and a specific personal anecdote does not. Feature 1 requires a specific, localized, named or clearly identified instance, such as a person, event or situation. It needs no external verification, and personal or hypothetical-free cases count. A statistic or study with no particular instance would be 1 for feature 0 but 0 for feature 1. A specific personal anecdote would be the reverse. The two are overlapping but different extraction functions."
+    }
+  ]
+}

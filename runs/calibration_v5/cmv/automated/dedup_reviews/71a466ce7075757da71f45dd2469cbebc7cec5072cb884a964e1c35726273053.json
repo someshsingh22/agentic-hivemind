@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty-list rules. They differ in eligibility. Feature 0 counts any comment that cites a specific identifiable real-world example (event, person, case, organization, place, study, documented instance) to support or illustrate its argument, with no requirement that it be a counter-argument. Feature 1 requires the comment to present a specific counter-argument against the OP's view, and the example must be empirical (case, event, study, statistic, or documented observation). Feature 1 therefore excludes supportive or non-opposing comments that cite examples. It also adds statistics and observations, which are not clearly identifiable specific instances. The counter-argument condition is a material scope difference."
+    }
+  ]
+}

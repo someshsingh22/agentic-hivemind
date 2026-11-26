@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs on the same source (OC_comments). Feature 0 detects an analogy, meaning an explicit comparison to a different familiar scenario, and it excludes plain literal examples of the same issue. Feature 1 detects a concrete, identifiable real-world example (event, person, study or statistic) cited as support, and it excludes hypotheticals. An analogy need not cite a real identifiable case, and a real case of the same issue need not be an analogy, so the per-row 0/1 outputs measure different things."
+    }
+  ]
+}

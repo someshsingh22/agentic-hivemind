@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with matching null/empty rules. The eligibility differs materially. Left (59) requires specific empirical evidence: statistics, data, named studies, or documented factual cases or observations. Right (72) accepts any concrete real-world example, including a specific person, organization, event, historical episode, or personal experience. Personal anecdotes, or a named person or event with no data or findings, would count for 72 but not for 59. 72 is therefore broader, and the two are not the same extraction function."
+    }
+  ]
+}

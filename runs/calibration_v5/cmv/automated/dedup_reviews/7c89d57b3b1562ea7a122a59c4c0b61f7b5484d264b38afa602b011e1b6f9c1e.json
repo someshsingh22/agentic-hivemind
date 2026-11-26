@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is 1 if any comment explicitly engages (addresses, questions, rebuts, accepts or builds on) a specific example or premise the OP cited, and engagement need not be critical. Item 1 is 1 only if a comment first explicitly acknowledges a valid point in the OP's view and then, later in the same comment, disagrees. Item 1 requires an acknowledge-then-disagree structure, and item 0 requires tying the comment to a specific OP example or premise. A comment can satisfy one and not the other. The source sets and null rules also differ."
+    }
+  ]
+}

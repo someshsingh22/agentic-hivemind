@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and aggregation. Item 0 is an all-comments predicate: every comment rebuts only abstractly, with no specific verifiable procedural example. It returns 0 if any comment has one, and null for an empty list. Item 1 is an any-comment predicate: at least one comment uses abstract reasoning, defined against personal experience, and anecdotes may coexist. It returns 0 for an empty list. The contrast classes differ (procedural example vs personal experience), as do the any/all quantifier and the empty-list handling."
+    }
+  ]
+}

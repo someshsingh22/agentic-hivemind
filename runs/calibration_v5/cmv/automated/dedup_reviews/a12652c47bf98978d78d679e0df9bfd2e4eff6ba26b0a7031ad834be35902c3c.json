@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features on OC_comments with the same null and empty-list rules, but the constructs differ. Feature 0 requires a specific, verifiable procedural example, meaning a concrete description of an actual procedure, process, rule or practice. Feature 1 requires specific empirical evidence such as statistics, data, studies or documented factual cases. Feature 1 is broader in content (data, studies, any documented case) and does not require a procedure. Feature 0 would exclude statistics or study findings that do not describe a procedure. Feature 0 also says to ignore quoted OP text, and feature 1 has no such rule."
+    }
+  ]
+}

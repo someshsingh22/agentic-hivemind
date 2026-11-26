@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires a comment to address the OP's main premise/central claim at the general level, explicitly excluding comments that target a specific OP example or anecdote. Feature 1 requires a reasoned, evidence-based or example-based challenge to the OP's view, with no premise-level restriction. It explicitly counts specific examples and excludes mere disagreement, insults and bare questions. Feature 0 would count a general-level engagement that is not reasoned, and feature 1 would count a reasoned rebuttal of a specific example. The eligibility rules differ materially, so the two are not the same extraction function."
+    }
+  ]
+}

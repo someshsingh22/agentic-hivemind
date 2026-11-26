@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only OC_comments and return a binary any-comment flag for a comment citing a particular, identifiable concrete example (event, person, case, organization, situation) used to support or illustrate its argument. Both exclude generic claims, hypotheticals and broad trends, and need no external verification. Null handling is the same: null if missing or malformed, 0 for a valid empty list, 0 if no comment qualifies. 'Localized' and 'real-world' are paraphrases here, since both require a particular identified instance. Spec 1 also lists 'study' and 'place', but its examples are nonexhaustive and the rule is the same. Spec 0 says 'situation' and spec 1 says 'documented instance', which is a minor wording difference."
+    }
+  ]
+}

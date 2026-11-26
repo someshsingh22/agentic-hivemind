@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The constructs differ even though the sources and 0/1/null rules are similar. Feature 0 requires a comment to first restate or steelman the OP's view in a more nuanced form and then refute it, so the redrafting is the core predicate. Feature 1 requires a comment to explicitly challenge an underlying assumption or premise of the OP's view, rather than only facts or the conclusion, and it does not require any restatement. A comment can challenge a premise without redrafting the view, and a comment can redraft and then refute the view without targeting a premise. Neither predicate subsumes the other."
+    }
+  ]
+}

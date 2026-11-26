@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an analogy or comparison to a named, specific real-world case, used against the OP, and excludes unnamed hypotheticals. Feature 1 accepts any specific, concrete illustrative example, including particularized hypothetical scenarios that are not real-world or named. It does not require an analogy or a counter-OP purpose. Feature 1 is much broader, and the two differ in eligibility, so they are different extraction functions."
+    }
+  ]
+}

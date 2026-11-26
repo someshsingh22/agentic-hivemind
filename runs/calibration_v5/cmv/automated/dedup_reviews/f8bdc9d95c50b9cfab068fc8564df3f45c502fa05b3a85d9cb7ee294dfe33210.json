@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary on OC_comments with the same null/empty rules, but the eligibility differs materially. Feature 0 requires a specific real-world-type case with particulars that can be checked or observed directly (named or identifiable person, event, place, policy, or local situation). It excludes hypotheticals without specific particulars. Feature 1 accepts any particularized case, instance, scenario or situation used to illustrate, and explicitly does not require it to be real-world or verified. That lets in particularized hypothetical scenarios. Feature 1 is therefore broader, and the two would label such comments differently."
+    }
+  ]
+}

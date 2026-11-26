@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 requires a specific REAL-WORLD example (identifiable real event, person, case, organization, place, study), and it explicitly excludes generic hypotheticals. Item 1 explicitly does not require the example to be real-world and counts any 'clearly particularized' case, instance, scenario or situation. That includes particularized hypothetical scenarios. Item 1 also excludes examples quoted from the OP, which item 0 does not state. Item 1 is therefore broader in eligibility, and the two eligibility and exclusion rules differ."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments only, with the same 0/empty/null rules. They differ in eligibility. Item 0 counts a concrete real-world example (case, event, person, organization, statistic-bearing situation, or personal real-life experience) supporting any argument the comment makes. Item 1 requires a specific counter-argument against the OP's view that cites a concrete empirical example (case, event, study, statistic, or documented observation). Item 1 adds a counter-argument-against-OP requirement, which needs OP-stance context that the OC_comments-only input does not supply. It also lists studies and documented observations explicitly, while item 0 explicitly admits personal real-life experience. The eligibility sets are not the same, so the extraction functions differ."
+    }
+  ]
+}

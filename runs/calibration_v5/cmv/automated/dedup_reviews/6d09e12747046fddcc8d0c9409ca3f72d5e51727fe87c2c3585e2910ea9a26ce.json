@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only OC_comments and return a binary any-comment flag: 1 if at least one comment gives a specific, concrete real-world example or instance in support of its point. Both exclude hypotheticals and generic or abstract claims, and neither requires external verification. Both treat their example lists as nonexhaustive. Both return null for missing or malformed input. Left states 0 for an empty list, and right's rule of 0 for a valid list with no qualifying comment covers that case. The differences are minor wording: left names personal real-life experience and statistics explicitly, and right names study, place and product. These are ordinary example lists, not different eligibility rules."
+    }
+  ]
+}

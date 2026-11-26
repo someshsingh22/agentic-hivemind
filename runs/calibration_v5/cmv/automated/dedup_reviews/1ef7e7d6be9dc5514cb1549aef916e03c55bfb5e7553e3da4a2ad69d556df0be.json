@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different example types and null rules. Feature 0 requires a specific, verifiable procedural example (a concrete instance of an actual procedure, rule or practice that could be checked). Feature 1 accepts any specific concrete illustrative example, including hypothetical scenarios, and does not require it to be verifiable or procedural. Feature 0 returns null for an empty list and is also framed as 'all comments solely abstract', while feature 1 returns 0 for an empty list and excludes OP-quoted examples. The two label sets are therefore not interchangeable."
+    }
+  ]
+}

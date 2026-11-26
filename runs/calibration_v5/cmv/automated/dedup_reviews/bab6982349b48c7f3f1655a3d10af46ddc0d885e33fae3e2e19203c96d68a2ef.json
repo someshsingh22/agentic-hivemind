@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is 1 if any comment explicitly challenges an underlying assumption or premise of the OP's view, as opposed to only disputing facts or the conclusion. Item 1 is 1 if any comment opens with a wholesale rejection of the OP's view without first acknowledging any validity. Item 0 is about the content of the challenge (premise-level). Item 1 is about the form and ordering of the rebuttal (immediate, blanket, no concession). A comment can meet one without the other. The null rules also differ: item 0 gives null if title and argument are both missing, while item 1 gives null only if OC_comments is missing, and it explicitly gives 0 for an empty list."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read OC_comments with the same any/0/null rules, but the constructs differ. Feature 0 requires a specific identifiable real-world example: event, person, case, organization, place, product, or study. Feature 1 requires specific empirical evidence: concrete data, statistics, or research findings, or documented cases with specific details. A named person, place, or organization cited as an example counts for 0 but is not necessarily empirical evidence for 1. Statistics or data without a named instance could count for 1 but not for 0. The two predicates overlap but are not the same extraction function."
+    }
+  ]
+}

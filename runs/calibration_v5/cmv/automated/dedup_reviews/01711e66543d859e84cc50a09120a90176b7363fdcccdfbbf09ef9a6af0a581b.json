@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Left requires a comment to explicitly quote a specific OP phrase (title or body) and dispute that quoted material; paraphrase or unquoted rebuttals score 0. Right scores 1 for any comment with a substantive reasoned counterargument to the OP's view, with no quotation requirement. Right is a much broader predicate: a reasoned rebuttal without a quote gives 1 on the right and 0 on the left. Their null rules also differ: left needs OP text to verify the quote, right needs OP context to identify the target view."
+    }
+  ]
+}

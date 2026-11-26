@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 for any specific identifiable real-world example (event, person, case, organization, study, product or documented instance) cited as support. Feature 1 is 1 only for a commenter's own or a personal acquaintance's specific experience. Feature 0 includes public cases and studies that feature 1 excludes. Feature 1 includes private personal experiences that feature 0 doesn't require to be identifiable or documented. The sources and the null and empty rules match, but the eligibility rules differ materially."
+    }
+  ]
+}

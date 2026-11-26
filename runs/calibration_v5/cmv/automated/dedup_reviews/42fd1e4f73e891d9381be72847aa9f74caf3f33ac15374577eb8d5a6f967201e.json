@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 flags any concrete real-world example (case, event, person, data, personal experience) used as support. Feature 1 flags only a concrete external analogy, meaning a specific real-world case used as a comparison to the issue being argued, and drawn from outside the OP's scenario. Feature 1 is therefore narrower: it requires comparison to the issue and excludes restated OP examples. Feature 0 also counts personal experience and data-backed situations used as direct evidence, not as an analogy. A direct example that isn't a comparison would be 1 for feature 0 and 0 for feature 1. The source column and the 0/null/empty handling match, but the construct differs."
+    }
+  ]
+}

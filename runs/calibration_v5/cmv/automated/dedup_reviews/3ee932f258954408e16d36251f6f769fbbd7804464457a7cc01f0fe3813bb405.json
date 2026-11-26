@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left needs explicit quantification (numbers, rates, costs) of material harms that a system or policy causes to third parties. Right needs only a third-person rhetorical stance (not addressing the OP directly), with no quantification and no harm requirement. The eligibility rules differ, even though both are any-comment binary features on OC_comments with the same 0/null handling."
+    }
+  ]
+}

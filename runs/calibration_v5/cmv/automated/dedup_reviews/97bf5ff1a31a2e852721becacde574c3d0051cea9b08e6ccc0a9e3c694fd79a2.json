@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs despite the same source and any/binary form. Feature 0 asks for calm, measured logical reasoning, meaning explicit reasons, evidence or inferences in a non-aggressive tone. Feature 1 asks for a concrete personal anecdote, meaning a specific experience of the commenter or someone they know. A comment can have one without the other: an anecdote need not be measured reasoning, and logical reasoning need not be anecdotal. Their eligibility rules and exclusions also differ."
+    }
+  ]
+}

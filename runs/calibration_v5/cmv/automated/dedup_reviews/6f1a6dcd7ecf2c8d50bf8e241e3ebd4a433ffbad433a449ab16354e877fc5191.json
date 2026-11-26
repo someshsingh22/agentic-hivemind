@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 asks whether any comment cites external evidence (data, studies, statistics, sources, documented facts) in support of its counter-argument, and unsupported assertion does not count. Feature 1 asks whether any comment names a specific program or location. A comment can name a place or program without citing evidence, for example 'in Canada...' as an unsupported assertion. A comment can also cite a study or statistic without naming any program or location. The two predicates have different eligibility rules and are not paraphrases, even though both are binary, use OC_comments, and return null when the input is missing or malformed."
+    }
+  ]
+}

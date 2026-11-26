@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty-list rules. They differ in eligibility. Spec 0 explicitly counts personal real-life experience and 'statistic-bearing situation' as concrete examples. Spec 1 requires a concrete, identifiable real event, case, person, organization, place, study, source statistic or historical instance. It also explicitly excludes vague appeals, so an unspecific personal anecdote would likely not count under 1 but would under 0. This is a material eligibility boundary difference, so the two are not the same extraction function."
+    }
+  ]
+}

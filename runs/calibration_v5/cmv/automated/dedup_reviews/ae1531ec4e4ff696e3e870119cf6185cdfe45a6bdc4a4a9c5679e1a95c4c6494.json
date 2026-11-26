@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both are binary any-comment features over OC_comments only, with the same 1/0/null rules (valid empty list gives 0, missing or malformed gives null). Both require a specific real-world case, instance, person, event or organization used to support the argument. Both exclude hypotheticals and generic claims, and neither requires external verification. Left also lists statistic-bearing situations and personal real-life experience, and right says 'named or clearly identified'. These are nonexhaustive illustrations of the same specific-instance rule, not materially different eligibility."
+    }
+  ]
+}

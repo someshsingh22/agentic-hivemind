@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is 1 whenever the OP's own voice has an explicit uncertainty marker (presence only). Feature 70 is 1 only if there are no hedging or self-doubt markers AND the framing is assertive and categorical. It returns 0 both when markers are present and when the text is merely neutral or non-assertive. So a neutral argument with no markers scores 0 on both features, and an argument with markers scores 1 on one and 0 on the other. Feature 70's positive condition adds a categorical-assertiveness requirement and is not a simple inverse of 0. The hedging set in 70 (hedging, tentativeness, self-doubt) is also broader than explicit uncertainty markers. These are different row functions."
+    }
+  ]
+}

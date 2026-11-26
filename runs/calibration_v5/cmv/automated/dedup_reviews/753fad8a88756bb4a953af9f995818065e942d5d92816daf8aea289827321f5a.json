@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left is 1 if any comment explicitly engages (addresses, questions, rebuts, accepts or builds on) a specific OP example or premise, and the engagement need not be critical. Right is 1 only if a comment argues that the OP's own premises contradict each other or are logically inconsistent. Right is a much narrower critique subtype. Right also explicitly excludes mere disagreement and counterexamples, which Left would count. The null rules differ as well: Left returns null if argument is missing or context is insufficient, while Right returns null only if both title and argument are missing."
+    }
+  ]
+}

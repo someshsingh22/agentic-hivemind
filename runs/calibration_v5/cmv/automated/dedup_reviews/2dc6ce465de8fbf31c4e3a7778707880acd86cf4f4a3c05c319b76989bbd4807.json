@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 returns 1 when a comment explicitly acknowledges the validity of the OP's initial premise before diverging. Item 1 returns 1 when a comment opens with an immediate, wholesale contradiction of the OP's view with no acknowledgment of validity. The two are not logical complements. Item 0 requires a positive acknowledgment. Item 1 requires a blanket rejection. A comment that disagrees partially, or that only asks questions or adds information, scores 0 on both. Their null rules also differ. Item 0 gives null if the title and argument are missing, or if the comments are empty-unparseable. Item 1 gives null only when OC_comments is missing or malformed. Their scopes differ as well: item 0 is about the OP's initial premise, and item 1 is about the OP's view as a whole."
+    }
+  ]
+}

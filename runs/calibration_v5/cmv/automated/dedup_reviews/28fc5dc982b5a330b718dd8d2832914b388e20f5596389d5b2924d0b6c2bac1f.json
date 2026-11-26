@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null/empty rules, but the constructs differ. Feature 0 requires a specific, verifiable procedural example: a concrete description of an actual process, rule, protocol or practice, used to support a rebuttal. Feature 1 accepts any concrete empirical example (real-world case, event, study, statistic, observation) in a counter-argument against the OP's view. Feature 1 is much broader, since a statistic or a study would count there but not under 0. Feature 0 is a narrower subtype, and it does not require the comment to target the OP's view specifically."
+    }
+  ]
+}

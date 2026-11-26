@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left (32) is 1 only if a comment restates the OP's view in its own words in a more nuanced or steelman form and then refutes it. It explicitly excludes verbatim quotes and generic summaries. Right (84) is 1 if a comment contains a verbatim or near-verbatim quotation of OP title or argument text. Paraphrase does not count and refutation is irrelevant. The two are close to opposites on the quote-versus-paraphrase boundary, and only 32 requires a refutation. Their null rules also differ: 32 gives null only if both title and argument are missing, while 84 gives null if either is missing and no quote was observed."
+    }
+  ]
+}

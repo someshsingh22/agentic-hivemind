@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are binary any-comment features over the same sources, but the qualifying predicate differs. Feature 0 requires a relatable personal experience explicitly set against or countering the OP's view. Feature 1 requires a concrete personal anecdote that illustrates real-world consequences of the OP's claim, with no requirement that it be used as a counter. An anecdote of consequences could support the OP, and a contrasting experience need not show consequences. Feature 0 also has no 'concrete/specific' requirement, while feature 1 does. These are different constructs and eligibility rules."
+    }
+  ]
+}

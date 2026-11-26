@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read only the title and return binary/null on empty. But the constructs differ. Feature 0 counts any absolute certainty marker, including epistemic certainty adverbs ('definitely', 'undeniably', 'obviously', 'absolutely', 'impossible') besides universals. Feature 1 only counts universal quantifiers or absolute-frequency terms that scope the claim, and adds a usage-sense restriction (not names or quoted phrases). A title like 'CMV: X is obviously wrong' gets 1 under feature 0 and 0 under feature 1. Feature 0 is broader."
+    }
+  ]
+}

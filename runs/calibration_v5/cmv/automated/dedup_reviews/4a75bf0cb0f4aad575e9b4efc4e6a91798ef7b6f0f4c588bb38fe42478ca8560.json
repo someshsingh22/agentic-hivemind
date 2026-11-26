@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 requires a personal anecdote: the commenter's own experience, or that of someone they know personally. Item 1 accepts any particular identifiable real event, person, case, organization, place, study or documented instance, with no requirement that it be personal. Public cases, studies and organizations would count for 1 but not for 0. Personal anecdotes that name nothing identifiable count for 0 but may not count for 1. The two are different subtypes with different eligibility, even though the source, dtype and null rules match."
+    }
+  ]
+}

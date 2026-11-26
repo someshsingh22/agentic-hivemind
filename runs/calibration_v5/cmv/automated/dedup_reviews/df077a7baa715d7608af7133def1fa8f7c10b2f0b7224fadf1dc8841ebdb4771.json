@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same 0/1/null rules, but the qualifying evidence differs. Feature 0 requires a specific, particular case with checkable particulars, such as an identifiable person, event, place, policy or personal/local situation, and it counts personal anecdotes. Feature 1 requires a concrete empirical example, which explicitly includes studies, statistics and documented observations. Feature 1 also requires the counter-argument to be against the OP's view. Feature 0 would exclude a general statistic or study without identifiable particulars. Feature 1 would exclude a personal anecdote that isn't empirical or documented. The eligible evidence sets overlap but are not the same, so the row functions differ."
+    }
+  ]
+}

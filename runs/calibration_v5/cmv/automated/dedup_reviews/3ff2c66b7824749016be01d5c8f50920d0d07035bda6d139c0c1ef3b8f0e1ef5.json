@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read only OC_comments and return an any-comment binary, but the eligibility differs. Item 0 counts any comment that references a specific concrete example in support of its point, including a specific concrete situation. Item 1 counts only a comment that makes a counter-argument against the OP's view and cites an empirical example (real-world case, event, study, statistic or documented observation). Item 1 therefore adds a counter-argument/against-OP gate and is narrower on the example type. Item 1 also lists statistics and documented observations, and its examples are empirical rather than hypothetical. Item 0 includes a generic concrete situation and has no counter-argument requirement. Item 1 also states an explicit empty-list rule, which item 0 states only implicitly. The two can give different labels on the same row, for example a supportive or non-counter comment that cites a named case."
+    }
+  ]
+}

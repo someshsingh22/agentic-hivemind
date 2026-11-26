@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 when some comment is a mainly abstract logical rebuttal of the OP's view and has no named real-world example or analogy. This requires a rebuttal stance and abstract reasoning, and it excludes analogies. Feature 1 is 1 when some comment cites a specific real-world example in support, and it does not require rebuttal. The two are not inverses. A comment can be neither, such as a non-rebuttal or a vague or hypothetical comment. A row can also be 1 on both when different comments qualify. They differ in the comment predicate and in eligibility, so they are not the same row function."
+    }
+  ]
+}

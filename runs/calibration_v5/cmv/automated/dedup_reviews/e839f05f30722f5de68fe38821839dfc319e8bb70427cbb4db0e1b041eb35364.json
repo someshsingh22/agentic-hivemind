@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments with the same null/empty rules. But 0 counts any specific real-world example (event, person, case, organization, place, study, product). 1 requires a specific verifiable procedural example: a concrete instance or description of an actual procedure, process, rule or practice. That is a materially narrower subtype. A named person, product or study cited as evidence would be 1 on feature 0 but 0 on feature 1."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 if some comment rebuts the OP mainly through abstract logical reasoning and has no named real-world example or analogy. That is a rebuttal-style construct with an absence condition. Feature 82 is 1 if some comment uses a specific, concrete illustrative example, including hypothetical or particularized scenarios, and it does not require a rebuttal. They are not the same predicate and not simple inverses. A comment can be abstract and rebut without an example, and a row can be 1 on both when different comments qualify. Eligibility and exclusions also differ: feature 0 requires rebutting the OP's view and excludes analogies, while feature 82 excludes examples quoted from the OP's text."
+    }
+  ]
+}

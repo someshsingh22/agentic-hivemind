@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and eligibility. Feature 0 requires an explicit verbatim or near-verbatim quote of a specific factual claim from the OP's title or argument, followed by a refutation of that claim. Feature 1 requires refuting a specific OP example, case or anecdote from the argument. It needs no quote, and it need not target a factual claim. The text scopes also differ, since 0 covers title and argument and 1 covers the post body. The null rules differ too: 0 returns null if the title is missing, while 1 returns null only if argument or OC_comments is missing."
+    }
+  ]
+}

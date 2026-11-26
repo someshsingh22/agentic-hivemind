@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Left counts only direct quotations (verbatim or near-verbatim excerpts) of OP text. Right also counts explicit references to a specific OP sentence, claim, example or passage, such as 'you said X' or 'your point about Y', without a quote. That makes right a broader construct. Left explicitly says paraphrases don't count, while right accepts close paraphrase and referencing. The empty-list rules also differ: left gives 0 for a valid empty list, while right gives 0 only for a nonempty list and appears to treat an empty list as null."
+    }
+  ]
+}

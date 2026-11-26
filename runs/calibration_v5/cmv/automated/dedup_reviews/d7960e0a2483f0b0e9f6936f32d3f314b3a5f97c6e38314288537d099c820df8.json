@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 requires a comment to quote OP text AND dispute/refute the quoted material. Item 1 only requires the presence of a quote of OP text, and says endorsement or refutation is not required. That is a narrower subtype versus a broader quotation-presence construct, so the row functions differ. Their null/empty rules also conflict: item 0 returns 0 for an empty list, while item 1 is internally contradictory on empty lists, saying null in one place and 0 in another."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only OC_comments and output binary 1 if any comment cites a specific, identifiable real-world example (event, person, case, organization, place, study, etc.) in support of its argument. Both exclude hypotheticals and vague references. Both return 0 for a valid list with no match and for an empty list, and null for missing or malformed input. Left adds that quotes of others don't count unless used as an example. Right adds that a real-source statistic counts and that no outcome or later replies are used. These are harmless clarifications of the same predicate, not changes to scope."
+    }
+  ]
+}

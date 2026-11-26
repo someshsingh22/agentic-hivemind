@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 only counts comments pointing to an internal logical contradiction or inconsistency among the OP's own stated premises or conclusion. Item 1 counts any explicit challenge to an underlying stated or unstated assumption or premise, which is much broader. Challenging an assumption without claiming a contradiction would be 1 for item 1 and 0 for item 0. The null and empty rules are similar, but the core constructs differ: a narrow subtype versus a broad construct."
+    }
+  ]
+}

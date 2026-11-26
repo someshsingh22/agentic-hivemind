@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments with the same null/empty rules, but the eligible examples differ. Feature 0 requires a real-world example (real event, case, person, organization, place, study, source statistic, or historical instance). Feature 1 requires a specific case with checkable particulars, and this explicitly includes personal or local situations with concrete details. Feature 1 would count a commenter's own personal anecdote even if it is not a real-world identifiable public example, and it requires 'locally verifiable' specificity. Feature 0 would count a cited real study or statistic, which feature 1 might not treat as a particular case. Feature 1 also adds an own-voice rule and excludes quoted OP text, and feature 0 has neither. The eligibility boundaries differ materially."
+    }
+  ]
+}

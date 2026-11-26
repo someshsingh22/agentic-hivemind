@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is quotation presence: any comment verbatim or near-verbatim quotes OP title or body text, whether or not it is endorsed or refuted. Item 1 is whether any comment gives a reasoned counterargument, with evidence or an example, opposing the OP's view. A comment can quote the OP without arguing against it, and a substantive rebuttal can paraphrase without quoting. Their eligibility rules and null rules also differ."
+    }
+  ]
+}

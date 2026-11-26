@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 if any comment argues that the OP's own premises or claims contradict each other, an internal inconsistency. Feature 1 is 1 if any comment explicitly affirms the OP's initial premise as valid or reasonable before it states a disagreement, an acknowledgment-then-divergence ordering within the comment. They share source columns and any-comment structure, but the predicates differ and do not imply each other. A comment can do one without the other."
+    }
+  ]
+}

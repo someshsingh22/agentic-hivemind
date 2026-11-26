@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 requires the quoted OP text to be a specific factual claim (not opinion) and requires the comment to dispute or refute it. Item 1 is quotation presence only, any OP text, and says endorsement or refutation is not required. Item 1 is therefore much broader. The null rules also differ: item 0 returns null if title/argument is missing, while item 1 returns 1 on a clear positive match when only one OP source is available."
+    }
+  ]
+}

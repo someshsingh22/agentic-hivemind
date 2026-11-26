@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs: 0 flags any comment naming a specific external program or location (named entities), while 1 flags any comment containing specific numerical data or statistics. Both use OC_comments with any-comment binary output and similar null/empty rules, but the extraction predicates differ: a named place or program without numbers is 1 for the left and 0 for the right, and the reverse also holds."
+    }
+  ]
+}

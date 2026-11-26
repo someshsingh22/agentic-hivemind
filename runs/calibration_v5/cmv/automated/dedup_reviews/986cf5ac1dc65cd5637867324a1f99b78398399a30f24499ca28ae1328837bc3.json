@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 when a comment rebuts the OP mainly by abstract logical reasoning and contains no named real-world example or analogy. This is about the argument style and the absence of examples. Feature 97 is 1 when a comment presents specific empirical evidence (data, studies, documented cases). Feature 0 is roughly the opposite of an empirical-evidence marker, but it is not its negation. It requires a rebuttal of the OP, it is an abstract-reasoning type, and it excludes analogies. Feature 97 does not require a rebuttal and counts evidence regardless of whether the comment also reasons abstractly. The two can both be 1 or both be 0 for the same row, so the extraction functions differ."
+    }
+  ]
+}

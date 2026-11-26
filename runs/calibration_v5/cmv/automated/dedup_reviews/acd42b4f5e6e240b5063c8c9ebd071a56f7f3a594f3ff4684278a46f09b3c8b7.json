@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is a composite: 1 only if some comment gives a logical refutation of the OP AND no comment has specific empirical evidence. It returns 0 when there is no logical refutation, and an empty valid list gives 0. Feature 1 is a single any-predicate: 1 if any comment has specific empirical evidence. The two are not equivalent. A row with empirical evidence gives 1 for feature 1 and 0 for feature 0. A row with no evidence and no logical refutation gives 0 for both, and a row with no evidence and a logical refutation gives 1 for feature 0 and 0 for feature 1. The construct and the row function differ."
+    }
+  ]
+}

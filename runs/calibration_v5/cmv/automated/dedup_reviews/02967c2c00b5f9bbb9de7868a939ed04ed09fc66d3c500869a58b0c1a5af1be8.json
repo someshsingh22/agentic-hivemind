@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same sources and any/binary/null structure, but the constructs differ in eligibility. Feature 0 asks for any direct counterargument: a comment that explicitly challenges the OP's view, including a general rebuttal or reasons the view is wrong. Feature 1 asks for a specific counterargument: a concrete objection, evidence or example aimed at a particular OP claim, and it explicitly excludes generic disagreement. Feature 1 is therefore narrower. A direct but general rebuttal would count for 0 and not for 1. Feature 1 also adds 'current text incl. marked edits' for the OP post and an explicit empty-list rule, which 0 does not state."
+    }
+  ]
+}

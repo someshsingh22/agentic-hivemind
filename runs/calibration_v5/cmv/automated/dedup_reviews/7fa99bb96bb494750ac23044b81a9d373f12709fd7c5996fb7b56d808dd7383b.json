@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments with the same null/empty rules, but the eligibility differs. #0 counts any comment with specific empirical evidence (data, statistics, studies, documented cases) supporting its argument, with no requirement that it be a counter-argument against the OP. #1 requires the comment to be a specific counter-argument against the OP's view that cites a concrete empirical example. #1 is narrower on stance, and it also needs the OP's view to identify the target, while the spec says to use no other columns. #1 also counts a specific real-world case or event, which #0 covers only as a 'documented factual case'. The stance requirement is a material scope difference."
+    }
+  ]
+}

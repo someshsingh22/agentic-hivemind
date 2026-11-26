@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 flags comments that supply specific factual data or verifiable citations (statistics, links, named sources). It excludes vague appeals, opinions and hypotheticals. Feature 1 flags comments that use abstract reasoning (general principles, logic, conceptual argument) not grounded in personal experience. Evidence-based specifics and abstract argument are different predicates, and a comment can satisfy one and not the other. The shared source, binary output and any-comment aggregation do not make them equivalent."
+    }
+  ]
+}

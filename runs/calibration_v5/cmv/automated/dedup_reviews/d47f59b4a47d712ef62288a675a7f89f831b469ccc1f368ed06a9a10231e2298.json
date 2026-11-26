@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Entry 0 is a broad construct: any concrete real-world example (specific case, event, person, organization, statistic-bearing situation, or personal experience). Entry 1 is a narrower subtype: only a personal anecdote about the commenter or someone they personally know. Entry 0 would return 1 for a historical event or an institutional case, but entry 1 would return 0. Entry 1 also excludes generic statistics, while entry 0 counts statistic-bearing situations. The sources and the 0/1/null rules match, but the eligibility scope differs materially."
+    }
+  ]
+}

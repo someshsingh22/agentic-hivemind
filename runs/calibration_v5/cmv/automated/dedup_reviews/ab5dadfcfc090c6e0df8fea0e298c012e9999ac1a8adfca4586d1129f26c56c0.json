@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an explicit verbatim quote of OP text AND that the comment disputes/refutes it; quoting without disputing doesn't count. Feature 87 counts any explicit quote or reference to a specific OP textual element (including 'you said X' references and close paraphrase), and says endorsement is not required. So 87 is a much broader quotation/reference-presence construct, while 51 is a narrower quote-plus-refutation subtype. Their empty-list rules also differ: 51 gives 0 for an empty list, while 87 requires a nonempty list for 0 and its null rule is framed differently."
+    }
+  ]
+}

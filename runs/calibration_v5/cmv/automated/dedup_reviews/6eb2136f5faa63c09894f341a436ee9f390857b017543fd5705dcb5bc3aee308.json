@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The constructs differ. Feature 0 asks whether a commenter offers their own, or a personally known person's, real-world experience set against the OP's overall view. Feature 1 asks whether a comment disputes a specific example or anecdote that the OP gave in the post body. Feature 0 requires the commenter to bring a personal experience and does not require the OP to have given an example. Feature 1 requires an OP-provided example and does not require any commenter experience, and it explicitly excludes commenters offering their own examples. Their null rules also differ."
+    }
+  ]
+}

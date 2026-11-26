@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 flags the OP explicitly asserting absolute certainty or that they cannot be wrong. Item 1 flags explicit uncertainty markers about the OP's own view, such as 'maybe' or 'I might be wrong'. These are opposite stances, and a row can be 0 on both (neutral tone). Item 1 returns 0 when absolute certainty is present only because no uncertainty marker appears. Their null rules also differ: item 0 returns null only for missing or malformed argument, while item 1 also returns null for empty argument."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same sources and any/binary form, but the quoted material differs. Feature 0 counts only quotes of a specific factual claim, excludes opinion or value claims, and requires a refutation that argues the claim is false, inaccurate or unsupported. Feature 1 counts any quoted word, phrase or sentence from the OP, with no factual-claim restriction, and any dispute of it. Feature 1 is therefore broader, and the factual-claim eligibility gate in feature 0 is a material scope difference."
+    }
+  ]
+}

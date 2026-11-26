@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The constructs differ. Item 0 is 1 when a comment argues the OP's own premises or conclusion are internally contradictory or inconsistent, and it requires no quotation. Item 1 is 1 when a comment explicitly quotes a specific OP phrase and disputes it, and it requires no internal-contradiction claim. A comment can satisfy one and not the other: a quote-and-rebut of a claim is not an internal contradiction, and a contradiction argument made by paraphrase is not a quotation. The null rules also differ: item 0 gives null if title and argument are both missing, while item 1 gives null if the OP text needed to verify the quote is missing."
+    }
+  ]
+}

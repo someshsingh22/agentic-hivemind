@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 needs an explicit acknowledgment that the OP's initial premise is valid, stated in the comment's own voice and placed before the comment's divergence. Item 1 needs only that a comment directly argues against or engages the OP's main premise at a general level instead of targeting a specific example. These are different constructs. Item 0 is concession-before-disagreement, with an ordering rule. Item 1 is premise-level engagement, with no validity acknowledgment or ordering. Null rules also differ. Item 0 returns null if title and argument are both missing or comments are unparseable. Item 1 returns null if title or argument is missing."
+    }
+  ]
+}

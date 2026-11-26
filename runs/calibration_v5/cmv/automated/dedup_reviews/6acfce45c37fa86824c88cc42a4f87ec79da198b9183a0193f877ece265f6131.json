@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different constructs. Feature 0 is 1 if any comment rebuts mainly through abstract logical reasoning and contains no named real-world example or analogy. Feature 1 is 1 if any comment offers a concrete, checkable specific example in support of its counter-argument. Feature 0 requires a rebuttal that is mainly abstract, and it excludes comments with examples. Feature 1 requires the presence of a specific example and has no abstractness requirement. They can both be 1 on one row if different comments qualify, and they can both be 0, for example when comments are vague or contain only analogies. Feature 0 is not the negation of feature 1. Its exclusion is of named examples or analogies, while feature 1 counts only specific, checkable cases. Feature 1 also has its own rules, such as excluding quoted OP text and requiring the comment's own voice. Feature 0 has no equivalent rules."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 flags any comment that cites a specific, identifiable real-world example (event, person, case, study) as support. Item 1 flags any comment with calm, even-toned reasoning that proceeds through explicit reasons or inferences. Item 1 has a tone requirement ('measured', not emotionally aggressive) and no requirement for a concrete example. Item 0 has a concrete-example requirement and no tone requirement. Both read OC_comments and are any-binary with the same null/empty rules, but the comment-level predicates differ."
+    }
+  ]
+}

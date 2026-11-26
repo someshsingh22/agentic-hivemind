@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and eligibility. Feature 0 counts any engagement (addressing, accepting, building on, or paraphrasing) with a cited OP example or premise from the argument text. Engagement need not be critical, and paraphrase or naming is allowed. Feature 1 requires an explicit verbatim quote of an OP title or argument phrase and a dispute of that quoted material. Paraphrase and non-disputing quotes are excluded. Their text scopes differ (argument only vs title+argument), and so do their null rules."
+    }
+  ]
+}

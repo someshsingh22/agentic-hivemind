@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features on OC_comments with the same null and zero rules. The construct differs. Feature 0 counts any specific concrete example or real-world instance cited in support of a point, including a specific concrete situation or study. Feature 1 requires a concrete analogy from outside the OP's scenario, used as a comparison to the issue, and it excludes restating the OP's own examples. Feature 1 is therefore narrower: it needs an analogical comparison and external provenance. Feature 0 does not require analogy and has no OP-example exclusion. A direct example of the issue itself would count for 0 but not for 1."
+    }
+  ]
+}

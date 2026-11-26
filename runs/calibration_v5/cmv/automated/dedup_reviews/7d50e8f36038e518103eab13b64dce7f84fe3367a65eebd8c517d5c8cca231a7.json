@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are all-comments binary features over OC_comments, but they measure different constructs. Feature 0 requires every comment to rely solely on abstract normative principles (claims about what is right, fair or ought to be). It returns 0 for any concrete details or any non-normative argumentation, including logical or factual argument. Feature 1 requires only abstract logical refutation (definitions, logical structure, general principles). It returns 0 only for a concrete external factual analogy or example. A purely logical, non-normative comment gives 0 under feature 0 and 1 under feature 1. Their exclusion rules also differ: feature 0 excludes quoted text and bot/moderator notices, and feature 1 states no such exclusion."
+    }
+  ]
+}

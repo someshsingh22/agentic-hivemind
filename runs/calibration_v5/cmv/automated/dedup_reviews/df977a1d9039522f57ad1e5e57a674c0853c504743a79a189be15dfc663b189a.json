@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 flags an OP counter-question: an interrogative that challenges or probes opposing views or readers. Item 1 flags explicit hedging or self-doubt markers about the OP's own view, such as 'I might be wrong' or 'maybe'. A challenging question does not imply hedging, and hedging does not imply a question. The sources and binary dtype match, but the extraction predicates are different."
+    }
+  ]
+}

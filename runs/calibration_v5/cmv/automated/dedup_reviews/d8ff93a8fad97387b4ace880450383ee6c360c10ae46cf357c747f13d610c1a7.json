@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 when a comment asserts that the OP's claim or a stated proposition is false or logically invalid, which is a rebuttal stance. Feature 1 is 1 when a comment introduces a specific checkable external fact not already in the OP. A comment can assert falsity without adding a new fact, for example by pure logical rebuttal. A comment can also add a fact without asserting falsity. The exclusions and null rules also differ: feature 0 excludes systemic-harm quantification and quoted positions, and feature 1 excludes opinion, hypotheticals and anecdotes."
+    }
+  ]
+}

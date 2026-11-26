@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left is 1 if any comment cites a specific identifiable real-world example (event, person, case, organization, place, study). Right is 1 if any comment contains specific numerical data or statistics. A comment can cite a named real example with no figures, and can give numbers without naming an example. The qualifying predicates overlap only partly, so they are not the same extraction function, even though both use OC_comments and the same any/null/empty rules."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but the constructs differ. Feature 0 requires a specific institutional precedent: a concrete existing institution, law, policy or system presented as functioning in practice. Feature 1 requires a specific verifiable procedural example: a concrete description of an actual procedure, process, rule or practice, including how a process worked in a specific case. Feature 1 does not require a named or identifiable institution or a functioning precedent, and it can count a described process or scientific protocol. Feature 0 does not require a procedure description, and a cited law or institution is enough. The sets overlap but neither contains the other. Feature 1 also says to ignore quoted OP text, and feature 0 has no such rule. The null and empty rules match."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 flags any comment citing external evidence (data, statistics, studies, sources, documented facts or cases) in support of its counter-argument. Item 1 flags only a concrete real-world analogy, meaning a specific case used as a comparison to the issue. Item 0 would count statistics or a study with no comparison. Item 1 would count an everyday analogy that is not cited evidence. The two overlap only partially, and neither is a subtype with the same eligibility rules. Source column, dtype and null/empty handling match, but the core predicates differ."
+    }
+  ]
+}

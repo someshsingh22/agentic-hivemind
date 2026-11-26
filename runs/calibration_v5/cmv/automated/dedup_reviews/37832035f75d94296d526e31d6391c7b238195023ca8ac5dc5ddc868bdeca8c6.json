@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and thresholds. Feature 0 is 1 when the OP's claims are predominantly framed with hedges or uncertainty, and neutral or assertive text gets 0. Feature 1 is 1 only for categorical, unwavering assertion with no hedging at all, and any single hedge or neutral text gets 0. These are not complements. A mostly assertive post with one hedge is 0 on both. A neutral post is 0 on both. Feature 0 uses a 'predominantly' standard and feature 1 uses an 'any marker' standard, so the row functions differ."
+    }
+  ]
+}

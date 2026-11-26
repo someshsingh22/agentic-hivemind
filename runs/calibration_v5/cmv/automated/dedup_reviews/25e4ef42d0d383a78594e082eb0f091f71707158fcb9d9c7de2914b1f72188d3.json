@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires a quote of a specific factual claim from the OP and a refutation of it. Quoting without refuting scores 0, and opinion or value quotes don't count. Feature 88 only requires any direct quote of OP text. It says endorsement or refutation is not required, and it has no factual-claim restriction. Feature 88 is therefore much broader, and this is a quotation-presence construct against a quote-and-refute construct. The empty-list rules also conflict. Feature 0 returns 0 for a valid empty list. Feature 88's spec says null for an empty list, then says 0 for a valid empty list, which is internally contradictory."
+    }
+  ]
+}

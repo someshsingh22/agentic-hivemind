@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 needs a comment that explicitly quotes or near-verbatim reproduces a specific factual claim from the OP and then refutes it. Quoting is required, and opinion or value claims don't count. Item 77 needs a comment that challenges an underlying assumption or premise, and it excludes mere fact or conclusion disputes. That is the opposite target from a factual-claim refutation. Item 77 also requires no quote and has different null rules (null only if both title and argument are missing)."
+    }
+  ]
+}

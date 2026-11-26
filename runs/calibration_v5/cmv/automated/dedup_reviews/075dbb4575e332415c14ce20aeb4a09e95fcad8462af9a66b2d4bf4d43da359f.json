@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both are binary any-comment features on OC_comments only. Each returns 1 if at least one comment cites a specific, concrete, real-world example or instance in support of its point. Each excludes generic, hypothetical and vague appeals, doesn't require external verification, returns 0 for a valid list with no match and null for missing or malformed input. Left adds 'a specific concrete situation' and right adds 'statistic from a real source' or 'historical instance'. These are nonexhaustive example lists, not material differences. Right's explicit empty-list 0 matches left's valid-list rule."
+    }
+  ]
+}

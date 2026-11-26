@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (argument) and similar markers, but the quantifier differs. Feature 0 returns 1 only if the OP's claims are predominantly framed with high-modality assertions, which is a share/predominance test. Feature 1 returns 1 if at least one absolute declarative statement is present, which is an any test. A post with one 'always' among mostly hedged claims gives 0 for feature 0 and 1 for feature 1. Their null rules also differ slightly (unreadable versus malformed)."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires a comment that explicitly quotes or near-verbatim reproduces a specific factual claim from the OP's title or argument and then refutes it. Opinion or value quotes, unquoted refutations and topic mentions give 0. Feature 1 requires only that any comment directly challenges or argues against the OP's overall stated view. It needs no quote and no factual-claim restriction. Feature 1 is therefore much broader, and a rebuttal without a quote would score 1 on feature 1 and 0 on feature 0. The null rules also differ in detail."
+    }
+  ]
+}

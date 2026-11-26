@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different constructs, even though both read title, argument and OC_comments and return a binary 1/0/null. Feature 0 returns 1 if any comment directly argues against or rebuts the OP's view, which is a stance-based challenge. Feature 1 returns 1 if any comment contains a verbatim or near-verbatim quotation of OP title or argument text, and endorsement or refutation is explicitly irrelevant. A comment can counterargue without quoting, and a comment can quote without counterarguing, so the extraction functions are not the same."
+    }
+  ]
+}

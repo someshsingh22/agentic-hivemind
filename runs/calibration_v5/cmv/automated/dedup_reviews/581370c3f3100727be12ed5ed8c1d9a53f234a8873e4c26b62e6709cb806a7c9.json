@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both use OC_comments with any-comment binary and the same null/empty rules, but the constructs differ in scope. Left requires a specific, verifiable procedural example, meaning a concrete description of an actual procedure, process, rule or protocol, such as how a legal or institutional process works. Right accepts any specific real-world example of any type (event, person, organization, place, study, statistic, historical instance). Right is materially broader, so a comment citing a statistic or a person would score 1 on right and 0 on left. Left also says to ignore quoted OP text, and right has no such rule."
+    }
+  ]
+}

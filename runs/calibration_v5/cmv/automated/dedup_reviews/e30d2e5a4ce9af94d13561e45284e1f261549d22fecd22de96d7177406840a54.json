@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left is 1 if any comment gives specific factual data or verifiable citations (statistics, links, named studies, laws). Right is 1 if any comment recounts a concrete personal anecdote, meaning the commenter's own experience or that of someone they know. Right explicitly excludes generic statistics, which are the kind of content left counts. The source column, dtype and null rules match, but the extraction predicates are different."
+    }
+  ]
+}

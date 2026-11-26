@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments), binary any-comment, same null/empty rules, but different constructs. Left requires a specific institutional precedent (existing law, policy, court, organization or system) presented as actually functioning in practice. Right accepts any particular concrete case, person, event or situation as an illustration. Right is much broader: personal anecdotes, individual people and events count, and no functioning-in-practice requirement applies. Left is a narrower subtype, so the two are not interchangeable."
+    }
+  ]
+}

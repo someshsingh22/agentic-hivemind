@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read only the argument column and return binary 0/1/null, but the thresholds differ. Feature 0 returns 1 only if the OP's claims are predominantly framed with modest or uncertain epistemic markers, and it returns 0 for predominantly assertive or neutral text even when some hedges appear. Feature 1 returns 1 if any hedging or qualifying language softens a claim, with no predominance requirement. It also counts qualifiers such as 'in most cases' and 'generally', which limit scope but do not express uncertainty. This is a predominance versus presence difference, so the row functions differ."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty-list rules, but the qualifying evidence differs. Feature 0 counts any specific real-world case, instance, event, person or organization, and it explicitly counts personal real-life experience. Feature 1 requires specific empirical evidence: concrete data, statistics, study or research findings, or documented cases with specific details. It also excludes personal opinion without concrete facts. A named event or person, or an anecdote, would count for feature 0 but not necessarily for feature 1. Feature 1 would count a study or statistic with no named case. The two are therefore different constructs, not paraphrases."
+    }
+  ]
+}

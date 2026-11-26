@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary counterargument detectors over the same sources, but the thresholds and null rules differ. #0 requires a 'substantive' counterargument: specific reasoning, evidence or an example. #98 requires a 'well-reasoned' one: clear, relevant, logically coherent reasoning that bears on the OP's actual claim. The 'well-reasoned' standard adds a quality/coherence bar that 'substantive' does not. The null rules also differ. #0 gives null when OP context needed to identify the target view is missing. #98 gives null only if both title and argument are missing. The two specs do not resolve these differences, so they are not the same row function."
+    }
+  ]
+}

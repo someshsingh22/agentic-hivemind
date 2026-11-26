@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "comparisons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "left": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "right": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "equivalent",
+              "distinct"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "left",
+          "right",
+          "verdict",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 1
+    }
+  },
+  "required": [
+    "comparisons"
+  ],
+  "additionalProperties": false
+}

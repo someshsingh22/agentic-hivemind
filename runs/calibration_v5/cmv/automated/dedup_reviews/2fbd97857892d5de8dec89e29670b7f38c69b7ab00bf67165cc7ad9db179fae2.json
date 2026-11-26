@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 returns 1 when any comment explicitly engages with a specific example or premise cited in the OP's argument. The engagement can be of any kind (address, accept, build on), and it need not be critical or personal. Feature 1 returns 1 only when a comment describes a real-world personal experience of the commenter or someone they know and sets it against the OP's view. Feature 1 excludes hypotheticals and statistics and is not tied to a specific OP example or premise. The two features have different eligibility rules and different positive conditions, and the sources only match in name. A comment that engages an OP premise without personal experience scores 1 on feature 0 and 0 on feature 1."
+    }
+  ]
+}

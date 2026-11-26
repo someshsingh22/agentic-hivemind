@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only OC_comments and output a binary any-comment flag for a specific, concrete real-world example offered in support of the commenter's argument. Both exclude hypotheticals, generic claims and vague references. Both treat the example lists as nonexhaustive and need no external verification. Both give 0 for a valid list with no match and null for missing or malformed input. Left adds 'quotes of others don't count unless used as an example' and an explicit empty-list 0. Right adds 'a specific concrete situation'. These are harmless paraphrase-level differences, not material changes to the measurement."
+    }
+  ]
+}

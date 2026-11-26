@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs on the same OC_comments source. Feature 0 asks whether any comment has calm, measured logical reasoning, which depends on tone and on explicit reasons, evidence or inferences. Feature 1 asks whether any comment cites specific numerical data or statistics, and it explicitly counts reasoning without figures as 0. A comment can satisfy one without the other."
+    }
+  ]
+}

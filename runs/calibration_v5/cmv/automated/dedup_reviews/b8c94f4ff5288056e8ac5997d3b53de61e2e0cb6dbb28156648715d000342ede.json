@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and any-comment binary/null rules, but different constructs. Feature 0 needs first-hand or personally situated details of how work is actually done or experienced (tasks, hours, tools, job steps). Feature 1 accepts any specific, concrete illustrative example, including hypothetical, non-labor or non-personal cases. Feature 1 is much broader. Feature 0 is a narrow subtype limited to labor and personal experience. The two also differ in their quote exclusions."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 if a comment first restates the OP's overall viewpoint in a more nuanced or steelman form and then refutes it. Feature 1 is 1 if a comment explicitly refutes a specific example or anecdote that the OP gave in the post body. The targets differ (general view versus a specific example), and so do the required behaviors (redraft and then refute versus a direct refutation of the example). The null rules also differ: feature 0 gives null only if title and argument are both missing, while feature 1 gives null if the argument is missing."
+    }
+  ]
+}

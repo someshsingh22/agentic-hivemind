@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The constructs differ. Left requires an explicit verbatim or near-verbatim quote of a specific factual claim from the OP, plus a refutation of that claim. Quoting without refuting, or refuting without a quote, gives 0. Right requires only that a comment engages or argues against the OP's central premise at a general level, as opposed to a specific example. It needs no quote, no factual-claim restriction, and no refutation of a specific claim. The two share sources and empty/null handling but measure different things."
+    }
+  ]
+}

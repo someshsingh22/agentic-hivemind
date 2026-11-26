@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same 0/empty/null handling, but the constructs differ. Left requires a specific, identifiable real-world instance (event, person, case, place, study, etc.) used as support, and excludes generic or vague references. Right counts any external evidence, including statistics, empirical data, generic sources/links and documented facts. A comment citing general statistics or a link without a particular named instance counts for right but not left. Right also requires the evidence to support a counter-argument and come from outside the OP's post, which left does not state. Right is materially broader."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different row functions. Item 0 is an ANY predicate: 1 if at least one comment uses abstract reasoning, and anecdotes in the same comment are allowed. Empty list gives 0. Item 92 is an ALL predicate: 1 only if every comment argues solely through abstract logic and none brings in a concrete external example. Empty list gives null. The quantifier, the exclusivity requirement, and the empty-list handling all differ."
+    }
+  ]
+}

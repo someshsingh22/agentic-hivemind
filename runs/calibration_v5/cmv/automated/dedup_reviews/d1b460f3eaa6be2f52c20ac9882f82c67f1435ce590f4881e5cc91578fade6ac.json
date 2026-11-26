@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features that read the same sources (title, argument, OC_comments). They differ in what must follow the acknowledgment. Feature 0 accepts any disagreement, discrepancy or counter-point, and the acknowledgment can be of a valid point or of part of the view being reasonable. Feature 1 requires acknowledgment of a specific identifiable component, followed by a specific counter-example (a case or instance that contradicts the view). Feature 1 is therefore materially narrower: a comment that concedes a point and then offers a general counter-argument would score 1 on feature 0 and 0 on feature 1."
+    }
+  ]
+}

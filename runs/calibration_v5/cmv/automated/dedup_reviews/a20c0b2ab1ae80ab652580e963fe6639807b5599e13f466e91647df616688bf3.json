@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is 1 if any comment engages (critically or not, including accepting or building on) a specific example or premise the OP cited, identified by reference to it. Item 1 is 1 if any comment offers a specific counterargument, meaning a concrete objection, evidence or reasoning against a particular OP claim. Item 0 includes non-critical engagement, which item 1 excludes. Item 1 counts any concrete objection to an OP claim, even one that does not engage a cited example or premise, which item 0 excludes as a new argument. Their null rules also differ: item 0 gives null when argument is missing, while item 1 does not name argument."
+    }
+  ]
+}

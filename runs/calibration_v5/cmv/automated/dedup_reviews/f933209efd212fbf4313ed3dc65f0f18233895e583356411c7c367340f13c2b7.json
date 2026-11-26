@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left is 1 if any comment directly argues against or challenges the OP's view (a substantive rebuttal). Right is 1 if any comment explicitly quotes OP title or argument text verbatim or near-verbatim, and endorsement or refutation is not required. A comment can rebut without quoting, and a comment can quote without rebutting. The null and empty-list rules also differ."
+    }
+  ]
+}

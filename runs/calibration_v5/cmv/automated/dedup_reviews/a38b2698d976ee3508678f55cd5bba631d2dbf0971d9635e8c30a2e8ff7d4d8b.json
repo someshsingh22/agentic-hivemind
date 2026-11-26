@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty rules, but the constructs differ. Feature 0 counts any concrete real-world example (a specific case, event, person or organization), and it explicitly counts personal experience. Feature 1 requires specific empirical evidence: data, statistics, study findings, or documented cases with specific details. Feature 0 would count a bare named person or event or an anecdote used as an example. Feature 1 would not count these without concrete factual or empirical detail. Feature 1 would count statistics or study findings that are not a case or example. The eligibility boundaries therefore differ materially."
+    }
+  ]
+}

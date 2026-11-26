@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are all-comment binary flags over OC_comments with the same null rule, but they test different constructs. Left: every comment is refuting reasoning or evidence and none explicitly validates the OP's dignity or effort. Evidence is allowed, and the disqualifier is personal validation. Right: every comment uses only abstract logical reasoning (definitions, structure, principles) and none introduces a concrete external factual analogy or example. The disqualifier is concrete real-world examples. A comment citing concrete evidence passes on the left and fails on the right. A comment that validates the OP's effort fails on the left and can pass on the right. The two measurements are not interchangeable."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary flags over OC_comments, but the eligibility rules differ. Item 0 requires a specific concrete example or real-world instance. Its list includes a study and a specific concrete situation, and it explicitly excludes hypotheticals without a specific instance. Item 1 accepts a 'particularized scenario' and says the example need not be real-world, so a particularized hypothetical scenario counts. Item 1 also explicitly excludes examples only quoted from the OP's text, and item 0 has no such rule. Item 0 does not state an empty-list rule, and item 1 sets it to 0. Hypothetical scenarios and OP-quoted examples are therefore handled differently, which makes these different row functions."
+    }
+  ]
+}

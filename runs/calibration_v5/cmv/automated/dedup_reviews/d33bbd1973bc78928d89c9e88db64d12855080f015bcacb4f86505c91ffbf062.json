@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 if any comment explicitly engages with a specific OP-cited example or premise. Engagement can be accepting, questioning or building on it, and need not be critical. Generic or new arguments don't count. Feature 1 is 1 if any comment directly challenges or argues against the OP's overall view/claim. Agreement and questions don't count. Engagement with a premise without opposing the view counts for 0 but not for 1. A rebuttal of the main view that isn't tied to a cited example counts for 1 but not for 0. The targets (specific example/premise versus overall view) and the polarity (any engagement versus counterargument only) both differ."
+    }
+  ]
+}

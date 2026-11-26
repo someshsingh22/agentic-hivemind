@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left asks for a concrete real-world example: a specific actual case, event, person or personal experience used as support. Hypotheticals are explicitly excluded. Right asks for an analogy: an explicit comparison of the issue to a different, familiar scenario. Right excludes plain literal examples of the same issue. Right also treats 'imagine if' framings as positive, and left would reject those as hypotheticals. The two features also differ in their handling of quoted text and in their rules for a valid empty list. Both share the any-comment binary form and the OC_comments source, but they extract different things."
+    }
+  ]
+}

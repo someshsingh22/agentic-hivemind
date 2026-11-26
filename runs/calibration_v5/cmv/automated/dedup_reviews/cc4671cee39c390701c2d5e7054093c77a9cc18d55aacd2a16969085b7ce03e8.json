@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Left requires a comment to quote OP text AND dispute/refute the quoted material; quoting without disputing doesn't count. Right counts any verbatim OP quotation and explicitly says endorsement or refutation is irrelevant. Left is a materially narrower subtype (quote plus refutation), so the row functions differ. Their null rules also differ: left returns null if OP text is missing, while right still gives 1 for an observed quote matching available text."
+    }
+  ]
+}

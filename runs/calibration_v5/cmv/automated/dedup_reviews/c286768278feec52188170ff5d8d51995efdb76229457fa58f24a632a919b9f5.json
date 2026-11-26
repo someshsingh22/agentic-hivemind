@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and 0/1/null rules, but different constructs. Left requires a named external program or named location (a proper-name reference), and unnamed particularized cases do not count. Right requires any specific concrete illustrative example, including unnamed hypothetical scenarios or particular cases, and does not require a named program or location. A named location mention that does not illustrate anything is eligible only for left. A particularized scenario with no named program or place is eligible only for right. So the extraction functions differ in scope."
+    }
+  ]
+}

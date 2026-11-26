@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is presence of hedging/qualifying language (1 if any hedge). Feature 70 requires categorical, assertive framing AND no hedging or self-doubt, so it is not simply the inverse. Neutral or non-assertive text with no hedges gets 0 in feature 1 but also 0 in feature 0, while text with no hedges and categorical framing gets 1 in feature 1 but 0 in feature 0. Feature 1 also counts self-doubt markers and requires assertiveness, so its predicate is different from feature 0's hedge-presence predicate."
+    }
+  ]
+}

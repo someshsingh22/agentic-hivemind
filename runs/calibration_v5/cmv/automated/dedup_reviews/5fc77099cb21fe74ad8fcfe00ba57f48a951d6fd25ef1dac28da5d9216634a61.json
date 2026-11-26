@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 asks whether a comment gives a concrete real-world example (case, event, person, statistic-bearing situation, or personal experience) as support. Item 1 asks only whether a comment names a specific program or location. A named location or program can appear without being an example, for example a passing mention. A personal experience or unnamed real event counts for 0 but not for 1. Item 1 also has its own quotation and moderator-notice rules, which item 0 does not state. The two features overlap but are not the same extraction function."
+    }
+  ]
+}

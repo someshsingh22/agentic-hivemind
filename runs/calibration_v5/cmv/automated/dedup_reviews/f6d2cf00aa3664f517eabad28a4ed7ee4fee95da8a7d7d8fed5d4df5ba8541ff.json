@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments with the same null/empty rules, but the constructs differ. Left counts any specific identifiable real-world example (event, person, organization, place, study), used to support or illustrate, with no requirement of data or findings. So a named person or place cited illustratively qualifies. Right requires specific empirical evidence: concrete data, statistics, research findings, or documented cases with specific details. A bare named entity or event mention without evidentiary detail would count on the left but not on the right. Right also excludes personal opinion lacking concrete facts. Different eligibility, so not equivalent."
+    }
+  ]
+}

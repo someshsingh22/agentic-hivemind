@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires a specific rhetorical move: a comment first restates or steelmans the OP's view in a more nuanced form and then refutes it. Feature 1 only requires any comment with a reasoned, evidence-based or example-based challenge to the OP's view. Feature 1 is much broader, because most substantive counterarguments do not redraft the OP's view first. The two features share sources and a 0/1/null contract, but their positive conditions differ materially, so they measure different constructs."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 only counts a personal anecdote (the commenter's own or a personally known person's specific experience). Feature 1 counts any specific real-world case, event, person, organization, historical episode or situation, and personal experience is only one subtype. Historical or public examples would count for 1 but not for 0, so 0 is materially narrower. The null and empty-list rules match, but the construct scope differs."
+    }
+  ]
+}

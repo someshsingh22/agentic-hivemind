@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 requires a comment to explicitly challenge an underlying assumption or premise of the OP's reasoning, and excludes comments that only dispute facts or the conclusion. Item 1 is broader on the target: any well-reasoned counterargument to the OP's stated view, which can be a conclusion or fact dispute. Item 1 also adds a quality criterion (clear, coherent reasoning) that item 0 does not have. These are different constructs: a premise-challenge subtype versus a general quality counterargument. The two would give different labels for a strong conclusion-only rebuttal."
+    }
+  ]
+}

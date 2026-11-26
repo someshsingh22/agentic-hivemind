@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are all-comments binary features over OC_comments with null on empty/missing, but the constructs differ. Feature 0 requires every comment to be refuting reasoning or evidence and none to explicitly validate the OP's dignity or effort. It is about the absence of personal validation, and it treats evidence as allowed. Feature 23 requires every comment to rebut only through abstract or theoretical reasoning, and none to use a specific verifiable procedural example. It is about the absence of concrete examples, and it excludes evidence-based examples. A comment can be refuting and non-validating but cite a concrete procedural example, which gives 1 for feature 0 and 0 for feature 23. A comment can be abstract and also validate the OP, which gives the reverse."
+    }
+  ]
+}

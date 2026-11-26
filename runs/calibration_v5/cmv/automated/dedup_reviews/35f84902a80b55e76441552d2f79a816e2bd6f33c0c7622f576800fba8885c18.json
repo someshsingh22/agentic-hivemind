@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different constructs. Feature 0 asks whether any comment uses an analogy, meaning an explicit comparison to a different, familiar scenario, and it explicitly excludes plain literal examples of the same issue. Feature 90 asks whether any comment makes a specific counter-argument against the OP's view that cites a concrete empirical example (real-world case, study, statistic). That example is literal and about the same issue, and it may not be hypothetical. Feature 90 also requires the comment to be a counter-argument to the OP, which feature 0 does not. The two predicates are close to mutually exclusive in what they count as evidence, so they should not be merged."
+    }
+  ]
+}

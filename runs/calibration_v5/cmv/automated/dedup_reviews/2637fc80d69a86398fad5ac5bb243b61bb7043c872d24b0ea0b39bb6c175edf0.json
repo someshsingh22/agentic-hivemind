@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over the same sources, but they measure different things. Left requires acknowledging the validity of the OP's initial/central premise before any point of divergence or disagreement. Right requires acknowledging a specific component (any particular claim or point, not necessarily the central premise) and then presenting a counter-example, meaning a specific contradicting case. Right's counter-example requirement is a materially narrower follow-up than left's generic divergence. Right's acknowledged target is also broader than left's central premise. The null rules differ as well."
+    }
+  ]
+}

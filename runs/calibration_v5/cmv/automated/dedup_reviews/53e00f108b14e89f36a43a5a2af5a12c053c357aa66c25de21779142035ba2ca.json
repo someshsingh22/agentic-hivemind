@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different row functions. Feature 0 returns 1 only when at least one comment gives a logical refutation AND no comment has specific empirical evidence. It is a conjunction with a negation, and it returns 0 whenever any empirical evidence is present. Feature 90 returns 1 when any comment cites a concrete empirical example in a counter-argument. It does not require logical refutation or the absence of other evidence. The two can disagree in both directions. A row with only logical refutation gives 1 for feature 0 and 0 for feature 90. A row with an empirical example gives 0 for feature 0 and 1 for feature 90."
+    }
+  ]
+}

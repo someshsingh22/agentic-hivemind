@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 detects first-hand or personally situated details of how work is done: tasks, hours, tools and workplace conditions from the commenter's own or a specific person's work experience. Feature 1 detects a concrete analogy drawn from a specific real-world case, event or fact outside the OP's scenario, used as a comparison. Personal labor experience is not an external analogy, and an analogy need not involve labor or first-hand experience. The positive-match predicates and eligibility rules differ, even though both are any-comment binary features over OC_comments with the same null and empty handling."
+    }
+  ]
+}

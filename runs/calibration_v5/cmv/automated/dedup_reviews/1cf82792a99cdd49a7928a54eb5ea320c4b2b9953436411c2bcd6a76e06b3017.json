@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 asks whether any comment introduces a checkable external factual claim that is not in the OP text (new facts, with OP restatements excluded). Feature 1 asks whether any comment directly quotes the OP's title or argument (quotation presence, with endorsement irrelevant). Feature 1 counts quoted OP text, which feature 0 explicitly excludes. The predicates, eligibility rules and null conditions all differ."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 needs a counter-argument against the OP's view that cites a concrete empirical example (a case, event, study, statistic or documented observation). Non-numeric real-world cases count. Feature 1 needs specific numerical data or statistics in any comment, with no requirement of a counter-argument, and it explicitly excludes non-quantitative examples. Each can be 1 when the other is 0: a historical case with no numbers gives 0 on feature 1, and a figure in a non-counter comment gives 0 on feature 0. They are different extraction functions."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features on title, argument and OC_comments, and both require acknowledgment before divergence. The target of the acknowledgment differs. Feature 0 requires an explicit statement that the OP's initial premise, meaning the central starting claim or assumption, is valid, correct, reasonable or true. Feature 1 accepts any valid point, or any part of the OP's underlying view, so a narrower premise-specific acknowledgment is a subset of it. Feature 1 also requires that a disagreement actually follows in the same comment. Feature 0 only requires that the acknowledgment come before any divergence. The null rules differ as well: feature 0 returns null if title and argument are both missing, while feature 1 returns null if any needed OP context is missing."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null/0 rules, but the construct differs. Left requires a specific, verifiable procedural example: a concrete description of an actual process, rule, protocol or practice. Right accepts any specific concrete example or real-world instance, including a person, event, place, product, study or situation. Right is much broader, and procedural examples are only a narrow subtype of it. Left also excludes quoted OP text, which right doesn't state."
+    }
+  ]
+}

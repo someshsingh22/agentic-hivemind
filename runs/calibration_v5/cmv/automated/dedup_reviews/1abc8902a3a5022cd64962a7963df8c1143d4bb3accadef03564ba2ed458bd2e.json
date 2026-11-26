@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same core construct (any comment quoting OP title/argument, endorsement not required), but the null rules differ materially. Spec 0 returns null only if OC_comments is bad or both title and argument are missing, and it allows a positive match from the available OP text. Spec 88 returns null if either title or argument is missing. Spec 88's empty-list rule is also contradictory (null versus 0), and it omits the explicit moderator/bot exclusion."
+    }
+  ]
+}

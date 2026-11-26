@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only the OP argument column (current text with marked edits) and return a binary 1 when the OP recounts their own first-hand experience or event. Both return 0 for abstract, hypothetical, general or third-party content. Both exclude quotations of others, and both return null when the argument is missing or malformed. Differences are wording only. Spec 0 adds 'witnessed' and 'first-person experiential narrative'. Spec 1 explicitly excludes moderator/bot notices and says 'specific'. Spec 0 also excludes empty text, but that is a trivial difference. Spec 1 allows stories about others only if the OP was directly involved, which matches spec 0's 'personally experienced, did, or witnessed'."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only OC_comments and return a binary any-comment flag for a specific, identifiable real-world example (event, case, person, organization, place, study, historical instance or documented instance). Both need no external verification, and both exclude generic hypotheticals, vague appeals and abstract reasoning. Both return 0 for a valid list with no qualifying comment, 0 for an empty valid list, and null for missing or malformed input. The remaining differences are wording only: 'to support its argument' versus 'support or illustrate', 'statistic from a real source' versus 'documented instance', and an explicit 'current text' note."
+    }
+  ]
+}

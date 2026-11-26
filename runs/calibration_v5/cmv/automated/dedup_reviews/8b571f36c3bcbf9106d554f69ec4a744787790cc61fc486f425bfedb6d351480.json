@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different constructs. Feature 0 is 1 if any comment engages in any way (addresses, questions, rebuts, accepts or builds on) a specific example or premise the OP cited. Engagement need not be critical, and the target is any cited example or premise. Feature 26 is 1 only if a comment states in its own voice that the OP's central initial premise is valid, and does so before it introduces its disagreement. That requires an explicit validity acknowledgment, a specific target (the central premise), and a within-comment ordering. A comment that rebuts a cited example would count for 0 but not for 26. The null rules also differ: 0 returns null when OP context is insufficient to determine the target, while 26 returns null only when title and argument are both missing."
+    }
+  ]
+}

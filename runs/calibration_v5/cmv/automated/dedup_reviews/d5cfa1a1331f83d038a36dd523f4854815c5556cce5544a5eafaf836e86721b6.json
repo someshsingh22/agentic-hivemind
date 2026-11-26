@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Index 0 is broader: it counts any specific factual data (dates, named studies, documented specifics) or verifiable citations (links, named sources, laws, publications), so a link or law citation with no numbers qualifies. Index 1 only counts specific numerical data or statistics, and non-quantitative examples score 0. A comment with a citation or named source but no figures gives 1 for index 0 and 0 for index 1. The two features have different eligibility rules, so they are not the same extraction function."
+    }
+  ]
+}

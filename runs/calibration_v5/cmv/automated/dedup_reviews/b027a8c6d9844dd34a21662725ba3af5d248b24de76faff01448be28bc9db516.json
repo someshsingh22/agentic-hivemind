@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is broader: any comment with specific empirical evidence, including studies, research findings, and documented real-world cases or observations with specific details, even if non-numerical. Feature 1 requires specific numerical data or statistics (figures, percentages, rates, counts) and explicitly excludes non-quantitative examples. A detailed non-numeric documented case would score 1 on 0 and 0 on 1, so the construct and eligibility differ."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments with the same null/empty rules, but the qualifying content differs. Left counts specific factual data OR verifiable citations/references (links, named sources, laws, publications), including citations alone. Left excludes quoted OP text. Right requires specific empirical evidence (data, study findings, documented real-world cases or observations with specific details). Right counts concrete case observations that left would not unless they are data or citations. Right also does not count a bare citation without empirical content. The eligibility sets are materially different."
+    }
+  ]
+}

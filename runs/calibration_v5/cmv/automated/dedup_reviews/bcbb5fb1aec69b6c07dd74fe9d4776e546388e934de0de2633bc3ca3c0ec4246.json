@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty-list rules. Item 0 requires a specific counter-argument against the OP's view that cites a concrete empirical example. Item 1 only requires that a comment present specific empirical evidence in support of its argument. It has no counter-argument or OP-targeting requirement. Item 1 is therefore broader: a supporting or non-opposing comment with data would count for 1 but not for 0. Item 0's eligibility also depends on the OP's view as the target, but OP context is not a source column, so the two functions differ in construct and eligibility."
+    }
+  ]
+}

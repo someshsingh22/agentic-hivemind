@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 needs a comment that restates the OP's view in a more nuanced, steelmanned form and then refutes it. Verbatim quotes and generic summaries are excluded. Feature 1 only needs a comment that quotes or references specific OP text, with no refutation or reframing required. Their null and empty-list rules also differ: feature 0 returns 0 for an empty list, while feature 1's empty-of-parse case returns null."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is an any-presence test for an explicit admission of uncertainty or possible error, and it says generic hedging words alone do not count. Feature 30 asks whether the OP's claims are predominantly framed with modest or uncertain epistemic markers. Hedges and tentative modals count there, and it is a predominance judgment. One explicit 'I may be wrong' would give 1 for feature 0 but could give 0 for feature 30. Heavy hedging with no explicit admission would give 0 for feature 0 and 1 for feature 30. The eligibility rules, the any-versus-predominant threshold and the null rules (malformed input versus empty or unreadable) also differ."
+    }
+  ]
+}

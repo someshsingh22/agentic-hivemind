@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read OC_comments and return an any-comment binary with the same null and empty-list rules, but the constructs differ. Item 0 counts any concrete real-world example (specific case, event, person, statistic-bearing situation, or personal real-life experience) used to support the comment's point. Item 1 requires an analogy or comparison to a specific, named real-world case, and it must be used against the OP. Item 0 is broader: it includes unnamed personal anecdotes and non-analogical evidence. Item 1 is narrower: it needs an analogical use and a named referent, and it requires an argument against the OP."
+    }
+  ]
+}

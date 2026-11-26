@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 if any comment gives a concrete real-world example (including personal experience or statistics). Feature 1 is 1 if any comment is mainly abstract logical rebuttal of the OP with no named example or analogy. Feature 1 also requires rebuttal of the OP's view and excludes analogies, which feature 0 does not address. Absence of examples in one comment does not make the other feature's value its negation, and both can be 1 on the same row via different comments."
+    }
+  ]
+}

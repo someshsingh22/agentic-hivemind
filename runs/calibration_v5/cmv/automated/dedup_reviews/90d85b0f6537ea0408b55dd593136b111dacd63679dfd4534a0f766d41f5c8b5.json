@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Left requires a specific institutional precedent (existing law, policy, court, organization or system) that functions or has functioned in practice. Right accepts any concrete empirical example, including cases, events, studies, statistics or observations, and requires it to support a counter-argument against the OP's view. Right is much broader in the type of evidence. Left is a narrower subtype, and the rules differ on the OP-opposition requirement. Both use the same source and the same empty/null handling, but the eligibility constructs differ."
+    }
+  ]
+}

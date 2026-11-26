@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 asks whether any comment states a specific, checkable external fact (statistic, study, law, etc.) that is not already in the OP. It does not require the comment to oppose the OP. Feature 1 asks whether any comment gives reasoned evidence, argument or an example that challenges the OP's view. A purely reasoned counterargument with no checkable fact scores 1 on feature 1 and 0 on feature 0. A factual comment that does not challenge the view scores 1 on feature 0 and 0 on feature 1. The eligibility rules also differ: feature 0 excludes reasoning and anecdotes, while feature 1 accepts them."
+    }
+  ]
+}

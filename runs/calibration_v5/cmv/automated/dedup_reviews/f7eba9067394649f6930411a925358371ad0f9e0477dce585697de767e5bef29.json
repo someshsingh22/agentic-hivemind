@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary counterargument features over the same sources, but the qualifier differs. Left requires a specific counterargument: a concrete objection aimed at a particular OP claim, as opposed to generic disagreement. Right requires a well-reasoned one: clear, relevant, logically coherent reasoning or evidence that bears on the OP's claim. Specificity and reasoning quality are different criteria, and a specific objection can be poorly reasoned. A coherent general counterargument can also be well-reasoned without targeting a particular claim. The null rules also differ. Left gives null if the OP context needed to identify the target is missing. Right gives null only if both title and argument are missing."
+    }
+  ]
+}

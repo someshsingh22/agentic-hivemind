@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but their eligibility differs materially. Left counts any analogy to a familiar everyday or well-known scenario, and it explicitly allows hypotheticals such as 'imagine if...'. Right requires a concrete analogy based on a specific real-world case, event, fact or situation, and it explicitly excludes hypotheticals with no real-world factual basis. Right is therefore a narrower subtype. Left also excludes quoted text unless the commenter adopts it, while right has no such rule. The empty-list rules also differ: right states that an empty list gives 0, and left leaves that case implicit."
+    }
+  ]
+}

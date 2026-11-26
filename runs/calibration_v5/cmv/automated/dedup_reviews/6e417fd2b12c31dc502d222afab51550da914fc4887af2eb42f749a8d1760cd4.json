@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (argument) and 0/1/null rules, but the constructs differ in breadth. Feature 0 counts any hedging or qualifying language that softens or limits a claim, including quantifier or scope qualifiers such as 'in most cases', 'generally', 'to my knowledge'. Feature 1 requires explicit hedging or self-doubt markers about the OP's own view, such as 'I might be wrong' or 'I'm not sure'. Feature 0 is therefore broader and would score 1 on a generic qualifier like 'generally' that is not self-doubt. Feature 1 also restricts the target to the OP's view. Their exclusions are also worded differently."
+    }
+  ]
+}

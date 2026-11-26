@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 needs one comment to explicitly acknowledge a specific component of the OP's argument as valid and then give a counter-example, with acknowledgment first. Item 1 needs only that a comment explicitly challenges an underlying assumption or premise of the OP's view. Item 0 has an acknowledgment-then-counter-example requirement and item 1 has none. Item 1 has an assumption-versus-fact/conclusion requirement and item 0 has none. Their null rules also differ: item 0 is null if OP context is missing, while item 1 is null only if both title and argument are missing."
+    }
+  ]
+}

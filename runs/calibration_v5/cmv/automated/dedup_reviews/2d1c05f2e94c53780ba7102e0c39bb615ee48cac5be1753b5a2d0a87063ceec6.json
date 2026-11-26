@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs over the same source. Feature 0 requires an analogy: an explicit comparison of the issue to a different familiar scenario, and it excludes plain literal examples of the same issue. Feature 1 counts any specific, concrete, particularized example, including literal instances of the issue itself and hypothetical scenarios, and it needs no comparison to a different domain. Many comments would score 1 on feature 1 and 0 on feature 0. Their quotation exclusions also differ."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 detects presence of an explicit admission of uncertainty or possible error, and generic hedging words alone don't count. Feature 1 measures unwavering certainty. It requires assertive, categorical framing and also returns 0 for any explicit hedging, tentativeness or self-doubt. It is not simply the inverse of feature 0: a neutral, non-assertive argument with no admission gets 0 from feature 0 and 0 from feature 1. A generic hedge without an explicit admission gets 0 from feature 0 but 0 from feature 1 as well. The constructs and null rules (missing/malformed vs. also empty) differ."
+    }
+  ]
+}

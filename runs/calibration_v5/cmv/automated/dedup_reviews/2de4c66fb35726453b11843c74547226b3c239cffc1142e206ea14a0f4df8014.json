@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over the same sources, but the eligibility threshold differs. Feature 0 counts any comment that directly argues against the OP's view, including giving reasons or evidence it is wrong, with no quality requirement. Feature 1 also requires the counterargument to be well-reasoned (clear, relevant, logically coherent), which excludes weak or poorly reasoned rebuttals that feature 0 would count. The null rules also differ. Feature 0 returns null if OP context is missing, while feature 1 returns null only when both title and argument are missing. Feature 1 explicitly returns 0 for an empty list, and feature 0 only says 0 for a valid list with no match."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 returns 1 when a comment explicitly refutes a specific OP example or anecdote, which is an argumentative judgment. Item 1 returns 1 when a comment contains a direct quote of OP title or argument text, and it requires no endorsement or refutation. A quote of the OP is neither necessary nor sufficient for refuting an OP example. The null and empty rules also differ. Item 0 uses a missing argument or OC_comments for null and gives 0 for an empty list. Item 1's spec is internally contradictory about the empty list, since it says null and also 0."
+    }
+  ]
+}

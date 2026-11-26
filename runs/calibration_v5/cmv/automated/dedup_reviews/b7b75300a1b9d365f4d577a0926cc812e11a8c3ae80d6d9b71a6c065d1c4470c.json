@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null/empty rules, but the qualifying evidence differs. Feature 0 counts specific factual data OR verifiable citations/references (links, named sources, laws, publications), so a bare citation of a law or publication qualifies even without empirical findings. Feature 1 requires specific empirical evidence (statistics, study findings, documented factual cases/observations), so it does not count citations as such but does count documented cases and observations. It also lacks 0's explicit exclusion of quoted OP text and 'current text' rule. The eligibility sets are materially different, so they are not the same extraction function."
+    }
+  ]
+}

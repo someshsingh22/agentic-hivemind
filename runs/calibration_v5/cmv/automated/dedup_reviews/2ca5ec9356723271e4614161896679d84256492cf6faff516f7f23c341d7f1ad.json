@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 flags any comment with calm, measured logical reasoning. This is a tone and argument-quality judgment that excludes aggressive tone and generic politeness. Feature 1 flags any comment citing a particular identifiable real-world event, person, case, or study. A comment can reason logically without citing a specific example, and can cite one without measured reasoning. Both use OC_comments with the same any/0/null rules, but the per-comment predicates differ."
+    }
+  ]
+}

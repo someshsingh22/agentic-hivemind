@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments with the same null/empty rules, but the constructs differ. Feature 0 counts any specific identifiable real-world example (event, person, org, place, product, etc.) cited as support, and does not require data. Feature 1 requires specific empirical evidence: statistics, data, study findings, or documented factual cases/observations. Feature 0 would fire on a named person or product used as an illustration with no empirical data, which feature 1 would not count. Feature 1 would fire on concrete statistics with no named instance, which feature 0 might not count. The overlap is only partial, so the eligibility rules differ."
+    }
+  ]
+}

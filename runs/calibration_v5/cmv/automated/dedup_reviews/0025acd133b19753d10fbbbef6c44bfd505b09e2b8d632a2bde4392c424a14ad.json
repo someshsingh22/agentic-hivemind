@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and row functions. Item 0 is an all-comments measure: it returns 1 only if every comment is solely abstract normative (rights, justice, ought) with no concrete details or non-normative argument. Any comment with a concrete example or non-normative argument gives 0. Item 1 is an any-comment measure: it returns 1 if at least one comment uses abstract reasoning, which is broader (logic, conceptual, impersonal generalization) and may coexist with anecdotes. Empty-list handling also differs: item 0 returns null, item 1 returns 0."
+    }
+  ]
+}

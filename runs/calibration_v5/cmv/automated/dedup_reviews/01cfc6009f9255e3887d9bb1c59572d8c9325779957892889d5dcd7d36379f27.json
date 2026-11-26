@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an explicit quotation of OP title/body text in the comment AND a dispute of that quoted material; paraphrase or unquoted objections score 0. Feature 1 counts any specific, concrete counterargument aimed at an OP claim, with no quotation requirement. Feature 1 is materially broader, so a comment with a specific rebuttal and no quote would be 1 for feature 1 and 0 for feature 0. The two are a narrow subtype versus a broad construct."
+    }
+  ]
+}

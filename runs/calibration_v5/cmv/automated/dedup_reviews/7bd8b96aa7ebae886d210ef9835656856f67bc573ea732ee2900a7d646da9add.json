@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty-list rules, but the constructs differ. Feature 0 counts any specific, particular case with checkable particulars (an identifiable person, event, place, or personal/local situation), including personal anecdotes. It does not count statistics or study findings unless they are a specific instance. Feature 1 requires empirical evidence (data, statistics, studies, documented real-world cases or observations). It excludes personal opinion and does not name personal or local anecdotes. A concrete personal situation would qualify for 0 but not clearly for 1. A general statistic or research finding would qualify for 1 but not for 0, because it is not a specific particular case. The two predicates therefore have different eligibility."
+    }
+  ]
+}

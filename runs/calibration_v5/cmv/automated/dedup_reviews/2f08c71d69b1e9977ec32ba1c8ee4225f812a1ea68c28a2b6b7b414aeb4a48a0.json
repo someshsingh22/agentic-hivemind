@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 requires an explicit quantification of material harms that a system, policy or institution causes to third parties. Feature 1 requires any specific factual data or verifiable citation (statistics, dates, links, laws, named sources) supporting a point, on any topic. Feature 1 is much broader: it does not require harm or third-party scope, and it counts citations with no quantification. Feature 0 is a narrow subtype that needs numbers plus systemic harm. The shared source column and any-comment structure do not make them equivalent."
+    }
+  ]
+}

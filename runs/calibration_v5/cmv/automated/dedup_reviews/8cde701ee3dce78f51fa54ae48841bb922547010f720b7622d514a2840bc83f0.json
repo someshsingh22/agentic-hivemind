@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments, but the constructs differ. Feature 0 counts any specific concrete illustrative example, including hypothetical or scenario examples ('not required to be real-world'), in any comment. Feature 90 requires a counter-argument against the OP's view that cites an empirical example (real-world case, event, study, statistic or documented observation), and it excludes hypothetical reasoning. Feature 90 is therefore narrower in both the empirical requirement and the counter-argument-against-OP requirement. Feature 0 would return 1 for a hypothetical scenario, where feature 90 returns 0."
+    }
+  ]
+}

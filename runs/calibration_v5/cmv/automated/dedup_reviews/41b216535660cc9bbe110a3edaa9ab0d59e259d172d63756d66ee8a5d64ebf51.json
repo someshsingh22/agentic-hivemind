@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and counting units. Item 0 counts semantically deduplicated distinct counter-arguments against the OP's view, and one comment can contribute several. Item 1 counts comments, each at most once, that cite a specific real-world example. A comment's example use is independent of whether it makes a distinct opposing argument. Both use OC_comments with the same empty and null rules, but the extraction functions differ."
+    }
+  ]
+}

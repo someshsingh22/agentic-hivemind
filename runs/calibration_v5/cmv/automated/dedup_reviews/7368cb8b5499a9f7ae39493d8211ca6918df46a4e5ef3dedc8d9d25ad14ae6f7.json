@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The quote-detection predicate is the same, but the missing-input rules differ. Spec 0 returns 1 for an observed quote that clearly matches available OP text even if title or argument is missing, and returns null only when absence cannot be established. Spec 88 returns null whenever title or argument is missing, with no exception for an observed match. Spec 88's empty-list rule is also self-contradictory (null, then 0 for a valid empty list), so that rule is unresolved."
+    }
+  ]
+}

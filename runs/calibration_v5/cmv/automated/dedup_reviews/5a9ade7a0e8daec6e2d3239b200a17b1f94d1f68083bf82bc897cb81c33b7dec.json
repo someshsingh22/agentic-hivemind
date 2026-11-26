@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and null rules. Item 0 is an all-comments predicate: 1 means every comment is purely abstract, with no specific verifiable procedural example (procedure, process, rule or practice). Empty list gives null. Item 90 is an any-comment predicate: 1 means at least one comment cites a concrete empirical example (case, event, study, statistic or observation). Empty list gives 0. The example types differ (procedural vs. broad empirical). The polarity is inverted and the scopes differ (all vs. any). The empty-list handling is incompatible (null vs. 0)."
+    }
+  ]
+}

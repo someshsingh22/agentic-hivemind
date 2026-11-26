@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different constructs. Feature 0 returns 1 when a comment explicitly acknowledges a valid point in the OP's view and then introduces a disagreement (concede-then-disagree). Feature 1 returns 1 when a comment opens with a wholesale rejection of the OP's view and gives no acknowledgment of validity. Comments that concede a point and then disagree count as 1 for feature 0 but are explicitly excluded from feature 1. A comment that only rejects, with no concession, counts as 0 for feature 0 and 1 for feature 1. The null rules also differ: feature 0 returns null when OP context is missing, and feature 1 does not."
+    }
+  ]
+}

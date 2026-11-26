@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires a comment to engage (address, rebut, accept, build on) a specific example or premise the OP cited, so the target is narrower: examples or premises only. Feature 1 only requires a comment to quote or reference any specific textual element of the OP title or argument (sentence, phrase, claim, passage), and the quote or reference itself counts without engagement. The two also handle empty and null differently. Feature 0 returns 0 for an empty list and null when OP context is insufficient. Feature 1 returns null for an empty list, a clear positive may still yield 1, and the title is included in scope. Their source sets also differ in how the title is used: feature 0 targets the argument text only, feature 1 covers the title and argument. The extraction functions are not the same."
+    }
+  ]
+}

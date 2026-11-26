@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Item 0 requires a specific REAL-WORLD example (identifiable real event, person, case, study, etc.) and explicitly excludes hypothetical or generic cases. Item 1 explicitly does not require real-world: any particularized case, instance, scenario or situation counts, including hypothetical scenarios. So 1 fires on a detailed hypothetical scenario while 0 does not. The quote-exclusion rules also differ (others' quotes vs. OP-text quotes). Source column and null/empty rules match, but the eligibility scope differs materially."
+    }
+  ]
+}

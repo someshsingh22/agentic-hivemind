@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 flags a comment arguing the OP's own premises or claims are internally contradictory or inconsistent. Item 85 flags a comment that opens by wholesale rejecting the OP's view without first acknowledging any validity. Item 0 is about the content of the criticism (internal inconsistency). Item 85 is about the opening rhetorical stance, so it can be met with no internal-contradiction claim. The null rules also differ: item 0 returns null if title and argument are both missing, while item 85 returns null only if OC_comments is missing or malformed."
+    }
+  ]
+}

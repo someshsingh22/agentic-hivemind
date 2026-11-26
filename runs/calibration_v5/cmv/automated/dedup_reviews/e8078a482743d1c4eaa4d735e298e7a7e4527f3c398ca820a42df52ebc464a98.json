@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different constructs. Feature 0 returns 1 if any comment directly rebuts or argues against the OP's view, which is a stance judgment. Feature 1 returns 1 if any comment contains a quotation that matches OP title or argument text. It explicitly does not require endorsement or refutation. A comment can quote the OP without countering, and can counter without quoting. Their null and empty-list rules also differ: feature 1's spec contradicts itself on empty lists, while feature 0 does not."
+    }
+  ]
+}

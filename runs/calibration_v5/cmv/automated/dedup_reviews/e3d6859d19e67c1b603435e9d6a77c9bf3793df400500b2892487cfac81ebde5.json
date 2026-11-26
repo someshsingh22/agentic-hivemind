@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs and thresholds. Feature 0 is 1 only when the OP's claims are predominantly framed with high-modality, certain assertions, and a hedged or neutral argument gives 0. Feature 1 is 1 when any hedging or qualifying language appears in the OP's own claims. They are not complements. An argument with some hedges but mostly categorical claims would score 0 on feature 0 and 1 on feature 1. The 'predominantly' versus 'any use' difference is a material scope/threshold change, and the constructs also differ (certainty versus hedging)."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 when some comment is a rebuttal made mainly through abstract logical reasoning and contains no named real-world example or analogy. Feature 1 is 1 when some comment cites a concrete real-world example (case, event, person, or personal experience) as support. They are not complements. A comment can be abstract-logical and have no example, or have an example but not be mainly abstract. Different comments can also satisfy both, so one row can be 1 on both. Feature 0 also requires the comment to rebut the OP's view and counts analogies, while feature 1 has no rebuttal requirement and does not mention analogies. The two specs have different eligibility rules and different positive conditions, so the extraction functions differ."
+    }
+  ]
+}

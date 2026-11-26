@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is positive when a comment cites a concrete, identifiable real-world example (event, case, person, organization, place, study, historical instance, or a statistic from a real source). Feature 1 is positive when a comment contains specific numerical data or statistics. A named historical case with no figures gives 1 for feature 0 and 0 for feature 1. A comment with specific numbers and no identifiable real source gives the reverse. Feature 0 counts only identifiable real-world examples and excludes hypotheticals. Feature 1 counts quantitative figures whether or not they come from an identifiable source. The two features share only the OC_comments source, the binary dtype, and the 0 and null handling."
+    }
+  ]
+}

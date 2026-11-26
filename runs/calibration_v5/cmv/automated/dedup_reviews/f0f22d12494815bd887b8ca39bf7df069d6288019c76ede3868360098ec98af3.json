@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same 0/null rules, but the constructs differ. Feature 0 requires specific factual data or verifiable citations (statistics, figures, dates, named sources, links, laws) and has no requirement that the comment counter the OP. It excludes vague 'studies show' claims and quoted OP text. Feature 1 requires a specific counter-argument against the OP's view that cites a concrete empirical example, such as a real-world case or event. Feature 1 counts anecdotal cases and events without data or citations, which feature 0 does not. It also requires the comment to be a counter-argument, which feature 0 does not. Feature 0 counts cited laws or publications even when they are not cases, and it counts them even if the comment is not directed against the OP. The eligibility rules are materially different."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features on the same sources, but the requirements differ. Item 0 requires acknowledging validity of the OP's initial premise (the central starting claim) before any divergence or disagreement. Its divergence can be of any kind, including a blanket disagreement. Item 1 accepts validity of the OP's view or any point of it. It then requires a narrower, specific caveat, exception or qualification, and explicitly excludes blanket rejection. So a comment that concedes the premise and then disagrees broadly scores 1 under item 0 and 0 under item 1. A comment that concedes a minor point and then adds a caveat scores 1 under item 1 and may score 0 under item 0. Null rules also differ. Item 0 returns null if the OP title and argument are missing, or if the comment list is empty-unparseable. Item 1 returns null only if OC_comments is missing or malformed."
+    }
+  ]
+}

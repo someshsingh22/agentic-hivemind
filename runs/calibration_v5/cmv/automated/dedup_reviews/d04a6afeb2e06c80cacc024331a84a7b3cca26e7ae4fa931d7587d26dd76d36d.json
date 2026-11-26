@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty-list rules. They differ in eligibility. Feature 0 explicitly counts 'personal real-life experience' and 'statistic-bearing situation' as concrete examples. Feature 1 requires a particular identifiable real event, person, case, organization, place, study or documented instance. It excludes vague generalities, and it does not say that unnamed personal anecdotes or statistics count. Feature 0 would score a non-identifiable personal anecdote as 1, while feature 1 would likely score it 0. That is a material eligibility difference, so they are not the same row function."
+    }
+  ]
+}

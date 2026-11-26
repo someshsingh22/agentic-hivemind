@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left requires a comment to argue that the OP's own premises contradict each other or are logically inconsistent. Right only requires a comment to quote or specifically reference an element of the OP's text, and endorsement or critique is not required. A comment can reference OP text without alleging a contradiction, and the reverse is also possible. The null and empty-list rules differ too: left gives 0 for an empty valid list, while right treats empty lists as null."
+    }
+  ]
+}

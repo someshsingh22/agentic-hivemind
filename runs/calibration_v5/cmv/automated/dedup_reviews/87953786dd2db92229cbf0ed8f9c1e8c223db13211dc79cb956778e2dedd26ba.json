@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both are binary any-comment extractions over OC_comments only. Each returns 1 if at least one comment presents specific empirical evidence (data, statistics, studies, documented cases) in support of its argument. Both exclude vague appeals, generic assertions, hypotheticals and pure logic, and neither requires external verification. Both return 0 for a valid or empty list and null for a missing or malformed list. The differences are wording only: 'itself presents', 'personal opinion without concrete facts' and 'with specific details' restate the same specificity requirement."
+    }
+  ]
+}

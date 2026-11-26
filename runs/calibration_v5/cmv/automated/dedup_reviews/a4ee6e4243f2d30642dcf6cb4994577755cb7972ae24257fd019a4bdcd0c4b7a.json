@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left is any comment with a specific, concrete illustrative example (a particularized case, scenario or instance, not required to be real or verified). Right is any comment with specific numerical data or statistics. A concrete example without numbers counts for left but not right, and the right spec explicitly gives 0 for 'non-quantitative examples only'. Numbers alone, such as a statistic with no particular case, would count only for right. The two share only the source column and the any-comment form."
+    }
+  ]
+}

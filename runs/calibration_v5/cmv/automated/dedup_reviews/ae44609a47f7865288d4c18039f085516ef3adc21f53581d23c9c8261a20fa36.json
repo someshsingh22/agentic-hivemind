@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and any/binary/empty/null rules, but the eligibility differs materially. Item 0 requires a real-world example (actual case, event, person, statistic-bearing situation or personal real-life experience) and explicitly excludes hypothetical or invented scenarios. Item 82 accepts any particularized example, 'not required to be ... real-world', so it counts hypothetical scenarios that item 0 scores 0. Item 82 also has an explicit exclusion for examples quoted from the OP, which item 0 does not state. The row functions therefore differ."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty-list rules, but the qualifying predicates differ. Feature 0 needs a concrete example with checkable particulars that could be 'checked or observed directly'. It includes personal or local situations, and requires the example to support the counter-argument. Feature 1 needs a particular identifiable real event, person, case, organization, place, study or documented instance, 'used to support or illustrate' the argument. That is a looser purpose test. Feature 1 also requires the example to be real-world, whereas feature 0 does not use that term. Feature 0 also excludes quoted OP text explicitly, which feature 1 does not state. Feature 0's 'locally verifiable' qualifier and feature 1's 'real-world' qualifier are different eligibility boundaries. Neither is defined enough to treat them as the same extraction function."
+    }
+  ]
+}

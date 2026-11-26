@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 detects whether any comment quotes the OP's title or argument verbatim or near-verbatim, and endorsement is not required. Feature 1 detects whether any comment gives reasoned evidence or argument opposing the OP's view, and it does not depend on quoting. A comment can quote the OP without making a counterargument. A comment can also make a counterargument without quoting. The null rules also differ."
+    }
+  ]
+}

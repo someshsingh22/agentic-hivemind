@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs on the same argument column. Feature 0 detects a counter-question, which is an interrogative sentence that challenges or probes opposing views. Feature 1 detects the OP explicitly acknowledging a counter-argument or a limitation of their own view. A challenging question is not a concession, and a concession need not be a question. Their eligibility rules and exclusions also differ."
+    }
+  ]
+}

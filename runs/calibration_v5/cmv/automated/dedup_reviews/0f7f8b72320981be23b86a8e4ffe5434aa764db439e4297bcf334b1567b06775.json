@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both read only OC_comments and return a binary any-comment flag. Both require second-person address (you/your/you're) directed at the OP. Both exclude quoted 'you' and generic/impersonal 'you'. Both return 0 for a valid empty list and null for missing or malformed input. Right's 'OP or reader' wording is qualified by 'directed at the OP/interlocutor' and by excluding generic 'you' unless it addresses the OP. That is a harmless paraphrase, not a broader scope. Left's exclusion of 'you' addressed to non-OP parties is implied by right's OP-directed requirement."
+    }
+  ]
+}

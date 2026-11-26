@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 requires calm, even-toned, measured reasoning built on explicit reasons, evidence or inferences. It excludes reasoning delivered in an aggressive tone, and it can include evidence-based or anecdotal reasoning. Feature 1 requires abstract reasoning built on general principles or conceptual argument that does not rely on personal experience. It has no tone requirement and no evidence requirement. A calm, evidence-based or personal-experience argument counts for 0 but not 1. An aggressive abstract argument counts for 1 but not 0. Both use the same source column and the same 0/null rules, but the per-comment predicates differ."
+    }
+  ]
+}

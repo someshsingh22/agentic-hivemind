@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read OC_comments and give 0 for an empty list and null for malformed input. They differ in construct. Left is 1 for any specific real-world example cited as support, which covers any event, person, study or case used as evidence. Right is 1 only when a comment draws an analogy or comparison to a named real-world case and uses it to argue against the OP. Right is narrower in two ways: it requires an analogy or comparison, and it requires an argument against the OP. A cited study or statistic used as direct evidence counts on the left but not on the right. Left also counts examples that support any argument, including agreement with the OP."
+    }
+  ]
+}

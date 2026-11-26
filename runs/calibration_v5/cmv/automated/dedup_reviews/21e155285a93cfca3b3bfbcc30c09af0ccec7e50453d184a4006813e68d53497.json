@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read OC_comments and concern concrete examples, but the row functions differ. 0 is an 'any' measure: 1 if at least one comment gives a concrete, checkable particular example. Its empty list gives 0, and it has no 'solely abstract' requirement. 1 is an 'all' measure: 1 only if every comment is solely abstract logical refutation, and 0 if any comment has a concrete example. Its empty list gives null. The 0/1 direction is inverted, and 1 adds a requirement that every comment be purely abstract, so a list with no concrete example and some non-abstract content could be 0 for one and 0 for the other in different ways. The empty-list rules also differ (0 versus null). The eligibility criteria also differ: 'checkable particulars' versus 'external factual analogy'. These are different scalar functions."
+    }
+  ]
+}

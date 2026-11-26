@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Left (15) returns 1 when any comment engages a specific OP-cited example or premise, whether by quoting, paraphrasing or naming it. Right (54) returns 1 only when a comment reproduces OP wording verbatim or near-verbatim as a quotation, and paraphrase does not count. Their null rules also differ: left is null if argument or OC_comments is missing, while right is null only if both title and argument are missing."
+    }
+  ]
+}

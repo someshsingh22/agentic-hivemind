@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 fires on any named external program or named location used in an argument, with no analogy needed. Feature 1 requires a concrete real-world case or event used as an analogy or comparison to the issue. A comment can name a place without making an analogy. A comment can also give an unnamed everyday analogy without naming any program or location. The eligibility rules and exclusions differ too."
+    }
+  ]
+}

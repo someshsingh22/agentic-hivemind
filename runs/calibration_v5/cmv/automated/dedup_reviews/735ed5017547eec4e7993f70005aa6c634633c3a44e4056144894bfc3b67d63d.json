@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read OC_comments as binary any-comment features with the same null and empty-list rules. The eligibility differs. Feature 0 requires an analogy or comparison to a named, specific real-world case, so a bare citation does not count. Feature 1 counts any specific, localized example (a case, instance, person, or situation, named or clearly identified) used to support or illustrate the counter-argument, with no analogy requirement. Feature 1 also accepts clearly identified but unnamed instances, such as a particular situation. Feature 1 is therefore broader on both the analogy requirement and the naming requirement, so the two are different extraction functions."
+    }
+  ]
+}

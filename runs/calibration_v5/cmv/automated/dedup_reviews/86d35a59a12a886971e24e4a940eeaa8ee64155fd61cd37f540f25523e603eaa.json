@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both are binary any-comment features over OC_comments only. Each returns 1 if at least one comment gives a concrete real-world example (specific case, event, person, organization or real situation, including personal experience) as support. Each excludes hypotheticals and abstract reasoning, requires no external verification, returns 0 for a valid empty or no-match list, and returns null for a missing or malformed list. The remaining differences are minor example lists: 0 adds 'statistic-bearing situation' and 1 adds 'historical episode'. 1 also says quoted text counts only if used as an example, which is already implied by the 'used as support' requirement. None of these changes the extraction function."
+    }
+  ]
+}

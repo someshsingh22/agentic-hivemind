@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but they measure different constructs. Feature 0 requires an analogy or comparison to a named real-world case, used against the OP. Feature 1 requires only that a comment names a specific program or location as part of its argument. It needs no analogy and no counter-OP use. Feature 1 would count a named country or city cited as plain evidence, which feature 0 would not count without an analogy. Feature 0 would count a named person or historical event used as an analogy, which feature 1 would not count unless it is a program or location. The eligible referent types and the required relation to the argument are different."
+    }
+  ]
+}

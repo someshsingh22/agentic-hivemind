@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is 1 when the OP explicitly marks uncertainty about their own view, such as 'I might be wrong' or 'not sure'. Feature 1 is 1 when the OP makes at least one flat, unqualified absolute or universal claim. They are not opposites: feature 1's spec says both can be 1 for the same row. The source column (argument) and the null rule match, but the extraction predicates differ."
+    }
+  ]
+}

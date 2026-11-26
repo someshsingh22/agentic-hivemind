@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both are binary any-comment flags over OC_comments only. Each requires a specific, actual real-world example (event, person, case, organization and so on) used to support the comment's argument. Both exclude hypothetical, generic or vague references and require no external verification. Both return 0 for a valid empty list and null for missing or malformed input. Spec 1 adds 'statistic-bearing situation' and 'personal real-life experience', and spec 0 adds 'study, product, place'. These are ordinary nonexhaustive example lists, and both require a specific actual instance, so they are not material differences. Spec 0 says quotes of others don't count unless used as an example. Spec 1 doesn't mention quotes but its 'used to support its point' condition covers the same case. Spec 1's 'ignore conversation column and OP replies' matches the OC_comments-only source in spec 0."
+    }
+  ]
+}

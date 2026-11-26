@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments), dtype and any-comment/0/null rules, but the eligibility criteria differ. Left (18) requires evidence cited from outside the OP's post (data, studies, sources/links, documented facts) in support of a counter-argument. It doesn't require specificity, so a citation or source counts. Right (97) requires the comment itself to present specific empirical evidence with concrete details. It explicitly excludes vague appeals and generic assertions, and it has no external-to-OP or source-citation requirement. A link or named source with no concrete detail could count for 18 but not 97. A specific observation with details but no cited source could count for 97 but not 18. These are different row predicates."
+    }
+  ]
+}

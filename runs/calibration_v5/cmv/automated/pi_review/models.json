@@ -1,0 +1,1 @@
+{"providers": {"azure-anthropic": {"baseUrl": "https://mdsr-resource-dev-resource.services.ai.azure.com/anthropic", "api": "anthropic-messages", "apiKey": "$ANTHROPIC_FOUNDRY_API_KEY", "models": [{"id": "claude-sonnet-5-5", "reasoning": true, "maxTokens": 32000, "compat": {"forceAdaptiveThinking": true, "supportsStrictTools": true}}]}}}

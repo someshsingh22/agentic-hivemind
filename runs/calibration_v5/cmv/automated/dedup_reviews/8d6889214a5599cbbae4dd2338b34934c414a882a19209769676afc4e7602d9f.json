@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null and empty rules, but the constructs differ. Feature 0 requires a specific counter-argument against the OP's view that cites a concrete empirical example (case, event, study, statistic or observation) as supporting evidence. Feature 1 requires a concrete analogy drawn from outside the OP's scenario, used as a comparison. It does not require a counter-argument or evidence of any kind. An analogy is a different rhetorical move from direct empirical evidence. A comment citing a statistic or study directly on the issue would count for 0 but not 1. An everyday analogy would count for 1 but not necessarily 0. Feature 1 also excludes restating the OP's examples."
+    }
+  ]
+}

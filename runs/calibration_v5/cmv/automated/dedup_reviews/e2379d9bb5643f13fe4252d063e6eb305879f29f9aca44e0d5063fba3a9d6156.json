@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments with the same null/empty rules. But 0 requires a specific verifiable PROCEDURAL example (an actual procedure, process, rule or protocol, e.g. how a legal or institutional process works). 1 accepts any concrete specific case (a named person, event, place, policy or personal/local situation). 1 is much broader: a named person or event that is not a procedure qualifies for 1 but not for 0. This is a broad construct versus a materially narrower subtype, so they are distinct."
+    }
+  ]
+}

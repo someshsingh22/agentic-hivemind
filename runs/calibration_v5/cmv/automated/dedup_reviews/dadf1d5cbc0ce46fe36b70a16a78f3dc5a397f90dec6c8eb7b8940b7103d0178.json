@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over OC_comments, but the constructs differ. Feature 0 requires specific empirical evidence (statistics, data, studies, documented factual cases) and excludes hypotheticals. Feature 1 accepts any particularized illustrative example, including hypothetical scenarios or non-real-world cases, and does not require empirical evidence. Feature 1 also excludes examples quoted from the OP. Feature 0 is narrower in what counts, so the two can give different labels on the same row."
+    }
+  ]
+}

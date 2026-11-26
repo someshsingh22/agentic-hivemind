@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 returns 1 when a comment engages in any way (addresses, accepts, builds on, rebuts) a specific example or premise cited in the OP, and engagement need not be critical. Feature 1 returns 1 only when a comment explicitly challenges an underlying assumption or premise, and disputes of facts or the conclusion do not count. Engagement and challenge are different, so 0 is much broader. The null rules also differ. Feature 0 is null if the argument is missing or OP context is insufficient. Feature 1 is null only if the title and argument are both missing."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "equivalent",
+      "reason": "Both are binary any-comment features over the same sources (title, argument, OC_comments). Each returns 1 if at least one comment gives a specific or substantive counterargument to the OP's view, meaning concrete reasoning, evidence or an example. Each excludes generic disagreement, insults and bare questions. Both return 0 for an empty valid list and null for missing or malformed comments or missing OP context. 'Specific' and 'substantive' are harmless paraphrases here because both specs define the same standard. Item 0 also excludes off-topic remarks and item 1 says to use current text, but neither changes the measurement."
+    }
+  ]
+}

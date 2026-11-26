@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary features over the same sources, but they measure different constructs. Feature 0 requires a comment to assert that the OP's claim or a specific proposition is false, incorrect or logically invalid. It also has an explicit exclusion for comments whose point is solely a quantification of systemic material harm to third parties, and it excludes quoted opposing positions. Feature 1 counts any comment that directly challenges or argues against the OP's view, for example by rebutting it or giving reasons or evidence it is wrong. That is broader, since it covers challenges that do not assert falsity, such as counterarguments based on harm or on consequences. It has no harm-quantification exclusion. The null rules also differ. Feature 0 returns null only if title and argument are both missing. Feature 1 returns null if the OP context is missing so the target cannot be determined."
+    }
+  ]
+}

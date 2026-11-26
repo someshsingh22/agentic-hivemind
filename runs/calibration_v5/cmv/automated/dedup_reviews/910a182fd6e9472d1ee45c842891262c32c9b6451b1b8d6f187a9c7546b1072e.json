@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is a narrow subtype: it requires a comment to explicitly quote or near-verbatim reproduce a specific factual claim from the OP's title or argument and then refute it. It gives 0 for refuting without a quote and for opinion or value claims. Feature 1 is broader: any comment with specific reasoning, evidence or an example that challenges the OP's view counts. It needs no quote and no factual-claim restriction. A comment that rebuts opinion-level reasoning without quoting scores 1 on feature 1 and 0 on feature 0. The extraction functions differ."
+    }
+  ]
+}

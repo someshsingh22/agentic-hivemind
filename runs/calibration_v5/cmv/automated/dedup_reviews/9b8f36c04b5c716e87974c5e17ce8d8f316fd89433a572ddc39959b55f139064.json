@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires a comment to explicitly acknowledge the validity of a specific OP component and then, in that same comment, give a counter-example, with the acknowledgment first. Feature 76 is broader: any specific counterargument (objection, evidence, example or reasoning), with no acknowledgment requirement and no counter-example-only restriction. A comment that has a specific counterargument but no prior concession scores 1 on 76 and 0 on 0. Different eligibility and subtype, so not the same row function."
+    }
+  ]
+}

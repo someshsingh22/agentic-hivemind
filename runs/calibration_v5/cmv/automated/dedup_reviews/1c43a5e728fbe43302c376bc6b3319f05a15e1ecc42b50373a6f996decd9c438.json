@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different constructs. Item 0 returns 1 when a comment explicitly engages with a specific example or premise the OP cited, whether by paraphrase, naming or quotation. Engagement can be acceptance, rebuttal or building on it. Item 1 returns 1 only when a comment contains a direct quotation (quotation marks or blockquote) that matches OP title or argument text. A paraphrase does not count for item 1. Quoting without engaging with an example or premise would count for item 1 but not item 0. Their null and empty-list rules also conflict. Item 0 gives 0 for a valid empty list. Item 1's spec contradicts itself on empty lists: it says null, then says 0."
+    }
+  ]
+}

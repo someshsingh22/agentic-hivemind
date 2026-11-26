@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 measures only explicit admission of uncertainty or possible error or lack of knowledge in the OP's own view (e.g. 'I may be wrong'). Feature 1 is broader. It counts any explicit acknowledgment of a counter-argument, or of a limitation, weakness or exception in the OP's position. An OP can acknowledge an opposing view or exception without admitting uncertainty or possible error, so the two return different values on such rows. The null rules also differ: feature 1 returns null for an empty argument, and feature 0 only for a missing or malformed one."
+    }
+  ]
+}

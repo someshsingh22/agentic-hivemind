@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 needs a comment that quotes or near-verbatim reproduces a factual claim from the OP and then refutes it. Feature 1 needs a comment that introduces a checkable external fact that is not already in the OP. The two are close to opposite on OP content: 0 requires a match to OP text, and 1 requires distinctness from it. Feature 0 also requires an explicit quote and a refutation, and 1 requires neither. A comment can satisfy one and not the other."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and any/binary/null rules, but the constructs differ in breadth. Left counts only a specific functioning institutional precedent (existing law, policy, court, organization or system that operates or has operated). Right counts any concrete real-world example, including events, persons, statistic-bearing situations and personal experiences. Right is materially broader, so a personal anecdote or a historical event would score 1 on right but 0 on left."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source (OC_comments) and any/binary/null/empty rules, but constructs differ. Left: any concrete real-world example (case, event, person, statistic-bearing situation, personal experience) used to support a point. Right: a concrete external analogy, meaning a real-world case used as a comparison to the issue, from outside the OP's scenario, with restatement of the OP's examples excluded. Right is a narrower subtype (analogical comparison) and has an extra OP-scenario exclusion. Left counts any supporting example, including personal experience and statistics, which are not necessarily analogies."
+    }
+  ]
+}

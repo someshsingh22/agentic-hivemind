@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is 1 only if a comment refutes a specific example, case or anecdote the OP gave in the post body. Item 1 is 1 if a comment challenges an underlying assumption or premise of the OP's view, and disputes of facts or of the conclusion don't count. Refuting an OP example is not the same as challenging a foundational premise. The null rules also differ: item 0 is null when the argument is missing, while item 1 is null only if the title and argument are both missing."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is an any-presence test: it returns 1 if at least one flat, universal or categorical statement appears, and hedging elsewhere is irrelevant (its spec says both features can be 1 for the same row). Feature 1 is a global test for unwavering certainty: it returns 0 if any explicit hedge or self-doubt marker appears anywhere, and it also requires an overall categorical framing. An argument with one absolute statement and one hedge scores 1 on feature 0 and 0 on feature 1. The two therefore have different eligibility and exclusion rules and different row functions."
+    }
+  ]
+}

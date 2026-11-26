@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Feature 0 is a comment-level style judgment: a rebuttal that is mainly abstract logical reasoning and has no named real-world example or analogy. Feature 1 is the presence of a named external program or location in a comment's argument. They share only the source column. Feature 0 requires abstract reasoning and excludes any named example or analogy. Feature 1 does not require rebuttal or abstract reasoning, covers only programs and locations, and does not cover analogies or other named examples. A comment can be 1 on both, or 0 on both, so they are not the same extraction function."
+    }
+  ]
+}

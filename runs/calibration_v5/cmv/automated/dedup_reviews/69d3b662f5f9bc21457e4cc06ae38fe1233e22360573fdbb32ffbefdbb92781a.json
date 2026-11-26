@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "The two features measure different constructs. Feature 0 checks whether the OP's post body contains a personal anecdote or first-person experiential narrative. Feature 1 checks whether the OP explicitly acknowledges a counter-argument or a limitation of their own view. The two can occur independently, and the 0/1 rules differ. Both read only the argument column and share the null rule, but a shared source column and null rule do not make the extraction functions equivalent."
+    }
+  ]
+}

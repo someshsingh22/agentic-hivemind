@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs. Item 0 is 1 when a comment explicitly refutes a specific example or anecdote the OP gave in the post body. Item 1 is 1 when a comment recounts its own concrete personal anecdote that illustrates consequences of the OP's claim. Item 0 targets a rebuttal of the OP's example, and item 1 targets the commenter's own anecdote. Item 0 explicitly excludes offering the commenter's own unrelated examples. Null rules also differ: item 1 returns null for missing OP context, and item 0 returns null for missing argument."
+    }
+  ]
+}

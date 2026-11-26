@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different quantifiers and null rules. Item 0 is an 'any' measure: 1 if at least one comment mainly appeals to abstract normative principles, and an empty list gives 0. Item 1 is an 'all/solely' measure: 1 only if the list is nonempty and every comment is purely abstract normative with no concrete details or non-normative argumentation, and an empty list gives null. Item 1 also adds explicit exclusions for quoted text and bot notices. Any versus all, and the empty-list handling (0 versus null), are material differences."
+    }
+  ]
+}
