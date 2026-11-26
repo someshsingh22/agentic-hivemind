@@ -10,12 +10,11 @@ from .equivalence import validate_comparisons
 from .features import validate_features
 from .models import embed
 
-FIELDS = ("name", "dtype", "source_columns", "definition", "kind", "spec",
-          "class", "annotation_unit", "depends_on")
+FIELDS = ("name", "dtype", "source_columns", "definition", "kind", "spec")
 
 
-def cluster(vectors, hypothesis, dtype, sources, threshold, approved=None, units=None):
-    """Complete linkage within matching sources/dtypes/units and approved pairs."""
+def cluster(vectors, hypothesis, dtype, sources, threshold, approved=None):
+    """Complete linkage within matching sources/dtypes and approved pairs."""
     if not np.isfinite(threshold) or not 0 <= threshold <= 2:
         raise ValueError("Cosine distance threshold must be between 0 and 2")
     if len(vectors) == 1:
@@ -26,8 +25,6 @@ def cluster(vectors, hypothesis, dtype, sources, threshold, approved=None, units
         | (dtype[:, None] != dtype)
         | (sources[:, None] != sources)
     )
-    if units is not None:
-        incompatible |= units[:, None] != units
     if approved is not None:
         incompatible |= ~approved
     distance[incompatible] = threshold + 1
@@ -56,8 +53,7 @@ def dedup(decomposed, env, cfg, review_cluster):
         owners = np.array([owner for owner, _ in selected])
         dtypes = np.array([f["dtype"] for _, f in selected])
         sources = np.array(["\0".join(sorted(f["source_columns"])) for _, f in selected])
-        units = np.array([f["annotation_unit"] for _, f in selected])
-        candidates = cluster(vectors, owners, dtypes, sources, cfg["dedup"]["threshold"], units=units)
+        candidates = cluster(vectors, owners, dtypes, sources, cfg["dedup"]["threshold"])
         approved = np.eye(len(selected), dtype=bool)
         distances = (1 - vectors @ vectors.T).clip(0, 2)
         decisions = {}
@@ -77,7 +73,7 @@ def dedup(decomposed, env, cfg, review_cluster):
                     approved[i, j] = approved[j, i] = True
             reviews.append({"features": features, "comparisons": comparisons, "distances": pair_distances})
         final_labels = cluster(
-            vectors, owners, dtypes, sources, cfg["dedup"]["threshold"], approved=approved, units=units
+            vectors, owners, dtypes, sources, cfg["dedup"]["threshold"], approved=approved
         )
         labels[semantic] = len(raw) + final_labels
         for i, (left_owner, left) in enumerate(selected):
@@ -85,7 +81,7 @@ def dedup(decomposed, env, cfg, review_cluster):
                 right_owner, right = selected[j]
                 decision = decisions.get((i, j), {})
                 eligible = bool(owners[i] != owners[j] and dtypes[i] == dtypes[j]
-                                and sources[i] == sources[j] and units[i] == units[j])
+                                and sources[i] == sources[j])
                 pairs.append({
                     "left": f"h{left_owner:05d}:{left['name']}",
                     "right": f"h{right_owner:05d}:{right['name']}",
@@ -114,8 +110,6 @@ def dedup(decomposed, env, cfg, review_cluster):
         mappings[i][f["name"]] = canon[label]["name"]
     for feature in canon.values():
         feature["spec"] = rename(feature["spec"], mappings[feature["members"][0]["hypothesis"]])
-        feature["depends_on"] = [mappings[feature["members"][0]["hypothesis"]][name]
-                                 for name in feature["depends_on"]]
 
     hypotheses = [
         {
@@ -148,9 +142,6 @@ def summary(plan):
         "features_unique": len(feats),
         "prompt_features_raw": sum(m["kind"] == "prompt" for m in raw),
         "prompt_features_unique": sum(f["kind"] == "prompt" for f in feats),
-        "comment_predicates_unique": sum(f["kind"] == "prompt" and f["annotation_unit"] == "comment" for f in feats),
-        "row_semantic_tasks_unique": sum(f["kind"] == "prompt" and f["annotation_unit"] == "row" for f in feats),
-        "secondary_features": sum(f["class"] == "secondary" for f in feats),
         "pairs_needing_alignment": sum(c["verdict"] == "needs_alignment"
                                       for review in plan["dedup_reviews"] for c in review["comparisons"]),
     }

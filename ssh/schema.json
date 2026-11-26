@@ -40,22 +40,6 @@
           "spec": {
             "type": "string",
             "minLength": 1
-          },
-          "class": {
-            "type": "string",
-            "enum": ["primary", "secondary"]
-          },
-          "annotation_unit": {
-            "type": "string",
-            "enum": ["row", "comment"]
-          },
-          "depends_on": {
-            "type": "array",
-            "uniqueItems": true,
-            "items": {
-              "type": "string",
-              "pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$"
-            }
           }
         },
         "required": [
@@ -64,10 +48,7 @@
           "source_columns",
           "definition",
           "kind",
-          "spec",
-          "class",
-          "annotation_unit",
-          "depends_on"
+          "spec"
         ],
         "additionalProperties": false
       }

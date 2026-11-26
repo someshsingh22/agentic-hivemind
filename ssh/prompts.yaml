@@ -13,23 +13,14 @@ measurement_policy: |
     neither chronology nor rank; argument may contain later edits. Never infer an initial
     snapshot, pre-event text, speaker identity or unavailable time from current text.
   - Missing/unparseable required sources give null, not absence. Complete assessable absence
-    gives 0. Unknown required comment items give null in their original positions. A complete
-    empty OC_comments list gives semantic labels=[]. Never drop, reorder or deduplicate slots.
-  - For complete inputs, any/count on an empty eligible list is 0; share/mean/all with no
-    eligible items is null. any is 1 if a known eligible positive exists, 0 only when every
-    eligible item is known negative (including a complete empty list), otherwise null.
-    count/share/mean are null if any required item is unknown, unless the exact claim
-    explicitly permits omitting it. all is 0 if a known eligible negative exists, 1 only
-    for a nonempty list of known positives, and otherwise null. Distinguish known ineligible
-    items from unknown items; specify eligibility and denominator rather than silently
-    filtering unknowns or including moderator notices as substantive negative comments.
-  - Preserve any versus frequent occurrence, comment count versus distinct argument count,
-    and intensity versus density. Do not invent frequency cutoffs, controls, proxies or
-    implicit dataset-wide references. An explicit threshold belongs in deterministic derived
-    code over base measurements. A semantic intensity score may use a fixed, construct-specific
-    anchored 0-10 rubric defined before annotation; it is an operational score, not a validated
-    instrument. Do not choose a cutoff for an unspecified "high" qualifier or tune to delta.
-    A required unspecified boundary is a limitation, not permission to force matching labels.
+    gives 0. Specify empty-input and unknown-input handling for the requested measurement.
+  - Preserve any versus all/count/share, frequent occurrence, comment count versus distinct
+    argument count, and intensity versus density. Do not invent frequency cutoffs, controls,
+    proxies or implicit dataset-wide references. A semantic intensity score may use a fixed,
+    construct-specific anchored 0-10 rubric defined before annotation; it is an operational
+    score, not a validated instrument. Do not choose a cutoff for an unspecified "high"
+    qualifier or tune to delta. A required unspecified boundary is a limitation, not permission
+    to force matching labels.
 
 agents:
   hypothesis_decomposer:
@@ -44,63 +35,48 @@ agents:
         $measurement_policy
 
         MEASUREMENT DESIGN
-        - Separate a reusable base predicate from its requested aggregation. For a semantic
-          claim about individual OC_comments, define a primary comment predicate/score once,
-          then secondary code for any/count/share/mean/all or explicit thresholds. Do not
-          bake row-level aggregation into a per-comment semantic prompt. Different hypotheses
-          can reuse the same predicate without sharing their aggregation or outcome direction.
-        - Primary features measure original sources directly, using deterministic code or a
-          semantic prompt, and have depends_on=[]. Secondary features are deterministic code,
-          annotation_unit=row, with nonempty depends_on naming the base features they use.
-          A secondary can aggregate/compare/threshold dependencies and read declared raw
-          columns; it must never replace an undeclared semantic judgment with purported code.
-          Dependencies must exist and be acyclic. List original sources, not generated feature
-          names, in source_columns; cover all dependency sources plus any additional raw inputs.
-        - Use code only when the supplied inputs already determine membership: arithmetic,
-          finite list cardinality, explicit literal matching, or supplied numeric columns.
-          Detecting a substantive argument, concession, emotional appeal or endorsed claim
-          requires a prompt. Semantic counts are not deterministic merely because integers
-          are returned. Counting comment labels does not count distinct arguments: cross-comment
-          semantic deduplication requires an explicitly specified joint row-level measurement.
+        - Each feature measures one dataset ROW and returns one scalar binary/numeric value
+          or null. Make it atomic and reusable, without encoding the claimed outcome direction.
+        - Use a prompt when the requested measurement requires understanding tone, intent,
+          argumentation, emotional appeals, concessions or endorsed claims. The prompt directly
+          computes the requested row measurement, including any/count/share/all when requested.
+          Do not require separate comment labels and aggregation code. For example, "any comment
+          makes an emotional appeal" is one binary prompt feature over the row's comments.
+        - Use code only when supplied inputs already determine the result: arithmetic, finite
+          list cardinality, explicit literal matching, supplied numeric columns, or deterministic
+          transformations of other features. A semantic count is not deterministic merely
+          because it returns an integer. Code cannot substitute for an undeclared semantic judgment.
+        - If the hypothesis fixes an explicit numeric threshold or comparison (">= 100",
+          "outnumber", "above median"), retain the base measurement and add the corresponding
+          binary code feature. This does not require splitting semantic any/count/share
+          measurements into item labels and code.
         - Preserve named comparison groups and overlap/eligibility. A versus B is not A versus
           not-A. Do not create controls, exclusions, interactions or alternative outcomes absent
           from the claim. If unavailable information prevents faithful measurement or testing,
           document it in note and use term=null, not a plausible proxy.
 
-        FEATURE CONTRACT (all fields required; retain the submit schema)
-        - name: unique snake_case; atomic and reusable, without claimed outcome direction.
-        - class: primary or secondary, as defined above.
-        - annotation_unit: row means one scalar binary/numeric value (or null) per row.
-          comment means one row-local aligned list with exactly one element per original
-          OC_comments slot. Each element is binary/numeric (or null); dtype describes ELEMENTS,
-          not the container. No flattening across rows and no arbitrary list-valued sources.
-          Comment features read OC_comments with only optional title/argument context.
-        - dtype: binary (0/1) or numeric; express categories as binary indicators.
-        - depends_on: [] for primary; unique existing feature names for secondary.
+        FEATURE CONTRACT (exactly these six fields, all required)
+        - name: unique snake_case identifier; atomic and reusable, without outcome direction.
+        - dtype: binary (0/1) or numeric; express categories as binary indicators. Every output
+          is one scalar of this type or null per dataset row, never a list of comment labels.
         - source_columns: complete nonempty list of original predictors actually read, including
-          jointly required OP context. Do not add unused context merely to make source sets match.
-        - definition: canonical compact line "<speaker + exact text scope>: <construct; unit>".
-          Include material intensity, scope, exclusions and scale anchors. Primary comment
-          definitions describe a single comment, not any/count/share across the discussion.
+          jointly required OP context and original sources used by any referenced features.
+          Never put generated feature names here or add unused context to make source sets match.
+        - definition: canonical compact line "<speaker + exact text scope>: <exact quantity>".
+          Include material intensity, scope, exclusions and units/scale anchors.
         - kind: code or prompt. Code spec is a precise Python/pandas expression or complete
-          deterministic recipe over declared sources/dependencies; do not execute it.
-        - spec: SELF-CONTAINED measurement instructions, not a hypothesis test or a hypothesis
-          restatement. Name all sources, attribution, text boundaries, time and required context.
-          For prompt comment features, read each original OC_comments item alongside only its
-          declared title/argument context and return aligned labels, never a row summary.
-          Specify 1/0/null cases, exclusions, eligibility and empty/malformed cases. For numeric
-          output specify units/range and anchored meanings including zero. For secondary code
-          give the exact aggregation, denominator, handling of unknown/ineligible items and
-          overlap/deduplication rule. Include an eligibility base measurement if needed; do not
-          confuse an unknown label with a known excluded item. A known excluded item is not
-          evidence about an eligible speaker; preserve its slot and state its label convention.
-          Genuinely joint semantic measurements may be primary row prompts; they still return
-          a scalar and must not masquerade as reusable individual-comment judgments.
+          deterministic recipe over declared sources or other defined features; do not execute it.
+        - spec: SELF-CONTAINED measurement instructions, not a hypothesis test or restatement.
+          Name all sources, attribution, text boundaries, time and required context. State the
+          requested scalar output, 1/0/null cases, exclusions, eligibility, empty/malformed cases,
+          and, when relevant, denominator and overlap/deduplication rules. For numeric output,
+          give units/range and anchored meanings including zero. A prompt must read the declared
+          sources jointly and directly return the requested per-row measurement.
 
         RELATIONSHIP CONTRACT
         - h0/h1: exact null/alternative in feature names, one sentence each.
-        - rhs: patsy/statsmodels OLS right-hand side using only defined row-level features;
-          the outcome is added automatically. Never regress directly on comment vectors.
+        - rhs: patsy/statsmodels OLS right-hand side using only defined features;
+          the outcome is added automatically.
         - term: exact design-matrix column testing the claimed coefficient; null if no single
           available coefficient represents the claim. In A+B, beta_A is not beta_A-beta_B.
           Significance of one predictor does not compare two strengths or establish an effect
@@ -111,20 +87,19 @@ agents:
           limitations; do not manufacture testability.
 
         EXAMPLES OF REUSABLE DESIGN AND REAL FAILURE CLASSES (not annotations)
-        - "Any comment cites a specific real-world example" and "share of comments citing a
-          specific real-world example" can share a primary binary comment predicate over the
-          SAME complete source/context contract, then use different secondary any/share code.
-          A functioning institutional precedent is narrower than any real-world example;
-          concrete personal labor-process details are another construct, not a renamed match.
+        - "Any comment cites a specific real-world example" is one binary prompt feature;
+          "share of comments citing a specific real-world example" is a different numeric
+          prompt feature. Both directly measure the requested row quantity. A functioning
+          institutional precedent is narrower than any real-world example.
         - OP explicit uncertainty/admission of possible error and a paraphrase about explicit
-          OP doubt can share a row primary if their full scope/exclusions match. Inviting
-          critique OR being tentative is broader; absolute certainty is not its complement.
+          OP doubt can share a feature if their full scope/exclusions match. Inviting critique
+          OR being tentative is broader; absolute certainty is not its complement.
         - Broad concession is not admission of a factual error. Calm logical reasoning is not
           merely absence of emotional aggression. Generic emotional language is not highly
           emotional language. Keep these boundaries even if fewer variables would be convenient.
         - "Frequently challenges premises" needs its stated frequency rule; do not replace it
-          with any challenge. A claim that each comment challenges two or more factual premises
-          needs that explicit per-comment threshold plus the requested discussion aggregation.
+          with any challenge. Count distinct arguments only if the requested measurement calls
+          for semantic deduplication, not by treating comment count as argument count.
         - Initial OP argument is not an inferred snapshot of edited argument or conversation.
           Quoting and refuting an OP claim requires argument context; merely mentioning its topic
           does not. Presence of a quote is not the commenter's endorsement.
@@ -161,54 +136,58 @@ agents:
         pending difference, real construct difference or unresolved ambiguity.
 
         DECISION RULES
-        - equivalent: the same core construct under the SAME full measurement contract.
-          Ordinary paraphrases and harmless wording differences are safe: do not demand proof
-          that every hypothetical phrasing produces identical human judgment. Read definition
-          AND spec in full; a shared name/topic alone is insufficient. Outcome direction and
-          provenance do not change the measurement. Do not invent a missing boundary or rule.
+        - equivalent: the same full direct per-row extraction function, including the core
+          construct and all material qualifiers. Ordinary paraphrases and harmless wording
+          differences are safe: do not demand proof that every hypothetical phrasing produces
+          identical human judgment. Read definition AND spec in full; a shared name/topic alone
+          is insufficient. Outcome direction and provenance do not change the measurement.
+          Do not invent a missing boundary or rule.
         - needs_alignment: the intended construct is shared but an explicit operational
-          boundary differs (scope, eligibility, intensity cutoff, aggregation, scale, timing,
-          attribution or null rule). Report the EXACT pending difference and what would need
-          an explicit measurement decision. This is NOT an approval to merge or to choose one
-          rubric: retain both as written. Never silently align actual scope/intensity/scale/time
-          changes or manufacture a common definition just to make the labels agree.
-        - distinct: genuinely different constructs or explicitly different claimed measures,
-          not merely different phrasing. A broad construct and a materially narrower subtype,
-          endorsement and quotation, or a challenge and mere topic mention are distinct.
+          rubric differs (scope, eligibility, intensity cutoff, scale, timing, attribution or
+          null rule). Report the EXACT pending difference and what would need an explicit
+          measurement decision. This is NOT approval to merge or choose one rubric: retain
+          both as written. Never manufacture a common definition to make labels agree.
+        - distinct: genuinely different constructs or explicitly different requested measures,
+          not merely different phrasing. Any, all, count and share are different extraction
+          functions, even when they judge the same underlying property. A broad construct and
+          a materially narrower subtype, endorsement and quotation, or a challenge and mere
+          topic mention are distinct.
         - uncertain: insufficient/ambiguous specifications prevent deciding shared construct
           or contract. State what is missing. Do not assume omitted exclusions/anchors/null
           handling match; the shared policy supplies only its explicit standard rules.
 
         FULL-CONTRACT COMPARISON
-        - Compare original source sets (order irrelevant), required context, class, annotation
-          unit, dtype, speaker/attribution, exact text boundaries and initial/pre-event scope.
-        - Compare construct, subtype/intensity, eligibility/exclusions, comparison target,
-          binary predicate versus any/all/count/share/mean, denominator, deduplication,
-          threshold, units/scale/anchors, and positive/negative/empty/unknown/null handling.
-        - Hard eligibility gates are not negotiable: different original sources, dtype, class,
-          annotation unit or dependency contracts, non-prompt features and same-hypothesis
-          features cannot merge. Similarity or a shared name never overrides them. Review
-          candidates may already satisfy these gates; do not infer unseen data or dependencies.
+        - Compare original source sets (order irrelevant), required context, dtype,
+          speaker/attribution, exact text boundaries and initial/pre-event scope.
+        - Compare the complete scalar row function: construct, subtype/intensity,
+          eligibility/exclusions, comparison target, any/all/count/share/mean, denominator,
+          deduplication, threshold, units/scale/anchors and positive/negative/empty/unknown/null
+          handling. Matching an underlying comment predicate does not make different row
+          measurements equivalent.
+        - Hard eligibility gates are not negotiable: different original source sets or dtype,
+          non-prompt features and same-hypothesis features cannot merge. Similarity or a shared
+          name never overrides them. Candidates may already satisfy these gates; do not infer
+          unseen data. Even matching sources cannot erase different actual text scopes.
 
         EXAMPLES
         - equivalent: explicit OP uncertainty about their view versus explicit OP admission
           they may be wrong, with the same argument-only scope, exclusions and 0/1/null rules.
           Wording need not be byte-identical. An invitation to critique OR tentative language
           is broader, and must not be merged with uncertainty alone.
-        - equivalent: specific real-world example predicates phrased as a concrete identifiable
-          case offered as evidence, when source/context, attribution and eligibility agree.
+        - equivalent: any comment offers a specific real-world example versus presence of at
+          least one concrete identifiable case offered as evidence in the comments, when
+          source/context, attribution, eligibility and output rules agree.
         - needs_alignment: the same uncertainty predicate measured in title+argument in one
           spec but argument-only in the other despite matching declared sources. Name that
           exact scope mismatch; do not choose or infer the intended scope.
-        - needs_alignment: the same anchored score with a changed cutoff, or the same construct
-          with incompatible missing-item rules. Describe the actual difference; no autoapproval.
+        - needs_alignment: the same anchored score with a changed rubric cutoff, or the same
+          construct with incompatible missing-input rules. No automatic merge is permitted.
         - distinct: functioning institutional precedent versus any specific real-world example;
           broad concession versus factual-error admission; concrete personal labor details
           versus abstract normative principle; logical reasoning versus absence of aggression.
-        - distinct: any versus share when those aggregations are the actual claimed measures,
-          intensity versus density, comments versus distinct arguments, initial text versus
-          later discussion, emotional versus highly emotional as distinct requested constructs.
-          Per-comment base predicates can still be equivalent independently of derived measures.
+        - distinct: any versus all/count/share, intensity versus density, comments versus
+          distinct arguments, initial text versus later discussion, emotional versus highly
+          emotional as distinct requested constructs.
         - uncertain: nominally similar scores with no interpretable anchors or unresolved
           attribution. Uncertainty is not permission to fill in the missing rubric.
       user_template: |

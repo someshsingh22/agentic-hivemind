@@ -10,7 +10,7 @@ from pathlib import Path
 
 @unittest.skipUnless(shutil.which("node"), "Node required for pi extension smoke")
 class SubmitTests(unittest.TestCase):
-    def test_invalid_dependencies_are_rejected_before_write_and_can_be_corrected(self):
+    def test_invalid_sources_and_metadata_are_rejected_before_write_and_can_be_corrected(self):
         version = subprocess.check_output(["node", "--version"], text=True)
         if int(version.lstrip("v").split(".")[0]) < 24:
             self.skipTest("Node 24+ required for native TypeScript")
@@ -18,10 +18,9 @@ class SubmitTests(unittest.TestCase):
         schema = json.loads((package / "schema.json").read_text())
         schema["properties"]["features"]["items"]["properties"]["source_columns"]["items"]["enum"] = ["argument", "title"]
         base = dict(name="base", dtype="binary", source_columns=["argument", "title"],
-                    definition="Base measurement.", kind="prompt", spec="Return binary label.",
-                    annotation_unit="row", depends_on=[], **{"class": "primary"})
-        derived = dict(base, name="derived", kind="code", source_columns=["argument"],
-                       depends_on=["base"], **{"class": "secondary"})
+                    definition="Base row measurement.", kind="prompt", spec="Return one binary label per row.")
+        derived = dict(base, name="derived", kind="code", source_columns=["missing"],
+                       spec="df['derived'] = df['base']")
         payload = {"features": [base, derived]}
         script = """
 import assert from 'node:assert/strict';
@@ -30,17 +29,17 @@ const { default: extension } = await import(process.env.EXTENSION_URL);
 let tool;
 extension({ registerTool(value) { tool = value; } });
 const payload = JSON.parse(process.env.PAYLOAD);
-await assert.rejects(tool.execute('bad', payload), /source_columns must cover/);
+await assert.rejects(tool.execute('bad-source', payload));
 assert.equal(existsSync(process.env.SUBMIT_OUT), false);
 payload.features[1].source_columns = ['argument', 'title'];
-payload.features[1].depends_on = [];
-await assert.rejects(tool.execute('bad-class', payload), /secondary features must/);
+payload.features[1].dtype = 'vector';
+await assert.rejects(tool.execute('bad-metadata', payload));
 assert.equal(existsSync(process.env.SUBMIT_OUT), false);
-payload.features[1].depends_on = ['base'];
+payload.features[1].dtype = 'binary';
 const result = await tool.execute('corrected', payload);
 assert.equal(result.terminate, true);
 assert.deepEqual(JSON.parse(readFileSync(process.env.SUBMIT_OUT, 'utf8')), payload);
-console.log('Submission smoke passed: both reported contract failures rejected before write; corrected submission saved.');
+console.log('Submission smoke passed: invalid source and metadata rejected before write; corrected submission saved.');
 """
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

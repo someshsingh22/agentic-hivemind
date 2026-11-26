@@ -9,12 +9,12 @@ from pathlib import Path
 from ssh import calibration
 
 
-def feature(name, source="OC_comments", unit="comment", dtype="binary"):
+def feature(name, source="OC_comments", dtype="binary"):
     return {
-        "name": name, "source_columns": [source], "annotation_unit": unit,
-        "dtype": dtype, "definition": "Speaker expresses uncertainty, excluding quotations.",
-        "spec": "Return aligned binary labels, preserving unknowns as null.",
-        "class": "primary", "kind": "prompt", "depends_on": [],
+        "name": name, "source_columns": [source],
+        "dtype": dtype, "definition": "Any comment in this row expresses uncertainty, excluding quotations.",
+        "spec": "Return 1 if any comment expresses uncertainty, 0 if none, null if unavailable.",
+        "kind": "prompt",
     }
 
 
@@ -58,10 +58,9 @@ class CalibrationExportTests(unittest.TestCase):
         pairs = [pair(0, 0), pair(1, 0.1, False), pair(2, 0.2, False), pair(3, 2, False)]
         pairs[1]["right_feature"]["source_columns"] = ["title"]
         pairs[2]["right_feature"]["dtype"] = "numeric"
-        pairs[3]["right_feature"]["annotation_unit"] = "row"
+        pairs[3]["right_hypothesis"] = pairs[3]["left_hypothesis"]
         pairs[0]["review_label"] = "equivalent"
         pairs[0]["left_feature"]["spec"] = 'Line 1, "quoted"\nLine 2: café'
-        pairs[0]["left_feature"]["extra_original_field"] = {"preserve": [1, None]}
         original = copy.deepcopy(pairs)
         with tempfile.TemporaryDirectory() as folder:
             out = Path(folder)
@@ -75,12 +74,11 @@ class CalibrationExportTests(unittest.TestCase):
                 self.assertEqual(row["review_reason_human"], "")
                 self.assertEqual(row["review_verdict"], "equivalent")
                 self.assertEqual(row["left_hypothesis"], "0")
-                self.assertEqual(row["right_hypothesis"], "1")
+                self.assertEqual(row["right_hypothesis"], str(item["right_hypothesis"]))
                 for side in ("left", "right"):
                     self.assertEqual(json.loads(row[f"{side}_feature"]), item[f"{side}_feature"])
                     self.assertEqual(json.loads(row[f"{side}_source_columns"]),
                                      item[f"{side}_feature"]["source_columns"])
-                    self.assertEqual(row[f"{side}_annotation_unit"], item[f"{side}_feature"]["annotation_unit"])
                     self.assertEqual(row[f"{side}_spec"], item[f"{side}_feature"]["spec"])
             sample = read_csv(out / "calibration_sample.csv")
             self.assertEqual([row["left"] for row in sample], [pairs[0]["left"]])

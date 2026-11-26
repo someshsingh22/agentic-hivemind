@@ -14,8 +14,7 @@ from pathlib import Path
 DISTANCE_BINS = (0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 2.000001)
 THRESHOLDS = (0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4)
 FEATURE_FIELDS = (
-    "name", "source_columns", "annotation_unit", "dtype", "definition", "spec",
-    "class", "kind", "depends_on",
+    "name", "source_columns", "dtype", "definition", "kind", "spec",
 )
 PAIR_FIELDS = (
     "pair_id", "left", "right", "left_hypothesis", "right_hypothesis",
