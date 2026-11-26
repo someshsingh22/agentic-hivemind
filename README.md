@@ -105,6 +105,8 @@ Use a fresh `out` directory when changing the decomposition prompt/schema, model
 hypothesis bank. `decomposition_inputs.json` fingerprints the actual CSV, exact hypotheses, environment,
 agent settings, schema and resolved prompts; changed inputs or unversioned legacy caches are rejected before
 agents start. Identical interrupted runs reuse completed results. Old calibrations are not silently migrated.
+The pi launcher resolves schema/output/session paths before switching to its session directory; relative
+`out` paths work for both decomposition and review. A launch-path fix alone does not invalidate decompositions.
 Run only decomposition and reviewed deduplication for now; annotation and SSH testing come later.
 
 ## Local verification

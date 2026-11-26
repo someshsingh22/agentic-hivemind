@@ -21,10 +21,11 @@ def pi_home(cfg, home):
 
 def agent(prompt, system, home, cfg, schema, out):
     """Run one non-interactive pi session inside `home`; its answer is a schema-validated `submit` call saved to `out`."""
+    home, schema, out = (Path(path).resolve() for path in (home, schema, out))
     subprocess.run(
         ["pi", "-p", "--session-dir", str(home / "sessions"), "--no-context-files", "--no-extensions", "--no-skills",
          "--provider", cfg["provider"], "--model", cfg["model"], "--thinking", cfg["thinking"],
-         "-e", str(Path(__file__).with_name("submit.ts")), "--tools", cfg["tools"], "--append-system-prompt", system, prompt],
+         "-e", str(Path(__file__).with_name("submit.ts").resolve()), "--tools", cfg["tools"], "--append-system-prompt", system, prompt],
         cwd=home, check=True, stdout=subprocess.DEVNULL,
         env={**os.environ, "PI_CODING_AGENT_DIR": str(home), "SUBMIT_SCHEMA": str(schema), "SUBMIT_OUT": str(out)},
     )
