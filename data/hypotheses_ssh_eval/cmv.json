@@ -1,0 +1,1514 @@
+{
+  "dataset": "cmv",
+  "seed": 42,
+  "sampling_seed": 42,
+  "sampling": "Uniform sample without replacement of original hypothesis slots; repeated text preserved.",
+  "population_size": 450,
+  "sample_size": 100,
+  "source_archive": "manager_hypotheses_seed42.zip",
+  "source_archive_sha256": "1a2f960a30675c86118d23207910d5849c1d5968ee49c35ed1f264e6cbb0814b",
+  "hypotheses": [
+    "Discussions where the original argument includes explicit comparisons to established scientific or historical norms are associated with lower view change than those without such comparisons.",
+    "Arguments expressing explicit fear of social rejection or isolation are associated with lower view-change rates than arguments stating beliefs without emotional self-defense.",
+    "Counter-arguments that cite specific, functioning institutional precedents are associated with a higher probability of view change than those relying on abstract normative principles.",
+    "Discussions featuring longer precomputed log-transformed discussion length are associated with a higher likelihood of the original poster changing their view.",
+    "Discussions where the original argument contains explicit admissions of uncertainty are associated with a higher probability of view change than those asserting absolute certainty.",
+    "Counter-arguments frequently challenging multiple distinct factual premises within the argument are positively associated with view change.",
+    "Discussions where the original argument contains fewer counter-argument responses are associated with a lower likelihood of the original poster changing their view.",
+    "Discussions with at least three distinct counter-arguments in the posted comments are associated with a higher likelihood of the original poster changing their view.",
+    "Discussions where the original post title uses absolute certainty markers are associated with a lower likelihood of the original poster changing their view.",
+    "Discussions where original posts explicitly invite critique or use tentative language are associated with higher view-change rates than those using absolute, definitive declarations.",
+    "Discussions featuring counter-arguments that explicitly cite specific real-world examples are associated with higher likelihood of original view change.",
+    "Counterarguments containing measured, logical reasoning are positively associated with the original poster changing their mind compared to those containing emotional aggression in ChangeMyView discussions.",
+    "Discussions where counter-arguments explicitly quote and refute specific factual claims in the original post are associated with higher rates of view change.",
+    "Discussions where counter-arguments explicitly validate the original poster's personal dignity or effort before introducing corrective logic are associated with higher view-change rates than purely logical refutations.",
+    "Discussions featuring counter-arguments that provide concrete real-world examples are associated with a higher likelihood of view change than those relying primarily on abstract reasoning.",
+    "Discussions where counter-arguments explicitly engage with the specific examples or premises cited in the original argument text are associated with a higher likelihood of view change.",
+    "Discussions featuring counter-arguments that introduce concrete, personal labor-process details are associated with higher view-change rates than those relying solely on abstract normative principles.",
+    "Discussions where counter-arguments explicitly quantify systemic material harms to third parties rather than asserting propositional falsity are associated with a higher likelihood of view change.",
+    "Discussions where counter-arguments identify logical contradictions within the original post's own stated premises are associated with higher view-change rates than those citing external evidence.",
+    "Discussions where counter-arguments provide specific factual data or verifiable citations are associated with a higher likelihood of the original poster changing their view.",
+    "Discussions where the original argument contains explicit polite apology phrases are associated with a lower likelihood of view change compared to arguments without such phrases.",
+    "Original posts featuring first-person vulnerable admissions are associated with higher view-change likelihood than those containing distant, third-person observations.",
+    "Discussions where counter-arguments include direct URLs or external links are associated with a higher likelihood of view change than those solely using internal text.",
+    "Discussions where counter-arguments employ specific, verifiable procedural examples are associated with higher original post view-change rates than those relying solely on abstract theoretical rebuttals.",
+    "Discussions where the original argument contains specific counter-question markers are associated with a higher probability of view change.",
+    "Discussions where the original poster's argument includes personal anecdotes or first-person experiential narratives are associated with a lower likelihood of view change.",
+    "Discussions where counter-arguments explicitly acknowledge the validity of the original post's initial premise before introducing divergence are associated with a higher likelihood of view change.",
+    "Discussions where counter-arguments employ concrete personal anecdotes are more likely associated with the original poster changing their view than those using abstract reasoning.",
+    "Discussions containing at least three distinct counter-argument comments are associated with a higher probability of the original poster changing their view than those with fewer.",
+    "Posts containing direct counterarguments are more likely to result in the original poster upvoting the reply or changing their view.",
+    "Discussions where the original argument employs modest or uncertain epistemic markers are associated with a higher likelihood of view change than those using high-modality assertions.",
+    "Discussions where the original argument contains explicit tone-policing requests are associated with a lower likelihood of view change compared to those without such requests.",
+    "Discussions where counter-arguments utilize a redrafting strategy, rewriting the original poster's viewpoint from a nuanced perspective before refutation, are associated with higher view change.",
+    "Discussions where the observed original-post score exceeds 50 are associated with a lower likelihood of view change than those with lower observed scores.",
+    "Discussions where the original poster's argument contains explicit uncertainty markers are associated with a higher likelihood of the original poster changing their view.",
+    "Discussions where the original poster's initial argument explicitly acknowledges a counter-argument or limitation are directionally associated with a higher probability of view change.",
+    "Counter-arguments containing named, real-world analogies (e.g., specific historical or scientific examples) are associated with higher view-change rates than abstract logical rebuttals.",
+    "Discussions where counter-arguments explicitly contrast the original poster's view with a relatable real-world personal experience are associated with a higher likelihood of view change.",
+    "Discussion posts with titles containing explicit emotional or personal identifiers are associated with a lower likelihood of the original poster changing their view.",
+    "Discussions containing multi-turn reply interactions in the conversation text are associated with a higher likelihood of the original poster changing their view.",
+    "Posts containing a single, highly-rated counterargument are associated with an increased frequency of attribution replies from the original poster.",
+    "Discussions where the original argument contains explicit self-referential meta-commentary regarding platform mechanics or author status are associated with a lower probability of view change.",
+    "Discussions where counter-argument comments include direct quotes from the original argument are more frequently associated with a changed view than those without such quotations.",
+    "Posts with observed scores below the median are associated with a lower probability of the original poster changing their view compared to higher-scored posts.",
+    "Discussions where counter-arguments use second-person direct address to the original poster are associated with a higher likelihood of view change.",
+    "Discussions where the original poster's argument contains a direct plea for non-violация are associated with a lower likelihood of view change.",
+    "Discussions where the original argument contains explicit first-person singular pronouns are associated with a higher probability of view change.",
+    "The presence of a logged counterargument is positively associated with the probability that the original poster posts a viewpoint change or awards a delta.",
+    "Higher cognitive complexity in counterarguments is associated with a higher likelihood of the original poster changing their stated view in ChangeMyView discussions.",
+    "Discussions where counter-arguments explicitly acknowledge the original poster's underlying valid point before introducing the discrepancy are associated with higher view-change rates than pure refutations.",
+    "Discussions where counter-arguments reference specific, named external programs or locations are associated with higher view-change rates than those using only abstract logical refutation.",
+    "Discussions where counter-arguments explicitly quote and refute specific phrases from the original post are associated with a higher likelihood of view change.",
+    "Discussions where counter-arguments explicitly refute specific examples or anecdotes provided by the original poster are associated with a higher probability of view change compared to arguments addressing the main premise directly.",
+    "Discussions where the original argument uses hedging or qualifying language are associated with a higher likelihood of view change than those using absolute declarative statements.",
+    "Discussions where counter-arguments explicitly quote the original poster's text rather than paraphrasing are associated with a higher probability of view change.",
+    "Discussions containing counter-arguments that explicitly validate the original poster's emotional experience prior to logical rebuttal are associated with higher view-change rates.",
+    "Discussions containing counter-arguments that use analogies to familiar scenarios are associated with a higher likelihood of the original poster changing their view.",
+    "Discussions where the title explicitly contains an absolute universal quantifier like 'all' or 'never' are associated with lower view change than those using variable or probabilistic terms.",
+    "Discussions containing counter-arguments that explicitly reference specific, concrete examples or real-world instances in the provided comments are associated with a higher probability of view change.",
+    "Discussions where counter-arguments contain specific empirical evidence are more likely to be associated with the original poster changing their view than those containing only logical refutations.",
+    "Discussions where counter-arguments explicitly acknowledge the validity of a specific component of the original argument before presenting a counter-example are associated with higher view change rates.",
+    "Discussions where counter-arguments utilize second-person direct address are associated with higher original poster view-change rates than arguments relying on third-person analysis.",
+    "Original posts with direct personal anecdotes in the argument are associated with a lower probability of the original poster changing their view.",
+    "Discussions where counter-arguments explicitly introduce verifiable external facts distinct from the original argument are associated with a higher probability of view change.",
+    "Discussions where the original argument explicitly acknowledges the existence of alternative perspectives are associated with a higher likelihood of view change than those presenting the argument as singularly deterministic.",
+    "Discussions containing multiple distinct counter-argument comments are associated with a higher likelihood of view change than those containing only a single comment.",
+    "Counter-arguments frequently embedding direct quotations from the original post are associated with a higher likelihood of view change than those lacking explicit textual anchoring.",
+    "Discussions containing counter-arguments with specific real-world examples are associated with a higher probability of original poster view change than those lacking such citations.",
+    "Discussions containing counter-arguments with higher lexical density are associated with a lower likelihood of the original poster changing their view.",
+    "Discussions containing counter-arguments that cite specific, localized examples are associated with a higher likelihood of the original poster changing their view.",
+    "Discussions where the original argument contains explicit hedging or self-doubt markers are associated with higher poster view-change rates than arguments presented with unwavering certainty.",
+    "Discussions where counter-arguments contain concrete, locally verifiable examples are associated with a higher probability of view change than those relying on abstract principles.",
+    "Discussions where counter-arguments contain concrete real-world examples are associated with higher original-poster view change rates than those relying solely on abstract logic.",
+    "Discussions where the original argument contains explicit conditional language linking outcomes to specific antecedent conditions are associated with a lower likelihood of view change.",
+    "Discussions where counter-arguments provide concrete personal anecdotes illustrating the original claim's real-world consequences are associated with higher view-change rates than those relying on abstract theoretical rebuttals.",
+    "Discussions containing counter-arguments that cite specific real-world examples are associated with a higher probability of the original poster changing their view.",
+    "Posts containing specific counterarguments exhibit a higher frequency of explicit agreement markers than posts lacking such arguments.",
+    "Discussions where counter-arguments explicitly challenge the original poster's underlying assumptions rather than just their factual conclusions are associated with higher view-change rates.",
+    "Discussions where the original poster's argument text explicitly requests audience restraint or karma building are associated with a lower probability of the original poster changing their view.",
+    "Discussions where the original poster's argument contains an explicit personal experience narrative are associated with higher likelihood of view change.",
+    "Discussions where the original argument explicitly requests community feedback or advice are associated with a higher likelihood of view change.",
+    "Discussions where the original argument addresses the reader using second-person direct address are associated with a higher likelihood of view change than those using impersonal phrasing.",
+    "Discussions where counter-arguments employ specific, concrete illustrative examples are associated with a higher probability of the original poster changing their view.",
+    "Posts with more counter-arguments containing specific real-world examples are more likely to be associated with the original poster changing their view.",
+    "Discussions where counter-arguments contain direct textual quotations from the original post are associated with higher view change than those avoiding explicit text reuse.",
+    "Discussions where counter-arguments explicitly acknowledge the original poster's validity before introducing a narrower, specific caveat are associated with higher view-change rates than those offering immediate, blanket contradictions.",
+    "Discussions with post creation timestamps later in the dataset period are associated with a higher likelihood of view change.",
+    "Discussions containing counter-arguments that explicitly quote or reference specific textual elements of the original post are associated with a higher probability of the original poster's view changing.",
+    "Discussions where the counter-arguments contain direct quotations from the original post are associated with a higher probability of the original poster changing their view.",
+    "ChangeMyView posters receiving substantive counterarguments demonstrate higher levels of view modification than those receiving only supportive comments.",
+    "Discussions containing specific counter-arguments citing empirical examples are more likely to be associated with original poster view change than those lacking such evidence.",
+    "Posts where the original poster explicitly requests emotional support or assistance in the argument text are less likely to result in a view change.",
+    "Discussions where counter-arguments introduce concrete, external factual analogies are associated with higher view-change rates than those relying solely on abstract logical refutation.",
+    "Discussions where the original argument exceeds one hundred words are associated with a lower likelihood of view change than shorter arguments.",
+    "Discussions where the original post's argument explicitly acknowledges potential counterpoints are associated with a higher likelihood of the view changing.",
+    "Observed discussions with a higher log-transformed length measure are associated with a higher probability that the original poster changes their view.",
+    "Disclosures of personal emotional vulnerability in the original argument are associated with a higher likelihood of the original poster changing their view.",
+    "A counterargument containing specific empirical evidence is associated with a higher likelihood of the original poster awarding a delta.",
+    "Engaging with a well-reasoned counterargument correlates with a higher frequency of logical concession statements from the original poster in discussions.",
+    "Discussions where counter-arguments contain specific numerical data or statistics are associated with a higher likelihood of original-poster view change than those relying on general assertions."
+  ],
+  "records": [
+    {
+      "hypothesis": "Discussions where the original argument includes explicit comparisons to established scientific or historical norms are associated with lower view change than those without such comparisons.",
+      "method": "self_refine",
+      "memory": "on",
+      "seed": 42,
+      "position": 27,
+      "pool_index": 327,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "b8f6c22e4452c448e7f62b5f5af7b2b4be447cd072929664295806615f94398f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Arguments expressing explicit fear of social rejection or isolation are associated with lower view-change rates than arguments stating beliefs without emotional self-defense.",
+      "method": "creative_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 27,
+      "pool_index": 57,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "6266ba11adf84985ae19e58196feac416145d23adc80eeca78b65f1bfb30b5eb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Counter-arguments that cite specific, functioning institutional precedents are associated with a higher probability of view change than those relying on abstract normative principles.",
+      "method": "creative_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 12,
+      "pool_index": 12,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "397256b99a4914be867ddce7df30a8435c56b3118ef5e0ec229a52c4580aaddd",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions featuring longer precomputed log-transformed discussion length are associated with a higher likelihood of the original poster changing their view.",
+      "method": "voting",
+      "memory": "on",
+      "seed": 42,
+      "position": 19,
+      "pool_index": 379,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "928faa77f1cbbf7851621094b8cf956ed6a60ab1279db25d9b73b5cbb1ee84ce",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument contains explicit admissions of uncertainty are associated with a higher probability of view change than those asserting absolute certainty.",
+      "method": "hetero_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 20,
+      "pool_index": 140,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/hetero_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "a4f7ed00695a47bb8d30d668eb222eadd17b1063db28f8bb7d0f679b8808b00f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Counter-arguments frequently challenging multiple distinct factual premises within the argument are positively associated with view change.",
+      "method": "hetero_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 5,
+      "pool_index": 125,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/hetero_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "a4f7ed00695a47bb8d30d668eb222eadd17b1063db28f8bb7d0f679b8808b00f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument contains fewer counter-argument responses are associated with a lower likelihood of the original poster changing their view.",
+      "method": "direct",
+      "memory": "on",
+      "seed": 42,
+      "position": 24,
+      "pool_index": 114,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "36a9451a4e724337e3e74507a14df4f185cb3396427245387565cf0b4e3bd4c4",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions with at least three distinct counter-arguments in the posted comments are associated with a higher likelihood of the original poster changing their view.",
+      "method": "direct",
+      "memory": "off",
+      "seed": 42,
+      "position": 11,
+      "pool_index": 71,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "8ab766c3ad7a53b28de0df6b4588e013d30d8c2e4f4d8d0d0e02c6eccfc92b09",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original post title uses absolute certainty markers are associated with a lower likelihood of the original poster changing their view.",
+      "method": "voting",
+      "memory": "on",
+      "seed": 42,
+      "position": 17,
+      "pool_index": 377,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "928faa77f1cbbf7851621094b8cf956ed6a60ab1279db25d9b73b5cbb1ee84ce",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where original posts explicitly invite critique or use tentative language are associated with higher view-change rates than those using absolute, definitive declarations.",
+      "method": "creative_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 22,
+      "pool_index": 52,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "6266ba11adf84985ae19e58196feac416145d23adc80eeca78b65f1bfb30b5eb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions featuring counter-arguments that explicitly cite specific real-world examples are associated with higher likelihood of original view change.",
+      "method": "voting",
+      "memory": "off",
+      "seed": 42,
+      "position": 16,
+      "pool_index": 346,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "ef31be5ee8e5361f841db94bbb3ce3a619b6b7d3308b5df110440de721e03cd8",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Counterarguments containing measured, logical reasoning are positively associated with the original poster changing their mind compared to those containing emotional aggression in ChangeMyView discussions.",
+      "method": "zero_shot_without_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 26,
+      "pool_index": 446,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30_no_data/seed42/cmv/seed_42/hypotheses.json",
+        "source_sha256": "e51a944367eda76039b2188493257020f508df037def9c0b69fd8a024177673f",
+        "completed_vendi_manifest": "evals/independent_30_no_data/seed42/vendi_20261124_000909/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly quote and refute specific factual claims in the original post are associated with higher rates of view change.",
+      "method": "self_refine",
+      "memory": "off",
+      "seed": 42,
+      "position": 9,
+      "pool_index": 279,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "222fe1dc98e2ea5e13dff2d8fe8e93f766e8e7e1227cf52623e7bc692b9551fb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly validate the original poster's personal dignity or effort before introducing corrective logic are associated with higher view-change rates than purely logical refutations.",
+      "method": "creative_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 14,
+      "pool_index": 44,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "6266ba11adf84985ae19e58196feac416145d23adc80eeca78b65f1bfb30b5eb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions featuring counter-arguments that provide concrete real-world examples are associated with a higher likelihood of view change than those relying primarily on abstract reasoning.",
+      "method": "self_refine",
+      "memory": "on",
+      "seed": 42,
+      "position": 2,
+      "pool_index": 302,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "b8f6c22e4452c448e7f62b5f5af7b2b4be447cd072929664295806615f94398f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly engage with the specific examples or premises cited in the original argument text are associated with a higher likelihood of view change.",
+      "method": "homo_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 6,
+      "pool_index": 216,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "e59a88da84766f76c20db5e0d1467c12f0184604f5301450897532aae7fffc67",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions featuring counter-arguments that introduce concrete, personal labor-process details are associated with higher view-change rates than those relying solely on abstract normative principles.",
+      "method": "creative_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 16,
+      "pool_index": 16,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "397256b99a4914be867ddce7df30a8435c56b3118ef5e0ec229a52c4580aaddd",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly quantify systemic material harms to third parties rather than asserting propositional falsity are associated with a higher likelihood of view change.",
+      "method": "creative_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 15,
+      "pool_index": 15,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "397256b99a4914be867ddce7df30a8435c56b3118ef5e0ec229a52c4580aaddd",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments identify logical contradictions within the original post's own stated premises are associated with higher view-change rates than those citing external evidence.",
+      "method": "creative_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 17,
+      "pool_index": 47,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "6266ba11adf84985ae19e58196feac416145d23adc80eeca78b65f1bfb30b5eb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments provide specific factual data or verifiable citations are associated with a higher likelihood of the original poster changing their view.",
+      "method": "direct",
+      "memory": "on",
+      "seed": 42,
+      "position": 21,
+      "pool_index": 111,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "36a9451a4e724337e3e74507a14df4f185cb3396427245387565cf0b4e3bd4c4",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument contains explicit polite apology phrases are associated with a lower likelihood of view change compared to arguments without such phrases.",
+      "method": "direct",
+      "memory": "on",
+      "seed": 42,
+      "position": 29,
+      "pool_index": 119,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "36a9451a4e724337e3e74507a14df4f185cb3396427245387565cf0b4e3bd4c4",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Original posts featuring first-person vulnerable admissions are associated with higher view-change likelihood than those containing distant, third-person observations.",
+      "method": "hypogenic",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 18,
+      "pool_index": 258,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen/logs/hypogenic/full_20261122_070248/cmv/seed_42/cmv/no_persona/hypotheses.json",
+        "source_sha256": "b4e92be49385a9e110736a5879516304ca69c9a26de3ca5eddae5e8f52d1f8ee",
+        "completed_vendi_manifest": "generation/hypogenic/full_20261122_070248/vendi_20261122_223639/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments include direct URLs or external links are associated with a higher likelihood of view change than those solely using internal text.",
+      "method": "self_refine",
+      "memory": "on",
+      "seed": 42,
+      "position": 8,
+      "pool_index": 308,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "b8f6c22e4452c448e7f62b5f5af7b2b4be447cd072929664295806615f94398f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments employ specific, verifiable procedural examples are associated with higher original post view-change rates than those relying solely on abstract theoretical rebuttals.",
+      "method": "creative_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 13,
+      "pool_index": 13,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "397256b99a4914be867ddce7df30a8435c56b3118ef5e0ec229a52c4580aaddd",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument contains specific counter-question markers are associated with a higher probability of view change.",
+      "method": "self_refine",
+      "memory": "off",
+      "seed": 42,
+      "position": 17,
+      "pool_index": 287,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "222fe1dc98e2ea5e13dff2d8fe8e93f766e8e7e1227cf52623e7bc692b9551fb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original poster's argument includes personal anecdotes or first-person experiential narratives are associated with a lower likelihood of view change.",
+      "method": "direct",
+      "memory": "on",
+      "seed": 42,
+      "position": 11,
+      "pool_index": 101,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "36a9451a4e724337e3e74507a14df4f185cb3396427245387565cf0b4e3bd4c4",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly acknowledge the validity of the original post's initial premise before introducing divergence are associated with a higher likelihood of view change.",
+      "method": "voting",
+      "memory": "on",
+      "seed": 42,
+      "position": 6,
+      "pool_index": 366,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "928faa77f1cbbf7851621094b8cf956ed6a60ab1279db25d9b73b5cbb1ee84ce",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments employ concrete personal anecdotes are more likely associated with the original poster changing their view than those using abstract reasoning.",
+      "method": "voting",
+      "memory": "off",
+      "seed": 42,
+      "position": 2,
+      "pool_index": 332,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "ef31be5ee8e5361f841db94bbb3ce3a619b6b7d3308b5df110440de721e03cd8",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing at least three distinct counter-argument comments are associated with a higher probability of the original poster changing their view than those with fewer.",
+      "method": "voting",
+      "memory": "off",
+      "seed": 42,
+      "position": 29,
+      "pool_index": 359,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "ef31be5ee8e5361f841db94bbb3ce3a619b6b7d3308b5df110440de721e03cd8",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Posts containing direct counterarguments are more likely to result in the original poster upvoting the reply or changing their view.",
+      "method": "zero_shot_without_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 17,
+      "pool_index": 437,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30_no_data/seed42/cmv/seed_42/hypotheses.json",
+        "source_sha256": "e51a944367eda76039b2188493257020f508df037def9c0b69fd8a024177673f",
+        "completed_vendi_manifest": "evals/independent_30_no_data/seed42/vendi_20261124_000909/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument employs modest or uncertain epistemic markers are associated with a higher likelihood of view change than those using high-modality assertions.",
+      "method": "homo_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 4,
+      "pool_index": 214,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "e59a88da84766f76c20db5e0d1467c12f0184604f5301450897532aae7fffc67",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument contains explicit tone-policing requests are associated with a lower likelihood of view change compared to those without such requests.",
+      "method": "direct",
+      "memory": "on",
+      "seed": 42,
+      "position": 22,
+      "pool_index": 112,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "36a9451a4e724337e3e74507a14df4f185cb3396427245387565cf0b4e3bd4c4",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments utilize a redrafting strategy, rewriting the original poster's viewpoint from a nuanced perspective before refutation, are associated with higher view change.",
+      "method": "homo_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 19,
+      "pool_index": 229,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "e59a88da84766f76c20db5e0d1467c12f0184604f5301450897532aae7fffc67",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the observed original-post score exceeds 50 are associated with a lower likelihood of view change than those with lower observed scores.",
+      "method": "self_refine",
+      "memory": "on",
+      "seed": 42,
+      "position": 1,
+      "pool_index": 301,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "b8f6c22e4452c448e7f62b5f5af7b2b4be447cd072929664295806615f94398f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original poster's argument contains explicit uncertainty markers are associated with a higher likelihood of the original poster changing their view.",
+      "method": "hetero_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 22,
+      "pool_index": 142,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/hetero_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "a4f7ed00695a47bb8d30d668eb222eadd17b1063db28f8bb7d0f679b8808b00f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original poster's initial argument explicitly acknowledges a counter-argument or limitation are directionally associated with a higher probability of view change.",
+      "method": "zero_shot_with_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 24,
+      "pool_index": 414,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30/run_20261122_061001/cmv/seed_42/hypotheses.json",
+        "source_sha256": "7310ebd26bfdb9d7b5bd8210a6cc30fe3206c412dc06b8053f75c73bf2900d19",
+        "completed_vendi_manifest": "evals/independent_30/run_20261122_061001/vendi_20261122_062432/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Counter-arguments containing named, real-world analogies (e.g., specific historical or scientific examples) are associated with higher view-change rates than abstract logical rebuttals.",
+      "method": "creative_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 3,
+      "pool_index": 3,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "397256b99a4914be867ddce7df30a8435c56b3118ef5e0ec229a52c4580aaddd",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly contrast the original poster's view with a relatable real-world personal experience are associated with a higher likelihood of view change.",
+      "method": "voting",
+      "memory": "on",
+      "seed": 42,
+      "position": 28,
+      "pool_index": 388,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "928faa77f1cbbf7851621094b8cf956ed6a60ab1279db25d9b73b5cbb1ee84ce",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussion posts with titles containing explicit emotional or personal identifiers are associated with a lower likelihood of the original poster changing their view.",
+      "method": "direct",
+      "memory": "off",
+      "seed": 42,
+      "position": 21,
+      "pool_index": 81,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "8ab766c3ad7a53b28de0df6b4588e013d30d8c2e4f4d8d0d0e02c6eccfc92b09",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing multi-turn reply interactions in the conversation text are associated with a higher likelihood of the original poster changing their view.",
+      "method": "voting",
+      "memory": "off",
+      "seed": 42,
+      "position": 27,
+      "pool_index": 357,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "ef31be5ee8e5361f841db94bbb3ce3a619b6b7d3308b5df110440de721e03cd8",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Posts containing a single, highly-rated counterargument are associated with an increased frequency of attribution replies from the original poster.",
+      "method": "zero_shot_without_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 14,
+      "pool_index": 434,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30_no_data/seed42/cmv/seed_42/hypotheses.json",
+        "source_sha256": "e51a944367eda76039b2188493257020f508df037def9c0b69fd8a024177673f",
+        "completed_vendi_manifest": "evals/independent_30_no_data/seed42/vendi_20261124_000909/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument contains explicit self-referential meta-commentary regarding platform mechanics or author status are associated with a lower probability of view change.",
+      "method": "hetero_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 24,
+      "pool_index": 174,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/hetero_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "4927a7e5bf943c2064c9dce7bc8a92c46b9ae22283a90b04e5950a05a9f3fd62",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-argument comments include direct quotes from the original argument are more frequently associated with a changed view than those without such quotations.",
+      "method": "zero_shot_with_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 25,
+      "pool_index": 415,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30/run_20261122_061001/cmv/seed_42/hypotheses.json",
+        "source_sha256": "7310ebd26bfdb9d7b5bd8210a6cc30fe3206c412dc06b8053f75c73bf2900d19",
+        "completed_vendi_manifest": "evals/independent_30/run_20261122_061001/vendi_20261122_062432/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Posts with observed scores below the median are associated with a lower probability of the original poster changing their view compared to higher-scored posts.",
+      "method": "direct",
+      "memory": "off",
+      "seed": 42,
+      "position": 19,
+      "pool_index": 79,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "8ab766c3ad7a53b28de0df6b4588e013d30d8c2e4f4d8d0d0e02c6eccfc92b09",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments use second-person direct address to the original poster are associated with a higher likelihood of view change.",
+      "method": "direct",
+      "memory": "on",
+      "seed": 42,
+      "position": 20,
+      "pool_index": 110,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "36a9451a4e724337e3e74507a14df4f185cb3396427245387565cf0b4e3bd4c4",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original poster's argument contains a direct plea for non-violация are associated with a lower likelihood of view change.",
+      "method": "zero_shot_with_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 0,
+      "pool_index": 390,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30/run_20261122_061001/cmv/seed_42/hypotheses.json",
+        "source_sha256": "7310ebd26bfdb9d7b5bd8210a6cc30fe3206c412dc06b8053f75c73bf2900d19",
+        "completed_vendi_manifest": "evals/independent_30/run_20261122_061001/vendi_20261122_062432/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument contains explicit first-person singular pronouns are associated with a higher probability of view change.",
+      "method": "hetero_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 22,
+      "pool_index": 172,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/hetero_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "4927a7e5bf943c2064c9dce7bc8a92c46b9ae22283a90b04e5950a05a9f3fd62",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "The presence of a logged counterargument is positively associated with the probability that the original poster posts a viewpoint change or awards a delta.",
+      "method": "zero_shot_without_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 20,
+      "pool_index": 440,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30_no_data/seed42/cmv/seed_42/hypotheses.json",
+        "source_sha256": "e51a944367eda76039b2188493257020f508df037def9c0b69fd8a024177673f",
+        "completed_vendi_manifest": "evals/independent_30_no_data/seed42/vendi_20261124_000909/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Higher cognitive complexity in counterarguments is associated with a higher likelihood of the original poster changing their stated view in ChangeMyView discussions.",
+      "method": "zero_shot_without_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 11,
+      "pool_index": 431,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30_no_data/seed42/cmv/seed_42/hypotheses.json",
+        "source_sha256": "e51a944367eda76039b2188493257020f508df037def9c0b69fd8a024177673f",
+        "completed_vendi_manifest": "evals/independent_30_no_data/seed42/vendi_20261124_000909/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly acknowledge the original poster's underlying valid point before introducing the discrepancy are associated with higher view-change rates than pure refutations.",
+      "method": "homo_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 14,
+      "pool_index": 194,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "9d83ef7cfd3ebc503ca855f31f1743f65afe58e1709b00dc2ce5ad67efba6099",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments reference specific, named external programs or locations are associated with higher view-change rates than those using only abstract logical refutation.",
+      "method": "creative_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 19,
+      "pool_index": 49,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "6266ba11adf84985ae19e58196feac416145d23adc80eeca78b65f1bfb30b5eb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly quote and refute specific phrases from the original post are associated with a higher likelihood of view change.",
+      "method": "homo_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 3,
+      "pool_index": 183,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "9d83ef7cfd3ebc503ca855f31f1743f65afe58e1709b00dc2ce5ad67efba6099",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly refute specific examples or anecdotes provided by the original poster are associated with a higher probability of view change compared to arguments addressing the main premise directly.",
+      "method": "hetero_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 26,
+      "pool_index": 176,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/hetero_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "4927a7e5bf943c2064c9dce7bc8a92c46b9ae22283a90b04e5950a05a9f3fd62",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument uses hedging or qualifying language are associated with a higher likelihood of view change than those using absolute declarative statements.",
+      "method": "self_refine",
+      "memory": "on",
+      "seed": 42,
+      "position": 9,
+      "pool_index": 309,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "b8f6c22e4452c448e7f62b5f5af7b2b4be447cd072929664295806615f94398f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly quote the original poster's text rather than paraphrasing are associated with a higher probability of view change.",
+      "method": "hetero_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 15,
+      "pool_index": 135,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/hetero_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "a4f7ed00695a47bb8d30d668eb222eadd17b1063db28f8bb7d0f679b8808b00f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing counter-arguments that explicitly validate the original poster's emotional experience prior to logical rebuttal are associated with higher view-change rates.",
+      "method": "creative_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 22,
+      "pool_index": 22,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "397256b99a4914be867ddce7df30a8435c56b3118ef5e0ec229a52c4580aaddd",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing counter-arguments that use analogies to familiar scenarios are associated with a higher likelihood of the original poster changing their view.",
+      "method": "voting",
+      "memory": "on",
+      "seed": 42,
+      "position": 13,
+      "pool_index": 373,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "928faa77f1cbbf7851621094b8cf956ed6a60ab1279db25d9b73b5cbb1ee84ce",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the title explicitly contains an absolute universal quantifier like 'all' or 'never' are associated with lower view change than those using variable or probabilistic terms.",
+      "method": "homo_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 25,
+      "pool_index": 235,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "e59a88da84766f76c20db5e0d1467c12f0184604f5301450897532aae7fffc67",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing counter-arguments that explicitly reference specific, concrete examples or real-world instances in the provided comments are associated with a higher probability of view change.",
+      "method": "self_refine",
+      "memory": "off",
+      "seed": 42,
+      "position": 4,
+      "pool_index": 274,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "222fe1dc98e2ea5e13dff2d8fe8e93f766e8e7e1227cf52623e7bc692b9551fb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments contain specific empirical evidence are more likely to be associated with the original poster changing their view than those containing only logical refutations.",
+      "method": "direct",
+      "memory": "off",
+      "seed": 42,
+      "position": 3,
+      "pool_index": 63,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "8ab766c3ad7a53b28de0df6b4588e013d30d8c2e4f4d8d0d0e02c6eccfc92b09",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly acknowledge the validity of a specific component of the original argument before presenting a counter-example are associated with higher view change rates.",
+      "method": "homo_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 13,
+      "pool_index": 193,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "9d83ef7cfd3ebc503ca855f31f1743f65afe58e1709b00dc2ce5ad67efba6099",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments utilize second-person direct address are associated with higher original poster view-change rates than arguments relying on third-person analysis.",
+      "method": "creative_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 10,
+      "pool_index": 40,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "6266ba11adf84985ae19e58196feac416145d23adc80eeca78b65f1bfb30b5eb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Original posts with direct personal anecdotes in the argument are associated with a lower probability of the original poster changing their view.",
+      "method": "self_refine",
+      "memory": "off",
+      "seed": 42,
+      "position": 12,
+      "pool_index": 282,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "222fe1dc98e2ea5e13dff2d8fe8e93f766e8e7e1227cf52623e7bc692b9551fb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly introduce verifiable external facts distinct from the original argument are associated with a higher probability of view change.",
+      "method": "hetero_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 0,
+      "pool_index": 150,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/hetero_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "4927a7e5bf943c2064c9dce7bc8a92c46b9ae22283a90b04e5950a05a9f3fd62",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument explicitly acknowledges the existence of alternative perspectives are associated with a higher likelihood of view change than those presenting the argument as singularly deterministic.",
+      "method": "self_refine",
+      "memory": "on",
+      "seed": 42,
+      "position": 21,
+      "pool_index": 321,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "b8f6c22e4452c448e7f62b5f5af7b2b4be447cd072929664295806615f94398f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing multiple distinct counter-argument comments are associated with a higher likelihood of view change than those containing only a single comment.",
+      "method": "self_refine",
+      "memory": "on",
+      "seed": 42,
+      "position": 16,
+      "pool_index": 316,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "b8f6c22e4452c448e7f62b5f5af7b2b4be447cd072929664295806615f94398f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Counter-arguments frequently embedding direct quotations from the original post are associated with a higher likelihood of view change than those lacking explicit textual anchoring.",
+      "method": "homo_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 5,
+      "pool_index": 185,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "9d83ef7cfd3ebc503ca855f31f1743f65afe58e1709b00dc2ce5ad67efba6099",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing counter-arguments with specific real-world examples are associated with a higher probability of original poster view change than those lacking such citations.",
+      "method": "self_refine",
+      "memory": "off",
+      "seed": 42,
+      "position": 25,
+      "pool_index": 295,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "222fe1dc98e2ea5e13dff2d8fe8e93f766e8e7e1227cf52623e7bc692b9551fb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing counter-arguments with higher lexical density are associated with a lower likelihood of the original poster changing their view.",
+      "method": "direct",
+      "memory": "on",
+      "seed": 42,
+      "position": 8,
+      "pool_index": 98,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "36a9451a4e724337e3e74507a14df4f185cb3396427245387565cf0b4e3bd4c4",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing counter-arguments that cite specific, localized examples are associated with a higher likelihood of the original poster changing their view.",
+      "method": "voting",
+      "memory": "on",
+      "seed": 42,
+      "position": 0,
+      "pool_index": 360,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "928faa77f1cbbf7851621094b8cf956ed6a60ab1279db25d9b73b5cbb1ee84ce",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument contains explicit hedging or self-doubt markers are associated with higher poster view-change rates than arguments presented with unwavering certainty.",
+      "method": "creative_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 5,
+      "pool_index": 35,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "6266ba11adf84985ae19e58196feac416145d23adc80eeca78b65f1bfb30b5eb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments contain concrete, locally verifiable examples are associated with a higher probability of view change than those relying on abstract principles.",
+      "method": "creative_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 23,
+      "pool_index": 23,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "397256b99a4914be867ddce7df30a8435c56b3118ef5e0ec229a52c4580aaddd",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments contain concrete real-world examples are associated with higher original-poster view change rates than those relying solely on abstract logic.",
+      "method": "voting",
+      "memory": "off",
+      "seed": 42,
+      "position": 8,
+      "pool_index": 338,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "ef31be5ee8e5361f841db94bbb3ce3a619b6b7d3308b5df110440de721e03cd8",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument contains explicit conditional language linking outcomes to specific antecedent conditions are associated with a lower likelihood of view change.",
+      "method": "direct",
+      "memory": "on",
+      "seed": 42,
+      "position": 26,
+      "pool_index": 116,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "36a9451a4e724337e3e74507a14df4f185cb3396427245387565cf0b4e3bd4c4",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments provide concrete personal anecdotes illustrating the original claim's real-world consequences are associated with higher view-change rates than those relying on abstract theoretical rebuttals.",
+      "method": "hetero_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 28,
+      "pool_index": 148,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/hetero_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "a4f7ed00695a47bb8d30d668eb222eadd17b1063db28f8bb7d0f679b8808b00f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing counter-arguments that cite specific real-world examples are associated with a higher probability of the original poster changing their view.",
+      "method": "zero_shot_with_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 22,
+      "pool_index": 412,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30/run_20261122_061001/cmv/seed_42/hypotheses.json",
+        "source_sha256": "7310ebd26bfdb9d7b5bd8210a6cc30fe3206c412dc06b8053f75c73bf2900d19",
+        "completed_vendi_manifest": "evals/independent_30/run_20261122_061001/vendi_20261122_062432/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Posts containing specific counterarguments exhibit a higher frequency of explicit agreement markers than posts lacking such arguments.",
+      "method": "zero_shot_without_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 9,
+      "pool_index": 429,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30_no_data/seed42/cmv/seed_42/hypotheses.json",
+        "source_sha256": "e51a944367eda76039b2188493257020f508df037def9c0b69fd8a024177673f",
+        "completed_vendi_manifest": "evals/independent_30_no_data/seed42/vendi_20261124_000909/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly challenge the original poster's underlying assumptions rather than just their factual conclusions are associated with higher view-change rates.",
+      "method": "creative_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 21,
+      "pool_index": 51,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "6266ba11adf84985ae19e58196feac416145d23adc80eeca78b65f1bfb30b5eb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original poster's argument text explicitly requests audience restraint or karma building are associated with a lower probability of the original poster changing their view.",
+      "method": "zero_shot_with_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 10,
+      "pool_index": 400,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30/run_20261122_061001/cmv/seed_42/hypotheses.json",
+        "source_sha256": "7310ebd26bfdb9d7b5bd8210a6cc30fe3206c412dc06b8053f75c73bf2900d19",
+        "completed_vendi_manifest": "evals/independent_30/run_20261122_061001/vendi_20261122_062432/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original poster's argument contains an explicit personal experience narrative are associated with higher likelihood of view change.",
+      "method": "zero_shot_with_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 17,
+      "pool_index": 407,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30/run_20261122_061001/cmv/seed_42/hypotheses.json",
+        "source_sha256": "7310ebd26bfdb9d7b5bd8210a6cc30fe3206c412dc06b8053f75c73bf2900d19",
+        "completed_vendi_manifest": "evals/independent_30/run_20261122_061001/vendi_20261122_062432/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument explicitly requests community feedback or advice are associated with a higher likelihood of view change.",
+      "method": "homo_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 22,
+      "pool_index": 232,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "e59a88da84766f76c20db5e0d1467c12f0184604f5301450897532aae7fffc67",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument addresses the reader using second-person direct address are associated with a higher likelihood of view change than those using impersonal phrasing.",
+      "method": "self_refine",
+      "memory": "on",
+      "seed": 42,
+      "position": 25,
+      "pool_index": 325,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "b8f6c22e4452c448e7f62b5f5af7b2b4be447cd072929664295806615f94398f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments employ specific, concrete illustrative examples are associated with a higher probability of the original poster changing their view.",
+      "method": "homo_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 6,
+      "pool_index": 186,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "9d83ef7cfd3ebc503ca855f31f1743f65afe58e1709b00dc2ce5ad67efba6099",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Posts with more counter-arguments containing specific real-world examples are more likely to be associated with the original poster changing their view.",
+      "method": "direct",
+      "memory": "off",
+      "seed": 42,
+      "position": 23,
+      "pool_index": 83,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "8ab766c3ad7a53b28de0df6b4588e013d30d8c2e4f4d8d0d0e02c6eccfc92b09",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments contain direct textual quotations from the original post are associated with higher view change than those avoiding explicit text reuse.",
+      "method": "homo_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 9,
+      "pool_index": 189,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "9d83ef7cfd3ebc503ca855f31f1743f65afe58e1709b00dc2ce5ad67efba6099",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments explicitly acknowledge the original poster's validity before introducing a narrower, specific caveat are associated with higher view-change rates than those offering immediate, blanket contradictions.",
+      "method": "homo_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 1,
+      "pool_index": 181,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "9d83ef7cfd3ebc503ca855f31f1743f65afe58e1709b00dc2ce5ad67efba6099",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions with post creation timestamps later in the dataset period are associated with a higher likelihood of view change.",
+      "method": "direct",
+      "memory": "on",
+      "seed": 42,
+      "position": 17,
+      "pool_index": 107,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "36a9451a4e724337e3e74507a14df4f185cb3396427245387565cf0b4e3bd4c4",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing counter-arguments that explicitly quote or reference specific textual elements of the original post are associated with a higher probability of the original poster's view changing.",
+      "method": "voting",
+      "memory": "off",
+      "seed": 42,
+      "position": 13,
+      "pool_index": 343,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "ef31be5ee8e5361f841db94bbb3ce3a619b6b7d3308b5df110440de721e03cd8",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the counter-arguments contain direct quotations from the original post are associated with a higher probability of the original poster changing their view.",
+      "method": "hetero_mad",
+      "memory": "off",
+      "seed": 42,
+      "position": 16,
+      "pool_index": 136,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/hetero_mad/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "a4f7ed00695a47bb8d30d668eb222eadd17b1063db28f8bb7d0f679b8808b00f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "ChangeMyView posters receiving substantive counterarguments demonstrate higher levels of view modification than those receiving only supportive comments.",
+      "method": "zero_shot_without_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 1,
+      "pool_index": 421,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30_no_data/seed42/cmv/seed_42/hypotheses.json",
+        "source_sha256": "e51a944367eda76039b2188493257020f508df037def9c0b69fd8a024177673f",
+        "completed_vendi_manifest": "evals/independent_30_no_data/seed42/vendi_20261124_000909/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions containing specific counter-arguments citing empirical examples are more likely to be associated with original poster view change than those lacking such evidence.",
+      "method": "voting",
+      "memory": "off",
+      "seed": 42,
+      "position": 19,
+      "pool_index": 349,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "ef31be5ee8e5361f841db94bbb3ce3a619b6b7d3308b5df110440de721e03cd8",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Posts where the original poster explicitly requests emotional support or assistance in the argument text are less likely to result in a view change.",
+      "method": "voting",
+      "memory": "off",
+      "seed": 42,
+      "position": 1,
+      "pool_index": 331,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "ef31be5ee8e5361f841db94bbb3ce3a619b6b7d3308b5df110440de721e03cd8",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments introduce concrete, external factual analogies are associated with higher view-change rates than those relying solely on abstract logical refutation.",
+      "method": "creative_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 6,
+      "pool_index": 36,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/aita_news_seed42_20261124_093112/cmv/creative_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "6266ba11adf84985ae19e58196feac416145d23adc80eeca78b65f1bfb30b5eb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/aita_news_seed42_20261124_093112/vendi_completed_20261124_133245/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original argument exceeds one hundred words are associated with a lower likelihood of view change than shorter arguments.",
+      "method": "self_refine",
+      "memory": "on",
+      "seed": 42,
+      "position": 11,
+      "pool_index": 311,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "b8f6c22e4452c448e7f62b5f5af7b2b4be447cd072929664295806615f94398f",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where the original post's argument explicitly acknowledges potential counterpoints are associated with a higher likelihood of the view changing.",
+      "method": "voting",
+      "memory": "on",
+      "seed": 42,
+      "position": 8,
+      "pool_index": 368,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/voting/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "928faa77f1cbbf7851621094b8cf956ed6a60ab1279db25d9b73b5cbb1ee84ce",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Observed discussions with a higher log-transformed length measure are associated with a higher probability that the original poster changes their view.",
+      "method": "direct",
+      "memory": "off",
+      "seed": 42,
+      "position": 27,
+      "pool_index": 87,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/direct/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "8ab766c3ad7a53b28de0df6b4588e013d30d8c2e4f4d8d0d0e02c6eccfc92b09",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Disclosures of personal emotional vulnerability in the original argument are associated with a higher likelihood of the original poster changing their view.",
+      "method": "self_refine",
+      "memory": "off",
+      "seed": 42,
+      "position": 3,
+      "pool_index": 273,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/self_refine/seed_42/memory_off/cmv/no_persona/hypotheses.json",
+        "source_sha256": "222fe1dc98e2ea5e13dff2d8fe8e93f766e8e7e1227cf52623e7bc692b9551fb",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "A counterargument containing specific empirical evidence is associated with a higher likelihood of the original poster awarding a delta.",
+      "method": "zero_shot_without_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 24,
+      "pool_index": 444,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30_no_data/seed42/cmv/seed_42/hypotheses.json",
+        "source_sha256": "e51a944367eda76039b2188493257020f508df037def9c0b69fd8a024177673f",
+        "completed_vendi_manifest": "evals/independent_30_no_data/seed42/vendi_20261124_000909/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Engaging with a well-reasoned counterargument correlates with a higher frequency of logical concession statements from the original poster in discussions.",
+      "method": "zero_shot_without_data",
+      "memory": "not_applicable",
+      "seed": 42,
+      "position": 3,
+      "pool_index": 423,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/independent_30_no_data/seed42/cmv/seed_42/hypotheses.json",
+        "source_sha256": "e51a944367eda76039b2188493257020f508df037def9c0b69fd8a024177673f",
+        "completed_vendi_manifest": "evals/independent_30_no_data/seed42/vendi_20261124_000909/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    },
+    {
+      "hypothesis": "Discussions where counter-arguments contain specific numerical data or statistics are associated with a higher likelihood of original-poster view change than those relying on general assertions.",
+      "method": "homo_mad",
+      "memory": "on",
+      "seed": 42,
+      "position": 26,
+      "pool_index": 236,
+      "provenance": {
+        "source_file": "/mnt/localssd/namit/experigen-evals/logs/creative_mad_memory/labeled_parallel_20261121_094104/cmv/homo_mad/seed_42/memory_on/cmv/no_persona/hypotheses.json",
+        "source_sha256": "e59a88da84766f76c20db5e0d1467c12f0184604f5301450897532aae7fffc67",
+        "completed_vendi_manifest": "evals/creative_mad_memory/labeled_parallel_20261121_094104/vendi_completed_20261121_172302/manifest.json",
+        "verification": "Extracted from a completed Vendi manifest whose collector verified the source bank."
+      }
+    }
+  ]
+}
