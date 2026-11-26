@@ -7,7 +7,7 @@ from scipy.cluster.hierarchy import fcluster, linkage
 from scipy.spatial.distance import squareform
 
 from .equivalence import validate_comparisons
-from .features import validate_features
+from .features import rewrite_code_spec, validate_features
 from .models import embed
 
 FIELDS = ("name", "dtype", "source_columns", "definition", "kind", "spec")
@@ -42,12 +42,16 @@ def dedup(decomposed, env, cfg, review_cluster, vectors=None):
     Optional normalized vectors follow prompt features in decomposition/raw order.
     Candidate complete-linkage labels are exported only as diagnostics.
     """
+    forbidden = {env["target"], env.get("group"), "post_id", "comment_id"} - {None}
     for decomposition in decomposed:
         validate_features(decomposition["features"])
-        forbidden = {env["target"], env.get("group"), "post_id", "comment_id"}
+        # Outcomes and row identifiers are never predictor inputs.
         if any(forbidden.intersection(feature["source_columns"]) for feature in decomposition["features"]):
             raise ValueError("Outcome and identifier columns cannot be feature sources")
     raw = [(d["id"], f) for d in decomposed for f in d["features"]]
+    original = forbidden | {source for _, f in raw for source in f["source_columns"]}
+    if any(f["name"] in original for _, f in raw):
+        raise ValueError("Feature names cannot collide with original input columns")
     labels = np.arange(len(raw))
     reviews = []
     pairs = []
@@ -106,7 +110,7 @@ def dedup(decomposed, env, cfg, review_cluster, vectors=None):
                     "merged": bool(final_labels[i] == final_labels[j]),
                 })
 
-    canon, taken, mappings = {}, set(), {d["id"]: {} for d in decomposed}
+    canon, taken, mappings = {}, set(original), {d["id"]: {} for d in decomposed}
     for (i, f), label in zip(raw, labels):
         if label not in canon:
             name = f["name"]
@@ -119,7 +123,9 @@ def dedup(decomposed, env, cfg, review_cluster, vectors=None):
         canon[label]["members"].append({"hypothesis": i, **{k: f[k] for k in FIELDS}})
         mappings[i][f["name"]] = canon[label]["name"]
     for feature in canon.values():
-        feature["spec"] = rename(feature["spec"], mappings[feature["members"][0]["hypothesis"]])
+        if feature["kind"] == "code":
+            owner = feature["members"][0]
+            feature["spec"] = rewrite_code_spec(feature["spec"], mappings[owner["hypothesis"]], owner["name"])
 
     hypotheses = [
         {

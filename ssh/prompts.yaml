@@ -9,26 +9,42 @@ measurement_policy: |
     adopted by that speaker. For a quotation/reference-presence construct, measure the
     quotation/reference itself; endorsement is NOT required. When judging a comment's stance
     toward the OP, include the actual OP title/argument context needed to identify the target.
-  - Use supplied current text, including marked edits, unless the hypothesis explicitly
-    restricts time. Preserve literal initial/post-time restrictions; an unavailable initial
-    snapshot is a limitation, not permission to infer it or silently use current text instead.
-    An unordered OC_comments list establishes neither chronology nor rank. Never infer
-    pre-event text, speaker identity or unavailable time.
+  - Apply an outcome-leakage guard to EVERY predictor text source, including title, argument,
+    comments and conversation: never use the OP's own view-change or delta-award announcements,
+    post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred as
+    predictor evidence, even when embedded in the argument or an otherwise eligible passage.
+    Generic discussion of platform/delta rules is not an outcome announcement; retain it when
+    relevant to the construct. Exclude outcome-reporting content, not all mentions of "delta".
+  - Subject to that leakage guard, use supplied current text, including marked edits, unless
+    the hypothesis explicitly restricts time. Removing marked edits or outcome announcements
+    does NOT reconstruct an initial or pre-outcome snapshot. Preserve literal initial/post-time
+    restrictions; never infer unavailable pre-event text, speaker identity or time. An unordered
+    OC_comments list establishes neither chronology nor rank. If faithful predictor exposure
+    requires unavailable temporal information, record the limitation and use term=null, not a
+    current-text proxy. A fixed delta outcome cannot test an alternative outcome; explicitly
+    outcome-defined hypotheses are unsupported when they require outcome evidence as predictors.
+    If this exclusion changes the requested construct itself (for example, an explicit predictor
+    of the OP announcing a view change), preserve that unsupported claim in note with term=null;
+    never replace it with a cleaned concession, attitude or platform-discussion proxy.
   - A valid empty comment list yields 0 for any/count and null for share/mean/all. Missing or
     malformed required input yields null; complete, assessable absence yields 0. Missing OP
     context yields null when it prevents determining the requested measurement. An observed
     quote/reference may establish a positive match against available permitted OP title/body;
     a negative cannot be established while a relevant permitted OP source is missing.
   - Use canonical, concise construct definitions that preserve actual qualifiers. Illustrative
-    examples are nonexhaustive, not extra eligibility rules. "Documented example" does not by
-    itself require external verification; use only the declared supplied sources.
+    examples are nonexhaustive, not extra eligibility rules. A specific personal experience can
+    be a real-world case; examples of institutional/public cases do not exclude it. Preserve
+    actual versus invented/hypothetical cases and the OP versus other readers as distinct targets.
+    "Documented example" does not by itself require external verification; use only declared
+    supplied sources.
   - Preserve any versus all/count/share, frequent occurrence, comment count versus distinct
     argument count, and intensity versus density. Do not invent frequency cutoffs, controls,
     proxies or implicit dataset-wide references. A semantic intensity score may use a fixed,
     construct-specific anchored 0-10 rubric defined before annotation; it is an operational
-    score, not a validated instrument. Do not choose a cutoff for an unspecified "high"
-    qualifier or tune to delta. A required unspecified boundary is a limitation, not permission
-    to force matching labels.
+    score, not a validated instrument. State any assumption used to aggregate evidence into a
+    row score; do not pass that assumption off as a hypothesis requirement. Do not choose a
+    cutoff for an unspecified "high" qualifier or tune to delta. A required unspecified boundary
+    is a limitation, not permission to force matching labels.
 
 agents:
   hypothesis_decomposer:
@@ -54,6 +70,12 @@ agents:
           list cardinality, explicit literal matching, supplied numeric columns, or deterministic
           transformations of other features. A semantic count is not deterministic merely
           because it returns an integer. Code cannot substitute for an undeclared semantic judgment.
+          Word counts/regex cannot silently perform semantic outcome-announcement filtering.
+          If faithful measurement needs semantic exclusion not determined by declared raw inputs,
+          use a direct-row prompt only if it can faithfully preserve the requested measurement;
+          otherwise document the limitation and set term=null. Do not add preprocessing or an
+          executor, or blanket-delete edits. Supplied numeric length/score columns do not reveal
+          pre-outcome values; document unavailable construction/timing rather than assuming them.
         - If the hypothesis fixes an explicit numeric threshold or comparison (">= 100",
           "outnumber", "above median"), retain the base measurement and add the corresponding
           binary code feature. This does not require splitting semantic any/count/share
@@ -64,7 +86,8 @@ agents:
           document it in note and use term=null, not a plausible proxy.
 
         FEATURE CONTRACT (exactly these six fields, all required)
-        - name: unique snake_case identifier; atomic and reusable, without outcome direction.
+        - name: unique snake_case identifier, distinct from every original column name; atomic
+          and reusable, without outcome direction.
         - dtype: binary (0/1) or numeric; express categories as binary indicators. Every output
           is one scalar of this type or null per dataset row, never a list of comment labels.
         - source_columns: complete nonempty list of original predictors actually read, including
@@ -75,14 +98,25 @@ agents:
           anchors, without turning illustrative examples into new restrictions.
         - kind: code or prompt. Code spec is a precise Python/pandas expression or complete
           deterministic recipe over declared sources or other defined features; do not execute it.
+          Every reference to another generated feature in a code recipe, including prose, MUST
+          use df['feature_name'], df.feature_name, or backtick-delimited `feature_name`. For
+          example: "Using `comment_count`: return 1 if df['comment_count'] >= 3, else 0."
+          Do not use bare generated-feature names or hide dependencies in quoted literals/regex.
+          Keep original source-column references unchanged; these are not generated features.
         - spec: SELF-CONTAINED measurement instructions, not a hypothesis test or restatement.
-          Name all sources, attribution, text boundaries, time and required context. State the
-          requested scalar output, 1/0/null cases, exclusions, eligibility, empty/malformed cases,
-          and, when relevant, denominator and overlap/deduplication rules. Apply the shared
-          empty-input and missing-context rules consistently. For numeric output, give units/range
-          and anchored meanings including zero. A prompt must read the declared sources jointly
-          and directly return the requested per-row measurement; no vectors or intermediate
-          label classes/dependency schema.
+          Name all original sources, attribution, text boundaries, time and required context.
+          Every semantic prompt spec must stand alone: repeat applicable leakage, attribution,
+          empty/missing and timing rules rather than referring to shared policy, another feature,
+          or a generated label. Read only its declared original columns, never generated features.
+          Each text-based spec must explicitly exclude OP view-change/delta-award announcements,
+          post-outcome thank-you/resolution updates and outcome-reporting text, even in argument,
+          while retaining relevant generic platform/delta-rule discussion. Downstream annotation
+          receives the individual spec and cannot be assumed to receive this shared policy.
+          State one consistent set of positive/negative/empty/missing rules, the requested scalar
+          output, exclusions, eligibility, and relevant denominator and overlap/deduplication.
+          For numeric output, give units/range, anchored meanings including zero, and any assumed
+          row aggregation. A prompt directly returns the requested per-row measurement; no vectors,
+          intermediate label classes/dependency schema or conflicting exceptions.
 
         RELATIONSHIP CONTRACT
         - h0/h1: exact null/alternative in feature names, one sentence each.
@@ -94,15 +128,19 @@ agents:
           within a named subgroup. Preserve the intended contrast even when untestable.
         - sign: +, -, or two_sided for the tested coefficient's claimed direction.
         - note: explicit limitations/assumptions, or empty string. Preserve unsupported initial
-          snapshots, unspecified frequency boundaries and undocumented supplied scales as
-          limitations; do not manufacture testability.
+          or pre-outcome snapshots, unspecified frequency boundaries, row-score aggregation
+          assumptions and undocumented supplied scales as limitations; do not manufacture
+          testability. Keep delta as the fixed outcome: if a hypothesis needs a different outcome
+          or outcome-reporting predictor evidence, explain why it is unsupported and set term=null.
 
         EXAMPLES OF REUSABLE DESIGN AND REAL FAILURE CLASSES (not annotations)
         - "Any comment cites a specific real-world example" is one binary prompt feature;
           "share of comments citing a specific real-world example" is a different numeric
           prompt feature. Both directly measure the requested row quantity. A functioning
           institutional precedent is narrower than any real-world example. Named illustrative
-          cases do not restrict the construct to those cases or require outside verification.
+          cases do not restrict the construct to those cases or require outside verification;
+          a concrete personal experience can qualify as a real-world case. An invented scenario
+          is not an actual case, and an effect on the OP is not an effect on another reader.
         - OP explicit uncertainty/admission of possible error and a paraphrase about explicit
           OP doubt can share a feature if their full scope/exclusions match. Inviting critique
           OR being tentative is broader; absolute certainty is not its complement.
@@ -112,18 +150,44 @@ agents:
         - "Frequently challenges premises" needs its stated frequency rule; do not replace it
           with any challenge. Count distinct arguments only if the requested measurement calls
           for semantic deduplication, not by treating comment count as argument count.
-        - Initial OP argument is not an inferred snapshot of edited argument or conversation.
-          Without a temporal restriction, measure supplied current text, including marked edits.
-          Quoting and refuting an OP claim requires relevant OP context; merely mentioning its
-          topic does not. A quote matching available permitted OP text can establish presence;
-          missing relevant OP text prevents establishing absence. Endorsement is not required
-          for quote presence.
+        - Initial OP argument is not reconstructed by subtracting marked edits or outcome
+          announcements from current text. Without a temporal restriction, measure supplied
+          current text, including marked edits, ONLY after excluding outcome-reporting evidence.
+          Generic discussion of delta/platform rules remains eligible. If faithful pre-outcome
+          exposure needs unavailable temporal information, note the limitation and use term=null.
+          Quoting and refuting an OP claim requires relevant permitted OP context; merely
+          mentioning its topic does not. A quote matching available permitted OP text can
+          establish presence; missing relevant OP text prevents establishing absence.
+          Endorsement is not required for quote presence.
+        - A requested 0-10 intensity instrument needs construct-specific anchors, including zero.
+          Declare any assumption for combining evidence across comments into the row score.
+          Neither those anchors nor an aggregation assumption supplies an unspecified "high"
+          cutoff, and an intensity score is not automatically a count, share or density.
+
+        FINAL SELF-CHECK BEFORE SUBMIT
+        - Return only the minimal features needed for the exact requested relationship, with
+          the six required fields and original-column-distinct names; no extra controls/proxies.
+        - Each semantic spec is self-contained over original columns only; source_columns
+          declares every actual source read, including necessary OP context, and no unused ones.
+        - Each spec has one nonconflicting positive/negative/empty/missing rule; its exclusions,
+          scale/anchors and row aggregation agree across definition and spec. Do not introduce
+          exceptions that reverse an earlier rule or invent restrictions from illustrative cases.
+        - No predictor uses outcome evidence, including announcements embedded in OP argument.
+          Current-text rules remain subject to the leakage guard; generic delta rules are not
+          outcome announcements. No reconstructed initial snapshot or unsupported cutoff/proxy.
+        - Preserve unavailable temporal exposure, alternative-outcome and other untestable
+          claims as explicit limitations with term=null, not an invented testable substitute.
       user_template: |
         DATASET: $csv
         Inspect needed predictor dtypes, structures, ranges and a few examples so specs match
         the actual data. Do not annotate rows or run statistical tests. Apply the shared
-        empty/missing-input and current-text rules; preserve qualifiers without narrowing
-        constructs to illustrative examples.
+        empty/missing-input rules and current-text rule SUBJECT TO THE OUTCOME-LEAKAGE GUARD,
+        including announcements embedded in argument; generic delta/platform rules are not
+        outcome announcements. Do not infer initial snapshots by deleting edits. Preserve
+        qualifiers without narrowing constructs to illustrative examples. Before submit, perform
+        the final self-check: minimal features, self-contained original-source-only semantic
+        specs, actual source declarations, consistent positive/negative/empty/missing rules,
+        no conflicting exceptions, no outcome evidence and explicit limitations/assumptions.
         $description
         Available original predictor columns: $columns
         Outcome (never a measurement/annotation input): $target
@@ -150,7 +214,10 @@ agents:
         {"comparisons": [{"left": 0, "right": 1, "verdict": "equivalent", "reason": "..."}]}
         Verdict is exactly equivalent or distinct: Sonnet makes the final automated decision.
         Give a concrete reason identifying the decisive agreement or material measurement
-        difference. There is no pending alignment, human review or rubric-rewriting step.
+        difference. For distinct, supply a concrete differing-output witness grounded in ALL
+        applicable clauses of both full contracts, or identify a materially missing boundary
+        that prevents specifying an output. There is no pending alignment, human review or
+        rubric-rewriting step.
 
         DECISION RULES
         - equivalent: the same full direct per-row extraction function, including the core
@@ -159,20 +226,24 @@ agents:
           identical human judgment. Read definition AND spec in full; a shared name/topic alone
           is insufficient. Outcome direction and provenance do not change the measurement.
           Different ordinary nonexhaustive example lists are not decisive by themselves; compare
-          the rules they illustrate. Do not invent a missing boundary or rule.
+          the rules they illustrate. Do not infer exclusion from an unlisted example: a concrete
+          personal experience can be a real-world case. Do not invent a missing boundary or rule.
         - distinct: different constructs OR a material difference in the requested measurement
           contract, including scope, eligibility, intensity cutoff, scale, timing, attribution or
           null rule, even when the intended construct is shared. Any, all, count and share are
           different extraction functions. A broad construct and a materially narrower subtype,
           endorsement and quotation, or a challenge and mere topic mention are distinct.
-          Name the concrete difference; retain both measurements as written without aligning
-          them or manufacturing a common definition.
+          Give the same concrete hypothetical row/passage to both contracts and state its different
+          scalar outputs (including null where applicable), checking every clause and exclusion;
+          do not rely on one isolated phrase or an example that another clause disqualifies.
+          Retain both measurements as written without manufacturing a common definition.
         - If a material boundary, anchor, attribution or missing-input rule remains unresolved
-          after applying the shared policy, decide distinct and identify the missing rule.
-          This is a final non-equivalence decision, not a deferral. Do not assume omitted
-          exclusions/anchors/null handling match; the shared policy supplies only its explicit
-          standard rules. Harmless paraphrases and ordinary nonexhaustive examples alone are
-          not unresolved material rules.
+          after applying the shared policy, decide distinct and identify the missing rule and
+          the concrete input whose output it leaves unresolved. Do not invent a numeric output
+          for that unresolved case. This is a final non-equivalence decision, not a deferral.
+          Do not assume omitted exclusions/anchors/null handling match; the shared policy
+          supplies only its explicit standard rules. Harmless paraphrases and ordinary
+          nonexhaustive examples alone are not unresolved material rules.
 
         FULL-CONTRACT COMPARISON
         - Compare original source sets (order irrelevant), required context, dtype,
@@ -194,26 +265,41 @@ agents:
           is broader, and must not be merged with uncertainty alone.
         - equivalent: any comment offers a specific real-world example versus presence of at
           least one concrete identifiable case offered as evidence in the comments, when
-          source/context, attribution, eligibility and output rules agree.
+          source/context, attribution, eligibility and output rules agree. Different illustrative
+          lists (public cases versus concrete personal experiences) do not exclude unlisted
+          real-world cases unless an explicit exhaustive rule actually says so.
         - distinct: the same uncertainty predicate measured in title+argument in one spec but
           argument-only in the other despite matching declared sources. The concrete scope
-          mismatch changes the measurement; do not choose or infer the intended scope.
-        - distinct: the same anchored score with a changed rubric cutoff, or the same construct
-          with incompatible missing-input rules. Name the cutoff or missing-input difference.
-        - distinct: functioning institutional precedent versus any specific real-world example;
-          broad concession versus factual-error admission; concrete personal labor details
-          versus abstract normative principle; logical reasoning versus absence of aggression.
-        - distinct: any versus all/count/share, intensity versus density, comments versus
-          distinct arguments, initial text versus later discussion, emotional versus highly
-          emotional as distinct requested constructs.
+          mismatch changes the measurement: an otherwise eligible expression of uncertainty
+          only in the title yields 1 for title+argument and 0 for argument-only, with complete
+          inputs and no exclusions triggered. Do not infer a different intended scope.
+        - distinct: two otherwise identical anchored scores binarized at >= 6 versus >= 8:
+          an eligible score of 7 yields 1 versus 0. Incompatible missing-input rules also differ:
+          identify the actual missing-input case and the outputs required by the full rules.
+        - distinct: functioning institutional precedent versus any specific real-world example:
+          an eligible actual personal case with no institutional precedent yields 0 versus 1.
+          This witness fails if the full second contract explicitly excludes personal cases;
+          nonexhaustive public-case examples alone do not impose that exclusion.
+        - distinct: a request to change the OP's view versus a request to change other readers'
+          views: a passage targeting only the OP yields 1 versus 0 when all other rules match.
+          An explicitly invented scenario yields 0 for actual-case-only but 1 for a construct
+          explicitly admitting invented scenarios, assuming all other eligibility rules match.
+        - distinct: count versus any with two eligible comments yields 2 versus 1; count versus
+          share with two eligible of four total comments yields 2 versus 0.5. Matching comment
+          predicates do not erase different row functions.
         - distinct: nominally similar scores with no interpretable anchors or unresolved
-          attribution. Name the missing material rule; do not fill it in or defer the decision.
+          attribution. Identify a concrete ambiguous passage, the missing material rule and
+          why its output is unresolved; do not invent anchors/attribution or defer the decision.
       user_template: |
         Review the supplied pair using local indices 0 and 1, not hypothesis IDs.
         Compare the same construct AND full scalar row function. Preserve all feature fields
-        and make a final equivalent/distinct decision with a concrete reason. Retain material
-        differences; do not align rubrics, defer to humans, assume missing rules match or treat
-        ordinary nonexhaustive examples as extra restrictions.
+        and make a final equivalent/distinct decision with a concrete reason. For distinct,
+        provide a differing-output witness satisfying all clauses, or a concrete unresolved
+        input and the missing material boundary. Retain OP versus other-reader targets,
+        actual versus invented cases and count versus any differences. Do not align rubrics,
+        defer to humans, assume missing rules match or infer exclusions from nonexhaustive
+        examples, including excluding concrete personal cases just because only public cases
+        are illustrated.
 
         $features
 

@@ -20,14 +20,28 @@ and [ExperiGen prod](https://github.com/someshsingh22/experigen/blob/prod/common
 - Each hypothesis retains H0/H1, its OLS formula, tested term, claimed sign and limitations. Hypotheses
   are not merged. The statistical evaluator is unchanged from manager main.
 
-Prompts live in `ssh/prompts.yaml`. The decomposition prompt and shared measurement policy are unchanged
-by the binary-review correction. Missing/malformed required input gives null; valid empty comment lists
-give 0 for any/count and null for share/mean/all. Current supplied text includes edits unless the claim
-restricts time. These conventions are operational definitions, not evidence of annotation accuracy.
+Prompts live in `ssh/prompts.yaml`. Missing/malformed required input gives null; valid empty comment lists
+give 0 for any/count and null for share/mean/all. Each text extractor must explicitly exclude OP view-change
+or delta-award announcements, post-outcome resolution updates and other outcome-reporting evidence, even
+inside `argument`. Generic discussion of platform/delta rules remains eligible. Removing updates does not
+recover an initial snapshot: unavailable temporal exposure or outcome-defined predictors require a stated
+limitation and `term=null`, not a cleaned proxy. Deterministic code cannot perform undeclared semantic filtering.
+
+The generator must check for contradictory output rules before submission. The binary reviewer must justify
+a material difference with a concrete differing-output case grounded in the full specifications, or identify
+the missing material boundary. Nonexhaustive example lists are not exclusion rules. OP-only versus other-reader
+address and actual versus invented examples remain real distinctions. These prompt instructions do not
+guarantee model compliance or annotation accuracy.
 
 The schema restricts sources to actual CSV predictors. The submit tool runs the Python contract validator
 before saving decomposition output, returning contract errors to the agent. Structural validation does
 not establish semantic correctness.
+
+Feature names cannot shadow original inputs; canonical suffixes also avoid declared source names.
+Semantic specs remain byte-unchanged during canonicalization. Code recipes reference generated features
+explicitly with `df['feature_name']`, `df.feature_name`, or single-backtick references in prose.
+Only those references are rewritten; raw-column references and unrelated quoted/regex literals stay unchanged.
+Ambiguous bare generated dependencies are rejected during submission validation, before a cache file is saved.
 
 ## Automated semantic deduplication
 
@@ -68,19 +82,20 @@ requested once per invocation, including resume. Pair verdicts are cached and re
 identical resumes. Every eligible within-cutoff pair requires a review, so calls can exceed earlier
 cluster-only runs. The three cutoffs are not independent model repetitions.
 
-## Outputs and reuse of v5 features
+## Outputs and fresh v6 decomposition
 
-Decomposition remains in `runs/calibration_v5/cmv/`, bound to its exact inputs by `decomposition_inputs.json`.
-The binary evaluator writes fresh results under `runs/calibration_v5/cmv/automated/`:
+The default is `runs/calibration_v6/cmv/`, bound to its exact inputs by `decomposition_inputs.json`.
+Results are written under `runs/calibration_v6/cmv/automated/`:
 
 - `dedup_reviews/`: fresh binary reviews, fingerprinted by complete feature inputs, prompt, schema and model.
 - `threshold_0.20/`, `threshold_0.25/`, `threshold_0.30/`: each trial's effective config, plan and pair exports.
 - `tuning_summary.json`: completed trial counts, including reviewed/equivalent/distinct pairs.
 
-Existing v5 decompositions are reusable because their prompt, schema and inputs have not changed.
-Old review verdicts and plans remain outside `automated/`; they are not relabeled or mixed into the new
-protocol. If other decomposition inputs change, use a fresh output directory. Original experiment results
-are not silently migrated. Return shared decomposition/input identity plus the `automated/` outputs for analysis.
+V6 requires fresh decomposition because the extraction prompt, CMV description and reference conventions
+changed. V5 features and review verdicts are not reused or relabeled; previous runs remain untouched.
+An identical interrupted v6 run reuses its completed decompositions and reviews. Changed decomposition
+inputs require a fresh output directory. Return shared decomposition/input identity and the `automated/`
+outputs for analysis. Prompt tuning is not itself evidence of greater scientific diversity or validity.
 
 Without `--tune`, the launcher runs a single configured cutoff, writing `automated/plan.json` and CSVs.
 The explicit `ssh test` command reads that single-run plan; tuning itself never runs statistical tests.
@@ -106,7 +121,8 @@ uv run python -m unittest discover -s tests -v
 ```
 
 Deterministic tests cover binary decisions, source/dtype/owner gates, all eligible close-pair coverage,
-non-transitive approval, code/formula references, cache identity, resume and automated exports. A Node 24+
-test executes the actual submit extension. A real nohup/tail launcher smoke exercises the workflow with
-model/embedding boundaries simulated. No paid model calls run locally; these checks do not establish
-Sonnet's semantic accuracy.
+non-transitive approval, raw-column/name collisions, explicit code dependencies, untouched regex literals
+and prompt specs, cache identity, resume and automated exports. A Node 24+ test executes the actual submit
+extension. Smoke checks execute canonicalized pandas code and the real nohup/tail tuning launcher with
+model/embedding boundaries simulated. No paid model calls run locally. Leakage exclusions and rubric
+consistency are semantic instructions: actual Sonnet outputs still require evaluation after the remote run.

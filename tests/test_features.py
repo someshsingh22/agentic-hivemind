@@ -123,6 +123,89 @@ class DeduplicationTests(unittest.TestCase):
         self.assertEqual(plan["hypotheses"][1]["h0"], "intensity has no association")
         self.assertEqual(plan["hypotheses"][1]["h1"], "intensity has a positive association")
 
+    def test_code_rewrite_preserves_raw_columns_and_literal_contents(self):
+        spec = (
+            "df['derived'] = int(df['emotion'] >= 7 and "
+            "bool(re.search(r'emotion', df['argument']))); "
+            'label = "df[\'emotion\']"'
+        )
+        claims = [
+            hypothesis(0, [feature("intensity", dtype="numeric")]),
+            hypothesis(1, [feature("emotion", dtype="numeric"),
+                           feature("derived", kind="code", spec=spec)]),
+        ]
+        original = copy.deepcopy(claims)
+        with patch.object(deduplication, "embed", identical_vectors):
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
+        derived = next(item for item in plan["features"] if item["name"] == "derived")
+        self.assertEqual(derived["spec"], (
+            "df['derived'] = int(df['intensity'] >= 7 and "
+            "bool(re.search(r'emotion', df['argument']))); "
+            'label = "df[\'emotion\']"'
+        ))
+        import re
+        namespace = {"df": {"intensity": 8, "argument": "emotion"}, "re": re}
+        exec(derived["spec"], namespace)
+        self.assertEqual(namespace["df"]["derived"], 1)
+        self.assertEqual(namespace["label"], "df['emotion']")
+        self.assertEqual(claims, original)
+
+    def test_prose_code_explicit_references_follow_canonical_measurements(self):
+        claims = [
+            hypothesis(0, [feature("intensity", dtype="numeric")]),
+            hypothesis(1, [feature("emotion", dtype="numeric"), feature(
+                "derived", kind="code",
+                spec="Using `emotion`: df.emotion >= 7; read df['argument']; match r'emotion'.",
+            )]),
+        ]
+        with patch.object(deduplication, "embed", identical_vectors):
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
+        derived = next(item for item in plan["features"] if item["name"] == "derived")
+        self.assertEqual(
+            derived["spec"],
+            "Using `intensity`: df.intensity >= 7; read df['argument']; match r'emotion'.",
+        )
+
+    def test_prompt_specs_are_byte_unchanged_when_common_word_names_change(self):
+        spec = "Read argument. Return 1 if any comment expresses doubt; 0 if none; null if unavailable."
+        claims = [
+            hypothesis(0, [feature("any", kind="code", spec="df['any'] = 1")]),
+            hypothesis(1, [feature("any", spec=spec)]),
+            hypothesis(2, [feature("doubt", spec=spec)]),
+        ]
+        with patch.object(deduplication, "embed", identical_vectors):
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
+        self.assertEqual([item["name"] for item in plan["features"]], ["any", "any_2"])
+        self.assertEqual(plan["features"][1]["spec"], spec)
+        self.assertEqual(len(plan["features"][1]["members"]), 2)
+        self.assertEqual(plan["hypotheses"][2]["term"], "any_2")
+        self.assertEqual(plan["hypotheses"][1]["term"], "any_2")
+
+    def test_canonical_suffix_skips_original_columns(self):
+        claims = [
+            hypothesis(0, [feature("count", kind="code", spec="df['count'] = 1")]),
+            hypothesis(1, [feature("count", ("count_2",), kind="code",
+                                   spec="df['count'] = df['count_2'] + 1")]),
+        ]
+        plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
+        self.assertEqual([item["name"] for item in plan["features"]], ["count", "count_3"])
+        self.assertEqual(plan["features"][1]["spec"], "df['count_3'] = df['count_2'] + 1")
+        self.assertEqual(plan["hypotheses"][1]["formula"], "delta ~ count_3")
+        namespace = {"df": {"count_2": 5}}
+        exec(plan["features"][1]["spec"], namespace)
+        self.assertEqual(namespace["df"], {"count_2": 5, "count_3": 6})
+
+    def test_names_cannot_shadow_another_hypotheses_source_or_reserved_columns(self):
+        for name in ("title", "delta", "post_id", "comment_id", "thread_id"):
+            with self.subTest(name=name):
+                claims = [
+                    hypothesis(0, [feature(name)]),
+                    hypothesis(1, [feature("other", ("title",))]),
+                ]
+                with patch.object(deduplication, "embed", side_effect=AssertionError("Unexpected embedding")):
+                    with self.assertRaisesRegex(ValueError, "collide with original input columns"):
+                        deduplication.dedup(claims, {**ENV, "group": "thread_id"}, CFG, equivalent_review)
+
     def test_same_hypothesis_and_different_dtypes_remain_distinct(self):
         claims = [hypothesis(0, [feature("uncertain"), feature("certain")]),
                   hypothesis(1, [feature("intensity", dtype="numeric")])]
@@ -489,6 +572,37 @@ class FeatureValidationTests(unittest.TestCase):
     def test_code_references_do_not_require_extra_metadata_or_declaration_order(self):
         derived = feature("derived", kind="code", spec="df['derived'] = df['base'] >= 7")
         items = [derived, feature("base", dtype="numeric")]
+        self.assertIs(validate_features(items, ["argument"]), items)
+
+    def test_names_cannot_shadow_own_or_other_original_predictor_columns(self):
+        for name in ("argument", "title", "post_id", "comment_id"):
+            with self.subTest(name=name), self.assertRaisesRegex(ValueError, "collide"):
+                validate_features([feature(name)], ["argument", "title"])
+        with self.assertRaisesRegex(ValueError, "collide"):
+            validate_features([feature("title"), feature("other", ("title",))])
+        with self.assertRaisesRegex(ValueError, "collide"):
+            validate_features([feature("argument")])
+
+    def test_ambiguous_code_dependencies_are_rejected_before_canonicalization(self):
+        for spec in (
+            "Using base: 1 if base >= 3, else 0.",
+            "Using feature base: return null if missing.",
+            "df['derived'] = base >= 3",
+        ):
+            with self.subTest(spec=spec), self.assertRaisesRegex(
+                ValueError, r"ambiguous generated feature reference.*use df"
+            ):
+                validate_features([feature("base"), feature("derived", kind="code", spec=spec)])
+
+    def test_literal_matches_are_not_treated_as_generated_dependencies(self):
+        spec = (
+            "Read df['argument']; match regex r'base' or \"base\", "
+            "not a reference inside \"df['base']\"; use `base` or df.base for the measurement."
+        )
+        items = [feature("base"), feature("derived", kind="code", spec=spec)]
+        self.assertIs(validate_features(items, ["argument"]), items)
+        # Natural-language prompt rubrics are not code dependency declarations.
+        items.append(feature("other", spec="Output 1 when base assumptions are explicit."))
         self.assertIs(validate_features(items, ["argument"]), items)
 
 

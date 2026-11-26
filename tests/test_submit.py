@@ -10,7 +10,7 @@ from pathlib import Path
 
 @unittest.skipUnless(shutil.which("node"), "Node required for pi extension smoke")
 class SubmitTests(unittest.TestCase):
-    def test_invalid_sources_and_metadata_are_rejected_before_write_and_can_be_corrected(self):
+    def test_invalid_contracts_are_rejected_before_write_and_can_be_corrected(self):
         version = subprocess.check_output(["node", "--version"], text=True)
         if int(version.lstrip("v").split(".")[0]) < 24:
             self.skipTest("Node 24+ required for native TypeScript")
@@ -32,6 +32,16 @@ const payload = JSON.parse(process.env.PAYLOAD);
 await assert.rejects(tool.execute('bad-source', payload));
 assert.equal(existsSync(process.env.SUBMIT_OUT), false);
 payload.features[1].source_columns = ['argument', 'title'];
+for (const name of ['argument', 'title', 'post_id', 'comment_id']) {
+  payload.features[0].name = name;
+  await assert.rejects(tool.execute('raw-name-collision', payload), /collide/);
+  assert.equal(existsSync(process.env.SUBMIT_OUT), false);
+}
+payload.features[0].name = 'base';
+payload.features[1].spec = 'Using base: 1 if base >= 3, else 0.';
+await assert.rejects(tool.execute('ambiguous-dependency', payload), /use df/);
+assert.equal(existsSync(process.env.SUBMIT_OUT), false);
+payload.features[1].spec = "Using `base`: df['derived'] = df['base']; match r'base' in df['argument'].";
 payload.features[1].dtype = 'vector';
 await assert.rejects(tool.execute('bad-metadata', payload));
 assert.equal(existsSync(process.env.SUBMIT_OUT), false);
@@ -39,7 +49,7 @@ payload.features[1].dtype = 'binary';
 const result = await tool.execute('corrected', payload);
 assert.equal(result.terminate, true);
 assert.deepEqual(JSON.parse(readFileSync(process.env.SUBMIT_OUT, 'utf8')), payload);
-console.log('Submission smoke passed: invalid source and metadata rejected before write; corrected submission saved.');
+console.log('Submission smoke passed: invalid sources, raw-name collisions, ambiguous dependencies and metadata rejected before write; corrected submission saved.');
 """
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
