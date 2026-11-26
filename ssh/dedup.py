@@ -14,6 +14,8 @@ FIELDS = ("name", "dtype", "definition", "kind", "spec")
 
 def cluster(vectors, hypothesis, dtype, threshold):
     """Complete linkage on cosine distance; features of one hypothesis or of different dtypes never merge."""
+    if len(vectors) == 1:
+        return np.ones(1, int)
     distance = 1 - vectors @ vectors.T
     distance[(hypothesis[:, None] == hypothesis) | (dtype[:, None] != dtype)] = 2
     np.fill_diagonal(distance, 0)
