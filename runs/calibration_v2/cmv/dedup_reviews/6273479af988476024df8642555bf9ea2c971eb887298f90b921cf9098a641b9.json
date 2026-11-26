@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both read only 'argument' and are binary with null on missing, but the specs differ. Feature 0 counts acknowledging that other perspectives or reasonable positions exist, including 'I may be wrong' and 'I came here to see other sides'. Feature 1 requires acknowledging counterpoints, objections or opposing arguments to the OP's own view. Feature 1 also explicitly excludes marked edits that respond to commenters. Feature 0 does not say how edits are handled. Outputs can differ on rows with generic fallibility statements or with edits."
+    }
+  ]
+}

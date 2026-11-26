@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is 1 if any comment relies on an abstract normative principle. Feature 1 requires all substantive comments to be solely abstract normative, with no labor details, and returns null for an empty list. Any versus all, with different exclusions."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "Feature 0 covers only moral or normative principles (fairness, rights, justice). Feature 2 also counts definitions, general logic and theoretical reasoning. The two also differ on an empty list: Feature 0 gives null or 0 by its own wording, while Feature 2 gives 0 for an empty list. Feature 0 also requires no specific institutional anchoring, while Feature 2 counts a comment if the principle is a main basis even when a concrete example is present."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "Feature 1 requires all substantive comments to be solely abstract normative, with no concrete labor details, and gives null on an empty list. Feature 2 requires at least one comment with an abstract principle and gives 0 on an empty list."
+    }
+  ]
+}

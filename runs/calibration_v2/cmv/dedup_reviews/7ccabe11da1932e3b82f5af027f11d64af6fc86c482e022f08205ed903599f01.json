@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 flags a comment arguing the OP's own premises contradict each other (internal inconsistency). Feature 1 flags a comment that opens with a blanket rejection of the OP's whole view with no prior acknowledgment. These are different constructs. Their null rules also differ: an empty list gives 0 in feature 0 and null in feature 1."
+    }
+  ]
+}

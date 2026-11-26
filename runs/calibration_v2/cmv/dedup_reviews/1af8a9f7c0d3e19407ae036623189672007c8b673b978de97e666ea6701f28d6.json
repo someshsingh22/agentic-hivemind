@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "0 requires every counter-argument to be purely logical/factual and checks for explicit validation of the OP's dignity/effort or praise. 1 checks for abstract reasoning with no named program/location and no concrete evidence. The exclusion criteria differ. Factual refutation is allowed in 0 but not in 1. The null rules also differ."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "0 turns on personal validation/praise and allows factual or evidential refutation. 2 turns on the absence of specific empirical evidence and says nothing about validation. Their 0 and 1 conditions differ, and so do their null conditions."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "Both bar concrete evidence, but 1 also bars named programs/locations, anecdotes and named examples, and requires all content to be abstract. 2 bars only specific empirical evidence and allows analogies and hypotheticals. Their null rules also differ: 1 gives null when there are no substantive comments, while 2 gives 0 when no comment is a logical refutation."
+    }
+  ]
+}

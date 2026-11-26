@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 flags only explicit assertions of absolute certainty/incontrovertibility about the OP's own view (ordinary confident opinion is 0). Feature 1 flags any unqualified absolute declarative claim (all/always/never/obviously, or flat assertions), which is much broader and not about certainty of the view. Many posts would be 0 on feature 0 and 1 on feature 1."
+    }
+  ]
+}

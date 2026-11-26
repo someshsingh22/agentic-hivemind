@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are shares of OC_comments with null for empty/malformed input, but they measure different constructs. Feature 0 marks comments containing a concrete first-person anecdote. Feature 1 marks comments framed as third-person analysis with no second-person address to the OP. A comment can be an anecdote with or without addressing the OP, so the two marks differ on many rows."
+    }
+  ]
+}

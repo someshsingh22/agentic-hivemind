@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Different constructs: feature 0 detects acknowledging validity of a point in the OP's view (intellectual) before a counter; feature 1 detects validating the OP's emotional experience before a rebuttal. Null/0 rules also differ: 0 yields null when no comment challenges and 0 only if a pure refutation exists; 1 yields 0 for any assessable case without qualifying comment, including empty list."
+    }
+  ]
+}

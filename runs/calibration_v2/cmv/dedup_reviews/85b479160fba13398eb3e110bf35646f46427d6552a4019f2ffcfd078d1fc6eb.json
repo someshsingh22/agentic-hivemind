@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires a quote of a specific factual claim from the OP post AND a refutation of it, excluding opinion/value quotes and bot/moderator notices. Feature 1 fires on any verbatim quote of argument text regardless of content or agreement. Feature 1 is broader, so outputs differ on rows where a comment quotes an opinion or quotes without refuting."
+    }
+  ]
+}

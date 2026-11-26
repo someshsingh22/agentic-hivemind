@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "uncertain",
+      "reason": "Same source and core construct (OP's first-person anecdote), but wording differs: 0 says 'something that happened to or was done/experienced by OP', 1 requires 'specific' experience and includes directly witnessed events, and explicitly excludes identity statements and statistics/news. Boundary cases (witnessed events, non-specific narratives, marked edits) are not shown to match."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "uncertain",
+      "reason": "Same source and similar construct, but 2 requires a 'specific event' and explicitly includes witnessed events, while 0 speaks of 'experienced by' and 'first-person experiential narrative' without the specificity or witness wording; both treat edits as text. Identity of output on edge cases is unclear."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "uncertain",
+      "reason": "Both require a specific first-person event, including witnessed events, and exclude opinion/identity, quoted and others' stories. But 1 explicitly excludes statistics/news examples while 2 doesn't mention them, and 2 explicitly includes marked edits while 1 doesn't. These edge-case differences leave full identity unclear."
+    }
+  ]
+}

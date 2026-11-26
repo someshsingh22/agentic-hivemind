@@ -1,0 +1,64 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Empty list: 0 in feature 0 but null in feature 1. Feature 1 also counts documented cases/observations broadly; feature 0 requires specific data or citation."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "Feature 2 counts any concrete reasoning or example as a specific counterargument, not just factual data or citation; much broader."
+    },
+    {
+      "left": 0,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "Feature 3 requires the comment to challenge the OP and cite a concrete example, with bot exclusions; feature 0 needs specific data or citation without the challenge requirement. Scope of 'event' also differs."
+    },
+    {
+      "left": 0,
+      "right": 4,
+      "verdict": "distinct",
+      "reason": "Empty-list handling differs (0 vs null). Feature 4 also includes measurable observations and documented cases and excludes bot notices."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "Empirical evidence is much narrower than any specific counterargument including reasoning; null rules differ."
+    },
+    {
+      "left": 1,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "Feature 3 requires the comment to argue against the OP and cite a specific example. Feature 1 does not, and its empty-list null differs from feature 3's 0 for an empty list."
+    },
+    {
+      "left": 1,
+      "right": 4,
+      "verdict": "uncertain",
+      "reason": "Nearly identical construct, but feature 1 allows 'observations stated as fact' while feature 4 requires identifiable particulars and measurable observations. Null handling also differs: feature 1 returns null for an empty list, and feature 4 only says empty/unparseable gives null, so an empty-list edge case is the same. Feature 4 explicitly ignores bots; feature 1 is silent. Equivalence on every row is unclear."
+    },
+    {
+      "left": 2,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "Feature 2 accepts any reasoned counterargument; feature 3 requires a concrete empirical example. Null rules also differ."
+    },
+    {
+      "left": 2,
+      "right": 4,
+      "verdict": "distinct",
+      "reason": "Reasoning-based counterarguments count in feature 2 but not in feature 4, which needs empirical evidence."
+    },
+    {
+      "left": 3,
+      "right": 4,
+      "verdict": "distinct",
+      "reason": "Empty-list handling differs: feature 3 gives 0 and feature 4 gives null. Feature 3 requires a challenge to the OP's view; the evidence thresholds also differ."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Both are any-comment binary over OC_comments, but 1 counts any specific situation 'actually occurring' and requires a specific example, while 2 requires real-world identifiable referent, explicitly includes personal experience, and nulls on empty list (0 gives 0 for empty). Null handling differs."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "0 accepts any specific particular situation described as actually occurring; 2 requires identifiable named real example and excludes vague unnamed anecdotes. Different thresholds."
+    },
+    {
+      "left": 0,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "3 accepts detailed hypotheticals with specific particulars as examples; 0 excludes hypotheticals without a specific instance and requires real-world instance."
+    },
+    {
+      "left": 0,
+      "right": 4,
+      "verdict": "distinct",
+      "reason": "0 measures concrete examples; 4 measures specific numerical data/statistics. Different constructs."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "1 includes the commenter's own real experience and returns null for empty list; 2 excludes unnamed vague anecdotes and returns 0 for empty list. Differences in eligibility and null handling."
+    },
+    {
+      "left": 1,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "3 counts detailed hypotheticals and empty list gives 0; 1 requires real examples, excludes invented cases, and nulls on empty list."
+    },
+    {
+      "left": 1,
+      "right": 4,
+      "verdict": "distinct",
+      "reason": "Real-world example versus numerical data; different constructs."
+    },
+    {
+      "left": 2,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "2 requires real-world identifiable examples; 3 allows detailed hypotheticals and scenarios."
+    },
+    {
+      "left": 2,
+      "right": 4,
+      "verdict": "distinct",
+      "reason": "Specific real-world example versus numerical data/statistics; different constructs."
+    },
+    {
+      "left": 3,
+      "right": 4,
+      "verdict": "distinct",
+      "reason": "Concrete illustrative example versus specific numerical data; different constructs."
+    }
+  ]
+}

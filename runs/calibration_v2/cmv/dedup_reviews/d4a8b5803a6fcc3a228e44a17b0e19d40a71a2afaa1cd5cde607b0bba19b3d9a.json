@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "0 is 1 only when modest markers prevail over the post's main claims (dominance); 1 is 1 if any hedging appears at all. A post with one hedge among strong assertions differs."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "0 requires predominant modest framing and gives 0 for mixed or no-marker text. 2 gives 1 for any explicit hedge or self-doubt about the OP's view, and null for neutral or mixed text with no hedges. Different thresholds and null handling."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "1 counts any hedge or qualifier (e.g. 'generally', 'in most cases'), and gives 0 for any non-empty text without one. 2 counts only hedges or self-doubt about the OP's own view, and gives null when there are no hedges and the tone isn't clearly categorical. Scope and null rules differ."
+    }
+  ]
+}

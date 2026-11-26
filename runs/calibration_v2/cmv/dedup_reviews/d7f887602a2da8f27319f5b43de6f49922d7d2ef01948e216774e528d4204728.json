@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "0 requires acknowledgment of the OP's initial premise followed by any disagreement, qualification or alternative. 1 requires acknowledgment of a specific component followed specifically by a counter-example. The second step differs: a general divergence versus a concrete counter-example."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "0 requires acknowledgment of the initial premise and then any divergence, which can be a full disagreement. 2 accepts acknowledgment of the view or any part of it, but requires a narrow, limited caveat and excludes rejecting the whole view. 2 also returns null for an empty list, while 0 returns 0 for an empty list."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "1 requires a concrete counter-example after acknowledging a specific component. 2 requires a narrow caveat, exception or qualification and does not require a concrete counter-example. Their null rules also differ: 1 gives 0 for an empty list, while 2 gives null."
+    }
+  ]
+}

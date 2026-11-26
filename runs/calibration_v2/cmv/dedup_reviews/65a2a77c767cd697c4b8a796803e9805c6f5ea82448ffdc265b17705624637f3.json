@@ -1,0 +1,64 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "0 requires the quoted phrase to also be disputed/refuted; 1 counts any quote of OP text."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "0 requires refutation of the quoted phrase; 2 counts any quote."
+    },
+    {
+      "left": 0,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "0 requires quote plus refutation; 3 counts quotes or explicit references, no dispute needed."
+    },
+    {
+      "left": 0,
+      "right": 4,
+      "verdict": "distinct",
+      "reason": "0 requires refutation of the quote; 4 counts any quote."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "uncertain",
+      "reason": "Both are any-quote-of-OP-text features with similar rules, but null handling differs: 1 nulls on missing OC_comments or argument, 2 nulls on malformed OC_comments or missing post text (title or argument). Whether these match on every row is unclear."
+    },
+    {
+      "left": 1,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "3 also counts explicit non-quote references to specific OP elements; 1 counts only quotations. It also excludes moderator/bot notices."
+    },
+    {
+      "left": 1,
+      "right": 4,
+      "verdict": "uncertain",
+      "reason": "Both are any-quote-of-OP-text features with similar rules. 4 requires the quote to match actual OP text and nulls on missing argument or malformed OC_comments. 1 has similar but not identical null wording, and it is unclear whether an empty list is null or 0 under 4."
+    },
+    {
+      "left": 2,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "3 includes explicit references to specific OP elements without quotation; 2 counts only quotes."
+    },
+    {
+      "left": 2,
+      "right": 4,
+      "verdict": "uncertain",
+      "reason": "Both are any-quote-of-OP-post features and their definitions are nearly identical. Null conditions differ slightly: 2 nulls on malformed OC_comments or missing post text, 4 on missing/malformed OC_comments or missing argument. Whether a missing title would be handled the same is unclear."
+    },
+    {
+      "left": 3,
+      "right": 4,
+      "verdict": "distinct",
+      "reason": "3 also counts explicit non-quote references to specific OP elements; 4 counts only direct quotes."
+    }
+  ]
+}

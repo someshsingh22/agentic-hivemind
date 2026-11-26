@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 flags any comment asserting an OP claim is false/incorrect/logically invalid (counterexample, definitional correction). Feature 1 flags any comment introducing a new verifiable external fact not in the OP. A falsity assertion needs no new fact, and a new fact need not contest an OP claim. Null and empty-list handling also differ (feature 1 requires title/argument present and counts an empty list as 0)."
+    }
+  ]
+}

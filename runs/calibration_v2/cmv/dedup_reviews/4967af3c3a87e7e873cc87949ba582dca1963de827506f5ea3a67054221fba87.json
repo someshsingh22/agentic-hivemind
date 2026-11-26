@@ -1,0 +1,22 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "uncertain",
+      "reason": "Both are binary 'any comment' over the same sources. 0 requires a comment to argue against the view or a specific claim (the view is wrong or too strong). 1 also counts reasoning that 'offers an alternative to' the view, and explicitly excludes bare disagreement. The wording differs and the boundary cases (alternative views that don't say the OP is wrong, quoted positions) are not clearly matched, so identity is unclear."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "uncertain",
+      "reason": "Both are 'any comment' binary features over the same sources. 0 needs a substantive argument that the view is wrong. 2 needs 'well-reasoned' reasoning with explicit premises or evidence connected to a conclusion. Its coherence threshold may be stricter than a single reason or example, and 2's null rule also differs. The thresholds are not clearly identical."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "uncertain",
+      "reason": "1 accepts any reasoning, evidence or example that challenges or offers an alternative. 2 requires a coherent line of reasoning with explicit premises, which is potentially stricter, and it requires a direct challenge. The null conditions also differ slightly (OP's view unidentifiable vs. title/argument missing). Equivalence is not established."
+    }
+  ]
+}

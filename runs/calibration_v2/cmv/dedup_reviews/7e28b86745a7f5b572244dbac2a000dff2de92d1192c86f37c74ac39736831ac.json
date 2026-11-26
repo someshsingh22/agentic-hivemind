@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Same source column (argument), but the annotation functions differ. Feature 0 requires an explicit admission of uncertainty or fallibility about the OP's own view, and excludes text in marked edits that was added after posting. Feature 1 counts any hedging marker ('maybe', 'perhaps', 'might', 'possibly', hedging 'I think'), which is much broader, and says to include the whole argument text, edits included. Rows with only a hedge word, or with an uncertainty statement only in an edit, would be scored differently."
+    }
+  ]
+}

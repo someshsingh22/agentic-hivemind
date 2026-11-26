@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 is a majority-based judgment of the main mode of support (concrete examples incl. anecdotes/statistics vs abstract reasoning), with null only when balanced or absent. Feature 1 is an any-comment presence test for a concrete external analogy mapped onto the OP's view. It gives 0 only if all comments are purely abstract, and null for mixed or non-analogical evidence. Positive, negative and null conditions differ. For example, one analogy among mostly abstract comments gives 1 for feature 1 but 0 for feature 0, and mostly non-analogical concrete examples give 1 for feature 0 but null for feature 1."
+    }
+  ]
+}

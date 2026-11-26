@@ -1,0 +1,10 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "distinct",
+      "reason": "Feature 0 requires an explicit contrast of the OP's view with a relatable lived experience (the comment must say it differs from or conflicts with the OP's view). Feature 1 only requires a concrete personal anecdote that illustrates real-world consequences of the OP's claim, with no explicit contrast and no relatability requirement. Null handling also differs: feature 0 gives null for an empty list or missing title/argument, while feature 1 gives 0 for an empty list. Outputs differ on eligible rows."
+    }
+  ]
+}

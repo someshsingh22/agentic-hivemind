@@ -1,0 +1,40 @@
+{
+  "comparisons": [
+    {
+      "left": 0,
+      "right": 1,
+      "verdict": "uncertain",
+      "reason": "Both are any-comment binary over the same sources with similar 'specific example' criteria, but 0 requires a real-world, identifiable example while 1 also admits 'specific situation' and the quoted-example rules differ in wording; boundary cases are unclear."
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "verdict": "distinct",
+      "reason": "2 admits statistics and 'checkable particular' cases and requires verifiability; 0 requires a named/identifiable real-world instance and doesn't include statistics as such; different eligibility."
+    },
+    {
+      "left": 0,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "3 counts personal experiences and has a null for empty lists or no substantive counterargument; 0 gives 0 for an empty list. Different empty/null handling and eligibility."
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "verdict": "uncertain",
+      "reason": "Both any-comment binary with similar example criteria and the same empty-list handling, but 2 requires verifiability and includes statistics, while 1 includes 'concrete situation'; the boundary is unclear."
+    },
+    {
+      "left": 1,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "Empty list gives 0 in 1 but null in 3; 3 also has a null for non-substantive comments and counts personal experiences."
+    },
+    {
+      "left": 2,
+      "right": 3,
+      "verdict": "distinct",
+      "reason": "Empty list gives 0 in 2 but null in 3; 3 has an extra null for non-substantive comments and its eligibility for examples differs (real-world, personal experience vs verifiable statistic)."
+    }
+  ]
+}
