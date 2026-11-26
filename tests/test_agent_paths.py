@@ -38,6 +38,7 @@ class AgentPathTests(unittest.TestCase):
             features = [{"hypothesis_id": i, "feature": {
                 "name": name, "dtype": "binary", "source_columns": ["OC_comments"],
                 "definition": name, "kind": "prompt", "spec": name,
+                "class": "primary", "annotation_unit": "row", "depends_on": [],
             }} for i, name in enumerate(["any_comment", "all_comments"])]
             with patch.dict(os.environ, {"PATH": str(binary) + os.pathsep + os.environ["PATH"]}):
                 result = EquivalenceReviewer(cfg, relative_out)(features)

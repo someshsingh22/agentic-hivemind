@@ -8,7 +8,7 @@
         "properties": {
           "left": {"type": "integer", "minimum": 0},
           "right": {"type": "integer", "minimum": 0},
-          "verdict": {"type": "string", "enum": ["equivalent", "distinct", "uncertain"]},
+          "verdict": {"type": "string", "enum": ["equivalent", "distinct", "needs_alignment", "uncertain"]},
           "reason": {"type": "string", "minLength": 1}
         },
         "required": ["left", "right", "verdict", "reason"],

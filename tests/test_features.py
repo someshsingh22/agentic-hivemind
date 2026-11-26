@@ -1,3 +1,4 @@
+import copy
 import csv
 import json
 import math
@@ -12,20 +13,34 @@ import yaml
 from ssh import decompose as decomposition
 from ssh import dedup as deduplication
 from ssh import prompts
+from ssh.features import validate_features
 
 
 ENV = {"name": "cmv", "target": "delta", "group": "post_id"}
 CFG = {"embedding": {}, "dedup": {"threshold": 0.25}}
 
 
-def feature(name, sources=("argument",), kind="prompt", dtype="binary", spec=None):
+def feature(name, sources=("argument",), kind="prompt", dtype="binary", spec=None,
+            feature_class="primary", annotation_unit="row", depends_on=()):
+    definition = "OP argument: explicit uncertainty about the OP's own claim"
+    default_spec = "Read argument for this row. Output 1 for explicit uncertainty, 0 if absent, null if unassessable."
+    if annotation_unit == "comment":
+        definition = "Other-user comment: explicit uncertainty, measured separately for each OC_comments item"
+        default_spec = (
+            "Return an aligned binary label vector, one label per OC_comments element: "
+            "1 for explicit uncertainty, 0 if absent, null if unassessable. "
+            "An empty comment list yields []; preserve null slots for malformed comments."
+        )
     return {
         "name": name,
         "dtype": dtype,
         "source_columns": list(sources),
-        "definition": "OP argument: explicit uncertainty about the OP's own claim",
+        "definition": definition,
         "kind": kind,
-        "spec": spec or "Read argument for this row. Output 1 for explicit uncertainty, 0 if absent, null if unassessable.",
+        "spec": spec or default_spec,
+        "class": feature_class,
+        "annotation_unit": annotation_unit,
+        "depends_on": list(depends_on),
     }
 
 
@@ -108,12 +123,14 @@ class DeduplicationTests(unittest.TestCase):
     def test_derived_code_uses_canonical_semantic_measurement(self):
         claims = [hypothesis(0, [feature("intensity", dtype="numeric")]),
                   hypothesis(1, [feature("emotion", dtype="numeric"),
-                                 feature("high_emotion", kind="code", spec="df['high_emotion'] = df['emotion'] >= 7")],
+                                 feature("high_emotion", kind="code", feature_class="secondary",
+                                         depends_on=["emotion"], spec="df['high_emotion'] = df['emotion'] >= 7")],
                              rhs="high_emotion")]
         with patch.object(deduplication, "embed", identical_vectors):
             plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
         derived = next(f for f in plan["features"] if f["name"] == "high_emotion")
         self.assertEqual(derived["spec"], "df['high_emotion'] = df['intensity'] >= 7")
+        self.assertEqual(derived["depends_on"], ["intensity"])
         self.assertEqual(plan["hypotheses"][1]["formula"], "delta ~ high_emotion")
 
     def test_same_hypothesis_and_different_dtypes_remain_distinct(self):
@@ -173,6 +190,7 @@ class DeduplicationTests(unittest.TestCase):
             self.assertEqual(len({m["hypothesis"] for m in members}), len(members))
             self.assertEqual(len({tuple(sorted(m["source_columns"])) for m in members}), 1)
             self.assertEqual(len({m["dtype"] for m in members}), 1)
+            self.assertEqual(len({m["annotation_unit"] for m in members}), 1)
             for left in members:
                 for right in members:
                     distance = 1 - by_name[left["name"]] @ by_name[right["name"]]
@@ -204,7 +222,12 @@ class DeduplicationTests(unittest.TestCase):
                                     if key != "hypothesis"}])
                 for owner, name in (left, right)
             ]
-            for verdict in ("distinct", "uncertain"):
+            # Legacy run artifacts remain untouched: normalize only these copied fixtures.
+            for claim in claims:
+                claim["features"][0].update({
+                    "class": "primary", "annotation_unit": "row", "depends_on": [],
+                })
+            for verdict in ("distinct", "uncertain", "needs_alignment"):
                 with self.subTest(pair=label, verdict=verdict):
                     decisions = [{"left": 0, "right": 1, "verdict": verdict,
                                   "reason": f"Fixture decision for {label}: do not share annotations."}]
@@ -241,6 +264,18 @@ class DeduplicationTests(unittest.TestCase):
         for item in review["distances"]:
             self.assertAlmostEqual(item["cosine_distance"],
                                    1 - vectors[item["left"]] @ vectors[item["right"]])
+        self.assertEqual(len(plan["feature_pairs"]), 6)
+        exported = {(item["left_hypothesis"], item["right_hypothesis"]): item
+                    for item in plan["feature_pairs"]}
+        self.assertEqual(set(exported), expected_pairs)
+        for indices, item in exported.items():
+            self.assertAlmostEqual(item["cosine_distance"], 1 - vectors[indices[0]] @ vectors[indices[1]])
+            self.assertTrue(item["eligible"])
+            self.assertTrue(item["within_threshold"])
+            self.assertTrue(item["same_candidate_cluster"])
+            self.assertEqual(item["review_verdict"], "equivalent")
+            self.assertTrue(item["review_reason"])
+            self.assertTrue(item["merged"])
 
     def test_nontransitive_semantic_approvals_cannot_merge_all_three(self):
         claims = [hypothesis(i, [feature(name)]) for i, name in enumerate(["a", "b", "c"])]
@@ -256,6 +291,114 @@ class DeduplicationTests(unittest.TestCase):
         self.assertFalse(any({0, 2} <= group for group in groups))
         approved = {frozenset((0, 1)), frozenset((1, 2))}
         self.assertTrue(all(len(group) == 1 or frozenset(group) in approved for group in groups))
+
+    def test_comment_predicate_reuses_labels_without_merging_aggregations(self):
+        claims = []
+        aggregations = [
+            ("any_uncertain", "binary", "int(any(labels))"),
+            ("uncertain_count", "numeric", "sum(labels)"),
+            ("uncertain_share", "numeric", "sum(labels) / len(labels) if labels else None"),
+        ]
+        for owner, (name, dtype, expression) in enumerate(aggregations):
+            base = f"uncertain_comment_{owner}"
+            predicate = feature(
+                base, ("OC_comments",), annotation_unit="comment",
+                spec="Return an aligned binary label vector, one label per OC_comments element: "
+                     "1 for explicit uncertainty, 0 if absent, null if unassessable.",
+            )
+            aggregate = feature(
+                name, ("OC_comments",), kind="code", dtype=dtype,
+                feature_class="secondary", depends_on=[base],
+                spec=f"df['{name}'] = df['{base}'].map(lambda labels: {expression})",
+            )
+            claim = hypothesis(owner, [predicate, aggregate], rhs=name)
+            claim.update({"term": name, "h0": f"{name} has no association",
+                          "h1": f"{name} has a positive association"})
+            claims.append(claim)
+        with patch.object(deduplication, "embed", identical_vectors):
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
+        self.assertEqual([item["name"] for item in plan["features"]],
+                         ["uncertain_comment_0", "any_uncertain", "uncertain_count", "uncertain_share"])
+        base, *derived = plan["features"]
+        self.assertEqual(len(base["members"]), 3)
+        self.assertEqual(base["annotation_unit"], "comment")
+        for item in derived:
+            self.assertEqual(item["class"], "secondary")
+            self.assertEqual(item["annotation_unit"], "row")
+            self.assertEqual(item["depends_on"], ["uncertain_comment_0"])
+            self.assertEqual(len(item["members"]), 1)
+            self.assertIn("df['uncertain_comment_0']", item["spec"])
+            self.assertNotIn("uncertain_comment_1", item["spec"])
+            self.assertNotIn("uncertain_comment_2", item["spec"])
+        self.assertEqual([item["term"] for item in plan["hypotheses"]],
+                         [name for name, _, _ in aggregations])
+        self.assertEqual([item["formula"] for item in plan["hypotheses"]],
+                         [f"delta ~ {name}" for name, _, _ in aggregations])
+        self.assertEqual(len(plan["feature_pairs"]), 3)
+
+    def test_row_and_comment_predicates_never_merge_or_get_reviewed(self):
+        claims = [
+            hypothesis(0, [feature("any_uncertainty", ("OC_comments",))]),
+            hypothesis(1, [feature("comment_uncertainty", ("OC_comments",), annotation_unit="comment")]),
+        ]
+        reviewer = Mock(side_effect=AssertionError("Annotation units are incompatible"))
+        with patch.object(deduplication, "embed", identical_vectors):
+            plan = deduplication.dedup(claims, ENV, CFG, reviewer)
+        self.assertEqual(len(plan["features"]), 2)
+        self.assertEqual(plan["dedup_reviews"], [])
+        reviewer.assert_not_called()
+        pair, = plan["feature_pairs"]
+        self.assertFalse(pair["eligible"])
+        self.assertTrue(pair["within_threshold"])
+        self.assertFalse(pair["merged"])
+        self.assertEqual(pair["review_verdict"], "")
+
+    def test_needs_alignment_preserves_features_and_review_reason(self):
+        claims = [hypothesis(owner, [feature(name)])
+                  for owner, name in enumerate(("weak_evidence", "strong_evidence"))]
+        reason = "Same evidence concept but different cutoffs; sharing labels requires alignment."
+        decisions = [{"left": 0, "right": 1, "verdict": "needs_alignment", "reason": reason}]
+        with patch.object(deduplication, "embed", identical_vectors):
+            plan = deduplication.dedup(claims, ENV, CFG, lambda cluster: decisions)
+        self.assertEqual(len(plan["features"]), 2)
+        self.assertEqual(plan["dedup_reviews"][0]["comparisons"], decisions)
+        pair, = plan["feature_pairs"]
+        self.assertEqual(pair["review_verdict"], "needs_alignment")
+        self.assertEqual(pair["review_reason"], reason)
+        self.assertFalse(pair["merged"])
+
+    def test_shared_comment_base_keeps_opposite_direction_hypotheses(self):
+        claims = [hypothesis(owner, [feature(name, ("OC_comments",), annotation_unit="comment")])
+                  for owner, name in enumerate(("uncertainty", "self_doubt"))]
+        claims[1].update({"sign": "-", "h1": "self_doubt has a negative association"})
+        with patch.object(deduplication, "embed", identical_vectors):
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
+        self.assertEqual(len(plan["features"]), 1)
+        self.assertEqual(len(plan["hypotheses"]), 2)
+        self.assertEqual([item["sign"] for item in plan["hypotheses"]], ["+", "-"])
+        self.assertEqual([item["term"] for item in plan["hypotheses"]], ["uncertainty", "uncertainty"])
+        self.assertEqual(plan["hypotheses"][0]["h1"], "uncertainty has a positive association")
+        self.assertEqual(plan["hypotheses"][1]["h1"], "uncertainty has a negative association")
+
+    def test_far_pairs_are_exported_without_requesting_review(self):
+        vectors = np.array([[1.0, 0.0], [-1.0, 0.0]])
+        claims = [hypothesis(owner, [feature(f"f{owner}")]) for owner in range(2)]
+        reviewer = Mock(side_effect=AssertionError("Far pairs should not be reviewed"))
+        with patch.object(deduplication, "embed", return_value=vectors):
+            plan = deduplication.dedup(claims, ENV, CFG, reviewer)
+        reviewer.assert_not_called()
+        self.assertEqual(plan["dedup_reviews"], [])
+        pair, = plan["feature_pairs"]
+        self.assertEqual((pair["left"], pair["right"]), ("h00000:f0", "h00001:f1"))
+        self.assertEqual(pair["left_feature"], claims[0]["features"][0])
+        self.assertEqual(pair["right_feature"], claims[1]["features"][0])
+        self.assertEqual(pair["cosine_distance"], 2.0)
+        self.assertTrue(pair["eligible"])
+        self.assertFalse(pair["within_threshold"])
+        self.assertFalse(pair["same_candidate_cluster"])
+        self.assertEqual(pair["review_verdict"], "")
+        self.assertEqual(pair["review_reason"], "")
+        self.assertFalse(pair["merged"])
 
     def test_missing_pair_decision_fails_closed_instead_of_merging(self):
         claims = [hypothesis(i, [feature(f"f{i}")]) for i in range(3)]
@@ -281,6 +424,106 @@ class DeduplicationTests(unittest.TestCase):
                     self.assertEqual(len(plan["features"]), 2)
                     self.assertEqual(plan["dedup_reviews"], [])
                     reviewer.assert_not_called()
+                    for pair in plan["feature_pairs"]:
+                        self.assertFalse(pair["eligible"])
+                        self.assertFalse(pair["merged"])
+                        self.assertEqual(pair["review_verdict"], "")
+                    semantic_count = sum(item["kind"] == "prompt"
+                                         for claim in claims for item in claim["features"])
+                    self.assertEqual(len(plan["feature_pairs"]),
+                                     semantic_count * (semantic_count - 1) // 2)
+
+
+class FeatureValidationTests(unittest.TestCase):
+    def test_valid_primary_code_and_comment_bases_and_dependency_chain(self):
+        items = [
+            feature("score", ("OC_comments", "argument"), annotation_unit="comment", dtype="numeric"),
+            feature("raw_count", ("OC_comments",), kind="code", dtype="numeric",
+                    spec="df['raw_count'] = df['OC_comments'].map(len)"),
+            feature("thresholded", ("argument", "OC_comments"), kind="code",
+                    feature_class="secondary", depends_on=["score"],
+                    spec="df['thresholded'] = df['score'].map(lambda scores: int(any(s >= 7 for s in scores)))"),
+            feature("normalized", ("OC_comments", "argument"), kind="code", dtype="numeric",
+                    feature_class="secondary", depends_on=["thresholded", "raw_count"],
+                    spec="df['normalized'] = df['thresholded'] / df['raw_count']"),
+        ]
+        original = copy.deepcopy(items)
+        self.assertIs(validate_features(items, ["argument", "OC_comments"]), items)
+        self.assertEqual(items, original)
+        self.assertEqual(validate_features([]), [])
+
+    def test_all_feature_fields_are_required_and_unknown_fields_are_rejected(self):
+        complete = feature("base")
+        for field in complete:
+            with self.subTest(missing=field):
+                item = {key: value for key, value in complete.items() if key != field}
+                with self.assertRaises(ValueError):
+                    validate_features([item])
+        with self.assertRaises(ValueError):
+            validate_features([{**complete, "aggregation": "any"}])
+
+    def test_invalid_feature_contracts_fail_closed(self):
+        changes = [
+            {"name": "Bad Name"}, {"name": ""}, {"name": "trailing_"},
+            {"class": "derived"}, {"annotation_unit": "thread"}, {"kind": "llm"},
+            {"dtype": "vector"}, {"definition": " \n"}, {"spec": None},
+            {"source_columns": []}, {"source_columns": ["argument", "argument"]},
+            {"source_columns": [" argument"]}, {"source_columns": ["post_id"]},
+            {"source_columns": ["comment_id"]}, {"source_columns": ["missing"]},
+            {"depends_on": None}, {"depends_on": "base"}, {"depends_on": ["bad name"]},
+            {"class": "primary", "depends_on": ["base"]},
+            {"class": "secondary", "kind": "code", "depends_on": []},
+            {"class": "secondary", "kind": "prompt", "depends_on": ["base"]},
+            {"class": "secondary", "kind": "code", "annotation_unit": "comment",
+             "source_columns": ["OC_comments"], "depends_on": ["base"]},
+            {"annotation_unit": "comment", "source_columns": ["argument"]},
+            {"annotation_unit": "comment", "source_columns": ["OC_comments", "other_comments"]},
+        ]
+        for changed in changes:
+            with self.subTest(changed=changed), self.assertRaises(ValueError):
+                validate_features([{**feature("base"), **changed}],
+                                  ["argument", "OC_comments", "other_comments"])
+        for invalid in (None, {}, "features", [None]):
+            with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                validate_features(invalid)
+
+    def test_duplicate_names_and_unknown_dependency_references_are_rejected(self):
+        with self.assertRaises(ValueError):
+            validate_features([feature("base"), feature("base")])
+        unknown = feature("derived", kind="code", feature_class="secondary", depends_on=["missing"])
+        with self.assertRaisesRegex(ValueError, "unknown"):
+            validate_features([feature("base"), unknown])
+        duplicate_deps = feature("derived", kind="code", feature_class="secondary",
+                                 depends_on=["base", "base"])
+        with self.assertRaises(ValueError):
+            validate_features([feature("base"), duplicate_deps])
+
+    def test_self_and_multi_node_dependency_cycles_are_rejected(self):
+        for deps in ({"a": ["a"]}, {"a": ["b"], "b": ["a"]},
+                     {"a": ["b"], "b": ["c"], "c": ["a"]}):
+            items = [feature(name, kind="code", feature_class="secondary", depends_on=references)
+                     for name, references in deps.items()]
+            with self.subTest(deps=deps), self.assertRaisesRegex(ValueError, "acyclic"):
+                validate_features(items)
+
+    def test_dependencies_use_original_source_union_not_generated_names(self):
+        bases = [feature("a", ("argument",)), feature("b", ("title",))]
+        derived = feature("combined", ("title", "argument"), kind="code",
+                          feature_class="secondary", depends_on=["a", "b"])
+        items = [*bases, derived]
+        self.assertIs(validate_features(items, ["argument", "title"]), items)
+        for sources in (["argument"], ["title"], ["a", "b"]):
+            with self.subTest(sources=sources), self.assertRaises(ValueError):
+                validate_features([*bases, {**derived, "source_columns": sources}], ["argument", "title"])
+        chained = feature("chained", ("title",), kind="code",
+                          feature_class="secondary", depends_on=["combined"])
+        with self.assertRaisesRegex(ValueError, "sources"):
+            validate_features([*items, chained], ["argument", "title"])
+
+    def test_dependency_validation_does_not_require_declaration_order(self):
+        derived = feature("derived", kind="code", feature_class="secondary", depends_on=["base"])
+        items = [derived, feature("base")]
+        self.assertIs(validate_features(items, ["argument"]), items)
 
 
 class SourceContractTests(unittest.TestCase):

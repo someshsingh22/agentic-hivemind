@@ -11,30 +11,41 @@ define features & tests -> deduplicate measurements -> annotate rows (external) 
 1. **decompose**: a [pi](https://www.npmjs.com/package/@earendil-works/pi-coding-agent) agent (Sonnet 5.5) per
    hypothesis. It inspects the dataset, then answers through a terminating `submit` tool (`ssh/submit.ts`) whose
    arguments must match `ssh/schema.json`. Strict tool decoding is on, and pi returns validation errors to the model.
-   The answer has reusable *features* (`name, dtype, source_columns, definition, kind=code|prompt, spec`)
-   and a *relationship*: H0/H1, an OLS formula, the tested `term`, and the claimed `sign`.
+   Each feature has `name, dtype, source_columns, definition, kind=code|prompt, spec, class,
+   annotation_unit, depends_on`, plus a *relationship*: H0/H1, an OLS formula, tested `term`, claimed `sign`.
    `source_columns` lists original predictors, including all jointly read columns; it excludes the outcome and
    identifiers. The submission schema restricts these names to the actual CSV header.
-   For semantic (`prompt`) features, `spec` is a self-contained **per-row feature-extractor description**:
-   source/speaker scope, inclusion/exclusion rules, scalar output and scale anchors, comment aggregation and
-   denominator where applicable, and missing/unassessable handling. It measures a construct, not whether the
-   hypothesis is true. Intensity qualifiers must survive decomposition; density is not intensity.
+   Primary features measure original inputs (`depends_on: []`). Semantic primary features have a
+   self-contained annotation rubric. `annotation_unit: row` returns a scalar; `comment` returns a list
+   aligned to this row's original `OC_comments` slots, optionally reading `title`/`argument` as context.
+   For comment outputs, `dtype` describes each list element. Missing/unassessable items are null.
+   Secondary features are row-level code over named dependencies: any/count/proportion/mean/threshold.
+   Their original source columns must cover their dependencies' sources; cyclic/unknown dependencies fail.
+   Thus any/example-count/example-share can share one semantic comment predicate while remaining distinct
+   final variables. This preserves the 0-10 intensity versus density distinction, not a generic emotion proxy.
    Editable prompts live in `ssh/prompts.yaml` under `agents.<name>.prompt_config.system_message` and
-   `user_template`, following ExperiGen's YAML layout. User templates use `$variable` substitution.
+   `user_template`, following ExperiGen's YAML layout. Both use a shared `measurement_policy` for
+   missingness, empty inputs, attribution and output alignment; user templates use `$variable` substitution.
    Definitions must preserve named comparison groups, frequency, distinctness and temporal attribution;
    an unfaithful proxy or a contrast not representable by one coefficient gets `term: null`.
    Sessions and the dataset-specific submission schema are saved in `<out>/<env>/pi/`.
 2. **dedup**: embeds `name: definition` for **semantic features only** and runs complete-linkage candidate
-   clustering at cosine distance `0.25`. Different source-column sets/dtypes and same-hypothesis features
-   cannot merge. Source order is ignored; `argument` and `title + argument` are different source sets.
+   clustering at cosine distance `0.25`. Different source-column sets/dtypes/annotation units and
+   same-hypothesis features cannot merge. Source order is ignored; `argument` and `title + argument`
+   are different source sets. Only semantic primary measurements are deduplicated.
    Sonnet then compares **every pair of full rubrics within each multi-feature candidate cluster** using
    the YAML `feature_equivalence` prompt. Review sessions have only `submit`, no data/code tools.
-   Only explicit `equivalent` decisions permit merging; `distinct` and `uncertain` keep features separate.
+   Only explicit `equivalent` decisions permit merging. `distinct`, `uncertain`, and `needs_alignment`
+   stay separate. `needs_alignment` identifies a shared construct whose operational boundary must be
+   resolved; it does not rewrite a rubric or approve a merge. Paraphrased explanations are not differences
+   by themselves; real scope, quantifier, scale, attribution or temporal differences still block merging.
    Every pair in a final cluster must be approved, so A=B and B=C cannot override a rejected A=C.
    A malformed or incomplete review blocks plan creation; it never silently approves or guesses a merge.
    Every code feature stays separate and is never sent for embedding or equivalence review.
    `plan.json` preserves canonical features, original members, frozen tests and `dedup_reviews` with full
-   pair decisions/reasons and cosine distances. References are rewritten to canonical names.
+   pair decisions/reasons and distances. Code references and `depends_on` are rewritten to canonical names.
+   `feature_pairs` includes every semantic pair, even ineligible or outside the candidate clusters, so
+   missed reuse can be inspected. Distances are exported without additional embedding requests.
    Reviews are cached under `<out>/<env>/dedup_reviews/` by full feature rubrics, resolved prompts, schema
    and model configuration; sessions live in `pi_review/`. Rubric/prompt changes cannot reuse an approval.
    This adds Sonnet calls per multi-feature candidate cluster; it is not dataset-row annotation.
@@ -94,10 +105,11 @@ The launcher calls `python -u -m ssh` directly; it does not use `uv run`, instal
 server. Ensure the shared venv has the dependencies in `pyproject.toml`, and `pi` is on PATH.
 These two stages do not call Qwen, annotate the 2,000 dataset rows, or run SSH tests.
 
-The new default `out: runs/calibration_v2` writes artifacts to `runs/calibration_v2/cmv/`; the original
-`runs/cmv/` calibration remains untouched. Return `decomposed.json`, `plan.json`, `decomposition_inputs.json`,
-`dedup_reviews/`, `pi/sessions/` and `pi_review/sessions/` from that directory for local inspection.
-The plan's `members` retain original definitions; its `dedup_reviews` retain decisions and reasons.
+The default `out: runs/calibration_v3` writes artifacts to `runs/calibration_v3/cmv/`. Both prior
+calibrations (`runs/cmv/`, `runs/calibration_v2/cmv/`) remain untouched; v3 requires new decomposition because
+its feature contract changed. Return `decomposed.json`, `plan.json`, `decomposition_inputs.json`,
+`dedup_reviews/` and the generated calibration CSVs for local inspection.
+The plan's `members` retain original definitions; `dedup_reviews` retain decisions and reasons.
 Review session logs before publishing them; never include `.env` or other credentials.
 Do not merge hypotheses or discard repeated hypothesis slots.
 
@@ -109,6 +121,39 @@ The pi launcher resolves schema/output/session paths before switching to its ses
 `out` paths work for both decomposition and review. A launch-path fix alone does not invalidate decompositions.
 Run only decomposition and reviewed deduplication for now; annotation and SSH testing come later.
 
+## Human calibration of cosine distance
+
+Deduplication also writes:
+
+| File | Contents |
+|---|---|
+| `feature_pairs.csv` | All semantic pairs with original full rubrics, sources/units, distance, eligibility, candidate membership, model decision and final merge state. |
+| `calibration_sample.csv` | At most 10 eligible pairs per distance bin, sampled with seed 42, including distances above 0.25. |
+| `threshold_sensitivity.csv` | Candidate counts for cutoffs 0.10–0.40; quality metrics blank until explicit human labels exist. |
+
+These are generated outputs; copy the sample before labeling it, so rerunning deduplication cannot overwrite
+your review. Fill `review_label` with `equivalent`, `distinct` or `uncertain`, and `review_reason_human` with
+the reason. Leave unreviewed pairs blank. Model verdicts are never used as human labels. The annotation-sharing
+question is whether the SAME base predicate can be reused; do not merge different predicates merely because
+their outputs happen to correlate.
+
+```bash
+cp runs/calibration_v3/cmv/calibration_sample.csv runs/calibration_v3/cmv/reviewed_sample.csv
+# Review/edit reviewed_sample.csv, then use the activated evaluation venv:
+nohup python -u -m ssh calibrate \
+  runs/calibration_v3/cmv/reviewed_sample.csv \
+  runs/calibration_v3/cmv/human_calibration \
+  > runs/calibration_v3/cmv/human_calibration.log 2>&1 < /dev/null &
+PID=$!
+tail --pid="$PID" -n +1 -F runs/calibration_v3/cmv/human_calibration.log
+```
+
+Threshold sensitivity describes only the human-reviewed eligible subset, not population precision/recall,
+and does not automatically change `0.25`. It measures pairwise candidate retrieval, not final clustering
+accuracy. Review the full eligible distribution and missed equivalents before selecting a new cutoff.
+Compare unique semantic annotation tasks separately from total final variables; secondary code features
+can grow without adding model annotation tasks. No savings or annotation accuracy is established until reviewed.
+
 ## Local verification
 
 ```bash
@@ -116,5 +161,8 @@ uv run python -m unittest discover -s tests -v
 ```
 
 The suite uses fixed/seeded embeddings and simulated agent submissions, with no model or embedding API calls.
-It checks source matching, semantic-only merges, code references, complete-linkage boundaries, rejected and
-uncertain pairs, complete review coverage and cache identity. It cannot establish Sonnet's semantic accuracy.
+It checks source/unit matching, semantic-only merges, separate code aggregations and canonical dependencies,
+complete-linkage boundaries, rejected/uncertain/alignment-needed pairs, complete review coverage, cache identity,
+and deterministic distance sampling with explicitly human-labeled threshold scoring.
+A local CLI smoke also exercised decomposition/resume, deduplication, pair exports and label scoring with
+external model/embedding boundaries stubbed. Neither check establishes Sonnet's semantic accuracy.

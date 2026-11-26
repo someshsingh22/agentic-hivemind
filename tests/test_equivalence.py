@@ -20,6 +20,7 @@ def candidate_features():
             "name": name, "dtype": "binary", "source_columns": ["argument"],
             "definition": "OP argument: explicit uncertainty about the OP's own claim",
             "kind": "prompt",
+            "class": "primary", "annotation_unit": "row", "depends_on": [],
             "spec": "Output 1 for explicit self-doubt; 0 if absent; null if argument is empty.",
         }}
         for index, name in enumerate(("uncertainty", "self_doubt"))
@@ -49,6 +50,11 @@ class ComparisonValidationTests(unittest.TestCase):
         self.assertEqual(items[0]["left"], 2)
         self.assertEqual(equivalence.validate_comparisons([], 0), [])
         self.assertEqual(equivalence.validate_comparisons([], 1), [])
+
+    def test_needs_alignment_is_a_supported_nonapproval_verdict(self):
+        item = comparison(verdict="needs_alignment",
+                          reason="Thresholds differ; align downstream aggregations before sharing labels.")
+        self.assertEqual(equivalence.validate_comparisons([item], 2), [item])
 
     def test_invalid_or_incomplete_decisions_fail_closed(self):
         invalid = {
@@ -104,6 +110,9 @@ class EquivalenceReviewerTests(unittest.TestCase):
             "source_columns": ["title", "argument"],
             "dtype": "numeric",
             "kind": "code",
+            "class": "secondary",
+            "annotation_unit": "comment",
+            "depends_on": ["base_measurement"],
         }
         for field, value in changes.items():
             with self.subTest(field=field), tempfile.TemporaryDirectory() as folder:
@@ -179,8 +188,8 @@ class EquivalenceReviewerTests(unittest.TestCase):
                         equivalence.EquivalenceReviewer(full_config(), root)(candidate_features())
                 self.assertEqual(agent.call_count, 1)
 
-    def test_distinct_and_uncertain_external_decisions_are_preserved(self):
-        for verdict in ("distinct", "uncertain"):
+    def test_nonapproval_external_decisions_are_preserved(self):
+        for verdict in ("distinct", "uncertain", "needs_alignment"):
             with self.subTest(verdict=verdict), tempfile.TemporaryDirectory() as folder:
                 def submit_decision(prompt, system, home, cfg, schema, out):
                     Path(out).write_text(json.dumps({"comparisons": [comparison(verdict=verdict)]}))

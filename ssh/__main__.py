@@ -40,10 +40,12 @@ def dedup(env, config="config.yaml"):
     """Merge equivalent features -> OUT/plan.json (feature registry + frozen tests)."""
     from .dedup import dedup, summary
     from .equivalence import EquivalenceReviewer
+    from .calibration import write_calibration
 
     cfg, env, out = setup(env, config)
     plan = dedup(read(out / "decomposed.json")["decomposed"], env, cfg, EquivalenceReviewer(cfg, out))
     write(out / "plan.json", plan)
+    write_calibration(plan, out, cfg["dedup"]["threshold"])
     return summary(plan)
 
 
@@ -57,4 +59,11 @@ def test(env, csv, config="config.yaml"):
     return {"tested": int(results.p.notna().sum()), "ssh": int(results.ssh.sum()), "total": len(results)}
 
 
-fire.Fire({"decompose": decompose, "dedup": dedup, "test": test})
+def calibrate(labels, output):
+    """Summarize candidate thresholds using explicit human pair labels; no model calls."""
+    from .calibration import score_labels
+
+    score_labels(labels, output)
+
+
+fire.Fire({"decompose": decompose, "dedup": dedup, "calibrate": calibrate, "test": test})

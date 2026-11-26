@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 from os import fspath
 from pathlib import Path
 
+from .features import validate_features
 from .models import agent, pi_home
 from .prompts import prompt_config, render_prompt
 
@@ -20,12 +21,10 @@ def _decompose(i, hypothesis, cfg, out, home, columns, resolved_prompt):
         system, task = resolved_prompt
         agent(task, system, home, cfg, home / "schema.json", path)
     result = json.loads(path.read_text())
-    for feature in result["features"]:
-        sources = feature.get("source_columns")
-        if (not isinstance(sources, list) or not sources
-                or any(not isinstance(source, str) or source not in columns for source in sources)
-                or len(set(sources)) != len(sources)):
-            raise ValueError(f"{path}: {feature['name']} needs valid original source_columns; use a fresh run for old outputs")
+    try:
+        validate_features(result["features"], columns)
+    except (KeyError, ValueError) as error:
+        raise ValueError(f"{path}: invalid feature contracts; use a fresh run for old outputs: {error}") from error
     return {"id": i, "hypothesis": hypothesis, **result}
 
 
