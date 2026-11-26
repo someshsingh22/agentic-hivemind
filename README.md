@@ -57,6 +57,10 @@ On the experiment machine, place the supplied inputs at the paths already config
 Alternatively, edit the two input paths in `envs/cmv.yaml`. Run commands from the repository root.
 The JSON's `hypotheses` list already contains 100 entries; leave `n_hypotheses: null` to keep all of them.
 Decomposition uses the configured Sonnet 5.5 pi agent; deduplication uses `text-embedding-3-large`.
+The default is one concurrent Sonnet session (`agent.workers: 1`) to reduce bursts against the shared
+output-token quota. Sequential sessions can still be rate-limited; this is not a tokens-per-minute limiter.
+Changing the setting does not affect an already running worker. After a failed run has fully exited, rerun
+the launcher to reuse completed per-hypothesis JSON files rather than deleting the run directory.
 Use the detached launcher for the calibration. It uses the existing GPU-machine environment at
 `/mnt/localssd/namit/experigen-evals/.venv`, not a new repo-local venv:
 

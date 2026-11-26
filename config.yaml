@@ -12,7 +12,7 @@ agent:                      # pi coding agent (@earendil-works/pi-coding-agent);
   tools: read,bash,submit     # submit = schema-validated final answer (ssh/submit.ts)
   max_tokens: 32000
   compat: {forceAdaptiveThinking: true, supportsStrictTools: true}   # adaptive thinking (Sonnet 5.5); strict = constrained tool decoding
-  workers: 8
+  workers: 1                # shared Sonnet quota: avoid eight simultaneous agent sessions
 
 embedding:
   base_url: https://${ANTHROPIC_FOUNDRY_RESOURCE}.services.ai.azure.com/openai/v1
