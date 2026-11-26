@@ -42,18 +42,22 @@ def submit_review(prompt, system, home, cfg, schema, out):
 
 class ComparisonValidationTests(unittest.TestCase):
     def test_requires_every_pair_once_and_normalizes_order(self):
-        items = [comparison(2, 1, "uncertain"), comparison(2, 0, "distinct"), comparison(1, 0)]
+        items = [comparison(2, 1, "distinct"), comparison(2, 0, "distinct"), comparison(1, 0)]
         result = equivalence.validate_comparisons(items, 3)
         self.assertEqual(result, [comparison(0, 1), comparison(0, 2, "distinct"),
-                                  comparison(1, 2, "uncertain")])
+                                  comparison(1, 2, "distinct")])
         self.assertEqual(items[0]["left"], 2)
         self.assertEqual(equivalence.validate_comparisons([], 0), [])
         self.assertEqual(equivalence.validate_comparisons([], 1), [])
 
-    def test_needs_alignment_is_a_supported_nonapproval_verdict(self):
-        item = comparison(verdict="needs_alignment",
-                          reason="Thresholds differ; align row measurements before sharing labels.")
-        self.assertEqual(equivalence.validate_comparisons([item], 2), [item])
+    def test_validator_accepts_final_decisions_and_rejects_deferred_verdicts(self):
+        for verdict in ("equivalent", "distinct"):
+            with self.subTest(verdict=verdict):
+                item = comparison(verdict=verdict)
+                self.assertEqual(equivalence.validate_comparisons([item], 2), [item])
+        for verdict in ("needs_alignment", "uncertain"):
+            with self.subTest(verdict=verdict), self.assertRaises(ValueError):
+                equivalence.validate_comparisons([comparison(verdict=verdict)], 2)
 
     def test_invalid_or_incomplete_decisions_fail_closed(self):
         invalid = {
@@ -179,6 +183,8 @@ class EquivalenceReviewerTests(unittest.TestCase):
             "missing_root_field": "{}",
             "incomplete_pairs": json.dumps({"comparisons": []}),
             "unknown_verdict": json.dumps({"comparisons": [comparison(verdict="similar")]}),
+            "obsolete_needs_alignment": json.dumps({"comparisons": [comparison(verdict="needs_alignment")]}),
+            "obsolete_uncertain": json.dumps({"comparisons": [comparison(verdict="uncertain")]}),
             "duplicate_pairs": json.dumps({"comparisons": [comparison(), comparison(1, 0)]}),
         }
         for label, contents in malformed.items():
@@ -195,15 +201,17 @@ class EquivalenceReviewerTests(unittest.TestCase):
                         equivalence.EquivalenceReviewer(full_config(), root)(candidate_features())
                 self.assertEqual(agent.call_count, 1)
 
-    def test_nonapproval_external_decisions_are_preserved(self):
-        for verdict in ("distinct", "uncertain", "needs_alignment"):
-            with self.subTest(verdict=verdict), tempfile.TemporaryDirectory() as folder:
-                def submit_decision(prompt, system, home, cfg, schema, out):
-                    Path(out).write_text(json.dumps({"comparisons": [comparison(verdict=verdict)]}))
+    def test_distinct_external_decision_is_preserved_on_creation_and_resume(self):
+        decision = comparison(verdict="distinct", reason="Argument-only and title+argument scopes differ.")
+        with tempfile.TemporaryDirectory() as folder:
+            def submit_decision(prompt, system, home, cfg, schema, out):
+                Path(out).write_text(json.dumps({"comparisons": [decision]}))
 
-                with patch.object(equivalence, "agent", side_effect=submit_decision):
-                    result = equivalence.EquivalenceReviewer(full_config(), Path(folder))(candidate_features())
-                self.assertEqual(result, [comparison(verdict=verdict)])
+            reviewer = equivalence.EquivalenceReviewer(full_config(), Path(folder))
+            with patch.object(equivalence, "agent", side_effect=submit_decision) as agent:
+                self.assertEqual(reviewer(candidate_features()), [decision])
+                self.assertEqual(reviewer(candidate_features()), [decision])
+            self.assertEqual(agent.call_count, 1)
 
     def test_cached_review_requires_matching_input_stamp(self):
         for change in ("missing", "changed", "malformed"):

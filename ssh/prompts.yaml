@@ -148,9 +148,9 @@ agents:
         Review this pair only. Positions 0 and 1 are LOCAL indices, not hypothesis IDs.
         Finish via submit with exactly one comparison:
         {"comparisons": [{"left": 0, "right": 1, "verdict": "equivalent", "reason": "..."}]}
-        Verdict is equivalent, needs_alignment, distinct or uncertain. The reason states
-        decisive agreement, exact pending difference, real construct difference or unresolved
-        ambiguity.
+        Verdict is exactly equivalent or distinct: Sonnet makes the final automated decision.
+        Give a concrete reason identifying the decisive agreement or material measurement
+        difference. There is no pending alignment, human review or rubric-rewriting step.
 
         DECISION RULES
         - equivalent: the same full direct per-row extraction function, including the core
@@ -160,19 +160,19 @@ agents:
           is insufficient. Outcome direction and provenance do not change the measurement.
           Different ordinary nonexhaustive example lists are not decisive by themselves; compare
           the rules they illustrate. Do not invent a missing boundary or rule.
-        - needs_alignment: the intended construct is shared but an explicit operational
-          rubric differs (scope, eligibility, intensity cutoff, scale, timing, attribution or
-          null rule). Report the EXACT pending difference and what would need an explicit
-          measurement decision. This is NOT approval to merge or choose one rubric: retain
-          both as written. Never manufacture a common definition to make labels agree.
-        - distinct: genuinely different constructs or explicitly different requested measures,
-          not merely different phrasing. Any, all, count and share are different extraction
-          functions, even when they judge the same underlying property. A broad construct and
-          a materially narrower subtype, endorsement and quotation, or a challenge and mere
-          topic mention are distinct.
-        - uncertain: insufficient/ambiguous specifications prevent deciding shared construct
-          or contract. State what is missing. Do not assume omitted exclusions/anchors/null
-          handling match; the shared policy supplies only its explicit standard rules.
+        - distinct: different constructs OR a material difference in the requested measurement
+          contract, including scope, eligibility, intensity cutoff, scale, timing, attribution or
+          null rule, even when the intended construct is shared. Any, all, count and share are
+          different extraction functions. A broad construct and a materially narrower subtype,
+          endorsement and quotation, or a challenge and mere topic mention are distinct.
+          Name the concrete difference; retain both measurements as written without aligning
+          them or manufacturing a common definition.
+        - If a material boundary, anchor, attribution or missing-input rule remains unresolved
+          after applying the shared policy, decide distinct and identify the missing rule.
+          This is a final non-equivalence decision, not a deferral. Do not assume omitted
+          exclusions/anchors/null handling match; the shared policy supplies only its explicit
+          standard rules. Harmless paraphrases and ordinary nonexhaustive examples alone are
+          not unresolved material rules.
 
         FULL-CONTRACT COMPARISON
         - Compare original source sets (order irrelevant), required context, dtype,
@@ -195,24 +195,25 @@ agents:
         - equivalent: any comment offers a specific real-world example versus presence of at
           least one concrete identifiable case offered as evidence in the comments, when
           source/context, attribution, eligibility and output rules agree.
-        - needs_alignment: the same uncertainty predicate measured in title+argument in one
-          spec but argument-only in the other despite matching declared sources. Name that
-          exact scope mismatch; do not choose or infer the intended scope.
-        - needs_alignment: the same anchored score with a changed rubric cutoff, or the same
-          construct with incompatible missing-input rules. No automatic merge is permitted.
+        - distinct: the same uncertainty predicate measured in title+argument in one spec but
+          argument-only in the other despite matching declared sources. The concrete scope
+          mismatch changes the measurement; do not choose or infer the intended scope.
+        - distinct: the same anchored score with a changed rubric cutoff, or the same construct
+          with incompatible missing-input rules. Name the cutoff or missing-input difference.
         - distinct: functioning institutional precedent versus any specific real-world example;
           broad concession versus factual-error admission; concrete personal labor details
           versus abstract normative principle; logical reasoning versus absence of aggression.
         - distinct: any versus all/count/share, intensity versus density, comments versus
           distinct arguments, initial text versus later discussion, emotional versus highly
           emotional as distinct requested constructs.
-        - uncertain: nominally similar scores with no interpretable anchors or unresolved
-          attribution. Uncertainty is not permission to fill in the missing rubric.
+        - distinct: nominally similar scores with no interpretable anchors or unresolved
+          attribution. Name the missing material rule; do not fill it in or defer the decision.
       user_template: |
         Review the supplied pair using local indices 0 and 1, not hypothesis IDs.
-        Compare the same construct AND full scalar row function. Preserve all feature fields,
-        retain explicit differences and report exact pending alignment differences. Do not
-        assume missing rules match or treat ordinary nonexhaustive examples as extra restrictions.
+        Compare the same construct AND full scalar row function. Preserve all feature fields
+        and make a final equivalent/distinct decision with a concrete reason. Retain material
+        differences; do not align rubrics, defer to humans, assume missing rules match or treat
+        ordinary nonexhaustive examples as extra restrictions.
 
         $features
 

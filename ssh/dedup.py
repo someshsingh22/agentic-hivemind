@@ -146,12 +146,14 @@ def dedup(decomposed, env, cfg, review_cluster, vectors=None):
 def summary(plan):
     feats = plan["features"]
     raw = [m for f in feats for m in f["members"]]
+    verdicts = [c["verdict"] for review in plan["dedup_reviews"] for c in review["comparisons"]]
     return {
         "hypotheses": len(plan["hypotheses"]),
         "features_raw": len(raw),
         "features_unique": len(feats),
         "prompt_features_raw": sum(m["kind"] == "prompt" for m in raw),
         "prompt_features_unique": sum(f["kind"] == "prompt" for f in feats),
-        "pairs_needing_alignment": sum(c["verdict"] == "needs_alignment"
-                                      for review in plan["dedup_reviews"] for c in review["comparisons"]),
+        "reviewed_pairs": len(verdicts),
+        "equivalent_pairs": verdicts.count("equivalent"),
+        "distinct_pairs": verdicts.count("distinct"),
     }

@@ -27,7 +27,7 @@ def validate_comparisons(comparisons, count):
         pair = tuple(sorted((left, right)))
         if pair not in expected or pair in decisions:
             raise ValueError("Semantic review contains a duplicate or self comparison")
-        if item["verdict"] not in ("equivalent", "distinct", "needs_alignment", "uncertain"):
+        if item["verdict"] not in ("equivalent", "distinct"):
             raise ValueError("Semantic comparison has an unknown verdict")
         if not isinstance(item["reason"], str) or not item["reason"].strip():
             raise ValueError("Semantic comparison needs a nonempty reason")

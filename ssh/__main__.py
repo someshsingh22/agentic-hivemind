@@ -37,13 +37,15 @@ def decompose(env, config="config.yaml"):
 
 
 def dedup(env, config="config.yaml"):
-    """Merge equivalent features -> OUT/plan.json (feature registry + frozen tests)."""
+    """Merge equivalent features -> OUT/automated/plan.json and frozen tests."""
     from .dedup import dedup, summary
     from .equivalence import EquivalenceReviewer
     from .calibration import write_calibration
 
     cfg, env, out = setup(env, config)
-    plan = dedup(read(out / "decomposed.json")["decomposed"], env, cfg, EquivalenceReviewer(cfg, out))
+    decomposed = read(out / "decomposed.json")["decomposed"]
+    out = out / "automated"
+    plan = dedup(decomposed, env, cfg, EquivalenceReviewer(cfg, out))
     write(out / "plan.json", plan)
     write_calibration(plan, out, cfg["dedup"]["threshold"])
     return summary(plan)
@@ -54,16 +56,10 @@ def test(env, csv, config="config.yaml"):
     from .stats import run
 
     cfg, env, out = setup(env, config)
+    out = out / "automated"
     results = run(read(out / "plan.json"), pd.read_csv(csv), cfg["test"]["alpha"])
     results.to_csv(out / "results.csv", index=False)
     return {"tested": int(results.p.notna().sum()), "ssh": int(results.ssh.sum()), "total": len(results)}
-
-
-def calibrate(labels, output):
-    """Summarize candidate thresholds using explicit human pair labels; no model calls."""
-    from .calibration import score_labels
-
-    score_labels(labels, output)
 
 
 def tune(env, config="config.yaml"):
@@ -76,6 +72,7 @@ def tune(env, config="config.yaml"):
     decompose(env, config)
     cfg, env, out = setup(env, config)
     decomposed = read(out / "decomposed.json")["decomposed"]
+    out = out / "automated"
     semantic = [feature for claim in decomposed for feature in claim["features"]
                 if feature["kind"] == "prompt"]
     vectors = embed([f"{f['name']}: {f['definition']}" for f in semantic], cfg["embedding"]) if len(semantic) > 1 else None
@@ -95,4 +92,4 @@ def tune(env, config="config.yaml"):
     return results
 
 
-fire.Fire({"decompose": decompose, "dedup": dedup, "tune": tune, "calibrate": calibrate, "test": test})
+fire.Fire({"decompose": decompose, "dedup": dedup, "tune": tune, "test": test})

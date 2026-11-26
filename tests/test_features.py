@@ -12,6 +12,7 @@ import yaml
 
 from ssh import decompose as decomposition
 from ssh import dedup as deduplication
+from ssh import equivalence
 from ssh import prompts
 from ssh.features import validate_features
 
@@ -219,22 +220,21 @@ class DeduplicationTests(unittest.TestCase):
                                     for key in feature(name)}])
                 for owner, name in (left, right)
             ]
-            for verdict in ("distinct", "uncertain", "needs_alignment"):
-                with self.subTest(pair=label, verdict=verdict):
-                    decisions = [{"left": 0, "right": 1, "verdict": verdict,
-                                  "reason": f"Fixture decision for {label}: do not share annotations."}]
-                    reviewer = Mock(return_value=decisions)
-                    with patch.object(deduplication, "embed", identical_vectors):
-                        plan = deduplication.dedup(claims, ENV, CFG, reviewer)
-                    self.assertEqual(len(plan["features"]), 2)
-                    self.assertEqual([len(item["members"]) for item in plan["features"]], [1, 1])
-                    self.assertEqual(plan["hypotheses"][0]["term"], left[1])
-                    self.assertEqual(plan["hypotheses"][1]["term"], right[1])
-                    self.assertEqual(plan["dedup_reviews"][0]["comparisons"], decisions)
-                    reviewer.assert_called_once_with([
-                        {"hypothesis_id": claim["id"], "feature": claim["features"][0]}
-                        for claim in claims
-                    ])
+            with self.subTest(pair=label):
+                decisions = [{"left": 0, "right": 1, "verdict": "distinct",
+                              "reason": f"Fixture decision for {label}: do not share annotations."}]
+                reviewer = Mock(return_value=decisions)
+                with patch.object(deduplication, "embed", identical_vectors):
+                    plan = deduplication.dedup(claims, ENV, CFG, reviewer)
+                self.assertEqual(len(plan["features"]), 2)
+                self.assertEqual([len(item["members"]) for item in plan["features"]], [1, 1])
+                self.assertEqual(plan["hypotheses"][0]["term"], left[1])
+                self.assertEqual(plan["hypotheses"][1]["term"], right[1])
+                self.assertEqual(plan["dedup_reviews"][0]["comparisons"], decisions)
+                reviewer.assert_called_once_with([
+                    {"hypothesis_id": claim["id"], "feature": claim["features"][0]}
+                    for claim in claims
+                ])
 
     def test_all_candidate_pairs_and_distances_are_saved(self):
         vectors = np.array([[math.cos(a), math.sin(a)] for a in [0, 0.1, 0.2, 0.3]])
@@ -288,6 +288,9 @@ class DeduplicationTests(unittest.TestCase):
         self.assertFalse(any({0, 2} <= group for group in groups))
         approved = {frozenset((0, 1)), frozenset((1, 2))}
         self.assertTrue(all(len(group) == 1 or frozenset(group) in approved for group in groups))
+        counts = deduplication.summary(plan)
+        self.assertEqual((counts["reviewed_pairs"], counts["equivalent_pairs"], counts["distinct_pairs"]),
+                         (3, 2, 1))
 
     def test_direct_any_and_share_are_distinct_row_measurements(self):
         claims = [
@@ -312,7 +315,7 @@ class DeduplicationTests(unittest.TestCase):
             hypothesis(1, [feature("uncertain_share", ("OC_comments",), dtype="numeric",
                                   spec="Return the share of comments expressing uncertainty in this row.")]),
         ]
-        for verdict, expected in (("distinct", 2), ("needs_alignment", 2), ("equivalent", 1)):
+        for verdict, expected in (("distinct", 2), ("equivalent", 1)):
             with self.subTest(verdict=verdict):
                 decisions = [{"left": 0, "right": 1, "verdict": verdict,
                               "reason": "Explicit deterministic reviewer decision."}]
@@ -321,17 +324,19 @@ class DeduplicationTests(unittest.TestCase):
                 self.assertEqual(len(plan["features"]), expected)
                 self.assertEqual(plan["feature_pairs"][0]["merged"], verdict == "equivalent")
 
-    def test_needs_alignment_preserves_features_and_review_reason(self):
-        claims = [hypothesis(owner, [feature(name)])
-                  for owner, name in enumerate(("weak_evidence", "strong_evidence"))]
-        reason = "Same evidence concept but different cutoffs; sharing labels requires alignment."
-        decisions = [{"left": 0, "right": 1, "verdict": "needs_alignment", "reason": reason}]
+    def test_material_cutoff_difference_preserves_features_and_final_distinct_reason(self):
+        claims = [
+            hypothesis(0, [feature("any_doubt", spec="Output 1 for any explicit uncertainty; 0 if absent.")]),
+            hypothesis(1, [feature("strong_doubt", spec="Output 1 only for emphatic explicit uncertainty; 0 otherwise.")]),
+        ]
+        reason = "Any explicit uncertainty and only emphatic uncertainty have different intensity cutoffs."
+        decisions = [{"left": 0, "right": 1, "verdict": "distinct", "reason": reason}]
         with patch.object(deduplication, "embed", identical_vectors):
             plan = deduplication.dedup(claims, ENV, CFG, lambda cluster: decisions)
         self.assertEqual(len(plan["features"]), 2)
         self.assertEqual(plan["dedup_reviews"][0]["comparisons"], decisions)
         pair, = plan["feature_pairs"]
-        self.assertEqual(pair["review_verdict"], "needs_alignment")
+        self.assertEqual(pair["review_verdict"], "distinct")
         self.assertEqual(pair["review_reason"], reason)
         self.assertFalse(pair["merged"])
 
@@ -374,6 +379,8 @@ class DeduplicationTests(unittest.TestCase):
             [],
             [{"left": 0, "right": 2, "verdict": "equivalent", "reason": "Invalid pair index."}],
             [{"left": 0, "right": 1, "verdict": "equivalent"}],
+            [{"left": 0, "right": 1, "verdict": "needs_alignment", "reason": "Obsolete verdict."}],
+            [{"left": 0, "right": 1, "verdict": "uncertain", "reason": "Obsolete verdict."}],
         ]
         for verdicts in malformed:
             with self.subTest(verdicts=verdicts), patch.object(deduplication, "embed", identical_vectors):
@@ -589,6 +596,58 @@ class SourceContractTests(unittest.TestCase):
                         with self.assertRaises(ValueError):
                             decomposition.decompose_all({0: "Claim 0"}, env, cfg, root)
                         self.assertEqual(agent.call_count, 1)
+
+    def test_reviewer_only_prompt_changes_refresh_reviews_and_reuse_decomposition(self):
+        original_prompt = prompts.PROMPTS.read_text()
+        prefix, marker, reviewer_section = original_prompt.partition("  feature_equivalence:\n")
+        self.assertTrue(marker)
+        for changed in ("system_message", "user_template"):
+            with self.subTest(changed=changed), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                _, env, cfg = self.make_run(root)
+                claims = {0: "Claim 0", 1: "Claim 1"}
+                prompt_path = root / "prompts.yaml"
+                previous_reviewer = reviewer_section.replace(
+                    f"      {changed}: |\n",
+                    f"      {changed}: |\n        Previous review instruction.\n",
+                    1,
+                )
+                self.assertNotEqual(previous_reviewer, reviewer_section)
+                prompt_path.write_text(prefix + marker + previous_reviewer)
+                decision = {"left": 0, "right": 1, "verdict": "distinct",
+                            "reason": "Fixture final decision: a material attribution rule is missing."}
+
+                def submit_decision(prompt, system, home, cfg, schema, out):
+                    out.write_text(json.dumps({"comparisons": [decision]}))
+
+                with patch.object(prompts, "PROMPTS", prompt_path), \
+                        patch.object(decomposition, "agent", side_effect=self.submit_decomposition) as decomposer, \
+                        patch.object(equivalence, "agent", side_effect=submit_decision) as reviewer_agent:
+                    original = decomposition.decompose_all(claims, env, cfg, root)
+                    manifest_path = root / "decomposition_inputs.json"
+                    original_manifest = manifest_path.read_bytes()
+                    original_inputs = json.loads(original_manifest)
+                    cached_outputs = {path: path.read_bytes() for path in (root / "decomposed").glob("*.json")}
+                    pair = [{"hypothesis_id": claim["id"], "feature": claim["features"][0]}
+                            for claim in original]
+                    reviewer = equivalence.EquivalenceReviewer({"agent": cfg}, root / "automated")
+                    self.assertEqual(reviewer(pair), [decision])
+                    previous_review_path = reviewer_agent.call_args.args[-1]
+                    previous_review = previous_review_path.read_bytes()
+
+                    prompt_path.write_text(original_prompt)
+                    current_inputs, _ = decomposition._inputs(claims, env, cfg)
+                    self.assertEqual(current_inputs["prompt"], original_inputs["prompt"])
+                    self.assertEqual(current_inputs["resolved_prompts"], original_inputs["resolved_prompts"])
+                    self.assertEqual(decomposition.decompose_all(claims, env, cfg, root), original)
+                    self.assertEqual(reviewer(pair), [decision])
+                    self.assertEqual(reviewer(pair), [decision])
+                    self.assertEqual(decomposer.call_count, 2)
+                    self.assertEqual(reviewer_agent.call_count, 2)
+                    self.assertNotEqual(reviewer_agent.call_args.args[-1], previous_review_path)
+                    self.assertEqual(previous_review_path.read_bytes(), previous_review)
+                    self.assertEqual(manifest_path.read_bytes(), original_manifest)
+                    self.assertEqual({path: path.read_bytes() for path in cached_outputs}, cached_outputs)
 
     def test_failed_decomposition_resumes_only_unfinished_claims_with_matching_identity(self):
         with tempfile.TemporaryDirectory() as folder:

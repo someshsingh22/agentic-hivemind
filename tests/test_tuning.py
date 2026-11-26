@@ -44,7 +44,10 @@ class TuningTests(unittest.TestCase):
             # A/B distance .22 enters only .25/.30; B/C is .28, only .30.
             angles = [0, math.acos(.78), math.acos(.78) + math.acos(.72)]
             vectors = np.array([[math.cos(a), math.sin(a)] for a in angles])
-            out = root / "runs/smoke"
+            out = root / "runs/smoke/automated"
+            legacy_plan = out.parent / "threshold_0.25" / "plan.json"
+            legacy_plan.parent.mkdir(parents=True)
+            legacy_plan.write_text('{"protocol": "previous pending-review run"}')
             argv = ["ssh", "tune", str(env), "--config", str(config)]
             with patch("ssh.decompose.agent", side_effect=submit_feature) as decomposer, \
                  patch("ssh.equivalence.agent", side_effect=submit_review) as reviewer, \
@@ -64,6 +67,11 @@ class TuningTests(unittest.TestCase):
                         self.assertLessEqual(max(len(f["members"]) for f in plan["features"]), 2)
                     summary = json.loads((out / "tuning_summary.json").read_text())
                     self.assertEqual(set(summary), {"0.20", "0.25", "0.30"})
+                    self.assertEqual(legacy_plan.read_text(), '{"protocol": "previous pending-review run"}')
+                    self.assertEqual(summary["0.30"]["reviewed_pairs"], 2)
+                    self.assertEqual(summary["0.30"]["equivalent_pairs"], 2)
+                    self.assertEqual(summary["0.30"]["distinct_pairs"], 0)
                     with (out / "threshold_0.30/calibration_sample.csv").open() as stream:
-                        self.assertTrue(all(row["review_label"] == "" for row in csv.DictReader(stream)))
+                        sample = list(csv.DictReader(stream))
+                    self.assertEqual({row["review_verdict"] for row in sample}, {"", "equivalent"})
                     self.assertFalse((out / "results.csv").exists())
