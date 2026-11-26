@@ -39,9 +39,10 @@ def decompose(env, config="config.yaml"):
 def dedup(env, config="config.yaml"):
     """Merge equivalent features -> OUT/plan.json (feature registry + frozen tests)."""
     from .dedup import dedup, summary
+    from .equivalence import EquivalenceReviewer
 
     cfg, env, out = setup(env, config)
-    plan = dedup(read(out / "decomposed.json")["decomposed"], env, cfg)
+    plan = dedup(read(out / "decomposed.json")["decomposed"], env, cfg, EquivalenceReviewer(cfg, out))
     write(out / "plan.json", plan)
     return summary(plan)
 

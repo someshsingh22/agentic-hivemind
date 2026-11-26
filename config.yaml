@@ -1,4 +1,4 @@
-out: runs
+out: runs/calibration_v2
 seed: 0
 n_hypotheses: null          # null = all; else a seeded sample of n
 
@@ -20,7 +20,7 @@ embedding:
   model: text-embedding-3-large
 
 dedup:
-  threshold: 0.25           # complete-linkage cosine distance
+  threshold: 0.25           # candidate cosine distance; Sonnet must also approve full-rubric equivalence
 
 test:
   alpha: 0.05

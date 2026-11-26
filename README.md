@@ -19,17 +19,27 @@ define features & tests -> deduplicate measurements -> annotate rows (external) 
    source/speaker scope, inclusion/exclusion rules, scalar output and scale anchors, comment aggregation and
    denominator where applicable, and missing/unassessable handling. It measures a construct, not whether the
    hypothesis is true. Intensity qualifiers must survive decomposition; density is not intensity.
-   Sessions and the dataset-specific submission schema are saved in `runs/<env>/pi/`.
-2. **dedup**: embeds `name: definition` for **semantic features only** and runs complete-linkage clustering on
-   cosine distance. Only features with the **same source-column set and dtype**, from different hypotheses,
-   can merge. Source order is ignored, but `argument` and `title + argument` are different source sets.
-   Every code feature stays separate and is never sent to the embedding service. Formulas and derived code
-   references are rewritten to canonical names. Output: `plan.json`, containing the canonical feature registry,
-   all original member definitions/specs/source columns, and every hypothesis's frozen test.
-   The default `0.25` distance is a **provisional calibration threshold, not proof of semantic equivalence**.
-   Same-source measurements can still differ in speaker, construct, intensity, scale or aggregation; inspect
-   proposed merges before annotation. Code computation, row annotation and semantic-equivalence judging are
-   not executed by this command.
+   Editable prompts live in `ssh/prompts.yaml` under `agents.<name>.prompt_config.system_message` and
+   `user_template`, following ExperiGen's YAML layout. User templates use `$variable` substitution.
+   Definitions must preserve named comparison groups, frequency, distinctness and temporal attribution;
+   an unfaithful proxy or a contrast not representable by one coefficient gets `term: null`.
+   Sessions and the dataset-specific submission schema are saved in `<out>/<env>/pi/`.
+2. **dedup**: embeds `name: definition` for **semantic features only** and runs complete-linkage candidate
+   clustering at cosine distance `0.25`. Different source-column sets/dtypes and same-hypothesis features
+   cannot merge. Source order is ignored; `argument` and `title + argument` are different source sets.
+   Sonnet then compares **every pair of full rubrics within each multi-feature candidate cluster** using
+   the YAML `feature_equivalence` prompt. Review sessions have only `submit`, no data/code tools.
+   Only explicit `equivalent` decisions permit merging; `distinct` and `uncertain` keep features separate.
+   Every pair in a final cluster must be approved, so A=B and B=C cannot override a rejected A=C.
+   A malformed or incomplete review blocks plan creation; it never silently approves or guesses a merge.
+   Every code feature stays separate and is never sent for embedding or equivalence review.
+   `plan.json` preserves canonical features, original members, frozen tests and `dedup_reviews` with full
+   pair decisions/reasons and cosine distances. References are rewritten to canonical names.
+   Reviews are cached under `<out>/<env>/dedup_reviews/` by full feature rubrics, resolved prompts, schema
+   and model configuration; sessions live in `pi_review/`. Rubric/prompt changes cannot reuse an approval.
+   This adds Sonnet calls per multi-feature candidate cluster; it is not dataset-row annotation.
+   LLM review is still fallible: inspect merges before annotation. Code computation, row annotation and
+   SSH testing remain outside this command.
 3. **test**: fits OLS with cluster-robust SEs by the env `group` (HC1 if there is none). It applies Holm correction
    across testable hypotheses. `ssh` means `p_holm <= alpha` and the coefficient sign matches the claim.
 
@@ -40,7 +50,7 @@ Secrets are read from env vars (see `.env.example`). Set `ANTHROPIC_FOUNDRY_RESO
 Both Sonnet and the embedding endpoint use these names; the old `AZURE_*` names are not used.
 
 ```bash
-npm i -g @earendil-works/pi-coding-agent
+npm i -g @earendil-works/pi-coding-agent     # use Node 24 LTS, not Node 18
 cp .env.example .env                        # fill ANTHROPIC_FOUNDRY_API_KEY; never commit .env
 bash run_calibration.sh
 ```
@@ -56,7 +66,7 @@ On the experiment machine, place the supplied inputs at the paths already config
 
 Alternatively, edit the two input paths in `envs/cmv.yaml`. Run commands from the repository root.
 The JSON's `hypotheses` list already contains 100 entries; leave `n_hypotheses: null` to keep all of them.
-Decomposition uses the configured Sonnet 5.5 pi agent; deduplication uses `text-embedding-3-large`.
+Decomposition and full-rubric equivalence review use Sonnet 5.5; candidate embeddings use `text-embedding-3-large`.
 The default is one concurrent Sonnet session (`agent.workers: 1`) to reduce bursts against the shared
 output-token quota. Sequential sessions can still be rate-limited; this is not a tokens-per-minute limiter.
 Changing the setting does not affect an already running worker. After a failed run has fully exited, rerun
@@ -84,14 +94,18 @@ The launcher calls `python -u -m ssh` directly; it does not use `uv run`, instal
 server. Ensure the shared venv has the dependencies in `pyproject.toml`, and `pi` is on PATH.
 These two stages do not call Qwen, annotate the 2,000 dataset rows, or run SSH tests.
 
-Review and return `runs/cmv/decomposed.json`, `runs/cmv/plan.json`, and the pi sessions under
-`runs/cmv/pi/sessions/`. The plan's `members` preserve the raw measurements for reviewing each proposed merge.
+The new default `out: runs/calibration_v2` writes artifacts to `runs/calibration_v2/cmv/`; the original
+`runs/cmv/` calibration remains untouched. Return `decomposed.json`, `plan.json`, `decomposition_inputs.json`,
+`dedup_reviews/`, `pi/sessions/` and `pi_review/sessions/` from that directory for local inspection.
+The plan's `members` retain original definitions; its `dedup_reviews` retain decisions and reasons.
+Review session logs before publishing them; never include `.env` or other credentials.
 Do not merge hypotheses or discard repeated hypothesis slots.
 
-Use a fresh `out` directory in `config.yaml` when changing the decomposition prompt/schema or starting a new
-calibration version; per-hypothesis results are cached. Old outputs without `source_columns` are rejected,
-not guessed or silently migrated. If `out` is changed, artifacts live under `<out>/cmv/`.
-Run only decomposition and deduplication for this first review; annotation and SSH testing come later.
+Use a fresh `out` directory when changing the decomposition prompt/schema, model configuration, dataset or
+hypothesis bank. `decomposition_inputs.json` fingerprints the actual CSV, exact hypotheses, environment,
+agent settings, schema and resolved prompts; changed inputs or unversioned legacy caches are rejected before
+agents start. Identical interrupted runs reuse completed results. Old calibrations are not silently migrated.
+Run only decomposition and reviewed deduplication for now; annotation and SSH testing come later.
 
 ## Local verification
 
@@ -99,6 +113,6 @@ Run only decomposition and deduplication for this first review; annotation and S
 uv run python -m unittest discover -s tests -v
 ```
 
-The suite uses fixed/seeded embedding fixtures and cached decompositions, with no model or embedding API calls.
-It checks source matching, semantic-only merges, preserved code features and references, complete-linkage
-boundaries, and invalid source metadata. It does not validate Sonnet's semantic judgments.
+The suite uses fixed/seeded embeddings and simulated agent submissions, with no model or embedding API calls.
+It checks source matching, semantic-only merges, code references, complete-linkage boundaries, rejected and
+uncertain pairs, complete review coverage and cache identity. It cannot establish Sonnet's semantic accuracy.

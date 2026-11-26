@@ -4,12 +4,14 @@ import math
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 import numpy as np
+import yaml
 
 from ssh import decompose as decomposition
 from ssh import dedup as deduplication
+from ssh import prompts
 
 
 ENV = {"name": "cmv", "target": "delta", "group": "post_id"}
@@ -46,6 +48,15 @@ def identical_vectors(texts, cfg):
     return np.tile([1.0, 0.0], (len(texts), 1))
 
 
+def equivalent_review(cluster):
+    return [
+        {"left": left, "right": right, "verdict": "equivalent",
+         "reason": "Deterministic fixture: these measurements have identical row-level outputs."}
+        for left in range(len(cluster))
+        for right in range(left + 1, len(cluster))
+    ]
+
+
 class DeduplicationTests(unittest.TestCase):
     def test_matching_source_sets_merge_and_rewrite_claims(self):
         claims = [
@@ -54,7 +65,7 @@ class DeduplicationTests(unittest.TestCase):
         ]
         claims[1]["sign"] = "-"
         with patch.object(deduplication, "embed", identical_vectors):
-            plan = deduplication.dedup(claims, ENV, CFG)
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
         self.assertEqual([f["name"] for f in plan["features"]], ["uncertainty"])
         self.assertEqual([m["hypothesis"] for m in plan["features"][0]["members"]], [0, 1])
         self.assertEqual(plan["hypotheses"][1]["formula"], "delta ~ uncertainty")
@@ -67,7 +78,7 @@ class DeduplicationTests(unittest.TestCase):
             ("argument",), ("title",), ("argument", "title"),
         ])]
         with patch.object(deduplication, "embed", identical_vectors):
-            plan = deduplication.dedup(claims, ENV, CFG)
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
         self.assertEqual([f["source_columns"] for f in plan["features"]], [
             ["argument"], ["title"], ["argument", "title"],
         ])
@@ -77,7 +88,7 @@ class DeduplicationTests(unittest.TestCase):
         claims = [hypothesis(i, [feature(name, kind="code", spec=f"df['{name}'] = 1")])
                   for i, name in enumerate(["count", "count", "count_2"])]
         with patch.object(deduplication, "embed", side_effect=AssertionError("Unexpected embedding request")):
-            plan = deduplication.dedup(claims, ENV, CFG)
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
         names = [f["name"] for f in plan["features"]]
         self.assertEqual(names, ["count", "count_2", "count_2_2"])
         self.assertEqual([h["term"] for h in plan["hypotheses"]], names)
@@ -88,7 +99,7 @@ class DeduplicationTests(unittest.TestCase):
                   hypothesis(1, [feature("uncertainty", kind="code")]),
                   hypothesis(2, [feature("self_doubt")])]
         with patch.object(deduplication, "embed", identical_vectors):
-            plan = deduplication.dedup(claims, ENV, CFG)
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
         self.assertEqual([(f["kind"], len(f["members"])) for f in plan["features"]],
                          [("prompt", 2), ("code", 1)])
         self.assertEqual([h["term"] for h in plan["hypotheses"]],
@@ -100,7 +111,7 @@ class DeduplicationTests(unittest.TestCase):
                                  feature("high_emotion", kind="code", spec="df['high_emotion'] = df['emotion'] >= 7")],
                              rhs="high_emotion")]
         with patch.object(deduplication, "embed", identical_vectors):
-            plan = deduplication.dedup(claims, ENV, CFG)
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
         derived = next(f for f in plan["features"] if f["name"] == "high_emotion")
         self.assertEqual(derived["spec"], "df['high_emotion'] = df['intensity'] >= 7")
         self.assertEqual(plan["hypotheses"][1]["formula"], "delta ~ high_emotion")
@@ -109,22 +120,22 @@ class DeduplicationTests(unittest.TestCase):
         claims = [hypothesis(0, [feature("uncertain"), feature("certain")]),
                   hypothesis(1, [feature("intensity", dtype="numeric")])]
         with patch.object(deduplication, "embed", identical_vectors):
-            plan = deduplication.dedup(claims, ENV, CFG)
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
         self.assertEqual([f["name"] for f in plan["features"]], ["uncertain", "certain", "intensity"])
 
     def test_complete_linkage_does_not_chain_distant_endpoints(self):
         vectors = np.array([[math.cos(a), math.sin(a)] for a in [0, 0.5, 1.0]])
         claims = [hypothesis(i, [feature(f"f{i}")]) for i in range(3)]
         with patch.object(deduplication, "embed", return_value=vectors):
-            plan = deduplication.dedup(claims, ENV, CFG)
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
         groups = [{m["hypothesis"] for m in f["members"]} for f in plan["features"]]
         self.assertEqual(sorted(map(len, groups)), [1, 2])
         self.assertFalse(any({0, 2} <= group for group in groups))
 
     def test_empty_features_and_one_semantic_feature_need_no_embeddings(self):
         with patch.object(deduplication, "embed", side_effect=AssertionError("Unexpected embedding request")):
-            empty = deduplication.dedup([hypothesis(0, [])], ENV, CFG)
-            single = deduplication.dedup([hypothesis(0, [feature("tone")])], ENV, CFG)
+            empty = deduplication.dedup([hypothesis(0, [])], ENV, CFG, equivalent_review)
+            single = deduplication.dedup([hypothesis(0, [feature("tone")])], ENV, CFG, equivalent_review)
         self.assertEqual(empty["features"], [])
         self.assertIsNone(empty["hypotheses"][0]["term"])
         self.assertEqual(single["features"][0]["name"], "tone")
@@ -133,7 +144,7 @@ class DeduplicationTests(unittest.TestCase):
         item = feature("tone")
         del item["source_columns"]
         with self.assertRaises(ValueError):
-            deduplication.dedup([hypothesis(0, [item])], ENV, CFG)
+            deduplication.dedup([hypothesis(0, [item])], ENV, CFG, equivalent_review)
 
     def test_seeded_simulation_preserves_merge_invariants(self):
         rng = np.random.default_rng(42)
@@ -152,7 +163,7 @@ class DeduplicationTests(unittest.TestCase):
         vectors /= np.linalg.norm(vectors, axis=1, keepdims=True)
         by_name = dict(zip(semantic_names, vectors))
         with patch.object(deduplication, "embed", return_value=vectors):
-            plan = deduplication.dedup(claims, ENV, CFG)
+            plan = deduplication.dedup(claims, ENV, CFG, equivalent_review)
         self.assertEqual(sum(len(f["members"]) for f in plan["features"]), 36)
         for canonical in plan["features"]:
             members = canonical["members"]
@@ -167,36 +178,238 @@ class DeduplicationTests(unittest.TestCase):
                     distance = 1 - by_name[left["name"]] @ by_name[right["name"]]
                     self.assertLessEqual(distance, 0.25 + 1e-12)
 
+    def test_calibrated_bad_clusters_stay_separate_when_reviewer_rejects(self):
+        # These are the completed calibration's exact rubrics. Stubbed verdicts test
+        # deduplication behavior, not an external model's semantic judgment.
+        calibration = json.loads(
+            (Path(__file__).resolve().parents[1] / "runs/cmv/plan.json").read_text()
+        )
+        pairs = [
+            ("any_all", (2, "oc_relies_on_abstract_normative_principle"),
+             (16, "oc_only_abstract_normative")),
+            ("quote_reference", (54, "any_comment_quotes_op"),
+             (87, "any_comment_quotes_or_references_op_text")),
+            ("complexity_quality", (48, "oc_cognitive_complexity"),
+             (98, "oc_well_reasoned_score")),
+            ("evidence_numeric", (59, "oc_specific_empirical_evidence"),
+             (99, "any_oc_comment_cites_numerical_data")),
+        ]
+        members = {
+            (member["hypothesis"], member["name"]): member
+            for canonical in calibration["features"] for member in canonical["members"]
+        }
+        for label, left, right in pairs:
+            claims = [
+                hypothesis(owner, [{key: value for key, value in members[(owner, name)].items()
+                                    if key != "hypothesis"}])
+                for owner, name in (left, right)
+            ]
+            for verdict in ("distinct", "uncertain"):
+                with self.subTest(pair=label, verdict=verdict):
+                    decisions = [{"left": 0, "right": 1, "verdict": verdict,
+                                  "reason": f"Fixture decision for {label}: do not share annotations."}]
+                    reviewer = Mock(return_value=decisions)
+                    with patch.object(deduplication, "embed", identical_vectors):
+                        plan = deduplication.dedup(claims, ENV, CFG, reviewer)
+                    self.assertEqual(len(plan["features"]), 2)
+                    self.assertEqual([len(item["members"]) for item in plan["features"]], [1, 1])
+                    self.assertEqual(plan["hypotheses"][0]["term"], left[1])
+                    self.assertEqual(plan["hypotheses"][1]["term"], right[1])
+                    self.assertEqual(plan["dedup_reviews"][0]["comparisons"], decisions)
+                    reviewer.assert_called_once_with([
+                        {"hypothesis_id": claim["id"], "feature": claim["features"][0]}
+                        for claim in claims
+                    ])
+
+    def test_all_candidate_pairs_and_distances_are_saved(self):
+        vectors = np.array([[math.cos(a), math.sin(a)] for a in [0, 0.1, 0.2, 0.3]])
+        claims = [hypothesis(i, [feature(f"f{i}")]) for i in range(4)]
+        reviewer = Mock(side_effect=equivalent_review)
+        with patch.object(deduplication, "embed", return_value=vectors):
+            plan = deduplication.dedup(claims, ENV, CFG, reviewer)
+        self.assertEqual(len(plan["features"]), 1)
+        reviewer.assert_called_once()
+        review, = plan["dedup_reviews"]
+        self.assertEqual(review["features"], [
+            {"hypothesis_id": claim["id"], "feature": claim["features"][0]} for claim in claims
+        ])
+        expected_pairs = {(left, right) for left in range(4) for right in range(left + 1, 4)}
+        self.assertEqual({(item["left"], item["right"]) for item in review["comparisons"]}, expected_pairs)
+        self.assertEqual(len(review["comparisons"]), 6)
+        self.assertEqual({(item["left"], item["right"]) for item in review["distances"]}, expected_pairs)
+        self.assertEqual(len(review["distances"]), 6)
+        for item in review["distances"]:
+            self.assertAlmostEqual(item["cosine_distance"],
+                                   1 - vectors[item["left"]] @ vectors[item["right"]])
+
+    def test_nontransitive_semantic_approvals_cannot_merge_all_three(self):
+        claims = [hypothesis(i, [feature(name)]) for i, name in enumerate(["a", "b", "c"])]
+        decisions = [
+            {"left": 0, "right": 1, "verdict": "equivalent", "reason": "Fixture approves A/B."},
+            {"left": 1, "right": 2, "verdict": "equivalent", "reason": "Fixture approves B/C."},
+            {"left": 0, "right": 2, "verdict": "distinct", "reason": "Fixture rejects A/C."},
+        ]
+        with patch.object(deduplication, "embed", identical_vectors):
+            plan = deduplication.dedup(claims, ENV, CFG, lambda cluster: decisions)
+        groups = [{member["hypothesis"] for member in item["members"]} for item in plan["features"]]
+        self.assertEqual(sorted(map(len, groups)), [1, 2])
+        self.assertFalse(any({0, 2} <= group for group in groups))
+        approved = {frozenset((0, 1)), frozenset((1, 2))}
+        self.assertTrue(all(len(group) == 1 or frozenset(group) in approved for group in groups))
+
+    def test_missing_pair_decision_fails_closed_instead_of_merging(self):
+        claims = [hypothesis(i, [feature(f"f{i}")]) for i in range(3)]
+        incomplete = equivalent_review([None] * 3)[:-1]
+        with patch.object(deduplication, "embed", identical_vectors):
+            with self.assertRaises(ValueError):
+                deduplication.dedup(claims, ENV, CFG, lambda cluster: incomplete)
+
+    def test_hard_gates_do_not_send_incompatible_pairs_for_review(self):
+        cases = [
+            [hypothesis(0, [feature("a")]), hypothesis(1, [feature("b", ("title",))])],
+            [hypothesis(0, [feature("a")]), hypothesis(1, [feature("b", dtype="numeric")])],
+            [hypothesis(0, [feature("a"), feature("b")])],
+            [hypothesis(0, [feature("a", kind="code")]), hypothesis(1, [feature("b")])],
+        ]
+        for threshold in (0.25, 2):
+            for claims in cases:
+                with self.subTest(claims=claims, threshold=threshold):
+                    reviewer = Mock(side_effect=AssertionError("Incompatible review request"))
+                    cfg = {**CFG, "dedup": {"threshold": threshold}}
+                    with patch.object(deduplication, "embed", identical_vectors):
+                        plan = deduplication.dedup(claims, ENV, cfg, reviewer)
+                    self.assertEqual(len(plan["features"]), 2)
+                    self.assertEqual(plan["dedup_reviews"], [])
+                    reviewer.assert_not_called()
+
 
 class SourceContractTests(unittest.TestCase):
     def test_cached_decomposition_rejects_missing_unknown_or_outcome_sources(self):
         for sources in [None, [], ["missing"], ["delta"], ["post_id"], ["argument", "argument"]]:
-            with self.subTest(sources=sources), tempfile.TemporaryDirectory() as root:
-                folder = Path(root) / "decomposed"
-                folder.mkdir()
-                item = feature("tone")
-                item["source_columns"] = sources
-                (folder / "0.json").write_text(json.dumps(hypothesis(0, [item])))
-                with self.assertRaises(ValueError):
-                    decomposition.decompose(0, "Claim 0", ENV, {}, root, Path(root), ["argument", "title"])
+            with self.subTest(sources=sources), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                _, env, cfg = self.make_run(root)
+                with patch.object(decomposition, "agent", side_effect=self.submit_decomposition) as agent:
+                    decomposition.decompose_all({0: "Claim 0"}, env, cfg, root)
+                    path = root / "decomposed/0.json"
+                    cached = json.loads(path.read_text())
+                    cached["features"][0]["source_columns"] = sources
+                    path.write_text(json.dumps(cached))
+                    with self.assertRaises(ValueError):
+                        decomposition.decompose_all({0: "Claim 0"}, env, cfg, root)
+                    self.assertEqual(agent.call_count, 1)
+
+    def make_run(self, root):
+        source = root / "data.csv"
+        with source.open("w", newline="") as stream:
+            writer = csv.writer(stream)
+            writer.writerow(["post_id", "comment_id", "delta", "argument", "title"])
+            writer.writerow(["p1", "c1", 1, "Example argument", "Example title"])
+        env = {**ENV, "csv": str(source), "description": "One row is one discussion."}
+        cfg = {"model": "claude-sonnet-5-5", "max_tokens": 100, "compat": {},
+               "base_url": "https://unused.invalid", "api": "anthropic-messages",
+               "api_key_env": "UNUSED_KEY", "provider": "unused", "workers": 1,
+               "thinking": "off", "tools": "read,bash,submit"}
+        return source, env, cfg
+
+    @staticmethod
+    def submit_decomposition(prompt, system, home, cfg, schema, out):
+        out.write_text(json.dumps(hypothesis(int(out.stem), [feature("tone")])))
 
     def test_cached_run_rejects_a_source_removed_from_csv(self):
-        with tempfile.TemporaryDirectory() as root:
-            root = Path(root)
-            source = root / "data.csv"
-            with source.open("w", newline="") as stream:
-                writer = csv.writer(stream)
-                writer.writerow(["post_id", "comment_id", "delta", "argument", "title"])
-                writer.writerow(["p1", "c1", 1, "Example argument", "Example title"])
-            (root / "decomposed").mkdir()
-            (root / "decomposed/0.json").write_text(json.dumps(hypothesis(0, [feature("tone")])))
-            cfg = {"model": "unused", "max_tokens": 100, "compat": {}, "base_url": "https://unused.invalid",
-                   "api": "anthropic-messages", "api_key_env": "UNUSED_KEY", "provider": "unused", "workers": 1}
-            with patch.object(decomposition, "agent", side_effect=AssertionError("Unexpected model request")):
-                decomposition.decompose_all({0: "Claim 0"}, {**ENV, "csv": str(source)}, cfg, root)
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source, env, cfg = self.make_run(root)
+            with patch.object(decomposition, "agent", side_effect=self.submit_decomposition) as agent:
+                original = decomposition.decompose_all({0: "Claim 0"}, env, cfg, root)
+                self.assertEqual(agent.call_count, 1)
+                self.assertTrue((root / "decomposition_inputs.json").is_file())
+                self.assertEqual(decomposition.decompose_all({0: "Claim 0"}, env, cfg, root), original)
+                self.assertEqual(agent.call_count, 1)
                 source.write_text("post_id,comment_id,delta,title\np1,c1,1,Example title\n")
                 with self.assertRaises(ValueError):
-                    decomposition.decompose_all({0: "Claim 0"}, {**ENV, "csv": str(source)}, cfg, root)
+                    decomposition.decompose_all({0: "Claim 0"}, env, cfg, root)
+                self.assertEqual(agent.call_count, 1)
+
+    def test_legacy_cache_without_input_identity_is_rejected(self):
+        for cached in ["decomposed/0.json", "decomposed.json"]:
+            with self.subTest(cached=cached), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                _, env, cfg = self.make_run(root)
+                path = root / cached
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(json.dumps(hypothesis(0, [feature("tone")])))
+                with patch.object(decomposition, "agent", side_effect=AssertionError("Unexpected model request")):
+                    with self.assertRaises(ValueError):
+                        decomposition.decompose_all({0: "Claim 0"}, env, cfg, root)
+
+    def test_cached_run_rejects_changed_data_claim_environment_and_model(self):
+        for changed in ["csv_values", "hypothesis", "environment", "model"]:
+            with self.subTest(changed=changed), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                source, env, cfg = self.make_run(root)
+                claims = {0: "Claim 0"}
+                with patch.object(decomposition, "agent", side_effect=self.submit_decomposition) as agent:
+                    decomposition.decompose_all(claims, env, cfg, root)
+                    if changed == "csv_values":
+                        source.write_text(source.read_text().replace("Example argument", "Different argument"))
+                    elif changed == "hypothesis":
+                        claims[0] = "A different exact claim"
+                    elif changed == "environment":
+                        env["description"] = "Different speaker attribution."
+                    else:
+                        cfg["model"] = "claude-sonnet-different"
+                    with self.assertRaises(ValueError):
+                        decomposition.decompose_all(claims, env, cfg, root)
+                    self.assertEqual(agent.call_count, 1)
+
+    def test_cached_run_rejects_changed_prompt_and_schema(self):
+        for changed in ["prompt", "schema"]:
+            with self.subTest(changed=changed), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                _, env, cfg = self.make_run(root)
+                prompt_path = root / "prompts.yaml"
+                prompt_path.write_text(prompts.PROMPTS.read_text())
+                schema_path = root / "schema.json"
+                schema_path.write_text(decomposition.SCHEMA.read_text())
+                with patch.object(prompts, "PROMPTS", prompt_path), patch.object(decomposition, "SCHEMA", schema_path):
+                    with patch.object(decomposition, "agent", side_effect=self.submit_decomposition) as agent:
+                        decomposition.decompose_all({0: "Claim 0"}, env, cfg, root)
+                        if changed == "prompt":
+                            document = yaml.safe_load(prompt_path.read_text())
+                            config = document["agents"]["hypothesis_decomposer"]["prompt_config"]
+                            config["system_message"] += "\nAdditional exact-claim constraint."
+                            prompt_path.write_text(yaml.safe_dump(document))
+                        else:
+                            schema = json.loads(schema_path.read_text())
+                            schema["description"] = "Changed extraction schema."
+                            schema_path.write_text(json.dumps(schema))
+                        with self.assertRaises(ValueError):
+                            decomposition.decompose_all({0: "Claim 0"}, env, cfg, root)
+                        self.assertEqual(agent.call_count, 1)
+
+    def test_failed_decomposition_resumes_only_unfinished_claims_with_matching_identity(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            _, env, cfg = self.make_run(root)
+            claims = {0: "Claim 0", 1: "Claim 1"}
+
+            def interrupted_agent(prompt, system, home, cfg, schema, out):
+                if out.stem == "1":
+                    raise RuntimeError("Synthetic external agent interruption")
+                self.submit_decomposition(prompt, system, home, cfg, schema, out)
+
+            with patch.object(decomposition, "agent", side_effect=interrupted_agent):
+                with self.assertRaises(RuntimeError):
+                    decomposition.decompose_all(claims, env, cfg, root)
+            self.assertTrue((root / "decomposition_inputs.json").is_file())
+            self.assertTrue((root / "decomposed/0.json").is_file())
+            self.assertFalse((root / "decomposed/1.json").exists())
+            with patch.object(decomposition, "agent", side_effect=self.submit_decomposition) as agent:
+                result = decomposition.decompose_all(claims, env, cfg, root)
+            self.assertEqual([item["id"] for item in result], [0, 1])
+            self.assertEqual(agent.call_count, 1)
+            self.assertEqual(agent.call_args.args[-1].stem, "1")
 
 
 if __name__ == "__main__":
