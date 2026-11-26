@@ -5,8 +5,8 @@ n_hypotheses: null          # null = all; else a seeded sample of n
 agent:                      # pi coding agent (@earendil-works/pi-coding-agent); it can read the dataset itself
   provider: azure-anthropic
   api: anthropic-messages
-  base_url: https://${AZURE_RESOURCE_NAME}.services.ai.azure.com/anthropic
-  api_key_env: AZURE_API_KEY
+  base_url: https://${ANTHROPIC_FOUNDRY_RESOURCE}.services.ai.azure.com/anthropic
+  api_key_env: ANTHROPIC_FOUNDRY_API_KEY
   model: claude-sonnet-5-5
   thinking: medium          # off | minimal | low | medium | high | xhigh
   tools: read,bash,submit     # submit = schema-validated final answer (ssh/submit.ts)
@@ -15,8 +15,8 @@ agent:                      # pi coding agent (@earendil-works/pi-coding-agent);
   workers: 8
 
 embedding:
-  base_url: https://${AZURE_RESOURCE_NAME}.services.ai.azure.com/openai/v1
-  api_key_env: AZURE_API_KEY
+  base_url: https://${ANTHROPIC_FOUNDRY_RESOURCE}.services.ai.azure.com/openai/v1
+  api_key_env: ANTHROPIC_FOUNDRY_API_KEY
   model: text-embedding-3-large
 
 dedup:

@@ -17,8 +17,18 @@
               "numeric"
             ]
           },
+          "source_columns": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
           "definition": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "kind": {
             "type": "string",
@@ -28,12 +38,14 @@
             ]
           },
           "spec": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "required": [
           "name",
           "dtype",
+          "source_columns",
           "definition",
           "kind",
           "spec"

@@ -1,7 +1,6 @@
-"""Merge equivalent features across hypotheses so each measurement is annotated once."""
+"""Deduplicate semantic measurements with matching sources; keep every code feature."""
 
 import re
-from collections import Counter
 
 import numpy as np
 from scipy.cluster.hierarchy import fcluster, linkage
@@ -9,15 +8,20 @@ from scipy.spatial.distance import squareform
 
 from .models import embed
 
-FIELDS = ("name", "dtype", "definition", "kind", "spec")
+FIELDS = ("name", "dtype", "source_columns", "definition", "kind", "spec")
 
 
-def cluster(vectors, hypothesis, dtype, threshold):
-    """Complete linkage on cosine distance; features of one hypothesis or of different dtypes never merge."""
+def cluster(vectors, hypothesis, dtype, sources, threshold):
+    """Complete linkage within matching source sets/dtypes, never within one hypothesis."""
     if len(vectors) == 1:
         return np.ones(1, int)
     distance = 1 - vectors @ vectors.T
-    distance[(hypothesis[:, None] == hypothesis) | (dtype[:, None] != dtype)] = 2
+    incompatible = (
+        (hypothesis[:, None] == hypothesis)
+        | (dtype[:, None] != dtype)
+        | (sources[:, None] != sources)
+    )
+    distance[incompatible] = 2
     np.fill_diagonal(distance, 0)
     return fcluster(linkage(squareform(distance.clip(0), checks=False), "complete"), threshold, "distance")
 
@@ -28,15 +32,31 @@ def rename(text, mapping):
 
 def dedup(decomposed, env, cfg):
     raw = [(d["id"], f) for d in decomposed for f in d["features"]]
-    vectors = embed([f"{f['name']}: {f['definition']}" for _, f in raw], cfg["embedding"])
-    owners, dtypes = np.array([i for i, _ in raw]), np.array([f["dtype"] for _, f in raw])
-    labels = cluster(vectors, owners, dtypes, cfg["dedup"]["threshold"])
+    for _, feature in raw:
+        sources = feature.get("source_columns")
+        if (not isinstance(sources, list) or not sources
+                or any(not isinstance(source, str) or not source for source in sources)
+                or len(set(sources)) != len(sources)):
+            raise ValueError(f"{feature['name']} needs explicit source_columns; regenerate old decompositions")
+    labels = np.arange(len(raw))
+    semantic = [index for index, (_, feature) in enumerate(raw) if feature["kind"] == "prompt"]
+    if len(semantic) > 1:
+        selected = [raw[index] for index in semantic]
+        vectors = embed([f"{f['name']}: {f['definition']}" for _, f in selected], cfg["embedding"])
+        owners = np.array([owner for owner, _ in selected])
+        dtypes = np.array([f["dtype"] for _, f in selected])
+        sources = np.array(["\0".join(sorted(f["source_columns"])) for _, f in selected])
+        labels[semantic] = len(raw) + cluster(vectors, owners, dtypes, sources, cfg["dedup"]["threshold"])
 
-    canon, taken, mappings = {}, Counter(), {d["id"]: {} for d in decomposed}
+    canon, taken, mappings = {}, set(), {d["id"]: {} for d in decomposed}
     for (i, f), label in zip(raw, labels):
         if label not in canon:
-            taken[f["name"]] += 1
-            name = f["name"] if taken[f["name"]] == 1 else f"{f['name']}_{taken[f['name']]}"
+            name = f["name"]
+            suffix = 2
+            while name in taken:
+                name = f"{f['name']}_{suffix}"
+                suffix += 1
+            taken.add(name)
             canon[label] = {**{k: f[k] for k in FIELDS}, "name": name, "members": []}
         canon[label]["members"].append({"hypothesis": i, **{k: f[k] for k in FIELDS}})
         mappings[i][f["name"]] = canon[label]["name"]
