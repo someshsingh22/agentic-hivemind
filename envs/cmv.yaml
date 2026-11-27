@@ -4,24 +4,48 @@ group: post_id
 csv: data/cmv.csv
 hypotheses: data/hypotheses_ssh_eval/cmv.json
 description: |
-  2,000 Reddit r/ChangeMyView discussions (balanced). One row = one post with its counter-argument comments.
+  Measure the supplied hypotheses; do not discover, rewrite or refine them. Each feature is
+  one scalar measurement of a discussion row, not a separate observation for every comment.
+  The full supplied corpus contains 2,000 rows: 1,000 changed and 1,000 unchanged outcomes.
+  Describe associations, not proven causal effects or prospective prediction.
+
   Columns:
-    - post_created_utc: Unix timestamp of the original post (no comment times).
-    - title: the original poster's (OP) post heading / claim statement.
-    - argument: the OP's explanation of their view (the post body). May contain quotes, marked
-      edits and outcome announcements; apply the predictor leakage guard below even in this field.
-    - OC_comments: JSON-encoded list of counter-argument comments written by OTHER users (not the OP).
-      List order is not rank or chronology. Row-level measures must say whether they mean any comment,
-      all comments, an average, or a count.
-    - conversation: formatted discussion text overlapping OC_comments; may include later replies
-      and explicit view-change announcements. Use only when the hypothesis requires interaction
-      and the requested predictor can be measured faithfully under the leakage guard below.
-    - log_length: supplied log-transformed length measure (undocumented construction and timing);
-      do not assume it measures initial or pre-outcome text.
-    - post_score: the original post's observed Reddit score at collection, not an available
-      pre-outcome score.
-    - delta: OUTCOME, 1 if the OP changed their view, else 0. Never a predictor.
+    - post_created_utc: Unix timestamp for the original post, not a comment or score-measurement
+      timestamp. Response delay cannot be calculated from it.
+    - title: the original poster's (OP's) heading or claim statement, not the argument body.
+    - argument: the OP's explanation of their view. Use this field for argument-body measurements;
+      include title only when the requested scope includes the heading or when it is needed to
+      interpret a comment's target. Text can contain quotations, edits and outcome announcements.
+    - OC_comments: a JSON-encoded list of available counter-argument comments by OTHER users,
+      not the OP. Parse the list before counting comments, words or semantic instances.
+      Specify any/all/count/share/mean explicitly. List order is not rank, importance or chronology.
+      If properties must coexist in one comment, assess their conjunction within that comment;
+      separate comments cannot jointly satisfy it. The row-level extractor still returns one scalar.
+      List length counts comments, not necessarily distinct commenters. No per-comment outcomes,
+      scores or timestamps are supplied. OP-language measurements use title/argument instead.
+    - conversation: formatted interaction text overlapping OC_comments, not extra independent
+      evidence. It may include later replies and explicit view-change announcements. Do not use
+      it as an initial-argument snapshot. When interaction is required, specify speaker/turn
+      selection and use it only if faithful measurement is possible under the leakage guard below.
+    - log_length: a supplied log-transformed length measure. Construction, source text, log base
+      and timing are undocumented. When named by the hypothesis, use the supplied value and state
+      that limitation; do not equate it with argument word count or reconstruct its log base.
+    - post_score: the observed original-post score, not a comment score, voter count or initial
+      endorsement. Its measurement time relative to the outcome is unknown; post_created_utc
+      does not establish that timing.
+    - delta: OUTCOME, 1 if the OP changed their view, else 0. Never a predictor or annotation input.
     - post_id, comment_id: identifiers, never predictors.
+
+  Attribution and unavailable measurements:
+    - No measured personality scores, Big Five questionnaires or author demographics are supplied.
+      A personality inference from writing is a linguistic proxy, not an observed trait; do not
+      substitute it silently when the hypothesis requires an unavailable measurement.
+    - Distinguish the author's own assertions or experiences from attributed quotations.
+      An external source cited as support can count for an evidence feature without making the
+      source's wording or experience the author's own. Background/rebuttal quotations are not
+      automatically adopted support. Apply this distinction to OP text and other users' comments.
+      Quotation marks alone do not establish another speaker.
+
   Predictor leakage guard (applies to every text field):
     - Never use the OP's own view-change/delta-award announcements, post-outcome thank-you or
       resolution updates, or text reporting whether the outcome occurred as predictor evidence.
@@ -31,6 +55,7 @@ description: |
     - Subject to this guard, measure supplied current text unless the hypothesis restricts time.
       Deleting marked edits or outcome announcements does not reconstruct initial/pre-outcome
       text. Neither post_created_utc nor unordered comments supplies missing comment/edit times.
+      An edit marker alone does not establish when an edit occurred.
       If faithful exposure requires unavailable temporal information, state that limitation and
       set term=null; do not substitute current text or infer a snapshot.
     - delta remains the fixed outcome. A hypothesis requiring another outcome or outcome-reporting

@@ -33,6 +33,12 @@ the missing material boundary. Nonexhaustive example lists are not exclusion rul
 address and actual versus invented examples remain real distinctions. These prompt instructions do not
 guarantee model compliance or annotation accuracy.
 
+`envs/cmv.yaml` supplies dataset context adapted from the ExperiGen balanced-2k configuration: title/body
+scope, within-comment conjunctions, comment versus commenter counts, attribution, unavailable measurements
+and numeric-field limitations. It retains this pipeline's outcome-leakage guard. Generation instructions,
+training-split assumptions and claim-specific pronoun definitions are not imported. The description does
+not claim the target is technically withheld from the decomposition agent.
+
 The schema restricts sources to actual CSV predictors. The submit tool runs the Python contract validator
 before saving decomposition output, returning contract errors to the agent. Structural validation does
 not establish semantic correctness.
@@ -82,20 +88,21 @@ requested once per invocation, including resume. Pair verdicts are cached and re
 identical resumes. Every eligible within-cutoff pair requires a review, so calls can exceed earlier
 cluster-only runs. The three cutoffs are not independent model repetitions.
 
-## Outputs and fresh v6 decomposition
+## Outputs and fresh v7 decomposition
 
-The default is `runs/calibration_v6/cmv/`, bound to its exact inputs by `decomposition_inputs.json`.
-Results are written under `runs/calibration_v6/cmv/automated/`:
+The default is `runs/calibration_v7/cmv/`, bound to its exact inputs by `decomposition_inputs.json`.
+Results are written under `runs/calibration_v7/cmv/automated/`:
 
 - `dedup_reviews/`: fresh binary reviews, fingerprinted by complete feature inputs, prompt, schema and model.
 - `threshold_0.20/`, `threshold_0.25/`, `threshold_0.30/`: each trial's effective config, plan and pair exports.
 - `tuning_summary.json`: completed trial counts, including reviewed/equivalent/distinct pairs.
 
-V6 requires fresh decomposition because the extraction prompt, CMV description and reference conventions
-changed. V5 features and review verdicts are not reused or relabeled; previous runs remain untouched.
-An identical interrupted v6 run reuses its completed decompositions and reviews. Changed decomposition
+V7 changes only dataset-description context and the default output directory; extraction/review prompts,
+models, thresholds and dedup logic are unchanged from v6. It requires fresh decomposition because the
+description is part of the model input. Previous runs remain untouched and are not relabeled.
+An identical interrupted v7 run reuses its completed decompositions and reviews. Changed decomposition
 inputs require a fresh output directory. Return shared decomposition/input identity and the `automated/`
-outputs for analysis. Prompt tuning is not itself evidence of greater scientific diversity or validity.
+outputs for analysis. Better context is not itself evidence of greater scientific diversity or validity.
 
 Without `--tune`, the launcher runs a single configured cutoff, writing `automated/plan.json` and CSVs.
 The explicit `ssh test` command reads that single-run plan; tuning itself never runs statistical tests.
