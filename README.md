@@ -86,6 +86,41 @@ merge state. `calibration_sample.csv` is a deterministic seed-42 audit sample wi
 `threshold_sensitivity.csv` reports only total/eligible/ineligible/candidate pair counts, not accuracy.
 These diagnostics do not change the clustering decisions.
 
+### Compare short and full feature descriptions
+
+This separate experiment uses the saved feature bank without running decomposition:
+
+```bash
+git pull --ff-only origin namit-rows
+bash run_calibration.sh --compare-descriptions runs/calibration_v8_examples/cmv/decomposed.json
+```
+
+The launcher still uses nohup and follows the log. It makes one embedding request containing
+both representations, in the same feature order:
+
+- `short_definition`: `name: definition`, matching the current default.
+- `full_description`: `name: spec (dtype: dtype)`, using the existing complete extraction
+  instructions or code recipe. No feature definitions or prompts are regenerated.
+
+Both views include every saved code and prompt feature. They use the same embedding configuration,
+complete-linkage merging and source/dtype/hypothesis gates, at distances 0.20, 0.25 and 0.30.
+This is a representation comparison, not a new equivalence judge or an automatic threshold choice.
+Longer descriptions expose measurement rules but can also increase shared boilerplate; inspect
+actual merged and missed pairs before selecting a setting. ExperiGen prod's description-based
+search is candidate retrieval, not evidence that cosine similarity establishes equivalence.
+
+Results are written beside the input file under `description_comparison/`:
+
+- `inputs.json`: source path, embedding configuration, ordered feature IDs and exact embedding texts.
+- `short_definition/threshold_*/` and `full_description/threshold_*/`: plans, configs and distance exports.
+- `comparison_summary.json`: counts for both representations at each threshold.
+
+Existing decomposition, baseline plans and the default pipeline are not overwritten. Each comparison
+invocation re-embeds both views and replaces only its own comparison outputs. No Sonnet generation,
+pair reviews, row annotation or SSH tests run. Pass a different config as the final launcher argument
+if needed; its embedding settings are used, while its output root and hypothesis sampling are ignored
+because this command operates on the explicitly supplied saved bank.
+
 ## Local verification
 
 ```bash

@@ -88,3 +88,53 @@ class TuningTests(unittest.TestCase):
                     self.assertFalse((out / "automated").exists())
                     self.assertFalse((out / "decomposition_inputs.json").exists())
                     self.assertFalse((out / "results.csv").exists())
+
+    def test_description_comparison_keeps_saved_bank_and_separates_vector_blocks(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            claims = []
+            for owner, name, source, spec in (
+                (8, "exactly_one_comment", "OC_comments", "Return 1 for exactly one comment, otherwise 0."),
+                (2, "at_least_two_comments", "OC_comments", "Return 1 for at least two comments, otherwise 0."),
+                (30, "title_mentions_comments", "title", "Return 1 if the title mentions comments, otherwise 0."),
+            ):
+                claims.append({"id": owner, "hypothesis": f"Claim {owner}", "features": [{
+                    "name": name, "dtype": "binary", "source_columns": [source],
+                    "definition": "Comment-related indicator", "kind": "prompt", "spec": spec,
+                }], "h0": "No association", "h1": "Positive association", "rhs": name,
+                    "term": name, "sign": "+", "note": ""})
+            source = root / "decomposed.json"
+            source.write_text(json.dumps({"env": {"name": "smoke", "target": "delta", "group": "post_id"},
+                                         "decomposed": claims}))
+            original = source.read_bytes()
+            baseline = root / "threshold_0.25/plan.json"
+            baseline.parent.mkdir()
+            baseline.write_text('{"existing_baseline": true}')
+            cfg = yaml.safe_load(Path("config.yaml").read_text())
+            cfg["out"] = str(root / "unused")
+            cfg["n_hypotheses"] = 1
+            config = root / "config.yaml"
+            config.write_text(yaml.safe_dump(cfg))
+            vectors = np.array([[1, 0], [.9, math.sqrt(1 - .9 ** 2)], [1, 0],
+                                [1, 0], [0, 1], [1, 0]])
+            argv = ["ssh", "compare_descriptions", str(source), "--config", str(config)]
+            with patch("ssh.models.embed", return_value=vectors), \
+                 patch("ssh.models.agent", side_effect=AssertionError("No generation or judge permitted")), \
+                 patch("ssh.decompose.decompose_all", side_effect=AssertionError("Use the saved bank")), \
+                 patch.object(sys, "argv", argv):
+                runpy.run_module("ssh", run_name="__main__")
+            out = root / "description_comparison"
+            for representation, expected_groups in (
+                ("short_definition", {frozenset({8, 2}), frozenset({30})}),
+                ("full_description", {frozenset({8}), frozenset({2}), frozenset({30})}),
+            ):
+                for threshold in ("0.20", "0.25", "0.30"):
+                    plan = json.loads((out / representation / f"threshold_{threshold}/plan.json").read_text())
+                    groups = {frozenset(m["hypothesis"] for m in f["members"]) for f in plan["features"]}
+                    self.assertEqual(groups, expected_groups)
+                    self.assertEqual({h["id"] for h in plan["hypotheses"]}, {8, 2, 30})
+                    title_pairs = [p for p in plan["feature_pairs"] if p["right_hypothesis"] == 30]
+                    self.assertTrue(all(not p["eligible"] and not p["merged"] for p in title_pairs))
+            self.assertEqual(source.read_bytes(), original)
+            self.assertEqual(baseline.read_text(), '{"existing_baseline": true}')
+            self.assertFalse((root / "unused").exists())

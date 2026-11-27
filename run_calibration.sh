@@ -11,12 +11,21 @@ if [[ "${1:-}" == --worker ]]; then
     shift
 fi
 tuning=0
+descriptions=0
 if [[ "${1:-}" == --tune ]]; then
     tuning=1
     shift
+elif [[ "${1:-}" == --compare-descriptions ]]; then
+    descriptions=1
+    shift
+    if (( $# == 0 )); then
+        echo "Supply the saved decomposed.json after --compare-descriptions." >&2
+        exit 2
+    fi
 fi
 if (( $# > 2 )); then
     echo "Usage: bash run_calibration.sh [--tune] [envs/cmv.yaml] [config.yaml]" >&2
+    echo "       bash run_calibration.sh --compare-descriptions DECOMPOSED.json [config.yaml]" >&2
     exit 2
 fi
 env_file="${1:-envs/cmv.yaml}"
@@ -27,7 +36,7 @@ if [[ ! -f "$VENV/bin/activate" || ! -x "$VENV/bin/python" ]]; then
     exit 2
 fi
 if [[ ! -r "$env_file" || ! -r "$config_file" ]]; then
-    echo "Cannot read environment/config: $env_file | $config_file" >&2
+    echo "Cannot read input/config: $env_file | $config_file" >&2
     exit 2
 fi
 source "$VENV/bin/activate"
@@ -39,6 +48,9 @@ if (( worker )); then
     if (( tuning )); then
         printf '[%s] Starting shared decomposition and three-threshold tuning\n' "$(date -u +%FT%TZ)"
         "$VENV/bin/python" -u -m ssh tune "$env_file" --config "$config_file"
+    elif (( descriptions )); then
+        printf '[%s] Comparing descriptions on saved features: %s\n' "$(date -u +%FT%TZ)" "$env_file"
+        "$VENV/bin/python" -u -m ssh compare_descriptions "$env_file" --config "$config_file"
     else
         printf '[%s] Starting decomposition: %s | %s\n' "$(date -u +%FT%TZ)" "$env_file" "$config_file"
         "$VENV/bin/python" -u -m ssh decompose "$env_file" --config "$config_file"
@@ -54,6 +66,7 @@ mkdir -p "$log_dir"
 log="$log_dir/calibration_$(date -u +%Y%m%dT%H%M%S)_$$.log"
 mode=()
 if (( tuning )); then mode=(--tune); fi
+if (( descriptions )); then mode=(--compare-descriptions); fi
 nohup bash "$ROOT/run_calibration.sh" --worker "${mode[@]}" "$env_file" "$config_file" > "$log" 2>&1 < /dev/null &
 pid=$!
 printf 'Started calibration PID=%s\nLog: %s\nFollow again: tail -n 100 -F "%s"\n' "$pid" "$log" "$log"
