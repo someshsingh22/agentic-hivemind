@@ -1,0 +1,3 @@
+{
+  "text": "Binary row-level flag from OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment's argument relies on third-person analysis, i.e. analyzes the topic, people, groups, events or cases in third person (he/she/they/it/impersonal) rather than addressing the OP/reader directly. A comment mixing in some direct address counts only if its main argumentative content is third-person analysis. Returns 0 if the list is valid and no comment qualifies, including a valid empty list; null if the list is missing or malformed. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates or outcome reports; generic discussion of delta/platform rules is not an outcome announcement."
+}

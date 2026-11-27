@@ -1,0 +1,3 @@
+{
+  "text": "Binary flag from OC_comments (JSON list of comments by users other than the OP; parsed): 1 if at least one comment's argument relies on abstract principles, meaning general normative, theoretical or conceptual reasoning not anchored in a specific concrete case; 0 if the list is non-empty and no comment does. A comment that also includes concrete examples still counts if abstract-principle reliance is present; list order is ignored. Empty list gives 0; missing or malformed OC_comments gives null. Exclude OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and stays eligible. Delta is not used."
+}

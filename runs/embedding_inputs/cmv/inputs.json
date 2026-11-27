@@ -1,0 +1,718 @@
+{
+  "source": "/mnt/localssd/namit/agentic-hivemind/runs/calibration_v8_examples/cmv/decomposed.json",
+  "embedding": {
+    "base_url": "https://${ANTHROPIC_FOUNDRY_RESOURCE}.services.ai.azure.com/openai/v1",
+    "api_key_env": "ANTHROPIC_FOUNDRY_API_KEY",
+    "model": "text-embedding-3-large"
+  },
+  "feature_order": [
+    {
+      "hypothesis": 0,
+      "name": "argument_compares_to_scientific_or_historical_norms"
+    },
+    {
+      "hypothesis": 1,
+      "name": "op_expresses_fear_of_social_rejection_or_isolation"
+    },
+    {
+      "hypothesis": 1,
+      "name": "op_states_beliefs_without_emotional_self_defense"
+    },
+    {
+      "hypothesis": 2,
+      "name": "any_comment_cites_functioning_institutional_precedent"
+    },
+    {
+      "hypothesis": 2,
+      "name": "any_comment_relies_on_abstract_normative_principles"
+    },
+    {
+      "hypothesis": 4,
+      "name": "op_argument_admits_uncertainty"
+    },
+    {
+      "hypothesis": 4,
+      "name": "op_argument_asserts_absolute_certainty"
+    },
+    {
+      "hypothesis": 5,
+      "name": "distinct_op_factual_premises_challenged"
+    },
+    {
+      "hypothesis": 7,
+      "name": "distinct_counterargument_count"
+    },
+    {
+      "hypothesis": 8,
+      "name": "title_uses_absolute_certainty_markers"
+    },
+    {
+      "hypothesis": 9,
+      "name": "op_invites_critique_or_tentative"
+    },
+    {
+      "hypothesis": 9,
+      "name": "op_uses_absolute_definitive_declarations"
+    },
+    {
+      "hypothesis": 10,
+      "name": "any_comment_cites_specific_real_world_example"
+    },
+    {
+      "hypothesis": 11,
+      "name": "share_comments_measured_logical_reasoning"
+    },
+    {
+      "hypothesis": 11,
+      "name": "share_comments_emotional_aggression"
+    },
+    {
+      "hypothesis": 12,
+      "name": "any_comment_quotes_and_refutes_op_factual_claim"
+    },
+    {
+      "hypothesis": 13,
+      "name": "any_comment_validates_op_dignity_or_effort_before_correction"
+    },
+    {
+      "hypothesis": 13,
+      "name": "all_comments_purely_logical_refutation"
+    },
+    {
+      "hypothesis": 14,
+      "name": "any_comment_concrete_real_world_example"
+    },
+    {
+      "hypothesis": 15,
+      "name": "any_comment_engages_op_cited_examples_or_premises"
+    },
+    {
+      "hypothesis": 16,
+      "name": "any_comment_concrete_personal_labor_details"
+    },
+    {
+      "hypothesis": 16,
+      "name": "all_comments_solely_abstract_normative"
+    },
+    {
+      "hypothesis": 17,
+      "name": "any_comment_quantifies_systemic_material_harm_to_third_parties"
+    },
+    {
+      "hypothesis": 17,
+      "name": "any_comment_asserts_propositional_falsity"
+    },
+    {
+      "hypothesis": 18,
+      "name": "any_comment_identifies_op_internal_contradiction"
+    },
+    {
+      "hypothesis": 18,
+      "name": "any_comment_cites_external_evidence"
+    },
+    {
+      "hypothesis": 19,
+      "name": "any_comment_specific_factual_data_or_citation"
+    },
+    {
+      "hypothesis": 20,
+      "name": "argument_has_polite_apology_phrase"
+    },
+    {
+      "hypothesis": 21,
+      "name": "op_first_person_vulnerable_admission"
+    },
+    {
+      "hypothesis": 21,
+      "name": "op_third_person_distant_observation"
+    },
+    {
+      "hypothesis": 23,
+      "name": "any_comment_specific_verifiable_procedural_example"
+    },
+    {
+      "hypothesis": 23,
+      "name": "all_comments_solely_abstract_theoretical_rebuttals"
+    },
+    {
+      "hypothesis": 24,
+      "name": "argument_has_counter_question_marker"
+    },
+    {
+      "hypothesis": 25,
+      "name": "op_argument_has_personal_anecdote"
+    },
+    {
+      "hypothesis": 26,
+      "name": "any_comment_acknowledges_op_premise_before_divergence"
+    },
+    {
+      "hypothesis": 27,
+      "name": "any_comment_concrete_personal_anecdote"
+    },
+    {
+      "hypothesis": 27,
+      "name": "any_comment_abstract_reasoning"
+    },
+    {
+      "hypothesis": 29,
+      "name": "any_comment_direct_counterargument"
+    },
+    {
+      "hypothesis": 30,
+      "name": "op_argument_epistemic_certainty"
+    },
+    {
+      "hypothesis": 31,
+      "name": "op_argument_tone_policing_request"
+    },
+    {
+      "hypothesis": 32,
+      "name": "any_comment_redrafts_op_view_before_refuting"
+    },
+    {
+      "hypothesis": 34,
+      "name": "op_argument_explicit_uncertainty"
+    },
+    {
+      "hypothesis": 35,
+      "name": "op_argument_acknowledges_counterargument_or_limitation"
+    },
+    {
+      "hypothesis": 36,
+      "name": "any_comment_named_real_world_analogy"
+    },
+    {
+      "hypothesis": 36,
+      "name": "any_comment_abstract_logical_rebuttal"
+    },
+    {
+      "hypothesis": 37,
+      "name": "any_comment_contrasts_op_view_with_relatable_personal_experience"
+    },
+    {
+      "hypothesis": 38,
+      "name": "title_has_emotional_or_personal_identifier"
+    },
+    {
+      "hypothesis": 39,
+      "name": "has_multi_turn_reply_interaction"
+    },
+    {
+      "hypothesis": 41,
+      "name": "op_argument_self_referential_platform_or_status_meta"
+    },
+    {
+      "hypothesis": 42,
+      "name": "any_comment_quotes_op_argument"
+    },
+    {
+      "hypothesis": 44,
+      "name": "any_comment_second_person_address_to_op"
+    },
+    {
+      "hypothesis": 45,
+      "name": "op_argument_direct_plea_nonviolence"
+    },
+    {
+      "hypothesis": 46,
+      "name": "argument_has_first_person_singular_pronoun"
+    },
+    {
+      "hypothesis": 47,
+      "name": "any_comment_presents_counterargument"
+    },
+    {
+      "hypothesis": 48,
+      "name": "counterargument_cognitive_complexity"
+    },
+    {
+      "hypothesis": 49,
+      "name": "any_comment_acknowledges_op_valid_point_before_discrepancy"
+    },
+    {
+      "hypothesis": 50,
+      "name": "any_comment_names_specific_external_program_or_location"
+    },
+    {
+      "hypothesis": 50,
+      "name": "all_comments_only_abstract_logical_refutation"
+    },
+    {
+      "hypothesis": 51,
+      "name": "any_comment_quotes_and_refutes_op_phrase"
+    },
+    {
+      "hypothesis": 52,
+      "name": "any_comment_refutes_op_specific_example"
+    },
+    {
+      "hypothesis": 52,
+      "name": "any_comment_addresses_op_main_premise_directly"
+    },
+    {
+      "hypothesis": 53,
+      "name": "argument_has_hedging_language"
+    },
+    {
+      "hypothesis": 53,
+      "name": "argument_has_absolute_declarative_statements"
+    },
+    {
+      "hypothesis": 54,
+      "name": "any_comment_quotes_op_text"
+    },
+    {
+      "hypothesis": 55,
+      "name": "any_comment_validates_op_emotion_before_rebuttal"
+    },
+    {
+      "hypothesis": 56,
+      "name": "any_comment_uses_analogy_to_familiar_scenario"
+    },
+    {
+      "hypothesis": 57,
+      "name": "title_absolute_universal_quantifier"
+    },
+    {
+      "hypothesis": 57,
+      "name": "title_variable_probabilistic_term"
+    },
+    {
+      "hypothesis": 58,
+      "name": "any_comment_cites_specific_real_world_example"
+    },
+    {
+      "hypothesis": 59,
+      "name": "any_comment_specific_empirical_evidence"
+    },
+    {
+      "hypothesis": 59,
+      "name": "only_logical_refutation_comments"
+    },
+    {
+      "hypothesis": 60,
+      "name": "any_comment_acknowledges_op_component_then_counterexample"
+    },
+    {
+      "hypothesis": 61,
+      "name": "any_comment_second_person_address"
+    },
+    {
+      "hypothesis": 61,
+      "name": "any_comment_third_person_analysis"
+    },
+    {
+      "hypothesis": 62,
+      "name": "op_argument_has_direct_personal_anecdote"
+    },
+    {
+      "hypothesis": 63,
+      "name": "any_comment_introduces_verifiable_external_fact"
+    },
+    {
+      "hypothesis": 64,
+      "name": "op_acknowledges_alternative_perspectives"
+    },
+    {
+      "hypothesis": 64,
+      "name": "op_presents_argument_as_singularly_deterministic"
+    },
+    {
+      "hypothesis": 66,
+      "name": "share_comments_quoting_op_text"
+    },
+    {
+      "hypothesis": 67,
+      "name": "any_comment_cites_specific_real_world_example"
+    },
+    {
+      "hypothesis": 68,
+      "name": "oc_comments_lexical_density"
+    },
+    {
+      "hypothesis": 69,
+      "name": "any_comment_cites_specific_localized_example"
+    },
+    {
+      "hypothesis": 70,
+      "name": "op_argument_has_hedging_or_self_doubt"
+    },
+    {
+      "hypothesis": 71,
+      "name": "any_comment_concrete_locally_verifiable_example"
+    },
+    {
+      "hypothesis": 71,
+      "name": "any_comment_relies_on_abstract_principles"
+    },
+    {
+      "hypothesis": 72,
+      "name": "any_comment_concrete_real_world_example"
+    },
+    {
+      "hypothesis": 72,
+      "name": "all_comments_solely_abstract_logic"
+    },
+    {
+      "hypothesis": 73,
+      "name": "op_argument_has_explicit_conditional_outcome_language"
+    },
+    {
+      "hypothesis": 74,
+      "name": "any_comment_personal_anecdote_of_claim_consequences"
+    },
+    {
+      "hypothesis": 74,
+      "name": "any_comment_abstract_theoretical_rebuttal"
+    },
+    {
+      "hypothesis": 75,
+      "name": "any_comment_cites_specific_real_world_example"
+    },
+    {
+      "hypothesis": 76,
+      "name": "any_comment_specific_counterargument"
+    },
+    {
+      "hypothesis": 76,
+      "name": "share_comments_explicit_agreement_marker"
+    },
+    {
+      "hypothesis": 77,
+      "name": "any_comment_challenges_op_assumptions"
+    },
+    {
+      "hypothesis": 78,
+      "name": "op_requests_audience_restraint_or_karma_building"
+    },
+    {
+      "hypothesis": 79,
+      "name": "op_argument_has_personal_experience_narrative"
+    },
+    {
+      "hypothesis": 80,
+      "name": "op_explicitly_requests_feedback_or_advice"
+    },
+    {
+      "hypothesis": 81,
+      "name": "op_argument_uses_second_person_address"
+    },
+    {
+      "hypothesis": 82,
+      "name": "any_comment_uses_concrete_example"
+    },
+    {
+      "hypothesis": 83,
+      "name": "count_comments_with_specific_real_world_example"
+    },
+    {
+      "hypothesis": 84,
+      "name": "any_comment_quotes_op_text"
+    },
+    {
+      "hypothesis": 85,
+      "name": "any_comment_acknowledges_op_validity_then_narrow_caveat"
+    },
+    {
+      "hypothesis": 85,
+      "name": "any_comment_immediate_blanket_contradiction"
+    },
+    {
+      "hypothesis": 87,
+      "name": "any_comment_quotes_or_references_op_text"
+    },
+    {
+      "hypothesis": 88,
+      "name": "any_comment_directly_quotes_op_post"
+    },
+    {
+      "hypothesis": 89,
+      "name": "any_comment_substantive_counterargument"
+    },
+    {
+      "hypothesis": 89,
+      "name": "only_supportive_comments"
+    },
+    {
+      "hypothesis": 90,
+      "name": "any_comment_specific_counterargument_with_empirical_example"
+    },
+    {
+      "hypothesis": 91,
+      "name": "op_requests_emotional_support_or_assistance"
+    },
+    {
+      "hypothesis": 92,
+      "name": "any_comment_concrete_external_analogy"
+    },
+    {
+      "hypothesis": 92,
+      "name": "all_comments_solely_abstract_logical_refutation"
+    },
+    {
+      "hypothesis": 93,
+      "name": "op_argument_word_count"
+    },
+    {
+      "hypothesis": 94,
+      "name": "op_argument_acknowledges_counterpoints"
+    },
+    {
+      "hypothesis": 96,
+      "name": "op_discloses_personal_emotional_vulnerability"
+    },
+    {
+      "hypothesis": 97,
+      "name": "any_comment_specific_empirical_evidence"
+    },
+    {
+      "hypothesis": 98,
+      "name": "any_comment_well_reasoned_counterargument"
+    },
+    {
+      "hypothesis": 99,
+      "name": "any_comment_cites_numerical_data"
+    }
+  ],
+  "texts": {
+    "short_definition": [
+      "argument_compares_to_scientific_or_historical_norms: OP argument: 1 if the OP's own argument explicitly compares its claim, case or proposal to an established scientific or historical norm; else 0.",
+      "op_expresses_fear_of_social_rejection_or_isolation: OP title and argument, OP's own voice: 1 if the OP explicitly expresses fear of social rejection or isolation (e.g., being rejected, ostracized, judged out, or left alone by others).",
+      "op_states_beliefs_without_emotional_self_defense: OP title and argument, OP's own voice: 1 if the OP states beliefs with no emotional self-defense (no expressed fear, hurt, defensiveness or self-protective emotional appeal about themselves).",
+      "any_comment_cites_functioning_institutional_precedent: Other-user comments: 1 if at least one comment cites a specific, functioning institutional precedent (an actual existing institution, law, policy or system that operates in practice) as support for its counter-argument.",
+      "any_comment_relies_on_abstract_normative_principles: Other-user comments: 1 if at least one comment relies on abstract normative principles (e.g. fairness, rights, morality, justice) as its argument basis.",
+      "op_argument_admits_uncertainty: OP argument: 1 if the OP explicitly admits their own uncertainty or possible error about their view or claims.",
+      "op_argument_asserts_absolute_certainty: OP argument: 1 if the OP explicitly asserts absolute certainty in their own view (no room for being wrong).",
+      "distinct_op_factual_premises_challenged: OC_comments (other users' comments) read against the OP argument: count of distinct factual premises stated in the OP argument that are challenged by at least one comment.",
+      "distinct_counterargument_count: OC_comments (other users' comments): number of semantically distinct counter-arguments against the OP's view, deduplicated across comments",
+      "title_uses_absolute_certainty_markers: OP title: 1 if the title uses absolute certainty markers (e.g., wording asserting the claim as certain, universal or beyond doubt, without hedging); else 0",
+      "op_invites_critique_or_tentative: OP title and argument (OP's own voice): 1 if the OP explicitly invites critique/challenge or uses tentative/hedged language about their own view, else 0.",
+      "op_uses_absolute_definitive_declarations: OP title and argument (OP's own voice): 1 if the OP states their view in absolute, definitive declarations, else 0.",
+      "any_comment_cites_specific_real_world_example: OC_comments (other users' counter-argument comments): 1 if at least one comment explicitly cites a specific real-world example (actual case, event, person, institution, or concrete personal experience, not invented/hypothetical) in support of its argument.",
+      "share_comments_measured_logical_reasoning: OC_comments (other users' comments): share of comments containing measured, logical reasoning (calm, structured inference from premises to conclusion)",
+      "share_comments_emotional_aggression: OC_comments (other users' comments): share of comments containing emotional aggression (hostile, angry, insulting or belligerent affect toward the OP or others)",
+      "any_comment_quotes_and_refutes_op_factual_claim: OC_comments (other users): 1 if at least one comment, within the same comment, explicitly quotes specific OP wording and refutes that same OP factual claim; endorsement not required.",
+      "any_comment_validates_op_dignity_or_effort_before_correction: Other-user comments: at least one single comment explicitly validates the OP's personal dignity or effort and then, later in that same comment, introduces corrective logic",
+      "all_comments_purely_logical_refutation: Other-user comments: every comment is a purely logical refutation with no explicit validation of the OP's personal dignity or effort",
+      "any_comment_concrete_real_world_example: Other-user counter-argument comments: 1 if at least one comment provides a concrete real-world example (specific actual case, including a specific personal experience); invented/hypothetical scenarios do not count.",
+      "any_comment_engages_op_cited_examples_or_premises: Other-user comments: at least one comment explicitly engages (addresses, rebuts, or builds on) a specific example or premise cited in the OP's title/argument text.",
+      "any_comment_concrete_personal_labor_details: Other-user comments: at least one comment introduces concrete, personal labor-process details (specific first-hand work tasks, workplace procedures or job experiences of the commenter or someone concretely described).",
+      "all_comments_solely_abstract_normative: Other-user comments: every comment relies solely on abstract normative principles, with no concrete personal details.",
+      "any_comment_quantifies_systemic_material_harm_to_third_parties: Other-user comments: at least one comment explicitly quantifies systemic material harm to third parties (people other than the commenter/OP debate participants), using numbers, rates, amounts or magnitudes.",
+      "any_comment_asserts_propositional_falsity: Other-user comments: at least one comment asserts that an OP proposition or claim is factually or logically false/incorrect.",
+      "any_comment_identifies_op_internal_contradiction: Other-user comments: 1 if at least one comment identifies a logical contradiction or inconsistency within the OP's own stated premises (title/argument).",
+      "any_comment_cites_external_evidence: Other-user comments: 1 if at least one comment cites external evidence (e.g. data, studies, sources, or documented real-world facts/cases) in support of its counter-argument.",
+      "any_comment_specific_factual_data_or_citation: OC_comments (other users' counter-argument comments): 1 if at least one comment provides specific factual data or a verifiable citation",
+      "argument_has_polite_apology_phrase: OP argument: 1 if it contains at least one explicit polite apology phrase by the OP (e.g., sorry, I apologize, apologies, pardon me, excuse me); else 0.",
+      "op_first_person_vulnerable_admission: OP's own title/argument text: 1 if the OP makes at least one first-person vulnerable admission (OP discloses in their own voice a personal weakness, fear, failure, insecurity, mistake or emotionally exposing experience).",
+      "op_third_person_distant_observation: OP's own title/argument text: 1 if the OP presents at least one distant, third-person observation (detached description of other people, groups, institutions or events, not about the OP's own experience).",
+      "any_comment_specific_verifiable_procedural_example: Other-user comments: at least one comment employs a specific, verifiable procedural example (a concrete named or checkable process, rule, procedure or documented case of how something is done) in its counter-argument.",
+      "all_comments_solely_abstract_theoretical_rebuttals: Other-user comments: every comment relies solely on abstract theoretical rebuttals, with no specific verifiable procedural example.",
+      "argument_has_counter_question_marker: OP argument: 1 if the OP's own text contains at least one specific counter-question marker, i.e. a question posed to challenge or probe an opposing position or invite a counter-case; else 0.",
+      "op_argument_has_personal_anecdote: OP argument: 1 if it includes a personal anecdote or first-person experiential narrative by the OP about their own experience.",
+      "any_comment_acknowledges_op_premise_before_divergence: Other-user comments: at least one comment explicitly acknowledges the validity of the OP's premise (initial premise) and then introduces divergence/disagreement within the same comment.",
+      "any_comment_concrete_personal_anecdote: OC_comments (other users): 1 if at least one comment employs a concrete personal anecdote (the commenter's own specific experience) as part of its argument.",
+      "any_comment_abstract_reasoning: OC_comments (other users): 1 if at least one comment employs abstract reasoning (general principles, logic or conceptual argument rather than a concrete personal anecdote).",
+      "any_comment_direct_counterargument: Other-user comments (OC_comments, with OP title/argument as target context): 1 if at least one comment directly counterargues the OP's stated view, i.e. argues explicitly against it or a specific OP claim.",
+      "op_argument_epistemic_certainty: OP argument text: overall epistemic certainty of the OP's own assertions, 0-10 (0 = predominantly modest/uncertain/hedged markers, 10 = predominantly high-modality categorical assertions)",
+      "op_argument_tone_policing_request: OP argument: 1 if the OP, in their own voice, explicitly asks or demands that readers/commenters change their tone, manner or civility (e.g. be calm, polite, less hostile or emotional) rather than address content.",
+      "any_comment_redrafts_op_view_before_refuting: Other-user comments: at least one comment restates/rewrites the OP's viewpoint in a more nuanced form and then refutes that restated view, within the same comment.",
+      "op_argument_explicit_uncertainty: OP argument: 1 if the OP's own text contains at least one explicit uncertainty marker (e.g., hedge or stated doubt about their own claims); else 0.",
+      "op_argument_acknowledges_counterargument_or_limitation: OP argument: 1 if the OP explicitly acknowledges a counter-argument to, or a limitation of, their own view; else 0.",
+      "any_comment_named_real_world_analogy: Other-user counter-argument comments: 1 if at least one comment uses a named, real-world analogy or case (e.g., specific historical or scientific example) to make its point.",
+      "any_comment_abstract_logical_rebuttal: Other-user counter-argument comments: 1 if at least one comment is an abstract logical rebuttal that relies on general reasoning without named real-world examples.",
+      "any_comment_contrasts_op_view_with_relatable_personal_experience: Other-user OC_comments: 1 if at least one comment explicitly contrasts the OP's view with a relatable real-world personal experience (the commenter's own or someone they personally know).",
+      "title_has_emotional_or_personal_identifier: OP title: 1 if the title contains an explicit emotional or personal identifier (e.g., stated feeling/emotion word, or first-person/self-identifying marker of the OP's own identity or experience).",
+      "has_multi_turn_reply_interaction: conversation: 1 if the formatted text contains a multi-turn reply interaction, i.e. a back-and-forth exchange of at least three turns in which some speaker label appears again after another speaker's intervening turn",
+      "op_argument_self_referential_platform_or_status_meta: OP argument: 1 if the OP explicitly makes self-referential meta-commentary about platform mechanics or the author's own status (excluding view-change/delta outcome announcements)",
+      "any_comment_quotes_op_argument: OC_comments (other users' comments): 1 if at least one comment directly quotes wording from the OP's argument; endorsement or refutation not required.",
+      "any_comment_second_person_address_to_op: OC_comments: 1 if at least one other-user comment uses second-person direct address to the original poster (OP); else 0.",
+      "op_argument_direct_plea_nonviolence: OP argument: 1 if the OP's own text directly pleads/urges/appeals for nonviolence (that violence be avoided, renounced or not used).",
+      "argument_has_first_person_singular_pronoun: OP argument: 1 if the OP's own argument text contains at least one explicit first-person singular pronoun (I, me, my, mine, myself, and contractions such as I'm/I've/I'd/I'll) used by the OP, excluding outcome-reporting text.",
+      "any_comment_presents_counterargument: Other-user OC_comments: 1 if at least one comment presents a counterargument to the OP's stated view (title/argument); else 0.",
+      "counterargument_cognitive_complexity: OC_comments (other users' counter-argument comments): overall cognitive complexity of the counterarguments, 0-10 anchored score",
+      "any_comment_acknowledges_op_valid_point_before_discrepancy: Other-user comments: 1 if at least one comment, within the same comment, explicitly acknowledges a valid point underlying the OP's view and only afterward introduces a discrepancy/disagreement with it.",
+      "any_comment_names_specific_external_program_or_location: Other-user comments: at least one comment references a specific, named external program or location (not generic/unnamed).",
+      "all_comments_only_abstract_logical_refutation: Other-user comments: every comment uses only abstract logical refutation, with no reference to specific named external programs or locations.",
+      "any_comment_quotes_and_refutes_op_phrase: Other-user comments: at least one single comment explicitly quotes a specific phrase from the OP's title/argument and refutes that quoted phrase.",
+      "any_comment_refutes_op_specific_example: Other-user comments: at least one comment explicitly refutes a specific example or anecdote provided by the OP.",
+      "any_comment_addresses_op_main_premise_directly: Other-user comments: at least one comment directly addresses the OP's main premise/central claim (rather than a specific example).",
+      "argument_has_hedging_language: OP argument (own assertions): 1 if it contains hedging or qualifying language (e.g., softening or limiting the strength/scope of the OP's own claims).",
+      "argument_has_absolute_declarative_statements: OP argument (own assertions): 1 if it contains absolute declarative statements asserting claims without hedging or qualification (e.g., universal or unconditional categorical claims).",
+      "any_comment_quotes_op_text: Other-user comments: at least one comment explicitly quotes the OP's own wording (title or argument text) verbatim or near-verbatim; endorsement or refutation not required; paraphrase alone does not count.",
+      "any_comment_validates_op_emotion_before_rebuttal: Other-user comments: 1 if at least one comment explicitly validates the OP's emotional experience (feelings) earlier within that same comment than its logical rebuttal of the OP's view.",
+      "any_comment_uses_analogy_to_familiar_scenario: OC_comments (other users' counter-argument comments): 1 if at least one comment uses an analogy to a familiar scenario as part of its argument",
+      "title_absolute_universal_quantifier: Title: 1 if the title explicitly contains an absolute universal quantifier term (e.g., all, every, always, never, none, no one) applied to its claim.",
+      "title_variable_probabilistic_term: Title: 1 if the title explicitly contains a variable or probabilistic term (e.g., some, often, usually, generally, sometimes, most, may, can, likely).",
+      "any_comment_cites_specific_real_world_example: OC_comments (other users' counter-argument comments): 1 if at least one comment explicitly references a specific, concrete example or real-world instance",
+      "any_comment_specific_empirical_evidence: Other-user comments: at least one comment contains specific empirical evidence (e.g. concrete data, statistics, studies, documented real-world cases or observations) offered in support of its counter-argument.",
+      "only_logical_refutation_comments: Other-user comments: at least one comment offers a logical refutation and no comment contains specific empirical evidence (counter-arguments are only logical refutations).",
+      "any_comment_acknowledges_op_component_then_counterexample: OC_comments (other users): 1 if at least one comment explicitly acknowledges the validity of a specific component of the OP's argument and then, in the same comment, presents a counter-example.",
+      "any_comment_second_person_address: Other-user comments: at least one comment uses second-person direct address (e.g., you/your) directed at the OP or reader, not merely in quoted text or generic 'you'-free analysis.",
+      "any_comment_third_person_analysis: Other-user comments: at least one comment argues by third-person analysis (about people, groups, cases or things in third person) without relying on direct address to the OP.",
+      "op_argument_has_direct_personal_anecdote: OP argument: 1 if the OP's own text relates a direct personal anecdote (a specific experience the OP themself had or witnessed firsthand).",
+      "any_comment_introduces_verifiable_external_fact: Other-user comments: at least one comment explicitly introduces a verifiable external fact (checkable factual claim about the world, e.g. statistic, event, study, law) that is distinct from what the OP's title/argument already states.",
+      "op_acknowledges_alternative_perspectives: OP argument: 1 if the OP explicitly acknowledges that alternative perspectives, views or interpretations exist.",
+      "op_presents_argument_as_singularly_deterministic: OP argument: 1 if the OP presents the view as the single determined/inevitable conclusion, with no acknowledgment of alternatives.",
+      "share_comments_quoting_op_text: OC_comments (other users' comments): share of comments that directly quote wording from the OP's title or argument; endorsement or refutation not required.",
+      "any_comment_cites_specific_real_world_example: OC_comments (other users' comments): 1 if at least one comment cites a specific real-world example (actual case, event, person, institution, data point or concrete personal experience) as part of its counter-argument.",
+      "oc_comments_lexical_density: OC_comments (other users' counter-argument comments): lexical density = content words (nouns, main verbs, adjectives, adverbs) divided by all words, pooled over all comments in the row; range 0-1",
+      "any_comment_cites_specific_localized_example: Other-user comments: at least one comment cites a specific, localized example (a particular concrete case, instance, person, place, event or personal experience) in support of its counter-argument.",
+      "op_argument_has_hedging_or_self_doubt: OP argument: 1 if the OP's own text explicitly contains hedging or self-doubt markers (e.g., expressed uncertainty, tentativeness, possibility of being wrong) about their own view or claims; else 0.",
+      "any_comment_concrete_locally_verifiable_example: Other-user comments: at least one comment gives a concrete, locally verifiable example (specific case, instance, or personal experience that can be checked from details given).",
+      "any_comment_relies_on_abstract_principles: Other-user comments: at least one comment relies on abstract principles (general normative/theoretical reasoning) as its argument.",
+      "any_comment_concrete_real_world_example: Other-user counter-argument comments: at least one comment contains a concrete real-world example (specific actual case, including personal experience).",
+      "all_comments_solely_abstract_logic: Other-user counter-argument comments: every comment relies solely on abstract logic/reasoning, with no concrete real-world examples.",
+      "op_argument_has_explicit_conditional_outcome_language: OP argument: 1 if it contains explicit conditional language (e.g., if/then, unless, provided that, when X then Y) linking an outcome to a specific antecedent condition.",
+      "any_comment_personal_anecdote_of_claim_consequences: Other-user OC_comments: at least one comment gives a concrete personal anecdote (the commenter's own specific experience) illustrating real-world consequences of the OP's claim.",
+      "any_comment_abstract_theoretical_rebuttal: Other-user OC_comments: at least one comment rebuts the OP's claim by relying on abstract theoretical reasoning (principles, general theory, logic) rather than concrete personal anecdote.",
+      "any_comment_cites_specific_real_world_example: Other-user OC_comments: 1 if at least one comment cites a specific real-world example (actual case, event, entity, or concrete personal experience; not invented/hypothetical).",
+      "any_comment_specific_counterargument: Other-user comments: at least one comment presents a specific counterargument to the OP's view (concrete, targeted reasoning, evidence or example against a particular OP claim, not merely generic disagreement).",
+      "share_comments_explicit_agreement_marker: Other-user comments: share of comments (0-1) containing at least one explicit agreement marker toward the OP or another speaker's point (e.g., 'I agree', 'you're right', 'good point').",
+      "any_comment_challenges_op_assumptions: Other-user comments: at least one comment explicitly challenges the OP's underlying assumptions (premises the OP's reasoning relies on), not merely disputing the OP's factual conclusion.",
+      "op_requests_audience_restraint_or_karma_building: OP argument text: 1 if the OP explicitly asks readers to show restraint (e.g., be civil, not downvote or attack) or to build/give karma (e.g., upvote), else 0.",
+      "op_argument_has_personal_experience_narrative: OP argument: 1 if the OP's own text contains an explicit narrative of the OP's own personal experience, else 0.",
+      "op_explicitly_requests_feedback_or_advice: OP argument: 1 if the OP's own text explicitly asks the community for feedback or advice, else 0.",
+      "op_argument_uses_second_person_address: OP argument: 1 if the OP's own wording addresses the reader with second-person direct address (e.g., you/your/you're directed at the reader or readers); else 0.",
+      "any_comment_uses_concrete_example: OC_comments (other users' counter-argument comments): 1 if at least one comment employs a specific, concrete illustrative example (particular case, instance, scenario or personal experience) to support its argument; else 0.",
+      "count_comments_with_specific_real_world_example: OC_comments (other users' comments, not the OP): number of comments that contain at least one specific real-world example (an actual case, event, person, institution, or concrete personal experience; not invented or hypothetical).",
+      "any_comment_quotes_op_text: Other-user comments: at least one comment directly quotes wording from the OP's title or argument; endorsement or refutation not required.",
+      "any_comment_acknowledges_op_validity_then_narrow_caveat: Other-user comments: at least one comment explicitly acknowledges validity of the OP's view/point and then introduces a narrower, specific caveat within the same comment",
+      "any_comment_immediate_blanket_contradiction: Other-user comments: at least one comment immediately contradicts the OP's view as a whole in blanket terms, without first explicitly acknowledging its validity",
+      "any_comment_quotes_or_references_op_text: Other-user OC_comments: 1 if at least one comment explicitly quotes or references a specific textual element of the OP's title/argument; endorsement not required.",
+      "any_comment_directly_quotes_op_post: Other-user comments: at least one comment directly quotes wording from the OP's title or argument; endorsement or refutation not required",
+      "any_comment_substantive_counterargument: Other-user comments: at least one comment presents a substantive counterargument (reasoned challenge with evidence/logic) to the OP's view.",
+      "only_supportive_comments: Other-user comments: every comment is supportive of the OP's view, with none challenging it; list non-empty.",
+      "any_comment_specific_counterargument_with_empirical_example: OC_comments (other users' comments): 1 if at least one comment makes a specific counter-argument to the OP's view that cites an empirical example (a concrete real-world case, data or observed instance).",
+      "op_requests_emotional_support_or_assistance: OP argument text: 1 if the OP explicitly requests emotional support or assistance (not merely a view challenge), else 0.",
+      "any_comment_concrete_external_analogy: Other-user comments: at least one comment introduces a concrete, external factual analogy (a specific real-world case, example or comparison drawn from outside the OP's own scenario).",
+      "all_comments_solely_abstract_logical_refutation: Other-user comments: every comment relies solely on abstract logical refutation, with no concrete external factual analogy or specific real-world example.",
+      "op_argument_word_count: OP argument: number of whitespace-separated words in the current argument text, excluding OP view-change/delta-award announcements and post-outcome thank-you/resolution/outcome-reporting text",
+      "op_argument_acknowledges_counterpoints: OP argument: 1 if the OP's own text explicitly acknowledges potential counterpoints, objections or opposing views to their position.",
+      "op_discloses_personal_emotional_vulnerability: OP argument: 1 if the OP's own text discloses personal emotional vulnerability (e.g., admits own painful, fearful, insecure, ashamed or distressed feelings or struggles); else 0.",
+      "any_comment_specific_empirical_evidence: OC_comments (other users' comments): 1 if at least one comment contains specific empirical evidence (e.g., concrete data, statistics, studies, documented cases or observations) offered in the commenter's own argument.",
+      "any_comment_well_reasoned_counterargument: Other-user OC_comments: at least one comment presents a well-reasoned counterargument to the OP's view (title/argument).",
+      "any_comment_cites_numerical_data: OC_comments (other users' counter-argument comments): 1 if at least one comment contains specific numerical data or statistics offered in its own argument, else 0."
+    ],
+    "concise_measurement": [
+      "Binary flag (1/0) from the OP's \"argument\" text only (current text, including marked edits): 1 if the OP, in their own voice, explicitly compares their claim, case or proposal to an established scientific norm (accepted standard, consensus, established finding/practice) or established historical norm (long-standing standard, practice, precedent), stating similarity or difference. 0 if there is no such explicit comparison; merely mentioning science or history without comparing to a norm doesn't count. Excludes quotations or positions attributed to others unless the OP adopts them. Excludes view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred, even if otherwise qualifying; generic discussion of delta/platform rules is not an outcome announcement and not itself a norm comparison. Null if argument is missing or malformed.",
+      "Binary per-row measure from the OP's title and argument (current text, including marked edits), in the OP's own voice: 1 if the OP explicitly expresses fear or worry of social rejection or isolation (being rejected, ostracized, shunned, excluded, judged out, or left alone by others) connected to their view or its expression; 0 if no such explicit fear is present. Quoted or reported statements by other people are excluded unless the OP adopts them as their own fear. Ignore view-change/delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred (generic discussion of delta/platform rules is not an outcome announcement and may count if relevant); do not reconstruct an original version by removing edits. Returns null if title and argument are both missing, empty or malformed.",
+      "Binary per-row judgment of the OP's own voice in the title and argument columns (current text, including marked edits): outputs 1 if beliefs and reasons are stated with no emotional self-defense, meaning no expressed fear, anxiety, hurt, defensiveness, or self-protective emotional appeal about themselves or their standing with others. Outputs 0 if any such self-defense is present, including fear of social rejection or isolation. Quoted or reported statements by other people are excluded unless the OP adopts them. Ignore view-change or delta-award announcements, post-outcome thank-you or resolution updates, and text reporting the outcome; generic discussion of delta or platform rules is not an outcome announcement and may count if relevant. Do not reconstruct an original version by removing edits. Returns null if title and argument are both missing, empty, or malformed.",
+      "Binary: 1 if at least one other-user (non-OP) counter-argument comment in OC_comments (JSON list; order irrelevant) cites a specific, real, named or concretely identified institution, law, policy, program or system in a particular jurisdiction/organization, presented as actually functioning in practice, as support for that comment's counter-argument; quoted others' material counts only if the commenter uses it as support. Does not qualify: abstract principles, hypothetical/invented systems, personal anecdotes without an institution, or failed/non-functioning precedents cited as support. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting the outcome; generic discussion of delta/platform rules stays eligible. Output 0 if the list is valid but no comment qualifies (including empty list); null if OC_comments is missing or malformed.",
+      "Binary row measure from OC_comments (JSON list of counter-argument comments by users other than the OP; parse it; order carries no rank or chronology): 1 if at least one comment relies on abstract normative principles (general moral, ethical, rights-based, fairness or justice principles stated in general terms, about what ought to be) as the basis of its counter-argument; otherwise 0. A comment resting mainly on specific concrete cases, institutions or empirical facts does not qualify on that basis alone. Ignore text where the OP announces a view change or delta award, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and stays eligible. Valid list with no qualifying comment, including an empty list, gives 0; missing or malformed OC_comments gives null.",
+      "Binary measure on the OP's \"argument\" text only (current supplied text, including marked edits): 1 if the OP, in their own voice, explicitly admits uncertainty, doubt, or possible error about their own view or claims (e.g. \"I'm not sure\", \"I could be wrong\", \"I may be mistaken\"); 0 if the argument is present but has no such explicit admission. Ignore quoted others' text or opponents' positions unless the OP adopts them as their own. Exclude, and don't use as evidence, any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred, even inside the argument; generic discussion of delta/platform rules is not an outcome announcement and stays eligible. Do not reconstruct an initial snapshot. Null if the argument is missing or malformed.",
+      "Binary per-row measure from the \"argument\" column (OP's argument text only, current supplied text including marked edits): 1 if the OP, in their own voice, explicitly asserts absolute certainty about their own view, leaving no room for error (e.g. \"I am 100% certain\", \"no possible way I'm wrong\", \"undeniably true\"); 0 for ordinary confident phrasing without explicit absolute-certainty claims, or when no such assertion exists. Ignore quoted others' text or opponents' positions unless the OP adopts them. Exclude as evidence any view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred (even within the argument); generic discussion of delta/platform rules remains eligible. Do not reconstruct an initial snapshot. Null if the argument is missing or malformed.",
+      "Count of distinct factual (empirical, not purely normative/value) premises asserted in the OP's argument that are challenged (disputed, contradicted, or shown false/unsupported) by at least one comment in OC_comments (JSON list of other users' comments, not the OP; order is not chronology or rank). A premise challenged by multiple comments counts once; one comment challenging several different premises counts each. Do not count challenges to value judgments, purely normative conclusions, or OP wording only. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred, even if in the argument; generic delta/platform-rule discussion is neither announcement nor premise. Use current text including marked edits, not an initial snapshot. Output a non-negative integer (0 = no OP factual premise challenged); a valid empty comment list gives 0; missing or malformed argument or OC_comments gives null.",
+      "Count of semantically distinct counter-arguments (separate reasons, objections, or evidence challenging the OP's view) made in OC_comments, a JSON list of comments by users other than the OP; title and argument are context only for identifying the OP's view. Deduplicate across and within comments (repeats or restatements count once); one comment can contribute several distinct arguments. Exclude agreement with the OP, clarifying questions, jokes, moderator/bot notices, OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting the outcome (even in argument or comments); generic delta/platform-rule discussion counts only if it challenges the OP's view. Output a non-negative integer; a valid empty comment list gives 0; missing or malformed OC_comments gives null. List order implies no chronology.",
+      "Binary per-row flag on the OP's title column only: 1 if the title itself uses absolute certainty markers, meaning wording that presents the claim as completely certain, exceptionless or beyond doubt, without hedging (examples, not exhaustive: 'all', 'always', 'never', 'no one', 'obviously', 'undeniably', 'definitely'); 0 if no such markers, including hedged or tentative titles (e.g. 'generally', 'I think'). Ignore the 'CMV:' prefix and any view-change, delta, thank-you, resolution or outcome text (generic discussion of delta/platform rules does not count as such). Output 1, 0, or null; null if the title is missing or empty.",
+      "Binary per-row flag from the OP's own title and argument (current supplied text, including marked edits): 1 if, in the OP's own voice, they explicitly invite critique, counter-arguments or challenge to their view (e.g. asking to be convinced or shown wrong) OR state their view with tentative/hedged language (e.g. \"I think\", \"maybe\", \"I might be wrong\", \"not sure\", \"it seems\"); 0 if neither is present. Excludes quotations of others or reported opponents' positions unless the OP adopts them as their own. Ignores view-change/delta-award announcements, post-outcome thank-you/resolution updates and any text reporting whether the outcome occurred; generic discussion of delta/platform rules may still count if relevant. Generic subreddit framing alone is not an explicit invitation unless the OP's text says so. No reconstruction of an initial snapshot. Returns null if both title and argument are missing or malformed.",
+      "Binary flag from the OP's own voice in the supplied current title and argument (including marked edits): 1 if the OP states their view in affirmatively absolute or definitive declarations (categorical claims such as 'always', 'never', 'obviously', 'undeniably', 'there is no way', or unqualified certainty stated as fact); 0 if no such wording is present. Absence of tentative language alone is not enough; explicit absolute/definitive wording is required. Excludes quotations or reported opponents' positions unless the OP adopts them. Excludes view-change/delta-award announcements, post-outcome thank-you/resolution updates and any text reporting whether the outcome occurred (generic discussion of delta/platform rules is not excluded). Does not reconstruct an initial snapshot. Returns null if both title and argument are missing or malformed.",
+      "Binary per-row measure from OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment explicitly cites a specific real-world example offered to support or illustrate its argument, such as a concrete actual case, event, person, organization, place, study instance, or specific personal experience, in any domain; it need not be externally verified. Invented, hypothetical, purely generic scenarios and abstract generalizations do not count. Ignore text reporting OP view change, delta awards, post-outcome thanks/resolution updates or whether the outcome occurred (not evidence); generic discussion of delta/platform rules is allowed but is not an example by itself. Output 0 if the list is valid but no comment qualifies, including an empty list; null if OC_comments is missing or malformed.",
+      "Share of other users' counter-argument comments (source: OC_comments, a JSON list; not the OP) that contain measured logical reasoning: calm, structured inference from premises or evidence to a conclusion in a restrained tone. A comment counts if it contains this even if it also has emotional aggression; quoted text from others is ignored unless the commenter adopts it. Output is the count of such comments divided by total comments, in [0,1] (0 = none); order irrelevant. Ignore and don't use as evidence OP view-change/delta-award announcements, post-outcome thank-yous/resolution updates, or text reporting whether the outcome occurred (generic delta/platform rule discussion remains eligible). Returns null if the list is missing or malformed, or if it is a valid empty list (share undefined).",
+      "Numeric share in [0,1] of comments containing emotional aggression (hostile, angry, insulting, contemptuous or belligerent emotional language directed at the OP or others), computed from OC_comments only (JSON list of counter-argument comments by users other than the OP). Each comment is judged individually and counts if it contains aggression, even alongside logical reasoning; output is aggressive comments divided by total comments, 0 if none. Mere disagreement, firm or critical tone, or generic emotional wording without hostility does not count; quoted text from others is ignored unless the commenter adopts it; OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred are excluded as evidence, while generic delta/platform rules discussion remains eligible. Returns null if the list is missing, malformed, or validly empty (share undefined).",
+      "Binary per-row: 1 if at least one comment in OC_comments (JSON list of other users' comments, not OP) in a single comment both explicitly quotes a specific OP factual claim (direct quote or close verbatim excerpt of OP title/argument text; title and argument serve as context for identifying factual claims) and argues that same claim is false or wrong; endorsement not required. Quote and refutation must be in the same comment; separate comments don't combine. No match for merely mentioning the topic, quoting opinion/value claims, or quoting without refuting. Ignore view-change/delta-award announcements, post-outcome thank-you/resolution updates, and outcome reports in argument or comments (generic delta/platform rule discussion allowed); uses current text including marked edits. Returns 0 for a valid empty comment list or no qualifying comment; null if OC_comments is missing/malformed or title and argument are both missing (but a positive match against available OP text still gives 1).",
+      "Binary: from OC_comments (JSON list of comments by users other than the OP), returns 1 if at least one single comment first explicitly validates the OP personally (dignity, worth, or effort, e.g. praising effort/thoughtfulness or affirming them as a person; not merely agreeing with or praising a claim) and later in that same comment introduces corrective logic (reasoning meant to correct or counter the OP's view). Validation must come first and both must co-occur in one comment; separate comments cannot combine. Ignore quoted others' text unless adopted by the commenter. Exclude OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred (generic delta/platform rule discussion is not excluded). Returns 0 if the list is valid but no comment qualifies, including an empty list; null if OC_comments is missing or malformed. Uses only supplied text, no timing inferred.",
+      "Binary check on OC_comments (JSON list of comments by users other than the OP): returns 1 if every comment is a logical/argumentative refutation of the OP's view and none contains explicit validation of the OP's personal dignity or effort (praise or affirmation of the OP as a person or their effort). Returns 0 if the list is non-empty and at least one comment contains such validation or is not a logical refutation. Returns null for a valid empty list, or if OC_comments is missing or malformed. Excludes OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement. Uses only current supplied text; no timing is inferred.",
+      "Binary per-row measure from OC_comments (JSON list of counter-argument comments by users other than the OP; parsed): 1 if at least one comment itself gives a concrete real-world example supporting its argument, meaning a specific actual case, event, person, institution, data instance or personal experience that really occurred (any type qualifies; need not be externally verified). Purely abstract principles, generic claims, and invented or hypothetical scenarios do not count. Output 0 if the list is valid and nonempty but no comment qualifies, or if it is a valid empty list; null if OC_comments is missing or malformed. List order is irrelevant. Ignore OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and may count if relevant.",
+      "Binary per-row flag: 1 if at least one other-user comment (parsed from the JSON list OC_comments, not by the OP) explicitly engages a specific example or premise actually stated in the OP's title or argument, by naming, quoting, or paraphrasing it and then addressing, rebutting, or building on it; agreement or disagreement both count, endorsement is not required. Generic replies addressing only the overall topic or conclusion without referring to a specific OP example/premise don't count. OP text is used only to identify targets. Ignore as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting the outcome, even if in the argument. Generic discussion of delta/platform rules is not an outcome announcement. Current text including marked edits is used, and no chronology is inferred from list order. Output 0 if OC_comments is a valid empty list, and null if OC_comments or the OP text (title, argument) is missing or malformed. Output is one scalar 0/1.",
+      "Binary row flag from OC_comments (JSON list of counter-argument comments by users other than the OP; parsed): 1 if at least one comment introduces concrete, personal labor-process details, meaning specific, particular descriptions of how work is actually done (tasks, workplace procedures, working conditions, job experiences) drawn from the commenter's own or a specifically described person's experience. Abstract generalities about work, hypothetical or invented scenarios, and purely normative principles don't qualify; quoted text from others counts only if the commenter adopts it as their own experience. Ignores OP view-change/delta-award announcements, post-outcome thank-you/resolution text and any text reporting whether the outcome occurred; generic delta/platform-rule discussion is neither positive evidence nor an outcome announcement. List order is irrelevant. Returns 0 if the list is valid but empty or no comment qualifies; null if OC_comments is missing or malformed.",
+      "Binary per-row measure from OC_comments (JSON list of counter-argument comments by users other than the OP; parsed; order irrelevant): returns 1 if every comment relies solely on abstract normative principles (general claims about what is right, fair, just or ought to be), with no concrete factual examples, personal experiences or details. Returns 0 if the list is non-empty and at least one comment contains any concrete, personal or empirical-example content. Returns null if the list is empty or OC_comments is missing or malformed. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution text and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and is judged like other content.",
+      "Binary per-row flag from OC_comments (JSON list of comments by users other than the OP; parse it): 1 if at least one comment explicitly quantifies systemic (institutional, structural or society-wide, not merely isolated) material harm to third parties (people other than the commenter), e.g. deaths, money, jobs, health, housing, resources lost, by giving numbers, rates, amounts, proportions or explicit magnitudes. Does not count: vague harm claims without a quantity, purely abstract/moral/propositional arguments, harms only to the commenter or hypothetical individuals. Quoted material counts only if the commenter adopts it. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, text reporting whether the outcome occurred; generic delta/platform-rule discussion is neither positive evidence nor outcome reporting. List order is irrelevant. Output 0 if the list is valid but no comment qualifies (including empty list); null if OC_comments is missing or malformed.",
+      "Binary per-row flag: returns 1 if at least one other-user comment (parsed from the OC_comments JSON list, excluding OP comments) asserts that a proposition or claim made by the OP in title or argument (used as context to identify claims) is false, incorrect or logically unsound, i.e. disputes its truth rather than describing consequences. Quoted material counts only if the commenter adopts it; comments that only add harms, offer opinions or agree don't count. Ignores OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and any text reporting the outcome, in any field (generic delta/platform-rule discussion is not outcome reporting); list order is irrelevant. Returns 0 if the list is valid (including empty) and no comment qualifies; null if OC_comments is missing/malformed or if both title and argument are missing.",
+      "Binary: 1 if at least one other-user comment in OC_comments (JSON list, not the OP) argues that the OP's own stated premises in title/argument contradict each other or are mutually inconsistent (an internal logical contradiction in the OP's position); a comment that also cites external evidence still counts. Returns 0 for a valid list where no comment does so (including comments that only dispute premises with outside facts or merely disagree) and for a valid empty list. Returns null if OC_comments is missing or malformed, or if title and argument are both missing. Uses current text including marked edits; ignores OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting the outcome (generic delta/platform-rule discussion remains eligible); list order is irrelevant.",
+      "Binary flag from OC_comments (JSON list of other users' comments, not the OP): 1 if at least one comment cites evidence external to the OP's post in support of its counter-argument (statistics, studies, named sources, links, or specific documented real-world facts or cases); 0 if the list is valid but no comment does (purely logical/internal-consistency arguments, opinion, hypotheticals), including a valid empty list; null if OC_comments is missing or malformed. Comment order is irrelevant; a comment also identifying a contradiction doesn't change the value. Ignore as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and remains eligible.",
+      "Binary check on OC_comments (JSON list of counter-argument comments by users other than the OP): returns 1 if at least one comment itself offers, in support of its argument, specific factual data (concrete statistics, figures, dates, named studies, documented facts or events) or a verifiable citation/reference (link, named source, author, publication, law or case). Vague assertions, general opinion, reasoning without specific data, and purely hypothetical scenarios do not count; a source quoted only as an opponent's position and not offered as support by the commenter does not count. Ignores OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither such an announcement nor evidence of data. Comment order is irrelevant. Returns 0 if the list is valid and no comment qualifies (including a valid empty list); null if the list is missing or malformed.",
+      "Binary flag from the `argument` column (OP's own text, current supplied text including marked edits): 1 if the OP's wording contains at least one explicit polite apology phrase (e.g., sorry, I apologize, apologies for, my apologies, pardon me, excuse my), for any reason (length, formatting, wording, anything else); 0 if the argument is present with no such phrase. Do not count apologies in quotations attributed to others or quoted material the OP doesn't adopt, or non-apologetic \"sorry\" (e.g., \"sorry state of affairs\"). Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred (including apologies or thanks within them); generic discussion of delta/platform rules stays eligible. Don't reconstruct an initial snapshot. Null if the argument is missing or malformed.",
+      "Binary per-row measure from the OP's own title and argument text (current supplied text, including marked edits): 1 if the OP, in their own first-person voice, makes at least one vulnerable admission, meaning a disclosure of their own personal weakness, fear, failure, insecurity, mistake, struggle or emotionally exposing experience; 0 if the text is assessable but has no such admission (mere opinions or first-person statements that aren't self-exposing don't count). Quoted or reported words of others are ignored unless the OP explicitly adopts them as their own admission. Excludes as evidence any view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the view changed; generic discussion of delta/platform rules is neither evidence nor an outcome. Does not try to reconstruct an initial version. Null if title and argument are both missing or malformed.",
+      "Binary per-row measure on the OP's own title and argument (current supplied text, including marked edits): 1 if the OP makes at least one distant third-person observation, meaning a detached description of other people, groups, institutions, society or events from an external standpoint, without personal involvement or self-disclosure. 0 if the text is assessable and has no such observation. Quotations of other users are ignored unless the OP adopts them as their own observation. OP view-change or delta-award announcements, post-outcome thank-you or resolution updates, and text reporting whether the view changed are excluded as evidence. Generic discussion of delta or platform rules is neither evidence nor an outcome announcement. Do not reconstruct an initial version of the post. Null if title and argument are both missing or malformed.",
+      "Binary row measure from OC_comments (JSON list of comments by users other than the OP; context only, parsed first): 1 if at least one comment, in its own counter-argument, uses a specific, concrete, checkable-in-principle example of a procedure or process (e.g. how a legal, institutional, administrative, technical or scientific procedure actually works or was applied, a named rule or documented case); no actual verification needed. Quoted material counts only if the commenter uses it as support. Purely abstract, theoretical, hypothetical or invented scenarios and generic assertions without a specific procedure don't count. Returns 0 if the list is valid but no comment qualifies, including an empty list; null if OC_comments is missing or malformed. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not such an announcement and may count.",
+      "Binary flag from OC_comments (JSON list of comments by users other than the OP; parsed): 1 if the list is non-empty and every comment's counter-argument relies solely on abstract or theoretical reasoning, with no specific verifiable procedural example (concrete checkable process, procedure, rule application, or documented case) in any comment. 0 if at least one comment contains such an example or other concrete case-based support. Null if OC_comments is empty, missing, or malformed. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and may be considered.",
+      "Binary per-row flag (1/0) on the OP's own argument text only (not title, comments or conversation): 1 if it contains at least one specific counter-question marker, an explicit or interrogative question the OP poses to counter, challenge or probe an opposing position, or to ask readers for a counter-argument, counterexample or rebuttal on a particular point (e.g. \"what about X?\", \"how would you explain Y?\", \"can anyone show a case where...?\"). Purely rhetorical scene-setting questions with no challenge/probe/counter-invitation, and questions inside external quotations or others' reported text not adopted by the OP, don't count. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and any text reporting whether the outcome occurred (including edits like \"EDIT: my view was changed\"); these never count, but generic discussion of delta/platform rules remains eligible. Marked edits otherwise count. Output 0 for an assessable argument with no marker; null if argument is missing or malformed.",
+      "Binary per-row flag from the `argument` column, reading only the OP's own current text (including marked edits): 1 if it contains a personal anecdote or first-person experiential narrative, meaning the OP recounts a specific experience, event or situation they personally lived through or took part in (e.g. \"when I worked at...\", \"my friend and I...\"). 0 if the argument is assessable but has none: purely abstract claims, hypotheticals or invented scenarios, general statements, or experiences only of others or of quoted external sources that the OP does not adopt as their own. Bare first-person opinion phrases (\"I think\") do not count. Ignore view-change or delta-award announcements, post-outcome thank-you or resolution updates, and any text reporting whether the view changed, even if they contain first-person narrative. Generic discussion of delta or platform rules is not an outcome announcement and may be considered. Do not try to reconstruct an initial version of the post. Output null if the argument is missing or malformed.",
+      "Binary per-row check on other users' comments (OC_comments, a JSON list; title and argument give the OP's view and are context only for identifying the OP's initial premise). Returns 1 if at least one single comment first explicitly concedes that the OP's initial premise (a starting claim of the view) is valid, correct or reasonable, and then, within that same comment, introduces disagreement, divergence or a counter-argument; the two parts cannot be split across comments. Vague politeness, mere topical engagement, or acknowledging only that the OP has feelings or made an effort, without conceding the premise's validity, does not count. Returns 0 if the list is valid but no comment qualifies, including an empty list. Returns null if OC_comments is missing or malformed, or if title and argument are both missing so the premise can't be identified. Ignores OP view-change or delta-award announcements, post-outcome thanks or resolution updates, and any text reporting the outcome, even in the argument, and doesn't use them as evidence. Generic delta or platform-rule discussion may be kept. Uses the current text only, with no initial snapshot inferred, and list order is not chronology.",
+      "Binary row measure from OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment uses a concrete personal anecdote, meaning the commenter recounts a specific experience of their own (or a first-hand event involving themselves) as part of their argument. Returns 0 if the list is valid and nonempty but no comment does; generic reasoning, hypotheticals, others' stories, external quotations and statistics don't count. Empty list gives 0; missing or malformed input gives null. Ignore text reporting the OP's view change, delta awards, thank-you or resolution updates, or whether the outcome occurred (generic discussion of delta/platform rules is not outcome reporting); list order is irrelevant.",
+      "Binary flag from OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment uses abstract reasoning, meaning argument through general principles, logical or conceptual argument, or generalized claims rather than recounting a concrete personal experience. A comment that also contains an anecdote still counts if it also uses abstract reasoning. Returns 0 if the list is valid and nonempty and no comment does; empty list gives 0; missing or malformed input gives null. Ignore text reporting the OP's view change, delta awards, thanks or resolution updates, or whether the outcome occurred (generic discussion of delta/platform rules is not outcome reporting). List order is irrelevant.",
+      "Binary per-row measure: from OC_comments (JSON list of comments by users other than the OP), with OP title and argument as target-view context, return 1 if at least one comment directly counterargues the OP's main view or a specific OP claim, by explicitly presenting reasoning, evidence or examples against it. Quoted material counts only if the commenter uses it to argue against the OP. Return 0 if the list is valid and nonempty but no comment does so (only agreement, clarifying questions, off-topic remarks, jokes, moderator/bot notices, or tangents), and 0 for an empty valid list. Return null if OC_comments is missing or malformed, or if both title and argument are missing so the view cannot be identified. Ignore OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and text reporting the outcome, even inside argument; generic discussion of delta/platform rules is not an outcome announcement and may be used. Use only the current supplied text; do not infer timing or initial snapshots. Output a single 0/1 or null.",
+      "Overall epistemic certainty of the OP's own assertions about their view, scored as an integer 0-10 from modality markers, using only the OP's \"argument\" field (current text, including marked edits; no reconstruction of pre-edit version). 0 = nearly all claims explicitly modest/uncertain/hedged (\"I think\", \"maybe\", \"might\", \"I could be wrong\", \"not sure\"); 5 = roughly even mix of hedged and unhedged claims; 10 = nearly all claims high-modality/categorical (\"obviously\", \"definitely\", \"must\", \"always\", \"never\", \"undeniably\") with no hedging. Aggregated over the whole argument by the balance of hedged vs high-certainty markers on claims central to the OP's position (an operational choice). Excludes quotations or reported opponents' positions unless the OP adopts them, moderator/bot notices, and any view-change/delta-award announcements, post-outcome thank-yous/resolution updates, or text reporting whether the outcome occurred; generic discussion of delta/platform rules stays eligible. Returns null if the argument is missing, malformed, or has no assessable OP assertions after exclusions.",
+      "Binary per-row flag on the OP's argument text only (current text, including marked edits): 1 if the OP, in their own voice, explicitly requests or demands that responders/readers change the tone or manner of their replies (e.g. be calm, civil, polite, less angry/emotional/aggressive/hostile), i.e. explicit tone-policing; 0 if the argument is present with no such explicit request. Does not count the OP merely describing their own tone, general discussion of civility, requests to be open-minded or give evidence, quoted/reported requests by others the OP doesn't adopt, or generic subreddit rule mentions unless the OP directly asks commenters to change tone. Ignores OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred (generic delta/platform rule discussion is not an outcome announcement and stays eligible). Null if the argument is missing or malformed.",
+      "Binary per-row check on other users' comments (OC_comments, JSON list, not the OP), using title and argument only to identify the OP's view: returns 1 if at least one single comment first redrafts the OP's viewpoint in a more nuanced, qualified, refined or charitably reformulated form, and then refutes or argues against that redrafted/OP view within the same comment. Merely quoting, summarizing without nuance, agreeing, or refuting without first restating gives no credit; separate comments cannot combine. Returns 0 if the list is valid and no comment qualifies (including a valid empty list); null if OC_comments is missing or malformed, or if both title and argument are missing so the OP view can't be identified. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and any outcome reports, wherever they appear (including argument); generic discussion of delta/platform rules may be kept.",
+      "Binary per-row flag from the \"argument\" column (OP's own text only, current supplied text including marked edits): 1 if the OP, in their own voice, uses at least one explicit marker of uncertainty about their own claims or view (e.g., \"I might be wrong\", \"I'm not sure\", \"maybe\", \"possibly\", \"to my knowledge\", \"I think\" used as a hedge, stated doubt); 0 if the argument is assessable and has no such marker. Does not count uncertainty in quoted external text or attributed to others, rhetorical questions that aren't the OP's own doubt, or moderator/bot notices. Ignores/excludes OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the view changed (even inside the argument); generic discussion of delta/platform rules is not outcome text and may count. No reconstruction of an initial version and edits are kept except outcome-reporting text. Returns null if the argument is missing or malformed.",
+      "Binary per-row measure from the `argument` column only (the OP's own text, current version including marked edits): 1 if the OP, in their own voice, explicitly acknowledges a counter-argument to their view or a limitation, weakness or exception of their own position (e.g. \"a counterpoint is...\", \"I admit this may not hold when...\", \"one weakness of my view is...\"; examples not exhaustive); otherwise 0. Does not count mere hedging without naming a counter-argument or limitation, quoted text from other users or opposing positions the OP doesn't adopt, or moderator/bot notices. Ignores as evidence any view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the view changed (including in edits); generic delta/platform-rule discussion is not an outcome announcement and may count if relevant. Does not reconstruct an original snapshot by removing edits. Returns null if the argument is missing or malformed.",
+      "Binary per-row flag from OC_comments (JSON list of comments by users other than the OP; parsed): 1 if at least one comment uses a named, specific, identifiable real-world case, person, event, phenomenon or institution (historical, scientific, etc.) as an analogy or illustration against the OP's argument; quoting a case counts if used as the analogy/example. Examples are nonexhaustive and need no outside verification; invented/hypothetical scenarios and generic unnamed appeals don't count. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution text, text reporting the outcome, and generic delta/platform-rule discussion (not positive evidence). Output 0 if the list is valid and no comment qualifies, including a valid empty list; null if OC_comments is missing or malformed.",
+      "Binary per-row flag from OC_comments (JSON list of comments by users other than the OP, parsed): 1 if at least one comment rebuts the OP via abstract logical reasoning (general principles, definitions, logical structure, inference critique) without relying on a named real-world analogy, example or specific case; a comment relying on a named real-world analogy/example does not count. Ignore OP view-change or delta-award announcements, post-outcome thank-you/resolution text, and text reporting whether the outcome occurred (generic discussion of delta/platform rules is not an outcome announcement). Output 0 if the list is valid and no comment qualifies, or if it is a valid empty list; null if OC_comments is missing or malformed.",
+      "Binary row measure over OC_comments (JSON list of comments by users other than the OP), using title and argument only as context for the OP's stated view: 1 if at least one comment explicitly contrasts the OP's view with a specific, actual lived personal experience (the commenter's own, or someone they personally describe) presented as differing from or counter to that view; the experience and the contrast must be in the same comment. Does not count: hypothetical or invented scenarios, purely abstract/statistical/institutional arguments, generic mentions of experience without a contrast, or quoted others' experience unless the commenter adopts it as relevant to the contrast. Ignore as evidence any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred (including within argument); generic delta/platform-rule discussion is eligible but is not itself an experience. Output 0 if the list is valid but no comment qualifies (including an empty list); null if OC_comments is missing or malformed, or OP context is missing so the contrast can't be assessed.",
+      "Binary per-row flag from the OP's title only: 1 if the title explicitly contains an emotional identifier (a stated emotion/feeling word, e.g. angry, hate, afraid, love, sad) or a personal identifier (explicit first-person reference to the OP's own identity, traits, circumstances or experience, e.g. \"I am a...\", \"my...\", \"as a...\"); 0 if neither is explicit. Must be explicit wording, not inferred from topic or tone; the standard \"CMV:\" prefix does not count. Ignore title text announcing a view change, delta award, thank-you/resolution or other outcome (not evidence), though generic mentions of platform/delta rules are not outcome announcements. Missing or empty title returns null.",
+      "Binary (1/0/null) from the conversation column only (turns formatted '[speaker]: message', separated by blank lines): 1 if it contains a multi-turn reply interaction, i.e. a back-and-forth of at least three consecutive turns where a speaker label returns after at least one other speaker's intervening turn (e.g. A, B, A), with the later turn plausibly replying within the exchange. 0 if only single turns, only distinct speakers with no returning speaker, or only one-off comments. Bracketed text inside a message body is not a turn label unless it starts a new turn in the format; do not infer who the OP is. Ignore as evidence any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; turns consisting solely of such content don't count as interaction turns, though generic discussion of delta/platform rules counts normally, and content isn't counted merely for being an announcement. Null if conversation is missing, empty, or malformed so turns can't be identified.",
+      "Binary flag on the OP's own argument text only (source column: argument; current text including marked edits; no other columns, no reconstructing the original snapshot): 1 if the OP explicitly makes self-referential meta-commentary about platform mechanics (subreddit rules, posting/moderation, karma/votes, how the platform or delta system works, formatting/edits as platform features) or about their own status (account, newness, credentials, standing or identity on the platform), referring to themself or their post in relation to the platform/status. Generic discussion of platform/delta rules counts only if self-referential. Commentary must be explicit; quoted text from others doesn't count unless the OP adopts it. Excludes view-change/delta-award announcements, post-outcome thank-yous or resolution updates, and any text reporting whether the outcome occurred (e.g., \"Edit: my view was changed\", \"delta awarded\"), even if they contain meta-commentary. Output 0 if the argument is present with no such commentary; null if the argument is missing or malformed.",
+      "Binary per-row: 1 if at least one other user's comment in OC_comments (parsed JSON list) directly quotes wording from the OP's argument text (verbatim or near-verbatim quoted or block-quoted passage matching the argument), whether the commenter agrees, disagrees or refutes; title is used only for context. Paraphrase without quoted wording, quotes of other comments or external sources, and quoting only the title don't count. Returns 0 if the list is valid and no comment quotes the argument, or if it is a valid empty list; null if OC_comments or argument is missing or malformed. Ignores OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and outcome-reporting text, even inside the argument or comments, and quotes of such content don't count; generic discussion of delta/platform rules remains eligible. Uses current text including marked edits; list order is irrelevant.",
+      "Binary per-row flag from OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment directly addresses the OP in the second person (e.g. 'you', 'your', 'you're' referring to OP, such as 'your view', 'you say', 'you should consider'); 0 if the list is assessable and no comment does. Does not count generic/impersonal 'you' (meaning 'one'/people in general), 'you' inside quoted third-party text or addressed to someone other than OP, or 'you' in quoted OP text unless the commenter themself addresses OP. Excludes moderator/bot notices and any OP view-change/delta-award announcements, post-outcome thank-yous/resolution updates, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and stays eligible. Empty valid list gives 0; missing or malformed OC_comments gives null; list order is irrelevant.",
+      "Binary per-row measure from the `argument` column (the OP's own current text, including marked edits): 1 if the OP, in their own voice, makes a direct plea, urging or explicit appeal for nonviolence (e.g., asking that people refrain from, avoid, renounce or not resort to violence). 0 if no such explicit appeal is present, including when violence is merely discussed, described, analyzed, or argued for/against. Quoted or reported views of others don't count unless the OP explicitly adopts them as their own plea. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred, even if they express the construct; generic discussion of platform/delta rules is not an outcome announcement and may be used if relevant. Output 1, 0, or null if the argument is missing or malformed.",
+      "Binary per-row check on the `argument` column only (the OP's current supplied text, including marked edits, not removed or reconstructed as an initial snapshot): returns 1 if the OP's own voice contains at least one explicit first-person singular pronoun (I, me, my, mine, myself, and contractions like I'm/I've/I'd/I'll), else 0. Ignored text: OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the view changed or the outcome occurred (e.g. \"my view was changed\", \"\u0394 awarded\", \"thanks, you changed my mind\"). Pronouns only in those parts don't count. Also ignored: pronouns only inside quotations of others' words the OP doesn't adopt, and moderator/bot notices. Generic discussion of platform or delta rules still counts if it has such a pronoun in the OP's voice. Missing or malformed argument gives null; an empty string gives 0.",
+      "Binary per-row: 1 if at least one comment in OC_comments (JSON list of comments by users other than the OP) presents a counterargument, meaning a reason, evidence or reasoning against the OP's stated view (title and argument, which identify the target) or its supporting claims; partial counterarguments count and the comment need not be correct or persuasive. Agreement-only comments, pure questions without argumentative challenge, jokes, moderator/bot notices and off-topic remarks don't count. Output 0 if the list is valid and no comment qualifies, including a valid empty list; null if OC_comments is missing/malformed or OP title/argument needed to identify the target is missing. Ignore as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting the outcome, even inside argument or comments; generic discussion of delta/platform rules may be retained. Do not use conversation or outcome columns.",
+      "Overall cognitive complexity of the counterarguments' own reasoning, as one integer 0-10 score: differentiation (multiple perspectives, distinctions, conditions, trade-offs) and integration (synthesis or qualified conclusion). Anchors: 0 no reasoning; 2 single simple one-sided assertion; 4 some reasons, little differentiation; 6 several distinct considerations or acknowledgment of alternative views/conditions; 8 clear differentiation plus integration with qualifications; 10 highly differentiated, integrated, nuanced multi-perspective reasoning. Reads only OC_comments (JSON list of comments by users other than the OP), judged jointly into one score, not a mean or max (operational assumption). Quoted text from others is not counted unless the commenter adopts it. Ignores OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules may count. Returns null if the column is missing/malformed or the valid list is empty.",
+      "Binary per-post measure over other users' comments (OC_comments, JSON list of non-OP comments; order is not chronology or rank), using title and argument only to identify the OP's view. Returns 1 if at least one single comment first explicitly acknowledges that the OP's position has a valid, reasonable or partly correct underlying point (a concession that something in the view is right, not mere politeness, thanks or restating it) and then later in that same comment introduces a discrepancy, counterpoint or disagreement; acknowledgment must precede the objection, and separate comments cannot combine. Returns 0 if the list is valid and nonempty but no comment does this (pure refutation, agreement only, or acknowledgment only after the objection). Returns null if OC_comments is empty, missing or malformed, or if OP title/argument is missing. Ignores view-change/delta-award announcements, post-outcome thanks or resolution updates, and text reporting the outcome, even inside argument or comments; generic discussion of delta or platform rules may still count. Uses current text as supplied, without reconstructing the original.",
+      "Binary flag from OC_comments (JSON list of counter-argument comments by users other than the OP; parsed): 1 if at least one comment itself, as part of its argument, references a specific named external program (e.g., named policy, initiative, scheme, service, organized program) or a specific named location (e.g., named country, city, region, place); generic/unnamed references (\"some programs\", \"a country\", \"a city\") don't count. The reference need not be endorsed or verified; list order is irrelevant. Ignore text that is an OP view-change/delta-award announcement, a post-outcome thank-you/resolution update, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is eligible only if it otherwise qualifies. Output 0 if the list is valid but empty or no comment qualifies; null if OC_comments is missing or malformed.",
+      "Binary per-row check on OC_comments (JSON list of counter-argument comments by users other than the OP; parsed). Returns 1 if every comment argues solely through abstract logical refutation (general reasoning, principles, definitions, logical structure) and none references a specific, named external program or location. Returns 0 if any comment names a specific external program or location, or relies on any non-abstract content such as concrete examples, anecdotes, or data. Ignores text that is an OP view-change/delta-award announcement, a post-outcome thank-you/resolution update, or text reporting whether the outcome occurred (generic discussion of delta/platform rules is not ignored). Returns null if the list is empty, missing, or malformed; list order is irrelevant.",
+      "Binary per-row measure from OP context (title, argument) and OC_comments (JSON list of other users' comments, not the OP): returns 1 if at least one single comment both explicitly quotes/verbatim reproduces a specific phrase from the OP's title or argument (quotation marks or blockquote, must match available OP text) and argues against or refutes that same quoted phrase within that same comment. Endorsing-only quotes, paraphrases without quoted wording, and quote and refutation split across separate comments do not qualify. Returns 0 if the comment list is valid and none qualify, including an empty list; returns null if OC_comments, title or argument is missing or malformed so it can't be determined (a positive match found in available text may still give 1). Ignores as evidence OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred (including within the argument); generic delta/platform-rule discussion remains eligible. Uses current supplied text, without inferring initial snapshots or comment order.",
+      "Binary: 1 if at least one other-user comment in OC_comments (JSON list) explicitly refutes, argues against, contradicts or debunks a specific example or anecdote given by the OP, judged within that single comment alone. OP title and argument are context used only to identify the OP's examples/anecdotes. Output 0 if no comment does (e.g. comments only address the general premise, or only agree with or mention an example without refuting it), and 0 for an empty valid comment list. Output null if OC_comments is missing or malformed, or if OP text needed to identify examples is missing. Ignore OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred, even inside the argument; generic discussion of delta/platform rules is not such an announcement. Comment order is irrelevant; use the current supplied text without inferring earlier snapshots.",
+      "Binary: 1 if at least one other-user comment (from OC_comments, a JSON list to parse) directly argues about the OP's main premise/central claim itself, rather than targeting a specific OP example or anecdote; 0 if none does. The premise is identified from the OP's title and argument, which serve as context only. Any-comment aggregation, and comment order is irrelevant. Empty valid comment list -> 0; missing or malformed OC_comments, or missing OP text needed to identify the premise -> null. Ignore OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred, even inside the argument; generic discussion of delta/platform rules is not ignored. Use the current supplied text and do not infer initial snapshots.",
+      "Binary flag from the OP's `argument` column only: 1 if the OP's own assertions contain at least one hedging or qualifying expression that softens, limits or conditions a claim's strength or scope (e.g. 'might', 'perhaps', 'I think', 'to my knowledge', 'in some cases', 'generally'); 0 if the argument is assessable and has none. Ignore quoted text from others, quoted opponents' positions and moderator/bot notices unless the OP adopts them. Use the current text including marked edits, but exclude OP view-change or delta-award announcements, post-outcome thank-you/resolution updates and any text reporting whether the view changed; generic discussion of delta/platform rules stays eligible. Do not reconstruct an initial snapshot. Null if the argument is missing or malformed.",
+      "Binary flag from the OP's `argument` column only: 1 if the OP's own assertions include at least one absolute declarative statement, meaning a claim stated categorically and unconditionally with no hedge or qualifier (e.g. \"always\", \"never\", \"all\", \"obviously\", flat assertions of fact). 0 if the argument is assessable and has none. Hedging elsewhere does not matter, so an argument can have both. Ignore quoted text from others, quoted opponents' positions, and moderator/bot notices unless the OP adopts them. Use the current text including marked edits, but exclude OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the view changed. Generic discussion of delta/platform rules is not an outcome announcement and stays eligible. Do not reconstruct an initial snapshot. Null if `argument` is missing or malformed.",
+      "Binary per-row check on other users' comments (OC_comments, JSON list of non-OP comments), compared against the OP's title and argument: 1 if at least one comment explicitly quotes OP's own wording verbatim or near-verbatim (e.g. quotation marks or markdown blockquote, matching available OP text); agreement or refutation is not required. Returns 0 for a valid nonempty list with no such quote (paraphrase, summary, topic mention, or quoting other users, external sources or non-OP text doesn't count) and 0 for a valid empty list. Returns null if OC_comments is missing or malformed, or if title/argument is missing so a negative can't be established (a clear positive match to available OP text still gives 1). Ignore as evidence any OP view-change/delta-award announcements, post-outcome thanks/resolution updates or outcome reports, in argument or quoted in comments; generic delta/platform-rule discussion may be used. Uses current text only, no chronology inference; comment order is irrelevant.",
+      "Binary per-row: reads OC_comments (JSON list of comments by users other than the OP), with title and argument only as context for the OP's stated emotional experience. Returns 1 if at least one single comment explicitly acknowledges or validates the OP's emotional experience (e.g., feelings understandable, valid, legitimate) and that validation appears earlier in the same comment than that comment's logical rebuttal/counter-argument to the OP's view; both must be in the same comment, and separate comments don't combine. Returns 0 if comments exist but none qualify (validation only after rebuttal, no rebuttal, or only non-emotional agreement such as agreeing with facts). Empty comment list gives 0; missing or malformed OC_comments gives null. Ignores quotations of others' positions the commenter doesn't adopt, and moderator/bot notices. Excludes OP view-change or delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred (even in the argument); generic delta/platform-rule discussion is not excluded. Uses current text only, with no inference of initial snapshots or comment order across the list.",
+      "Binary per-row measure from OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment itself draws an analogy, comparing the issue under debate to a different, familiar, everyday or commonly understood scenario (common situation, activity, well-known comparison) to make its point; 0 if the list is valid and no comment does (literal discussion of the topic, or merely citing real examples of the same issue, is not an analogy). Quoted OP text alone doesn't count; the analogy must be the commenter's own argument. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution text, and text reporting whether the outcome occurred; generic delta/platform-rule discussion is neither an announcement nor an analogy by itself. Uses current text, no timing inferred. Empty list gives 0; missing or malformed input gives null.",
+      "Binary flag from the OP title only (column: title), ignoring any \"CMV:\" prefix and any outcome text such as view change or delta: 1 if the title explicitly contains an absolute universal quantifier word or phrase that quantifies its claim (e.g., all, every, always, never, none, no one, nobody, everyone; examples, not exhaustive), else 0. Missing or empty title returns null. No argument, comments or outcome information is used.",
+      "Binary flag from the OP title only (column: title): 1 if the title explicitly contains a variable, non-absolute or probabilistic quantifier/hedge word or phrase (e.g., some, many, most, often, usually, generally, sometimes, rarely, may, might, can, likely, probably, tend to; examples, not exhaustive), else 0. Ignore the \"CMV:\" prefix; may also be 1 on an absolute-quantifier measure (overlap not resolved). Don't use the argument, comments or outcome info (view change, delta), which would be excluded. Missing or empty title returns null.",
+      "Binary check on OC_comments (JSON list of comments by users other than the OP; only this column used): 1 if at least one comment explicitly cites a specific, concrete real-world example as part of its counter-argument, e.g. a named or particular actual case, event, person, institution, study, statistic tied to a case, or concrete personal experience; otherwise 0. Abstract principles, generic claims, and invented or hypothetical scenarios do not count; quoting the OP alone does not count. Ignore text that is an OP view-change or delta-award announcement, a post-outcome thank-you or resolution update, or text reporting whether the outcome occurred; generic delta or platform-rule discussion stays eligible but counts only if it cites a specific instance. Any comment qualifying suffices; list order is irrelevant. A valid empty list returns 0; missing or malformed OC_comments returns null.",
+      "Binary flag from OC_comments (JSON list of comments by users other than the OP; parse it; order irrelevant): 1 if at least one comment itself offers specific empirical evidence supporting its counter-argument, i.e. concrete data, statistics, study/research findings, documented real-world cases or specific factual observations (a specific personal experience can count). 0 if comments are assessable but none have such evidence (purely abstract/logical reasoning, opinion, generic unsupported factual assertions, or vague appeals without specifics). Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither evidence nor excluded. Empty list -> 0; missing or malformed input -> null.",
+      "Binary flag from OC_comments (JSON list of comments by users other than the OP; parse it): 1 if at least one comment offers a logical refutation of the OP's view (argument from reasoning, logic, consistency, or definitions) AND no comment contains specific empirical evidence (concrete data, statistics, studies, documented real-world cases, or specific factual observations, including specific personal experience). 0 if any comment contains such empirical evidence, or if no comment offers a logical refutation; empty list -> 0. Missing or malformed input -> null. Comment order is irrelevant. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules counts neither as evidence nor is excluded.",
+      "Binary: 1 if at least one single comment by other users (OC_comments, a JSON list parsed first; title and argument serve only as OP context to identify components) first explicitly acknowledges that a specific component (particular claim, premise or point) of the OP's argument is valid/correct/reasonable, and then, later in that same comment, gives a counter-example (a specific case or instance countering the OP's view or claim). Acknowledgment and counter-example must be in one comment; separate comments don't combine. Generic politeness, vague agreement, whole-OP acknowledgment, counter-argument without a specific example, or quotation marks alone don't count. Judge only comment text; ignore view-change/delta-award announcements, post-outcome thanks/resolution updates or outcome reports (generic delta/platform rule discussion is not excluded); use current text including marked edits. Output 0 if the list is valid but no comment qualifies, including an empty list; null if OC_comments is missing or malformed, or OP context is missing so the targeted component can't be determined.",
+      "Binary per-row flag from OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment, in the commenter's own words, uses second-person direct address to the OP/reader (you, your, or imperatives addressed to them); 0 if the list is valid and no comment does. Quoted text from the OP or others doesn't count unless the commenter adopts it as their own address; generic \"you\"-free analysis doesn't count. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution text, and outcome reporting; generic discussion of delta/platform rules counts only if it directly addresses the OP. Valid empty list -> 0; missing or malformed list -> null.",
+      "Binary row-level flag from OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment's argument relies on third-person analysis, i.e. analyzes the topic, people, groups, events or cases in third person (he/she/they/it/impersonal) rather than addressing the OP/reader directly. A comment mixing in some direct address counts only if its main argumentative content is third-person analysis. Returns 0 if the list is valid and no comment qualifies, including a valid empty list; null if the list is missing or malformed. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates or outcome reports; generic discussion of delta/platform rules is not an outcome announcement.",
+      "Binary per-row measure from the OP's \"argument\" text only (current supplied text, including marked edits; edits not removed, no timing inferred): 1 if the OP, in their own voice, recounts at least one direct personal anecdote, meaning a specific experience, event or situation they personally lived or directly witnessed (e.g., \"when I worked at...\", \"my friend told me / happened to me\"). 0 if the text has only abstract claims, general statistics, hypotheticals/invented scenarios, or other people's experiences or quotations not adopted as the OP's own direct experience; quotation marks alone neither make nor break an anecdote. Ignore view-change/delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the view changed (never evidence); generic discussion of delta/platform rules is not an anecdote or outcome text by itself and may be retained if relevant. Returns null if the argument is missing or malformed.",
+      "Binary flag: 1 if at least one comment by a non-OP user (OC_comments, JSON list) explicitly states a specific, checkable real-world factual claim (e.g. statistic, historical event, study finding, law, documented case) that is distinct from facts already in the OP's title/argument (given as context); verification is not performed, judged from text. Opinions, value judgments, purely logical arguments, hypotheticals, and restatements or quotations of OP claims do not count. Returns 0 if the list is valid and no comment qualifies, including an empty list; null if OC_comments is missing or malformed, or OP text is missing so distinctness can't be judged. Ignores OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and reports of whether the outcome occurred (even inside argument or comments); generic discussion of delta/platform rules remains eligible. Uses current text only, no reconstruction of snapshots or ordering.",
+      "Binary flag from the OP's argument column (current text, including marked edits only): 1 if the OP, in their own voice, explicitly acknowledges that alternative perspectives, viewpoints or interpretations to their own view exist (e.g., others may see it differently, other reasonable positions exist); 0 if no such explicit acknowledgment. Quoted or reported opponents' positions don't count unless the OP explicitly adopts them as acknowledged alternatives, and mere topic mentions don't count. Ignore OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and may count. Null if the argument is missing or malformed.",
+      "Binary judgment on the OP's own argument text (column \"argument\", current text including marked edits): 1 if, in the OP's own voice, the conclusion is framed as the only possible or inevitable one and alternative perspectives are neither acknowledged nor treated as legitimate; 0 otherwise, including when alternatives are explicitly acknowledged or the argument is merely confident or one-sided without framing the conclusion as the only possible one. Quoted or reported opponents' positions don't count as the OP's framing. Ignore OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting the outcome (generic discussion of delta/platform rules is not an outcome announcement and may be considered). Null if the argument is missing or malformed.",
+      "Share of other users' comments (OC_comments, a JSON list of counter-argument comments, parsed) that directly quote wording from the OP's title or argument (reference text, current supplied text including marked edits). A comment counts if it reproduces verbatim or near-verbatim OP wording, typically in quotation marks or block quote; endorsement or refutation not required. Not counted: quotes of other sources, paraphrases, topic mentions, or quotes matching only OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, or outcome-reporting text (generic platform/delta-rule discussion remains eligible). Output is quoting comments divided by total comments, in [0,1]; 0 if none quote. Null if OC_comments is an empty list, malformed or missing; also null if OP title and argument are both missing, unless a match was positively established. List order is irrelevant.",
+      "Binary flag over OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment cites a specific, actual real-world example to support its counter-argument, i.e. a particular real event, case, person, organization, place, study/statistic/data point, or concrete personal experience; need not be institutional or public, nor externally verified. Output 0 if the list is valid and nonempty but no comment does so (purely abstract reasoning, generic claims, invented/hypothetical scenarios, or vague references without a specific actual case don't count). Empty list gives 0; missing or malformed input gives null. Ignore text that is an OP view-change or delta-award announcement, a post-outcome thank-you/resolution update, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is not such an announcement and stays eligible. List order is irrelevant. Output 0, 1 or null.",
+      "Lexical density of other users' counter-argument comments (source column OC_comments, a JSON list): content words (nouns, main/lexical verbs, adjectives, adverbs) divided by all words (content plus function words like articles, prepositions, pronouns, conjunctions, auxiliaries, determiners), as a 0\u20131 number estimated carefully. Words are pooled across all comments in the row (not averaged per comment; order irrelevant). Excluded before counting: text reporting OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, text reporting whether the outcome occurred, moderator/bot notices, and URLs/markup; generic discussion of delta/platform rules is kept as ordinary text. Returns null if the list is valid but empty, has no words after exclusions, or OC_comments is missing or malformed.",
+      "Binary per-row check on OC_comments (JSON list of counter-argument comments by non-OP users; order meaningless): returns 1 if at least one comment itself cites a specific, localized example in support of its counter-argument, meaning a particular concrete case, instance, named or identifiable person, place, event, or specific personal experience (real or documented, need not be verified), rather than only general principles, abstract claims, broad statistics or generic hypotheticals. Returns 0 if the list is valid and no comment does so, including a valid empty list; null if OC_comments is missing or malformed. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred as evidence; generic discussion of platform/delta rules is not itself a specific example.",
+      "Binary per-row flag from the `argument` column only (the OP's own explanation text): 1 if the OP's own current text contains at least one explicit hedging or self-doubt marker about their own claims or view (e.g., \"I might be wrong\", \"I'm not sure\", \"to my knowledge\", \"I guess\", \"perhaps\", admitting possible error or uncertainty); 0 if the argument is assessable and has no such explicit marker. Ignore hedges inside quotations or reported positions of others unless the OP adopts them. Exclude, and do not use as evidence, OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred (e.g., \"EDIT: view changed\", \"\u0394\"); generic discussion of delta/platform rules is not outcome reporting and may be kept. Do not reconstruct an initial version. Output null if the argument is missing or malformed.",
+      "Binary: from OC_comments (JSON list of comments by users other than the OP, parsed), returns 1 if at least one comment gives a concrete, locally verifiable example as its own support: a specific instance, case, data point, or personal experience with concrete particulars a reader could check or observe directly (not a general principle or invented hypothetical; external verification not required). Quoted text from others counts only if the commenter uses it as their own supporting example. Returns 0 if the list is non-empty but no comment qualifies, and 0 for an empty list; null if OC_comments is missing or malformed. List order is ignored. Excludes OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred (generic discussion of delta/platform rules is not excluded and stays eligible); delta is not used.",
+      "Binary flag from OC_comments (JSON list of comments by users other than the OP; parsed): 1 if at least one comment's argument relies on abstract principles, meaning general normative, theoretical or conceptual reasoning not anchored in a specific concrete case; 0 if the list is non-empty and no comment does. A comment that also includes concrete examples still counts if abstract-principle reliance is present; list order is ignored. Empty list gives 0; missing or malformed OC_comments gives null. Exclude OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and stays eligible. Delta is not used.",
+      "Binary row measure from OC_comments (JSON list of counter-argument comments by users other than the OP): returns 1 if at least one comment contains a concrete real-world example offered in the commenter's own argument, i.e. a specific actual case, event, person, institution, statistic tied to a real case, or concrete personal experience; otherwise 0. Invented/hypothetical scenarios and purely abstract principles don't count; no outside verification needed; example lists are nonexhaustive. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred; generic delta/platform-rule discussion is not an example or announcement; moderator/bot notices don't count; list order is irrelevant. A valid empty list or no qualifying comment gives 0; missing or malformed OC_comments gives null.",
+      "Binary per-row measure from OC_comments (JSON list of counter-argument comments by users other than the OP; parse it): returns 1 if the list is non-empty and every substantive comment relies solely on abstract logic/reasoning (general principles, definitions, conceptual or logical argument) with no concrete real-world example (specific actual case, event, person, institution or personal experience). Returns 0 if at least one comment contains a concrete real-world example, or any substantive comment relies on something other than abstract logic alone. Ignores OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, text reporting whether the outcome occurred, and moderator/bot notices; generic delta/platform rule discussion is not an announcement but also not a concrete example. List order is irrelevant. Returns null if the list is empty, missing or malformed.",
+      "Binary flag from the OP's own argument text only (column \"argument\", current text including marked edits): 1 if it contains at least one explicit conditional statement linking an outcome/consequence to a specific antecedent condition (if/then, unless, provided that, whenever, when X then Y); 0 if the argument is present but has none. Vague hedges without a stated antecedent-outcome link and mere questions don't count; quoted text attributed to others and not adopted by the OP doesn't count. Excluded from evidence: OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred (even inside the argument); generic discussion of delta/platform rules is not an outcome announcement and stays eligible. Missing or malformed argument returns null.",
+      "Binary: 1 if at least one comment in OC_comments (JSON list of comments by users other than the OP) recounts, in the commenter's own text, a concrete personal anecdote (their own specific experience, or that of someone they personally know) illustrating real-world consequences of the OP's claim (consequences if the claim holds or is acted on). The claim is identified from title and argument (context only). Returns 0 if no comment does: only abstract/theoretical arguments, general facts, hypotheticals/invented scenarios, or others' quoted experiences not adopted by the commenter. Quoted OP text or quoted opponents' positions don't count. Ignore view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic delta/platform-rule discussion is neither an announcement nor an anecdote. Don't infer timing or order. Empty comment list -> 0; missing/malformed OC_comments, or missing title and argument so the claim can't be identified -> null.",
+      "Binary: 1 if at least one comment in OC_comments (JSON list of comments by users other than the OP) rebuts or counters the OP's claim (from title and argument, which are context/target) primarily through abstract theoretical reasoning (general principles, theory, conceptual or logical argument) rather than concrete personal anecdote; 0 if no comment does. Quoted OP text or quoted opponents' positions don't count as the commenter's own reasoning. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, text reporting whether the outcome occurred, and generic delta/platform-rule discussion; don't infer timing or order. Empty comment list -> 0; missing/malformed OC_comments, or missing title and argument -> null.",
+      "Binary: from OC_comments (JSON list of counter-argument comments by users other than the OP), 1 if at least one comment itself cites a specific real-world example in support of its point: an actual concrete case, event, person, organization, place, study instance, or the commenter's concrete personal experience (nonexhaustive examples; external verification not required). Invented, hypothetical, generic scenarios and purely abstract claims don't count; quotations of others count only if used as a specific real-world example. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither such an announcement nor an example. Output 0 if the list is valid but no comment qualifies (including an empty list); null if OC_comments is missing or malformed.",
+      "Binary: 1 if at least one comment in OC_comments (JSON list of other users' comments, not the OP; parsed) presents a specific counterargument, i.e. concrete reasoning, evidence or an example targeting a particular claim or the position of the OP, not vague or generic disagreement. Title and argument are context only, used to identify the OP's claims. Output 0 if the list is valid and no comment qualifies; empty valid list gives 0; missing or malformed OC_comments gives null. List order is ignored. Moderator/bot notices don't count. Don't use as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred, even inside argument; generic discussion of delta/platform rules is allowed.",
+      "Share (0\u20131) of other users' comments that contain at least one explicit agreement marker, i.e. words expressly stating agreement with a point by the OP or another party (e.g. \"I agree\", \"you're right\", \"fair point\", \"exactly\"). Source: OC_comments (JSON list of other-user comments, parsed); output is marked comments divided by total comments, order ignored. Implicit agreement and mere politeness don't count; markers inside quoted text from someone else being rebutted don't count; moderator/bot notices are excluded. OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred are not evidence (generic delta/platform-rule discussion is allowed). Empty valid list or missing/malformed input gives null; 0 means no comment has a marker.",
+      "Binary per-row measure: whether at least one other-user comment in OC_comments (JSON list of non-OP comments) explicitly challenges an underlying assumption or premise the OP's reasoning rests on (e.g., questions a presupposed value, definition, or unstated premise, identified as something the OP assumes), rather than only disputing factual claims or the conclusion. Title and argument (OP's view) are context only, used to identify the target assumption, not as evidence. Comments that only rebut conclusions or facts, agree, or are off-topic don't count; exclude OP view-change/delta-award announcements, post-outcome thank-yous/resolution updates, and any text reporting whether the outcome occurred (generic delta/platform-rule discussion is not excluded). List order carries no chronology. Output 1 if any comment qualifies, 0 if OC_comments is a valid empty list or none qualify; null if OC_comments is missing or malformed, or if both title and argument are missing.",
+      "Binary per-row flag from the OP's own argument text only (not title, comments or conversation): 1 if the OP explicitly asks readers for restraint (e.g., don't downvote, be civil/polite, refrain from attacking or flaming) or for karma building (e.g., upvote or give karma to constructive/good-faith comments); otherwise 0. Ignore quoted text from others, moderator/bot notices, and generic mentions of subreddit or delta rules that are not an explicit request to readers. Do not use as evidence OP view-change or delta-award announcements, post-outcome thank-yous/resolution updates, or text reporting whether the outcome occurred; marked edits are otherwise treated as current text, and timing is not inferred. Returns null if the argument is missing or malformed.",
+      "Binary flag (1/0) from the argument column only (the OP's own text): 1 if it contains an explicit first-person narrative of something that actually happened to or was done/lived by the OP (a specific event, episode, or period of their life). 0 if there is no such account: abstract reasoning, general claims, hypotheticals, invented scenarios, others' experiences, or merely stating an opinion or identity. Quoted or external text counts only if the OP adopts it as their own experience. Marked edits count as current text, but OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred are excluded and never count as evidence; generic discussion of delta/platform rules is neither positive nor excluded. Do not reconstruct an initial snapshot. Missing or malformed argument returns null.",
+      "Binary per-row flag from the \"argument\" column, using only the OP's own words (current text, including marked edits): 1 if the OP explicitly asks the community or readers for feedback, advice, input, opinions, responses, or critique (e.g. asks for advice, asks people to weigh in or share thoughts); 0 if there is no such explicit request, including when the OP only states a view or only uses the generic \"change my view\" framing. Ignore quoted text attributed to others. Do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you or resolution updates, or text reporting whether the outcome occurred. Generic discussion of platform or delta rules is not an outcome announcement and may count if relevant. An empty or missing argument gives null.",
+      "Binary per-row flag from the `argument` column only (the OP's explanation, current supplied text): 1 if the OP's own prose directly addresses the reader/audience in second person (you, your, yours, yourself, you're, or reader-directed imperatives like \"consider...\" or \"imagine...\"); otherwise 0. Generic \"you\" counts only if it actually addresses the reader (the spec's wording on generic \"you\" is garbled/ambiguous). \"You\" inside quoted text attributed to others, quoted opponents, or example dialogue does not count. Text with only impersonal, first-person or third-person phrasing gives 0. Excluded from consideration: OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred (including such edits); generic discussion of delta/platform rules stays eligible. Do not infer an initial snapshot or remove other edits. Missing or malformed argument gives null; an empty but valid string gives 0.",
+      "Binary per-row flag from OC_comments (JSON list of other users' counter-argument comments, not the OP): 1 if at least one comment itself uses a specific, concrete illustrative example to support its own counter-argument, i.e. a particular named or described case, instance, event, scenario or personal experience, real or hypothetical, not externally verified. Abstract principles and vague generic references (\"many people\", \"some cases\") don't count; a quoted passage from someone else counts only if the comment uses it as its own example. Ignore text reporting the OP's view change or delta award, post-outcome thanks/resolution updates, and whether the outcome occurred; generic delta/platform-rule discussion stays eligible but is not itself an example. Output 0 if the list is valid but no comment qualifies, including an empty list; null if OC_comments is missing or unparseable.",
+      "Counts comments in OC_comments (JSON list of counter-argument comments by users other than the OP) that contain at least one specific real-world example offered in the comment's own argument: an actual, concrete case such as a named or identifiable event, person, organization, policy, study, place, or the commenter's concrete personal experience (no outside verification needed). Invented or hypothetical scenarios, generic generalizations and vague references don't qualify; OP view-change/delta-award announcements, post-outcome thank-yous/resolution updates and text reporting whether the outcome occurred never count as evidence, and generic delta/platform-rule discussion doesn't count unless itself a specific real-world case. Each comment counts at most once regardless of number of examples; counts comments, not distinct commenters. Output is an integer from 0 to list length; an empty valid list gives 0; missing or malformed OC_comments gives null.",
+      "Binary: 1 if at least one other-user comment in OC_comments (JSON list of non-OP comments, parsed as a list) directly quotes wording from the OP's title or argument (verbatim or near-verbatim reuse, typically in quotation marks or block-quote markup), checked against the supplied title/argument as context; the comment need not agree, disagree or refute. Paraphrase, mere topic mention, quotes of third-party sources or of other commenters do not count. Ignore OP view-change/delta announcements, post-outcome thank-you/resolution updates and text reporting the outcome in the argument (neither quote source nor evidence; generic delta/platform rule discussion remains eligible); use current text, no reconstruction of initial snapshots. Output 0 if the list is valid but empty or no comment quotes OP text; null if OC_comments is missing or malformed, or if title and argument are both missing so a negative can't be established (a positive match to available OP text is still 1).",
+      "Binary per-row flag: 1 if at least one single other-user comment (parsed from the JSON list OC_comments) first explicitly states in words that the OP's view or a point of it is valid/correct/reasonable (partial agreement), and then, later in that same comment, introduces a narrower specific caveat, exception or qualification. title and argument are context only, used to identify the OP's target view. Both parts must be in one comment; separate comments don't combine. Bare politeness, a bare \"but\" without explicit acknowledgment, or a blanket rejection of the whole view don't count. Ignore OP text announcing a view change or delta award, post-outcome thank-yous/resolution updates, and text reporting the outcome; generic discussion of delta/platform rules stays eligible. Ignore comment text that merely quotes the OP as background. Output 0 if the list is valid but empty or no comment qualifies; null if OC_comments is missing or malformed, or title/argument is missing so the target can't be determined. List order carries no meaning.",
+      "Binary per-post check on other users' comments (OC_comments, a JSON list to parse), judged against the OP's view from title and argument (context only). Returns 1 if at least one comment opens by directly contradicting or rejecting the OP's view as a whole, in general blanket disagreement not limited to a narrow part, without first explicitly acknowledging any validity in the OP's view. Returns 0 if the list is valid but empty, or no comment does this, including comments that acknowledge validity first or only raise narrow caveats. Ignores OP text announcing a view change or delta award, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules remains eligible. Returns null if OC_comments is missing or malformed, or if title or argument is missing so the target can't be determined. List order carries no chronology or rank.",
+      "Binary: 1 if at least one comment in OC_comments (JSON list of other users' comments, not the OP's) explicitly quotes (verbatim or near-verbatim, in quotation marks or block quote) or explicitly references a specific identifiable textual element of the OP's title/argument (a sentence, phrase, claim, example or passage, e.g. \"you say that...\", \"your point about X\"). Endorsement or refutation not required; merely discussing the general topic without pointing to specific OP text doesn't count. Title and argument are context for matching. Output 0 if the list is valid and no comment does so, or if it is a valid empty list; null if OC_comments is missing or malformed, or if a negative can't be established because title/argument is missing (a positive match against available OP text is still 1). Ignore as evidence any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates or text reporting the outcome, even in the argument; generic delta/platform-rule discussion remains eligible. Marked edits in current text are usable; list order carries no chronology or rank.",
+      "Binary: whether at least one comment in OC_comments (JSON list of comments by users other than the OP) directly quotes wording from the OP's title or argument (reference text), verbatim or near-verbatim reproduced OP text, typically in quotation marks or block-quote formatting, matching available OP text. Endorsement or refutation not required (agree, disagree or merely reproduce). Output 1 if any comment does; 0 if the list is valid but empty or no comment quotes OP text. Paraphrase without reproduced wording, quotes of other sources/users, and quotations not matching OP text don't count. Ignore OP view-change/delta-award announcements, post-outcome thank-yous/resolution updates, and text reporting whether the outcome occurred, in argument or comments (neither quote source nor evidence); generic discussion of delta/platform rules remains eligible. Uses current supplied text including marked edits, subject to that exclusion. Null if OC_comments is missing or malformed, or if both OP title and argument are missing.",
+      "Binary: 1 if at least one other-user comment in OC_comments (JSON list, parsed) presents a substantive counterargument to the OP's view, meaning reasons, evidence or logic challenging the OP's position; the view is identified from OP context title and argument (context only, not measured text). Mere disagreement, insults, jokes, questions without argument, or agreement do not count. Returns 0 if the list is valid and no comment qualifies, and 0 for an empty valid list; null if OC_comments is missing or malformed, or if both OP title and argument are missing. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred, even inside argument or comments; generic discussion of delta/platform rules is not such an announcement and stays eligible. List order is irrelevant.",
+      "Binary: whether every other-user comment supports or agrees with the OP's view, with none challenging it. Reads title and argument (OP context, used to identify the OP's view) and OC_comments (JSON list of other users' comments, parsed; order irrelevant). Outputs 1 if the list has at least one comment and all express support/agreement; 0 if any comment is not supportive (counterargument, disagreement, neutral, or off-topic). Null if the parsed list is empty, OC_comments is missing/malformed, or OP context is missing. Ignores OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred, even inside argument or comments; generic discussion of delta/platform rules remains eligible.",
+      "Binary: 1 if at least one comment in OC_comments (JSON list of other users' comments, parsed; title and argument are context only to identify the OP's view) makes a specific counter-argument to the OP's view AND, within that same comment, cites an empirical example: a concrete real-world case, documented instance, statistic/study finding, or specific personal experience offered as evidence (no outside verification needed, any type). Each comment is judged independently; list order is irrelevant. Purely abstract, logical, normative, or hypothetical/invented scenarios, and vague generic assertions without a specific example, don't qualify. Output 0 if the list is valid but no comment qualifies (including an empty list); null if OC_comments is missing or malformed. Ignore as evidence any OP view-change/delta-award announcements, post-outcome thank-you/resolution text, or reports of whether the outcome occurred (even in argument or comments); generic discussion of delta/platform rules remains eligible. Use only current supplied text; don't infer initial snapshots or timing.",
+      "Binary per-row flag from the `argument` column only (the OP's own text; title not used): 1 if the OP, in their own voice, explicitly asks readers for emotional support (comfort, reassurance, encouragement) or for assistance/help (e.g. coping with or resolving a personal situation); otherwise 0. Returns 0 when there is no explicit request, including when the OP only asks to have their view challenged or changed in the standard CMV way, or only describes feelings without asking for support or help. Excludes quoted text from others, moderator/bot notices, OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred (even if thanking people or mentioning support); generic discussion of delta/platform rules is not an outcome announcement and may be considered. Uses the supplied current text including marked edits, with no initial snapshot reconstructed. Returns null if the argument is missing or malformed.",
+      "Binary flag from OC_comments (JSON list of counter-argument comments by users other than the OP; parsed): 1 if at least one comment introduces a concrete external factual analogy, meaning a specific actual real-world case, event, situation or comparison from outside the OP's own scenario, used as an analogy or parallel to the topic. A concrete personal experience may qualify, and the commenter need not endorse the analogy. Purely invented hypotheticals, abstract principles and pure logical reasoning without a concrete real-world case don't count. Returns 0 if the list is valid and either nonempty with no qualifying comment, or empty. Returns null if OC_comments is missing or malformed. List order is irrelevant. OP view-change or delta-award announcements, post-outcome thanks or resolution updates, and text reporting whether the outcome occurred are ignored as evidence; generic discussion of delta or platform rules is allowed if relevant. Judged from the supplied current text only.",
+      "Binary check on OC_comments (JSON list of counter-argument comments by users other than the OP; parse it; order irrelevant): returns 1 if every comment relies solely on abstract logical refutation of the OP's view (general reasoning, principles, definitions, logical structure) and no comment introduces a concrete external factual analogy or specific real-world case/example. Returns 0 if the list is nonempty and at least one comment introduces a concrete real-world analogy, case or example. Returns null if the list is empty, missing or malformed. Ignore OP view-change/delta-award announcements, post-outcome thanks/resolution updates, and text reporting whether the outcome occurred (generic delta/platform-rule discussion is allowed). Judge only from the supplied current text.",
+      "Word count (whitespace-separated tokens) of the current OP argument text, read only from the `argument` column (not title, comments or conversation). Marked edits and quotations are counted as current text, with no reconstruction of an initial snapshot. Excluded are OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred (e.g. \"CMV changed, delta awarded\", \"thanks, you changed my view\"). Generic discussion of delta or platform rules is not an announcement and stays counted. Output is a non-negative integer (0 for empty text); null if the argument is missing or malformed.",
+      "Binary per-row measure from the `argument` column only (the OP's current argument text, including marked edits): 1 if the OP, in their own voice, explicitly acknowledges potential counterpoints, objections, counterarguments or opposing views to their own position (e.g. noting what others might object, or conceding a possible opposing consideration); 0 if no such explicit acknowledgment appears. Does not count quotations or opponents' positions the OP doesn't raise or adopt as a possible counterpoint, nor generic uncertainty without reference to a counterpoint. Entirely excludes as evidence any view-change or delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the view changed (these must not produce a 1); generic discussion of platform/delta rules is not an outcome announcement and stays eligible if relevant. Does not reconstruct an initial post version. Returns null if the argument is missing or malformed.",
+      "Binary per-row measure from the `argument` column (OP's own text only, current supplied text including marked edits): 1 if the OP, in their own voice, discloses personal emotional vulnerability about themselves (own fear, shame, insecurity, sadness, distress, loneliness, emotional pain or struggle); otherwise 0. Does not count: purely intellectual, factual or general statements, other people's feelings, hypothetical or invented persons, quotations of others not adopted by the OP, or mere anger/opinion without self-exposing vulnerability. Ignore as evidence any OP view-change/delta-award announcements, post-outcome thanks or resolution updates, or text reporting whether the outcome occurred (even if emotionally vulnerable); generic discussion of delta/platform rules may be kept if relevant. Do not reconstruct the original post. Missing or malformed argument returns null; assessable text with no qualifying disclosure returns 0.",
+      "Binary per-row flag from OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment itself offers specific empirical evidence for its own argument, i.e. concrete statistics/data, named studies or sources, documented real-world cases, or specific factual observations/personal experiences. General assertions, opinions, hypotheticals and invented scenarios don't count; outside verification isn't required; evidence merely quoted from the OP as the OP's position doesn't count. Ignore text announcing the OP's view change or delta award, post-outcome thanks/resolution updates, and reports of whether the outcome occurred; generic delta/platform-rule discussion is not an outcome announcement and not evidence. Output 0 if the list is valid but no comment qualifies (including empty list); null if OC_comments is missing or malformed.",
+      "Binary per-row judgment: 1 if at least one comment in OC_comments (JSON list of comments by users other than the OP, parsed) presents a well-reasoned counterargument, i.e. directly challenges the OP's stated view with coherent, relevant, logically structured reasoning or evidence; 0 if the list is valid and no comment does so (including an empty list). OP title and argument are used only to identify the view being countered; comment order is ignored. Output null if OC_comments is missing or malformed, or if both OP title and argument are missing. Excludes any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred (even if embedded in the argument); generic delta/platform-rule discussion is allowed where relevant. The conversation column is not used.",
+      "Binary per-row flag from OC_comments (JSON list of other users' counter-argument comments, not the OP): 1 if at least one comment itself asserts or cites specific numerical data or statistics as part of its argument (concrete figures, percentages, rates, counts, dates-as-quantities, numeric study results; need not be verified or externally sourced), else 0. Incidental numbers not used as data (list numbering, \"two reasons\") and purely general/qualitative claims don't count; generic delta/platform-rule discussion is retainable but counts only if it is itself numerical data used in argument. Ignore moderator/bot notices, and exclude OP view-change/delta-award announcements, post-outcome thank-yous or resolution updates, and text reporting whether the outcome occurred. Empty list gives 0; missing or malformed input gives null."
+    ]
+  }
+}

@@ -1,0 +1,3 @@
+{
+  "text": "Binary: whether every other-user comment supports or agrees with the OP's view, with none challenging it. Reads title and argument (OP context, used to identify the OP's view) and OC_comments (JSON list of other users' comments, parsed; order irrelevant). Outputs 1 if the list has at least one comment and all express support/agreement; 0 if any comment is not supportive (counterargument, disagreement, neutral, or off-topic). Null if the parsed list is empty, OC_comments is missing/malformed, or OP context is missing. Ignores OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred, even inside argument or comments; generic discussion of delta/platform rules remains eligible."
+}

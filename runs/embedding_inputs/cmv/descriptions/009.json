@@ -1,0 +1,3 @@
+{
+  "text": "Binary per-row flag on the OP's title column only: 1 if the title itself uses absolute certainty markers, meaning wording that presents the claim as completely certain, exceptionless or beyond doubt, without hedging (examples, not exhaustive: 'all', 'always', 'never', 'no one', 'obviously', 'undeniably', 'definitely'); 0 if no such markers, including hedged or tentative titles (e.g. 'generally', 'I think'). Ignore the 'CMV:' prefix and any view-change, delta, thank-you, resolution or outcome text (generic discussion of delta/platform rules does not count as such). Output 1, 0, or null; null if the title is missing or empty."
+}

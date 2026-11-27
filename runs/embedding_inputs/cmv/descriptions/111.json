@@ -1,0 +1,3 @@
+{
+  "text": "Word count (whitespace-separated tokens) of the current OP argument text, read only from the `argument` column (not title, comments or conversation). Marked edits and quotations are counted as current text, with no reconstruction of an initial snapshot. Excluded are OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred (e.g. \"CMV changed, delta awarded\", \"thanks, you changed my view\"). Generic discussion of delta or platform rules is not an announcement and stays counted. Output is a non-negative integer (0 for empty text); null if the argument is missing or malformed."
+}

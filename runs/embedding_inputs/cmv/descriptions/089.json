@@ -1,0 +1,3 @@
+{
+  "text": "Binary: 1 if at least one comment in OC_comments (JSON list of comments by users other than the OP) rebuts or counters the OP's claim (from title and argument, which are context/target) primarily through abstract theoretical reasoning (general principles, theory, conceptual or logical argument) rather than concrete personal anecdote; 0 if no comment does. Quoted OP text or quoted opponents' positions don't count as the commenter's own reasoning. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, text reporting whether the outcome occurred, and generic delta/platform-rule discussion; don't infer timing or order. Empty comment list -> 0; missing/malformed OC_comments, or missing title and argument -> null."
+}

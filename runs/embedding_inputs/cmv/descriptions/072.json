@@ -1,0 +1,3 @@
+{
+  "text": "Binary per-row flag from OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment, in the commenter's own words, uses second-person direct address to the OP/reader (you, your, or imperatives addressed to them); 0 if the list is valid and no comment does. Quoted text from the OP or others doesn't count unless the commenter adopts it as their own address; generic \"you\"-free analysis doesn't count. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution text, and outcome reporting; generic discussion of delta/platform rules counts only if it directly addresses the OP. Valid empty list -> 0; missing or malformed list -> null."
+}

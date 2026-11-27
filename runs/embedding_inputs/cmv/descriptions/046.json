@@ -1,0 +1,3 @@
+{
+  "text": "Binary per-row flag from the OP's title only: 1 if the title explicitly contains an emotional identifier (a stated emotion/feeling word, e.g. angry, hate, afraid, love, sad) or a personal identifier (explicit first-person reference to the OP's own identity, traits, circumstances or experience, e.g. \"I am a...\", \"my...\", \"as a...\"); 0 if neither is explicit. Must be explicit wording, not inferred from topic or tone; the standard \"CMV:\" prefix does not count. Ignore title text announcing a view change, delta award, thank-you/resolution or other outcome (not evidence), though generic mentions of platform/delta rules are not outcome announcements. Missing or empty title returns null."
+}

@@ -1,0 +1,3 @@
+{
+  "text": "Binary flag from the OP title only (column: title): 1 if the title explicitly contains a variable, non-absolute or probabilistic quantifier/hedge word or phrase (e.g., some, many, most, often, usually, generally, sometimes, rarely, may, might, can, likely, probably, tend to; examples, not exhaustive), else 0. Ignore the \"CMV:\" prefix; may also be 1 on an absolute-quantifier measure (overlap not resolved). Don't use the argument, comments or outcome info (view change, delta), which would be excluded. Missing or empty title returns null."
+}

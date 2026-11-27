@@ -1,0 +1,3 @@
+{
+  "text": "Binary flag from OC_comments (JSON list of counter-argument comments by users other than the OP): 1 if at least one comment uses abstract reasoning, meaning argument through general principles, logical or conceptual argument, or generalized claims rather than recounting a concrete personal experience. A comment that also contains an anecdote still counts if it also uses abstract reasoning. Returns 0 if the list is valid and nonempty and no comment does; empty list gives 0; missing or malformed input gives null. Ignore text reporting the OP's view change, delta awards, thanks or resolution updates, or whether the outcome occurred (generic discussion of delta/platform rules is not outcome reporting). List order is irrelevant."
+}

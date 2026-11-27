@@ -1,0 +1,3 @@
+{
+  "text": "Binary per-row flag from OC_comments (JSON list of comments by users other than the OP, parsed): 1 if at least one comment rebuts the OP via abstract logical reasoning (general principles, definitions, logical structure, inference critique) without relying on a named real-world analogy, example or specific case; a comment relying on a named real-world analogy/example does not count. Ignore OP view-change or delta-award announcements, post-outcome thank-you/resolution text, and text reporting whether the outcome occurred (generic discussion of delta/platform rules is not an outcome announcement). Output 0 if the list is valid and no comment qualifies, or if it is a valid empty list; null if OC_comments is missing or malformed."
+}

@@ -1,0 +1,3 @@
+{
+  "text": "Binary per-row flag from the OP's own argument text only (not title, comments or conversation): 1 if the OP explicitly asks readers for restraint (e.g., don't downvote, be civil/polite, refrain from attacking or flaming) or for karma building (e.g., upvote or give karma to constructive/good-faith comments); otherwise 0. Ignore quoted text from others, moderator/bot notices, and generic mentions of subreddit or delta rules that are not an explicit request to readers. Do not use as evidence OP view-change or delta-award announcements, post-outcome thank-yous/resolution updates, or text reporting whether the outcome occurred; marked edits are otherwise treated as current text, and timing is not inferred. Returns null if the argument is missing or malformed."
+}

@@ -1,0 +1,3 @@
+{
+  "text": "Binary flag from OC_comments (JSON list of comments by users other than the OP; parsed): 1 if the list is non-empty and every comment's counter-argument relies solely on abstract or theoretical reasoning, with no specific verifiable procedural example (concrete checkable process, procedure, rule application, or documented case) in any comment. 0 if at least one comment contains such an example or other concrete case-based support. Null if OC_comments is empty, missing, or malformed. Ignore OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and may be considered."
+}
