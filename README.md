@@ -55,7 +55,8 @@ structural/source validation. There is no dataset/prompt/model fingerprint gate 
 Changing input values, hypotheses, prompts or models does not automatically invalidate existing files.
 Use a new output directory explicitly when a fresh decomposition is intended.
 
-Existing completed v7 per-hypothesis files can therefore be reused for this merge-only comparison.
+Historical per-hypothesis files remain preserved. The revised definition prompt uses a fresh default
+output directory, so the next calibration generates new definitions instead of reusing old ones.
 Prior `decomposition_inputs.json` files are ignored, not removed. Existing artifacts are not relabeled.
 
 ## Run
@@ -75,7 +76,7 @@ It runs decomposition and distance-based deduplication only. No pair-review Sonn
 Qwen calls or SSH tests run. Set `VENV` to another existing environment if needed.
 
 The three trials share the same decomposition and one prompt-only embedding batch per invocation.
-Cutoffs remain 0.20, 0.25 and 0.30. The current output directory remains `runs/calibration_v7/cmv/`:
+Cutoffs remain 0.20, 0.25 and 0.30. The new output directory is `runs/calibration_definitions_v1/cmv/`:
 
 - `threshold_0.20/`, `threshold_0.25/`, `threshold_0.30/`: trial plans, effective configs and distance exports.
 - `tuning_summary.json`: main-style hypothesis/raw/unique/prompt-feature counts.
@@ -129,41 +130,33 @@ pair reviews, row annotation or SSH tests run. Pass a different config as the fi
 if needed; its embedding settings are used, while its output root and hypothesis sampling are ignored
 because this command operates on the explicitly supplied saved bank.
 
-### Compare concise measurement descriptions
+### Original descriptions written during decomposition
 
-This isolated experiment leaves the default pipeline and frozen feature contracts unchanged:
+The decomposition prompt now asks for one compact `definition` that states the measured quantity
+and decisive conditions: any/every, solely, conjunctions, intensity, attribution, scope and order.
+It describes the positive measurement directly rather than just naming its topic. Repeated parsing,
+output-format and outcome-leakage instructions stay in the full self-contained `spec`; they are not
+copied into every embedding description. Material exceptions must still be preserved.
+
+This changes description-writing instructions, not measurement rules, code-feature handling,
+the embedding model, distance thresholds, source matching or complete-linkage merging.
+The existing pipeline still embeds `name: definition` for prompt features only.
+No second description, rewriting pass or additional Sonnet call is added.
+
+Run the normal launcher with the revised config:
 
 ```bash
-bash embedding_comparison/run.sh
+bash run_calibration.sh --tune
 ```
 
-Defaults: `runs/calibration_v8_examples/cmv/decomposed.json`, `config.yaml`, and
-`runs/embedding_inputs/cmv`. Override them with three positional arguments in that order.
-The launcher uses the existing evaluation venv, nohup and tail, like the other launchers.
+It generates a fresh decomposition under `runs/calibration_definitions_v1/cmv/`, then compares
+the existing three thresholds. File-exists caching is unchanged; use another fresh output
+directory if the prompt changes again. The historical `runs/embedding_inputs/cmv/` results remain
+preserved, but the unsuccessful separate description-rewriting command has been removed.
 
-- Sonnet reads each saved prompt feature independently and writes a compact measurement description.
-  It sees no other features, hypothesis outcomes or dataset rows, and makes no merge decisions.
-- The editable prompt is in `embedding_comparison/prompts.yaml`. It requests preservation of
-  conjunctions, quantifiers, attribution, scope, intensity, scales and missing-input rules.
-  These are instructions, not a guarantee of lossless compression; inspect the saved descriptions.
-- Compare `name: definition` against the concise descriptions with the same embedding model,
-  source/type/owner checks and complete-linkage implementation at 0.20, 0.25 and 0.30.
-- Code features remain separate. Extraction specs and statistical definitions are not regenerated.
-- A fresh run makes one sequential Sonnet call per semantic feature (117 for the saved bank)
-  and one embedding request per representation. No pairwise LLM judge runs.
-
-The output directory contains the frozen bank, effective config, prompt snapshot,
-`descriptions/*.json`, exact ordered texts in `inputs.json`, normalized vectors for both
-representations, six plans with pair-distance exports, and `comparison_summary.json`.
-Keeping vectors permits later offline scoring experiments without another embedding request.
-Existing description/vector files are reused on restart, following file-exists caching.
-Use a **fresh output directory** after changing the bank, prompt or model; caches are not
-automatically invalidated. Default and historical calibration artifacts are untouched.
-
-Counts are not accuracy. Review description fidelity and false/missed merges, then evaluate
-on held-out pairs before claiming improvement. The existing CMV examples informed earlier
-tuning and are not a held-out benchmark.
-Never commit the generated `pi/` directory: it can contain credentials and session data.
+The previous experiment introduced incorrect merges even when its descriptions retained the
+decisive differences. This prompt revision is not evidence that cosine matching is now correct.
+Review the new definitions and actual false/missed merges before choosing a setting.
 
 ## Local verification
 

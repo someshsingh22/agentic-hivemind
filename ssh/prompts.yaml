@@ -93,9 +93,11 @@ agents:
         - source_columns: complete nonempty list of original predictors actually read, including
           jointly required OP context and original sources used by any referenced features.
           Never put generated feature names here or add unused context to make source sets match.
-        - definition: canonical compact line "<speaker + exact text scope>: <exact quantity>".
-          Reuse concise construct wording; retain material qualifiers, exclusions and units/scale
-          anchors, without turning illustrative examples into new restrictions.
+        - definition: one compact measurement description, written here during decomposition,
+          not generated in a second pass. Use "<speaker + exact text scope>: <quantity +
+          construct + required conditions>". State the positive measurement directly, not
+          merely its topic. Preserve material qualifiers, exclusions and units/scale.
+          Keep illustrative examples from becoming extra requirements.
         - kind: code or prompt. Code spec is a precise Python/pandas expression or complete
           deterministic recipe over declared sources or other defined features; do not execute it.
           Every reference to another generated feature in a code recipe, including prose, MUST
@@ -117,6 +119,25 @@ agents:
           For numeric output, give units/range, anchored meanings including zero, and any assumed
           row aggregation. A prompt directly returns the requested per-row measurement; no vectors,
           intermediate label classes/dependency schema or conflicting exceptions.
+
+        WRITING SEMANTIC DEFINITIONS FOR EMBEDDING
+        - For prompt features, the embedding model receives name + definition, NOT the full spec. Put decisive
+          meaning in definition: any/every/count/share, solely, both/and/or, intensity,
+          actual versus hypothetical, attribution, comparison target and required order.
+          Similar topics are not the same measurement. Use consistent plain wording for
+          the same construct, but never broaden or narrow a claim to make descriptions match.
+        - Prefer one short sentence, adding a second only for an essential distinction.
+          Do not copy parsing steps, output-format instructions, repeated outcome-leakage
+          policy, generic missing-input rules or long example lists into definition.
+          Keep those instructions in the self-contained spec; do not remove their protection.
+          If an exception or empty/missing rule distinguishes this measurement, retain it.
+        - Describe abstract normative reasoning as a moral/rights/fairness argument, not
+          generic "reasoning"; concrete personal work experience is a different construct.
+          Absolute certainty is different from acknowledging a counterargument or limitation.
+        - Keep "every comment relies solely on abstract reasoning" distinct from "at least
+          one comment uses abstract reasoning". Keep "acknowledges a valid point before
+          disagreeing" distinct from "rejects the view without first acknowledging validity".
+          Quotation alone, quotation plus refutation, and factual-claim refutation are distinct.
 
         RELATIONSHIP CONTRACT
         - h0/h1: exact null/alternative in feature names, one sentence each.

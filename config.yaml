@@ -1,4 +1,4 @@
-out: runs/calibration_v7
+out: runs/calibration_definitions_v1
 seed: 0
 n_hypotheses: null          # null = all; else a seeded sample of n
 
