@@ -1,0 +1,75 @@
+{
+  "type": "object",
+  "properties": {
+    "groups": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "members": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "h00002:any_comment_cites_functioning_institutional_precedent",
+                "h00002:any_comment_relies_on_abstract_normative_principles",
+                "h00010:any_comment_cites_specific_real_world_example",
+                "h00013:any_comment_validates_op_dignity_or_effort_before_correction",
+                "h00013:all_comments_purely_logical_refutation",
+                "h00014:any_comment_concrete_real_world_example",
+                "h00016:any_comment_concrete_personal_labor_details",
+                "h00016:all_comments_solely_abstract_normative",
+                "h00017:any_comment_quantifies_systemic_material_harm_to_third_parties",
+                "h00018:any_comment_cites_external_evidence",
+                "h00019:any_comment_specific_factual_data_or_citation",
+                "h00023:any_comment_specific_verifiable_procedural_example",
+                "h00023:all_comments_solely_abstract_theoretical_rebuttals",
+                "h00027:any_comment_concrete_personal_anecdote",
+                "h00027:any_comment_abstract_reasoning",
+                "h00036:any_comment_named_real_world_analogy",
+                "h00036:any_comment_abstract_logical_rebuttal",
+                "h00044:any_comment_second_person_address_to_op",
+                "h00050:any_comment_names_specific_external_program_or_location",
+                "h00050:all_comments_only_abstract_logical_refutation",
+                "h00056:any_comment_uses_analogy_to_familiar_scenario",
+                "h00058:any_comment_cites_specific_real_world_example",
+                "h00059:any_comment_specific_empirical_evidence",
+                "h00059:only_logical_refutation_comments",
+                "h00061:any_comment_second_person_address",
+                "h00061:any_comment_third_person_analysis",
+                "h00067:any_comment_cites_specific_real_world_example",
+                "h00069:any_comment_cites_specific_localized_example",
+                "h00071:any_comment_concrete_locally_verifiable_example",
+                "h00071:any_comment_relies_on_abstract_principles",
+                "h00072:any_comment_concrete_real_world_example",
+                "h00072:all_comments_solely_abstract_logic",
+                "h00075:any_comment_cites_specific_real_world_example",
+                "h00082:any_comment_uses_concrete_example",
+                "h00092:any_comment_concrete_external_analogy",
+                "h00092:all_comments_solely_abstract_logical_refutation",
+                "h00097:any_comment_specific_empirical_evidence",
+                "h00099:any_comment_cites_numerical_data"
+              ]
+            }
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "members",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "groups"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,28 @@
+{
+  "groups": [
+    {
+      "members": [
+        "h00008:title_uses_absolute_certainty_markers"
+      ],
+      "reason": "Absolute certainty markers incl. certainty expressions like obviously/definitely, not just quantifiers."
+    },
+    {
+      "members": [
+        "h00038:title_has_emotional_or_personal_identifier"
+      ],
+      "reason": "Emotional or personal identifier; distinct measurement."
+    },
+    {
+      "members": [
+        "h00057:title_absolute_universal_quantifier"
+      ],
+      "reason": "Absolute universal quantifier words only; narrower than certainty markers (e.g. 'obviously' separates)."
+    },
+    {
+      "members": [
+        "h00057:title_variable_probabilistic_term"
+      ],
+      "reason": "Hedge/probabilistic terms; distinct from absolute markers."
+    }
+  ]
+}

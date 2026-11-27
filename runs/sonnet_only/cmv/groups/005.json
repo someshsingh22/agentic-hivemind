@@ -1,0 +1,366 @@
+[
+  {
+    "key": "h00000:argument_compares_to_scientific_or_historical_norms",
+    "hypothesis_id": 0,
+    "feature": {
+      "name": "argument_compares_to_scientific_or_historical_norms",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own argument explicitly compares its claim, case or proposal to an established scientific or historical norm; else 0.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current supplied text, including marked edits). Return 1 if the OP, in their own voice, makes an explicit comparison between their claim, case or proposal and an established scientific norm (e.g. accepted scientific standard, consensus, or established finding/practice) or an established historical norm (e.g. a long-standing historical standard, practice or precedent), stating similarity or difference to it. Return 0 if the argument contains no such explicit comparison (mere mention of science or history without comparing to a norm does not count). Exclude quotations or positions attributed to others unless the OP adopts them. Exclude any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred, even if they would otherwise qualify; generic discussion of delta/platform rules is not an outcome announcement and is not itself a scientific/historical norm comparison. Output a single 0/1 value. Return null if argument is missing or malformed."
+    }
+  },
+  {
+    "key": "h00004:op_argument_admits_uncertainty",
+    "hypothesis_id": 4,
+    "feature": {
+      "name": "op_argument_admits_uncertainty",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP explicitly admits their own uncertainty or possible error about their view or claims.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current supplied text, including marked edits). Return 1 if the OP, in their own voice, explicitly admits uncertainty, doubt, or possibility of being wrong about their view or claims (e.g. 'I'm not sure', 'I could be wrong', 'I may be mistaken'). Return 0 if the argument is present and contains no such explicit admission. Ignore quoted others' text or opponents' positions unless the OP adopts it as their own. Exclude and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred (even within the argument); generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Do not reconstruct an initial snapshot. Return null if the argument is missing or malformed."
+    }
+  },
+  {
+    "key": "h00004:op_argument_asserts_absolute_certainty",
+    "hypothesis_id": 4,
+    "feature": {
+      "name": "op_argument_asserts_absolute_certainty",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP explicitly asserts absolute certainty in their own view (no room for being wrong).",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current supplied text, including marked edits). Return 1 if the OP, in their own voice, explicitly asserts absolute certainty about their view (e.g. 'I am 100% certain', 'there is no possible way I'm wrong', 'undeniably true'), leaving no room for error. Ordinary confident phrasing without explicit absolute-certainty claims returns 0, as does an argument with no such assertion. Ignore quoted others' text or opponents' positions unless the OP adopts it. Exclude and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred (even within the argument); generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Do not reconstruct an initial snapshot. Return null if the argument is missing or malformed."
+    }
+  },
+  {
+    "key": "h00020:argument_has_polite_apology_phrase",
+    "hypothesis_id": 20,
+    "feature": {
+      "name": "argument_has_polite_apology_phrase",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if it contains at least one explicit polite apology phrase by the OP (e.g., sorry, I apologize, apologies, pardon me, excuse me); else 0.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current supplied text, including marked edits). Return 1 if the OP's own wording contains at least one explicit polite apology phrase (e.g., 'sorry', 'I apologize', 'apologies for', 'my apologies', 'pardon me', 'excuse my'), whether apologizing for length, formatting, wording, or anything else. Return 0 if the argument is present and has no such phrase. Do not count apologies inside quotations attributed to other speakers or quoted material not adopted by the OP, and do not count 'sorry' used non-apologetically (e.g., 'sorry state of affairs'). Ignore and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred (including apologies or thanks within such passages); generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Do not reconstruct an initial snapshot. If the argument is missing or malformed, return null. Output a single 0/1 or null."
+    }
+  },
+  {
+    "key": "h00024:argument_has_counter_question_marker",
+    "hypothesis_id": 24,
+    "feature": {
+      "name": "argument_has_counter_question_marker",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own text contains at least one specific counter-question marker, i.e. a question posed to challenge or probe an opposing position or invite a counter-case; else 0.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (not title, comments or conversation). Return 1 if the OP's own wording contains at least one specific counter-question marker: an explicit question (usually ending in '?' or phrased interrogatively) that the OP poses to counter, challenge or probe an opposing position, or to ask readers for a counter-argument, counterexample or rebuttal on a particular point (e.g. 'what about X?', 'how would you explain Y?', 'can anyone show a case where...?'). Return 0 if the argument has no such question; questions that are purely rhetorical scene-setting with no challenge/probe/counter-invitation, and questions inside external quotations or reported text from others not adopted by the OP, do not count. Exclude and ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred (including edits such as 'EDIT: my view was changed'); these never count as evidence. Generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Use the supplied current text, including marked edits, subject to that exclusion. Return null if argument is missing or malformed; an assessable argument with no marker gives 0. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00025:op_argument_has_personal_anecdote",
+    "hypothesis_id": 25,
+    "feature": {
+      "name": "op_argument_has_personal_anecdote",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if it includes a personal anecdote or first-person experiential narrative by the OP about their own experience.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current supplied text, including marked edits). Return 1 if the OP's own text includes a personal anecdote or first-person experiential narrative, i.e. the OP recounts a specific experience, event or situation they personally lived through or participated in (e.g. 'when I worked at...', 'my friend and I...'). Return 0 if the argument is assessable and contains none: purely abstract claims, hypotheticals/invented scenarios, general statements, or experiences only of others/quoted external sources not adopted as the OP's own. Do not count mere first-person opinion phrases ('I think') as narrative. Exclude and ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the view changed, even if they contain first-person narrative; generic discussion of delta/platform rules is not an outcome announcement and may be considered where relevant. Do not attempt to reconstruct an initial version of the post. If the argument is missing or malformed, return null. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00031:op_argument_tone_policing_request",
+    "hypothesis_id": 31,
+    "feature": {
+      "name": "op_argument_tone_policing_request",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP, in their own voice, explicitly asks or demands that readers/commenters change their tone, manner or civility (e.g. be calm, polite, less hostile or emotional) rather than address content.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current text, including marked edits). Return 1 if the OP in their own voice explicitly requests or demands that responders/readers change the tone or manner of their replies (e.g. be calm, civil, polite, less angry/emotional/aggressive), i.e. an explicit tone-policing request. Return 0 if the argument is present and has no such explicit request. Do not count mere description of the OP's own tone, general topic discussion of civility, requests to be open-minded or give evidence, or quoted/reported requests by others not adopted by the OP. Do not count generic subreddit rule mentions unless the OP directly asks commenters to change tone. Exclude and ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and remains eligible. If argument is missing or malformed return null. Output 0 or 1."
+    }
+  },
+  {
+    "key": "h00034:op_argument_explicit_uncertainty",
+    "hypothesis_id": 34,
+    "feature": {
+      "name": "op_argument_explicit_uncertainty",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own text contains at least one explicit uncertainty marker (e.g., hedge or stated doubt about their own claims); else 0.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current supplied text, including marked edits). Return 1 if the OP, in their own voice, uses at least one explicit marker of uncertainty about their own claims or view (e.g., 'I might be wrong', 'I'm not sure', 'maybe', 'possibly', 'to my knowledge', 'I think' used as a hedge, stated doubt). Return 0 if the argument is assessable and has no such marker. Do not count uncertainty in quoted external text or attributed to others, rhetorical questions that are not expressions of the OP's own doubt, or moderator/bot notices. Exclude and ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the view changed (even inside argument); generic discussion of delta/platform rules is not an outcome announcement and may be considered. Do not attempt to reconstruct an initial version; do not remove edits except for outcome-reporting text. If argument is missing or malformed, return null."
+    }
+  },
+  {
+    "key": "h00035:op_argument_acknowledges_counterargument_or_limitation",
+    "hypothesis_id": 35,
+    "feature": {
+      "name": "op_argument_acknowledges_counterargument_or_limitation",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP explicitly acknowledges a counter-argument to, or a limitation of, their own view; else 0.",
+      "kind": "prompt",
+      "spec": "Read only the argument column (the OP's own text, current supplied version including any marked edits). Return 1 if the OP, in their own voice, explicitly acknowledges a counter-argument to their view or a limitation/weakness/exception of their own position (e.g. 'a counterpoint is...', 'I admit this may not hold when...', 'one weakness of my view is...'). Illustrative phrasings are not exhaustive. Return 0 if no such explicit acknowledgment is present. Do not count merely hedging language without naming a counter-argument or limitation, quoted text from other users or opposing positions the OP does not adopt, or moderator/bot notices. Exclude and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the view changed (including in edits); generic discussion of delta/platform rules is not an outcome announcement and may be considered if relevant. Do not attempt to reconstruct an initial snapshot by removing edits. If argument is missing or malformed, return null. Output a single value: 1, 0, or null."
+    }
+  },
+  {
+    "key": "h00041:op_argument_self_referential_platform_or_status_meta",
+    "hypothesis_id": 41,
+    "feature": {
+      "name": "op_argument_self_referential_platform_or_status_meta",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP explicitly makes self-referential meta-commentary about platform mechanics or the author's own status (excluding view-change/delta outcome announcements)",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current text, including marked edits). Return 1 if the OP's own text contains explicit self-referential meta-commentary about platform mechanics (e.g., subreddit rules, posting/moderation, karma/votes, how the platform or delta system works, formatting/edits as platform features) or about the author's own status (e.g., the author's account, newness, credentials, standing or identity on the platform). The commentary must be explicit and refer to the OP themself or their post in relation to the platform/status. Generic discussion of platform/delta rules by the OP retains eligibility if it is self-referential. EXCLUDE the OP's view-change or delta-award announcements, post-outcome thank-you or resolution updates, and any text reporting whether the outcome occurred (e.g., 'Edit: my view was changed', 'delta awarded'); these never count as evidence even if they contain meta-commentary. Quoted text from other people does not count unless the OP adopts it as their own. Return 0 if the argument is present and has no such commentary. Return null if argument is missing or malformed. Do not reconstruct an initial snapshot; do not use other columns."
+    }
+  },
+  {
+    "key": "h00045:op_argument_direct_plea_nonviolence",
+    "hypothesis_id": 45,
+    "feature": {
+      "name": "op_argument_direct_plea_nonviolence",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own text directly pleads/urges/appeals for nonviolence (that violence be avoided, renounced or not used).",
+      "kind": "prompt",
+      "spec": "Read only the argument column (the OP's own text; current text including marked edits). Return 1 if the OP, in their own voice, makes a direct plea, urging or explicit appeal for non-violence (e.g., asking that people refrain from, avoid, renounce or not resort to violence). Return 0 if no such direct plea is present, including when violence is merely discussed, described, analyzed, or argued for/against without an explicit appeal for nonviolence. Do not count quoted or reported views of others unless the OP explicitly adopts them as their own plea. Exclude and ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred; do not use them as evidence even if they express the construct. Generic discussion of platform/delta rules is not an outcome announcement and may be retained if relevant. If argument is missing or malformed, return null. Output a single value: 1, 0, or null."
+    }
+  },
+  {
+    "key": "h00046:argument_has_first_person_singular_pronoun",
+    "hypothesis_id": 46,
+    "feature": {
+      "name": "argument_has_first_person_singular_pronoun",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own argument text contains at least one explicit first-person singular pronoun (I, me, my, mine, myself, and contractions such as I'm/I've/I'd/I'll) used by the OP, excluding outcome-reporting text.",
+      "kind": "prompt",
+      "spec": "Read only the argument column (the OP's current supplied text, including marked edits). Return 1 if the argument contains at least one explicit first-person singular pronoun (I, me, my, mine, myself, including contractions like I'm, I've, I'd, I'll) in the OP's own voice; return 0 if, after the exclusions, none occur. Exclusions: ignore any OP view-change or delta-award announcements, post-outcome thank-you or resolution updates, and any text reporting whether the OP's view changed or the outcome occurred (e.g. 'my view was changed', '\u0394 awarded', 'thanks, you changed my mind'); pronouns appearing only in such text do not count. Generic discussion of platform/delta rules is retained and may count if it contains such a pronoun in the OP's voice. Also ignore first-person pronouns that occur only inside quotations of other people's words not adopted by the OP, and moderator/bot notices. Do not infer an initial snapshot or remove edits otherwise. Missing or malformed argument returns null; an empty-string argument returns 0. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00053:argument_has_hedging_language",
+    "hypothesis_id": 53,
+    "feature": {
+      "name": "argument_has_hedging_language",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument (own assertions): 1 if it contains hedging or qualifying language (e.g., softening or limiting the strength/scope of the OP's own claims).",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument column. Return 1 if the OP's own assertions in the argument include at least one hedging or qualifying expression that softens, limits or conditions the strength or scope of a claim (e.g., 'might', 'perhaps', 'I think', 'to my knowledge', 'in some cases', 'generally'); return 0 if the argument is assessable and has none. Ignore quoted text from others, quoted opponents' positions and moderator/bot notices unless the OP adopts them. Use the current supplied text including marked edits, but exclude any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates and any text reporting whether the view changed; generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Do not reconstruct an initial snapshot. If argument is missing or malformed return null. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00053:argument_has_absolute_declarative_statements",
+    "hypothesis_id": 53,
+    "feature": {
+      "name": "argument_has_absolute_declarative_statements",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument (own assertions): 1 if it contains absolute declarative statements asserting claims without hedging or qualification (e.g., universal or unconditional categorical claims).",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument column. Return 1 if the OP's own assertions include at least one absolute declarative statement: a claim stated categorically and unconditionally, with no hedge or qualifier (e.g., 'always', 'never', 'all', 'obviously', flat assertions of fact). Return 0 if the argument is assessable and has none. Ignore quoted text from others, quoted opponents' positions and moderator/bot notices unless the OP adopts them. Use the current supplied text including marked edits, but exclude any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates and any text reporting whether the view changed; generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Do not reconstruct an initial snapshot. If argument is missing or malformed return null. This is independent of hedging: an argument may have both. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00062:op_argument_has_direct_personal_anecdote",
+    "hypothesis_id": 62,
+    "feature": {
+      "name": "op_argument_has_direct_personal_anecdote",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own text relates a direct personal anecdote (a specific experience the OP themself had or witnessed firsthand).",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current supplied text, including marked edits). Return 1 if the OP in their own voice recounts at least one direct personal anecdote: a specific experience, event or situation the OP personally lived or directly witnessed (e.g., 'when I worked at...', 'my friend told me / happened to me'). Return 0 if the argument contains only abstract claims, general statistics, hypotheticals/invented scenarios, or other people's experiences or quotations not adopted as the OP's own direct experience. Quotation marks alone do not make something an anecdote or not. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the OP's view changed; these never count as evidence. Generic discussion of delta/platform rules is neither outcome text nor an anecdote by itself and may be retained if relevant. Do not delete edits to reconstruct an initial version; no timing is inferred. If argument is missing or malformed return null. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00064:op_acknowledges_alternative_perspectives",
+    "hypothesis_id": 64,
+    "feature": {
+      "name": "op_acknowledges_alternative_perspectives",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP explicitly acknowledges that alternative perspectives, views or interpretations exist.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current text, including marked edits). Return 1 if the OP, in their own voice, explicitly acknowledges that alternative perspectives, viewpoints or interpretations to their own view exist (e.g., noting that others may see it differently, or that other reasonable positions exist). Return 0 if no such explicit acknowledgment is present. Do not count quoted or reported opponents' positions unless the OP explicitly adopts them as acknowledged alternatives, and do not count mere topic mentions. Exclude and ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and may be considered. Return null if the argument is missing or malformed."
+    }
+  },
+  {
+    "key": "h00064:op_presents_argument_as_singularly_deterministic",
+    "hypothesis_id": 64,
+    "feature": {
+      "name": "op_presents_argument_as_singularly_deterministic",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP presents the view as the single determined/inevitable conclusion, with no acknowledgment of alternatives.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current text, including marked edits). Return 1 if the OP, in their own voice, presents their argument as singularly deterministic: the conclusion is framed as the only possible or inevitable one, and alternative perspectives are neither acknowledged nor treated as legitimate. Return 0 otherwise (including when alternatives are explicitly acknowledged or the argument is merely confident or one-sided without framing the conclusion as the only possible one). Do not count quoted or reported opponents' positions as the OP's own framing. Exclude and ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and may be considered. Return null if the argument is missing or malformed."
+    }
+  },
+  {
+    "key": "h00070:op_argument_has_hedging_or_self_doubt",
+    "hypothesis_id": 70,
+    "feature": {
+      "name": "op_argument_has_hedging_or_self_doubt",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own text explicitly contains hedging or self-doubt markers (e.g., expressed uncertainty, tentativeness, possibility of being wrong) about their own view or claims; else 0.",
+      "kind": "prompt",
+      "spec": "Read only the argument column (the OP's own explanation). Return 1 if the OP's own current text contains at least one explicit hedging or self-doubt marker about their own claims or view (e.g., 'I might be wrong', 'I'm not sure', 'to my knowledge', 'I guess', 'perhaps', admitting possible error or uncertainty). Return 0 if the argument is assessable and contains no such explicit marker. Ignore hedges inside quotations or reported positions of others unless the OP adopts them. Exclude and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred (including edits such as 'EDIT: view changed', '\u0394'); generic discussion of delta/platform rules is not outcome reporting and may be retained. Do not try to reconstruct an initial version; use supplied current text otherwise. If argument is missing or malformed, return null. Output a single 0/1 or null."
+    }
+  },
+  {
+    "key": "h00073:op_argument_has_explicit_conditional_outcome_language",
+    "hypothesis_id": 73,
+    "feature": {
+      "name": "op_argument_has_explicit_conditional_outcome_language",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if it contains explicit conditional language (e.g., if/then, unless, provided that, when X then Y) linking an outcome to a specific antecedent condition.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current text, including marked edits). Return 1 if the OP's own argument contains at least one explicit conditional statement that links an outcome/consequence to a specific antecedent condition (e.g., 'if X, then Y', 'unless X, Y', 'provided that X, Y', 'whenever X, Y'). Return 0 if the argument is present and has no such statement; vague hedges without a stated antecedent-outcome link, or merely questions, do not count. Exclude from evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred (even inside the argument); generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Quoted text attributed to others and not adopted by the OP does not count. Missing or malformed argument: return null. Output one scalar 0/1."
+    }
+  },
+  {
+    "key": "h00078:op_requests_audience_restraint_or_karma_building",
+    "hypothesis_id": 78,
+    "feature": {
+      "name": "op_requests_audience_restraint_or_karma_building",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument text: 1 if the OP explicitly asks readers to show restraint (e.g., be civil, not downvote or attack) or to build/give karma (e.g., upvote), else 0.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (not title, comments or conversation). Return 1 if the OP's own text explicitly requests audience restraint or karma building from readers, e.g., asking readers not to downvote, to be civil/polite, to refrain from attacking or flaming, or asking readers to upvote or give karma to constructive/good-faith comments. Return 0 if no such explicit request appears. Only the OP's own requests count; ignore quoted text from others and moderator/bot notices. Generic mentions of subreddit or delta rules do not count unless they are an explicit request to readers for restraint or karma building. Exclude and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you or resolution updates, or text reporting whether the outcome occurred; text from marked edits is otherwise treated as current text and is not removed. Do not infer timing. If the argument is missing or malformed return null."
+    }
+  },
+  {
+    "key": "h00079:op_argument_has_personal_experience_narrative",
+    "hypothesis_id": 79,
+    "feature": {
+      "name": "op_argument_has_personal_experience_narrative",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own text contains an explicit narrative of the OP's own personal experience, else 0.",
+      "kind": "prompt",
+      "spec": "Read only the argument column (the OP's own text). Return 1 if the OP's argument contains an explicit personal experience narrative: the OP recounts something that actually happened to or was done/lived by the OP personally (e.g. a specific event, episode, or period of their life, told as a first-person account). Return 0 if the argument has no such account: purely abstract reasoning, general claims, hypotheticals, invented scenarios, others' experiences, or merely stating an opinion or identity without recounting experience. Quoted or external text counts only if the OP adopts it as their own experience. Marked edits are part of current text and may count, except exclude any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred; such text is never evidence. Generic discussion of delta/platform rules is not an outcome announcement and is neither positive evidence nor excluded when relevant. Do not reconstruct an initial snapshot. If argument is missing or malformed, return null. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00080:op_explicitly_requests_feedback_or_advice",
+    "hypothesis_id": 80,
+    "feature": {
+      "name": "op_explicitly_requests_feedback_or_advice",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own text explicitly asks the community for feedback or advice, else 0.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current supplied text, including marked edits). Return 1 if the OP, in their own words, explicitly requests feedback, advice, input, opinions, or responses from the community/readers (e.g., asking for advice, asking people to weigh in, or to share thoughts or critique). Return 0 if no such explicit request appears, including when the OP merely states a view, or only issues the generic 'change my view' framing without any explicit request for feedback or advice. Ignore quoted text attributed to others. Exclude and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you or resolution updates, and any text reporting whether the outcome occurred; generic discussion of platform/delta rules is not an outcome announcement and may be considered if relevant. Empty or missing argument gives null. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00081:op_argument_uses_second_person_address",
+    "hypothesis_id": 81,
+    "feature": {
+      "name": "op_argument_uses_second_person_address",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own wording addresses the reader with second-person direct address (e.g., you/your/you're directed at the reader or readers); else 0.",
+      "kind": "prompt",
+      "spec": "Read only the argument column (the OP's explanation), current supplied text. Return 1 if the OP's own prose addresses the reader/audience directly with second-person address (you, your, yours, yourself, you're, imperative addressed to the reader such as 'consider...', 'imagine...' addressed to the reader). Return 0 if the argument is complete and uses only impersonal/first-person/third-person phrasing, or if 'you' appears only generically-nonaddressing is NOT excluded: generic 'you' directed at people-in-general counts as direct address only if it addresses the reader; 'you' inside quoted text attributed to others, quoted opponents, or example dialogue does not count. Exclude any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred (including edits of that kind); generic discussion of delta/platform rules is retained as eligible text. Do not infer an initial snapshot or remove other edits. Output null if argument is missing or malformed; an empty but valid string gives 0. Output a single 0/1."
+    }
+  },
+  {
+    "key": "h00091:op_requests_emotional_support_or_assistance",
+    "hypothesis_id": 91,
+    "feature": {
+      "name": "op_requests_emotional_support_or_assistance",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument text: 1 if the OP explicitly requests emotional support or assistance (not merely a view challenge), else 0.",
+      "kind": "prompt",
+      "spec": "Read only the argument column (the OP's own text; title not used). Return 1 if the OP, in their own voice, explicitly asks readers for emotional support (e.g. comfort, reassurance, encouragement) or for assistance/help (e.g. help coping with or resolving a personal situation). Return 0 if there is no such explicit request, including when the OP only asks to have their view challenged or changed in the standard CMV way, or only describes feelings without asking for support or help. Exclude quoted text from others, moderator/bot notices, and any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred (even if they thank people or mention support); generic discussion of delta/platform rules is not an outcome announcement and may be considered. Use the supplied current text including marked edits; no initial snapshot is reconstructed. If argument is missing or malformed return null. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00094:op_argument_acknowledges_counterpoints",
+    "hypothesis_id": 94,
+    "feature": {
+      "name": "op_argument_acknowledges_counterpoints",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own text explicitly acknowledges potential counterpoints, objections or opposing views to their position.",
+      "kind": "prompt",
+      "spec": "Read only the argument column (the OP's current argument text, including any marked edits). Return 1 if the OP, in their own voice, explicitly acknowledges potential counterpoints, objections, counterarguments or opposing views to their own position (e.g. noting what others might object, or conceding a possible opposing consideration). Return 0 if no such explicit acknowledgment appears. Do not count quotations or opponents' positions that the OP does not themselves raise or adopt as a possible counterpoint, and do not count generic uncertainty without reference to a counterpoint. Exclude entirely, as evidence, any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the view changed; such text must not produce a 1. Generic discussion of platform/delta rules is not an outcome announcement and remains eligible if it is relevant. Do not attempt to reconstruct an initial version of the post. If the argument is missing or malformed return null. Output 0 or 1 (or null)."
+    }
+  },
+  {
+    "key": "h00096:op_discloses_personal_emotional_vulnerability",
+    "hypothesis_id": 96,
+    "feature": {
+      "name": "op_discloses_personal_emotional_vulnerability",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: 1 if the OP's own text discloses personal emotional vulnerability (e.g., admits own painful, fearful, insecure, ashamed or distressed feelings or struggles); else 0.",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (current supplied text, including marked edits). Return 1 if the OP, in their own voice, discloses personal emotional vulnerability about themselves, such as admitting their own fear, shame, insecurity, sadness, distress, loneliness, emotional pain or emotional struggle. Return 0 if there is no such disclosure: purely intellectual, factual or general statements, other people's feelings, hypothetical or invented persons, and quotations of others not adopted by the OP do not count. Mere anger or opinion without self-exposing vulnerability does not count. Ignore and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you or resolution updates, or any text reporting whether the outcome occurred (e.g., 'my view was changed', 'Delta awarded', 'thanks, you convinced me'), even if they express vulnerability; generic discussion of delta or platform rules is not an outcome announcement and may be retained if relevant. Do not try to reconstruct an initial version of the post. If the argument is missing or malformed return null; if it is assessable and contains no qualifying disclosure return 0. Output a single 0/1 value."
+    }
+  }
+]

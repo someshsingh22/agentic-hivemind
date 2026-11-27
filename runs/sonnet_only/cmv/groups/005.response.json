@@ -1,0 +1,150 @@
+{
+  "groups": [
+    {
+      "members": [
+        "h00000:argument_compares_to_scientific_or_historical_norms"
+      ],
+      "reason": "Norm comparison."
+    },
+    {
+      "members": [
+        "h00004:op_argument_admits_uncertainty"
+      ],
+      "reason": "Explicit admission of uncertainty/possible error; narrower than hedging markers."
+    },
+    {
+      "members": [
+        "h00004:op_argument_asserts_absolute_certainty"
+      ],
+      "reason": "Absolute certainty assertion."
+    },
+    {
+      "members": [
+        "h00020:argument_has_polite_apology_phrase"
+      ],
+      "reason": "Apology phrase."
+    },
+    {
+      "members": [
+        "h00024:argument_has_counter_question_marker"
+      ],
+      "reason": "Counter-question."
+    },
+    {
+      "members": [
+        "h00025:op_argument_has_personal_anecdote",
+        "h00079:op_argument_has_personal_experience_narrative"
+      ],
+      "reason": "Both: OP recounts personal experience narrative; same function."
+    },
+    {
+      "members": [
+        "h00062:op_argument_has_direct_personal_anecdote"
+      ],
+      "reason": "Includes directly witnessed experiences; slightly different scope."
+    },
+    {
+      "members": [
+        "h00031:op_argument_tone_policing_request"
+      ],
+      "reason": "Tone-policing request."
+    },
+    {
+      "members": [
+        "h00034:op_argument_explicit_uncertainty",
+        "h00070:op_argument_has_hedging_or_self_doubt"
+      ],
+      "reason": "Both: explicit hedge/self-doubt markers about own claims."
+    },
+    {
+      "members": [
+        "h00035:op_argument_acknowledges_counterargument_or_limitation"
+      ],
+      "reason": "Counterargument or limitation acknowledgment."
+    },
+    {
+      "members": [
+        "h00041:op_argument_self_referential_platform_or_status_meta"
+      ],
+      "reason": "Platform/status meta."
+    },
+    {
+      "members": [
+        "h00045:op_argument_direct_plea_nonviolence"
+      ],
+      "reason": "Nonviolence plea."
+    },
+    {
+      "members": [
+        "h00046:argument_has_first_person_singular_pronoun"
+      ],
+      "reason": "First-person pronoun presence."
+    },
+    {
+      "members": [
+        "h00053:argument_has_hedging_language"
+      ],
+      "reason": "Hedging/qualifying language, broader scope."
+    },
+    {
+      "members": [
+        "h00053:argument_has_absolute_declarative_statements"
+      ],
+      "reason": "Absolute declaratives."
+    },
+    {
+      "members": [
+        "h00064:op_acknowledges_alternative_perspectives"
+      ],
+      "reason": "Acknowledges alternative perspectives."
+    },
+    {
+      "members": [
+        "h00064:op_presents_argument_as_singularly_deterministic"
+      ],
+      "reason": "Singularly deterministic framing."
+    },
+    {
+      "members": [
+        "h00073:op_argument_has_explicit_conditional_outcome_language"
+      ],
+      "reason": "Conditional language."
+    },
+    {
+      "members": [
+        "h00078:op_requests_audience_restraint_or_karma_building"
+      ],
+      "reason": "Restraint/karma request."
+    },
+    {
+      "members": [
+        "h00080:op_explicitly_requests_feedback_or_advice"
+      ],
+      "reason": "Feedback/advice request."
+    },
+    {
+      "members": [
+        "h00081:op_argument_uses_second_person_address"
+      ],
+      "reason": "Second-person address."
+    },
+    {
+      "members": [
+        "h00091:op_requests_emotional_support_or_assistance"
+      ],
+      "reason": "Support/help request."
+    },
+    {
+      "members": [
+        "h00094:op_argument_acknowledges_counterpoints"
+      ],
+      "reason": "Acknowledges counterpoints/objections; excludes limitations."
+    },
+    {
+      "members": [
+        "h00096:op_discloses_personal_emotional_vulnerability"
+      ],
+      "reason": "Emotional vulnerability."
+    }
+  ]
+}

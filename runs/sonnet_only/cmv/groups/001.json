@@ -1,0 +1,86 @@
+[
+  {
+    "key": "h00011:share_comments_measured_logical_reasoning",
+    "hypothesis_id": 11,
+    "feature": {
+      "name": "share_comments_measured_logical_reasoning",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' comments): share of comments containing measured, logical reasoning (calm, structured inference from premises to conclusion)",
+      "kind": "prompt",
+      "spec": "Read only OC_comments (JSON list of counter-argument comments by users other than the OP). Parse the list. If missing/malformed return null; if a valid empty list return null (share undefined). For each comment decide whether it contains measured, logical reasoning: calm, structured argumentation that draws inferences from premises or evidence to a conclusion in a restrained tone. A comment may contain both this and emotional aggression; it counts here if it contains measured logical reasoning. Ignore quoted text from others unless the commenter adopts it. Exclude and do not use as evidence any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; generic discussion of delta/platform rules remains eligible. Output a number in [0,1]: the number of comments with measured logical reasoning divided by the total number of comments. 0 means none do. Comment order is irrelevant."
+    }
+  },
+  {
+    "key": "h00011:share_comments_emotional_aggression",
+    "hypothesis_id": 11,
+    "feature": {
+      "name": "share_comments_emotional_aggression",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' comments): share of comments containing emotional aggression (hostile, angry, insulting or belligerent affect toward the OP or others)",
+      "kind": "prompt",
+      "spec": "Read only OC_comments (JSON list of counter-argument comments by users other than the OP). Parse the list. If missing/malformed return null; if a valid empty list return null (share undefined). For each comment decide whether it contains emotional aggression: hostile, angry, insulting, contemptuous or belligerent emotional language directed at the OP or others. Mere disagreement, firm or critical tone, or generic emotional wording without hostility does not count. Ignore quoted text from others unless the commenter adopts it. A comment may contain both aggression and logical reasoning; it counts here if it contains aggression. Exclude and do not use as evidence any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; generic discussion of delta/platform rules remains eligible. Output a number in [0,1]: comments with emotional aggression divided by total comments. 0 means none do."
+    }
+  },
+  {
+    "key": "h00048:counterargument_cognitive_complexity",
+    "hypothesis_id": 48,
+    "feature": {
+      "name": "counterargument_cognitive_complexity",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' counter-argument comments): overall cognitive complexity of the counterarguments, 0-10 anchored score",
+      "kind": "prompt",
+      "spec": "Read only OC_comments (JSON list of counter-argument comments by users other than the OP). Parse the list. If missing/malformed return null; if a valid list is empty return null. Rate the cognitive complexity of the counterarguments' own reasoning on an integer 0-10 scale: differentiation (recognizing multiple perspectives, distinctions, conditions, trade-offs) and integration (relating those perspectives into a reasoned synthesis or qualified conclusion). Anchors: 0 = no reasoning; 2 = single simple assertion, one-sided with no qualification; 4 = some reasons but little differentiation; 6 = several distinct considerations or acknowledgment of alternative views/conditions; 8 = clear differentiation plus integration of perspectives, with qualifications; 10 = highly differentiated, integrated, nuanced multi-perspective reasoning. Row aggregation assumption: judge the comments jointly and give one score reflecting the overall complexity of the counterarguments, rather than a mean or max; this assumption is operational. Do not score quoted text from others as the commenter's own reasoning unless adopted. Ignore and exclude any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; generic discussion of delta/platform rules may be considered. Output one number 0-10 or null."
+    }
+  },
+  {
+    "key": "h00068:oc_comments_lexical_density",
+    "hypothesis_id": 68,
+    "feature": {
+      "name": "oc_comments_lexical_density",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' counter-argument comments): lexical density = content words (nouns, main verbs, adjectives, adverbs) divided by all words, pooled over all comments in the row; range 0-1",
+      "kind": "prompt",
+      "spec": "Read only OC_comments (JSON list of counter-argument comments by users other than the OP). Parse the list. Ignore any text reporting OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; retain generic discussion of delta/platform rules as ordinary text. Also ignore moderator/bot notices and URLs/markup. Pool all remaining words across all comments in the row (do not average per comment; list order is irrelevant). Lexical density = (number of content words: nouns, main/lexical verbs, adjectives, adverbs) / (total number of words, content plus function words such as articles, prepositions, pronouns, conjunctions, auxiliaries, determiners). Return one number between 0 and 1 (e.g., 0.50 means half of words are content words), estimated as carefully as possible. If the list is valid but empty, or contains no words after exclusions, return null. If OC_comments is missing or malformed, return null."
+    }
+  },
+  {
+    "key": "h00076:share_comments_explicit_agreement_marker",
+    "hypothesis_id": 76,
+    "feature": {
+      "name": "share_comments_explicit_agreement_marker",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: share of comments (0-1) containing at least one explicit agreement marker toward the OP or another speaker's point (e.g., 'I agree', 'you're right', 'good point').",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by other users; parse it). For each comment decide whether it contains an explicit agreement marker, i.e. words expressly stating agreement or concurrence with a point made by the OP or another party (e.g. 'I agree', 'you're right', 'fair point', 'exactly'); implicit agreement and mere politeness do not count; agreement markers inside quoted text from someone else being rebutted do not count; moderator/bot notices are excluded. Return the number of such comments divided by total comments, a value from 0 to 1 (0 = no comment has a marker). Empty valid list or missing/malformed input gives null. Ignore list order. Do not use any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred as evidence; generic delta/platform-rule discussion is allowed."
+    }
+  },
+  {
+    "key": "h00083:count_comments_with_specific_real_world_example",
+    "hypothesis_id": 83,
+    "feature": {
+      "name": "count_comments_with_specific_real_world_example",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' comments, not the OP): number of comments that contain at least one specific real-world example (an actual case, event, person, institution, or concrete personal experience; not invented or hypothetical).",
+      "kind": "prompt",
+      "spec": "Read OC_comments, a JSON list of counter-argument comments by users other than the OP. Return the integer count of comments in the list that contain at least one specific real-world example offered in the comment's own argument. A specific real-world example is an actual, concrete case such as a named or identifiable event, person, organization, policy, study, place, or a concrete personal experience of the commenter. Purely invented or hypothetical scenarios, generic generalizations and vague references do not qualify. No outside verification is needed. Count each comment at most once regardless of how many examples it has. Count comments, not distinct commenters. Ignore any OP view-change or delta-award announcements, post-outcome thank-you or resolution updates, and any text reporting whether the outcome occurred; these never count as evidence. Generic discussion of delta or platform rules is not an outcome announcement but is not an example unless it is itself a specific real-world case. Range 0 to list length; 0 means no comment has such an example. An empty valid list gives 0. Missing or malformed OC_comments gives null."
+    }
+  }
+]

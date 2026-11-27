@@ -1,0 +1,534 @@
+[
+  {
+    "key": "h00002:any_comment_cites_functioning_institutional_precedent",
+    "hypothesis_id": 2,
+    "feature": {
+      "name": "any_comment_cites_functioning_institutional_precedent",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: 1 if at least one comment cites a specific, functioning institutional precedent (an actual existing institution, law, policy or system that operates in practice) as support for its counter-argument.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it; list order is not rank or chronology). Return 1 if at least one comment cites a specific institutional precedent (a real, named or concretely identified institution, law, policy, program or system in a particular jurisdiction/organization) presented as actually functioning/operating in practice, used as support for that comment's counter-argument. Quoted material from others counts only if the commenter uses it as support. Purely abstract principles, hypothetical or invented systems, generic personal anecdotes without an institution, and non-functioning/failed precedents cited as support do not qualify. Ignore any text where the OP announces a view change or delta award, post-outcome thank-you/resolution updates, or any text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Return 0 if the list is valid and no comment qualifies (including an empty list). Return null if OC_comments is missing or malformed. Output only 0, 1 or null."
+    }
+  },
+  {
+    "key": "h00002:any_comment_relies_on_abstract_normative_principles",
+    "hypothesis_id": 2,
+    "feature": {
+      "name": "any_comment_relies_on_abstract_normative_principles",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: 1 if at least one comment relies on abstract normative principles (e.g. fairness, rights, morality, justice) as its argument basis.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it; list order is not rank or chronology). Return 1 if at least one comment relies on abstract normative principles (general moral, ethical, rights-based, fairness or justice principles stated in general terms, about what ought to be) as the basis of its counter-argument. A comment that mainly rests on specific concrete cases, institutions or empirical facts does not qualify on that basis alone. Ignore any text where the OP announces a view change or delta award, post-outcome thank-you/resolution updates, or any text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Return 0 if the list is valid and no comment qualifies (including an empty list). Return null if OC_comments is missing or malformed. Output only 0, 1 or null."
+    }
+  },
+  {
+    "key": "h00010:any_comment_cites_specific_real_world_example",
+    "hypothesis_id": 10,
+    "feature": {
+      "name": "any_comment_cites_specific_real_world_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' counter-argument comments): 1 if at least one comment explicitly cites a specific real-world example (actual case, event, person, institution, or concrete personal experience, not invented/hypothetical) in support of its argument.",
+      "kind": "prompt",
+      "spec": "Read OC_comments, a JSON list of counter-argument comments by users other than the OP. Return 1 if at least one comment explicitly cites a specific real-world example, i.e. a concrete actual case, event, person, organization, place, study instance, or specific personal experience offered to support or illustrate its argument. The example need not be externally verified, and any domain qualifies. Invented, hypothetical, or purely generic scenarios and abstract generalizations do not count. Ignore any text reporting OP view change, delta awards, post-outcome thanks/resolution updates or whether the outcome occurred; such text is not evidence (generic discussion of delta/platform rules is allowed but is not an example by itself). Return 0 if the list is valid and no comment qualifies, including an empty list. Return null if OC_comments is missing or malformed. Output a single 0/1 or null."
+    }
+  },
+  {
+    "key": "h00013:any_comment_validates_op_dignity_or_effort_before_correction",
+    "hypothesis_id": 13,
+    "feature": {
+      "name": "any_comment_validates_op_dignity_or_effort_before_correction",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one single comment explicitly validates the OP's personal dignity or effort and then, later in that same comment, introduces corrective logic",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment explicitly validates the OP personally (their dignity, worth, or effort, e.g. praising their effort or thoughtfulness, or affirming them as a person) and, afterwards within that same comment, introduces corrective logic (reasoning meant to correct or counter the OP's view). The validation must be directed at the OP as a person or their effort, not merely agreement with or praise of a claim; validation and correction must co-occur in the same comment with validation coming first. Separate comments cannot jointly satisfy it. Ignore quoted text from others unless adopted by the commenter. Exclude any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement. Return 0 if the list is valid and no comment qualifies, including a valid empty list. Return null if OC_comments is missing or malformed. Use only current supplied text; no timing is inferred."
+    }
+  },
+  {
+    "key": "h00013:all_comments_purely_logical_refutation",
+    "hypothesis_id": 13,
+    "feature": {
+      "name": "all_comments_purely_logical_refutation",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: every comment is a purely logical refutation with no explicit validation of the OP's personal dignity or effort",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP). Return 1 if every comment is a logical/argumentative refutation of the OP's view and none contains explicit validation of the OP's personal dignity or effort (praise or affirmation of the OP as a person or their effort). Return 0 if the list is non-empty and at least one comment contains such validation or is not a logical refutation. Return null for a valid empty list, or if OC_comments is missing or malformed. Exclude any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement. Use only current supplied text; no timing is inferred."
+    }
+  },
+  {
+    "key": "h00014:any_comment_concrete_real_world_example",
+    "hypothesis_id": 14,
+    "feature": {
+      "name": "any_comment_concrete_real_world_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user counter-argument comments: 1 if at least one comment provides a concrete real-world example (specific actual case, including a specific personal experience); invented/hypothetical scenarios do not count.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it). Return 1 if at least one comment itself provides a concrete real-world example in support of its argument: a specific actual case, event, person, institution, data instance or concrete personal experience that really occurred. Purely abstract principles/reasoning, generic claims, and invented or hypothetical scenarios do not count; named examples need not be externally verified, and the example need not belong to any particular type (institutional, public or personal all qualify). Return 0 if the list is valid and nonempty but no comment contains one. Return 0 for a valid empty list. Return null if OC_comments is missing or malformed. List order carries no meaning. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred, even if they appear in comments; generic discussion of delta/platform rules is not an outcome announcement and may be considered if relevant. Output a single 0/1 or null."
+    }
+  },
+  {
+    "key": "h00016:any_comment_concrete_personal_labor_details",
+    "hypothesis_id": 16,
+    "feature": {
+      "name": "any_comment_concrete_personal_labor_details",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment introduces concrete, personal labor-process details (specific first-hand work tasks, workplace procedures or job experiences of the commenter or someone concretely described).",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it). Return 1 if at least one comment introduces concrete, personal labor-process details: specific, particular descriptions of how work is actually done (tasks, workplace procedures, working conditions, job experiences) drawn from the commenter's own or a specifically described person's experience. Abstract generalities about work, hypothetical or invented scenarios, and purely normative principles do not qualify. Quoted text from others counts only if the commenter adopts it as their own experience. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution text and any text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither positive evidence nor an outcome announcement. Use current supplied text; list order carries no meaning. Return 0 if the list is valid and empty or no comment qualifies. Return null if OC_comments is missing or malformed. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00016:all_comments_solely_abstract_normative",
+    "hypothesis_id": 16,
+    "feature": {
+      "name": "all_comments_solely_abstract_normative",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: every comment relies solely on abstract normative principles, with no concrete personal details.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it). Return 1 if every comment relies solely on abstract normative principles (general claims about what is right, fair, just or ought to be) with no concrete factual examples or personal experiences. Return 0 if the list is non-empty and at least one comment contains any concrete, personal, or empirical-example content. Return null if the list is empty or OC_comments is missing or malformed. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution text and any text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and is judged like other content. Use current supplied text; list order carries no meaning. Output a single 0/1 value or null."
+    }
+  },
+  {
+    "key": "h00017:any_comment_quantifies_systemic_material_harm_to_third_parties",
+    "hypothesis_id": 17,
+    "feature": {
+      "name": "any_comment_quantifies_systemic_material_harm_to_third_parties",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment explicitly quantifies systemic material harm to third parties (people other than the commenter/OP debate participants), using numbers, rates, amounts or magnitudes.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP; parse it). Return 1 if at least one comment explicitly quantifies systemic (institutional, structural or society-wide, not merely isolated) material harm (e.g., deaths, money, jobs, health, housing, resources lost) to third parties, i.e. people other than the commenter, by giving numbers, rates, amounts, proportions or explicit magnitudes. Vague harm claims without any quantity, purely abstract/moral/propositional arguments, and harms only to the commenter or hypothetical individuals do not count. Quoted material counts only if the commenter adopts it. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates and any text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither positive evidence nor to be treated as outcome reporting. Use current supplied text; list order carries no meaning. Return 0 if the list is valid and no comment qualifies (including empty list). Return null if OC_comments is missing or malformed. Output a single 0/1 per row."
+    }
+  },
+  {
+    "key": "h00018:any_comment_cites_external_evidence",
+    "hypothesis_id": 18,
+    "feature": {
+      "name": "any_comment_cites_external_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: 1 if at least one comment cites external evidence (e.g. data, studies, sources, or documented real-world facts/cases) in support of its counter-argument.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by other users, not the OP). Parse the list. Return 1 if at least one comment cites evidence external to the OP's post in support of its counter-argument, such as statistics, studies, named sources, links, or specific documented real-world facts or cases. Return 0 if the list is valid and no comment does so (including purely logical/internal-consistency arguments, opinion, or hypotheticals). Return 0 for a valid empty list. Return null if OC_comments is missing or malformed. Ignore and never use as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred, wherever they appear; generic discussion of delta/platform rules is not an outcome announcement and remains eligible. List order carries no meaning. The same comment may also identify a contradiction; this does not affect the value."
+    }
+  },
+  {
+    "key": "h00019:any_comment_specific_factual_data_or_citation",
+    "hypothesis_id": 19,
+    "feature": {
+      "name": "any_comment_specific_factual_data_or_citation",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' counter-argument comments): 1 if at least one comment provides specific factual data or a verifiable citation",
+      "kind": "prompt",
+      "spec": "Read OC_comments, a JSON list of counter-argument comments by users other than the OP. Return 1 if at least one comment itself offers specific factual data (e.g. concrete statistics, figures, dates, named studies, documented facts or events) or a verifiable citation/reference (e.g. a link, named source, author, publication, law or case) in support of its argument. Vague assertions, general opinion, reasoning without specific data, and purely hypothetical scenarios do not count. A source quoted only as an opponent's position and not offered as support by the commenter does not count. Ignore any text that is an OP view-change or delta-award announcement, a post-outcome thank-you/resolution update, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither such an announcement nor evidence of data. Judge the supplied current text; order of comments is not meaningful. Return 0 if the list is valid and no comment qualifies, including a valid empty list; return null if the list is missing or malformed."
+    }
+  },
+  {
+    "key": "h00023:any_comment_specific_verifiable_procedural_example",
+    "hypothesis_id": 23,
+    "feature": {
+      "name": "any_comment_specific_verifiable_procedural_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment employs a specific, verifiable procedural example (a concrete named or checkable process, rule, procedure or documented case of how something is done) in its counter-argument.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP); parse it. Return 1 if at least one comment employs, in its own counter-argument, a specific example of a procedure or process (e.g. how a legal, institutional, administrative, technical or scientific procedure actually works or was applied) that is concrete and checkable in principle (specific enough to be verified; no outside verification is actually needed). Quoted material counts only if the commenter uses it as support. Purely abstract, theoretical, hypothetical or invented scenarios do not count; generic assertions without a specific procedure do not count. Return 0 if the list is valid and no comment qualifies, including a valid empty list. Return null if OC_comments is missing or malformed. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and may be considered. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00023:all_comments_solely_abstract_theoretical_rebuttals",
+    "hypothesis_id": 23,
+    "feature": {
+      "name": "all_comments_solely_abstract_theoretical_rebuttals",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: every comment relies solely on abstract theoretical rebuttals, with no specific verifiable procedural example.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP); parse it. Return 1 if the list is non-empty and every comment's counter-argument relies solely on abstract or theoretical reasoning, with no specific, verifiable procedural example (concrete checkable process, procedure, rule application or documented case) in any comment. Return 0 if at least one comment contains such a specific verifiable procedural example or other concrete case-based support. Return null if OC_comments is empty, missing or malformed. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and may be considered. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00027:any_comment_concrete_personal_anecdote",
+    "hypothesis_id": 27,
+    "feature": {
+      "name": "any_comment_concrete_personal_anecdote",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users): 1 if at least one comment employs a concrete personal anecdote (the commenter's own specific experience) as part of its argument.",
+      "kind": "prompt",
+      "spec": "Read OC_comments, a JSON list of counter-argument comments by users other than the OP. Parse the list. Return 1 if at least one comment employs a concrete personal anecdote, i.e. the commenter recounts a specific experience of their own (or first-hand event involving themselves) as part of their argument. Return 0 if the list is valid and nonempty and no comment does so (generic reasoning, hypotheticals, others' stories, external quotations, and statistics are not personal anecdotes). Empty list gives 0; missing or malformed input gives null. Ignore any text reporting the OP's view change, delta awards, thank-you or resolution updates, or whether the outcome occurred; generic discussion of delta/platform rules is not outcome reporting. List order carries no meaning."
+    }
+  },
+  {
+    "key": "h00027:any_comment_abstract_reasoning",
+    "hypothesis_id": 27,
+    "feature": {
+      "name": "any_comment_abstract_reasoning",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users): 1 if at least one comment employs abstract reasoning (general principles, logic or conceptual argument rather than a concrete personal anecdote).",
+      "kind": "prompt",
+      "spec": "Read OC_comments, a JSON list of counter-argument comments by users other than the OP. Parse the list. Return 1 if at least one comment employs abstract reasoning, i.e. argues through general principles, logical or conceptual argument, or generalized claims, not by recounting a concrete personal experience. A comment may also contain an anecdote; it still counts if it also uses abstract reasoning. Return 0 if the list is valid and nonempty and no comment does so. Empty list gives 0; missing or malformed input gives null. Ignore any text reporting the OP's view change, delta awards, thank-you or resolution updates, or whether the outcome occurred; generic discussion of delta/platform rules is not outcome reporting. List order carries no meaning."
+    }
+  },
+  {
+    "key": "h00036:any_comment_named_real_world_analogy",
+    "hypothesis_id": 36,
+    "feature": {
+      "name": "any_comment_named_real_world_analogy",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user counter-argument comments: 1 if at least one comment uses a named, real-world analogy or case (e.g., specific historical or scientific example) to make its point.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP; parse it). Return 1 if at least one comment uses a named, real-world analogy or example (a specific identifiable historical, scientific, institutional or other actual case, person, event or phenomenon, used to analogize to or illustrate the argument against the OP). Examples are nonexhaustive; no outside verification needed. Invented/hypothetical scenarios and generic unnamed appeals do not count. Quotation of a case counts if the comment uses it as its analogy/example. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution text, and any text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither positive evidence nor an outcome announcement. Return 0 if the list is valid and no comment qualifies; return 0 for a valid empty list; return null if OC_comments is missing or malformed. Output a single 0/1 or null."
+    }
+  },
+  {
+    "key": "h00036:any_comment_abstract_logical_rebuttal",
+    "hypothesis_id": 36,
+    "feature": {
+      "name": "any_comment_abstract_logical_rebuttal",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user counter-argument comments: 1 if at least one comment is an abstract logical rebuttal that relies on general reasoning without named real-world examples.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP; parse it). Return 1 if at least one comment rebuts the OP through abstract logical reasoning (general principles, definitions, logical structure, inference critique) without relying on a named real-world analogy or specific case. A comment that relies on a named real-world analogy or example does not count. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution text, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement. Return 0 if the list is valid and no comment qualifies; return 0 for a valid empty list; return null if OC_comments is missing or malformed. Output a single 0/1 or null."
+    }
+  },
+  {
+    "key": "h00044:any_comment_second_person_address_to_op",
+    "hypothesis_id": 44,
+    "feature": {
+      "name": "any_comment_second_person_address_to_op",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments: 1 if at least one other-user comment uses second-person direct address to the original poster (OP); else 0.",
+      "kind": "prompt",
+      "spec": "Read only OC_comments, a JSON list of counter-argument comments by users other than the OP. Parse the list. Return 1 if at least one comment directly addresses the OP in the second person (e.g., 'you', 'your', 'you're' referring to the OP as the person being addressed, such as 'your view', 'you say', 'you should consider'). Return 0 if comments are assessable and none contain such direct address to the OP. Do not count generic/impersonal 'you' (meaning 'one' or people in general), 'you' inside quoted text from third parties or addressed to someone other than the OP, or 'you' in quoted OP text unless the commenter themself addresses the OP. Exclude moderator/bot notices, and exclude any text that is an OP view-change/delta-award announcement, post-outcome thank-you/resolution update, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Empty valid list: return 0. Missing or malformed OC_comments: return null. Output a single 0/1 value per row. List order carries no meaning."
+    }
+  },
+  {
+    "key": "h00050:any_comment_names_specific_external_program_or_location",
+    "hypothesis_id": 50,
+    "feature": {
+      "name": "any_comment_names_specific_external_program_or_location",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment references a specific, named external program or location (not generic/unnamed).",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it). Return 1 if at least one comment itself references a specific, named external program (e.g., a named policy, initiative, scheme, service, or organized program) or a specific, named location (e.g., a named country, city, region, or place) as part of its argument. Generic or unnamed references (e.g., 'some programs', 'a country', 'a city') do not count. The reference need not be endorsed or verified. Ignore any text that is an OP view-change/delta-award announcement, a post-outcome thank-you/resolution update, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and is eligible only if it otherwise meets the construct. Return 0 if the list is valid and empty or no comment qualifies. Return null if OC_comments is missing or malformed. List order carries no meaning. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00050:all_comments_only_abstract_logical_refutation",
+    "hypothesis_id": 50,
+    "feature": {
+      "name": "all_comments_only_abstract_logical_refutation",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: every comment uses only abstract logical refutation, with no reference to specific named external programs or locations.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it). Return 1 if every comment argues solely through abstract logical refutation (general reasoning, principles, definitions, logical structure) and no comment references any specific, named external program or location. Return 0 if at least one comment references a specific, named external program or location, or relies on any non-abstract content such as concrete examples, anecdotes, or data. Ignore any text that is an OP view-change/delta-award announcement, a post-outcome thank-you/resolution update, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement. Return null if the list is empty, missing or malformed (no comment to assess). List order carries no meaning. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00056:any_comment_uses_analogy_to_familiar_scenario",
+    "hypothesis_id": 56,
+    "feature": {
+      "name": "any_comment_uses_analogy_to_familiar_scenario",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' counter-argument comments): 1 if at least one comment uses an analogy to a familiar scenario as part of its argument",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP). Return 1 if at least one comment itself draws an analogy, comparing the issue under debate to a different, familiar, everyday or commonly understood scenario (e.g., a common situation, activity or well-known comparison) to make its point. Return 0 if the list is valid and no comment does so (literal discussion of the topic itself, or merely citing real examples of the same issue, is not an analogy). Quoted OP text alone does not count; the analogy must be the commenter's own argument. Ignore any OP view-change/delta-award announcements, post-outcome thank-you or resolution text, and any text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither such an announcement nor an analogy by itself. Use current text; no timing is inferred. Empty list gives 0; missing or malformed input gives null. Output a single 0/1 per row."
+    }
+  },
+  {
+    "key": "h00058:any_comment_cites_specific_real_world_example",
+    "hypothesis_id": 58,
+    "feature": {
+      "name": "any_comment_cites_specific_real_world_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' counter-argument comments): 1 if at least one comment explicitly references a specific, concrete example or real-world instance",
+      "kind": "prompt",
+      "spec": "Read OC_comments, a JSON list of comments by users other than the OP. Parse the list. Return 1 if at least one comment explicitly references a specific, concrete example or real-world instance (e.g., a named or particular actual case, event, person, institution, study, statistic tied to a case, or concrete personal experience) as part of its counter-argument. Return 0 if the list is valid and no comment does so (only abstract principles, generic claims, or invented/hypothetical scenarios do not count). Quotation of the OP alone does not count. Ignore any text that is an OP view-change or delta-award announcement, post-outcome thank-you/resolution update, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is not such an announcement and stays eligible (though it is not itself a concrete example unless it cites a specific instance). Do not use any other columns. If OC_comments is missing or malformed return null; a valid empty list returns 0. List order carries no meaning."
+    }
+  },
+  {
+    "key": "h00059:any_comment_specific_empirical_evidence",
+    "hypothesis_id": 59,
+    "feature": {
+      "name": "any_comment_specific_empirical_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment contains specific empirical evidence (e.g. concrete data, statistics, studies, documented real-world cases or observations) offered in support of its counter-argument.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP; parse it). Return 1 if at least one comment itself offers specific empirical evidence supporting its counter-argument: concrete data, statistics, study/research findings, documented real-world cases or specific factual observations (a specific personal experience can count). Return 0 if comments are assessable and none contain such evidence (purely abstract/logical reasoning, opinion, or generic unsupported factual assertions). Vague appeals without specifics do not count. Ignore any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither evidence nor excluded. Empty list -> 0. Missing or malformed input -> null. List order carries no meaning. Output a single 0/1."
+    }
+  },
+  {
+    "key": "h00059:only_logical_refutation_comments",
+    "hypothesis_id": 59,
+    "feature": {
+      "name": "only_logical_refutation_comments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment offers a logical refutation and no comment contains specific empirical evidence (counter-arguments are only logical refutations).",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP; parse it). Return 1 if at least one comment offers a logical refutation (argument from reasoning, logic, consistency, or definitions challenging the OP's view) AND no comment contains specific empirical evidence (concrete data, statistics, studies, documented real-world cases or specific factual observations, including specific personal experience). Return 0 if any comment contains such specific empirical evidence, or if no comment offers a logical refutation. Ignore any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither evidence nor excluded. Empty list -> 0. Missing or malformed input -> null. List order carries no meaning. Output a single 0/1."
+    }
+  },
+  {
+    "key": "h00061:any_comment_second_person_address",
+    "hypothesis_id": 61,
+    "feature": {
+      "name": "any_comment_second_person_address",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment uses second-person direct address (e.g., you/your) directed at the OP or reader, not merely in quoted text or generic 'you'-free analysis.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP). Return 1 if at least one comment itself uses second-person direct address (addressing the OP/reader directly with 'you', 'your', imperative addressed to them, etc.) in the commenter's own words. Quoted text from the OP or others does not count unless the commenter adopts it as their own address. Return 0 if the list is valid and no comment does. Valid empty list -> 0. Missing or malformed list -> null. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates or text reporting the outcome; generic discussion of delta/platform rules is allowed but is not itself second-person evidence unless it addresses the OP directly. Output a single 0/1 per row."
+    }
+  },
+  {
+    "key": "h00061:any_comment_third_person_analysis",
+    "hypothesis_id": 61,
+    "feature": {
+      "name": "any_comment_third_person_analysis",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment argues by third-person analysis (about people, groups, cases or things in third person) without relying on direct address to the OP.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP). Return 1 if at least one comment's argument relies on third-person analysis, i.e. it analyzes the topic, people, groups, events or cases in the third person (he/she/they/it/impersonal) rather than addressing the OP/reader directly; a comment that mixes in some direct address still counts only if its main argumentative content is third-person analysis. Return 0 if the list is valid and no comment qualifies. Valid empty list -> 0. Missing or malformed list -> null. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates or text reporting the outcome; generic discussion of delta/platform rules is not an outcome announcement. Output a single 0/1 per row."
+    }
+  },
+  {
+    "key": "h00067:any_comment_cites_specific_real_world_example",
+    "hypothesis_id": 67,
+    "feature": {
+      "name": "any_comment_cites_specific_real_world_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' comments): 1 if at least one comment cites a specific real-world example (actual case, event, person, institution, data point or concrete personal experience) as part of its counter-argument.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP). Return 1 if at least one comment cites a specific, actual real-world example (a particular real event, case, person, organization, place, study/statistic, or concrete personal experience) to support its counter-argument; examples need not be institutional or public, and need not be externally verified. Return 0 if the list is valid and nonempty but no comment does so: purely abstract reasoning, generic claims, invented/hypothetical scenarios, or vague references without a specific actual case do not count. Empty list gives 0; missing or malformed input gives null. Ignore any text that is an OP view-change or delta-award announcement, post-outcome thank-you/resolution update, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is not such an announcement and remains eligible. List order carries no meaning. Output 0, 1 or null."
+    }
+  },
+  {
+    "key": "h00069:any_comment_cites_specific_localized_example",
+    "hypothesis_id": 69,
+    "feature": {
+      "name": "any_comment_cites_specific_localized_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment cites a specific, localized example (a particular concrete case, instance, person, place, event or personal experience) in support of its counter-argument.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it; list order carries no rank or chronology). Return 1 if at least one comment itself cites a specific, localized example as part of its counter-argument: a particular concrete case, instance, named or identifiable person, place, event, or specific personal experience (real or documented), as opposed to only general principles, abstract claims, broad statistics or generic hypotheticals. The example need not be externally verified; it need not be among any illustrative examples. Return 0 if the list is valid and no comment does so. Return 0 for a valid empty list. Return null if OC_comments is missing or malformed. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates and any text reporting whether the outcome occurred; do not use them as evidence. Generic discussion of platform/delta rules is not an outcome announcement but is not itself a specific example. Output a single 0/1 or null."
+    }
+  },
+  {
+    "key": "h00071:any_comment_concrete_locally_verifiable_example",
+    "hypothesis_id": 71,
+    "feature": {
+      "name": "any_comment_concrete_locally_verifiable_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment gives a concrete, locally verifiable example (specific case, instance, or personal experience that can be checked from details given).",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP; parse it). Return 1 if at least one comment contains a concrete, locally verifiable example: a specific instance, case, data point, or personal experience given with concrete particulars that a reader could check or observe directly (not merely a general principle or invented hypothetical). Illustrative kinds are nonexhaustive; external verification is not required. Quoted text from others counts only if the commenter uses it as their own supporting example. Return 0 if the list is non-empty and no comment has such an example. Empty list: 0. Missing or malformed OC_comments: null. Ignore list order. Exclude any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Do not use delta."
+    }
+  },
+  {
+    "key": "h00071:any_comment_relies_on_abstract_principles",
+    "hypothesis_id": 71,
+    "feature": {
+      "name": "any_comment_relies_on_abstract_principles",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment relies on abstract principles (general normative/theoretical reasoning) as its argument.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP; parse it). Return 1 if at least one comment's argument relies on abstract principles, i.e. general normative, theoretical or conceptual reasoning not anchored in a specific concrete case. Return 0 if the list is non-empty and no comment does. Empty list: 0. Missing or malformed OC_comments: null. Ignore list order. A comment may also contain concrete examples; this feature only asks whether abstract-principle reliance is present. Exclude any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Do not use delta."
+    }
+  },
+  {
+    "key": "h00072:any_comment_concrete_real_world_example",
+    "hypothesis_id": 72,
+    "feature": {
+      "name": "any_comment_concrete_real_world_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user counter-argument comments: at least one comment contains a concrete real-world example (specific actual case, including personal experience).",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it). Return 1 if at least one comment contains a concrete real-world example: a specific actual case, event, person, institution, statistic tied to a real case, or concrete personal experience offered in the commenter's own argument. Invented or hypothetical scenarios and purely abstract principles do not count. Illustrative examples of cases are nonexhaustive; no outside verification is needed. Ignore any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates and text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither such an announcement nor an example. Moderator/bot notices do not count. List order carries no meaning. Return 0 if the list is valid and no comment qualifies, including a valid empty list. Return null if OC_comments is missing or malformed. Output one value: 0, 1 or null."
+    }
+  },
+  {
+    "key": "h00072:all_comments_solely_abstract_logic",
+    "hypothesis_id": 72,
+    "feature": {
+      "name": "all_comments_solely_abstract_logic",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user counter-argument comments: every comment relies solely on abstract logic/reasoning, with no concrete real-world examples.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it). Return 1 if the list is non-empty and every substantive counter-argument comment relies solely on abstract logic or reasoning (general principles, definitions, conceptual or logical argument) and none contains a concrete real-world example (specific actual case, event, person, institution or personal experience). Return 0 if at least one comment contains a concrete real-world example, or if any substantive comment relies on something other than abstract logic alone. Ignore any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, text reporting whether the outcome occurred, and moderator/bot notices; generic delta/platform rule discussion is not an announcement but is not a concrete example. List order carries no meaning. Return null if the list is empty (no comments to assess), missing or malformed. Output one value: 0, 1 or null."
+    }
+  },
+  {
+    "key": "h00075:any_comment_cites_specific_real_world_example",
+    "hypothesis_id": 75,
+    "feature": {
+      "name": "any_comment_cites_specific_real_world_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user OC_comments: 1 if at least one comment cites a specific real-world example (actual case, event, entity, or concrete personal experience; not invented/hypothetical).",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP). Return 1 if at least one comment itself cites a specific real-world example in support of its point: an actual, concrete case, event, person, organization, place, study instance, or the commenter's concrete personal experience. Illustrative examples of such cases are nonexhaustive; external verification is not required. Invented, hypothetical, or generic scenarios and purely abstract claims do not count. Quotations of others count only if the comment uses them as a specific real-world example. Ignore any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is neither such an announcement nor an example. Return 0 if the list is valid and no comment qualifies, including an empty list. Return null if OC_comments is missing or malformed. Output a single value: 1, 0, or null."
+    }
+  },
+  {
+    "key": "h00082:any_comment_uses_concrete_example",
+    "hypothesis_id": 82,
+    "feature": {
+      "name": "any_comment_uses_concrete_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' counter-argument comments): 1 if at least one comment employs a specific, concrete illustrative example (particular case, instance, scenario or personal experience) to support its argument; else 0.",
+      "kind": "prompt",
+      "spec": "Read only OC_comments, a JSON list of comments by users other than the OP. Return 1 if at least one comment itself employs a specific, concrete illustrative example to illustrate or support its counter-argument: a particular named or described case, instance, event, scenario, or personal experience, rather than only abstract principles or generalities. Real or hypothetical concrete examples count if they are specific and concrete; vague generic references (e.g. 'many people', 'some cases') do not. Examples need not be externally verified. Judge each comment's own argument; a quoted passage from someone else counts only if the comment uses it as its own illustrative example. Ignore any text reporting the OP's view change or delta award, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred; generic discussion of delta/platform rules is not an outcome announcement and remains eligible but is not itself an example. Return 0 if the list is valid and no comment qualifies, including when the list is empty. Return null if OC_comments is missing or cannot be parsed. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00092:any_comment_concrete_external_analogy",
+    "hypothesis_id": 92,
+    "feature": {
+      "name": "any_comment_concrete_external_analogy",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: at least one comment introduces a concrete, external factual analogy (a specific real-world case, example or comparison drawn from outside the OP's own scenario).",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it). Return 1 if at least one comment introduces a concrete, external factual analogy: a specific actual real-world case, event, situation, or comparison from outside the OP's own scenario, used as an analogy or parallel to the topic (a concrete personal experience may qualify; endorsement of the analogy is not required). Purely invented hypotheticals, abstract principles, and pure logical reasoning without a concrete real-world case do not count. Return 0 if the list is valid and nonempty and no comment qualifies. Return 0 for a valid empty list? No: an empty list contains no analogy, so return 0. Return null if OC_comments is missing or malformed. List order carries no meaning. Ignore and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you or resolution updates, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is allowed if relevant. Judge from supplied current text only."
+    }
+  },
+  {
+    "key": "h00092:all_comments_solely_abstract_logical_refutation",
+    "hypothesis_id": 92,
+    "feature": {
+      "name": "all_comments_solely_abstract_logical_refutation",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Other-user comments: every comment relies solely on abstract logical refutation, with no concrete external factual analogy or specific real-world example.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it). Return 1 if every comment relies solely on abstract logical refutation of the OP's view (general reasoning, principles, definitions, logical structure) and no comment introduces a concrete external factual analogy or specific real-world case/example. Return 0 if the list is nonempty and at least one comment introduces a concrete real-world analogy, case or example. Return null if the list is empty, missing or malformed. List order carries no meaning. Ignore and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you or resolution updates, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is allowed if relevant. Judge from supplied current text only."
+    }
+  },
+  {
+    "key": "h00097:any_comment_specific_empirical_evidence",
+    "hypothesis_id": 97,
+    "feature": {
+      "name": "any_comment_specific_empirical_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' comments): 1 if at least one comment contains specific empirical evidence (e.g., concrete data, statistics, studies, documented cases or observations) offered in the commenter's own argument.",
+      "kind": "prompt",
+      "spec": "Read OC_comments, a JSON list of counter-argument comments by users other than the OP. Parse the list. Return 1 if at least one comment itself contains specific empirical evidence in support of its argument: concrete statistics, data, named studies or sources, documented real-world cases, or specific factual observations/personal experiences (not merely general assertions, opinions, hypotheticals or invented scenarios). Verification against outside sources is not required. Evidence merely quoted from the OP as the OP's position does not count. Ignore any text announcing the OP's view change or delta award, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; do not use these as evidence. Generic discussion of delta/platform rules is not an outcome announcement and is not itself empirical evidence. Return 0 if the list is valid and no comment qualifies, including an empty list. Return null if OC_comments is missing or malformed. Output a single 0/1 or null."
+    }
+  },
+  {
+    "key": "h00099:any_comment_cites_numerical_data",
+    "hypothesis_id": 99,
+    "feature": {
+      "name": "any_comment_cites_numerical_data",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' counter-argument comments): 1 if at least one comment contains specific numerical data or statistics offered in its own argument, else 0.",
+      "kind": "prompt",
+      "spec": "Read OC_comments, a JSON list of counter-argument comments by users other than the OP. Parse the list. Return 1 if at least one comment itself asserts or cites specific numerical data or statistics (e.g. concrete figures, percentages, rates, counts, dates-as-quantities, study results with numbers) as part of its argument; the number need not be verified or from an outside source. Return 0 if the list is valid and no comment contains such specific numerical data (only general assertions, qualitative claims, or incidental numbers not used as data, such as list numbering, 'two reasons', etc.). Ignore moderator/bot notices. Exclude any text that is an OP view-change or delta-award announcement, a post-outcome thank-you or resolution update, or text reporting whether the outcome occurred; generic discussion of delta/platform rules is not such an announcement and may be retained, but is not numerical data evidence unless it is itself specific numerical data used in argument. Empty list gives 0; missing or malformed input gives null. Output a single 0/1 per row."
+    }
+  }
+]

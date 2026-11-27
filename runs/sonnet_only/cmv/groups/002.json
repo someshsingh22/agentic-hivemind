@@ -1,0 +1,17 @@
+[
+  {
+    "key": "h00005:distinct_op_factual_premises_challenged",
+    "hypothesis_id": 5,
+    "feature": {
+      "name": "distinct_op_factual_premises_challenged",
+      "dtype": "numeric",
+      "source_columns": [
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' comments) read against the OP argument: count of distinct factual premises stated in the OP argument that are challenged by at least one comment.",
+      "kind": "prompt",
+      "spec": "Read the OP's argument and parse OC_comments (a JSON list of comments by other users, not the OP; list order is not chronology or rank). Identify the distinct factual premises (empirical/factual claims, not purely normative or value claims) asserted by the OP in the argument. Count how many distinct such premises are challenged (disputed, contradicted, or shown to be false/unsupported) by at least one comment; a premise challenged by several comments counts once, and one comment challenging several different premises counts each. Do not count challenges to value judgments, conclusions that are purely normative, or the OP's wording only. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates and any text reporting whether the outcome occurred, even if in the argument; generic discussion of delta/platform rules is neither an announcement nor a premise to count. Use current supplied text including marked edits; do not reconstruct an initial snapshot. Output a non-negative integer: 0 = comments challenge no OP factual premise; 1 = one; 2 = two; etc. If OC_comments is a valid empty list, output 0. If argument or OC_comments is missing or malformed, output null."
+    }
+  }
+]

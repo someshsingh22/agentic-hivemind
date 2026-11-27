@@ -1,0 +1,68 @@
+{
+  "type": "object",
+  "properties": {
+    "groups": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "members": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "h00012:any_comment_quotes_and_refutes_op_factual_claim",
+                "h00015:any_comment_engages_op_cited_examples_or_premises",
+                "h00017:any_comment_asserts_propositional_falsity",
+                "h00018:any_comment_identifies_op_internal_contradiction",
+                "h00026:any_comment_acknowledges_op_premise_before_divergence",
+                "h00029:any_comment_direct_counterargument",
+                "h00032:any_comment_redrafts_op_view_before_refuting",
+                "h00037:any_comment_contrasts_op_view_with_relatable_personal_experience",
+                "h00042:any_comment_quotes_op_argument",
+                "h00047:any_comment_presents_counterargument",
+                "h00049:any_comment_acknowledges_op_valid_point_before_discrepancy",
+                "h00051:any_comment_quotes_and_refutes_op_phrase",
+                "h00052:any_comment_refutes_op_specific_example",
+                "h00052:any_comment_addresses_op_main_premise_directly",
+                "h00054:any_comment_quotes_op_text",
+                "h00055:any_comment_validates_op_emotion_before_rebuttal",
+                "h00060:any_comment_acknowledges_op_component_then_counterexample",
+                "h00063:any_comment_introduces_verifiable_external_fact",
+                "h00074:any_comment_personal_anecdote_of_claim_consequences",
+                "h00074:any_comment_abstract_theoretical_rebuttal",
+                "h00076:any_comment_specific_counterargument",
+                "h00077:any_comment_challenges_op_assumptions",
+                "h00084:any_comment_quotes_op_text",
+                "h00085:any_comment_acknowledges_op_validity_then_narrow_caveat",
+                "h00085:any_comment_immediate_blanket_contradiction",
+                "h00087:any_comment_quotes_or_references_op_text",
+                "h00088:any_comment_directly_quotes_op_post",
+                "h00089:any_comment_substantive_counterargument",
+                "h00089:only_supportive_comments",
+                "h00090:any_comment_specific_counterargument_with_empirical_example",
+                "h00098:any_comment_well_reasoned_counterargument"
+              ]
+            }
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "members",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "groups"
+  ],
+  "additionalProperties": false
+}

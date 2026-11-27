@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "groups": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "members": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "h00011:share_comments_measured_logical_reasoning",
+                "h00011:share_comments_emotional_aggression",
+                "h00048:counterargument_cognitive_complexity",
+                "h00068:oc_comments_lexical_density",
+                "h00076:share_comments_explicit_agreement_marker",
+                "h00083:count_comments_with_specific_real_world_example"
+              ]
+            }
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "members",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "groups"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,10 @@
+{
+  "groups": [
+    {
+      "members": [
+        "h00039:has_multi_turn_reply_interaction"
+      ],
+      "reason": "Not reviewed: no cross-hypothesis pair in this source/type group."
+    }
+  ]
+}

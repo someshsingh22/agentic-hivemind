@@ -1,0 +1,58 @@
+[
+  {
+    "key": "h00008:title_uses_absolute_certainty_markers",
+    "hypothesis_id": 8,
+    "feature": {
+      "name": "title_uses_absolute_certainty_markers",
+      "dtype": "binary",
+      "source_columns": [
+        "title"
+      ],
+      "definition": "OP title: 1 if the title uses absolute certainty markers (e.g., wording asserting the claim as certain, universal or beyond doubt, without hedging); else 0",
+      "kind": "prompt",
+      "spec": "Read only the title column (the OP's heading). Return 1 if the title itself uses absolute certainty markers, i.e. wording that presents the claim as completely certain, exceptionless or beyond doubt (e.g. universal/absolute quantifiers or certainty expressions such as 'all', 'always', 'never', 'no one', 'obviously', 'undeniably', 'definitely'); these are examples, not an exhaustive list or extra requirements. Return 0 if the title has no such markers, including when it is hedged or tentative (e.g. 'generally', 'I think'). Ignore the 'CMV:' prefix. Ignore any text reporting a view change, delta award, thank-you or resolution update, or the outcome (none expected in titles); generic discussion of delta/platform rules is not such an announcement. If the title is missing or empty, return null. Output a single value: 1, 0, or null."
+    }
+  },
+  {
+    "key": "h00038:title_has_emotional_or_personal_identifier",
+    "hypothesis_id": 38,
+    "feature": {
+      "name": "title_has_emotional_or_personal_identifier",
+      "dtype": "binary",
+      "source_columns": [
+        "title"
+      ],
+      "definition": "OP title: 1 if the title contains an explicit emotional or personal identifier (e.g., stated feeling/emotion word, or first-person/self-identifying marker of the OP's own identity or experience).",
+      "kind": "prompt",
+      "spec": "Read only the title (the OP's heading). Return 1 if the title explicitly contains an emotional identifier (a stated emotion or feeling, e.g. words naming feelings such as angry, hate, afraid, love, sad) or a personal identifier (explicit first-person reference to the OP's own identity, traits, circumstances or experience, e.g. 'I am a ...', 'my ...', 'as a ...'). Both must be explicit in the title wording; do not infer from the topic or tone alone. The standard 'CMV:' prefix is not itself an identifier. Return 0 if the title has no such explicit emotional or personal identifier. Exclude any text in the title that announces a view change, delta award, thank-you/resolution update or otherwise reports the outcome; such text is not evidence. Generic mentions of platform/delta rules are not outcome announcements. If the title is missing or empty, return null. Output a single value: 1, 0, or null."
+    }
+  },
+  {
+    "key": "h00057:title_absolute_universal_quantifier",
+    "hypothesis_id": 57,
+    "feature": {
+      "name": "title_absolute_universal_quantifier",
+      "dtype": "binary",
+      "source_columns": [
+        "title"
+      ],
+      "definition": "Title: 1 if the title explicitly contains an absolute universal quantifier term (e.g., all, every, always, never, none, no one) applied to its claim.",
+      "kind": "prompt",
+      "spec": "Read only the OP title. Return 1 if the title explicitly contains an absolute universal quantifier word or phrase (such as all, every, always, never, none, no one, nobody, everyone) that quantifies the claim; these are examples, not an exhaustive list. Return 0 if the title has no such term. Ignore the 'CMV:' prefix. Do not use argument, comments or any outcome information; exclude any text reporting a view change, delta award or other outcome (not expected in titles). Missing or empty title: return null. Output a single 0/1."
+    }
+  },
+  {
+    "key": "h00057:title_variable_probabilistic_term",
+    "hypothesis_id": 57,
+    "feature": {
+      "name": "title_variable_probabilistic_term",
+      "dtype": "binary",
+      "source_columns": [
+        "title"
+      ],
+      "definition": "Title: 1 if the title explicitly contains a variable or probabilistic term (e.g., some, often, usually, generally, sometimes, most, may, can, likely).",
+      "kind": "prompt",
+      "spec": "Read only the OP title. Return 1 if the title explicitly contains a variable, non-absolute or probabilistic quantifier/hedge word or phrase (such as some, many, most, often, usually, generally, sometimes, rarely, may, might, likely, probably, tend to); these are examples, not an exhaustive list. Return 0 if the title has no such term. Ignore the 'CMV:' prefix. A title may be 1 on both this and an absolute-quantifier measure; do not resolve overlap. Do not use argument, comments or any outcome information; exclude any text reporting a view change, delta award or other outcome (not expected in titles). Missing or empty title: return null. Output a single 0/1."
+    }
+  }
+]

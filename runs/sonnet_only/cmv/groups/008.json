@@ -1,0 +1,16 @@
+[
+  {
+    "key": "h00039:has_multi_turn_reply_interaction",
+    "hypothesis_id": 39,
+    "feature": {
+      "name": "has_multi_turn_reply_interaction",
+      "dtype": "binary",
+      "source_columns": [
+        "conversation"
+      ],
+      "definition": "conversation: 1 if the formatted text contains a multi-turn reply interaction, i.e. a back-and-forth exchange of at least three turns in which some speaker label appears again after another speaker's intervening turn",
+      "kind": "prompt",
+      "spec": "Read only the conversation column, a text of turns formatted as '[speaker]: message' separated by blank lines. Return 1 if it contains a multi-turn reply interaction: a back-and-forth exchange of at least three consecutive turns in which the same speaker label speaks again after at least one other speaker's turn (e.g. A, B, A), with the later turn plausibly replying within the exchange. Return 0 if the conversation contains only single turns, only turns from distinct speakers with no speaker returning, or only one-off comments with no returning speaker. Do not treat bracketed text inside a message body as a turn label unless it begins a new turn in the format. Do not infer who the OP is. Ignore and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you or resolution updates, or any text reporting whether the outcome occurred; turns consisting solely of such content do not count as interaction turns, though generic discussion of delta/platform rules does count normally. Do not count turn content only because it is an announcement. If conversation is missing, empty or malformed such that turns cannot be identified, return null. Output a single value: 1 or 0 (or null)."
+    }
+  }
+]

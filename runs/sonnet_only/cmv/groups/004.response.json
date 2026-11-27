@@ -1,0 +1,16 @@
+{
+  "groups": [
+    {
+      "members": [
+        "h00007:distinct_counterargument_count"
+      ],
+      "reason": "Counts deduplicated distinct counter-arguments across comments; integer, empty list gives 0."
+    },
+    {
+      "members": [
+        "h00066:share_comments_quoting_op_text"
+      ],
+      "reason": "Share of comments quoting OP title/argument wording; ratio in [0,1], empty list gives null."
+    }
+  ]
+}

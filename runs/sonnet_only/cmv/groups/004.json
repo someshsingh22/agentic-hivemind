@@ -1,0 +1,34 @@
+[
+  {
+    "key": "h00007:distinct_counterargument_count",
+    "hypothesis_id": 7,
+    "feature": {
+      "name": "distinct_counterargument_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "OC_comments (other users' comments): number of semantically distinct counter-arguments against the OP's view, deduplicated across comments",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by users other than the OP), with title and argument only as context to identify the OP's view. Count the distinct counter-arguments the comments make against the OP's view; a counter-argument is a separate reason, objection, or piece of evidence challenging the OP's position. Deduplicate semantically: the same argument repeated in several comments, or restated within one comment, counts once; one comment can contribute several distinct arguments. Do not count agreement with the OP, clarifying questions, jokes, or moderator/bot notices. Ignore any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred (even in argument or comments); generic discussion of delta/platform rules is not an outcome announcement and is not itself a counter-argument unless it challenges the OP's view. Output a non-negative integer. A valid empty comment list gives 0. If OC_comments is missing or malformed, output null. Use current supplied text; no chronology is implied by list order."
+    }
+  },
+  {
+    "key": "h00066:share_comments_quoting_op_text",
+    "hypothesis_id": 66,
+    "feature": {
+      "name": "share_comments_quoting_op_text",
+      "dtype": "numeric",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "OC_comments (other users' comments): share of comments that directly quote wording from the OP's title or argument; endorsement or refutation not required.",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of counter-argument comments by users other than the OP; parse it), plus the OP's title and argument as the reference text for matching. Count a comment as quoting if it directly reproduces (verbatim or near-verbatim, typically in quotation marks or block quote) wording that appears in the OP's title or argument; the quote need not be endorsed or refuted. Do not count quotations of other sources, paraphrases without reproduced wording, or topic mentions. Ignore as OP reference text any OP view-change/delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; a quote matching only such text does not count. Generic discussion of platform/delta rules remains eligible. Use current supplied text including marked edits; do not attempt to reconstruct an initial snapshot. Output the number of quoting comments divided by total number of comments, a value in [0,1] (0 if no comment quotes OP text). Valid empty comment list or malformed/missing OC_comments: null. If a comment's quote cannot be matched because the OP title and argument are both missing, return null unless a match was positively established. List order carries no meaning."
+    }
+  }
+]

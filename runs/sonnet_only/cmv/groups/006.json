@@ -1,0 +1,30 @@
+[
+  {
+    "key": "h00030:op_argument_epistemic_certainty",
+    "hypothesis_id": 30,
+    "feature": {
+      "name": "op_argument_epistemic_certainty",
+      "dtype": "numeric",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument text: overall epistemic certainty of the OP's own assertions, 0-10 (0 = predominantly modest/uncertain/hedged markers, 10 = predominantly high-modality categorical assertions)",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument field (current supplied text, including marked edits). Score the OP's own assertions about their view on a 0-10 integer scale of epistemic certainty conveyed by modality markers. Anchors: 0 = nearly all claims are explicitly modest or uncertain (e.g. 'I think', 'maybe', 'might', 'I could be wrong', 'not sure'); 5 = a roughly even mix of hedged and unhedged claims; 10 = nearly all claims are stated with high-modality/categorical certainty (e.g. 'obviously', 'definitely', 'must', 'always', 'never', 'undeniably') and no hedging. Assumption: aggregate over the whole argument by the overall balance of hedged versus high-certainty markers on the claims central to the OP's position; this aggregation is an operational choice, not a hypothesis requirement. Exclude quotations of other people or reported opponents' positions unless the OP adopts them, and exclude moderator/bot notices. Exclude and ignore any OP view-change or delta-award announcements, post-outcome thank-you or resolution updates, and any text reporting whether the outcome occurred, even if they contain hedged or certain wording; generic discussion of delta/platform rules is not an outcome announcement and remains eligible. Do not reconstruct an initial version by removing edits. If the argument is missing, malformed, or contains no assessable OP assertions after exclusions, return null."
+    }
+  },
+  {
+    "key": "h00093:op_argument_word_count",
+    "hypothesis_id": 93,
+    "feature": {
+      "name": "op_argument_word_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "OP argument: number of whitespace-separated words in the current argument text, excluding OP view-change/delta-award announcements and post-outcome thank-you/resolution/outcome-reporting text",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's argument body; do not use title, comments or conversation). Count the words (whitespace-separated tokens) of the current supplied argument text, including marked edits and quotations, but EXCLUDING any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the outcome occurred (e.g. 'CMV changed, delta awarded', 'thanks, you changed my view'). Generic discussion of delta/platform rules is not an announcement and stays counted. Do not try to reconstruct an initial snapshot; edits are otherwise counted as current text. Return a non-negative integer (units: words; 0 = empty text). If argument is missing or malformed return null."
+    }
+  }
+]

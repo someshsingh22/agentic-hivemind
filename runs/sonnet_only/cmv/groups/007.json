@@ -1,0 +1,92 @@
+[
+  {
+    "key": "h00001:op_expresses_fear_of_social_rejection_or_isolation",
+    "hypothesis_id": 1,
+    "feature": {
+      "name": "op_expresses_fear_of_social_rejection_or_isolation",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "OP title and argument, OP's own voice: 1 if the OP explicitly expresses fear of social rejection or isolation (e.g., being rejected, ostracized, judged out, or left alone by others).",
+      "kind": "prompt",
+      "spec": "Read the OP's title and argument (current text, including marked edits). Return 1 if the OP, in their own voice, explicitly expresses fear or worry of social rejection or isolation (being rejected, ostracized, shunned, excluded or left alone by other people) connected to their view or its expression. Return 0 if no such explicit fear is present. Exclude quoted or reported other people's statements unless the OP adopts them as their own fear. Do not use any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; ignore such text entirely, but generic discussion of delta/platform rules is not an outcome announcement and may be considered if relevant. Do not reconstruct an initial version by removing edits. If title and argument are both missing or empty/malformed, return null. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00001:op_states_beliefs_without_emotional_self_defense",
+    "hypothesis_id": 1,
+    "feature": {
+      "name": "op_states_beliefs_without_emotional_self_defense",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "OP title and argument, OP's own voice: 1 if the OP states beliefs with no emotional self-defense (no expressed fear, hurt, defensiveness or self-protective emotional appeal about themselves).",
+      "kind": "prompt",
+      "spec": "Read the OP's title and argument (current text, including marked edits). Return 1 if the OP states their beliefs and reasons without any emotional self-defense, i.e. no expressions of fear, anxiety, hurt, defensiveness, or self-protective emotional appeals about themselves or their standing with others. Return 0 if any such emotional self-defense is present in the OP's own voice (including fear of social rejection or isolation). Exclude quoted or reported other people's statements unless the OP adopts them. Do not use any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, or text reporting whether the outcome occurred; ignore such text entirely, but generic discussion of delta/platform rules is not an outcome announcement and may be considered if relevant. Do not reconstruct an initial version by removing edits. If title and argument are both missing or empty/malformed, return null. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00009:op_invites_critique_or_tentative",
+    "hypothesis_id": 9,
+    "feature": {
+      "name": "op_invites_critique_or_tentative",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "OP title and argument (OP's own voice): 1 if the OP explicitly invites critique/challenge or uses tentative/hedged language about their own view, else 0.",
+      "kind": "prompt",
+      "spec": "Read the OP's title and argument (current supplied text, including marked edits). Return 1 if, in the OP's own voice, the OP explicitly invites critique, counter-arguments or challenge to their view (e.g. asking to be convinced or shown wrong) OR expresses their view with tentative/hedged language (e.g. 'I think', 'maybe', 'I might be wrong', 'not sure', 'it seems'). Return 0 if neither is present. Exclude quotations of other people or reported opponents' positions unless the OP adopts them as their own. Exclude any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates and any text reporting whether the outcome occurred; do not use them as evidence. Generic discussion of delta/platform rules is not an outcome announcement and may be considered if relevant. Do not treat the generic subreddit framing alone as an explicit invitation unless the OP's own text says so. Do not reconstruct an initial snapshot; use supplied current text. If both title and argument are missing or malformed return null. Output a single 0/1 or null."
+    }
+  },
+  {
+    "key": "h00009:op_uses_absolute_definitive_declarations",
+    "hypothesis_id": 9,
+    "feature": {
+      "name": "op_uses_absolute_definitive_declarations",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "OP title and argument (OP's own voice): 1 if the OP states their view in absolute, definitive declarations, else 0.",
+      "kind": "prompt",
+      "spec": "Read the OP's title and argument (current supplied text, including marked edits). Return 1 if, in the OP's own voice, the OP states their view in absolute or definitive declarations (e.g. categorical claims such as 'always', 'never', 'obviously', 'undeniably', 'there is no way', unqualified certainty stated as fact). Return 0 if no such absolute/definitive declaration is present. Absence of tentative language alone does not make a text absolute; require affirmative absolute/definitive wording. Exclude quotations of other people or reported opponents' positions unless the OP adopts them as their own. Exclude any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates and any text reporting whether the outcome occurred; do not use them as evidence. Generic discussion of delta/platform rules is not an outcome announcement. Do not reconstruct an initial snapshot; use supplied current text. If both title and argument are missing or malformed return null. Output a single 0/1 or null."
+    }
+  },
+  {
+    "key": "h00021:op_first_person_vulnerable_admission",
+    "hypothesis_id": 21,
+    "feature": {
+      "name": "op_first_person_vulnerable_admission",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "OP's own title/argument text: 1 if the OP makes at least one first-person vulnerable admission (OP discloses in their own voice a personal weakness, fear, failure, insecurity, mistake or emotionally exposing experience).",
+      "kind": "prompt",
+      "spec": "Read the OP's title and argument (current supplied text, including marked edits). Return 1 if the OP, speaking in their own first-person voice, makes at least one vulnerable admission: a disclosure of their own personal weakness, fear, failure, insecurity, mistake, struggle or emotionally exposing experience. Return 0 if the text is assessable and contains no such admission (merely stating opinions, or first-person statements that are not self-exposing, do not count). Ignore quoted or reported words of other people unless the OP explicitly adopts them as their own admission. Exclude and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the view changed; generic discussion of delta/platform rules is neither evidence nor an outcome announcement. Do not try to reconstruct an initial version. Return null if title and argument are both missing or malformed. Output a single 0/1 value."
+    }
+  },
+  {
+    "key": "h00021:op_third_person_distant_observation",
+    "hypothesis_id": 21,
+    "feature": {
+      "name": "op_third_person_distant_observation",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "OP's own title/argument text: 1 if the OP presents at least one distant, third-person observation (detached description of other people, groups, institutions or events, not about the OP's own experience).",
+      "kind": "prompt",
+      "spec": "Read the OP's title and argument (current supplied text, including marked edits). Return 1 if the OP presents at least one distant third-person observation: a detached description or observation about other people, groups, institutions, society or events, made from an external standpoint without personal involvement or self-disclosure. Return 0 if the text is assessable and contains no such observation. Ignore quotations of other users unless the OP adopts them as their own observation. Exclude and do not use as evidence any OP view-change or delta-award announcements, post-outcome thank-you/resolution updates, and any text reporting whether the view changed; generic discussion of delta/platform rules is neither evidence nor an outcome announcement. Do not try to reconstruct an initial version. Return null if title and argument are both missing or malformed. Output a single 0/1 value."
+    }
+  }
+]

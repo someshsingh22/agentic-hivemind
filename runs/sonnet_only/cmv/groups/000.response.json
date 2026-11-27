@@ -1,0 +1,202 @@
+{
+  "groups": [
+    {
+      "members": [
+        "h00002:any_comment_cites_functioning_institutional_precedent"
+      ],
+      "reason": "Functioning institutional precedent cited as support."
+    },
+    {
+      "members": [
+        "h00002:any_comment_relies_on_abstract_normative_principles"
+      ],
+      "reason": "Abstract normative principles; any comment."
+    },
+    {
+      "members": [
+        "h00010:any_comment_cites_specific_real_world_example",
+        "h00014:any_comment_concrete_real_world_example",
+        "h00067:any_comment_cites_specific_real_world_example",
+        "h00072:any_comment_concrete_real_world_example",
+        "h00075:any_comment_cites_specific_real_world_example",
+        "h00058:any_comment_cites_specific_real_world_example"
+      ],
+      "reason": "Any comment cites specific actual real-world example (incl. personal experience); empty list 0, malformed null."
+    },
+    {
+      "members": [
+        "h00013:any_comment_validates_op_dignity_or_effort_before_correction"
+      ],
+      "reason": "Validation then correction in same comment."
+    },
+    {
+      "members": [
+        "h00013:all_comments_purely_logical_refutation"
+      ],
+      "reason": "All comments purely logical, no validation; empty null."
+    },
+    {
+      "members": [
+        "h00016:any_comment_concrete_personal_labor_details"
+      ],
+      "reason": "Labor-process details."
+    },
+    {
+      "members": [
+        "h00016:all_comments_solely_abstract_normative"
+      ],
+      "reason": "All comments solely abstract normative; empty null."
+    },
+    {
+      "members": [
+        "h00017:any_comment_quantifies_systemic_material_harm_to_third_parties"
+      ],
+      "reason": "Quantified systemic harm."
+    },
+    {
+      "members": [
+        "h00018:any_comment_cites_external_evidence"
+      ],
+      "reason": "External evidence incl. sources, facts, cases."
+    },
+    {
+      "members": [
+        "h00019:any_comment_specific_factual_data_or_citation"
+      ],
+      "reason": "Specific factual data or verifiable citation."
+    },
+    {
+      "members": [
+        "h00023:any_comment_specific_verifiable_procedural_example"
+      ],
+      "reason": "Procedural example."
+    },
+    {
+      "members": [
+        "h00023:all_comments_solely_abstract_theoretical_rebuttals"
+      ],
+      "reason": "All abstract theoretical, no procedural example; empty null."
+    },
+    {
+      "members": [
+        "h00027:any_comment_concrete_personal_anecdote"
+      ],
+      "reason": "Personal anecdote."
+    },
+    {
+      "members": [
+        "h00027:any_comment_abstract_reasoning"
+      ],
+      "reason": "Any comment uses abstract reasoning."
+    },
+    {
+      "members": [
+        "h00036:any_comment_named_real_world_analogy"
+      ],
+      "reason": "Named real-world analogy/case."
+    },
+    {
+      "members": [
+        "h00036:any_comment_abstract_logical_rebuttal"
+      ],
+      "reason": "Abstract logical rebuttal without named example."
+    },
+    {
+      "members": [
+        "h00044:any_comment_second_person_address_to_op"
+      ],
+      "reason": "Second-person address to OP, excludes generic you and bots."
+    },
+    {
+      "members": [
+        "h00061:any_comment_second_person_address"
+      ],
+      "reason": "Second-person address to OP or reader, different scope."
+    },
+    {
+      "members": [
+        "h00050:any_comment_names_specific_external_program_or_location"
+      ],
+      "reason": "Named program or location."
+    },
+    {
+      "members": [
+        "h00050:all_comments_only_abstract_logical_refutation"
+      ],
+      "reason": "All abstract logical, no named program/location; empty null."
+    },
+    {
+      "members": [
+        "h00056:any_comment_uses_analogy_to_familiar_scenario"
+      ],
+      "reason": "Analogy to familiar scenario."
+    },
+    {
+      "members": [
+        "h00059:any_comment_specific_empirical_evidence",
+        "h00097:any_comment_specific_empirical_evidence"
+      ],
+      "reason": "Specific empirical evidence incl. personal experience; same rules."
+    },
+    {
+      "members": [
+        "h00059:only_logical_refutation_comments"
+      ],
+      "reason": "Some logical refutation and no empirical evidence."
+    },
+    {
+      "members": [
+        "h00061:any_comment_third_person_analysis"
+      ],
+      "reason": "Third-person analysis."
+    },
+    {
+      "members": [
+        "h00069:any_comment_cites_specific_localized_example"
+      ],
+      "reason": "Localized example; excludes broad statistics."
+    },
+    {
+      "members": [
+        "h00071:any_comment_concrete_locally_verifiable_example"
+      ],
+      "reason": "Locally verifiable concrete example; empty 0 but differing scope."
+    },
+    {
+      "members": [
+        "h00071:any_comment_relies_on_abstract_principles"
+      ],
+      "reason": "Abstract principles reliance."
+    },
+    {
+      "members": [
+        "h00072:all_comments_solely_abstract_logic"
+      ],
+      "reason": "All solely abstract logic; empty null."
+    },
+    {
+      "members": [
+        "h00082:any_comment_uses_concrete_example"
+      ],
+      "reason": "Concrete example incl. hypothetical."
+    },
+    {
+      "members": [
+        "h00092:any_comment_concrete_external_analogy"
+      ],
+      "reason": "External concrete analogy."
+    },
+    {
+      "members": [
+        "h00092:all_comments_solely_abstract_logical_refutation"
+      ],
+      "reason": "All abstract refutation w/o real-world example; empty null."
+    },
+    {
+      "members": [
+        "h00099:any_comment_cites_numerical_data"
+      ],
+      "reason": "Numerical data."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "groups": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "members": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "h00001:op_expresses_fear_of_social_rejection_or_isolation",
+                "h00001:op_states_beliefs_without_emotional_self_defense",
+                "h00009:op_invites_critique_or_tentative",
+                "h00009:op_uses_absolute_definitive_declarations",
+                "h00021:op_first_person_vulnerable_admission",
+                "h00021:op_third_person_distant_observation"
+              ]
+            }
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "members",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "groups"
+  ],
+  "additionalProperties": false
+}

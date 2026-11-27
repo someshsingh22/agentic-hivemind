@@ -1,0 +1,170 @@
+{
+  "groups": [
+    {
+      "members": [
+        "h00012:any_comment_quotes_and_refutes_op_factual_claim"
+      ],
+      "reason": "Quote and refute an OP factual claim, same comment."
+    },
+    {
+      "members": [
+        "h00015:any_comment_engages_op_cited_examples_or_premises"
+      ],
+      "reason": "Engagement with specific OP example/premise, not necessarily refuting."
+    },
+    {
+      "members": [
+        "h00017:any_comment_asserts_propositional_falsity"
+      ],
+      "reason": "Comment asserts an OP claim is false; no quote needed."
+    },
+    {
+      "members": [
+        "h00018:any_comment_identifies_op_internal_contradiction"
+      ],
+      "reason": "Internal contradiction in OP premises."
+    },
+    {
+      "members": [
+        "h00026:any_comment_acknowledges_op_premise_before_divergence"
+      ],
+      "reason": "Acknowledges initial premise valid then diverges; null only for missing inputs."
+    },
+    {
+      "members": [
+        "h00029:any_comment_direct_counterargument",
+        "h00047:any_comment_presents_counterargument"
+      ],
+      "reason": "Same: any comment presents counterargument against OP view; same null rules."
+    },
+    {
+      "members": [
+        "h00032:any_comment_redrafts_op_view_before_refuting"
+      ],
+      "reason": "Redraft then refute."
+    },
+    {
+      "members": [
+        "h00037:any_comment_contrasts_op_view_with_relatable_personal_experience"
+      ],
+      "reason": "Personal experience contrasting OP view."
+    },
+    {
+      "members": [
+        "h00042:any_comment_quotes_op_argument"
+      ],
+      "reason": "Quotes argument only (not title); null if argument missing."
+    },
+    {
+      "members": [
+        "h00049:any_comment_acknowledges_op_valid_point_before_discrepancy"
+      ],
+      "reason": "Acknowledge valid point then discrepancy; empty list gives null."
+    },
+    {
+      "members": [
+        "h00051:any_comment_quotes_and_refutes_op_phrase"
+      ],
+      "reason": "Quoted phrase and refutation of it."
+    },
+    {
+      "members": [
+        "h00052:any_comment_refutes_op_specific_example"
+      ],
+      "reason": "Refutes OP specific example."
+    },
+    {
+      "members": [
+        "h00052:any_comment_addresses_op_main_premise_directly"
+      ],
+      "reason": "Addresses main premise rather than example."
+    },
+    {
+      "members": [
+        "h00054:any_comment_quotes_op_text",
+        "h00084:any_comment_quotes_op_text",
+        "h00088:any_comment_directly_quotes_op_post"
+      ],
+      "reason": "Same: any comment quotes OP title or argument wording; same null rules."
+    },
+    {
+      "members": [
+        "h00055:any_comment_validates_op_emotion_before_rebuttal"
+      ],
+      "reason": "Emotion validation before rebuttal."
+    },
+    {
+      "members": [
+        "h00060:any_comment_acknowledges_op_component_then_counterexample"
+      ],
+      "reason": "Acknowledge component then counterexample."
+    },
+    {
+      "members": [
+        "h00063:any_comment_introduces_verifiable_external_fact"
+      ],
+      "reason": "New verifiable external fact."
+    },
+    {
+      "members": [
+        "h00074:any_comment_personal_anecdote_of_claim_consequences"
+      ],
+      "reason": "Personal anecdote of consequences."
+    },
+    {
+      "members": [
+        "h00074:any_comment_abstract_theoretical_rebuttal"
+      ],
+      "reason": "Abstract theoretical rebuttal."
+    },
+    {
+      "members": [
+        "h00076:any_comment_specific_counterargument"
+      ],
+      "reason": "Specific targeted counterargument."
+    },
+    {
+      "members": [
+        "h00077:any_comment_challenges_op_assumptions"
+      ],
+      "reason": "Challenges underlying assumptions."
+    },
+    {
+      "members": [
+        "h00085:any_comment_acknowledges_op_validity_then_narrow_caveat"
+      ],
+      "reason": "Acknowledge then narrow caveat."
+    },
+    {
+      "members": [
+        "h00085:any_comment_immediate_blanket_contradiction"
+      ],
+      "reason": "Blanket contradiction without acknowledgment."
+    },
+    {
+      "members": [
+        "h00087:any_comment_quotes_or_references_op_text"
+      ],
+      "reason": "Quotes or references OP text; broader."
+    },
+    {
+      "members": [
+        "h00089:any_comment_substantive_counterargument",
+        "h00098:any_comment_well_reasoned_counterargument"
+      ],
+      "reason": "Both: comment gives reasoned counterargument to OP view; same null/empty behavior."
+    },
+    {
+      "members": [
+        "h00089:only_supportive_comments"
+      ],
+      "reason": "All comments supportive."
+    },
+    {
+      "members": [
+        "h00090:any_comment_specific_counterargument_with_empirical_example"
+      ],
+      "reason": "Counterargument with empirical example."
+    }
+  ]
+}

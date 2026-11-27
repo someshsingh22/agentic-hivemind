@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "members": [
+        "h00011:share_comments_measured_logical_reasoning"
+      ],
+      "reason": "Share of comments with measured logical reasoning."
+    },
+    {
+      "members": [
+        "h00011:share_comments_emotional_aggression"
+      ],
+      "reason": "Share of comments with emotional aggression; different construct."
+    },
+    {
+      "members": [
+        "h00048:counterargument_cognitive_complexity"
+      ],
+      "reason": "Holistic 0-10 complexity score across comments."
+    },
+    {
+      "members": [
+        "h00068:oc_comments_lexical_density"
+      ],
+      "reason": "Pooled content-word ratio."
+    },
+    {
+      "members": [
+        "h00076:share_comments_explicit_agreement_marker"
+      ],
+      "reason": "Share of comments with explicit agreement markers."
+    },
+    {
+      "members": [
+        "h00083:count_comments_with_specific_real_world_example"
+      ],
+      "reason": "Count of comments with specific real-world examples; empty list gives 0."
+    }
+  ]
+}

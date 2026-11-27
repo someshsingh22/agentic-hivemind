@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "members": [
+        "h00001:op_expresses_fear_of_social_rejection_or_isolation"
+      ],
+      "reason": "Binary: explicit fear of social rejection/isolation in OP voice."
+    },
+    {
+      "members": [
+        "h00001:op_states_beliefs_without_emotional_self_defense"
+      ],
+      "reason": "Reverse-coded broader measure: absence of any emotional self-defense (fear, hurt, defensiveness)."
+    },
+    {
+      "members": [
+        "h00009:op_invites_critique_or_tentative"
+      ],
+      "reason": "Invites critique or hedged language."
+    },
+    {
+      "members": [
+        "h00009:op_uses_absolute_definitive_declarations"
+      ],
+      "reason": "Affirmative absolute wording; not the negation of hedging."
+    },
+    {
+      "members": [
+        "h00021:op_first_person_vulnerable_admission"
+      ],
+      "reason": "Personal vulnerable self-disclosure."
+    },
+    {
+      "members": [
+        "h00021:op_third_person_distant_observation"
+      ],
+      "reason": "Detached third-person observation; different construct."
+    }
+  ]
+}

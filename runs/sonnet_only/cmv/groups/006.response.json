@@ -1,0 +1,16 @@
+{
+  "groups": [
+    {
+      "members": [
+        "h00030:op_argument_epistemic_certainty"
+      ],
+      "reason": "Rates OP's epistemic certainty on a 0-10 scale from modality markers."
+    },
+    {
+      "members": [
+        "h00093:op_argument_word_count"
+      ],
+      "reason": "Counts whitespace-separated words in the argument, excluding outcome announcements."
+    }
+  ]
+}
