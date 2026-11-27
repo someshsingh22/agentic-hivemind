@@ -6,6 +6,43 @@ sequential grouped Sonnet reviews only: no decomposition, embeddings, row
 annotation, alignment/human-resolution stage, feature rewriting or SSH statistics.
 Run paid reviews on the remote machine only.
 
+## Hybrid pair-review experiment
+
+The isolated hybrid command reuses the saved paper-definition bank and pair distances.
+It does not replace the embedding-only or grouped Sonnet-only workflows.
+
+```bash
+git pull --ff-only origin namit-sonnet-only
+bash sonnet_dedup/run_hybrid.sh
+```
+
+The foreground runner activates the evaluation venv, then Node 24. Keep the terminal open.
+It reviews 247 compatible pairs at retrieval distance <= 0.30 in 25 sequential Sonnet
+sessions of up to 10 pairs. This is a candidate cutoff, not a merge threshold. Source-set,
+dtype and different-hypothesis checks remain. Code features stay separate.
+
+Sonnet receives both complete feature definitions/specs, without cosine scores, and must
+try to find an input where their outputs differ. Each pair gets a boolean equivalence
+decision and explanation. Missing candidate pairs count as unapproved. A deterministic
+greedy partition in original feature order joins a group only if every member pair has
+explicit approval; it does not close transitive chains. The partition need not maximize
+merges, and independently approved pairs may remain separate due to another group member.
+
+Inputs: `runs/calibration_paper_definitions_100/cmv/decomposed.json` and `plan.json`.
+Outputs: `runs/hybrid_paper_definitions/cmv/inputs.json`, `batch_*.response.json`,
+`decisions.json`, `summary.json`, and `plan.json`. The plan retains all saved pair distances
+and new group memberships; `within_threshold` refers to the retrieval cutoff. Original
+inputs/results are untouched. Completed batches are reused; changed inputs, model or prompt
+require a new output directory. Never commit the generated `pi/` credentials/session directory.
+
+No decomposition, new embeddings, row annotation or statistical tests run. This experiment
+makes paid Sonnet calls on the GPU machine; decision accuracy remains unverified until reviewed.
+An offline smoke exercised the actual CLI on all 247 candidates with a simulated agent,
+verified the only simulated-approved pair merged, preserved all 128 feature contracts and
+100 claims, kept 21 code features separate, and resumed with zero additional agent calls.
+Tests cover nontransitive grouping and malformed/incomplete decisions.
+
+
 ## Remote launch
 
 After any existing worker has finished, from the repository root on the remote:
