@@ -1,0 +1,31 @@
+{
+  "out": "runs/calibration_v8_examples",
+  "seed": 0,
+  "n_hypotheses": null,
+  "agent": {
+    "provider": "azure-anthropic",
+    "api": "anthropic-messages",
+    "base_url": "https://${ANTHROPIC_FOUNDRY_RESOURCE}.services.ai.azure.com/anthropic",
+    "api_key_env": "ANTHROPIC_FOUNDRY_API_KEY",
+    "model": "claude-sonnet-5-5",
+    "thinking": "medium",
+    "tools": "read,bash,submit",
+    "max_tokens": 32000,
+    "compat": {
+      "forceAdaptiveThinking": true,
+      "supportsStrictTools": true
+    },
+    "workers": 1
+  },
+  "embedding": {
+    "base_url": "https://${ANTHROPIC_FOUNDRY_RESOURCE}.services.ai.azure.com/openai/v1",
+    "api_key_env": "ANTHROPIC_FOUNDRY_API_KEY",
+    "model": "text-embedding-3-large"
+  },
+  "dedup": {
+    "threshold": 0.3
+  },
+  "test": {
+    "alpha": 0.05
+  }
+}
