@@ -129,6 +129,42 @@ pair reviews, row annotation or SSH tests run. Pass a different config as the fi
 if needed; its embedding settings are used, while its output root and hypothesis sampling are ignored
 because this command operates on the explicitly supplied saved bank.
 
+### Compare concise measurement descriptions
+
+This isolated experiment leaves the default pipeline and frozen feature contracts unchanged:
+
+```bash
+bash embedding_comparison/run.sh
+```
+
+Defaults: `runs/calibration_v8_examples/cmv/decomposed.json`, `config.yaml`, and
+`runs/embedding_inputs/cmv`. Override them with three positional arguments in that order.
+The launcher uses the existing evaluation venv, nohup and tail, like the other launchers.
+
+- Sonnet reads each saved prompt feature independently and writes a compact measurement description.
+  It sees no other features, hypothesis outcomes or dataset rows, and makes no merge decisions.
+- The editable prompt is in `embedding_comparison/prompts.yaml`. It requests preservation of
+  conjunctions, quantifiers, attribution, scope, intensity, scales and missing-input rules.
+  These are instructions, not a guarantee of lossless compression; inspect the saved descriptions.
+- Compare `name: definition` against the concise descriptions with the same embedding model,
+  source/type/owner checks and complete-linkage implementation at 0.20, 0.25 and 0.30.
+- Code features remain separate. Extraction specs and statistical definitions are not regenerated.
+- A fresh run makes one sequential Sonnet call per semantic feature (117 for the saved bank)
+  and one embedding request per representation. No pairwise LLM judge runs.
+
+The output directory contains the frozen bank, effective config, prompt snapshot,
+`descriptions/*.json`, exact ordered texts in `inputs.json`, normalized vectors for both
+representations, six plans with pair-distance exports, and `comparison_summary.json`.
+Keeping vectors permits later offline scoring experiments without another embedding request.
+Existing description/vector files are reused on restart, following file-exists caching.
+Use a **fresh output directory** after changing the bank, prompt or model; caches are not
+automatically invalidated. Default and historical calibration artifacts are untouched.
+
+Counts are not accuracy. Review description fidelity and false/missed merges, then evaluate
+on held-out pairs before claiming improvement. The existing CMV examples informed earlier
+tuning and are not a held-out benchmark.
+Never commit the generated `pi/` directory: it can contain credentials and session data.
+
 ## Local verification
 
 ```bash
