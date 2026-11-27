@@ -76,6 +76,20 @@ agents:
           otherwise document the limitation and set term=null. Do not add preprocessing or an
           executor, or blanket-delete edits. Supplied numeric length/score columns do not reveal
           pre-outcome values; document unavailable construction/timing rather than assuming them.
+        - Choose kind from the COMPLETE measurement, not its topic, input being text, or
+          output being binary/numeric. If explicit rules over supplied inputs fully determine
+          the answer without interpreting meaning, prefer code; do not ask an LLM to parse,
+          count or perform literal matching. Do not invent semantic conditions to justify prompt.
+          Examples: number of list entries or an exact substring match is code when that is
+          the complete requested measure; number of sympathetic comments or any acknowledgment
+          before disagreement is prompt because the qualifying meaning must be interpreted.
+          Exact OP wording inside explicit quote markup can be code; identifying paraphrased
+          references or whether a quotation is refuted requires prompt. Do not replace a broad
+          quotation definition with exact matching merely to classify it as code.
+          Check all required attribution, exclusions and context too: if any genuinely requires
+          meaning interpretation, keep the whole measure as one direct-row prompt. Do not add
+          a code/LLM split or drop an exclusion to force code. Explain an unresolved boundary
+          in note rather than silently changing the requested measurement.
         - If the hypothesis fixes an explicit numeric threshold or comparison (">= 100",
           "outnumber", "above median"), retain the base measurement and add the corresponding
           binary code feature. This does not require splitting semantic any/count/share
@@ -211,6 +225,8 @@ agents:
         FINAL SELF-CHECK BEFORE SUBMIT
         - Return only the minimal features needed for the exact requested relationship, with
           the six required fields and original-column-distinct names; no extra controls/proxies.
+        - Recheck kind against the full spec: code needs no undeclared semantic judgment;
+          prompt needs a genuine meaning judgment, not just text input or a numeric output.
         - Each semantic spec is self-contained over original columns only; source_columns
           declares every actual source read, including necessary OP context, and no unused ones.
         - Each spec has one nonconflicting positive/negative/empty/missing rule; its exclusions,

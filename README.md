@@ -34,10 +34,12 @@ It directly requests the needed row-level semantic quantity, without mandatory c
 label classes or dependency fields. Code is used for deterministic measurements; explicit thresholds
 may retain a base measurement and add a derived feature, as in manager main.
 
-The latest prompt refinement adds three hypothetical boundary examples only: exactly one versus multiple
-comments, any versus all normative arguments, and quotation versus quotation-and-refutation. They illustrate
-how to preserve names, definitions and extraction rules; they do not add features, merge gates or model calls.
-This is prompt tuning, not evidence that embedding distances now separate equivalent measurements.
+The prompt includes hypothetical boundary examples for comment cardinality, any versus all normative
+arguments, and quotation versus quotation-and-refutation. An explicit kind check prefers code when the
+complete measurement is deterministic, and prompt when qualifying meaning must be interpreted.
+Text input or numeric output alone does not decide kind. Mixed requirements remain one direct-row
+prompt; classification must not drop exclusions, narrow the measurement, or introduce a split stage.
+These are prompt instructions, not measured classification accuracy or new merge gates.
 
 `envs/cmv.yaml` provides the richer CMV description adapted from the ExperiGen balanced-2k configuration:
 text scope, attribution, within-comment conjunctions, comments versus commenters, unavailable measurements,
@@ -67,20 +69,21 @@ Use Node 24 LTS with `@earendil-works/pi-coding-agent` installed. Never commit c
 After any currently running worker has finished:
 
 ```bash
-git pull --ff-only origin namit-rows
-bash run_calibration.sh --tune
+git pull --ff-only origin namit-sonnet-only
+bash run_calibration.sh
 ```
 
 The launcher uses `/mnt/localssd/namit/experigen-evals/.venv`, starts a nohup worker and follows its log.
 It runs decomposition and distance-based deduplication only. No pair-review Sonnet calls, row annotation,
 Qwen calls or SSH tests run. Set `VENV` to another existing environment if needed.
 
-The three trials share the same decomposition and one prompt-only embedding batch per invocation.
-Cutoffs remain 0.20, 0.25 and 0.30. The new output directory is `runs/calibration_definitions_v1/cmv/`:
+The current classification rerun generates a fresh decomposition under `runs/calibration_kind_v1/cmv/`
+and deduplicates semantic features at the agreed **0.20 working baseline**. This is not a validated
+semantic-equivalence threshold. Code features remain separate; old results are preserved.
 
-- `threshold_0.20/`, `threshold_0.25/`, `threshold_0.30/`: trial plans, effective configs and distance exports.
-- `tuning_summary.json`: main-style hypothesis/raw/unique/prompt-feature counts.
-- Earlier judged results under `automated/` remain untouched and are not consumed.
+Optional `--tune` still compares 0.20, 0.25 and 0.30 using one shared decomposition and embedding batch.
+It writes `threshold_*/` plans and `tuning_summary.json`; the normal single-cutoff run writes `plan.json`,
+`feature_pairs.csv`, `calibration_sample.csv` and `threshold_sensitivity.csv` directly in the run directory.
 
 Without `--tune`, decomposition and the configured single cutoff write `plan.json` at the root, as on main.
 The explicit `ssh test` command reads that plan and an externally populated feature CSV. Tuning does not
@@ -146,13 +149,13 @@ No second description, rewriting pass or additional Sonnet call is added.
 Run the normal launcher with the revised config:
 
 ```bash
-bash run_calibration.sh --tune
+bash run_calibration.sh
 ```
 
-It generates a fresh decomposition under `runs/calibration_definitions_v1/cmv/`, then compares
-the existing three thresholds. File-exists caching is unchanged; use another fresh output
-directory if the prompt changes again. The historical `runs/embedding_inputs/cmv/` results remain
-preserved, but the unsuccessful separate description-rewriting command has been removed.
+The current classification rerun generates a fresh decomposition under `runs/calibration_kind_v1/cmv/`
+and uses the configured 0.20 cutoff. File-exists caching is unchanged; use another fresh output
+directory if the prompt changes again. Historical `runs/calibration_definitions_v1/cmv/` and
+`runs/embedding_inputs/cmv/` results are preserved; the separate description-rewriting command is removed.
 
 The previous experiment introduced incorrect merges even when its descriptions retained the
 decisive differences. This prompt revision is not evidence that cosine matching is now correct.

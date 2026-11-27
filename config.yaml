@@ -1,4 +1,4 @@
-out: runs/calibration_definitions_v1
+out: runs/calibration_kind_v1
 seed: 0
 n_hypotheses: null          # null = all; else a seeded sample of n
 
@@ -20,7 +20,7 @@ embedding:
   model: text-embedding-3-large
 
 dedup:
-  threshold: 0.25           # complete-linkage cosine distance, with matching source columns
+  threshold: 0.20           # working baseline; semantic correctness is still under review
 
 test:
   alpha: 0.05
