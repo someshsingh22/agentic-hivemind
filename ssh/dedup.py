@@ -1,4 +1,4 @@
-"""Merge equivalent row measurements across owners with matching dtypes and sources."""
+"""Deduplicate semantic row measurements; retain code measurements separately."""
 
 import re
 
@@ -28,7 +28,7 @@ def cluster(vectors, hypothesis, dtype, sources, threshold):
     )
     distance[incompatible] = threshold + 1
     np.fill_diagonal(distance, 0)
-    return fcluster(linkage(squareform(distance.clip(0), checks=False), "complete"), threshold, "distance")
+    return fcluster(linkage(squareform(distance, checks=False), "complete"), threshold, "distance")
 
 
 def rename(text, mapping):
@@ -36,7 +36,7 @@ def rename(text, mapping):
 
 
 def dedup(decomposed, env, cfg, vectors=None):
-    """Cluster all features; optional normalized vectors follow raw feature order."""
+    """Cluster prompt features; optional normalized vectors follow prompt-only raw order."""
     forbidden = {env["target"], env.get("group"), "post_id", "comment_id"} - {None}
     for decomposition in decomposed:
         validate_features(decomposition["features"])
@@ -49,28 +49,31 @@ def dedup(decomposed, env, cfg, vectors=None):
         raise ValueError("Feature names cannot collide with original input columns")
     pairs = []
     threshold = cfg["dedup"]["threshold"]
-    owners = np.array([owner for owner, _ in raw])
-    dtypes = np.array([f["dtype"] for _, f in raw])
-    sources = np.array(["\0".join(sorted(f["source_columns"])) for _, f in raw])
+    semantic_indices = [i for i, (_, f) in enumerate(raw) if f["kind"] == "prompt"]
+    semantic = [raw[i] for i in semantic_indices]
+    owners = np.array([owner for owner, _ in semantic])
+    dtypes = np.array([f["dtype"] for _, f in semantic])
+    sources = np.array(["\0".join(sorted(f["source_columns"])) for _, f in semantic])
     if vectors is None:
-        vectors = (embed([f"{f['name']}: {f['definition']}" for _, f in raw], cfg["embedding"])
-                   if len(raw) > 1 else np.ones((len(raw), 1)))
-    labels = cluster(vectors, owners, dtypes, sources, threshold)
+        vectors = (embed([f"{f['name']}: {f['definition']}" for _, f in semantic], cfg["embedding"])
+                   if len(semantic) > 1 else np.ones((len(semantic), 1)))
+    if len(vectors) != len(semantic):
+        raise ValueError("Embedding vectors must follow prompt-only feature order")
+    semantic_labels = cluster(vectors, owners, dtypes, sources, threshold)
+    labels = -np.arange(1, len(raw) + 1)
+    labels[semantic_indices] = semantic_labels
     distances = (1 - vectors @ vectors.T).clip(0, 2)
-    for i, (left_owner, left) in enumerate(raw):
-        for j in range(i + 1, len(raw)):
-            right_owner, right = raw[j]
-            eligible = bool(owners[i] != owners[j] and dtypes[i] == dtypes[j]
-                            and sources[i] == sources[j])
+    for i, (left_owner, left) in enumerate(semantic):
+        for j in range(i + 1, len(semantic)):
+            right_owner, right = semantic[j]
             pairs.append({
                 "left": f"h{left_owner:05d}:{left['name']}",
                 "right": f"h{right_owner:05d}:{right['name']}",
                 "left_hypothesis": left_owner, "right_hypothesis": right_owner,
                 "left_feature": left, "right_feature": right,
                 "cosine_distance": float(distances[i, j]),
-                "eligible": eligible,
                 "within_threshold": bool(distances[i, j] <= threshold),
-                "merged": bool(labels[i] == labels[j]),
+                "merged": bool(semantic_labels[i] == semantic_labels[j]),
             })
 
     canon, taken, mappings = {}, set(original), {d["id"]: {} for d in decomposed}

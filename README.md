@@ -1,27 +1,31 @@
 # agentic-hivemind
 
 Hypothesis decomposition and feature deduplication for the Agentic Hivemind paper.
-The current merge protocol follows the manager's [GitHub main branch](https://github.com/someshsingh22/agentic-hivemind/blob/main/ssh/dedup.py),
-with source-column matching added as explicitly requested.
+The merge protocol retains complete-linkage clustering from the manager's
+[GitHub main branch](https://github.com/someshsingh22/agentic-hivemind/blob/main/ssh/dedup.py),
+but deliberately diverges through source-column matching and prompt-only semantic deduplication.
 
 ## Current protocol
 
 - Sonnet decomposes each hypothesis into scalar per-row feature extractors and its frozen regression test.
 - Features have `name`, `dtype`, `source_columns`, `definition`, `kind` and `spec`.
-- Embed `name: definition` for **all features**, code and prompt alike, as on main.
-- Merge with one complete-linkage cosine-distance clustering pass. Features from the same hypothesis,
+- Embed `name: definition` for **prompt features only**, in their original order.
+- Merge prompts with one complete-linkage cosine-distance clustering pass. Features from the same hypothesis,
   with different dtypes, or with different original source-column sets cannot merge. Source order is ignored.
+- Code features remain unique, even for identical recipes and at cosine cutoff 2; they are neither embedded
+  nor included in cosine-pair exports. Code-only banks require no embedding request.
 - There is no Sonnet equivalence judge, approval matrix, alignment category or human-resolution step.
-  Code features can merge with code or prompt features when the gates and distance allow it, as on main.
 - Keep each hypothesis slot, direction and frozen formula separately; map feature references to canonical names.
 - Keep prompt extraction specs unchanged. Code recipes use main's word-based canonical reference renaming.
   This is not a Python parser and retains main's limitations around names appearing in methods or literals.
 - Retain structural/source validation and collision-safe canonical names. The custom dependency parser and
   bare-reference rejection have been removed.
 
-This protocol measures embedding-based feature similarity, not verified identity of full measurement
-functions. Matching sources does not make every close pair interchangeable. Earlier Sonnet-reviewed
-results used a different protocol and must not be presented as the same evaluator.
+This protocol measures embedding-based prompt-feature similarity, not verified identity of full measurement
+functions. Matching sources does not make every close prompt pair interchangeable. Excluding code prevents
+semantic clustering from conflating distinct code measurements; it is not a semantic-accuracy fix for prompt
+merges. Earlier all-feature and Sonnet-reviewed results used different protocols and must not be presented
+as the same evaluator. Historical artifacts are unchanged; existing files do not acquire the new semantics.
 
 ## Extraction prompts and dataset context
 
@@ -70,7 +74,7 @@ The launcher uses `/mnt/localssd/namit/experigen-evals/.venv`, starts a nohup wo
 It runs decomposition and distance-based deduplication only. No pair-review Sonnet calls, row annotation,
 Qwen calls or SSH tests run. Set `VENV` to another existing environment if needed.
 
-The three trials share the same decomposition and one all-feature embedding batch per invocation.
+The three trials share the same decomposition and one prompt-only embedding batch per invocation.
 Cutoffs remain 0.20, 0.25 and 0.30. The current output directory remains `runs/calibration_v7/cmv/`:
 
 - `threshold_0.20/`, `threshold_0.25/`, `threshold_0.30/`: trial plans, effective configs and distance exports.
@@ -81,10 +85,12 @@ Without `--tune`, decomposition and the configured single cutoff write `plan.jso
 The explicit `ssh test` command reads that plan and an externally populated feature CSV. Tuning does not
 select or install a statistical-test plan automatically.
 
-`feature_pairs.csv` covers all code and prompt pairs with original specs, distance, eligibility and final
-merge state. `calibration_sample.csv` is a deterministic seed-42 audit sample without manual-label fields.
-`threshold_sensitivity.csv` reports only total/eligible/ineligible/candidate pair counts, not accuracy.
-These diagnostics do not change the clustering decisions.
+`feature_pairs.csv` covers every unordered prompt pair with original specs, distance and final merge
+state. No code pair distances or separate eligibility fields are exported.
+`calibration_sample.csv` is a deterministic seed-42 sample of pairs passing the source/dtype/hypothesis
+checks. `threshold_sensitivity.csv` reports total pair and candidate counts, not accuracy.
+These diagnostics do not change clustering decisions. Source/dtype/hypothesis checks remain inline;
+there is no separate eligibility state or exported eligibility column. Existing artifacts are unchanged.
 
 ### Compare short and full feature descriptions
 
@@ -96,27 +102,29 @@ bash run_calibration.sh --compare-descriptions runs/calibration_v8_examples/cmv/
 ```
 
 The launcher still uses nohup and follows the log. It makes one embedding request containing
-both representations, in the same feature order:
+both representations, in the same prompt-only feature order:
 
 - `short_definition`: `name: definition`, matching the current default.
-- `full_description`: `name: spec (dtype: dtype)`, using the existing complete extraction
-  instructions or code recipe. No feature definitions or prompts are regenerated.
+- `full_description`: `name: spec (dtype: dtype)`, using the existing complete prompt extraction
+  instructions. No feature definitions or prompts are regenerated.
 
-Both views include every saved code and prompt feature. They use the same embedding configuration,
-complete-linkage merging and source/dtype/hypothesis gates, at distances 0.20, 0.25 and 0.30.
+Both views embed only saved prompt features. All saved code features remain unique in both plans.
+They use the same embedding configuration, complete-linkage merging and source/dtype/hypothesis gates,
+at distances 0.20, 0.25 and 0.30.
 This is a representation comparison, not a new equivalence judge or an automatic threshold choice.
 Longer descriptions expose measurement rules but can also increase shared boilerplate; inspect
 actual merged and missed pairs before selecting a setting. ExperiGen prod's description-based
 search is candidate retrieval, not evidence that cosine similarity establishes equivalence.
 
-Results are written beside the input file under `description_comparison/`:
+Results are written beside the input file under `semantic_description_comparison/`:
 
-- `inputs.json`: source path, embedding configuration, ordered feature IDs and exact embedding texts.
+- `inputs.json`: source path, embedding configuration, ordered prompt-feature IDs and exact embedding texts.
 - `short_definition/threshold_*/` and `full_description/threshold_*/`: plans, configs and distance exports.
 - `comparison_summary.json`: counts for both representations at each threshold.
 
-Existing decomposition, baseline plans and the default pipeline are not overwritten. Each comparison
-invocation re-embeds both views and replaces only its own comparison outputs. No Sonnet generation,
+Existing decomposition, baseline plans, historical `description_comparison/` artifacts and the default pipeline
+are not overwritten. Each comparison invocation re-embeds both views and replaces only its own semantic
+comparison outputs. No Sonnet generation,
 pair reviews, row annotation or SSH tests run. Pass a different config as the final launcher argument
 if needed; its embedding settings are used, while its output root and hypothesis sampling are ignored
 because this command operates on the explicitly supplied saved bank.
@@ -127,8 +135,11 @@ because this command operates on the explicitly supplied saved bank.
 uv run python -m unittest discover -s tests -v
 ```
 
-Deterministic checks cover all-feature merging, source/dtype/owner gates, complete-linkage boundaries,
-canonical code/formula references, file-exists reuse, interrupted-run resume and distance exports.
-A Node 24+ check executes the submit extension. A throwaway comparison exercised the fetched main
-clustering implementation and confirmed matching memberships when sources match. The actual nohup/tail
-launcher was exercised with simulated model/embedding responses; no paid calls were made locally.
+Deterministic tests cover prompt-only merging, code uniqueness without embeddings, source/dtype/owner gates,
+complete-linkage boundaries, canonical code/formula references, file-exists reuse, interrupted-run resume
+and prompt-pair distance exports. Code indicators for exactly one versus at least two comments retain
+distinct frozen terms and compute outputs. A Node 24+ check executes the submit extension.
+Historical comparisons against the fetched main implementation predate prompt-only deduplication and
+do not establish current all-feature parity.
+After the bookkeeping cleanup, a CLI replay using saved embedding geometry reproduced all six semantic
+partitions and candidate counts, with all 16 code features separate. No paid model calls were used.

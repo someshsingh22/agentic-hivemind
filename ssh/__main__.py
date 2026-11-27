@@ -68,7 +68,7 @@ def tune(env, config="config.yaml"):
     decompose(env, config)
     cfg, env, out = setup(env, config)
     decomposed = read(out / "decomposed.json")["decomposed"]
-    features = [feature for claim in decomposed for feature in claim["features"]]
+    features = [feature for claim in decomposed for feature in claim["features"] if feature["kind"] == "prompt"]
     vectors = embed([f"{f['name']}: {f['definition']}" for f in features], cfg["embedding"]) if len(features) > 1 else None
     results = {}
     for threshold in (0.20, 0.25, 0.30):
@@ -81,12 +81,12 @@ def tune(env, config="config.yaml"):
         write_calibration(plan, trial, threshold)
         results[f"{threshold:.2f}"] = summary(plan)
         write(out / "tuning_summary.json", results)
-        print(json.dumps({"threshold": threshold, **summary(plan)}), flush=True)
+        print(json.dumps({"threshold": threshold, **results[f"{threshold:.2f}"]}), flush=True)
     return results
 
 
 def compare_descriptions(decomposed, config="config.yaml"):
-    """Compare embedding representations on saved features; never decompose or annotate."""
+    """Compare prompt-only embeddings in semantic_description_comparison; never decompose or annotate."""
     from .calibration import write_calibration
     from .dedup import dedup, summary
     from .features import validate_features
@@ -99,17 +99,17 @@ def compare_descriptions(decomposed, config="config.yaml"):
     env, claims = data["env"], data["decomposed"]
     for claim in claims:
         validate_features(claim["features"])
-    features = [feature for claim in claims for feature in claim["features"]]
+    features = [feature for claim in claims for feature in claim["features"] if feature["kind"] == "prompt"]
     texts = {
         "short_definition": [f"{f['name']}: {f['definition']}" for f in features],
         "full_description": [f"{f['name']}: {f['spec']} (dtype: {f['dtype']})" for f in features],
     }
     count = len(features)
     vectors = embed(texts["short_definition"] + texts["full_description"], cfg["embedding"]) if count > 1 else None
-    out = source.parent / "description_comparison"
+    out = source.parent / "semantic_description_comparison"
     write(out / "inputs.json", {
         "source": str(source.resolve()), "embedding": cfg["embedding"],
-        "feature_order": [{"hypothesis": d["id"], "name": f["name"]} for d in claims for f in d["features"]],
+        "feature_order": [{"hypothesis": d["id"], "name": f["name"]} for d in claims for f in d["features"] if f["kind"] == "prompt"],
         "texts": texts,
     })
     results = {}
@@ -126,7 +126,8 @@ def compare_descriptions(decomposed, config="config.yaml"):
             write_calibration(plan, trial, threshold)
             results[representation][f"{threshold:.2f}"] = summary(plan)
             write(out / "comparison_summary.json", results)
-            print(json.dumps({"representation": representation, "threshold": threshold, **summary(plan)}), flush=True)
+            print(json.dumps({"representation": representation, "threshold": threshold,
+                              **results[representation][f"{threshold:.2f}"]}), flush=True)
     return results
 
 

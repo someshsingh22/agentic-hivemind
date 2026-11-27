@@ -40,23 +40,64 @@ class DeduplicationTests(unittest.TestCase):
         with patch.object(deduplication, "embed", side_effect=identical_vectors):
             return deduplication.dedup(claims, ENV, cfg)
 
-    def test_all_kinds_merge_and_embed_name_definition_in_raw_order(self):
+    def test_only_prompts_merge_and_embed_in_raw_order_at_threshold_two(self):
         claims = [hypothesis(i, [feature(name, kind=kind)]) for i, (name, kind) in enumerate(
-            [("uncertainty", "code"), ("self_doubt", "prompt"), ("hesitation", "code")])]
+            [("uncertainty", "code"), ("self_doubt", "prompt"),
+             ("hesitation", "code"), ("doubt", "prompt")])]
         original = copy.deepcopy(claims)
+        cfg = {**CFG, "dedup": {"threshold": 2}}
         with patch.object(deduplication, "embed", side_effect=identical_vectors) as embed:
-            plan = deduplication.dedup(claims, ENV, CFG)
+            plan = deduplication.dedup(claims, ENV, cfg)
         embed.assert_called_once_with([f"{f['name']}: {f['definition']}" for d in claims
-                                       for f in d["features"]], CFG["embedding"])
-        self.assertEqual(len(plan["features"]), 1)
-        self.assertEqual([h["term"] for h in plan["hypotheses"]], ["uncertainty"] * 3)
-        self.assertEqual(plan["hypotheses"][1]["formula"], "delta ~ uncertainty")
-        self.assertEqual(plan["hypotheses"][1]["h0"], "uncertainty has no association")
+                                       for f in d["features"] if f["kind"] == "prompt"], cfg["embedding"])
+        self.assertEqual([f["name"] for f in plan["features"]], ["uncertainty", "self_doubt", "hesitation"])
+        self.assertEqual([h["term"] for h in plan["hypotheses"]],
+                         ["uncertainty", "self_doubt", "hesitation", "self_doubt"])
+        self.assertEqual(plan["hypotheses"][3]["formula"], "delta ~ self_doubt")
+        self.assertEqual(plan["hypotheses"][3]["h0"], "self_doubt has no association")
+        self.assertEqual(len(plan["feature_pairs"]), 1)
+        self.assertTrue(plan["feature_pairs"][0]["merged"])
         self.assertEqual(claims, original)
         self.assertEqual(deduplication.summary(plan), {
-            "hypotheses": 3, "features_raw": 3, "features_unique": 1,
-            "prompt_features_raw": 1, "prompt_features_unique": 0})
+            "hypotheses": 4, "features_raw": 4, "features_unique": 3,
+            "prompt_features_raw": 2, "prompt_features_unique": 1})
         self.assertNotIn("dedup_reviews", plan)
+
+    def test_identical_code_features_remain_unique_without_embeddings(self):
+        claims = [hypothesis(i, [feature("indicator", kind="code", spec="indicator = 1")])
+                  for i in range(2)]
+        with patch.object(deduplication, "embed", side_effect=AssertionError("Unexpected embedding")):
+            plan = deduplication.dedup(claims, ENV, {**CFG, "dedup": {"threshold": 2}})
+        self.assertEqual([f["name"] for f in plan["features"]], ["indicator", "indicator_2"])
+        self.assertEqual([h["term"] for h in plan["hypotheses"]], ["indicator", "indicator_2"])
+        self.assertEqual(plan["feature_pairs"], [])
+
+    def test_exactly_one_and_at_least_two_code_indicators_keep_frozen_terms_and_outputs(self):
+        claims = [hypothesis(40, [feature("exactly_one", ("comment_count",), kind="code",
+                                        spec="exactly_one = comment_count == 1")]),
+                  hypothesis(65, [feature("at_least_two", ("comment_count",), kind="code",
+                                        spec="at_least_two = comment_count >= 2")])]
+        with patch.object(deduplication, "embed", side_effect=AssertionError("Unexpected embedding")):
+            plan = deduplication.dedup(claims, ENV, {**CFG, "dedup": {"threshold": 2}})
+        self.assertEqual([h["term"] for h in plan["hypotheses"]], ["exactly_one", "at_least_two"])
+        self.assertEqual([h["formula"] for h in plan["hypotheses"]],
+                         ["delta ~ exactly_one", "delta ~ at_least_two"])
+        namespace = {"comment_count": np.array([0, 1, 2, 3])}
+        for item in plan["features"]:
+            exec(item["spec"], namespace)
+        np.testing.assert_array_equal(namespace["exactly_one"], [False, True, False, False])
+        np.testing.assert_array_equal(namespace["at_least_two"], [False, False, True, True])
+        self.assertEqual(plan["feature_pairs"], [])
+
+    def test_supplied_vectors_follow_prompt_only_raw_order(self):
+        claims = [hypothesis(0, [feature("code", kind="code")]),
+                  hypothesis(1, [feature("first")]), hypothesis(2, [feature("second")]),
+                  hypothesis(3, [feature("other_code", kind="code")])]
+        with patch.object(deduplication, "embed", side_effect=AssertionError("Unexpected embedding")):
+            plan = deduplication.dedup(claims, ENV, CFG, vectors=np.array([[1., 0.], [1., 0.]]))
+        self.assertEqual([f["name"] for f in plan["features"]], ["code", "first", "other_code"])
+        self.assertEqual([h["term"] for h in plan["hypotheses"]], ["code", "first", "first", "other_code"])
+        self.assertEqual(len(plan["feature_pairs"]), 1)
 
     def test_matching_sources_are_order_independent(self):
         plan = self.dedup([hypothesis(0, [feature("a", ("argument", "title"))]),
@@ -71,7 +112,7 @@ class DeduplicationTests(unittest.TestCase):
             with self.subTest(threshold=threshold):
                 plan = self.dedup(claims, {**CFG, "dedup": {"threshold": threshold}})
                 self.assertEqual(len(plan["features"]), 4)
-                self.assertTrue(all(not p["eligible"] and not p["merged"] for p in plan["feature_pairs"]))
+                self.assertTrue(all(not p["merged"] for p in plan["feature_pairs"]))
 
     def test_complete_linkage_does_not_chain_distant_endpoints(self):
         vectors = np.array([[math.cos(a), math.sin(a)] for a in (0, 0.5, 1.0)])
@@ -84,9 +125,6 @@ class DeduplicationTests(unittest.TestCase):
         self.assertEqual(len(plan["feature_pairs"]), 3)
         for pair in plan["feature_pairs"]:
             i, j = pair["left_hypothesis"], pair["right_hypothesis"]
-            self.assertEqual(set(pair), {"left", "right", "left_hypothesis", "right_hypothesis",
-                                        "left_feature", "right_feature", "cosine_distance",
-                                        "eligible", "within_threshold", "merged"})
             self.assertEqual(pair["left"], f"h{i:05d}:f{i}")
             self.assertAlmostEqual(pair["cosine_distance"], 1 - vectors[i] @ vectors[j])
 

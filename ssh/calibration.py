@@ -1,4 +1,4 @@
-"""Deterministic all-feature pair exports and threshold candidate counts."""
+"""Deterministic semantic-feature pair exports and threshold candidate counts."""
 
 import csv
 import json
@@ -15,13 +15,10 @@ FEATURE_FIELDS = (
 PAIR_FIELDS = (
     "pair_id", "left", "right", "left_hypothesis", "right_hypothesis",
     *(f"{side}_{field}" for side in ("left", "right") for field in FEATURE_FIELDS),
-    "left_feature", "right_feature", "cosine_distance", "eligible",
+    "left_feature", "right_feature", "cosine_distance",
     "within_threshold", "merged", "configured_threshold",
 )
-SENSITIVITY_FIELDS = (
-    "threshold", "total_pairs", "eligible_pairs", "ineligible_pairs",
-    "candidate_total",
-)
+SENSITIVITY_FIELDS = ("threshold", "total_pairs", "candidate_total")
 
 
 def _distance(value):
@@ -35,15 +32,9 @@ def _distance(value):
 
 
 def _boolean(value):
-    if isinstance(value, bool):
-        return value
-    if isinstance(value, str):
-        normalized = value.strip().lower()
-        if normalized in ("true", "1"):
-            return True
-        if normalized in ("false", "0"):
-            return False
-    raise ValueError(f"Eligibility/boolean must be true, false, 1, or 0: {value!r}")
+    if not isinstance(value, bool):
+        raise ValueError(f"Pair flags must be boolean: {value!r}")
+    return value
 
 
 def _pair_key(row):
@@ -61,19 +52,13 @@ def _json(value):
 
 def _validate_rows(rows):
     """Validate before writing anything; detect reverse pairs as duplicates too."""
-    validated, keys, ids = [], set(), set()
+    validated, keys = [], set()
     for row in rows:
         key = _pair_key(row)
-        pair_id = row.get("pair_id") or _json(key)
-        if key in keys or pair_id in ids:
-            raise ValueError(f"Duplicate pair ID: {pair_id}")
+        if key in keys:
+            raise ValueError(f"Duplicate feature pair: {key}")
         keys.add(key)
-        ids.add(pair_id)
-        if "eligible" not in row:
-            raise ValueError("Every pair requires explicit eligibility")
-        eligible = _boolean(row["eligible"])
-        validated.append({**row, "cosine_distance": _distance(row.get("cosine_distance")),
-                          "eligible": eligible})
+        validated.append({**row, "cosine_distance": _distance(row.get("cosine_distance"))})
     return sorted(validated, key=_pair_key)
 
 
@@ -84,23 +69,19 @@ def _write_csv(path, fields, rows):
         writer.writerows(rows)
 
 
-def _sensitivity(rows):
-    eligible = [row for row in rows if row["eligible"]]
+def _sensitivity(rows, comparisons):
     for threshold in THRESHOLDS:
-        candidates = [row for row in eligible if row["cosine_distance"] <= threshold]
         yield {
             "threshold": threshold,
             "total_pairs": len(rows),
-            "eligible_pairs": len(eligible),
-            "ineligible_pairs": len(rows) - len(eligible),
-            "candidate_total": len(candidates),
+            "candidate_total": sum(row["cosine_distance"] <= threshold for row in comparisons),
         }
 
 
 def write_calibration(plan, out, threshold):
-    """Export every original feature pair and a reproducible eligible audit sample.
+    """Export prompt pairs and sample pairs with matching sources/dtypes across hypotheses.
 
-    Sampling is without replacement, at most ten eligible pairs per half-open bin
+    Sampling is without replacement, at most ten pairs per half-open bin
     (the last bin includes distance 2), seeded with 42 after sorting pair keys.
     """
     threshold = _distance(threshold)
@@ -108,7 +89,7 @@ def write_calibration(plan, out, threshold):
     for pair in plan["feature_pairs"]:
         row = {field: pair[field] for field in (
             "left", "right", "left_hypothesis", "right_hypothesis", "cosine_distance",
-            "eligible", "within_threshold", "merged",
+            "within_threshold", "merged",
         )}
         row["pair_id"] = _json(_pair_key(row))
         for side in ("left", "right"):
@@ -122,15 +103,19 @@ def write_calibration(plan, out, threshold):
         row["configured_threshold"] = threshold
         rows.append(row)
     rows = _validate_rows(rows)
+    comparisons = [row for row in rows
+                   if row["left_hypothesis"] != row["right_hypothesis"]
+                   and row["left_dtype"] == row["right_dtype"]
+                   and set(json.loads(row["left_source_columns"])) == set(json.loads(row["right_source_columns"]))]
     randomizer = random.Random(42)
     sample = []
     for lower, upper in zip(DISTANCE_BINS, DISTANCE_BINS[1:]):
-        bucket = [row for row in rows if row["eligible"] and lower <= row["cosine_distance"] < upper]
+        bucket = [row for row in comparisons if lower <= row["cosine_distance"] < upper]
         sample.extend(randomizer.sample(bucket, min(10, len(bucket))))
     sample.sort(key=_pair_key)
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     _write_csv(out / "feature_pairs.csv", PAIR_FIELDS, rows)
     _write_csv(out / "calibration_sample.csv", PAIR_FIELDS, sample)
-    _write_csv(out / "threshold_sensitivity.csv", SENSITIVITY_FIELDS, _sensitivity(rows))
+    _write_csv(out / "threshold_sensitivity.csv", SENSITIVITY_FIELDS, _sensitivity(rows, comparisons))
 
