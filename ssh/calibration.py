@@ -1,8 +1,4 @@
-"""Immutable pair exports and descriptive counts of automated binary decisions.
-
-Sensitivity reports reviewed and unreviewed candidates, not prediction accuracy.
-No threshold is recommended or tuned.
-"""
+"""Deterministic all-feature pair exports and threshold candidate counts."""
 
 import csv
 import json
@@ -20,13 +16,11 @@ PAIR_FIELDS = (
     "pair_id", "left", "right", "left_hypothesis", "right_hypothesis",
     *(f"{side}_{field}" for side in ("left", "right") for field in FEATURE_FIELDS),
     "left_feature", "right_feature", "cosine_distance", "eligible",
-    "within_threshold", "same_candidate_cluster", "review_verdict", "review_reason",
-    "merged", "configured_threshold",
+    "within_threshold", "merged", "configured_threshold",
 )
 SENSITIVITY_FIELDS = (
     "threshold", "total_pairs", "eligible_pairs", "ineligible_pairs",
-    "candidate_total", "reviewed_candidate_total", "equivalent_candidate_total",
-    "distinct_candidate_total", "unreviewed_candidate_total",
+    "candidate_total",
 )
 
 
@@ -75,16 +69,11 @@ def _validate_rows(rows):
             raise ValueError(f"Duplicate pair ID: {pair_id}")
         keys.add(key)
         ids.add(pair_id)
-        verdict = row.get("review_verdict", "")
-        if verdict not in ("", "equivalent", "distinct"):
-            raise ValueError(f"Invalid review_verdict: {verdict!r}")
         if "eligible" not in row:
             raise ValueError("Every pair requires explicit eligibility")
         eligible = _boolean(row["eligible"])
-        if verdict and not eligible:
-            raise ValueError("Ineligible pairs cannot have review verdicts")
         validated.append({**row, "cosine_distance": _distance(row.get("cosine_distance")),
-                          "eligible": eligible, "review_verdict": verdict})
+                          "eligible": eligible})
     return sorted(validated, key=_pair_key)
 
 
@@ -99,37 +88,27 @@ def _sensitivity(rows):
     eligible = [row for row in rows if row["eligible"]]
     for threshold in THRESHOLDS:
         candidates = [row for row in eligible if row["cosine_distance"] <= threshold]
-        equivalent = sum(row["review_verdict"] == "equivalent" for row in candidates)
-        distinct = sum(row["review_verdict"] == "distinct" for row in candidates)
-        reviewed = equivalent + distinct
         yield {
             "threshold": threshold,
             "total_pairs": len(rows),
             "eligible_pairs": len(eligible),
             "ineligible_pairs": len(rows) - len(eligible),
             "candidate_total": len(candidates),
-            "reviewed_candidate_total": reviewed,
-            "equivalent_candidate_total": equivalent,
-            "distinct_candidate_total": distinct,
-            "unreviewed_candidate_total": len(candidates) - reviewed,
         }
 
 
 def write_calibration(plan, out, threshold):
-    """Export all supplied original semantic pairs and a reproducible audit sample.
+    """Export every original feature pair and a reproducible eligible audit sample.
 
-    The producer supplies stable raw feature keys and original feature objects.
     Sampling is without replacement, at most ten eligible pairs per half-open bin
     (the last bin includes distance 2), seeded with 42 after sorting pair keys.
-    Samples retain automated verdicts; unreviewed pairs remain explicitly unreviewed.
     """
     threshold = _distance(threshold)
     rows = []
     for pair in plan["feature_pairs"]:
         row = {field: pair[field] for field in (
             "left", "right", "left_hypothesis", "right_hypothesis", "cosine_distance",
-            "eligible", "within_threshold", "same_candidate_cluster", "review_verdict",
-            "review_reason", "merged",
+            "eligible", "within_threshold", "merged",
         )}
         row["pair_id"] = _json(_pair_key(row))
         for side in ("left", "right"):
@@ -138,7 +117,7 @@ def write_calibration(plan, out, threshold):
             for field in FEATURE_FIELDS:
                 value = feature.get(field, "")
                 row[f"{side}_{field}"] = _json(value) if isinstance(value, (list, dict)) else value
-        for field in ("within_threshold", "same_candidate_cluster", "merged"):
+        for field in ("within_threshold", "merged"):
             row[field] = _boolean(row[field])
         row["configured_threshold"] = threshold
         rows.append(row)

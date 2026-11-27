@@ -37,15 +37,13 @@ def decompose(env, config="config.yaml"):
 
 
 def dedup(env, config="config.yaml"):
-    """Merge equivalent features -> OUT/automated/plan.json and frozen tests."""
+    """Merge features by source-aware cosine clustering -> OUT/plan.json."""
     from .dedup import dedup, summary
-    from .equivalence import EquivalenceReviewer
     from .calibration import write_calibration
 
     cfg, env, out = setup(env, config)
     decomposed = read(out / "decomposed.json")["decomposed"]
-    out = out / "automated"
-    plan = dedup(decomposed, env, cfg, EquivalenceReviewer(cfg, out))
+    plan = dedup(decomposed, env, cfg)
     write(out / "plan.json", plan)
     write_calibration(plan, out, cfg["dedup"]["threshold"])
     return summary(plan)
@@ -56,33 +54,28 @@ def test(env, csv, config="config.yaml"):
     from .stats import run
 
     cfg, env, out = setup(env, config)
-    out = out / "automated"
     results = run(read(out / "plan.json"), pd.read_csv(csv), cfg["test"]["alpha"])
     results.to_csv(out / "results.csv", index=False)
     return {"tested": int(results.p.notna().sum()), "ssh": int(results.ssh.sum()), "total": len(results)}
 
 
 def tune(env, config="config.yaml"):
-    """Decompose once and compare three reviewed dedup thresholds; no annotation/tests."""
+    """Decompose once and compare three cosine-distance thresholds; no annotation/tests."""
     from .calibration import write_calibration
     from .dedup import dedup, summary
-    from .equivalence import EquivalenceReviewer
     from .models import embed
 
     decompose(env, config)
     cfg, env, out = setup(env, config)
     decomposed = read(out / "decomposed.json")["decomposed"]
-    out = out / "automated"
-    semantic = [feature for claim in decomposed for feature in claim["features"]
-                if feature["kind"] == "prompt"]
-    vectors = embed([f"{f['name']}: {f['definition']}" for f in semantic], cfg["embedding"]) if len(semantic) > 1 else None
-    reviewer = EquivalenceReviewer(cfg, out)
+    features = [feature for claim in decomposed for feature in claim["features"]]
+    vectors = embed([f"{f['name']}: {f['definition']}" for f in features], cfg["embedding"]) if len(features) > 1 else None
     results = {}
     for threshold in (0.20, 0.25, 0.30):
         trial = out / f"threshold_{threshold:.2f}"
         trial_cfg = {**cfg, "dedup": {**cfg["dedup"], "threshold": threshold}}
         print(f"Starting threshold {threshold:.2f}", flush=True)
-        plan = dedup(decomposed, env, trial_cfg, reviewer, vectors=vectors)
+        plan = dedup(decomposed, env, trial_cfg, vectors=vectors)
         write(trial / "config.json", trial_cfg)
         write(trial / "plan.json", plan)
         write_calibration(plan, trial, threshold)

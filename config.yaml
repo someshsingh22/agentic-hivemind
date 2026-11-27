@@ -20,7 +20,7 @@ embedding:
   model: text-embedding-3-large
 
 dedup:
-  threshold: 0.25           # candidate cosine distance; Sonnet must also approve full-rubric equivalence
+  threshold: 0.25           # complete-linkage cosine distance, with matching source columns
 
 test:
   alpha: 0.05

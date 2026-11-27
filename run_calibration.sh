@@ -42,7 +42,7 @@ if (( worker )); then
     else
         printf '[%s] Starting decomposition: %s | %s\n' "$(date -u +%FT%TZ)" "$env_file" "$config_file"
         "$VENV/bin/python" -u -m ssh decompose "$env_file" --config "$config_file"
-        printf '[%s] Starting semantic-feature deduplication\n' "$(date -u +%FT%TZ)"
+        printf '[%s] Starting source-aware cosine deduplication\n' "$(date -u +%FT%TZ)"
         "$VENV/bin/python" -u -m ssh dedup "$env_file" --config "$config_file"
     fi
     printf '[%s] Calibration complete. Stop here and review the artifacts; no annotation or SSH tests ran.\n' "$(date -u +%FT%TZ)"

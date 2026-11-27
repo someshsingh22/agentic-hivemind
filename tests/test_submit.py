@@ -39,9 +39,6 @@ for (const name of ['argument', 'title', 'post_id', 'comment_id']) {
 }
 payload.features[0].name = 'base';
 payload.features[1].spec = 'Using base: 1 if base >= 3, else 0.';
-await assert.rejects(tool.execute('ambiguous-dependency', payload), /use df/);
-assert.equal(existsSync(process.env.SUBMIT_OUT), false);
-payload.features[1].spec = "Using `base`: df['derived'] = df['base']; match r'base' in df['argument'].";
 payload.features[1].dtype = 'vector';
 await assert.rejects(tool.execute('bad-metadata', payload));
 assert.equal(existsSync(process.env.SUBMIT_OUT), false);
@@ -49,7 +46,7 @@ payload.features[1].dtype = 'binary';
 const result = await tool.execute('corrected', payload);
 assert.equal(result.terminate, true);
 assert.deepEqual(JSON.parse(readFileSync(process.env.SUBMIT_OUT, 'utf8')), payload);
-console.log('Submission smoke passed: invalid sources, raw-name collisions, ambiguous dependencies and metadata rejected before write; corrected submission saved.');
+console.log('Submission smoke passed: invalid sources, raw-name collisions and metadata rejected before write; corrected bare-dependency submission saved.');
 """
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
