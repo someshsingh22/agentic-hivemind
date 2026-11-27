@@ -60,28 +60,30 @@ structural/source validation. There is no dataset/prompt/model fingerprint gate 
 Changing input values, hypotheses, prompts or models does not automatically invalidate existing files.
 Use a new output directory explicitly when a fresh decomposition is intended.
 
-Historical per-hypothesis files remain preserved. The revised definition prompt uses a fresh default
-output directory, so the next calibration generates new definitions instead of reusing old ones.
-Prior `decomposition_inputs.json` files are ignored, not removed. Existing artifacts are not relabeled.
+Existing per-hypothesis files remain preserved. The paper-style description check uses a fresh
+output directory and ten seed-0 sampled hypotheses, so it does not reuse earlier descriptions.
+Prior `decomposition_inputs.json` files are ignored, not removed.
 
 ## Run
 
 Set `ANTHROPIC_FOUNDRY_RESOURCE=mdsr-resource-dev-resource` and `ANTHROPIC_FOUNDRY_API_KEY` in `.env`.
 Use Node 24 LTS with `@earendil-works/pi-coding-agent` installed. Never commit credentials.
 
-For the current classification-only review, after any running worker has finished:
+For the current ten-hypothesis definition-readability check, after any running worker has finished:
 
 ```bash
 git pull --ff-only origin namit-sonnet-only
+source /mnt/localssd/namit/experigen-evals/.venv/bin/activate
 source ~/.nvm/nvm.sh
 nvm use 24
-source /mnt/localssd/namit/experigen-evals/.venv/bin/activate
+hash -r
 python -u -m ssh decompose envs/cmv.yaml --config config.yaml
 ```
 
-This generates fresh features and code/prompt assignments in
-`runs/calibration_simple_kind_v1/cmv/decomposed.json`. It is decomposition plus classification,
-not relabeling of a frozen bank. No embeddings, merging, annotation or statistical tests run.
+This selects ten hypotheses with the existing seed-0 sampler and generates fresh features and
+code/prompt assignments in `runs/calibration_paper_definitions_10/cmv/decomposed.json`.
+It is decomposition plus classification, not relabeling of a frozen bank.
+No embeddings, merging, annotation or statistical tests run.
 Existing outputs are preserved. Completed per-hypothesis files are reused on restart.
 The agent's stdout is suppressed; completed files appear in `decomposed/`.
 
@@ -144,11 +146,16 @@ because this command operates on the explicitly supplied saved bank.
 
 ### Original descriptions written during decomposition
 
-The decomposition prompt now asks for one compact `definition` that states the measured quantity
-and decisive conditions: any/every, solely, conjunctions, intensity, attribution, scope and order.
-It describes the positive measurement directly rather than just naming its topic. Repeated parsing,
-output-format and outcome-leakage instructions stay in the full self-contained `spec`; they are not
-copied into every embedding description. Material exceptions must still be preserved.
+The decomposition prompt requests `definition` as a short, plain-language question, following
+[ExperiGen Figure 17 and §14.2.1](https://arxiv.org/pdf/2602.07983#page=50).
+For example: "Does at least one comment validate the OP's dignity or effort before correcting
+their reasoning in that same comment?" Numeric questions state the requested quantity, such as
+"What proportion of words across the counterargument comments are content words?"
+Keep output coding in `dtype`/`spec`, not "1 if ... else 0" in the description. Preserve decisive
+conditions and quantity; full extraction rules remain in `spec`. This changes generated output,
+not just the HTML display, without adding schema fields or a second description-generation call.
+A simulated fresh/cached decomposition smoke and all 41 existing tests passed; real model
+adherence to the new wording remains unverified. No paid calls were made.
 
 The earlier description-writing revision did not change measurement rules. The current
 classification revision additionally separates raw mechanical computation from source suitability.

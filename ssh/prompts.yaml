@@ -63,10 +63,15 @@ agents:
         - source_columns: nonempty list of original predictor columns actually read, including
           necessary context and original sources of referenced features. No generated names or
           unused sources added to make source sets match.
-        - definition: concise description of speaker, source, quantity and decisive conditions.
-          The embedding input is name + definition, not the full spec. Preserve distinctions
-          such as any/every, solely, AND/OR, intensity, attribution, scope and required order.
-          Keep routine parsing/output instructions in spec instead.
+        - definition: one short, plain-language question describing what the feature measures,
+          as in ExperiGen's feature descriptions. For example: "Does at least one comment
+          validate the OP's dignity or effort before correcting their reasoning in that same
+          comment?" or "What proportion of words across the counterargument comments are
+          content words (nouns, verbs, adjectives or adverbs)?"
+          Preserve source/speaker, quantity and decisive conditions such as any/every, solely,
+          AND/OR and order. Do not write "1 if ... else 0", code, or extraction boilerplate here;
+          output types belong in dtype and technical rules in spec. The embedding input remains
+          name + definition, not the full spec.
         - kind: code or prompt, using the computation rules above.
         - spec: complete self-contained extraction instructions over declared inputs, not a test.
           State the output, positive/negative cases, missing/empty behavior, units, denominator,
