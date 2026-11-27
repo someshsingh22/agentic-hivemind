@@ -40,6 +40,13 @@ complete measurement is deterministic, and prompt when qualifying meaning must b
 Text input or numeric output alone does not decide kind. Mixed requirements remain one direct-row
 prompt; classification must not drop exclusions, narrow the measurement, or introduce a split stage.
 These are prompt instructions, not measured classification accuracy or new merge gates.
+The faithfulness check preserves both named comparison groups and rejects substituting not-A for B,
+presence with intensity, mean with maximum, content-word density with a stopword proxy, or reply
+relationships with speaker order alone. Worked examples require preserving the full measurement
+before choosing code/prompt; unsupported contrasts retain their measurements with `term=null`.
+A local simulated-agent smoke confirmed delivery through fresh decomposition and unchanged cache
+reuse. It does not establish model compliance. Existing cached decompositions are not revised;
+use a fresh output directory for a future approved run.
 
 `envs/cmv.yaml` provides the richer CMV description adapted from the ExperiGen balanced-2k configuration:
 text scope, attribution, within-comment conjunctions, comments versus commenters, unavailable measurements,

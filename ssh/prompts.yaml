@@ -58,6 +58,16 @@ agents:
 
         $measurement_policy
 
+        PRESERVE THE MEASUREMENT BEFORE CHOOSING CODE OR PROMPT
+        - First identify the requested construct, quantity, source/speaker, qualifying conditions,
+          exclusions, aggregation and comparison group. Then write matching definition and spec.
+          Only then choose kind from that complete measurement. Classification is not permission
+          to simplify the measurement. No target number of code features or merged features exists.
+        - Preserve any supplied measurement definition. If the hypothesis leaves a scientifically
+          important choice unresolved, state it in note; do not silently choose an easier proxy.
+          If that choice prevents a faithful test, use term=null. A note admitting an approximation
+          does not authorize testing the approximation as the original claim.
+
         MEASUREMENT DESIGN
         - Each feature measures one dataset ROW and returns one scalar binary/numeric value
           or null. Make it atomic and reusable, without encoding the claimed outcome direction.
@@ -94,10 +104,12 @@ agents:
           "outnumber", "above median"), retain the base measurement and add the corresponding
           binary code feature. This does not require splitting semantic any/count/share
           measurements into item labels and code.
-        - Preserve named comparison groups and overlap/eligibility. A versus B is not A versus
-          not-A. Do not create controls, exclusions, interactions or alternative outcomes absent
-          from the claim. If unavailable information prevents faithful measurement or testing,
-          document it in note and use term=null, not a plausible proxy.
+        - Preserve BOTH named sides of a comparison and their overlap/eligibility. "A versus B"
+          requires measurements of A and B; B is not an invented control when the claim names it.
+          Never replace B with not-A, drop B to avoid collinearity, or test A alone because a
+          single-coefficient contrast is inconvenient. If the existing relationship contract
+          cannot express the exact contrast, retain the measurements, explain it and use term=null.
+          Do not invent controls, exclusions, interactions or alternative outcomes.
 
         FEATURE CONTRACT (exactly these six fields, all required)
         - name: unique snake_case identifier, distinct from every original column name; atomic
@@ -199,6 +211,33 @@ agents:
           Neither those anchors nor an aggregation assumption supplies an unspecified "high"
           cutoff, and an intensity score is not automatically a count, share or density.
 
+        FAITHFULNESS EXAMPLES: WRONG SHORTCUT -> REQUIRED BEHAVIOR
+        - "Acknowledgment before disagreement versus pure refutation":
+          WRONG: measure acknowledgment only and compare 1 versus 0.
+          REQUIRED: preserve both named styles. A neutral question can satisfy neither, so
+          no acknowledgment does not mean pure refutation. Likewise, no second-person address
+          does not establish third-person analysis, and no analogy does not establish solely
+          abstract reasoning. If a row contains both styles, do not silently assign it to one.
+          A+B with term=A tests A conditional on B, not A versus B; use term=null unless the
+          coefficient genuinely represents the specified contrast.
+        - "Presence of hedging": return a binary presence measurement, not a 0-10 intensity score.
+          "Mean comment complexity": preserve the mean, not the maximum or the most persuasive
+          comment. One complex comment among nine simple comments can have a high maximum and
+          a low mean. If only "complexity" is specified, disclose the aggregation assumption;
+          do not claim that mean, maximum and whole-discussion scores are interchangeable.
+        - "Lexical density defined as content words / all words": preserve the specified
+          content-word categories and denominator. "Words outside a stopword list / all words"
+          is a different measure, even though it is easy to compute. Do not substitute it.
+          If the required linguistic analysis cannot be specified faithfully, report that limit.
+        - "Word count excluding outcome announcements": raw whitespace word count does not
+          satisfy the exclusion. Do not remove the exclusion to label the feature code. Apply
+          the complete-measurement rule above; do not invent a pre-outcome timing requirement
+          when the claim only requests filtered current text.
+        - "Back-and-forth reply interaction": an A-B-A sequence of speaker names alone does not
+          establish that the turns reply to one another. Preserve the requested reply relationship,
+          permitted text and exclusions; use the available evidence or report what is unavailable.
+        These examples constrain interpretation; they are not extra features to generate.
+
         THREE EDGE-CASE EXAMPLES
         These are hypothetical illustrations, not dataset annotations or an extra feature list.
         Return only the measurements required by the supplied hypothesis. Put each decisive
@@ -227,6 +266,12 @@ agents:
           the six required fields and original-column-distinct names; no extra controls/proxies.
         - Recheck kind against the full spec: code needs no undeclared semantic judgment;
           prompt needs a genuine meaning judgment, not just text input or a numeric output.
+        - Check the hypothesis against h0/h1, rhs and term: did every named comparison survive?
+          Can a row satisfy neither side or both? Is the tested coefficient the actual contrast?
+          If not, repair the decomposition or use term=null; an approximation note is not enough.
+        - Check quantity and aggregation: no presence-to-intensity, mean-to-maximum, content-word-
+          to-stopword, reply-to-speaker-pattern or filtered-to-raw substitution. Every qualifier
+          must survive in the spec, and decisive distinctions must also survive in definition.
         - Each semantic spec is self-contained over original columns only; source_columns
           declares every actual source read, including necessary OP context, and no unused ones.
         - Each spec has one nonconflicting positive/negative/empty/missing rule; its exclusions,
