@@ -34,28 +34,24 @@ It directly requests the needed row-level semantic quantity, without mandatory c
 label classes or dependency fields. Code is used for deterministic measurements; explicit thresholds
 may retain a base measurement and add a derived feature, as in manager main.
 
-The prompt includes hypothetical boundary examples for comment cardinality, any versus all normative
-arguments, and quotation versus quotation-and-refutation. An explicit kind check prefers code when the
-complete measurement is deterministic, and prompt when qualifying meaning must be interpreted.
-Text input or numeric output alone does not decide kind. Mixed requirements remain one direct-row
-prompt; classification must not drop exclusions, narrow the measurement, or introduce a split stage.
-These are prompt instructions, not measured classification accuracy or new merge gates.
-The faithfulness check preserves both named comparison groups and rejects substituting not-A for B,
-presence with intensity, mean with maximum, content-word density with a stopword proxy, or reply
-relationships with speaker order alone. Worked examples require preserving the full measurement
-before choosing code/prompt; unsupported contrasts retain their measurements with `term=null`.
-A local simulated-agent smoke confirmed delivery through fresh decomposition and unchanged cache
-reuse. It does not establish model compliance. Existing cached decompositions are not revised;
-use a fresh output directory for a future approved run.
+Classification follows the simple computation boundary in
+[ExperiGen prod](https://github.com/someshsingh22/experigen/blob/256101d80d4b2dab0981aa896a5263663cd477d5/common_config.yaml#L79-L98):
+code for counts, regex, arithmetic and fixed recipes; prompt for meaning, tone, intent and reasoning.
+Both named comparison groups and the requested quantity must survive decomposition.
 
-`envs/cmv.yaml` provides the richer CMV description adapted from the ExperiGen balanced-2k configuration:
-text scope, attribution, within-comment conjunctions, comments versus commenters, unavailable measurements,
-numeric-field limitations and outcome-leakage precautions. These extraction instructions are unchanged
-by the merge/cache restoration. The statistical evaluator, models and threshold values are unchanged too.
+Our source-suitability policy is separate from that reference boundary. Raw-text code features
+do not acquire mandatory semantic outcome filtering; they disclose contamination and timing risks
+in `note`. Explicitly requested exclusions remain part of the measurement. Semantic specs still
+exclude outcome reports as evidence of the construct. Raw word count is therefore not the same
+measurement as the previous semantically filtered count; compare runs accordingly.
 
-Leakage guards and rubric consistency remain instructions to Sonnet, not programmatic guarantees.
-The raw CSV remains available to the decomposition agent; the target is not technically withheld.
-The submit tool validates structural contracts before saving results. Annotation and SSH testing remain separate.
+`envs/cmv.yaml` describes source scope, attribution, unavailable measurements and these source risks.
+The feature schema, direct per-row extraction, statistical evaluator, models, merge rules and distance
+thresholds are unchanged. These prompt instructions do not establish measured classification accuracy
+or source suitability. The raw CSV remains accessible to the decomposition agent; the target is not
+technically withheld. Structural submission validation does not establish scientific correctness.
+A simulated-agent smoke exercised fresh prompt delivery, code-feature submission and cached restart;
+all 41 existing tests passed. No paid model calls were used; model compliance remains unverified.
 
 ## Caching like main
 
@@ -73,20 +69,26 @@ Prior `decomposition_inputs.json` files are ignored, not removed. Existing artif
 Set `ANTHROPIC_FOUNDRY_RESOURCE=mdsr-resource-dev-resource` and `ANTHROPIC_FOUNDRY_API_KEY` in `.env`.
 Use Node 24 LTS with `@earendil-works/pi-coding-agent` installed. Never commit credentials.
 
-After any currently running worker has finished:
+For the current classification-only review, after any running worker has finished:
 
 ```bash
 git pull --ff-only origin namit-sonnet-only
-bash run_calibration.sh
+source ~/.nvm/nvm.sh
+nvm use 24
+source /mnt/localssd/namit/experigen-evals/.venv/bin/activate
+python -u -m ssh decompose envs/cmv.yaml --config config.yaml
 ```
 
-The launcher uses `/mnt/localssd/namit/experigen-evals/.venv`, starts a nohup worker and follows its log.
-It runs decomposition and distance-based deduplication only. No pair-review Sonnet calls, row annotation,
-Qwen calls or SSH tests run. Set `VENV` to another existing environment if needed.
+This generates fresh features and code/prompt assignments in
+`runs/calibration_simple_kind_v1/cmv/decomposed.json`. It is decomposition plus classification,
+not relabeling of a frozen bank. No embeddings, merging, annotation or statistical tests run.
+Existing outputs are preserved. Completed per-hypothesis files are reused on restart.
+The agent's stdout is suppressed; completed files appear in `decomposed/`.
 
-The current classification rerun generates a fresh decomposition under `runs/calibration_kind_v1/cmv/`
-and deduplicates semantic features at the agreed **0.20 working baseline**. This is not a validated
-semantic-equivalence threshold. Code features remain separate; old results are preserved.
+The separate `bash run_calibration.sh` launcher runs decomposition AND deduplication, so do not
+use it for classification-only review. It uses `/mnt/localssd/namit/experigen-evals/.venv`, starts
+a nohup worker and follows its log. Set `VENV` to another existing environment if needed.
+Its configured 0.20 cutoff remains an unvalidated working baseline; code features remain separate.
 
 Optional `--tune` still compares 0.20, 0.25 and 0.30 using one shared decomposition and embedding batch.
 It writes `threshold_*/` plans and `tuning_summary.json`; the normal single-cutoff run writes `plan.json`,
@@ -148,21 +150,14 @@ It describes the positive measurement directly rather than just naming its topic
 output-format and outcome-leakage instructions stay in the full self-contained `spec`; they are not
 copied into every embedding description. Material exceptions must still be preserved.
 
-This changes description-writing instructions, not measurement rules, code-feature handling,
-the embedding model, distance thresholds, source matching or complete-linkage merging.
+The earlier description-writing revision did not change measurement rules. The current
+classification revision additionally separates raw mechanical computation from source suitability.
 The existing pipeline still embeds `name: definition` for prompt features only.
 No second description, rewriting pass or additional Sonnet call is added.
 
-Run the normal launcher with the revised config:
-
-```bash
-bash run_calibration.sh
-```
-
-The current classification rerun generates a fresh decomposition under `runs/calibration_kind_v1/cmv/`
-and uses the configured 0.20 cutoff. File-exists caching is unchanged; use another fresh output
-directory if the prompt changes again. Historical `runs/calibration_definitions_v1/cmv/` and
-`runs/embedding_inputs/cmv/` results are preserved; the separate description-rewriting command is removed.
+Use the classification-only command above for the current review. File-exists caching is unchanged;
+use a fresh output directory when changing prompts. Historical definition, faithfulness and
+embedding-input results are preserved; the separate description-rewriting command is removed.
 
 The previous experiment introduced incorrect merges even when its descriptions retained the
 decisive differences. This prompt revision is not evidence that cosine matching is now correct.

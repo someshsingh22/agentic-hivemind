@@ -26,7 +26,7 @@ description: |
     - conversation: formatted interaction text overlapping OC_comments, not extra independent
       evidence. It may include later replies and explicit view-change announcements. Do not use
       it as an initial-argument snapshot. When interaction is required, specify speaker/turn
-      selection and use it only if faithful measurement is possible under the leakage guard below.
+      selection. Disclose unknown reply timing and do not infer reply links from speaker order alone.
     - log_length: a supplied log-transformed length measure. Construction, source text, log base
       and timing are undocumented. When named by the hypothesis, use the supplied value and state
       that limitation; do not equate it with argument word count or reconstruct its log base.
@@ -46,19 +46,18 @@ description: |
       automatically adopted support. Apply this distinction to OP text and other users' comments.
       Quotation marks alone do not establish another speaker.
 
-  Predictor leakage guard (applies to every text field):
-    - Never use the OP's own view-change/delta-award announcements, post-outcome thank-you or
-      resolution updates, or text reporting whether the outcome occurred as predictor evidence.
-      This exclusion applies even inside argument and even if such text expresses the construct.
-      Generic discussion of platform/delta rules is not an outcome announcement; retain relevant
-      discussion rather than blanket-removing mentions of delta.
-    - Subject to this guard, measure supplied current text unless the hypothesis restricts time.
-      Deleting marked edits or outcome announcements does not reconstruct initial/pre-outcome
-      text. Neither post_created_utc nor unordered comments supplies missing comment/edit times.
-      An edit marker alone does not establish when an edit occurred.
-      If faithful exposure requires unavailable temporal information, state that limitation and
-      set term=null; do not substitute current text or infer a snapshot.
-    - delta remains the fixed outcome. A hypothesis requiring another outcome or outcome-reporting
-      text as a predictor is unsupported: explain the limitation and set term=null.
-      If excluding outcome evidence changes the requested predictor itself, preserve the original
-      claim as unsupported; do not silently replace it with a cleaned concession/attitude proxy.
+  Computation and source suitability:
+    - Use code for raw counts, regex/literal matching, supplied numeric columns and fixed
+      computational recipes. Use a prompt when the measurement requires understanding meaning.
+      Do not add semantic filtering to a raw count or URL detector merely because outcome text
+      may occur in its source. Disclose that contamination risk; raw text is not outcome-free.
+    - Semantic feature specs must exclude OP view-change/delta-award announcements, post-outcome
+      resolution updates and reports of the outcome as evidence of the construct. Generic
+      platform/delta-rule discussion remains eligible. Explicitly requested semantic exclusions
+      remain part of any measurement; never remove one just to force code.
+    - Use current supplied text unless the hypothesis restricts time. Deleting edits does not
+      recover initial/pre-outcome text. No supplied comment/edit timestamps establish timing.
+      If a required temporal measurement is unavailable, explain it and set term=null.
+    - delta remains the fixed outcome. A hypothesis requiring a different outcome or an
+      outcome-revealing predictor is unsupported: preserve the claim, explain it and set
+      term=null rather than substituting another test or a cleaned concession/attitude proxy.
