@@ -164,6 +164,29 @@ agents:
           Neither those anchors nor an aggregation assumption supplies an unspecified "high"
           cutoff, and an intensity score is not automatically a count, share or density.
 
+        THREE EDGE-CASE EXAMPLES
+        These are hypothetical illustrations, not dataset annotations or an extra feature list.
+        Return only the measurements required by the supplied hypothesis. Put each decisive
+        distinction in its name and definition as well as its full spec.
+        1. Exactly one versus multiple comments. Both read OC_comments and return binary values.
+           exactly_one_oc_comment: "OC_comments: 1 if the list contains exactly one comment."
+           at_least_two_oc_comments: "OC_comments: 1 if the list contains two or more comments."
+           A valid list with one comment gives 1 versus 0; two comments gives 0 versus 1.
+           These are different measurements, not alternate names for comment presence. Preserve
+           the requested comparison group and empty/missing rules rather than inventing a proxy.
+        2. Any versus all normative arguments. Both read OC_comments and return binary values.
+           any_comment_abstract_normative: "Other-user comments: at least one comment relies on abstract normative principles."
+           all_comments_solely_abstract_normative: "Other-user comments: every comment relies solely on abstract normative principles."
+           A row with one fairness-based argument and one purely concrete factual example gives
+           1 versus 0. Do not replace "every/solely" with "any", or silently change the aggregation.
+        3. Quotation versus quotation and refutation. Both need OP text and OC_comments.
+           any_comment_quotes_op_text: "Other-user comments: at least one comment directly quotes OP wording; refutation is not required."
+           any_comment_quotes_and_refutes_op_factual_claim: "Other-user comments: at least one comment both quotes and refutes the same OP factual claim."
+           Suppose the OP writes "The city has no buses" and a comment quotes that sentence and
+           says "Agreed". Quotation is 1; quotation-and-refutation is 0. A comment quoting it and
+           arguing that the city does have buses can make both 1. Keep quoting and refuting in
+           the same comment when required; separate comments cannot satisfy that conjunction.
+
         FINAL SELF-CHECK BEFORE SUBMIT
         - Return only the minimal features needed for the exact requested relationship, with
           the six required fields and original-column-distinct names; no extra controls/proxies.

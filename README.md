@@ -30,6 +30,11 @@ It directly requests the needed row-level semantic quantity, without mandatory c
 label classes or dependency fields. Code is used for deterministic measurements; explicit thresholds
 may retain a base measurement and add a derived feature, as in manager main.
 
+The latest prompt refinement adds three hypothetical boundary examples only: exactly one versus multiple
+comments, any versus all normative arguments, and quotation versus quotation-and-refutation. They illustrate
+how to preserve names, definitions and extraction rules; they do not add features, merge gates or model calls.
+This is prompt tuning, not evidence that embedding distances now separate equivalent measurements.
+
 `envs/cmv.yaml` provides the richer CMV description adapted from the ExperiGen balanced-2k configuration:
 text scope, attribution, within-comment conjunctions, comments versus commenters, unavailable measurements,
 numeric-field limitations and outcome-leakage precautions. These extraction instructions are unchanged
