@@ -1,6 +1,6 @@
-out: runs/calibration_paper_definitions_10
+out: runs/calibration_paper_definitions_100
 seed: 0
-n_hypotheses: 10            # small definition-readability check
+n_hypotheses: null          # all 100 supplied hypotheses
 
 agent:                      # pi coding agent (@earendil-works/pi-coding-agent); it can read the dataset itself
   provider: azure-anthropic

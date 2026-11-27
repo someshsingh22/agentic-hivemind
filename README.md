@@ -60,8 +60,8 @@ structural/source validation. There is no dataset/prompt/model fingerprint gate 
 Changing input values, hypotheses, prompts or models does not automatically invalidate existing files.
 Use a new output directory explicitly when a fresh decomposition is intended.
 
-Existing per-hypothesis files remain preserved. The paper-style description check uses a fresh
-output directory and ten seed-0 sampled hypotheses, so it does not reuse earlier descriptions.
+Existing per-hypothesis files remain preserved. The full paper-style description run uses a fresh
+output directory for all 100 hypotheses, separate from the earlier ten-hypothesis check.
 Prior `decomposition_inputs.json` files are ignored, not removed.
 
 ## Run
@@ -69,23 +69,23 @@ Prior `decomposition_inputs.json` files are ignored, not removed.
 Set `ANTHROPIC_FOUNDRY_RESOURCE=mdsr-resource-dev-resource` and `ANTHROPIC_FOUNDRY_API_KEY` in `.env`.
 Use Node 24 LTS with `@earendil-works/pi-coding-agent` installed. Never commit credentials.
 
-For the current ten-hypothesis definition-readability check, after any running worker has finished:
+For all 100 hypotheses, after any running worker has finished:
 
 ```bash
 git pull --ff-only origin namit-sonnet-only
-source /mnt/localssd/namit/experigen-evals/.venv/bin/activate
-source ~/.nvm/nvm.sh
-nvm use 24
-hash -r
-python -u -m ssh decompose envs/cmv.yaml --config config.yaml
+bash run_decomposition.sh
 ```
 
-This selects ten hypotheses with the existing seed-0 sampler and generates fresh features and
-code/prompt assignments in `runs/calibration_paper_definitions_10/cmv/decomposed.json`.
+The runner activates the evaluation venv before selecting Node 24, checks Node/pi availability,
+then runs decomposition only. Override `VENV` or `NVM_DIR` if their locations differ.
+It runs in the foreground; keep the terminal open. It does not launch a detached worker.
+The configured output is `runs/calibration_paper_definitions_100/cmv/decomposed.json`.
 It is decomposition plus classification, not relabeling of a frozen bank.
 No embeddings, merging, annotation or statistical tests run.
 Existing outputs are preserved. Completed per-hypothesis files are reused on restart.
 The agent's stdout is suppressed; completed files appear in `decomposed/`.
+A local smoke exercised the actual runner from another directory and the actual CLI's 100-hypothesis
+selection/output, with Node/pi setup and the agent boundary simulated. No paid model calls were made.
 
 The separate `bash run_calibration.sh` launcher runs decomposition AND deduplication, so do not
 use it for classification-only review. It uses `/mnt/localssd/namit/experigen-evals/.venv`, starts
