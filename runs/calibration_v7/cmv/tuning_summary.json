@@ -1,0 +1,23 @@
+{
+  "0.20": {
+    "hypotheses": 100,
+    "features_raw": 123,
+    "features_unique": 94,
+    "prompt_features_raw": 108,
+    "prompt_features_unique": 81
+  },
+  "0.25": {
+    "hypotheses": 100,
+    "features_raw": 123,
+    "features_unique": 80,
+    "prompt_features_raw": 108,
+    "prompt_features_unique": 69
+  },
+  "0.30": {
+    "hypotheses": 100,
+    "features_raw": 123,
+    "features_unique": 68,
+    "prompt_features_raw": 108,
+    "prompt_features_unique": 57
+  }
+}
