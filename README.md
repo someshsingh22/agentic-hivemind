@@ -67,6 +67,32 @@ Review `decomposed.json` against the earlier ten-hypothesis run before adopting 
 The default and opt-in CLI paths were smoke-checked with simulated agent responses; actual
 Sonnet construct quality remains unverified until the GPU run.
 
+### Manager hypothesis bank
+
+`data/hypotheses_ssh_eval/cmv_manager_152.json` preserves the 152 latest hypothesis
+statements from the manager's `cmv-v5-glm-r1-20261126-113834` export (156 submissions).
+Latest submissions were checked against the export's CSV flags; `submission_mapping`
+maps each zero-based pipeline ID to the original hypothesis, statement and submission IDs.
+No statement was rewritten or removed based on similarity, support status or direction.
+This uses our existing 2,000-row discussion-level CMV data, not their 20,606-comment dataset,
+and does not reproduce their code, measurements or statistical results. Only statements
+are passed to the decomposer, not their reported results or original code recipes.
+
+Run fresh baseline decomposition, without construct-first fields:
+
+```bash
+bash run_decomposition.sh config_manager_152.yaml envs/cmv_manager_152.yaml
+/mnt/localssd/namit/experigen-evals/.venv/bin/python -u -m ssh dedup envs/cmv_manager_152.yaml --config config_manager_152.yaml
+```
+
+Run dedup only after decomposition succeeds. Outputs live in
+`runs/manager_152_paper_definitions/cmv/`: `decomposed.json`, then `plan.json` and
+calibration CSVs. The cutoff remains 0.20; code features stay separate. Unsupported
+comment-level outcomes or unavailable measurements must be disclosed rather than silently
+replaced. This run performs paid decomposition and embedding calls on the GPU; it does
+not annotate rows or run statistical tests. It does not alter either earlier bank.
+
+
 
 ## Caching like main
 

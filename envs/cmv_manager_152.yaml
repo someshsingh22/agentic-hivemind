@@ -1,0 +1,63 @@
+name: cmv
+target: delta
+group: post_id
+csv: data/cmv.csv
+hypotheses: data/hypotheses_ssh_eval/cmv_manager_152.json
+description: |
+  Measure the supplied hypotheses; do not discover, rewrite or refine them. Each feature is
+  one scalar measurement of a discussion row, not a separate observation for every comment.
+  The full supplied corpus contains 2,000 rows: 1,000 changed and 1,000 unchanged outcomes.
+  Describe associations, not proven causal effects or prospective prediction.
+
+  Columns:
+    - post_created_utc: Unix timestamp for the original post, not a comment or score-measurement
+      timestamp. Response delay cannot be calculated from it.
+    - title: the original poster's (OP's) heading or claim statement, not the argument body.
+    - argument: the OP's explanation of their view. Use this field for argument-body measurements;
+      include title only when the requested scope includes the heading or when it is needed to
+      interpret a comment's target. Text can contain quotations, edits and outcome announcements.
+    - OC_comments: a JSON-encoded list of available counter-argument comments by OTHER users,
+      not the OP. Parse the list before counting comments, words or semantic instances.
+      Specify any/all/count/share/mean explicitly. List order is not rank, importance or chronology.
+      If properties must coexist in one comment, assess their conjunction within that comment;
+      separate comments cannot jointly satisfy it. The row-level extractor still returns one scalar.
+      List length counts comments, not necessarily distinct commenters. No per-comment outcomes,
+      scores or timestamps are supplied. OP-language measurements use title/argument instead.
+    - conversation: formatted interaction text overlapping OC_comments, not extra independent
+      evidence. It may include later replies and explicit view-change announcements. Do not use
+      it as an initial-argument snapshot. When interaction is required, specify speaker/turn
+      selection. Disclose unknown reply timing and do not infer reply links from speaker order alone.
+    - log_length: a supplied log-transformed length measure. Construction, source text, log base
+      and timing are undocumented. When named by the hypothesis, use the supplied value and state
+      that limitation; do not equate it with argument word count or reconstruct its log base.
+    - post_score: the observed original-post score, not a comment score, voter count or initial
+      endorsement. Its measurement time relative to the outcome is unknown; post_created_utc
+      does not establish that timing.
+    - delta: OUTCOME, 1 if the OP changed their view, else 0. Never a predictor or annotation input.
+    - post_id, comment_id: identifiers, never predictors.
+
+  Attribution and unavailable measurements:
+    - No measured personality scores, Big Five questionnaires or author demographics are supplied.
+      A personality inference from writing is a linguistic proxy, not an observed trait; do not
+      substitute it silently when the hypothesis requires an unavailable measurement.
+    - Distinguish the author's own assertions or experiences from attributed quotations.
+      An external source cited as support can count for an evidence feature without making the
+      source's wording or experience the author's own. Background/rebuttal quotations are not
+      automatically adopted support. Apply this distinction to OP text and other users' comments.
+      Quotation marks alone do not establish another speaker.
+
+  Computation and source suitability:
+    - Use code for raw counts, regex/literal matching, supplied numeric columns and fixed
+      computational recipes. Use a prompt when the measurement requires understanding meaning.
+      Do not add semantic filtering to a raw count or URL detector merely because outcome text
+      may occur in its source. Disclose that contamination risk; raw text is not outcome-free.
+    - Semantic feature specs must exclude OP view-change/delta-award announcements, post-outcome
+      resolution updates and reports of the outcome as evidence of the construct. Generic
+      platform/delta-rule discussion remains eligible. Explicitly requested semantic exclusions
+      remain part of any measurement; never remove one just to force code.
+    - Use current supplied text unless the hypothesis restricts time. Deleting edits does not
+      recover initial/pre-outcome text. No supplied comment/edit timestamps establish timing.
+      If a required temporal measurement is unavailable, explain it and set term=null.
+    - delta remains the fixed outcome. A hypothesis requiring a different outcome or an
+      outcome-revealing predictor is unsupported: preserve the claim, explain it and set
+      term=null rather than substituting another test or a cleaned concession/attitude proxy.

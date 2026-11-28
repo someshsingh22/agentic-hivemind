@@ -1,0 +1,1072 @@
+{
+  "hypotheses": [
+    "Counter-arguments with lower content word overlap with OP are more persuasive (they bring novel information instead of echoing the OP)",
+    "Counter-arguments that reuse fewer of their own content words from the OP are more persuasive (they bring fresh perspectives)",
+    "Counter-arguments that cover a smaller fraction of the OPs content vocabulary are more persuasive",
+    "Longer counter-arguments (more words) are more likely to win delta from the OP",
+    "Counter-arguments with longer average words (higher reading complexity) are more persuasive",
+    "Counter-arguments with more sentences are more persuasive",
+    "Counter-arguments with more paragraphs are more persuasive",
+    "Counter-arguments with URLs or hyperlinks are more likely to win delta from the OP",
+    "Counter-arguments with markdown formatting (bold/italic) are more persuasive",
+    "Counter-arguments with bullet list formatting are more persuasive",
+    "Counter-arguments with explicit ordinal structure markers (first, second, finally) are more persuasive",
+    "Counter-arguments with example phrases (for example, for instance, e.g.) are more persuasive",
+    "Counter-arguments with numbers or statistics are more persuasive",
+    "Counter-arguments that appeal to expertise or evidence (study, research, data, evidence) are more persuasive",
+    "Counter-arguments that quote the OP are less persuasive",
+    "Counter-arguments with fewer absolutist words (always, never, certainly, obviously) are more persuasive",
+    "Counter-arguments with more positive sentiment are more persuasive",
+    "Counter-arguments with lower negative sentiment are more persuasive (calmer tone wins)",
+    "Counter-arguments with explicit disagreement words (wrong, incorrect, disagree) are less persuasive",
+    "Counter-arguments with less first-person language (I, me, my) are more persuasive (less anecdotal)",
+    "Counter-arguments with more second-person language (you, your) are more persuasive",
+    "Counter-arguments with fewer questions are more persuasive",
+    "Counter-arguments with fewer formal reasoning connectors (therefore, hence, thus) are more persuasive",
+    "Counter-arguments with hedging language (might, could, perhaps) are more persuasive",
+    "Counter-arguments that begin with a concession (you are right, I agree, good point) are more persuasive",
+    "Counter-arguments with higher vocabulary diversity (type-token ratio) are more persuasive",
+    "Earlier replies (fewer hours after post creation) are more likely to win delta from the OP",
+    "More experienced commenters (higher flair delta count) are more likely to win delta from the OP",
+    "Counter-arguments with higher reading complexity (Flesch-Kincaid grade) are more persuasive",
+    "Counter-arguments with statistical language (percentages, averages) are more persuasive",
+    "Counter-arguments with more URLs are more persuasive (more evidence)",
+    "Counter-arguments with analogical reasoning (\"just like\", \"analogous to\") are more persuasive",
+    "Counter-arguments with hypothetical framing (\"imagine if\", \"suppose that\") are more persuasive",
+    "Counter-arguments that directly address the OP's specific claims (\"your argument\", \"your point\") are more persuasive",
+    "Counter-arguments that bring more new content words (not found in OP) are more persuasive",
+    "Counter-arguments that use parenthetical clarifications (text in parentheses) are more persuasive",
+    "Counter-arguments with personal anecdote opener phrases (\"when I\", \"in my experience\") are LESS persuasive on CMV",
+    "Counter-arguments with explicit if-then conditional logic are LESS persuasive on CMV",
+    "Counter-arguments with epistemic hedge phrases (\"I think\", \"I believe\", \"in my view\") are LESS persuasive",
+    "Counter-arguments with more polysyllabic words (3+ syllables) are more persuasive",
+    "Counter-arguments with numbered lists (1., 2., etc.) are more persuasive",
+    "Counter-arguments that cite Wikipedia or academic sources are more persuasive",
+    "Counter-arguments with explicit conclusion markers are more persuasive",
+    "Counter-arguments that explicitly reference sources are more persuasive",
+    "Counter-arguments with formal citation syntax are more persuasive",
+    "Counter-arguments that use \"actually\" are LESS persuasive (despite corrective intent)",
+    "Counter-arguments that use structured quote-response blocks (blockquote then reply) are LESS persuasive",
+    "Counter-arguments with LESS stopword (function-word) overlap with the OP are more persuasive on CMV (less style matching = more persuasive, opposite to Tan et al. 2016)",
+    "Counter-arguments that explicitly reference evidence, proof, or demonstrations are more persuasive",
+    "Counter-arguments that use contrast markers (whereas, in contrast, unlike, as opposed to) are more persuasive",
+    "Counter-arguments with higher vocabulary diversity among content words (content-word type-token ratio) are more persuasive",
+    "Counter-arguments with more polysyllabic words in their unique vocabulary are more persuasive (richer, more complex vocabulary)",
+    "Counter-arguments that use colons (introducing lists or explanations) are more persuasive",
+    "Counter-arguments that use semicolons (indicating overly complex compound sentences) are LESS persuasive",
+    "Counter-arguments with pivot concession words (however, nevertheless, nonetheless) are more persuasive",
+    "Counter-arguments with rhetorical questions are more persuasive",
+    "Counter-arguments that directly address the OP using second-person \"you\" are more persuasive",
+    "Counter-arguments that end with a question (invite reflection) are more persuasive",
+    "Counter-arguments with perspective-taking invitations (consider, imagine, suppose) are more persuasive",
+    "Counter-arguments that use explicit comparative language (more than, less than) are more persuasive",
+    "Counter-arguments that appeal to expert authority (experts, scientists, researchers) are more persuasive",
+    "Counter-arguments that reference research studies, surveys, or data are more persuasive",
+    "Counter-arguments with more exclamation marks are LESS persuasive (emotional language hurts)",
+    "Counter-arguments with LESS overlap with the OP's CMV title vocabulary are more persuasive (bring truly fresh perspectives)",
+    "Counter-arguments that cite more distinct URL domains (diverse sources) are more persuasive",
+    "Counter-arguments with long parenthetical asides (20+ characters) are more persuasive",
+    "Counter-arguments with FEWER words per sentence (more concise sentences) are more persuasive",
+    "Counter-arguments with rich formatting (combining bullet/numbered lists with colons) are strongly more persuasive",
+    "Counter-arguments that OPEN with an OP blockquote (starting with >) are strongly LESS persuasive",
+    "Counter-arguments that contain an explicit \"Edit:\" or \"ETA:\" section (indicating the reply was revised after posting) are substantially more persuasive",
+    "Counter-arguments with more distinct content words (vocabulary breadth) are more persuasive",
+    "Counter-arguments with more capitalized words (proper nouns / specific entities) are more persuasive",
+    "Counter-arguments with higher comma density (more complex, information-rich sentences) are more persuasive",
+    "Counter-arguments with higher variance in word length (combining simple and complex vocabulary) are more persuasive",
+    "Counter-arguments that have a shorter opening paragraph (more direct, concise introduction) are more persuasive",
+    "Counter-arguments with 3 or more numbered points are more persuasive (comprehensive multi-point arguments)",
+    "Counter-arguments with more short words (simple vocabulary) are LESS persuasive on CMV",
+    "Counter-arguments that use bold single-word emphasis (**word**) are more persuasive",
+    "Counter-arguments that use formatted Markdown links ([text](url)) rather than bare URLs are more persuasive",
+    "Counter-arguments with long bolded phrases (15+ characters) are more persuasive",
+    "Counter-arguments with more line breaks (better structure) are more persuasive",
+    "Counter-arguments that mention specific years (historical/empirical grounding) are more persuasive",
+    "Counter-arguments with more distinct proper nouns (specific entities) are more persuasive",
+    "Counter-arguments that use the conditional modal \"would\" (indicating uncertainty) are LESS persuasive",
+    "Counter-arguments with more quotation marks (quoting others) are LESS persuasive",
+    "Counter-arguments that combine multiple types of evidence (URLs, years, and proper nouns) are more persuasive",
+    "Counter-arguments whose first sentence contains negation words (not, no, never, don't) are LESS persuasive",
+    "Counter-arguments that open with direct reference to the OP's argument (\"Your argument\", \"The argument\", \"Consider\") are more persuasive",
+    "Counter-arguments with more bold-formatted phrases (count of **text**) are more persuasive",
+    "Counter-arguments with numbered lists (detected in both newline and double-space formats) are more persuasive",
+    "Counter-arguments with 3 or more distinct numbered points (format-agnostic) are more persuasive",
+    "Counter-arguments that combine lists (numbered or bullet) with colons (format-agnostic) are more persuasive",
+    "Counter-arguments with shorter first paragraphs (direct, focused opening) are more persuasive",
+    "Counter-arguments that use more contractions (I'm, don't, isn't, etc.) are LESS persuasive, suggesting formal language is more persuasive",
+    "Very long counter-arguments benefit disproportionately from their length (super-linear/accelerating effect of reply length on persuasiveness)",
+    "Counter-arguments with 2 or more URLs (multiple citations) are more persuasive than those with 0 or 1 URL",
+    "Counter-arguments that more closely match the words in the OP's title (high topic overlap) are LESS persuasive",
+    "Counter-arguments that acknowledge the OP's point before countering (concessive structure: \"while it is true...\") are more persuasive",
+    "Counter-arguments that explicitly offer an alternative perspective (\"another perspective\", \"alternatively\") are more persuasive",
+    "Counter-arguments that explicitly mark their central claim (\"I argue that\", \"my argument is\") are more persuasive",
+    "Counter-arguments that ground their claims in practical reality (\"in practice\", \"in real life\") are more persuasive",
+    "Counter-arguments that acknowledge the OP's perspective empathetically (\"I understand that\", \"I see your point\") are more persuasive",
+    "Counter-arguments with more first-person plural language (we, our, us) are more persuasive",
+    "Counter-arguments that use polite language (please, thank you, I appreciate) are more persuasive",
+    "Counter-arguments that use clarity markers (clearly, obviously, certainly) are more persuasive",
+    "Counter-arguments that use \"however\" as a discourse pivot are more persuasive",
+    "Counter-arguments that use assertive phrases (\"in fact\", \"as a matter of fact\") are more persuasive",
+    "Counter-arguments with more parenthetical phrases (elaboration in parentheses) are more persuasive",
+    "Counter-arguments that include precise quantitative data (large numbers, percentages, or multi-decimal figures) are more persuasive",
+    "Counter-arguments with a higher fraction of content words (non-stopwords) are more persuasive",
+    "Counter-arguments that contain multi-word proper nouns (e.g., \"United States\", \"World Health Organization\") are more persuasive",
+    "Counter-arguments that use more Reddit blockquote formatting (&gt;) are LESS persuasive — excessive quoting reduces persuasive impact",
+    "Counter-arguments that use a greater variety of punctuation marks (!, ?, ., ,, ;, :, parentheses) are more persuasive",
+    "Counter-arguments that use technical/academic vocabulary (methodology, empirical, correlation, hypothesis, etc.) are more persuasive",
+    "Counter-arguments that have a higher proportion of sentences containing quantitative evidence (numbers, URLs, or percentages) are more persuasive",
+    "Counter-arguments that include links to 3 or more distinct source domains (diverse external evidence) are more persuasive",
+    "Counter-arguments that have more sentences beginning with a number (number-led sentences) are more persuasive",
+    "Counter-arguments with greater variation in sentence lengths (mixing short and long sentences) are more persuasive",
+    "Counter-arguments with a higher density of negation words (not, no, never, nothing, etc.) are LESS persuasive",
+    "Counter-arguments with a higher density of personal pronouns (I, we, you, he, she, they, etc.) are LESS persuasive",
+    "Counter-arguments that never use the first-person pronoun \"I\" (fully impersonal/objective tone) are more persuasive",
+    "Counter-arguments that contain mathematical notation (arithmetic operations, equations, Greek letters, math functions) are more persuasive",
+    "Counter-arguments that use moral/ethical language (moral, ethical, rights, freedom, justice, harm, etc.) are LESS persuasive on CMV",
+    "Counter-arguments that are more than twice as long as the OP's original argument are more persuasive",
+    "Counter-arguments whose content words (non-stopwords) are longer on average are more persuasive",
+    "Counter-arguments with higher vocabulary richness in their first 100 words (higher type-token ratio) are more persuasive",
+    "Counter-arguments with an explicit logical sequence (first... then... second...) are more persuasive",
+    "Counter-arguments with concessive \"while\" clauses acknowledging the OP's point are more persuasive",
+    "Counter-arguments that explicitly acknowledge exceptions (not all, not every, not always) are more persuasive",
+    "Counter-arguments with an explicitly labeled example (example:, one example is...) are more persuasive",
+    "Counter-arguments with meta-commentary phrases (it is worth noting, importantly) are more persuasive",
+    "Counter-arguments that explain relevance (which is why, this is why) are more persuasive",
+    "Counter-arguments that provide examples after the opening (for example, for instance in mid-reply) are more persuasive",
+    "Counter-arguments that explicitly name the OP's logic or reasoning are LESS persuasive",
+    "Counter-arguments that trace causal chains (because of this, as a result of) are more persuasive",
+    "Counter-arguments that explicitly challenge common intuition (counterintuitive, surprising, paradoxical) are more persuasive",
+    "Counter-arguments with higher density of \"can be / could be / may be / would be\" are less persuasive (sounds uncertain)",
+    "Counter-arguments that identify a specific problem in the OP's argument are more persuasive",
+    "Counter-arguments that mention more distinct country/region names are more persuasive",
+    "Counter-arguments with explicit proportion expressions (X in Y, X% of Y) are more persuasive",
+    "Counter-arguments with more varied clause opener types (although/because/if/when/so that) are more persuasive",
+    "Counter-arguments that use research citation verbs (research shows, data indicate) are more persuasive",
+    "Counter-arguments with epistemic hedging (it appears that, arguably, apparently) are more persuasive",
+    "Counter-arguments with more words containing non-alphabetic characters (numbers, hyphens, percent signs, periods in abbreviations) are more persuasive",
+    "Counter-arguments that reference more distinct semantic domains (economics, science, history, social, legal) are more persuasive",
+    "Counter-arguments that link to recognized news and media organizations (NYT, Guardian, BBC, Reuters, etc.) are more persuasive",
+    "Counter-arguments that link to government (.gov), educational (.edu), or organizational (.org) websites are more persuasive",
+    "Counter-arguments that use triple inline enumerations (\"X, Y, and Z\" or \"X; Y; and Z\") are more persuasive",
+    "Counter-arguments that use emphasis markers (importantly, crucially, notably, it is worth noting, key point) are more persuasive",
+    "Counter-arguments that use formal evaluative adjectives (significant, compelling, robust, effective, extraordinary, etc.) are more persuasive",
+    "Counter-arguments that use fraction expressions (1/3, 2/5, one-half, two-thirds, three-quarters) are more persuasive",
+    "Counter-arguments that contain decimal numbers (e.g., 3.14, 0.75, 2.5, 1.96) are more persuasive"
+  ],
+  "source_run": "cmv-v5-glm-r1-20261126-113834_hypotheses",
+  "source_submission_count": 156,
+  "submission_mapping": [
+    {
+      "id": 0,
+      "hypothesis_id": "40380130cdb6",
+      "submission": 2,
+      "statement_id": "40380130cdb6"
+    },
+    {
+      "id": 1,
+      "hypothesis_id": "a37056075430",
+      "submission": 4,
+      "statement_id": "a37056075430"
+    },
+    {
+      "id": 2,
+      "hypothesis_id": "d55197474232",
+      "submission": 5,
+      "statement_id": "d55197474232"
+    },
+    {
+      "id": 3,
+      "hypothesis_id": "ad1e5893275a",
+      "submission": 6,
+      "statement_id": "ad1e5893275a"
+    },
+    {
+      "id": 4,
+      "hypothesis_id": "d896124ea0d4",
+      "submission": 7,
+      "statement_id": "d896124ea0d4"
+    },
+    {
+      "id": 5,
+      "hypothesis_id": "6797faa6008f",
+      "submission": 8,
+      "statement_id": "6797faa6008f"
+    },
+    {
+      "id": 6,
+      "hypothesis_id": "a18c9ef0dedd",
+      "submission": 9,
+      "statement_id": "a18c9ef0dedd"
+    },
+    {
+      "id": 7,
+      "hypothesis_id": "a7ac902e83e6",
+      "submission": 10,
+      "statement_id": "a7ac902e83e6"
+    },
+    {
+      "id": 8,
+      "hypothesis_id": "9ff7f5d72758",
+      "submission": 11,
+      "statement_id": "9ff7f5d72758"
+    },
+    {
+      "id": 9,
+      "hypothesis_id": "4bf64d499ff2",
+      "submission": 12,
+      "statement_id": "4bf64d499ff2"
+    },
+    {
+      "id": 10,
+      "hypothesis_id": "05e6173b9435",
+      "submission": 13,
+      "statement_id": "05e6173b9435"
+    },
+    {
+      "id": 11,
+      "hypothesis_id": "9b4acdf1c46f",
+      "submission": 14,
+      "statement_id": "9b4acdf1c46f"
+    },
+    {
+      "id": 12,
+      "hypothesis_id": "bd24b7b7b51d",
+      "submission": 15,
+      "statement_id": "bd24b7b7b51d"
+    },
+    {
+      "id": 13,
+      "hypothesis_id": "337b01320f34",
+      "submission": 16,
+      "statement_id": "337b01320f34"
+    },
+    {
+      "id": 14,
+      "hypothesis_id": "6de2efb8cd2a",
+      "submission": 17,
+      "statement_id": "6de2efb8cd2a"
+    },
+    {
+      "id": 15,
+      "hypothesis_id": "742a0e61e974",
+      "submission": 18,
+      "statement_id": "742a0e61e974"
+    },
+    {
+      "id": 16,
+      "hypothesis_id": "96c3c20e1b17",
+      "submission": 19,
+      "statement_id": "96c3c20e1b17"
+    },
+    {
+      "id": 17,
+      "hypothesis_id": "e4e3fd14f5a2",
+      "submission": 20,
+      "statement_id": "e4e3fd14f5a2"
+    },
+    {
+      "id": 18,
+      "hypothesis_id": "6477c8004369",
+      "submission": 21,
+      "statement_id": "6477c8004369"
+    },
+    {
+      "id": 19,
+      "hypothesis_id": "1083caf0be22",
+      "submission": 22,
+      "statement_id": "1083caf0be22"
+    },
+    {
+      "id": 20,
+      "hypothesis_id": "de5171e87a3c",
+      "submission": 23,
+      "statement_id": "de5171e87a3c"
+    },
+    {
+      "id": 21,
+      "hypothesis_id": "516df8bee983",
+      "submission": 24,
+      "statement_id": "516df8bee983"
+    },
+    {
+      "id": 22,
+      "hypothesis_id": "0ea0b284a8a4",
+      "submission": 25,
+      "statement_id": "0ea0b284a8a4"
+    },
+    {
+      "id": 23,
+      "hypothesis_id": "b0b525e9b8fa",
+      "submission": 26,
+      "statement_id": "b0b525e9b8fa"
+    },
+    {
+      "id": 24,
+      "hypothesis_id": "640dfe66fe3c",
+      "submission": 27,
+      "statement_id": "640dfe66fe3c"
+    },
+    {
+      "id": 25,
+      "hypothesis_id": "58b7bbafcfa0",
+      "submission": 28,
+      "statement_id": "58b7bbafcfa0"
+    },
+    {
+      "id": 26,
+      "hypothesis_id": "17234a4dadbf",
+      "submission": 29,
+      "statement_id": "17234a4dadbf"
+    },
+    {
+      "id": 27,
+      "hypothesis_id": "f8e1d6bfa07d",
+      "submission": 30,
+      "statement_id": "f8e1d6bfa07d"
+    },
+    {
+      "id": 28,
+      "hypothesis_id": "7d10998f0de2",
+      "submission": 31,
+      "statement_id": "7d10998f0de2"
+    },
+    {
+      "id": 29,
+      "hypothesis_id": "dae062da4db7",
+      "submission": 32,
+      "statement_id": "dae062da4db7"
+    },
+    {
+      "id": 30,
+      "hypothesis_id": "42ada87ab398",
+      "submission": 33,
+      "statement_id": "42ada87ab398"
+    },
+    {
+      "id": 31,
+      "hypothesis_id": "c0420a51cf46",
+      "submission": 34,
+      "statement_id": "c0420a51cf46"
+    },
+    {
+      "id": 32,
+      "hypothesis_id": "daa3099951bf",
+      "submission": 35,
+      "statement_id": "daa3099951bf"
+    },
+    {
+      "id": 33,
+      "hypothesis_id": "0e0a4968992f",
+      "submission": 36,
+      "statement_id": "0e0a4968992f"
+    },
+    {
+      "id": 34,
+      "hypothesis_id": "5142b08dbfbc",
+      "submission": 37,
+      "statement_id": "5142b08dbfbc"
+    },
+    {
+      "id": 35,
+      "hypothesis_id": "f6681c8218c1",
+      "submission": 38,
+      "statement_id": "f6681c8218c1"
+    },
+    {
+      "id": 36,
+      "hypothesis_id": "163b61727d27",
+      "submission": 39,
+      "statement_id": "163b61727d27"
+    },
+    {
+      "id": 37,
+      "hypothesis_id": "fd9be844d398",
+      "submission": 40,
+      "statement_id": "fd9be844d398"
+    },
+    {
+      "id": 38,
+      "hypothesis_id": "52dcc908c8c7",
+      "submission": 41,
+      "statement_id": "52dcc908c8c7"
+    },
+    {
+      "id": 39,
+      "hypothesis_id": "8b3d05b18585",
+      "submission": 42,
+      "statement_id": "8b3d05b18585"
+    },
+    {
+      "id": 40,
+      "hypothesis_id": "46b384c64629",
+      "submission": 43,
+      "statement_id": "46b384c64629"
+    },
+    {
+      "id": 41,
+      "hypothesis_id": "d475259b572d",
+      "submission": 45,
+      "statement_id": "d475259b572d"
+    },
+    {
+      "id": 42,
+      "hypothesis_id": "335e9342f262",
+      "submission": 47,
+      "statement_id": "335e9342f262"
+    },
+    {
+      "id": 43,
+      "hypothesis_id": "dd502242cad2",
+      "submission": 48,
+      "statement_id": "dd502242cad2"
+    },
+    {
+      "id": 44,
+      "hypothesis_id": "8a81c94c6048",
+      "submission": 49,
+      "statement_id": "8a81c94c6048"
+    },
+    {
+      "id": 45,
+      "hypothesis_id": "9ad57b29eeff",
+      "submission": 50,
+      "statement_id": "64fded8d3a87"
+    },
+    {
+      "id": 46,
+      "hypothesis_id": "0d558fa4c0e6",
+      "submission": 51,
+      "statement_id": "e21246c3cbb4"
+    },
+    {
+      "id": 47,
+      "hypothesis_id": "0c81128f4edc",
+      "submission": 52,
+      "statement_id": "65abc8c831e9"
+    },
+    {
+      "id": 48,
+      "hypothesis_id": "6ef2d4bdeaac",
+      "submission": 53,
+      "statement_id": "6ef2d4bdeaac"
+    },
+    {
+      "id": 49,
+      "hypothesis_id": "213d1779f402",
+      "submission": 54,
+      "statement_id": "213d1779f402"
+    },
+    {
+      "id": 50,
+      "hypothesis_id": "dfccf79ec969",
+      "submission": 55,
+      "statement_id": "dfccf79ec969"
+    },
+    {
+      "id": 51,
+      "hypothesis_id": "ca8151f23b44",
+      "submission": 56,
+      "statement_id": "ca8151f23b44"
+    },
+    {
+      "id": 52,
+      "hypothesis_id": "5205dfea93b7",
+      "submission": 57,
+      "statement_id": "5205dfea93b7"
+    },
+    {
+      "id": 53,
+      "hypothesis_id": "b2996f06e5da",
+      "submission": 58,
+      "statement_id": "b2996f06e5da"
+    },
+    {
+      "id": 54,
+      "hypothesis_id": "c0adedae8e5d",
+      "submission": 59,
+      "statement_id": "c0adedae8e5d"
+    },
+    {
+      "id": 55,
+      "hypothesis_id": "c4ef6351868d",
+      "submission": 60,
+      "statement_id": "c4ef6351868d"
+    },
+    {
+      "id": 56,
+      "hypothesis_id": "8151a49c1def",
+      "submission": 61,
+      "statement_id": "8151a49c1def"
+    },
+    {
+      "id": 57,
+      "hypothesis_id": "aec4ca314ddb",
+      "submission": 62,
+      "statement_id": "aec4ca314ddb"
+    },
+    {
+      "id": 58,
+      "hypothesis_id": "92e4f3b35f28",
+      "submission": 63,
+      "statement_id": "92e4f3b35f28"
+    },
+    {
+      "id": 59,
+      "hypothesis_id": "e6bf481e6ec5",
+      "submission": 64,
+      "statement_id": "e6bf481e6ec5"
+    },
+    {
+      "id": 60,
+      "hypothesis_id": "589963dd66ce",
+      "submission": 65,
+      "statement_id": "589963dd66ce"
+    },
+    {
+      "id": 61,
+      "hypothesis_id": "5d771c6932a5",
+      "submission": 66,
+      "statement_id": "5d771c6932a5"
+    },
+    {
+      "id": 62,
+      "hypothesis_id": "df99be1edc61",
+      "submission": 67,
+      "statement_id": "df99be1edc61"
+    },
+    {
+      "id": 63,
+      "hypothesis_id": "f1bb4cde80b0",
+      "submission": 68,
+      "statement_id": "f1bb4cde80b0"
+    },
+    {
+      "id": 64,
+      "hypothesis_id": "2252947079d3",
+      "submission": 69,
+      "statement_id": "2252947079d3"
+    },
+    {
+      "id": 65,
+      "hypothesis_id": "c6590069c2a7",
+      "submission": 70,
+      "statement_id": "c6590069c2a7"
+    },
+    {
+      "id": 66,
+      "hypothesis_id": "a4b22525e570",
+      "submission": 71,
+      "statement_id": "a4b22525e570"
+    },
+    {
+      "id": 67,
+      "hypothesis_id": "fbecfa6c670c",
+      "submission": 72,
+      "statement_id": "fbecfa6c670c"
+    },
+    {
+      "id": 68,
+      "hypothesis_id": "0b95e5605f42",
+      "submission": 73,
+      "statement_id": "0b95e5605f42"
+    },
+    {
+      "id": 69,
+      "hypothesis_id": "3170a8c4c5c4",
+      "submission": 74,
+      "statement_id": "3170a8c4c5c4"
+    },
+    {
+      "id": 70,
+      "hypothesis_id": "f1bfabc9fa43",
+      "submission": 75,
+      "statement_id": "f1bfabc9fa43"
+    },
+    {
+      "id": 71,
+      "hypothesis_id": "33a70555f6c3",
+      "submission": 76,
+      "statement_id": "33a70555f6c3"
+    },
+    {
+      "id": 72,
+      "hypothesis_id": "1f738cbe7fee",
+      "submission": 77,
+      "statement_id": "1f738cbe7fee"
+    },
+    {
+      "id": 73,
+      "hypothesis_id": "9ac5f96b854e",
+      "submission": 78,
+      "statement_id": "9ac5f96b854e"
+    },
+    {
+      "id": 74,
+      "hypothesis_id": "a1400c0fe553",
+      "submission": 79,
+      "statement_id": "a1400c0fe553"
+    },
+    {
+      "id": 75,
+      "hypothesis_id": "534ce6c1e009",
+      "submission": 80,
+      "statement_id": "534ce6c1e009"
+    },
+    {
+      "id": 76,
+      "hypothesis_id": "767de1b8cd6a",
+      "submission": 81,
+      "statement_id": "767de1b8cd6a"
+    },
+    {
+      "id": 77,
+      "hypothesis_id": "ffb3affc8f2f",
+      "submission": 82,
+      "statement_id": "ffb3affc8f2f"
+    },
+    {
+      "id": 78,
+      "hypothesis_id": "051d85533ddc",
+      "submission": 83,
+      "statement_id": "051d85533ddc"
+    },
+    {
+      "id": 79,
+      "hypothesis_id": "2156adaadfa7",
+      "submission": 84,
+      "statement_id": "2156adaadfa7"
+    },
+    {
+      "id": 80,
+      "hypothesis_id": "e0a110737ceb",
+      "submission": 85,
+      "statement_id": "e0a110737ceb"
+    },
+    {
+      "id": 81,
+      "hypothesis_id": "b191aae08d2a",
+      "submission": 86,
+      "statement_id": "b191aae08d2a"
+    },
+    {
+      "id": 82,
+      "hypothesis_id": "7710f778667f",
+      "submission": 87,
+      "statement_id": "7710f778667f"
+    },
+    {
+      "id": 83,
+      "hypothesis_id": "8733cde296a6",
+      "submission": 88,
+      "statement_id": "8733cde296a6"
+    },
+    {
+      "id": 84,
+      "hypothesis_id": "8f4feed098f9",
+      "submission": 89,
+      "statement_id": "8f4feed098f9"
+    },
+    {
+      "id": 85,
+      "hypothesis_id": "1aeea6c58233",
+      "submission": 90,
+      "statement_id": "1aeea6c58233"
+    },
+    {
+      "id": 86,
+      "hypothesis_id": "19f6f13ed090",
+      "submission": 91,
+      "statement_id": "19f6f13ed090"
+    },
+    {
+      "id": 87,
+      "hypothesis_id": "ae4c418b7a9d",
+      "submission": 92,
+      "statement_id": "ae4c418b7a9d"
+    },
+    {
+      "id": 88,
+      "hypothesis_id": "ca5e4278d905",
+      "submission": 93,
+      "statement_id": "ca5e4278d905"
+    },
+    {
+      "id": 89,
+      "hypothesis_id": "b38e0190f713",
+      "submission": 94,
+      "statement_id": "b38e0190f713"
+    },
+    {
+      "id": 90,
+      "hypothesis_id": "7201d4e6df6d",
+      "submission": 95,
+      "statement_id": "7201d4e6df6d"
+    },
+    {
+      "id": 91,
+      "hypothesis_id": "f79354bce231",
+      "submission": 96,
+      "statement_id": "f79354bce231"
+    },
+    {
+      "id": 92,
+      "hypothesis_id": "db65926c9682",
+      "submission": 97,
+      "statement_id": "db65926c9682"
+    },
+    {
+      "id": 93,
+      "hypothesis_id": "a6ae4555b06a",
+      "submission": 98,
+      "statement_id": "a6ae4555b06a"
+    },
+    {
+      "id": 94,
+      "hypothesis_id": "aec1b5a02203",
+      "submission": 99,
+      "statement_id": "aec1b5a02203"
+    },
+    {
+      "id": 95,
+      "hypothesis_id": "93266cb4e13e",
+      "submission": 100,
+      "statement_id": "93266cb4e13e"
+    },
+    {
+      "id": 96,
+      "hypothesis_id": "eca6ac141824",
+      "submission": 101,
+      "statement_id": "eca6ac141824"
+    },
+    {
+      "id": 97,
+      "hypothesis_id": "bb3b1e1d80e0",
+      "submission": 102,
+      "statement_id": "bb3b1e1d80e0"
+    },
+    {
+      "id": 98,
+      "hypothesis_id": "daf38b4e9ce9",
+      "submission": 103,
+      "statement_id": "daf38b4e9ce9"
+    },
+    {
+      "id": 99,
+      "hypothesis_id": "0f1fe58c9ef0",
+      "submission": 104,
+      "statement_id": "0f1fe58c9ef0"
+    },
+    {
+      "id": 100,
+      "hypothesis_id": "cde4a335216c",
+      "submission": 105,
+      "statement_id": "cde4a335216c"
+    },
+    {
+      "id": 101,
+      "hypothesis_id": "ba4d3715c808",
+      "submission": 106,
+      "statement_id": "ba4d3715c808"
+    },
+    {
+      "id": 102,
+      "hypothesis_id": "2c28e33d6acf",
+      "submission": 107,
+      "statement_id": "2c28e33d6acf"
+    },
+    {
+      "id": 103,
+      "hypothesis_id": "796e09b368f6",
+      "submission": 108,
+      "statement_id": "796e09b368f6"
+    },
+    {
+      "id": 104,
+      "hypothesis_id": "1fd7762d1b86",
+      "submission": 109,
+      "statement_id": "1fd7762d1b86"
+    },
+    {
+      "id": 105,
+      "hypothesis_id": "0ca96c6a14d7",
+      "submission": 110,
+      "statement_id": "0ca96c6a14d7"
+    },
+    {
+      "id": 106,
+      "hypothesis_id": "114dab5a45db",
+      "submission": 111,
+      "statement_id": "114dab5a45db"
+    },
+    {
+      "id": 107,
+      "hypothesis_id": "2480795a496a",
+      "submission": 112,
+      "statement_id": "2480795a496a"
+    },
+    {
+      "id": 108,
+      "hypothesis_id": "1cffd0c5bdc1",
+      "submission": 113,
+      "statement_id": "1cffd0c5bdc1"
+    },
+    {
+      "id": 109,
+      "hypothesis_id": "511d7873acb0",
+      "submission": 114,
+      "statement_id": "511d7873acb0"
+    },
+    {
+      "id": 110,
+      "hypothesis_id": "4471865a8196",
+      "submission": 115,
+      "statement_id": "4471865a8196"
+    },
+    {
+      "id": 111,
+      "hypothesis_id": "342228a0fe59",
+      "submission": 116,
+      "statement_id": "342228a0fe59"
+    },
+    {
+      "id": 112,
+      "hypothesis_id": "6f82c1fa4e9d",
+      "submission": 117,
+      "statement_id": "6f82c1fa4e9d"
+    },
+    {
+      "id": 113,
+      "hypothesis_id": "e5b4c6436d3a",
+      "submission": 118,
+      "statement_id": "e5b4c6436d3a"
+    },
+    {
+      "id": 114,
+      "hypothesis_id": "2bfd1cd5ce77",
+      "submission": 119,
+      "statement_id": "2bfd1cd5ce77"
+    },
+    {
+      "id": 115,
+      "hypothesis_id": "af8639442772",
+      "submission": 120,
+      "statement_id": "af8639442772"
+    },
+    {
+      "id": 116,
+      "hypothesis_id": "f530f27e877f",
+      "submission": 121,
+      "statement_id": "f530f27e877f"
+    },
+    {
+      "id": 117,
+      "hypothesis_id": "d18cd6467976",
+      "submission": 122,
+      "statement_id": "d18cd6467976"
+    },
+    {
+      "id": 118,
+      "hypothesis_id": "b50b16010042",
+      "submission": 123,
+      "statement_id": "b50b16010042"
+    },
+    {
+      "id": 119,
+      "hypothesis_id": "72da160b5807",
+      "submission": 124,
+      "statement_id": "72da160b5807"
+    },
+    {
+      "id": 120,
+      "hypothesis_id": "2351ae9bd55e",
+      "submission": 125,
+      "statement_id": "2351ae9bd55e"
+    },
+    {
+      "id": 121,
+      "hypothesis_id": "563ca01b7bf6",
+      "submission": 126,
+      "statement_id": "563ca01b7bf6"
+    },
+    {
+      "id": 122,
+      "hypothesis_id": "1841ba7651cd",
+      "submission": 127,
+      "statement_id": "1841ba7651cd"
+    },
+    {
+      "id": 123,
+      "hypothesis_id": "eca6191d2dce",
+      "submission": 128,
+      "statement_id": "eca6191d2dce"
+    },
+    {
+      "id": 124,
+      "hypothesis_id": "dc53db52ff78",
+      "submission": 129,
+      "statement_id": "dc53db52ff78"
+    },
+    {
+      "id": 125,
+      "hypothesis_id": "7b5401d4f177",
+      "submission": 130,
+      "statement_id": "7b5401d4f177"
+    },
+    {
+      "id": 126,
+      "hypothesis_id": "6a907dd36c51",
+      "submission": 131,
+      "statement_id": "6a907dd36c51"
+    },
+    {
+      "id": 127,
+      "hypothesis_id": "0706a9d4f954",
+      "submission": 132,
+      "statement_id": "0706a9d4f954"
+    },
+    {
+      "id": 128,
+      "hypothesis_id": "48051984ebef",
+      "submission": 133,
+      "statement_id": "48051984ebef"
+    },
+    {
+      "id": 129,
+      "hypothesis_id": "a3ea7b5ea7ce",
+      "submission": 134,
+      "statement_id": "a3ea7b5ea7ce"
+    },
+    {
+      "id": 130,
+      "hypothesis_id": "44570069ee17",
+      "submission": 135,
+      "statement_id": "44570069ee17"
+    },
+    {
+      "id": 131,
+      "hypothesis_id": "d42196042781",
+      "submission": 136,
+      "statement_id": "d42196042781"
+    },
+    {
+      "id": 132,
+      "hypothesis_id": "aa406c345da1",
+      "submission": 137,
+      "statement_id": "aa406c345da1"
+    },
+    {
+      "id": 133,
+      "hypothesis_id": "4c2c96a304c4",
+      "submission": 138,
+      "statement_id": "4c2c96a304c4"
+    },
+    {
+      "id": 134,
+      "hypothesis_id": "988113bd0a2c",
+      "submission": 139,
+      "statement_id": "988113bd0a2c"
+    },
+    {
+      "id": 135,
+      "hypothesis_id": "ccfdfc0e7c5e",
+      "submission": 140,
+      "statement_id": "ccfdfc0e7c5e"
+    },
+    {
+      "id": 136,
+      "hypothesis_id": "3707d4e064d2",
+      "submission": 141,
+      "statement_id": "3707d4e064d2"
+    },
+    {
+      "id": 137,
+      "hypothesis_id": "048f28c7922c",
+      "submission": 142,
+      "statement_id": "048f28c7922c"
+    },
+    {
+      "id": 138,
+      "hypothesis_id": "b1a673413bf8",
+      "submission": 143,
+      "statement_id": "b1a673413bf8"
+    },
+    {
+      "id": 139,
+      "hypothesis_id": "1d5431e3b13e",
+      "submission": 144,
+      "statement_id": "1d5431e3b13e"
+    },
+    {
+      "id": 140,
+      "hypothesis_id": "3c06626e29f9",
+      "submission": 145,
+      "statement_id": "3c06626e29f9"
+    },
+    {
+      "id": 141,
+      "hypothesis_id": "1f2c6e51ec99",
+      "submission": 146,
+      "statement_id": "1f2c6e51ec99"
+    },
+    {
+      "id": 142,
+      "hypothesis_id": "5278bdf43253",
+      "submission": 147,
+      "statement_id": "5278bdf43253"
+    },
+    {
+      "id": 143,
+      "hypothesis_id": "7df323ea4437",
+      "submission": 148,
+      "statement_id": "7df323ea4437"
+    },
+    {
+      "id": 144,
+      "hypothesis_id": "7d060924d3f9",
+      "submission": 149,
+      "statement_id": "7d060924d3f9"
+    },
+    {
+      "id": 145,
+      "hypothesis_id": "36a9e1d5a26b",
+      "submission": 150,
+      "statement_id": "36a9e1d5a26b"
+    },
+    {
+      "id": 146,
+      "hypothesis_id": "469368208988",
+      "submission": 151,
+      "statement_id": "469368208988"
+    },
+    {
+      "id": 147,
+      "hypothesis_id": "8d96e4b81a23",
+      "submission": 152,
+      "statement_id": "8d96e4b81a23"
+    },
+    {
+      "id": 148,
+      "hypothesis_id": "e0e3d99d41dd",
+      "submission": 153,
+      "statement_id": "e0e3d99d41dd"
+    },
+    {
+      "id": 149,
+      "hypothesis_id": "d9acb298b39c",
+      "submission": 154,
+      "statement_id": "d9acb298b39c"
+    },
+    {
+      "id": 150,
+      "hypothesis_id": "75853acfde0e",
+      "submission": 155,
+      "statement_id": "75853acfde0e"
+    },
+    {
+      "id": 151,
+      "hypothesis_id": "6f8763f8ef5f",
+      "submission": 156,
+      "statement_id": "6f8763f8ef5f"
+    }
+  ]
+}
