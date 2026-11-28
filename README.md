@@ -53,6 +53,23 @@ context selection such as H10/H75; it does not establish equivalence or override
 Existing artifacts and file-exists caching are unchanged. Use a fresh output directory
 to evaluate the corrected prompt; no old feature definitions are rewritten.
 
+For fresh decomposition, unspecified "contains/uses/provides X" now defaults to binary
+presence (any qualifying comment for a comment list), as approved in conversation.
+Explicit quantities and qualifiers override this default. Features remain atomic and
+reusable; named comparison sides are not replaced by absence, and unused alternative
+measurements are not added. This addresses arbitrary presence-versus-share choices such
+as H14/H72, without making their "primarily" and "solely" comparators interchangeable.
+This is an operationalization change from main and earlier runs, not a validated
+improvement in LLM compliance. Preserve old artifacts and use a fresh output directory.
+
+The same prompt now resolves measured text scope before source minimization (CMV
+argument/body versus title versus the full original post), aligns the question with
+the actual numeric recipe, and omits unused implementation-intermediate features.
+It explicitly retains null test terms for unavailable initial text or comparisons
+not represented by the chosen coefficient. These enforce the existing measurement
+and test contract; no new statistical test, eligibility gate or pipeline stage is added.
+Prompt checks cannot establish that the model follows these instructions.
+
 `envs/cmv.yaml` describes source scope, attribution, unavailable measurements and these source risks.
 The feature schema, direct per-row extraction, statistical evaluator, models, merge rules and distance
 thresholds are unchanged. These prompt instructions do not establish measured classification accuracy
