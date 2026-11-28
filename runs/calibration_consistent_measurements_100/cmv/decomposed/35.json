@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "op_acknowledges_counterargument_or_limitation",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "Does the original post explicitly acknowledge a counter-argument or a limitation of its own view?",
+      "kind": "prompt",
+      "spec": "Read title and argument (the OP's current text). Return 1 if the OP, in their own voice, explicitly acknowledges a counter-argument to their view or a limitation/weakness/exception of their own argument (e.g., 'I know some will say...', 'admittedly my view has a weakness...'). Return 0 if no such acknowledgment is present. Quotations or counter-positions attributed to others count only if the OP adopts them as an acknowledged counter-argument or limitation. Do not count OP view-change or delta-award announcements, post-outcome edits/resolution updates, or reports of the outcome (e.g., 'EDIT: my view changed', 'delta awarded') as evidence. Generic discussion of platform/delta rules is eligible but is not itself an acknowledgment. Return null if both title and argument are missing or empty."
+    }
+  ],
+  "h0": "The probability of view change does not differ between discussions where `op_acknowledges_counterargument_or_limitation` is 1 versus 0.",
+  "h1": "Discussions with `op_acknowledges_counterargument_or_limitation` = 1 have a higher probability of view change than those with 0.",
+  "rhs": "op_acknowledges_counterargument_or_limitation",
+  "term": "op_acknowledges_counterargument_or_limitation",
+  "sign": "+",
+  "note": "Only current OP text is available; no edit or timestamp data exists, so the 'initial' argument cannot be recovered. Edits and outcome announcements may be in the argument; the prompt excludes them as evidence, but this does not guarantee the text is a pre-outcome snapshot. This is therefore an approximation of 'initial'. The OLS on a binary outcome is a linear probability model, and the coefficient is an association, not a causal effect."
+}

@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_specific_verifiable_procedural_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment give a specific, verifiable procedural example (a concrete, checkable account of how a process, procedure or rule works or was carried out) as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Output 1 if at least one comment itself offers a specific, verifiable procedural example as support for its rebuttal: a concrete, checkable instance or description of steps/procedures/rules (e.g. named law, policy, protocol or documented process and how it operates in a particular case). Generic or hypothetical scenarios, vague appeals and purely theoretical reasoning do not count. Quoted material counts only if the commenter adopts it as support. Ignore any OP view-change or delta-award announcements, post-outcome resolution updates and reports of the outcome; they are not evidence. Output 0 if no comment qualifies or the list is empty; null if OC_comments is missing or malformed."
+    },
+    {
+      "name": "comments_solely_abstract_theoretical_rebuttals",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Do the counter-argument comments rely solely on abstract theoretical rebuttals, with no specific verifiable procedural example in any comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Output 1 if the list is non-empty, every substantive rebuttal comment is an abstract/theoretical argument (general principles, reasoning, hypotheticals), and no comment gives a specific, verifiable procedural example (a concrete, checkable account of how a process, procedure or rule operates or was carried out). Output 0 if at least one comment gives such an example, or if the comments are neither (e.g. rely on anecdotes, personal experience or other non-theoretical content). Ignore OP view-change or delta-award announcements, post-outcome resolution updates and outcome reports. Empty list: null; missing or malformed: null."
+    }
+  ],
+  "h0": "Discussions with specific verifiable procedural examples in counter-arguments and discussions relying solely on abstract theoretical rebuttals have the same view-change rate.",
+  "h1": "Discussions with specific verifiable procedural examples in counter-arguments have a higher view-change rate than those relying solely on abstract theoretical rebuttals.",
+  "rhs": "any_comment_specific_verifiable_procedural_example + comments_solely_abstract_theoretical_rebuttals",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a direct contrast between group A (example present) and group B (solely abstract). With both binaries in one OLS, each coefficient is relative to the neither/other reference group, so beta_A - beta_B is not a single coefficient; no single term represents the claim, hence term=null. Neither-group cases are preserved. Operational assumptions: 'procedural' and 'verifiable' are judged from comment text only, without external checking. Comments are unordered; current text may contain outcome announcements, which the prompts exclude as evidence."
+}

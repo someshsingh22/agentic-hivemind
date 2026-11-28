@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_has_concrete_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly reference a specific, concrete example or real-world instance?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment explicitly references a specific, concrete example or real-world instance (a named or identifiable case, event, person, product, study, place, or a specific real occurrence/personal experience) offered in support of the commenter's counter-argument; return 0 if none do (generic, abstract or purely hypothetical statements do not count). Presence only, not a count. A comment's own assertion or an external source cited as support counts; a quotation of the OP or a rebuttal quotation not adopted does not. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "oc_has_concrete_example has no association with the probability of view change (delta).",
+  "h1": "Discussions with oc_has_concrete_example = 1 have a higher probability of view change than those with 0.",
+  "rhs": "oc_has_concrete_example",
+  "term": "oc_has_concrete_example",
+  "sign": "+",
+  "note": "Binary presence assumed since no quantity was specified. OLS on binary delta gives a linear probability model. OC_comments is current text and may contain outcome-related content, which the prompt excludes as evidence; comment timing is unknown. Association only, not causal."
+}

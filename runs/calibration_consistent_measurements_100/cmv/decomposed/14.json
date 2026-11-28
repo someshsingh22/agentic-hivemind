@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "oc_has_concrete_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment provide a concrete real-world example as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Output 1 if at least one comment offers a specific, concrete real-world example (a real event, case, person, organization, personal experience, or data instance) as support for its counter-argument, in the commenter's own assertion or as an external source cited as support. Hypothetical/invented scenarios, generic abstract claims, and quotations of the OP or others that are merely rebutted do not count. Ignore any OP view-change/delta-award announcements or reports of the outcome as evidence. Output 0 if the list is valid but empty or no comment qualifies; null if missing or malformed."
+    },
+    {
+      "name": "oc_primarily_abstract_reasoning",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Do the counter-argument comments rely primarily on abstract reasoning rather than concrete real-world examples?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Judge the comments overall: output 1 if most of the argumentative content across the comments is abstract reasoning (general principles, logic, definitions, hypotheticals) and concrete real-world examples (real events, cases, named instances, personal experiences, cited data instances) are a minor part or absent. Output 0 if the list is non-empty and concrete examples make up a major part or the bulk of the support. Ignore OP view-change/delta-award announcements or outcome reports as evidence. Empty valid list: null (no counter-arguments to characterize); missing or malformed: null."
+    }
+  ],
+  "h0": "There is no difference in the likelihood of view change between discussions whose counter-arguments provide concrete real-world examples (oc_has_concrete_example) and those relying primarily on abstract reasoning (oc_primarily_abstract_reasoning).",
+  "h1": "Discussions whose counter-arguments provide concrete real-world examples (oc_has_concrete_example) have a higher likelihood of view change than those relying primarily on abstract reasoning (oc_primarily_abstract_reasoning).",
+  "rhs": "oc_has_concrete_example + oc_primarily_abstract_reasoning",
+  "term": null,
+  "sign": "+",
+  "note": "The claim compares example-providing discussions with primarily-abstract ones. The two features are not complements: overlap and neither cases exist, and absence of an example does not establish abstractness. The claimed contrast (beta_example - beta_abstract) is not a single coefficient in this formula, so term=null; no single coefficient is used as an approximation. Assumptions: 'primarily' is judged by the LLM as most of the support content. OC_comments may include outcome announcements or later replies; prompts exclude them, but timing is unknown. Associations only."
+}

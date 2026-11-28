@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_has_apology_phrase",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument text contain at least one explicit polite apology phrase?",
+      "kind": "code",
+      "spec": "Read df['argument'] only. If missing or not a string, return null. Otherwise lowercase the text and return 1 if it matches regex r\"\\b(i'?m sorry|i am sorry|sorry for|sorry if|sorry about|sorry to|my apologies|apologies|apologi[sz]e|apologi[sz]ing|apology|pardon me|excuse me|forgive me)\\b\" else 0. Empty string returns 0. Raw literal matching, no semantic filtering."
+    }
+  ],
+  "h0": "Discussions whose argument has argument_has_apology_phrase = 1 have the same likelihood of view change as those with argument_has_apology_phrase = 0.",
+  "h1": "Discussions whose argument has argument_has_apology_phrase = 1 have a lower likelihood of view change than those with argument_has_apology_phrase = 0.",
+  "rhs": "argument_has_apology_phrase",
+  "term": "argument_has_apology_phrase",
+  "sign": "-",
+  "note": "Operational assumption: \"explicit polite apology phrases\" is operationalized as a fixed literal phrase list (sorry/apologize/my apologies/pardon/excuse me/forgive me); it may include non-apologetic uses (e.g., \"sorry state\") and miss unlisted phrasings. Uses current argument text, which may include edits and outcome announcements; raw matching is not outcome-free or pre-outcome. OLS on binary delta is a linear probability model; association only."
+}

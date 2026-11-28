@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_has_first_person_singular",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument text contain at least one explicit first-person singular pronoun (I, me, my, mine, myself)?",
+      "kind": "code",
+      "spec": "Read only df['argument']. If missing/non-string return null; empty string gives 0. Normalise curly apostrophes to ' then: df['argument'].apply(lambda s: None if not isinstance(s,str) else int(bool(re.search(r\"\\b(?:i|me|my|mine|myself)\\b|\\bi'(?:m|ve|d|ll)\\b\", s.replace('’',\"'\"), flags=re.I)))). Counts any occurrence anywhere in the argument, including within quotations (raw mechanical match, no semantic filtering). Title and comments are not read."
+    }
+  ],
+  "h0": "argument_has_first_person_singular has no association with the probability of view change (delta).",
+  "h1": "Discussions with argument_has_first_person_singular = 1 have a higher probability of view change than those with 0.",
+  "rhs": "argument_has_first_person_singular",
+  "term": "argument_has_first_person_singular",
+  "sign": "+",
+  "note": "Binary presence per the hypothesis (no count/share). Pronoun list (I, me, my, mine, myself, and I-contractions) is an operational assumption; case-insensitive so lowercase informal 'i' counts, and quotations are not excluded. Argument is current text and may include edits or outcome announcements (raw text not outcome-free or pre-outcome). OLS on binary delta is a linear probability model; association only, not causal."
+}

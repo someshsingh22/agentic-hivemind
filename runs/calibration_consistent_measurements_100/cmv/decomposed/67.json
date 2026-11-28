@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_specific_real_world_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment offer a specific real-world example as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of counter-argument comments by users other than the OP). Return 1 if at least one comment, in its own words, cites a specific real-world example (a concrete named or identifiable real event, case, person, organization, place, study or personal real experience) as support for its argument. Return 0 if no comment does (generic claims, hypotheticals, and purely abstract reasoning do not count). An external source cited as support counts. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Generic platform-rule discussion is eligible. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "any_comment_specific_real_world_example has no association with the probability of OP view change (delta).",
+  "h1": "Discussions with any_comment_specific_real_world_example = 1 have a higher probability of OP view change than those with 0.",
+  "rhs": "any_comment_specific_real_world_example",
+  "term": "any_comment_specific_real_world_example",
+  "sign": "+",
+  "note": "Presence is binary per the unspecified 'containing'. OLS on the binary outcome is a linear probability model; association only, not causal. Comments are unordered with unknown timing, and OC_comments may contain outcome announcements, which the prompt excludes as evidence. \"Specific\" is judged by the annotator under the stated criterion."
+}

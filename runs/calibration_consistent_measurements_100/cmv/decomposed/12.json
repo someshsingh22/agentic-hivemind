@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "comment_quotes_and_refutes_op_factual_claim",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly quote a specific factual claim from the original post and refute that same claim?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Output 1 if at least one single comment both (a) explicitly quotes (verbatim or clearly marked near-verbatim excerpt) a specific factual claim stated in the OP text (title and argument) and (b) argues that this same claim is false, inaccurate or unsupported, within that same comment. Separate comments cannot jointly satisfy the conjunction. Quoting opinions/values rather than factual claims, quoting without refuting, or refuting without quoting gives no credit. Quotation marks alone do not prove the text comes from the OP; check against the OP title/argument. Ignore any OP view-change or delta-award announcements, post-outcome resolution updates, and reports of the outcome as evidence. Output 0 if the list is valid but empty or no comment qualifies; null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "comment_quotes_and_refutes_op_factual_claim has no association with the probability of view change (delta).",
+  "h1": "Rows with comment_quotes_and_refutes_op_factual_claim = 1 have a higher rate of view change than rows with 0.",
+  "rhs": "comment_quotes_and_refutes_op_factual_claim",
+  "term": "comment_quotes_and_refutes_op_factual_claim",
+  "sign": "+",
+  "note": "Presence (any comment) is assumed since no quantity was specified. OLS on binary delta gives a linear probability difference in rates; association only. OC_comments and the OP text may contain outcome announcements, and timing of comments relative to the outcome is unknown; these are excluded by the semantic spec as evidence. Factual vs. opinion claims is a judgment call."
+}

@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "concrete_verifiable_example_present",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a concrete, locally verifiable example (a specific case, instance, or situation that can be checked directly) offered as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment, in its own assertions, offers a concrete, locally verifiable example as support for its counter-argument: a specific named or described instance, case, event, personal experience, or checkable observation (not a general principle, abstract claim, or hypothetical). Quoted material counts only if the commenter cites it as support. Return 0 if the list is valid but no comment qualifies, including empty list. Return null if OC_comments is missing or malformed. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence; generic delta-rule discussion is allowed."
+    },
+    {
+      "name": "abstract_principles_only",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Do the counter-argument comments rely only on abstract principles, with at least one comment making an argument and none containing a concrete, locally verifiable example?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Return 1 if there is at least one comment that argues substantively and the comments' support relies on abstract principles, general reasoning or generalizations, and NO comment contains a concrete, locally verifiable example (specific checkable instance, case, event or personal experience). Return 0 if the list is valid and at least one comment contains such a concrete example, or if the list is empty or no comment relies on abstract principles. Return null if OC_comments is missing or malformed. Ignore OP view-change/delta announcements, post-outcome updates and reports of the outcome as evidence."
+    }
+  ],
+  "h0": "There is no difference in the probability of view change between discussions where `concrete_verifiable_example_present` is 1 and 0, holding `abstract_principles_only` fixed.",
+  "h1": "Discussions with `concrete_verifiable_example_present` = 1 have a higher probability of view change than those without, holding `abstract_principles_only` fixed.",
+  "rhs": "concrete_verifiable_example_present + abstract_principles_only",
+  "term": "concrete_verifiable_example_present",
+  "sign": "+",
+  "note": "The hypothesis compares concrete-example vs abstract-principle counter-arguments. Both sides are measured. Because abstract_principles_only is 0 whenever a concrete example is present, the two are nearly exclusive, so the concrete coefficient is conditional on the abstract-only indicator and is not an exact direct contrast; the omitted reference group includes neither-type and empty cases. \"Locally verifiable\" is operationalized as a specific checkable instance within the comment; no external verification is performed. Comments are unordered, with no timing. OC_comments may contain outcome-related text; semantic exclusions are applied in the specs. Association only; OLS on binary delta is a linear probability model."
+}

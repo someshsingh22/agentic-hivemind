@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "comment_validates_emotion_before_rebuttal",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly validate the OP's emotional experience before giving a logical rebuttal within that same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one single comment (a) explicitly acknowledges or validates the OP's emotional experience or feelings (e.g., 'I understand why you feel frustrated', 'that sounds painful') in the commenter's own words, and (b) later in that same comment gives a logical rebuttal or counter-argument to the OP's view; the validation must appear before the rebuttal within the comment. Separate comments cannot jointly satisfy it. Return 0 if no comment qualifies, or if the list is valid but empty. Return null if OC_comments is missing or malformed. Do not count quoted text unless the commenter adopts it. Ignore any OP view-change or delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence; generic delta-rule discussion is eligible."
+    }
+  ],
+  "h0": "Discussions with comment_validates_emotion_before_rebuttal = 1 have the same view-change rate as those with 0.",
+  "h1": "Discussions with comment_validates_emotion_before_rebuttal = 1 have a higher view-change rate than those with 0.",
+  "rhs": "comment_validates_emotion_before_rebuttal",
+  "term": "comment_validates_emotion_before_rebuttal",
+  "sign": "+",
+  "note": "Presence interpreted as at least one qualifying comment. Comment order within the list is not chronology; 'prior' is interpreted only within a single comment. OLS on binary delta gives a linear-probability association, not causal. Comments may contain outcome-related text; the prompt excludes it from evidence."
+}

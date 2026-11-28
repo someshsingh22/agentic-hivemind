@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_specific_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment present a specific counterargument (a concrete, particular point against the OP's view rather than a vague or general objection)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment makes a specific counterargument, i.e. a concrete, particular reasoning point, example or evidence directly opposing the OP's view; return 0 if the list is valid but empty or no comment does (only vague disagreement, questions, jokes, insults, or off-topic). Do not count OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Quoted text counts only if the commenter adopts it. Return null if the input is missing or malformed."
+    },
+    {
+      "name": "explicit_agreement_marker_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many explicit agreement markers (e.g. 'I agree', 'you're right', 'good point') appear across the counter-argument comments?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Count the total number of explicit agreement markers the commenters themselves assert across all comments (e.g. 'I agree', 'you're right', 'good point', 'fair enough', 'exactly'), expressing agreement with another party. Count each separate marker instance; exclude markers inside quotations not adopted by the commenter, and exclude OP view-change/delta-award announcements, post-outcome updates or reports of the outcome. Valid empty list gives 0; missing or malformed input gives null. Output a non-negative integer."
+    }
+  ],
+  "h0": "any_specific_counterargument has no association with explicit_agreement_marker_count.",
+  "h1": "Rows with any_specific_counterargument=1 have higher explicit_agreement_marker_count than rows with 0.",
+  "rhs": "any_specific_counterargument",
+  "term": null,
+  "sign": "+",
+  "note": "The fixed outcome is delta, but this claim's dependent variable is agreement-marker frequency, so the available OLS (delta ~ rhs) cannot test it; term=null rather than substituting a different test. Both features are retained. Assumptions: 'posts containing specific counterarguments' is measured from OC_comments; agreement markers are measured in the same comments (speaker unspecified in the hypothesis); frequency is a raw count, not normalized by length. Comments are unordered and may contain outcome announcements, which the prompts exclude. Since both features read the same comments, they are mechanically related."
+}

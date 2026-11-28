@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "distinct_factual_premises_challenged_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "How many distinct factual premises stated in the OP's argument are challenged by the counter-argument comments?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Read the OP's argument text. Identify the distinct factual (empirical, checkable, non-evaluative) premises asserted by the OP in the argument. Count how many of these distinct premises are directly challenged (disputed, contradicted, or shown to be false/unsupported) by at least one comment in OC_comments. Each premise counts once regardless of how many comments challenge it; one comment challenging several distinct premises counts each. Do not count challenges to values, opinions, or logic that do not dispute a factual claim. Ignore OP view-change/delta-award announcements, post-outcome resolution updates and reports of the outcome in argument or comments as evidence. Comments quoting OP are only challenges if the comment itself disputes the premise. Output a non-negative integer. If OC_comments is a valid empty list, or argument contains no factual premises, output 0; if argument or OC_comments is missing or malformed, output null."
+    }
+  ],
+  "h0": "distinct_factual_premises_challenged_count has no association with view change (coefficient = 0).",
+  "h1": "Higher distinct_factual_premises_challenged_count is associated with a higher probability of view change (coefficient > 0).",
+  "rhs": "distinct_factual_premises_challenged_count",
+  "term": "distinct_factual_premises_challenged_count",
+  "sign": "+",
+  "note": "Operational assumption: \"frequently challenging multiple distinct factual premises\" is measured as the count of distinct OP factual premises challenged by at least one comment; no threshold of \"multiple\" is imposed (a linear count term). Comment list order and timing are unknown. Argument text and comments may contain outcome announcements/edits; the prompt excludes them as evidence, but the current text is not a pre-outcome snapshot. Fact vs. value premise classification is judged by the annotator. OLS on binary delta is a linear probability model; association only, not causal."
+}

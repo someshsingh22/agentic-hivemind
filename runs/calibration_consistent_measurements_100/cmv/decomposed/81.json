@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_second_person_address",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument address the reader using second-person direct address (e.g., you, your)?",
+      "kind": "prompt",
+      "spec": "Read only the OP's `argument` text. Return 1 if the OP's own text directly addresses the reader or audience with second-person direct address (e.g., 'you', 'your' referring to the reader/commenters, or imperatives addressed to the reader such as 'tell me'). Return 0 if there is no such address (impersonal phrasing only). Do not count generic 'you' meaning 'one' as address, and do not count 'you' inside quotations attributed to other speakers unless the OP adopts it. Ignore OP view-change/delta-award announcements, post-outcome edits and reports of the outcome. Return null if argument is missing or malformed; 0 for empty text."
+    }
+  ],
+  "h0": "argument_second_person_address has no association with the probability of view change (delta).",
+  "h1": "Rows with argument_second_person_address = 1 have a higher probability of view change than rows with 0.",
+  "rhs": "argument_second_person_address",
+  "term": "argument_second_person_address",
+  "sign": "+",
+  "note": "Comparison group is \"no second-person address\", taken as impersonal phrasing; rows are not separately checked for explicitly impersonal phrasing. Current argument text may include edits and outcome announcements (excluded as evidence by the semantic rating but not removed from source), so timing relative to outcome is unknown. Association only; OLS linear probability on binary delta."
+}

@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "oc_engages_op_examples_or_premises",
+      "dtype": "binary",
+      "source_columns": [
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly engage with a specific example or premise cited in the OP's argument text?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users) and read argument (OP argument text only). Output 1 if at least one single comment explicitly addresses (e.g., quotes, restates, rebuts, questions or builds on) a specific example or premise that is stated in the argument text; generic disagreement with the overall view, or comments that only raise unrelated points, do not count. Output 0 if no comment does so. Empty comment list gives 0; missing or malformed OC_comments or empty/missing argument gives null. Ignore OP view-change/delta-award announcements, post-outcome resolution updates and reports of the outcome in either column as evidence; they cannot establish engagement. Quotation of OP text counts only when the comment goes on to address it rather than merely appearing."
+    }
+  ],
+  "h0": "There is no association between oc_engages_op_examples_or_premises and the probability that the OP changed their view (delta).",
+  "h1": "Discussions with oc_engages_op_examples_or_premises equal to 1 have a higher probability of view change than those equal to 0.",
+  "rhs": "oc_engages_op_examples_or_premises",
+  "term": "oc_engages_op_examples_or_premises",
+  "sign": "+",
+  "note": "Presence (at least one comment) is assumed for \"counter-arguments explicitly engage\". Scope is argument text only (not title), per the hypothesis. OLS on binary delta gives a linear probability interpretation; association only. Current text may contain outcome announcements and comment timing is unknown; the semantic spec excludes outcome-related content, but the raw text is not guaranteed pre-outcome."
+}

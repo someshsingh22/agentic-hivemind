@@ -1,0 +1,32 @@
+{
+  "features": [
+    {
+      "name": "op_invites_critique_or_tentative",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "Does the original post (title or argument) explicitly invite critique or use tentative language when stating its view?",
+      "kind": "prompt",
+      "spec": "Read title and argument (the OP's own text). Return 1 if the OP's own assertions either explicitly invite critique/challenge/counterarguments (e.g. 'change my view', 'tell me why I'm wrong', 'I'm open to being convinced') or express the OP's view with tentative/hedged language (e.g. 'I think', 'maybe', 'might', 'it seems', 'I'm not sure'). Return 0 if neither appears. Count only the OP's own wording, not quotations of others unless adopted. Ignore view-change/delta-award announcements, post-outcome edits and reports of the outcome. Return null if both title and argument are missing or empty."
+    },
+    {
+      "name": "op_uses_absolute_declarations",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "Does the original post (title or argument) state its view using absolute, definitive declarations?",
+      "kind": "prompt",
+      "spec": "Read title and argument (the OP's own text). Return 1 if the OP states its own view with absolute/definitive declarations (e.g. 'always', 'never', 'obviously', 'undeniably', 'there is no doubt', flat categorical claims without hedging). Return 0 otherwise. Count only the OP's own assertions, not unadopted quotations. Ignore view-change/delta-award announcements, post-outcome edits and reports of the outcome. Return null if both title and argument are missing or empty."
+    }
+  ],
+  "h0": "Discussions whose OP invites critique or uses tentative language (`op_invites_critique_or_tentative`) have the same view-change rate as those whose OP uses absolute declarations (`op_uses_absolute_declarations`).",
+  "h1": "View-change rates are higher for OPs with `op_invites_critique_or_tentative` than for OPs with `op_uses_absolute_declarations`.",
+  "rhs": "op_invites_critique_or_tentative + op_uses_absolute_declarations",
+  "term": null,
+  "sign": "+",
+  "note": "The claim compares two named groups, so the required contrast is beta_invite minus beta_absolute, which is not a single coefficient in this formula. I did not build a difference score, so term is null. Both measurements are kept; overlap and neither cases are possible. Measures use current OP text (title and argument), which may include edits or outcome announcements and is not guaranteed pre-outcome. The prompt specs exclude outcome announcements. Hedging and absolutism are judged by an LLM with no fixed scale."
+}

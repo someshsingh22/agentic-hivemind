@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_second_person_address_to_op",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment use second-person direct address to the original poster?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment, in its own wording, directly addresses the original poster in the second person (e.g., 'you', 'your', 'you're' referring to the OP, such as 'you say', 'your view'). Return 0 if no comment does. Generic 'you' meaning people in general, 'you' inside quotations of other speakers not adopted by the commenter, and 'you' addressed to other users do not count. Ignore any OP view-change/delta-award announcements or post-outcome reports as evidence. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "any_comment_second_person_address_to_op is not associated with the likelihood of OP view change (coefficient = 0).",
+  "h1": "any_comment_second_person_address_to_op is associated with a higher likelihood of OP view change (coefficient > 0).",
+  "rhs": "any_comment_second_person_address_to_op",
+  "term": "any_comment_second_person_address_to_op",
+  "sign": "+",
+  "note": "Presence interpreted as at least one comment (no count/share specified). Reads OC_comments only; comments may contain outcome announcements or reply context, and reply timing is unknown. Association only, not causal. OLS on binary delta is a linear probability model."
+}

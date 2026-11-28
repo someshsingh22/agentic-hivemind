@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_personal_anecdote",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment use a concrete personal anecdote (the commenter's own specific experience) as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment uses a concrete personal anecdote, i.e. the commenter recounts a specific experience of their own (or of someone they personally know) as part of the argument; otherwise 0. Generic hypotheticals, abstract claims, and quotations/experiences attributed to external sources the commenter does not adopt do not count. Ignore any text that announces the OP's view change or delta award, or reports the outcome. Empty list gives 0; missing or malformed input gives null."
+    },
+    {
+      "name": "any_comment_abstract_reasoning",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment use abstract reasoning (general principles or logic) rather than a concrete example?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment argues through abstract reasoning, i.e. general principles, logical or conceptual argument, or generalized claims, without relying on a personal anecdote for that argument; otherwise 0. Ignore any text that announces the OP's view change or delta award, or reports the outcome. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "There is no difference in the likelihood of delta between discussions with personal-anecdote counter-arguments and those with abstract-reasoning counter-arguments, holding the other feature fixed.",
+  "h1": "Discussions with any_comment_personal_anecdote are more likely to have the OP change their view than discussions with any_comment_abstract_reasoning.",
+  "rhs": "any_comment_personal_anecdote + any_comment_abstract_reasoning",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a contrast (anecdote vs abstract). In this OLS, the coefficients are separate conditional effects, not beta_anecdote minus beta_abstract, so no single coefficient represents the contrast and term is null. Both features are retained, including overlap and neither cases. Comments are unordered; no timing information. Operational assumption: presence (any comment) is used as the quantity since none is specified. Current text may contain outcome announcements, which the prompts exclude."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_argument_has_personal_anecdote",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument include a direct personal anecdote, meaning the OP recounts their own specific experience or event?",
+      "kind": "prompt",
+      "spec": "Read only the `argument` text (OP's body; not the title). Return 1 if the OP, in their own voice, recounts at least one direct personal anecdote: a specific experience, event or episode that happened to the OP personally (e.g., 'when I worked at...', 'my friend and I once...' where OP was involved). Return 0 if the argument has only general claims, hypotheticals, opinions, or others' experiences/quotations not adopted as OP's own experience. Quotation marks alone do not indicate another speaker. Do not count OP view-change/delta-award announcements, post-outcome edits, resolution updates or reports of the outcome as anecdotes. Empty argument gives 0; missing or malformed gives null."
+    }
+  ],
+  "h0": "op_argument_has_personal_anecdote has no association with the probability that the OP changed their view (delta).",
+  "h1": "Posts with op_argument_has_personal_anecdote = 1 have a lower probability of OP view change than those with 0.",
+  "rhs": "op_argument_has_personal_anecdote",
+  "term": "op_argument_has_personal_anecdote",
+  "sign": "-",
+  "note": "Presence is binary (unspecified quantity). Uses current argument text, which may include edits or outcome announcements; the prompt excludes those as anecdote evidence, but timing relative to outcome is unknown. OLS on a binary outcome is a linear probability model; association only, not causal."
+}

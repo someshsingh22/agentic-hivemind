@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "share_comments_quoting_op",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "What proportion of the counter-argument comments directly quote wording from the original post?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment decide whether it contains a direct quotation (verbatim or near-verbatim copied wording, e.g. in quotation marks or blockquote '>' format) of text that appears in the OP's title or argument. Quotations of other sources, paraphrases without copied wording, and quotation marks used for scare quotes or other-speaker text not found in the OP text do not count. Ignore quotes that are only OP view-change/delta-award announcements or post-outcome resolution reports. Output = (number of comments with such a quotation) / (total number of comments), a number in [0,1]. Empty list gives null; missing or malformed input gives null."
+    }
+  ],
+  "h0": "share_comments_quoting_op has no association with the likelihood of OP view change.",
+  "h1": "Higher share_comments_quoting_op is associated with a higher likelihood of OP view change.",
+  "rhs": "share_comments_quoting_op",
+  "term": "share_comments_quoting_op",
+  "sign": "+",
+  "note": "Operational assumptions: \"frequently embedding\" is measured as the share of available comments with a direct OP quotation; \"lacking explicit textual anchoring\" is the low end of this continuous share (zero share), not a separately defined group. Quotation verification uses current title/argument, which may contain edits or outcome announcements; no timing information is available. Comments are not necessarily from distinct commenters. Association only, not causal."
+}

@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_personal_labor_process_detail",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment introduce concrete, personal details about how work or labor is actually done (e.g., the commenter's own job tasks, workplace procedures or work experience)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Output 1 if at least one comment, in the commenter's own voice, gives concrete first-hand/personal details of a labor process (their own or someone they directly know: specific job tasks, workflow, schedules, workplace procedures, working conditions experienced). Generic statements, hypotheticals, abstract principles, or quoted material not adopted by the commenter do not count. Ignore any OP view-change/delta announcements or reports of the outcome as evidence. Output 0 if no comment qualifies or the list is empty; null if OC_comments is missing or malformed."
+    },
+    {
+      "name": "all_comments_solely_abstract_normative",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Do all counter-argument comments rely solely on abstract normative principles, with no concrete personal labor-process details?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Output 1 if the list is non-empty and every comment's argument rests only on abstract normative principles (what should/ought to be, rights, fairness, morality, general values) and none contains concrete personal or labor-process details or other concrete examples. Output 0 if at least one comment contains concrete details or non-normative/non-abstract support. Empty list or missing/malformed input: null. Ignore OP view-change/delta announcements and outcome reports as evidence."
+    }
+  ],
+  "h0": "Discussions with any_comment_personal_labor_process_detail have the same view-change rate as discussions with all_comments_solely_abstract_normative.",
+  "h1": "Discussions with any_comment_personal_labor_process_detail have a higher view-change rate than discussions with all_comments_solely_abstract_normative.",
+  "rhs": "any_comment_personal_labor_process_detail + all_comments_solely_abstract_normative",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a comparison between two named groups (concrete personal labor-process detail vs solely abstract normative). Both are measured, but in the A+B model beta_A is not beta_A - beta_B (and is conditional on B; neither/overlap cases exist), so no single coefficient expresses the contrast; term is null. Assumptions: presence-based 'introduce' for A; 'solely' as all comments for B. Comment order and timing unknown; OC_comments may contain outcome announcements, which the prompts exclude as evidence. Associations only."
+}

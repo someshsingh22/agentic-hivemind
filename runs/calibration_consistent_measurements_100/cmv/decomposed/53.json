@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "argument_uses_hedging",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument text use hedging or qualifying language (e.g., 'maybe', 'perhaps', 'in some cases', 'I think', 'might')?",
+      "kind": "prompt",
+      "spec": "Read only `argument` (OP's argument body, not title). Return 1 if the OP's own assertions contain at least one instance of hedging or qualifying language that softens or limits a claim (e.g., 'maybe', 'perhaps', 'might', 'generally', 'in some cases', 'to some extent', 'I tend to think'). Return 0 if none. Ignore hedges inside quotations attributed to other people unless the OP adopts them. Ignore OP view-change/delta-award announcements, post-outcome edits/updates and reports of the outcome; they are not evidence. Empty argument gives 0; missing or malformed gives null."
+    },
+    {
+      "name": "argument_uses_absolute_statements",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument text use absolute declarative statements (e.g., 'always', 'never', 'everyone', flat unqualified claims)?",
+      "kind": "prompt",
+      "spec": "Read only `argument` (OP's argument body, not title). Return 1 if the OP's own assertions contain at least one absolute, unqualified declarative claim stated with certainty (e.g., 'always', 'never', 'all', 'nobody', 'obviously', 'it is a fact that', flat universal claims without qualification). Return 0 if none. Ignore absolutes inside quotations attributed to other people unless the OP adopts them. Ignore OP view-change/delta-award announcements, post-outcome edits/updates and reports of the outcome; they are not evidence. Empty argument gives 0; missing or malformed gives null. Independent of `argument_uses_hedging`; both, or neither, can be 1/0."
+    }
+  ],
+  "h0": "Discussions whose OP argument uses hedging language do not differ in view-change likelihood from those whose OP argument uses absolute declarative statements.",
+  "h1": "Discussions whose OP argument uses hedging language have higher view-change likelihood than those whose OP argument uses absolute declarative statements.",
+  "rhs": "argument_uses_hedging + argument_uses_absolute_statements",
+  "term": null,
+  "sign": "+",
+  "note": "The claim compares hedging versus absolute-statement arguments. Both measures are kept, and overlap or neither cases are possible. In the rhs, beta_hedging is conditional on the absolute-statement feature and beta_absolute is conditional on hedging. Neither coefficient, nor their sum, equals the hedging-minus-absolute contrast, so term=null. I did not invent a difference score or a mutually exclusive grouping. The argument is current text and may include edits or outcome announcements, so it is not a pre-outcome snapshot. 'Absolute' is judged by the LLM with no supplied scale. The result would be an association only."
+}

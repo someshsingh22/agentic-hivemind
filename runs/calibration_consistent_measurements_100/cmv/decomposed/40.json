@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_comment_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many counter-argument comments by other users are in the list?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list; return len(list). Valid empty list gives 0; missing or malformed JSON gives null. Counts comments, not distinct commenters."
+    }
+  ],
+  "h0": "Unsupported: no available measurement tests whether single highly-rated counterargument posts have different frequency of OP attribution replies.",
+  "h1": "Unsupported: posts with a single highly-rated counterargument have more OP attribution replies.",
+  "rhs": "oc_comment_count",
+  "term": null,
+  "sign": "+",
+  "note": "Claim not testable with the supplied data. (1) No per-comment ratings/scores are supplied, so 'highly-rated' cannot be measured; post_score is the OP post's score, not a comment rating. Comment count alone only measures 'single' (count==1), not 'highly-rated'. (2) The claimed outcome is frequency of OP attribution replies (e.g., credit/delta-style acknowledgements), not the fixed outcome delta; such replies are outcome-revealing, with unknown timing, and the dataset's outcome cannot be substituted. OC_comments excludes OP replies, and conversation overlaps with and may contain view-change announcements, so it is not used. oc_comment_count is retained only as the partial 'single counterargument' base measure; no valid test term is defined."
+}

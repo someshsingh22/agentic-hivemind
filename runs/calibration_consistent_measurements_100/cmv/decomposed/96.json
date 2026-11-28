@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_argument_discloses_emotional_vulnerability",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument text disclose the OP's own personal emotional vulnerability (e.g., admitting fear, shame, insecurity, pain or distress they themselves feel or felt)?",
+      "kind": "prompt",
+      "spec": "Read only `argument` (the OP's argument body; not title). Return 1 if the OP, in their own voice, discloses a personal emotional vulnerability about themselves (e.g., admitting fear, anxiety, shame, insecurity, loneliness, grief, depression, feeling hurt or helpless). Return 0 if there is no such disclosure: purely impersonal reasoning, emotions attributed to others, hypothetical emotions, or quoted material not adopted by the OP as their own. Do not count view-change/delta-award announcements, post-outcome edits or reports of the outcome (e.g., 'my view was changed', 'delta awarded') as evidence. Generic discussion of delta rules is not a disclosure. Return null if argument is missing or not a string; return 0 for empty text."
+    }
+  ],
+  "h0": "op_argument_discloses_emotional_vulnerability has no association with the likelihood of delta (coefficient = 0).",
+  "h1": "op_argument_discloses_emotional_vulnerability is positively associated with the likelihood of delta (coefficient > 0).",
+  "rhs": "op_argument_discloses_emotional_vulnerability",
+  "term": "op_argument_discloses_emotional_vulnerability",
+  "sign": "+",
+  "note": "Presence is measured as binary (no intensity scale). Uses current argument text, which may include edits or outcome announcements; these are excluded from the semantic judgment, but timing relative to the outcome is unknown. Linear probability OLS; association only, not causal."
+}

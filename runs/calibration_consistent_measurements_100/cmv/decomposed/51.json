@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "quote_and_refute_op_phrase",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly quote a specific phrase from the original post and refute it within that same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one single comment both (a) explicitly quotes a specific word or phrase taken from the OP text (title or argument; use them to verify the quoted wording comes from the OP) and (b) argues against, rebuts or disputes that quoted phrase in the same comment. Separate comments cannot jointly satisfy the conjunction. Quoting without refuting, refuting without quoting OP wording, or quoting text not from the OP (e.g. other commenters) gives 0. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Empty comment list gives 0; missing or malformed OC_comments gives null."
+    }
+  ],
+  "h0": "quote_and_refute_op_phrase has no association with the probability of view change (coefficient = 0).",
+  "h1": "Discussions with quote_and_refute_op_phrase = 1 have a higher probability of view change than those with 0 (coefficient > 0).",
+  "rhs": "quote_and_refute_op_phrase",
+  "term": "quote_and_refute_op_phrase",
+  "sign": "+",
+  "note": "Presence is assumed (at least one qualifying comment). OLS on binary delta is a linear probability model; association only. Comment order and timing unknown; OP text is current text and may contain edits or outcome announcements, which the prompt ignores as evidence. Comments quoting OP wording are judged by the quotation matching OP text; paraphrase does not count."
+}

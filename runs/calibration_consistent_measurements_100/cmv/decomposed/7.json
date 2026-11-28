@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "distinct_counterargument_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many distinct counter-arguments against the OP's view are made across the posted comments?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Count the number of distinct counter-arguments against the OP's view across all comments: separate reasons/points challenging the OP's position; the same argument repeated in several comments or within one comment counts once; one comment can contribute several distinct counter-arguments. Do not count agreement, questions without an argument, jokes, or pure clarification. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Output a non-negative integer; empty list gives 0; missing or malformed input gives null."
+    },
+    {
+      "name": "has_three_plus_counterarguments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Are there at least three distinct counter-arguments in the posted comments?",
+      "kind": "code",
+      "spec": "df['has_three_plus_counterarguments'] = (df['distinct_counterargument_count'] >= 3).astype(int), null where `distinct_counterargument_count` is null."
+    }
+  ],
+  "h0": "Discussions with at least three distinct counter-arguments (has_three_plus_counterarguments=1) have the same likelihood of OP view change as those with fewer.",
+  "h1": "Discussions with has_three_plus_counterarguments=1 have a higher likelihood of OP view change than those with fewer than three.",
+  "rhs": "has_three_plus_counterarguments",
+  "term": "has_three_plus_counterarguments",
+  "sign": "+",
+  "note": "Operational assumptions: \"distinct\" means non-duplicated argumentative points, counted across available comments only (list is not necessarily complete or chronological). OLS on binary delta is a linear probability model. Comments may include outcome announcements; the prompt excludes them as evidence. Association only."
+}

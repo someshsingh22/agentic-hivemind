@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_comment_quotes_or_references_op_text",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly quote or reference a specific textual element of the original post (title or argument)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than OP). Output 1 if at least one comment explicitly quotes OP wording (title or argument) or explicitly refers to a specific identifiable statement, claim, phrase or passage of the OP's text (e.g., 'you say that...', 'your point about X'), verified against title and argument. Output 0 if no comment does (generic replies, or only general topic discussion, do not count). Ignore OP view-change/delta-award announcements, post-outcome resolution updates and reports of the outcome as evidence. Empty comment list: 0. Missing/malformed OC_comments: null."
+    }
+  ],
+  "h0": "any_comment_quotes_or_references_op_text has no association with the probability of OP view change.",
+  "h1": "Discussions with any_comment_quotes_or_references_op_text = 1 have a higher probability of OP view change.",
+  "rhs": "any_comment_quotes_or_references_op_text",
+  "term": "any_comment_quotes_or_references_op_text",
+  "sign": "+",
+  "note": "Presence measured (unspecified quantity). Outcome is binary delta; OLS gives a linear probability model. Comments are current text with unknown timing; comments or OP text may contain outcome announcements, which the prompt ignores. Association only, not causal."
+}

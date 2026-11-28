@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_acknowledges_then_narrow_caveat",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly acknowledge validity in the OP's view and then, in that same comment, introduce a narrower, specific caveat?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one single comment first explicitly acknowledges that the OP's view/point has validity (own assertion, not a mere quotation of someone else) and afterwards in the same comment raises a narrow, specific caveat, exception or qualification. Acknowledgment and caveat must co-occur in one comment in that order; separate comments cannot jointly satisfy it. Return 0 if no comment does. Empty list gives 0; missing or malformed input gives null. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence; generic delta-rule discussion is eligible."
+    },
+    {
+      "name": "any_comment_immediate_blanket_contradiction",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment immediately contradict the OP's view in a blanket, general way without first acknowledging any validity?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment opens by directly contradicting or rejecting the OP's view as a whole (broad, sweeping disagreement rather than a narrow specific caveat) without first explicitly acknowledging any validity in the OP's view. Return 0 if no comment does. Empty list gives 0; missing or malformed input gives null. Judge only the commenter's own assertions, not quoted text unless adopted. Ignore OP view-change/delta-award announcements, post-outcome resolution updates and reports of the outcome as evidence."
+    }
+  ],
+  "h0": "Discussions with `any_comment_acknowledges_then_narrow_caveat` have the same view-change rate as those with `any_comment_immediate_blanket_contradiction`.",
+  "h1": "Discussions with `any_comment_acknowledges_then_narrow_caveat` have a higher view-change rate than those with `any_comment_immediate_blanket_contradiction`.",
+  "rhs": "any_comment_acknowledges_then_narrow_caveat + any_comment_immediate_blanket_contradiction",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a contrast between two named groups. In the rhs, the coefficient on either feature alone is not the difference between the two (beta_A is not beta_A minus beta_B). No single design-matrix column expresses that contrast, so term is null. Both measurements are kept. The groups can overlap, and rows can fall in neither group. Comments are unordered and have no timestamps. Acknowledge-then-caveat is judged within a single comment. Source text may contain outcome announcements, and the prompts exclude them. The measurements are row-level any-presence, since no count or share was requested. 'Blanket' versus 'narrow' is an LLM judgment with no rubric beyond the spec. I did not inspect any rows."
+}

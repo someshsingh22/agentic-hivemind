@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_has_url",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a direct URL or external link?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings. Return 1 if any comment matches regex r'(https?://|www\\.)\\S+' (case-insensitive), else 0. Empty list -> 0; missing or malformed JSON -> null. Raw text match, no semantic filtering."
+    }
+  ],
+  "h0": "any_comment_has_url has no association with the likelihood of view change (delta).",
+  "h1": "Discussions with any_comment_has_url = 1 have a higher likelihood of view change than those with 0.",
+  "rhs": "any_comment_has_url",
+  "term": "any_comment_has_url",
+  "sign": "+",
+  "note": "Comparison group \"solely internal text\" is operationalized as no comment containing a URL/link (feature = 0). Only literal http(s):// or www. links are detected; bare domains or markdown links without scheme are missed. Comments may include quoted URLs from the OP or outcome-related text; raw text, not checked for timing or outcome contamination. Linear OLS on binary delta (linear probability model); association only."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_uses_familiar_analogy",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment use an analogy to a familiar everyday scenario to make its point?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment, in its own assertions, uses an analogy that compares the issue under debate to a different, familiar/everyday scenario (e.g., comparing the issue to a common situation like driving, shopping, or cooking) to support its argument. Return 0 if no comment does. Merely quoting someone else's analogy without adopting it does not count; literal examples of the same issue, and hypotheticals that are not analogies to another scenario, do not count. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence; generic delta-rule discussion is eligible. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "any_comment_uses_familiar_analogy has no association with the probability that the OP changed their view (delta).",
+  "h1": "Discussions with any_comment_uses_familiar_analogy=1 have a higher probability of OP view change than those with 0.",
+  "rhs": "any_comment_uses_familiar_analogy",
+  "term": "any_comment_uses_familiar_analogy",
+  "sign": "+",
+  "note": "Presence is assumed from \"containing counter-arguments that use analogies\". \"Familiar scenario\" is judged by the annotator without a fixed scale. OLS on binary outcome gives a linear probability model; association only. OC_comments may include outcome announcements, which the prompt excludes as evidence. Comment order and timing unknown."
+}

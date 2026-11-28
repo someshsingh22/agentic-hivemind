@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "has_multiple_oc_comments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does the discussion contain more than one counter-argument comment?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list. Return 1 if len(list) >= 2, 0 if len(list) <= 1 (a single comment gives 0; empty list gives 0). Return null if missing or malformed JSON. Counts list entries; no semantic filtering."
+    }
+  ],
+  "h0": "There is no difference in the likelihood of view change between discussions with multiple counter-argument comments and those with a single comment (coefficient of has_multiple_oc_comments is 0).",
+  "h1": "Discussions with has_multiple_oc_comments = 1 have a higher likelihood of view change than those with a single comment.",
+  "rhs": "has_multiple_oc_comments",
+  "term": "has_multiple_oc_comments",
+  "sign": "+",
+  "note": "Operational assumptions: \"multiple distinct comments\" is measured as 2+ entries in OC_comments versus exactly 1; list length counts comments, not necessarily distinct commenters, and distinctness of arguments is not assessed. Rows with an empty list (none observed in inspection; min was 1) would be coded 0. OLS on binary delta is a linear probability model; association only. OC_comments may contain outcome-related text, but this is a raw count so no filtering is applied; available comments may be a subset selected in the corpus."
+}

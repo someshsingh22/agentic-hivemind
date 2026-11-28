@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_named_real_world_analogy_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a named, real-world analogy or example (e.g., a specific historical or scientific case)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment, in its own assertions, uses a named, real-world analogy or example (specific identifiable historical event/person, scientific study/phenomenon, or other concrete named real-world case) to argue against the OP's view. Return 0 if no comment does (valid empty list gives 0). Hypothetical or unnamed generic examples do not count. Quoted material counts only if the commenter adopts it as support. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Malformed/missing input gives null."
+    },
+    {
+      "name": "any_abstract_logical_rebuttal_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment make an abstract logical rebuttal without relying on a named real-world analogy or example?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment rebuts the OP's view mainly through abstract logical reasoning (e.g., pointing out inconsistencies, definitions, premises, inference flaws) and that comment contains no named real-world analogy or example (specific historical/scientific case). Return 0 otherwise (valid empty list gives 0). Comments may be in both this and the named-analogy feature across different comments in a row; overlap and neither cases are allowed. Ignore OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome. Malformed/missing input gives null."
+    }
+  ],
+  "h0": "Rows with named real-world analogy comments (any_named_real_world_analogy_comment) have the same view-change rate as rows with abstract logical rebuttal comments (any_abstract_logical_rebuttal_comment).",
+  "h1": "Rows with named real-world analogy comments have a higher view-change rate than rows with abstract logical rebuttal comments.",
+  "rhs": "any_named_real_world_analogy_comment + any_abstract_logical_rebuttal_comment",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a contrast (beta_analogy minus beta_abstract), which neither coefficient in this formula represents alone, so term=null; no difference score is invented. Both sides are measured at row level, overlap and neither cases possible. Comparison is of presence, since no count/share was specified. OC_comments may contain outcome announcements; no per-comment outcomes or timing available, so only associations at row level can be described. \"Abstract logical rebuttal\" operationalized as a comment without a named real-world example."
+}

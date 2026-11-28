@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_content_word_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of all words across the counter-argument comments are content words (nouns, verbs, adjectives or adverbs)?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; malformed or missing input -> null; empty list or zero words -> null. Concatenate all comments, tokenize into alphabetic word tokens, POS-tag with NLTK (averaged perceptron, Penn tags). Content words = tokens tagged NN*, VB*, JJ*, RB* (including WRB excluded; only NN, NNS, NNP, NNPS, VB*, JJ*, RB*, RBR, RBS). Value = content tokens / total word tokens pooled across all comments (a pooled ratio, range 0-1). Raw text, no semantic filtering."
+    }
+  ],
+  "h0": "oc_content_word_share has no association with the likelihood of the OP changing their view (delta).",
+  "h1": "Higher oc_content_word_share is associated with a lower likelihood of the OP changing their view.",
+  "rhs": "oc_content_word_share",
+  "term": "oc_content_word_share",
+  "sign": "-",
+  "note": "Lexical density is operationalized as the pooled share of content words (NN, VB, JJ, RB tags) over all words in OC_comments, which is the standard definition. Pooling is an assumption; it is not a per-comment mean. The OLS on binary delta is a linear probability model, and it describes an association only. OC_comments is current text and may include contamination from outcome announcements; no semantic filtering is applied. The POS tagger choice affects the values."
+}

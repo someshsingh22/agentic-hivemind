@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_personal_anecdote_of_consequences",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment give a concrete personal anecdote from the commenter's own experience illustrating real-world consequences of the original claim?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than OP). Return 1 if at least one comment itself contains a concrete personal anecdote (the commenter's own or a person they directly know, a specific real experience, not hypothetical or generic) that illustrates real-world consequences related to the OP's claim; else 0. Hypothetical examples, abstract arguments, and quoted/attributed third-party text not adopted by the commenter do not count. Ignore any OP view-change/delta-award announcements or reports of outcome as evidence. Empty list gives 0; missing or malformed input gives null."
+    },
+    {
+      "name": "any_comment_abstract_theoretical_rebuttal",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment rebut the claim through abstract, theoretical reasoning rather than concrete personal anecdote?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment's rebuttal rests on abstract or theoretical reasoning (general principles, logic, definitions, conceptual argument) without relying on a concrete personal anecdote in that same comment; else 0. Ignore OP view-change/delta-award announcements and outcome reports as evidence. Empty list gives 0; missing or malformed gives null."
+    }
+  ],
+  "h0": "Coefficient of any_comment_personal_anecdote_of_consequences is zero in the model of view change.",
+  "h1": "Rows with a personal anecdote comment have higher view-change rates than those without, holding any_comment_abstract_theoretical_rebuttal constant.",
+  "rhs": "any_comment_personal_anecdote_of_consequences + any_comment_abstract_theoretical_rebuttal",
+  "term": null,
+  "sign": "+",
+  "note": "The claim compares anecdote-based discussions against those relying on abstract rebuttals. The two binary features can overlap or both be absent, and the anecdote coefficient conditional on the abstract feature is not the direct contrast (anecdote minus abstract), so no single coefficient represents the claim; term=null. 'Relying on' (predominance) is not measured; presence is used. Anecdote requirement 'illustrating the original claim's consequences' is interpreted as relevance to the OP's claim, judged from comments alone without OP text. Source contamination: comments may include outcome announcements; semantic prompts exclude them."
+}

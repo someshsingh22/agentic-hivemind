@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "oc_comment_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many counter-argument comments are in the discussion?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads; value = len(list) counting each list entry as one comment. Return null if missing or malformed JSON; empty list gives 0. Entries are not deduplicated by text or commenter."
+    },
+    {
+      "name": "has_three_plus_oc_comments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does the discussion contain at least three counter-argument comments?",
+      "kind": "code",
+      "spec": "df['oc_comment_count'] >= 3 as 1/0; null if df['oc_comment_count'] is null."
+    }
+  ],
+  "h0": "There is no difference in the probability of OP changing their view (delta) between discussions with has_three_plus_oc_comments=1 and those with 0.",
+  "h1": "Discussions with has_three_plus_oc_comments=1 have a higher probability of OP view change than those with fewer than three comments.",
+  "rhs": "has_three_plus_oc_comments",
+  "term": "has_three_plus_oc_comments",
+  "sign": "+",
+  "note": "Distinct comments are operationalized as separate entries in the OC_comments list (not deduplicated; entries may share a commenter). The list is the available set of counter-comments and may be a subset of all comments, and may be affected by sampling or by comments after the view change. OLS on binary delta is a linear probability model; association only, not causal."
+}

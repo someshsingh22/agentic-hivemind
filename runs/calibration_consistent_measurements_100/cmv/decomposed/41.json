@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "arg_self_meta_platform_or_status",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument contain explicit self-referential meta-commentary about platform mechanics or the author's own status?",
+      "kind": "prompt",
+      "spec": "Read only the `argument` text (OP's argument body; not title). Return 1 if the OP's own text explicitly comments on itself/their own posting in terms of platform mechanics (e.g., subreddit rules, delta system/mechanics, moderation, posting/formatting/edit features, votes/karma, how the post was submitted) or on the author's own status (e.g., being new/long-time user, account status, credentials, who they are as poster). Return 0 if no such commentary. Exclude OP view-change/delta-award announcements, post-outcome resolution updates (e.g., 'EDIT: view changed, delta awarded') and reports of the outcome; these do not count as evidence. Generic discussion of platform rules not about the OP's own post/status is not self-referential. Quoted text from others does not count unless the OP adopts it. If argument is missing or malformed return null; empty string returns 0."
+    }
+  ],
+  "h0": "Discussions with and without self-referential meta-commentary in the argument (arg_self_meta_platform_or_status) have the same probability of view change.",
+  "h1": "Discussions with arg_self_meta_platform_or_status=1 have a lower probability of view change than those with 0.",
+  "rhs": "arg_self_meta_platform_or_status",
+  "term": "arg_self_meta_platform_or_status",
+  "sign": "-",
+  "note": "Operational assumption: presence (binary) of meta-commentary on platform mechanics or author status, using the OP argument only. Current argument text may include edits and outcome announcements added after the discussion; these are excluded by the semantic rule, but timing of the text relative to outcome is unknown. OLS on binary delta is a linear probability model; association only."
+}

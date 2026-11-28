@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_names_specific_program_or_location",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment reference a specific, named external program or location?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment itself references a specific, named external program (e.g. a named government/social/educational program or initiative) or a specific named location (e.g. a named city, country, or place) as part of its argument; otherwise 0. Generic unnamed references (\"some programs\", \"other countries\") do not count. Empty list gives 0; missing or malformed input gives null. Ignore any OP view-change/delta-award announcements or reports of the outcome as evidence."
+    },
+    {
+      "name": "all_comments_only_abstract_logical_refutation",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Do the counter-argument comments rely only on abstract logical refutation, with no specific named external program or location?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Return 1 if there is at least one comment and every comment argues solely through abstract logical reasoning/refutation (e.g. pointing out logical flaws, premises, definitions, hypotheticals) without referencing any specific named external program or location; return 0 if any comment names a specific external program or location or relies on other non-abstract content such as concrete data/examples. Empty list gives null; missing or malformed input gives null. Ignore OP view-change/delta-award announcements or reports of the outcome as evidence."
+    }
+  ],
+  "h0": "Discussion view-change rates do not differ between rows with any_comment_names_specific_program_or_location and rows with all_comments_only_abstract_logical_refutation.",
+  "h1": "Rows with any_comment_names_specific_program_or_location have higher view-change rates than rows with all_comments_only_abstract_logical_refutation.",
+  "rhs": "any_comment_names_specific_program_or_location + all_comments_only_abstract_logical_refutation",
+  "term": null,
+  "sign": "+",
+  "note": "The claim compares named-reference discussions (A) with abstract-only discussions (B). In the rhs, each coefficient is relative to a baseline of rows that are neither, so no single coefficient equals beta_A - beta_B; term=null. Neither-group rows (e.g. concrete but unnamed examples) and overlap are preserved. Operational assumptions: \"specific named\" means an explicit proper name; \"abstract logical refutation\" is judged from comment text only. Comments are current text and may include outcome announcements; the prompt excludes them. Associations only."
+}

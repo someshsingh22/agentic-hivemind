@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_has_explicit_conditional",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument contain explicit conditional language that links an outcome to a specific antecedent condition?",
+      "kind": "prompt",
+      "spec": "Read only `argument` (the OP's argument body; not title). Return 1 if the OP's own text contains at least one explicit conditional statement (e.g., 'if X, then Y', 'when/unless/provided that/as long as X, Y', 'in the case that X, Y') that ties a stated outcome or consequence to a specific antecedent condition. Return 0 if none exists (including bare uses of 'if' that are not condition-outcome links, such as 'whether or not' or indirect questions, or purely generic modality like 'might'). Conditionals appearing only in quotations attributed to others and not adopted by the OP do not count. Ignore OP view-change/delta-award announcements, post-outcome edits/resolution updates and reports of the outcome; conditionals there do not count. Empty or missing argument: null if missing/malformed, 0 if valid but empty."
+    }
+  ],
+  "h0": "There is no difference in the likelihood of view change between discussions whose argument has explicit conditional language (argument_has_explicit_conditional=1) and those without it.",
+  "h1": "Discussions whose argument has explicit conditional language (argument_has_explicit_conditional=1) have a lower likelihood of view change than those without it.",
+  "rhs": "argument_has_explicit_conditional",
+  "term": "argument_has_explicit_conditional",
+  "sign": "-",
+  "note": "Binary presence assumed (no count/intensity requested). Scope is the argument body only; title excluded. Current argument text may include edits or outcome announcements, so it is not a guaranteed pre-outcome snapshot; the prompt excludes such announcements as evidence. OLS on binary delta (linear probability model); the result is an association, not causal."
+}

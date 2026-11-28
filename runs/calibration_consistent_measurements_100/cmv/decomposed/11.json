@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_measured_logical_reasoning_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counterargument comment present measured, logical reasoning (calm, reasoned argumentation with explicit logical steps or evidence)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment, by its own assertions, presents measured and logical reasoning: a calm tone with explicit reasoning steps, premises-to-conclusion argument or evidence-based inference. Return 0 if none qualifies. Empty list gives 0; missing or malformed OC_comments gives null. Quoted text counts only if the commenter adopts it. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Overlap with aggression in other or the same comments is allowed; judge this feature independently."
+    },
+    {
+      "name": "any_emotionally_aggressive_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counterargument comment contain emotional aggression (hostile, angry, insulting or contemptuous language toward the OP or their view)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment, by its own assertions, contains emotional aggression: hostile, angry, insulting, contemptuous or belittling language directed at the OP or their view. Return 0 if none does. Empty list gives 0; missing or malformed OC_comments gives null. Quoted text counts only if the commenter adopts it. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Judge independently of the logical reasoning feature; a comment may qualify for both."
+    }
+  ],
+  "h0": "Holding `any_emotionally_aggressive_comment` fixed, `any_measured_logical_reasoning_comment` has no association with delta, i.e. the logical-reasoning effect is no greater than the aggression effect.",
+  "h1": "Rows with a measured logical reasoning comment are more associated with OP view change than rows with an emotionally aggressive comment.",
+  "rhs": "any_measured_logical_reasoning_comment + any_emotionally_aggressive_comment",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a comparison (logical reasoning vs emotional aggression), requiring beta_logical - beta_aggressive. In the OLS formula the two coefficients are separate and no single term expresses that contrast, so term=null; no difference score is invented. Overlap (both present) and neither cases exist. Presence (any comment) is assumed since no quantity was specified. Comments are unordered; current text may contain outcome announcements (excluded semantically). Associations only, not causal."
+}

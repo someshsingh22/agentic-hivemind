@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_comment_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many counter-argument comments by other users are in the discussion's comment list?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads; return len(list). Empty list gives 0; missing or malformed JSON gives null. Counts comments, not distinct commenters."
+    }
+  ],
+  "h0": "oc_comment_count has no association with the likelihood that the OP changed their view (delta).",
+  "h1": "Higher oc_comment_count is associated with a higher likelihood of the OP changing their view (fewer comments, lower likelihood).",
+  "rhs": "oc_comment_count",
+  "term": "oc_comment_count",
+  "sign": "+",
+  "note": "\"Fewer counter-argument responses\" is operationalized as a lower count of comments in OC_comments (available comments by other users), tested linearly with OLS (linear probability). The list may be a sampled or truncated subset of all responses, and it may include comments made after or because of a view change; its timing is unknown. This is an association, not a causal effect."
+}

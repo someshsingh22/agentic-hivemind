@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_comment_introduces_external_facts",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly introduce a verifiable external fact that is distinct from what the original post says?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Output 1 if at least one comment, in its own assertion (or an external source it cites as support), explicitly introduces a verifiable external fact (e.g., statistic, documented event, study finding, law, or checkable empirical claim) that is not already stated in the OP's title or argument. Compare against title and argument to judge distinctness. Output 0 if no comment does (opinions, reasoning, hypotheticals, personal speculation, or facts merely restating the OP do not count). Empty list gives 0; missing or malformed OC_comments gives null. Ignore any OP view-change or delta-award announcements, post-outcome resolution updates and reports of the outcome; they are not evidence of the construct. Generic delta-rule discussion is eligible but is not an external fact about the topic."
+    }
+  ],
+  "h0": "any_comment_introduces_external_facts has no association with the probability of OP view change (delta).",
+  "h1": "Discussions with any_comment_introduces_external_facts = 1 have a higher probability of view change than those with 0.",
+  "rhs": "any_comment_introduces_external_facts",
+  "term": "any_comment_introduces_external_facts",
+  "sign": "+",
+  "note": "Presence is assumed since quantity is unspecified. \"Verifiable\" is judged by the annotator from text alone, without actual verification. OC_comments may contain outcome announcements, and timing is unknown. The OLS on binary delta is a linear probability model; the association is not causal."
+}

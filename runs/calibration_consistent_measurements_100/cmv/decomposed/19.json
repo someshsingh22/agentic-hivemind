@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_specific_data_or_citation",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment provide specific factual data or a verifiable citation?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by users other than the OP. Return 1 if at least one comment itself offers, as support for its point, specific factual data (e.g., concrete statistics, figures, dates, named studies or documented facts) or a verifiable citation (e.g., a named source, publication, law, or link that could be checked). Return 0 if none do (vague claims, opinions, anecdotes without checkable data, generic assertions do not count). A source quoted only as background or being rebutted does not count unless the commenter adopts it as support. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "There is no association between oc_specific_data_or_citation and the probability that the OP changed their view (delta).",
+  "h1": "Discussions with oc_specific_data_or_citation = 1 are associated with a higher likelihood of the OP changing their view than those with 0.",
+  "rhs": "oc_specific_data_or_citation",
+  "term": "oc_specific_data_or_citation",
+  "sign": "+",
+  "note": "Presence (at least one comment) assumed since no quantity was specified. Uses current comment text, which may contain outcome announcements; the prompt excludes them. Comment order and timing unknown. Association only; OLS on binary delta is a linear probability model. Verifiability is judged from text only, not checked externally."
+}

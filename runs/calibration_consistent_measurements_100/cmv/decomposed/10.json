@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_cites_specific_real_world_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly cite a specific real-world example as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by users other than the OP. Return 1 if at least one comment explicitly cites a specific real-world example (a named or concretely identifiable actual person, event, case, place, organization, study, or documented real situation, including the commenter's own concrete real experience) as support for its argument. Return 0 if no comment does (only abstract reasoning, generalities, or hypotheticals). Hypothetical or invented scenarios do not count. Do not count OP view-change or delta-award announcements, post-outcome resolution updates, or reports of the outcome as examples. Valid empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "any_comment_cites_specific_real_world_example has no association with the likelihood of OP view change (delta).",
+  "h1": "Rows where any_comment_cites_specific_real_world_example is 1 have a higher likelihood of OP view change than rows where it is 0.",
+  "rhs": "any_comment_cites_specific_real_world_example",
+  "term": "any_comment_cites_specific_real_world_example",
+  "sign": "+",
+  "note": "Unspecified quantity treated as presence in at least one comment. OLS on binary delta (linear probability model); association only. Comments may contain outcome-related text; the semantic spec excludes it. Comment order/timing unknown, so examples may follow or not precede the view change. Operational assumption: own concrete real experiences count as real-world examples."
+}

@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_comment_restates_op_view_nuanced_before_refuting",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment first rewrite or restate the OP's viewpoint in a more nuanced form and then refute it, within that same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Use title and argument only to know the OP's viewpoint. Return 1 if at least one single comment (a) reframes or rewrites the OP's viewpoint in its own words from a more nuanced/refined perspective (e.g., 'so what you're really saying is a more qualified version...') and (b) then goes on to refute or argue against that reframed view, with the reframing preceding the refutation in the same comment. Separate comments cannot jointly satisfy it. Plain verbatim quotation, simple summary without nuancing, or refutation without redrafting do not count. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Return 0 if the list is valid but empty or no comment qualifies; null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "Discussion rows with any_comment_restates_op_view_nuanced_before_refuting equal to 1 have the same view-change (delta) rate as rows with 0.",
+  "h1": "Rows with any_comment_restates_op_view_nuanced_before_refuting equal to 1 have a higher view-change (delta) rate than rows with 0.",
+  "rhs": "any_comment_restates_op_view_nuanced_before_refuting",
+  "term": "any_comment_restates_op_view_nuanced_before_refuting",
+  "sign": "+",
+  "note": "Operational assumptions: 'redrafting strategy' is measured as presence in at least one comment (no count/share specified). 'Nuanced' is judged by the LLM without a numeric scale. Association only. Comment order/timing unknown; text may contain outcome announcements, which the prompt is told to ignore as evidence."
+}

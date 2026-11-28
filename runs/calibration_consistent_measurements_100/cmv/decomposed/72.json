@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_concrete_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a concrete real-world example?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment offers a concrete real-world example (a specific real case, event, person, organization, statistic from a real situation, or actual personal/observed experience) as support for its counter-argument; return 0 if no comment does (including abstract logic, hypotheticals, or generic claims only). Do not count hypothetical or invented scenarios. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "any_comment_concrete_example has no association with delta (view change) rates.",
+  "h1": "Rows with any_comment_concrete_example = 1 have a higher view-change rate than rows with 0.",
+  "rhs": "any_comment_concrete_example",
+  "term": "any_comment_concrete_example",
+  "sign": "+",
+  "note": "Operational assumption: the comparison group \"relying solely on abstract logic\" is approximated by the absence of any concrete real-world example (0); this includes rows with mixed or other non-example content, and \"solely abstract\" is not separately measured. Presence is binary at row level. Comments are unordered and may include text from after the outcome; the exclusion of outcome announcements is applied in the prompt. Association only, not causal."
+}

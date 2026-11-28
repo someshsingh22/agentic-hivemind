@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "post_score_below_median",
+      "dtype": "binary",
+      "source_columns": [
+        "post_score"
+      ],
+      "definition": "Is the post's observed score below the median post score across the supplied rows?",
+      "kind": "code",
+      "spec": "s = pd.to_numeric(df['post_score'], errors='coerce'); med = s.median(); df['post_score_below_median'] = (s < med).astype('float').where(s.notna()) ; output 1 if post_score is strictly below the median of post_score over all supplied rows, 0 if equal to or above the median, null if post_score is missing or non-numeric. Uses the supplied post_score value as is."
+    }
+  ],
+  "h0": "post_score_below_median has no association with the probability that the OP changed their view (delta).",
+  "h1": "Posts with post_score_below_median = 1 have a lower probability of OP view change than posts with post_score_below_median = 0.",
+  "rhs": "post_score_below_median",
+  "term": "post_score_below_median",
+  "sign": "-",
+  "note": "Median computed over the supplied 2,000-row corpus. Posts exactly at the median are grouped with the higher-scored comparison group (score >= median), so the comparison is below-median vs. at-or-above-median; heavy ties at the median could make this group unbalanced. Measurement time of post_score relative to the outcome is unknown, so score may be affected by or follow the view change; only an association (linear probability model coefficient) is interpreted, not a causal effect."
+}

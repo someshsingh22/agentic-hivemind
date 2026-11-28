@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_quantifies_systemic_third_party_harm",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly quantify systemic material harms (e.g., economic, health or resource harms) to third parties with numbers or measured amounts?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment, in its own assertion (not a mere quotation of someone else that the commenter does not adopt), explicitly quantifies material harm (e.g., money, deaths, illness, jobs, resources lost) that a policy, practice or system imposes on third parties (people other than the OP or commenter), using specific numbers, rates, amounts or statistics. Vague harm claims without quantification do not count. Ignore any OP view-change/delta-award announcements or reports of the outcome. Return 0 if no comment qualifies, including an empty list; null if OC_comments is missing or malformed."
+    },
+    {
+      "name": "any_comment_asserts_propositional_falsity",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment assert that a claim or proposition of the OP is factually or logically false or incorrect?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Return 1 if at least one comment, in its own assertion (not an unadopted quotation), states that a claim/proposition of the OP (or a premise) is false, incorrect, untrue or logically invalid, without that being a quantified harm argument. Comments only about harm to third parties do not count. Ignore OP view-change/delta-award announcements or outcome reports. Return 0 if none qualify, including an empty list; null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "Having a counter-argument that quantifies systemic third-party material harms rather than asserting propositional falsity is not associated with the likelihood of view change (delta).",
+  "h1": "Discussions with any_comment_quantifies_systemic_third_party_harm and without any_comment_asserts_propositional_falsity have a higher likelihood of view change.",
+  "rhs": "any_comment_quantifies_systemic_third_party_harm + any_comment_asserts_propositional_falsity",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a 'rather than' comparison (quantified harm vs propositional-falsity assertion). Both sides are measured, but with the two binary predictors the single coefficients are conditional effects, not the contrast beta_A - beta_B, and overlap/neither cases exist; so no single design-matrix term faithfully represents the claim and term is null. Comment-level order/chronology is unknown; OC_comments may contain outcome announcements, and semantic prompts exclude them. Associations only, not causal."
+}

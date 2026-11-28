@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "arg_expresses_fear_of_social_rejection",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument explicitly express fear of social rejection or isolation?",
+      "kind": "prompt",
+      "spec": "Read only the argument text. Return 1 if the OP's own assertions explicitly express fear, worry or dread of being socially rejected, ostracized, excluded, judged by others into losing belonging, or isolated/alone because of their view or its expression. Return 0 otherwise (including when only implied). Do not count quoted text from others unless the OP adopts it as their own feeling. Ignore OP view-change/delta-award announcements, post-outcome edits and reports of the outcome as evidence. Return null if argument is missing or empty/malformed."
+    },
+    {
+      "name": "arg_states_beliefs_without_emotional_self_defense",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument state beliefs without any emotional self-defense?",
+      "kind": "prompt",
+      "spec": "Read only the argument text. Return 1 if the OP states beliefs or reasons and contains no emotional self-defense (e.g., no pre-emptive protecting of feelings or self-image, no appeals to being hurt, attacked, judged or rejected, no defensive justification of oneself against anticipated social reactions). Return 0 if any such emotional self-defense is present. Attribute only the OP's own assertions, not unadopted quotations. Ignore OP view-change/delta-award announcements, post-outcome edits and reports of the outcome as evidence. Return null if argument is missing or empty/malformed."
+    }
+  ],
+  "h0": "Rows with arg_expresses_fear_of_social_rejection and rows with arg_states_beliefs_without_emotional_self_defense have the same view-change rate.",
+  "h1": "Rows with arg_expresses_fear_of_social_rejection have a lower view-change rate than rows with arg_states_beliefs_without_emotional_self_defense.",
+  "rhs": "arg_expresses_fear_of_social_rejection + arg_states_beliefs_without_emotional_self_defense",
+  "term": null,
+  "sign": "-",
+  "note": "The claim compares fear group (A) with a named no-self-defense group (B). In the A+B model each coefficient is relative to the neither group, so beta_A is not beta_A - beta_B, and no single coefficient expresses the requested contrast; term=null. Overlap and neither cases are preserved (neither = other self-defense without social fear, etc.). Argument text is current text and may contain edits/outcome announcements; no pre-outcome snapshot is available. Measurements are semantic LLM judgments of linguistic expression, not measured traits. Associations only."
+}

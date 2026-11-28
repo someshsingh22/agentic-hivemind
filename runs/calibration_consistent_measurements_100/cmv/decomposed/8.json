@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "title_has_absolute_certainty_marker",
+      "dtype": "binary",
+      "source_columns": [
+        "title"
+      ],
+      "definition": "Does the original post title use absolute certainty markers (e.g., 'always', 'never', 'definitely', 'undeniably', 'everyone', 'no one', 'obviously')?",
+      "kind": "prompt",
+      "spec": "Read only the title. Return 1 if the title itself uses at least one marker expressing absolute certainty or universality about the claim (e.g., always, never, definitely, certainly, undeniably, obviously, absolutely, without doubt, all/every/no one/nobody, 100%). Return 0 if none is present, including hedged or merely opinionated titles ('I think', 'should'). Judge the title author's own assertion; markers inside quoted text attributed to others do not count unless adopted. Ignore any view-change/delta announcements or outcome reports. Return null if the title is missing or malformed."
+    }
+  ],
+  "h0": "There is no association between title_has_absolute_certainty_marker and the likelihood of the OP changing their view.",
+  "h1": "Titles with title_has_absolute_certainty_marker=1 are associated with a lower likelihood of the OP changing their view.",
+  "rhs": "title_has_absolute_certainty_marker",
+  "term": "title_has_absolute_certainty_marker",
+  "sign": "-",
+  "note": "Presence of any absolute certainty marker is assumed (no count/intensity specified). The marker list is illustrative; the judgment is semantic. Titles are the OP's current text and could in principle contain edited content, though titles rarely include outcome announcements. Association only, not causal."
+}

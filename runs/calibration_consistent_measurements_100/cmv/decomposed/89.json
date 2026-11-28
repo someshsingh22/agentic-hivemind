@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_substantive_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one comment offer a substantive counterargument, giving reasoning or evidence against the OP's view?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment itself asserts a substantive counterargument: reasoning, evidence or examples that challenge the OP's position (not mere disagreement, insults, jokes, questions or clarification requests). Return 0 if the list is valid but no comment qualifies, including an empty list. Null if missing or malformed. Ignore any OP view-change/delta-award announcements, outcome reports or post-outcome resolution updates as evidence. Quoted text counts only if the commenter adopts it."
+    },
+    {
+      "name": "only_supportive_comments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Are all comments supportive of the OP's view, with none challenging it?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Return 1 if the list is non-empty and every comment supports or agrees with the OP's view (no comment challenges or disagrees with it). Return 0 if at least one comment is not supportive (counterargument, disagreement, neutral or other). Return 0 for an empty list (no supportive comments received); null if missing or malformed. Ignore OP view-change/delta-award announcements, outcome reports and post-outcome updates as evidence. Quoted text counts only if the commenter adopts it."
+    }
+  ],
+  "h0": "Posters whose comments include a substantive counterargument and posters receiving only supportive comments do not differ in view change (delta).",
+  "h1": "Posters receiving substantive counterarguments (any_substantive_counterargument) have a higher view-change rate than posters receiving only supportive comments (only_supportive_comments).",
+  "rhs": "any_substantive_counterargument + only_supportive_comments",
+  "term": null,
+  "sign": "+",
+  "note": "The claim compares two named groups. The groups are mutually exclusive, and neither-group rows (such as empty lists or non-supportive comments with no substantive counterargument) remain in the baseline. In the model above, the coefficient on any_substantive_counterargument compares it to that baseline, not to only-supportive. The contrast beta_A - beta_B is not a single coefficient, so term=null. OC_comments are described as counter-argument comments, so supportive-only rows may be rare. 'Substantive' is an operational judgment. 'View modification' is measured by the fixed outcome delta (binary change), not by degree. OC_comments may contain outcome announcements, and no comment timing is available. Associations only."
+}

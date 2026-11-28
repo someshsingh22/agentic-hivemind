@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counterargument_cognitive_complexity",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the average cognitive complexity (differentiation of multiple considerations/perspectives and their integration) across the counter-argument comments?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Rate each comment's own reasoning for cognitive complexity on a 1-4 scale: 1 = simple single assertion, no reasoning or only bare opinion; 2 = gives one line of reasoning or evidence without considering alternatives; 3 = differentiates several considerations, perspectives, cases or conditions; 4 = differentiates AND integrates multiple perspectives/considerations (e.g., weighs trade-offs, conditional or nuanced reasoning, reconciles tensions). Judge the commenter's own reasoning; quoted text counts only if the commenter adopts or engages with it. Ignore any OP view-change/delta-award announcements, thanks-for-changing-my-view, post-outcome updates or reports of the outcome; do not treat them as evidence of complexity. Do not reward length alone. Output the arithmetic mean of the per-comment ratings across all comments (float 1-4). Empty list gives null; malformed/missing input gives null."
+    }
+  ],
+  "h0": "counterargument_cognitive_complexity has no association with the likelihood of the OP changing their view (delta).",
+  "h1": "Higher counterargument_cognitive_complexity is associated with a higher likelihood of the OP changing their view.",
+  "rhs": "counterargument_cognitive_complexity",
+  "term": "counterargument_cognitive_complexity",
+  "sign": "+",
+  "note": "Cognitive complexity has no supplied scale; operational assumption is a 1-4 rubric (differentiation/integration) averaged over comments in OC_comments. Mean was chosen since 'higher complexity in counterarguments' is unspecified in aggregation. Comments are unordered, may include multiple commenters, and may contain outcome announcements (excluded in the rating). OLS on binary delta is a linear probability model; association only, not causal."
+}

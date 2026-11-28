@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "argument_admits_uncertainty",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument contain at least one explicit admission of the OP's own uncertainty (e.g., not sure, might be wrong, could be mistaken)?",
+      "kind": "prompt",
+      "spec": "Read only `argument`. Output 1 if the OP's own text explicitly admits their own uncertainty, doubt or fallibility about their view or claims (e.g., 'I'm not sure', 'I could be wrong', 'I'm unsure'); else 0. Count only the OP's own assertions, not quoted or attributed text from others unless the OP adopts it. Generic hedging words without an explicit admission do not count. Ignore any OP view-change/delta-award announcements, post-outcome edits or reports of the outcome as evidence. Empty argument gives 0; missing or malformed gives null."
+    },
+    {
+      "name": "argument_asserts_absolute_certainty",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument explicitly assert absolute certainty about their view (e.g., 'there is no doubt', 'absolutely certain', 'impossible to be wrong')?",
+      "kind": "prompt",
+      "spec": "Read only `argument`. Output 1 if the OP's own text explicitly asserts absolute certainty or that their view cannot be wrong (e.g., 'I am 100% sure', 'there is no doubt', 'undeniably'); else 0. Count only the OP's own assertions, not quoted or attributed text from others unless the OP adopts it. Ordinary confident claims without explicit absolute-certainty language do not count. Ignore any OP view-change/delta-award announcements, post-outcome edits or reports of the outcome as evidence. Empty argument gives 0; missing or malformed gives null."
+    }
+  ],
+  "h0": "Discussions whose original argument admits uncertainty (`argument_admits_uncertainty`) have the same probability of view change as those asserting absolute certainty (`argument_asserts_absolute_certainty`).",
+  "h1": "Discussions with `argument_admits_uncertainty` have a higher probability of view change than those with `argument_asserts_absolute_certainty`.",
+  "rhs": "argument_admits_uncertainty + argument_asserts_absolute_certainty",
+  "term": null,
+  "sign": "+",
+  "note": "The claim compares uncertainty-admitting arguments with absolute-certainty arguments. In the chosen formula each coefficient is relative to the omitted baseline (neither), so neither coefficient equals beta_A - beta_B; no single coefficient expresses the requested contrast, hence term=null. Overlap and neither cases exist and are preserved. Both features read current argument text, which may contain edits or outcome announcements (contamination/timing risk); semantic prompts exclude those announcements. Association only, not causal."
+}

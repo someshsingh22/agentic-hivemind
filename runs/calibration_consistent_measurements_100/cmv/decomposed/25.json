@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_argument_has_personal_anecdote",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument include a personal anecdote or first-person experiential narrative?",
+      "kind": "prompt",
+      "spec": "Read only `argument` (OP's argument body; not title). Return 1 if the OP's own text includes a personal anecdote or first-person account of the OP's own experience or events they lived through (e.g., 'when I was in school, I...'). Return 0 if none is present (only abstract claims, general statements, hypotheticals, or others' experiences/quotations not adopted as the OP's own). Quotation marks alone do not indicate another speaker. Ignore OP view-change/delta-award announcements, post-outcome edits/updates and reports of the outcome; they are not evidence. Missing or malformed input gives null; empty text gives 0."
+    }
+  ],
+  "h0": "op_argument_has_personal_anecdote has no association with the likelihood of view change (delta).",
+  "h1": "Discussions with op_argument_has_personal_anecdote = 1 have a lower likelihood of view change than those with 0.",
+  "rhs": "op_argument_has_personal_anecdote",
+  "term": "op_argument_has_personal_anecdote",
+  "sign": "-",
+  "note": "Presence is binary, as the hypothesis does not specify a count. Uses current argument text, which may contain edits or outcome announcements (excluded as evidence in the semantic rating, but the text is not a pre-outcome snapshot). OLS on binary delta is a linear probability model; association only, not causal."
+}

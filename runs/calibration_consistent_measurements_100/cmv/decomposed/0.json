@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "arg_compares_to_science_history_norms",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument explicitly compare its subject to an established scientific or historical norm?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's argument body; ignore title). Return 1 if the OP's own text makes an explicit comparison between the topic/claim and an established scientific norm/standard/consensus or an established historical norm/precedent (e.g., 'just as in the scientific consensus on X', 'unlike historical norm of Y'). Return 0 if no such explicit comparison exists. Do not count mere mentions without comparison, quotations attributed to others unless the OP adopts them as the comparison, or any OP view-change/delta-award announcements, edits reporting the outcome, or post-outcome resolution updates. Missing or empty argument gives null."
+    }
+  ],
+  "h0": "Discussions whose argument has arg_compares_to_science_history_norms=1 have the same view-change (delta) rate as those with 0.",
+  "h1": "Discussions whose argument has arg_compares_to_science_history_norms=1 have lower view-change (delta) than those with 0.",
+  "rhs": "arg_compares_to_science_history_norms",
+  "term": "arg_compares_to_science_history_norms",
+  "sign": "-",
+  "note": "Presence interpreted as binary. Uses current argument text, which may include edits or outcome announcements (excluded from semantic judgment but timing not recoverable). Association only; OLS on binary delta is a linear probability model."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_requests_feedback_or_advice",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument explicitly ask the community for feedback or advice?",
+      "kind": "prompt",
+      "spec": "Read only the `argument` text (OP's explanation; not title). Output 1 if the OP's own text explicitly requests feedback, advice, opinions, input or responses from the community/readers (e.g., 'please give me advice', 'I'd like your feedback', 'tell me what you think'). Generic CMV-style 'change my view' phrasing alone counts only if it explicitly asks readers for feedback/advice/input beyond the title's framing; be conservative. Output 0 otherwise. Ignore requests inside quotations attributed to others unless adopted by the OP. Do not count OP view-change/delta-award announcements, post-outcome edits or reports of the outcome as evidence. Missing or malformed argument gives null; empty argument gives 0."
+    }
+  ],
+  "h0": "Discussions whose argument explicitly requests community feedback or advice have the same likelihood of view change (delta) as those that do not (coefficient on argument_requests_feedback_or_advice = 0).",
+  "h1": "Discussions whose argument explicitly requests community feedback or advice have a higher likelihood of view change (coefficient on argument_requests_feedback_or_advice > 0).",
+  "rhs": "argument_requests_feedback_or_advice",
+  "term": "argument_requests_feedback_or_advice",
+  "sign": "+",
+  "note": "Presence interpreted as binary. Uses current argument text, which may include edits or outcome announcements; the spec excludes those as evidence, but timing is not guaranteed pre-outcome. OLS (linear probability) on binary delta; association only. Judging 'explicit' is an operational assumption; generic change-my-view framing is not counted by itself."
+}

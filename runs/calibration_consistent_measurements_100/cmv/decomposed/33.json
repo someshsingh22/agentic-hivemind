@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "post_score_above_50",
+      "dtype": "binary",
+      "source_columns": [
+        "post_score"
+      ],
+      "definition": "Is the observed original-post score greater than 50?",
+      "kind": "code",
+      "spec": "df['post_score_above_50'] = (pd.to_numeric(df['post_score'], errors='coerce') > 50).astype(float).where(pd.to_numeric(df['post_score'], errors='coerce').notna()); 1 if post_score > 50 (strictly), 0 if post_score <= 50, null if missing or non-numeric."
+    }
+  ],
+  "h0": "post_score_above_50 has no association with the likelihood of view change (delta).",
+  "h1": "Discussions with post_score_above_50 = 1 have a lower likelihood of view change than those with post_score_above_50 = 0.",
+  "rhs": "post_score_above_50",
+  "term": "post_score_above_50",
+  "sign": "-",
+  "note": "Uses the supplied post_score as observed; its measurement time relative to the outcome is unknown (it may be affected by or follow the outcome), so the association is not causal or prospective. Threshold is strictly greater than 50, as stated. OLS on binary delta gives a linear probability model; the coefficient is the difference in view-change probability between score >50 and <=50."
+}

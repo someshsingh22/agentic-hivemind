@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_argument_has_uncertainty_marker",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument text contain at least one explicit marker of uncertainty about the OP's own view or claims?",
+      "kind": "prompt",
+      "spec": "Read only `argument` (OP's argument body; not title). Output 1 if the OP's own text contains at least one explicit uncertainty marker (e.g., 'I'm not sure', 'maybe', 'I might be wrong', 'perhaps', 'I'm unsure', 'it seems', 'I could be mistaken', hedged self-doubt about their own claims); else 0. Count only the OP's own assertions, not uncertainty in quoted or attributed text from others unless the OP adopts it. Ignore OP view-change/delta-award announcements, post-outcome edits/resolution updates and reports of the outcome; these do not count as uncertainty markers. Empty or missing argument: null if missing/malformed, 0 if valid but empty."
+    }
+  ],
+  "h0": "Presence of explicit uncertainty markers in the OP's argument (op_argument_has_uncertainty_marker) has no association with the probability of the OP changing their view (delta).",
+  "h1": "Discussions with op_argument_has_uncertainty_marker = 1 are associated with a higher likelihood of delta = 1 than those with 0.",
+  "rhs": "op_argument_has_uncertainty_marker",
+  "term": "op_argument_has_uncertainty_marker",
+  "sign": "+",
+  "note": "Binary presence assumed (no count/intensity requested). Argument is current text and may include edits or outcome announcements, so timing is not initial; the spec excludes outcome announcements as evidence. OLS on binary delta gives a linear probability model; association only, not causal."
+}

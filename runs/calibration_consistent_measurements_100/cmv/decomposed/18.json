@@ -1,0 +1,32 @@
+{
+  "features": [
+    {
+      "name": "any_comment_identifies_internal_contradiction",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment point out a logical contradiction between the OP's own stated premises?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment itself argues that two or more premises or claims stated by the OP in title/argument contradict or are logically inconsistent with each other (the OP's own premises, not conflict with outside facts). Return 0 if none do. Use title and argument only to verify what the OP stated. Quotations of the OP count only if the commenter uses them to show the OP's internal inconsistency. Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome as evidence. Empty comment list gives 0; missing or malformed OC_comments gives null."
+    },
+    {
+      "name": "any_comment_cites_external_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment cite external evidence (e.g., data, studies, sources, or documented real-world facts) against the OP's view?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment offers evidence from outside the OP's post as support, such as statistics, studies, named sources or links, or documented real-world facts or cases. Return 0 if none do. Pure logical argument, opinion, or unsupported assertion does not count. Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome as evidence. Empty list gives 0; missing or malformed OC_comments gives null."
+    }
+  ],
+  "h0": "Discussion view-change rates do not differ between discussions with comments identifying internal contradictions in the OP's premises and those with comments citing external evidence (beta_contradiction = beta_external).",
+  "h1": "View-change rates are higher in discussions with `any_comment_identifies_internal_contradiction` than in those with `any_comment_cites_external_evidence` (beta_contradiction > beta_external).",
+  "rhs": "any_comment_identifies_internal_contradiction + any_comment_cites_external_evidence",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a contrast between two named groups (contradiction vs external evidence). In the OLS formula, neither single coefficient equals beta_A - beta_B, so no single term represents it; term=null rather than using one coefficient as an approximation. Both measurements are retained. Presence is assumed (any comment); the two features can overlap or both be 0. Comment order and timing are unknown. OC_comments may include outcome announcements; semantic prompts exclude them but source contamination risk remains. Associations only."
+}

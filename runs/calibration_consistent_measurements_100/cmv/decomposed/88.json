@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "oc_quotes_op_text",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment directly quote wording from the original post (title or argument)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment contains a direct quotation (verbatim or near-verbatim excerpt, e.g. in quotation marks or a block-quote marker '>') of wording that actually appears in the OP's title or argument; otherwise 0. Compare quoted text against title and argument to verify it comes from the OP rather than from another source. Quotations of other sources, paraphrases without quoted wording, and quotes of other commenters do not count. Ignore quoted text that only reproduces OP view-change/delta-award announcements or post-outcome updates. Empty comment list gives 0; missing or malformed OC_comments gives null."
+    }
+  ],
+  "h0": "Discussions with oc_quotes_op_text = 1 have the same probability of OP view change as those with oc_quotes_op_text = 0.",
+  "h1": "Discussions with oc_quotes_op_text = 1 have a higher probability of OP view change than those with oc_quotes_op_text = 0.",
+  "rhs": "oc_quotes_op_text",
+  "term": "oc_quotes_op_text",
+  "sign": "+",
+  "note": "Presence is binary (at least one comment). OLS on binary delta gives a linear probability model; association only. Current text used; comment timing unknown. OP text may contain edits/outcome announcements, so quote verification against it carries contamination risk; such announcements are excluded as quoted content."
+}

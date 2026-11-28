@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_concrete_external_analogy",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment introduce a concrete, external factual analogy?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than OP). Return 1 if at least one comment itself introduces a concrete analogy drawn from an external real-world case, fact, event, or domain (a specific comparison to something outside the OP's scenario, e.g. a named historical case or real-world situation used as a parallel). Return 0 if no comment does. Purely abstract reasoning, hypothetical-only analogies without concrete factual grounding, and merely quoted OP text do not count. Ignore any text announcing a view change/delta award or reporting the outcome. Empty list -> 0; missing or malformed input -> null."
+    },
+    {
+      "name": "solely_abstract_logical_refutation",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Do the counter-argument comments rely solely on abstract logical refutation, with no concrete external factual analogy in any comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than OP). Return 1 if the list is non-empty, at least one comment refutes the OP through abstract logical argument, AND no comment introduces a concrete external factual analogy (a specific real-world case or fact used as a parallel). Return 0 otherwise (including when any comment contains such an analogy, or when comments are neither analogy nor abstract logical refutation). Ignore text announcing a view change/delta award or reporting the outcome. Empty list -> 0; missing or malformed input -> null."
+    }
+  ],
+  "h0": "View-change rates do not differ between discussions with concrete external factual analogies in counter-arguments and those relying solely on abstract logical refutation.",
+  "h1": "Discussions with any_concrete_external_analogy have higher view-change rates than discussions with solely_abstract_logical_refutation.",
+  "rhs": "any_concrete_external_analogy + solely_abstract_logical_refutation",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a comparison of analogy discussions vs solely-abstract discussions. In the formula both coefficients are relative to a neither group (neither analogy nor abstract-only refutation), so no single coefficient equals the A-vs-B contrast; term is null rather than using a conditional coefficient as approximation. Both measurements retained. Assumptions: analogy presence is binary at the discussion level; 'solely abstract' means non-empty comments with abstract refutation and no concrete analogy. Source OC_comments is current text, may include outcome announcements (excluded by prompt); no chronology. Associations only."
+}

@@ -1,0 +1,33 @@
+{
+  "features": [
+    {
+      "name": "any_comment_refutes_op_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly refute a specific example or anecdote that the OP provided?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Read argument to identify specific examples or anecdotes the OP themself gave. Output 1 if at least one single comment explicitly challenges, rebuts or undermines one of those specific OP examples/anecdotes (e.g., disputes its facts, representativeness or relevance); 0 otherwise. Merely mentioning an example without refuting it, or refuting only the general claim, does not count. Ignore OP view-change/delta announcements and post-outcome updates as evidence. Empty comment list gives 0; missing/malformed OC_comments or argument gives null."
+    },
+    {
+      "name": "any_comment_addresses_main_premise",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment directly address the OP's main premise (central claim) rather than a specific example?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Use title and argument to identify the OP's main premise/central claim. Output 1 if at least one comment directly argues against or engages the main premise itself (general claim, reasoning or conclusion), not targeting a specific OP example or anecdote; 0 otherwise. Ignore OP view-change/delta announcements and post-outcome updates as evidence. Empty comment list gives 0; missing/malformed input gives null. A comment may also satisfy `any_comment_refutes_op_example`; overlap and neither cases are preserved."
+    }
+  ],
+  "h0": "Discussions with example-refuting comments (any_comment_refutes_op_example) have the same probability of view change as those with main-premise comments (any_comment_addresses_main_premise).",
+  "h1": "Example-refuting comments are associated with a higher probability of view change than main-premise comments.",
+  "rhs": "any_comment_refutes_op_example + any_comment_addresses_main_premise",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a contrast between two groups; in the additive model beta_A is not beta_A minus beta_B, so no single coefficient represents it and term is null. Both measurements are retained, with overlap and neither cases possible. Features are any-presence operationalizations (no count/share specified). Current text only; OP text and comments may contain outcome announcements and timing is unknown. No tests were run."
+}

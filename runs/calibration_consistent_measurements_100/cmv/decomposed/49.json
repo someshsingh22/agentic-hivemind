@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_comment_acknowledges_valid_point_before_discrepancy",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly acknowledge a valid underlying point of the OP before introducing a discrepancy or disagreement in that same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one single comment, in its own assertions (not merely quoting someone), first explicitly acknowledges that the OP has a valid underlying point (using title and argument only to interpret what the OP's point is) and then, later in that same comment, introduces a discrepancy, counterpoint or disagreement. Acknowledgment and discrepancy must co-occur in the same comment, in that order; separate comments cannot jointly satisfy it. Return 0 if no comment qualifies, including pure refutations and an empty list. Return null if OC_comments is missing or malformed. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence; generic delta-rule discussion is eligible."
+    }
+  ],
+  "h0": "any_comment_acknowledges_valid_point_before_discrepancy has no association with delta (view change).",
+  "h1": "Rows with any_comment_acknowledges_valid_point_before_discrepancy = 1 have a higher view-change rate than rows without it.",
+  "rhs": "any_comment_acknowledges_valid_point_before_discrepancy",
+  "term": "any_comment_acknowledges_valid_point_before_discrepancy",
+  "sign": "+",
+  "note": "Operational assumption: \"pure refutations\" is operationalized as rows lacking any acknowledge-then-discrepancy comment (feature = 0), which may include rows with other non-refutation comment types; no separate pure-refutation measure is built. Row-level presence (any comment) is used. Comment order/timing is unknown; order is judged only within a comment. OC_comments may contain outcome-related text; the prompt excludes it. Association only, not causal."
+}

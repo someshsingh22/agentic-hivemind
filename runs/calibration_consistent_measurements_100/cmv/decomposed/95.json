@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "supplied_log_length",
+      "dtype": "numeric",
+      "source_columns": [
+        "log_length"
+      ],
+      "definition": "What is the supplied log-transformed length value for the discussion?",
+      "kind": "code",
+      "spec": "df['log_length'] converted with pd.to_numeric(errors='coerce'); return the numeric value as-is (no re-derivation, no log base assumption); missing or non-numeric gives null."
+    }
+  ],
+  "h0": "supplied_log_length has no association with the probability that the OP changes their view (delta).",
+  "h1": "Higher supplied_log_length is associated with a higher probability that the OP changes their view (delta).",
+  "rhs": "supplied_log_length",
+  "term": "supplied_log_length",
+  "sign": "+",
+  "note": "Uses the supplied log_length column as given; its construction, source text, log base and timing are undocumented, so it is not equated with argument word count and may include post-outcome text. The OLS is a linear probability model; the result is an association, not causal."
+}

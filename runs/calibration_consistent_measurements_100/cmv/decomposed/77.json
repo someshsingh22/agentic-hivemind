@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_comment_challenges_op_assumption",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly challenge an underlying assumption or premise of the OP's view, rather than only disputing its factual conclusions?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Use title and argument only to identify the OP's assumptions/premises. Return 1 if at least one single comment explicitly challenges an underlying assumption or premise that the OP's view rests on (e.g. questions a value, definition, framing or unstated premise), in the comment's own assertion (not merely quoting the OP or another source without adopting it). Return 0 if comments only dispute facts/conclusions or make no such challenge. Empty list gives 0; missing or malformed OC_comments gives null. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence; generic delta-rule discussion is eligible."
+    }
+  ],
+  "h0": "any_comment_challenges_op_assumption has no association with delta (view-change) rate.",
+  "h1": "Rows where any_comment_challenges_op_assumption is 1 have a higher view-change rate than rows where it is 0.",
+  "rhs": "any_comment_challenges_op_assumption",
+  "term": "any_comment_challenges_op_assumption",
+  "sign": "+",
+  "note": "Operational assumptions: \"explicitly challenge underlying assumptions rather than just factual conclusions\" is measured as presence of at least one comment that challenges an OP assumption; the 'rather than just factual conclusions' contrast is approximated by this presence (rows with both assumption and factual challenges count as 1; no separate factual-only group). Comments are unordered and have no timing; OC_comments may contain outcome announcements, which the prompt excludes. Association only, not causal."
+}

@@ -1,0 +1,32 @@
+{
+  "features": [
+    {
+      "name": "op_first_person_vulnerable_admission",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "Does the original post (title or argument) contain at least one first-person admission of vulnerability by the OP, such as admitting personal weakness, fear, shame, struggle or error?",
+      "kind": "prompt",
+      "spec": "Read title and argument. Output 1 if the OP, in their own voice (first person), makes at least one genuine admission of personal vulnerability about themselves (e.g., confessing a weakness, fear, shame, insecurity, struggle, mistake or emotional hardship). Output 0 otherwise. Do not count third-person statements about others, general opinions, or quoted text attributed to others unless the OP adopts it as their own admission. Ignore any OP view-change/delta-award announcements, edits reporting the outcome or post-outcome resolution updates; they are not evidence. If both title and argument are empty/missing output null."
+    },
+    {
+      "name": "op_distant_third_person_observation",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "Does the original post (title or argument) contain at least one distant, third-person observation about other people or the world rather than about the OP themself?",
+      "kind": "prompt",
+      "spec": "Read title and argument. Output 1 if the OP makes at least one detached, third-person observation (describing what other people, groups, society or things do or are like) without personal involvement framing. Output 0 otherwise. First-person experiences or admissions do not count; quoted material counts only if the OP adopts it as their own observation. Ignore any OP view-change/delta-award announcements, edits reporting the outcome or post-outcome resolution updates. If both title and argument are empty/missing output null."
+    }
+  ],
+  "h0": "There is no difference in view-change likelihood between posts with first-person vulnerable admissions (`op_first_person_vulnerable_admission`) and posts with distant third-person observations (`op_distant_third_person_observation`).",
+  "h1": "Posts with `op_first_person_vulnerable_admission` have higher view-change likelihood than posts with `op_distant_third_person_observation`.",
+  "rhs": "op_first_person_vulnerable_admission + op_distant_third_person_observation",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a comparison between two named groups, which requires the contrast beta_A - beta_B. The OLS formula gives separate coefficients and no single design-matrix column represents that difference, so term=null. Overlap and neither cases are preserved as the two features are not mutually exclusive. Measures use current title and argument text, which may contain edits and outcome announcements; the prompt specs exclude these but cannot recover initial text. Associations only. No rows were annotated."
+}

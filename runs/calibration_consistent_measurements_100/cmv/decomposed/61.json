@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_second_person_address",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment use second-person direct address toward the OP or reader (e.g., addressing them as 'you')?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment, in its own (non-quoted) wording, directly addresses the OP/reader in the second person (you/your/yours/yourself used to address the interlocutor, including direct questions or directives to them). Generic impersonal 'you' (meaning 'one'), and 'you' appearing only inside quotations of others, do not count. Ignore any text announcing a view change, delta award, or other outcome report. Return 0 if the list is valid but empty or no comment qualifies; null if missing or malformed."
+    },
+    {
+      "name": "any_comment_third_person_analysis",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment rely on third-person analysis of the topic, discussing people, groups or things in the third person without addressing the OP directly?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Return 1 if at least one comment makes its counter-argument through third-person analysis (about the topic, people, groups, or things in the third person, e.g., 'they', 'people', 'the policy'), with that comment containing no second-person direct address to the OP. Ignore quoted text from others and any view-change/delta announcements or outcome reports. Return 0 if the list is valid but empty or no comment qualifies; null if missing or malformed."
+    }
+  ],
+  "h0": "Discussions with second-person-addressing counter-arguments (any_comment_second_person_address) have the same OP view-change rate as discussions with third-person-analysis counter-arguments (any_comment_third_person_analysis).",
+  "h1": "Discussions with second-person-addressing counter-arguments have a higher OP view-change rate than those relying on third-person analysis.",
+  "rhs": "any_comment_second_person_address + any_comment_third_person_analysis",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a comparison of A (second-person address) versus B (third-person analysis). Both measured as any-comment presence (no quantity specified); the groups can overlap or both be absent. In an OLS with both terms, the coefficient on A is conditional on B and is not the A-minus-B contrast, so no single coefficient represents the claim; term=null. Current text may contain outcome announcements (excluded in the prompts); comment timing is unknown. Associations only."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "arg_acknowledges_alternative_perspectives",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument explicitly acknowledge that alternative perspectives or other reasonable views exist?",
+      "kind": "prompt",
+      "spec": "Read only the `argument` text (OP's argument body, not title). Return 1 if the OP, in their own voice, explicitly acknowledges that alternative perspectives, other viewpoints, or reasonable disagreement exist (e.g., 'I know others see this differently', 'there are other valid views'). Return 0 if no such explicit acknowledgment appears, including when the argument is presented as the only possible view. Do not count quotations of others unless the OP adopts them as acknowledging alternatives. Ignore OP view-change/delta-award announcements, post-outcome edits/resolution updates and reports of the outcome; they are not evidence. Empty or missing argument: null."
+    }
+  ],
+  "h0": "Argument explicit acknowledgment of alternative perspectives (arg_acknowledges_alternative_perspectives) has no association with the probability of view change.",
+  "h1": "Discussions with arg_acknowledges_alternative_perspectives = 1 have a higher probability of view change than those with 0.",
+  "rhs": "arg_acknowledges_alternative_perspectives",
+  "term": "arg_acknowledges_alternative_perspectives",
+  "sign": "+",
+  "note": "The comparison group is arguments without explicit acknowledgment, used as an approximation of 'singularly deterministic' framing; no separate deterministic-framing measurement is made, so the 0 group includes neutral arguments. Argument is current text and may contain edits or outcome announcements, which the prompt excludes as evidence, but timing relative to the outcome is unknown. OLS on binary outcome gives a linear-probability association, not causal."
+}

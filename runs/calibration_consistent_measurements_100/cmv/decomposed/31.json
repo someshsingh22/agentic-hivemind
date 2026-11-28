@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_argument_tone_policing_request",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument text explicitly ask commenters or others to change their tone, e.g., be civil, polite, calm or non-hostile?",
+      "kind": "prompt",
+      "spec": "Read only the `argument` text (OP's argument body, not title). Output 1 if the OP's own text contains at least one explicit request or demand that others (e.g., commenters/respondents) change or moderate their tone or manner of expression (e.g., 'please be civil', 'keep it polite', 'don't be rude', 'calm down', 'no insults'). Output 0 if no such explicit request exists. Do not count: mere tone descriptions without a request, quoted requests attributed to others and not adopted by the OP, or requests about content/evidence rather than tone. Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome as evidence. Generic subreddit rule mentions of civility count only if the OP themself makes the request. Empty or missing argument: null if missing, 0 if empty."
+    }
+  ],
+  "h0": "Discussions whose argument contains an explicit tone-policing request (op_argument_tone_policing_request=1) have the same likelihood of view change as those without.",
+  "h1": "Discussions with op_argument_tone_policing_request=1 have a lower likelihood of view change than those with op_argument_tone_policing_request=0.",
+  "rhs": "op_argument_tone_policing_request",
+  "term": "op_argument_tone_policing_request",
+  "sign": "-",
+  "note": "Operational assumption: 'tone-policing requests' is read as the OP explicitly asking others to adjust their tone/manner (civility, politeness, calmness). Presence only. Argument text is current text and may include edits or outcome announcements; the semantic prompt excludes those as evidence, but timing relative to the outcome is unknown. Association only, OLS on binary delta (linear probability)."
+}

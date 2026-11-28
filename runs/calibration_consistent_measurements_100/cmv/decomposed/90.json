@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_specific_empirical_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment make a specific counter-argument that cites an empirical example as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment makes a specific counter-argument that cites a concrete empirical example (e.g., a particular real-world case, event, study, statistic, or data point) as support, whether the example is the commenter's own or an attributed external source cited as support. Return 0 if no comment does (including a valid empty list). Return null if OC_comments is missing or malformed. Do not count purely hypothetical or abstract examples, generic assertions, or quoted OP text. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Presence only, not count."
+    }
+  ],
+  "h0": "Discussions with oc_specific_empirical_example=1 have the same association with OP view change (delta) as those with oc_specific_empirical_example=0.",
+  "h1": "Discussions with oc_specific_empirical_example=1 are more likely to have OP view change than those with oc_specific_empirical_example=0.",
+  "rhs": "oc_specific_empirical_example",
+  "term": "oc_specific_empirical_example",
+  "sign": "+",
+  "note": "Presence interpreted as at least one qualifying comment. Association only, not causal. OC_comments is current text and may contain outcome announcements; timing relative to the OP's view change is unknown, and comment order is not chronology. Linear probability model via OLS."
+}

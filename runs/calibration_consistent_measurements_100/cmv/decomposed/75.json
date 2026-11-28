@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_cites_specific_real_world_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment cite a specific real-world example as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment offers a specific, concrete real-world example (a named or identifiable actual person, event, case, place, study, statistic instance, or personal real experience) as support for its argument. Return 0 if no comment does so (generic, abstract or purely hypothetical scenarios do not count). Quoted material counts only if the commenter cites it as a supporting example. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "oc_cites_specific_real_world_example has no association with the probability of delta=1.",
+  "h1": "Discussions with oc_cites_specific_real_world_example=1 have a higher probability of delta=1 than those with 0.",
+  "rhs": "oc_cites_specific_real_world_example",
+  "term": "oc_cites_specific_real_world_example",
+  "sign": "+",
+  "note": "Presence (at least one comment) is used since no quantity was specified. OLS on binary delta gives a linear probability model; the association is not causal. Comments are current text; timing relative to the outcome is unknown and comments could include outcome-related text, which the prompt excludes as evidence."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "post_created_timestamp",
+      "dtype": "numeric",
+      "source_columns": [
+        "post_created_utc"
+      ],
+      "definition": "What is the original post's creation Unix timestamp (later = later in the dataset period)?",
+      "kind": "code",
+      "spec": "df['post_created_utc'] cast to float; null if missing or non-numeric. Units: Unix seconds."
+    }
+  ],
+  "h0": "post_created_timestamp has no association with the likelihood of view change (delta).",
+  "h1": "Higher post_created_timestamp (later posts) is associated with a higher likelihood of view change.",
+  "rhs": "post_created_timestamp",
+  "term": "post_created_timestamp",
+  "sign": "+",
+  "note": "Linear association assumed; timestamp in raw Unix seconds so the coefficient is per second (rescaling would not change sign or significance). The sample is a balanced 1,000 changed/1,000 unchanged set, so it shows association within this sample only, not the true base rate or a causal effect. The dataset period is taken as the span of the supplied timestamps."
+}

@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "argument_has_hedging_markers",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument use modest or uncertain epistemic markers (e.g., hedges like 'maybe', 'I think', 'perhaps', 'might', 'it seems') in the OP's own assertions?",
+      "kind": "prompt",
+      "spec": "Read only `argument`. Return 1 if the OP's own assertions contain at least one modest/uncertain epistemic marker (hedges, tentative modals such as might/may/could used epistemically, 'perhaps', 'maybe', 'I think/I suppose', 'seems', 'probably', explicit admissions of uncertainty). Return 0 if none. Ignore markers only inside quotations attributed to others and not adopted by the OP. Do not count OP view-change/delta-award announcements, edits reporting the outcome, or post-outcome updates as evidence. Empty argument gives 0; missing/malformed gives null."
+    },
+    {
+      "name": "argument_has_high_modality_assertions",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument use high-modality, certain assertions (e.g., 'must', 'always', 'never', 'definitely', 'obviously') in the OP's own assertions?",
+      "kind": "prompt",
+      "spec": "Read only `argument`. Return 1 if the OP's own assertions contain at least one high-modality/certainty marker (e.g., must, have to, always, never, certainly, definitely, undoubtedly, obviously, clearly, absolutely, 'there is no way', categorical claims stated with strong certainty). Return 0 if none. Ignore markers only inside quotations attributed to others and not adopted by the OP. Do not count OP view-change/delta-award announcements, edits reporting the outcome, or post-outcome updates as evidence. Empty argument gives 0; missing/malformed gives null."
+    }
+  ],
+  "h0": "Discussions whose arguments contain hedging markers are no more likely to show view change than those with high-modality assertions (hedging effect minus high-modality effect on delta is zero or negative).",
+  "h1": "Arguments with argument_has_hedging_markers are associated with a higher likelihood of view change than arguments with argument_has_high_modality_assertions.",
+  "rhs": "argument_has_hedging_markers + argument_has_high_modality_assertions",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a comparison of hedged versus high-modality arguments. In this formula, each coefficient is relative to a baseline with neither marker type (overlap and neither cases exist), so neither coefficient equals the hedging-minus-high-modality contrast; no single design-matrix column represents it, hence term=null. I did not construct a difference score. Both measurements are presence-based (no count/intensity scale assumed). Uses current argument text; the argument may contain edits or outcome announcements, so raw text is not pre-outcome; the prompt excludes outcome announcements as evidence of the markers. Associations only."
+}

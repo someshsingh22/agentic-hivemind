@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_has_counter_question",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument text contain at least one question that explicitly poses a counter-question, challenging or inviting objections to the OP's own view?",
+      "kind": "prompt",
+      "spec": "Read only `argument` (OP's explanation; not the title). Output 1 if the OP's own text contains at least one question that works as a counter-question marker: a question aimed at readers or at the OP's own position that challenges the view or asks for counterarguments, objections or counterexamples (e.g. 'What could change my mind?', 'Can anyone give a case where this fails?', 'But what about X?' posed as an objection to the OP's view). Output 0 if there are no such questions, including when the only question marks are unrelated or purely informational. Questions inside quotations attributed to others count only if the OP adopts them. Ignore view-change/delta-award announcements, edits reporting the outcome, and post-outcome resolution updates as evidence. Missing or non-text argument -> null; empty text -> 0. Presence only, not a count."
+    }
+  ],
+  "h0": "argument_has_counter_question is unrelated to the probability of view change.",
+  "h1": "Rows with argument_has_counter_question = 1 have a higher probability of view change than rows with 0.",
+  "rhs": "argument_has_counter_question",
+  "term": "argument_has_counter_question",
+  "sign": "+",
+  "note": "\"Specific counter-question markers\" is not defined in the hypothesis; operationalized as presence of at least one question in the OP argument that challenges or invites objection to the OP's view. This is an assumption. Binary presence used since no count was specified. Argument is current text and may include edits or outcome announcements (excluded by the semantic rule); it is not a guaranteed pre-outcome snapshot. OLS on binary outcome gives a linear probability association, not causation."
+}

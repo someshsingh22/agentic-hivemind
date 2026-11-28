@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "comment_acknowledges_op_premise_before_diverging",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly acknowledge the validity of the original post's initial premise before introducing its divergence from the OP?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one single comment both (a) explicitly acknowledges that the OP's initial premise (the starting claim/assumption in title or argument) is valid, reasonable or correct, and (b) afterwards in that same comment introduces a point of divergence/disagreement. Both parts must be in the same comment, in that order; separate comments cannot jointly satisfy it. Generic politeness or acknowledging only a side point does not count; the acknowledgment must be of the premise. Ignore quoted text unless the commenter adopts it. Do not count OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Return 0 if no comment qualifies or the list is valid but empty; null if OC_comments is missing or malformed. Title and argument are read only to identify the OP's premise."
+    }
+  ],
+  "h0": "comment_acknowledges_op_premise_before_diverging has no association with the likelihood of OP view change.",
+  "h1": "Discussions with comment_acknowledges_op_premise_before_diverging = 1 have a higher likelihood of OP view change.",
+  "rhs": "comment_acknowledges_op_premise_before_diverging",
+  "term": "comment_acknowledges_op_premise_before_diverging",
+  "sign": "+",
+  "note": "Presence (at least one comment) assumed as quantity. \"Initial premise\" is interpreted from current title/argument text; the original pre-edit text is unavailable, and the argument may contain edits or outcome announcements. Comment order/timing is unknown. Association only, not causal."
+}

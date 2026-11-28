@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "title_has_emotional_or_personal_identifier",
+      "dtype": "binary",
+      "source_columns": [
+        "title"
+      ],
+      "definition": "Does the title contain an explicit emotional expression or personal identifier (e.g., first-person self-reference or stated feelings)?",
+      "kind": "prompt",
+      "spec": "Read only the title. Return 1 if the title contains an explicit emotional term/expression (e.g., 'I hate', 'I feel', 'angry', 'love', 'scared') or an explicit personal identifier of the poster (e.g., first-person self-reference such as I/my/me, or self-described identity/experience such as 'as a woman', 'I'm a veteran'). Return 0 otherwise. Ignore the 'CMV:' prefix. Quoted wording counts only if the poster adopts it as their own. Missing/empty title gives null. Exclude any view-change/delta announcements (unlikely in titles)."
+    }
+  ],
+  "h0": "title_has_emotional_or_personal_identifier has no association with the probability that the OP changed their view (delta).",
+  "h1": "Posts with title_has_emotional_or_personal_identifier=1 have a lower probability of OP view change than those with 0.",
+  "rhs": "title_has_emotional_or_personal_identifier",
+  "term": "title_has_emotional_or_personal_identifier",
+  "sign": "-",
+  "note": "Operational assumption: \"emotional or personal identifiers\" is treated as a single binary presence of either explicit emotion wording or first-person/self-identity markers in the title; the two are not separated. OLS on binary delta (linear probability model). Association only. Titles are current text and could theoretically contain edits."
+}

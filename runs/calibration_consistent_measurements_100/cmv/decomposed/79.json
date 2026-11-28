@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_argument_has_personal_experience_narrative",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument contain an explicit narrative of the OP's own personal experience?",
+      "kind": "prompt",
+      "spec": "Read only the `argument` text (OP's argument body; not title). Output 1 if the OP's own assertions include an explicit personal experience narrative, i.e. the OP recounts something that happened to them or that they personally did/lived through (e.g. a specific event or sequence of events in first person). Output 0 if there is none: only abstract claims, general statements, hypotheticals, or experiences of others/quoted sources that the OP does not present as their own. Quotations from others do not count unless adopted as the OP's own experience. Ignore OP view-change/delta-award announcements, edits reporting the outcome, and post-outcome resolution updates; they are not evidence of a narrative. Missing or malformed argument -> null; empty string -> 0."
+    }
+  ],
+  "h0": "Discussions with and without an explicit personal experience narrative in the OP's argument have the same likelihood of view change (coefficient of op_argument_has_personal_experience_narrative = 0).",
+  "h1": "Discussions whose OP argument has an explicit personal experience narrative (op_argument_has_personal_experience_narrative = 1) have higher likelihood of view change.",
+  "rhs": "op_argument_has_personal_experience_narrative",
+  "term": "op_argument_has_personal_experience_narrative",
+  "sign": "+",
+  "note": "Presence is binary; no intensity scale. Uses current argument text, which may include edits or outcome announcements (excluded from the semantic judgment, but the raw text is not guaranteed pre-outcome). Association only, via OLS (linear probability) on delta."
+}

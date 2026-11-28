@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_requests_restraint_or_karma",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original poster's argument text explicitly ask the audience for restraint (e.g., be civil, don't downvote or flame) or for karma building (e.g., upvote, give karma)?",
+      "kind": "prompt",
+      "spec": "Read only the argument text (OP's own words). Return 1 if the OP's own assertions explicitly request that readers/commenters show restraint (e.g., be polite/civil, go easy, do not downvote, do not attack or flame) or request karma building (e.g., asking for upvotes, karma, or to upvote others/the post). Return 0 if no such explicit request is present. Ignore mere quotations of others' text unless the OP adopts them as their own request. Do not count OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence; generic mentions of platform rules without a request to the audience do not count. Return null if argument is missing or malformed; empty text gives 0."
+    }
+  ],
+  "h0": "Discussions where the OP's argument explicitly requests restraint or karma building (op_requests_restraint_or_karma=1) have the same probability of OP view change as those without.",
+  "h1": "Discussions with op_requests_restraint_or_karma=1 have a lower probability of OP view change than those with op_requests_restraint_or_karma=0.",
+  "rhs": "op_requests_restraint_or_karma",
+  "term": "op_requests_restraint_or_karma",
+  "sign": "-",
+  "note": "Linear probability model (OLS on binary delta). \"Restraint\" and \"karma building\" are combined as one OR presence measure per the hypothesis wording. The argument is current text and may include edits or outcome announcements; these are excluded from the semantic judgment, but pre-outcome timing is not guaranteed. Association only."
+}

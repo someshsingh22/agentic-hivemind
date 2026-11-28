@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_cites_functioning_institutional_precedent",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment cite a specific, functioning institutional precedent (a named real policy, law, organization or jurisdiction that actually operates or operated) as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment itself cites a specific, concrete institutional precedent (e.g., a named law, policy, court, agency, organization, or country/state/city program) presented as actually in operation or having operated, as support for its counter-argument. Return 0 if no comment does (including purely hypothetical institutions, vague references, or only abstract principles). A precedent mentioned only in a quotation of someone else counts only if the commenter adopts it as support. Ignore any OP view-change/delta-award announcements or reports of the outcome. Empty list gives 0; missing or malformed OC_comments gives null."
+    },
+    {
+      "name": "any_comment_relies_on_abstract_normative_principles",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment rely on abstract normative principles (general moral or ethical principles, rights or values) as its basis?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment's counter-argument rests on abstract normative principles (e.g., general appeals to fairness, justice, rights, liberty, duty, what ought to be) stated in general terms rather than anchored in a specific real institutional precedent. Return 0 if no comment does. Ignore any OP view-change/delta-award announcements or reports of the outcome. Empty list gives 0; missing or malformed OC_comments gives null."
+    }
+  ],
+  "h0": "There is no difference in the probability of view change between discussions whose counter-arguments cite functioning institutional precedents and those relying on abstract normative principles.",
+  "h1": "Discussions with counter-arguments citing specific functioning institutional precedents (any_comment_cites_functioning_institutional_precedent) have a higher probability of view change than those relying on abstract normative principles (any_comment_relies_on_abstract_normative_principles).",
+  "rhs": "any_comment_cites_functioning_institutional_precedent + any_comment_relies_on_abstract_normative_principles",
+  "term": null,
+  "sign": "+",
+  "note": "The claim is a comparison of precedent-citing vs abstract-principle comments. The two binary features overlap and can both be 0 or both be 1. With the additive formula, no single coefficient equals beta_precedent minus beta_abstract, so term=null; no difference score was invented. Operational assumptions: presence (any comment) is used as no quantity was specified; the comparison is at discussion level. Source risk: OC_comments may contain outcome announcements; the prompts exclude them. Associations only."
+}

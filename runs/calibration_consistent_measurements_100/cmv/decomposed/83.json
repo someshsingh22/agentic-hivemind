@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "example_comment_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many counter-argument comments offer a specific real-world example as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. Count comments that themselves offer at least one specific real-world example (a concrete actual case, event, person, study, statistic tied to a case, or personal experience) as support for their counter-argument. Hypothetical, generic or abstract illustrations do not count. Quotations of the OP or others count only if the commenter adopts them as their own example support. Ignore OP view-change/delta-award announcements, post-outcome resolution updates and reports of the outcome as evidence. Output a non-negative integer; 0 for a valid empty list; null if missing or malformed."
+    }
+  ],
+  "h0": "example_comment_count has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher example_comment_count is associated with a higher probability that the OP changed their view.",
+  "rhs": "example_comment_count",
+  "term": "example_comment_count",
+  "sign": "+",
+  "note": "Operational assumption: \"more counter-arguments\" is read as the count of comments with specific real-world examples (not the share). OLS on binary delta is a linear probability model. Count depends on the number of available comments; no controls added. Comments may include outcome-related text, which the prompt excludes as evidence; comment order/timing unknown. Association only, not causal."
+}

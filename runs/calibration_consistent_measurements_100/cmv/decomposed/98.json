@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_well_reasoned_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment present a well-reasoned argument (clear reasoning or evidence supporting its challenge to the OP's view)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment offers a well-reasoned counterargument, meaning it gives explicit logical reasoning or supporting evidence against the OP's view, rather than mere assertion, insult or off-topic remarks. Return 0 if none qualify (including a valid empty list). Return null if OC_comments is missing or malformed. Ignore any OP view-change or delta-award announcements, post-outcome resolution updates or reports of the outcome; they are not evidence of the construct. Only the commenters' own assertions count, not material they merely quote unless adopted."
+    },
+    {
+      "name": "op_logical_concession_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "conversation"
+      ],
+      "definition": "How many statements by the OP in the conversation concede a logical point to a counterargument?",
+      "kind": "prompt",
+      "spec": "Read conversation and consider only turns spoken by the OP. Count distinct OP statements that explicitly concede a logical point to a counterargument (e.g., acknowledging a valid flaw, accepting a premise as correct, admitting an argument is sound or that they had not considered something) while not necessarily changing their view. Quoted other-user text is not the OP's own concession unless the OP adopts it. Do not count view-change or delta-award announcements (e.g., 'Δ', 'my view has changed', 'delta awarded'), post-outcome resolution updates or reports of the outcome. Return 0 if the OP has no such statements or no OP turns; null if conversation is missing or malformed. Output a non-negative integer."
+    }
+  ],
+  "h0": "any_well_reasoned_counterargument is unrelated to the frequency of op_logical_concession_count.",
+  "h1": "Rows with any_well_reasoned_counterargument have a higher op_logical_concession_count.",
+  "rhs": "any_well_reasoned_counterargument",
+  "term": null,
+  "sign": "+",
+  "note": "The claimed outcome is the frequency of OP logical concession statements, but the fixed outcome is delta; the pipeline adds only delta as outcome and op_logical_concession_count cannot be used as the outcome in rhs, so the claim cannot be tested and term=null. Putting concession count on the right side would substitute a different claim. Concession statements in conversation are close to outcome-revealing and may co-occur with later replies and view-change announcements; reply timing is unknown, and conversation overlaps OC_comments. 'Engaging with' is operationalized as the presence of a well-reasoned counterargument in the discussion, not OP engagement with it. Well-reasoned is judged by the prompt without a numeric scale."
+}

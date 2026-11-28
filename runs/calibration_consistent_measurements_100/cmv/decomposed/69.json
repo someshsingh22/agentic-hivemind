@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_cites_specific_localized_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment cite a specific, localized example (a particular named or concretely situated case, place, event, person or instance) as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by users other than the OP. Output 1 if at least one comment offers a specific, localized example as support for its counter-argument: a concrete, particular case tied to an identifiable place, event, person, organization, time or situation (e.g., a named country's policy, a particular incident, a specific personal experience in a described setting). Generic, abstract, hypothetical or purely general-category examples do not count. A quoted or cited external example counts if used as support in the comment. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Output 0 if no comment qualifies or the list is validly empty. Output null if OC_comments is missing or cannot be parsed. Presence only, not a count."
+    }
+  ],
+  "h0": "any_comment_cites_specific_localized_example has no association with the probability that the OP changed their view (delta).",
+  "h1": "Discussions with any_comment_cites_specific_localized_example = 1 have a higher probability of the OP changing their view than those with 0.",
+  "rhs": "any_comment_cites_specific_localized_example",
+  "term": "any_comment_cites_specific_localized_example",
+  "sign": "+",
+  "note": "Presence interpretation (at least one qualifying comment) since no quantity specified. OLS on binary delta is a linear probability model; association only, not causal. Comments are current text; OC_comments may contain outcome announcements, which the prompt is told to disregard as evidence. \"Specific, localized\" operationalized as concrete particular case tied to identifiable place/event/person/situation; judged from comment text alone."
+}

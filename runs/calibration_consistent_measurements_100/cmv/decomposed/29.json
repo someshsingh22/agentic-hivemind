@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_direct_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment directly argue against the OP's stated view or a specific claim in it?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Use title and argument only to identify the OP's stated view. Output 1 if at least one comment itself directly challenges the OP's main view or a specific claim/premise of the OP with reasoning or evidence (the comment's own assertion, not merely quoting the OP or a third party). Output 0 if the list is valid but empty, or no comment does this (e.g. only agreement, questions, off-topic, jokes, or clarification requests). Ignore any OP view-change or delta-award announcements, post-outcome resolution updates, and reports of the outcome as evidence of a counterargument. Null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "There is no association between any_direct_counterargument and the OP's upvoting a reply or changing their view.",
+  "h1": "Rows with any_direct_counterargument=1 are more likely than rows with 0 to have the OP upvote the reply or change their view.",
+  "rhs": "any_direct_counterargument",
+  "term": null,
+  "sign": "+",
+  "note": "The claimed outcome is 'upvoting the reply or changing their view'. The dataset supplies only delta (view change); OP upvoting of replies is not available, so the composite outcome cannot be tested and substituting delta alone would change the claim. Hence term=null. The predictor is measured and reusable. Operational assumption: 'direct counterargument' means a comment's own argument against the OP's view or a stated claim; presence is binary. OC_comments may contain outcome announcements or later replies and comment timing is unknown; the prompt excludes these as evidence. Associations only."
+}

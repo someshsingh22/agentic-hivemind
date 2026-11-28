@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "argument_has_hedging_or_self_doubt",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument contain explicit hedging or self-doubt markers by the OP (e.g., 'maybe', 'I might be wrong', 'I'm not sure')?",
+      "kind": "prompt",
+      "spec": "Read only the argument text (OP's body). Return 1 if the OP's own assertions contain at least one explicit hedging or self-doubt marker (e.g., 'I may be wrong', 'I'm not sure', 'perhaps', 'it seems to me', admitting uncertainty about own view). Return 0 if none. Ignore hedges inside quotations from others unless the OP adopts them. Ignore OP view-change/delta-award announcements, post-outcome edits and reports of the outcome; they are not evidence. Return null if argument is missing or malformed."
+    },
+    {
+      "name": "argument_unwavering_certainty",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Is the original argument presented with unwavering certainty, with no hedging or self-doubt expressed by the OP?",
+      "kind": "prompt",
+      "spec": "Read only the argument text. Return 1 if the OP states the view with unwavering certainty: confident, categorical assertions and no explicit hedging, uncertainty or self-doubt markers in the OP's own assertions. Return 0 otherwise (including hedged or neutral/mixed text with neither clear hedging nor clear certainty). Ignore quoted others' wording unless adopted. Ignore OP view-change/delta-award announcements, post-outcome edits and reports of the outcome. Return null if argument is missing or malformed."
+    }
+  ],
+  "h0": "There is no difference in view-change rate between discussions whose argument has hedging/self-doubt markers and those whose argument is presented with unwavering certainty.",
+  "h1": "Discussions with `argument_has_hedging_or_self_doubt` have higher view-change rates than discussions with `argument_unwavering_certainty`.",
+  "rhs": "argument_has_hedging_or_self_doubt + argument_unwavering_certainty",
+  "term": null,
+  "sign": "+",
+  "note": "The claim compares hedged vs unwavering-certain arguments. Both are measured, but overlap and neither cases exist (neither/mixed text), so in the additive model each coefficient is relative to the omitted baseline and no single coefficient equals hedged minus certain; hence term=null rather than approximating. Uses current argument text, which may include edits or outcome announcements (contamination/timing risk); the initial text is unavailable. Semantic judgments of hedging/certainty are interpretive."
+}

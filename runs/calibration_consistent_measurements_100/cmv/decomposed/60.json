@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "ack_valid_component_before_counterexample",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly acknowledge the validity of a specific component of the OP's argument and then, later in that same comment, present a counter-example?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one single comment (a) explicitly acknowledges that a specific component/point/claim of the OP's argument is valid, correct or reasonable (a generic politeness or vague agreement does not count), AND (b) afterwards in that same comment presents a counter-example (a specific case or instance that challenges the OP's view). Both conditions must occur in the same comment, acknowledgment before the counter-example; separate comments cannot jointly satisfy it. Acknowledgments must be the commenter's own assertion, not a quoted/attributed statement they do not adopt. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Return 0 if the list is valid but empty or no comment qualifies; null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "Discussions with `ack_valid_component_before_counterexample` = 1 have the same view-change (delta) rate as those with 0.",
+  "h1": "Discussions with `ack_valid_component_before_counterexample` = 1 have a higher view-change (delta) rate than those with 0.",
+  "rhs": "ack_valid_component_before_counterexample",
+  "term": "ack_valid_component_before_counterexample",
+  "sign": "+",
+  "note": "Presence (any comment) assumed since no quantity was specified. Judging whether the acknowledged component is of the OP's argument relies on the comment text alone; OP text not read. Comments are unordered and may include text after the outcome; the comment text could contain outcome-related content, which is excluded by instruction. Association only, linear probability model with OLS."
+}

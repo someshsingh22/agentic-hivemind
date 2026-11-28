@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_argument_acknowledges_counterpoints",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original post's argument explicitly acknowledge potential counterpoints or objections to the OP's own view?",
+      "kind": "prompt",
+      "spec": "Read only the argument text (OP's body; not title). Output 1 if the OP, in their own voice, explicitly acknowledges at least one potential counterpoint, objection, or opposing consideration to their view (e.g., 'some may argue...', 'I know the counterargument is...', 'admittedly...'). Output 0 if none is present. Quotations attributed to others count only if the OP adopts or addresses them as a counterpoint. Do not count OP view-change/delta-award announcements, edits reporting the outcome, or post-outcome resolution updates as evidence. Missing or malformed argument: null; empty string: 0."
+    }
+  ],
+  "h0": "op_argument_acknowledges_counterpoints has no association with the likelihood of delta (view change).",
+  "h1": "Higher op_argument_acknowledges_counterpoints is associated with a higher likelihood of view change.",
+  "rhs": "op_argument_acknowledges_counterpoints",
+  "term": "op_argument_acknowledges_counterpoints",
+  "sign": "+",
+  "note": "Binary presence assumed since no count/share specified. Argument is current text and may include edits or outcome announcements; these are excluded semantically from the measure, but it is not a verified pre-outcome snapshot. Association only, not causal. OLS on binary delta is a linear probability model."
+}

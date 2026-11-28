@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "has_multi_turn_reply_interaction",
+      "dtype": "binary",
+      "source_columns": [
+        "conversation"
+      ],
+      "definition": "Does the conversation text contain a multi-turn reply interaction, where a participant explicitly responds to a prior reply (a back-and-forth beyond a single comment answering the post)?",
+      "kind": "prompt",
+      "spec": "Read only `conversation` (turns formatted '[speaker]: text'). Return 1 if the text shows at least one multi-turn reply interaction: at least two successive turns in which a later turn evidently responds to the content of an earlier reply/comment (e.g., addresses or rebuts what the previous speaker said, answers their question), i.e. a chain of reply-to-reply rather than independent top-level comments addressed to the OP's post. Do not infer reply links from speaker order or repeated speaker names alone; require content evidence. Return 0 if turns are only independent comments or no such chain is evident. Empty text -> 0; missing/malformed -> null. Do not treat OP view-change/delta-award announcements or outcome reports as evidence of the interaction; ignore such turns when judging."
+    }
+  ],
+  "h0": "has_multi_turn_reply_interaction has no association with the likelihood that the OP changed their view (delta).",
+  "h1": "Discussions with has_multi_turn_reply_interaction = 1 have a higher likelihood of OP view change than those with 0.",
+  "rhs": "has_multi_turn_reply_interaction",
+  "term": "has_multi_turn_reply_interaction",
+  "sign": "+",
+  "note": "Operational assumption: multi-turn reply interaction is judged from content evidence in conversation text only; reply timing and links are not supplied, so speaker order is not used. conversation overlaps OC_comments, may include later replies and OP view-change announcements (contamination/timing risk; the prompt ignores such announcements as evidence). OP's username is not supplied, so OP-involved exchanges are not separately identified. Association only, via OLS linear probability on delta."
+}

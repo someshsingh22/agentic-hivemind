@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_specific_empirical_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment provide specific empirical evidence (e.g., data, statistics, studies, documented real-world cases)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment itself offers specific empirical evidence against the OP's view: concrete data, statistics, named studies or sources, or specific documented real-world cases/facts. Return 0 if no comment does (including empty list). Purely abstract reasoning, generic assertions, or opinions do not count. A cited external source counts as evidence offered by the commenter. Ignore OP view-change/delta-award announcements, post-outcome updates, and reports of the outcome; do not treat them as evidence. Return null if OC_comments is missing or malformed."
+    },
+    {
+      "name": "only_logical_refutations_no_empirical_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Do the counter-argument comments contain logical refutations but no specific empirical evidence in any comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment offers a logical refutation (reasoning, inconsistency, or counter-logic against the OP's view) AND no comment contains specific empirical evidence (data, statistics, studies, documented specific cases). Return 0 otherwise, including when any comment has specific empirical evidence, or when no comment has a logical refutation (e.g., empty list). Ignore OP view-change/delta-award announcements, post-outcome updates, and reports of the outcome. Return null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "There is no difference in the likelihood of the OP changing their view between discussions with counter-arguments containing specific empirical evidence and those containing only logical refutations.",
+  "h1": "Discussions with counter-arguments containing specific empirical evidence are more likely to have the OP change their view than those containing only logical refutations.",
+  "rhs": "any_comment_specific_empirical_evidence + only_logical_refutations_no_empirical_evidence",
+  "term": null,
+  "sign": "+",
+  "note": "The claim compares evidence-containing discussions (A) with only-logical-refutation discussions (B). With both indicators in the model, beta_A compares A against the neither group (no evidence and no logical refutation), and beta_B compares B against that same group. The claimed contrast A vs B (beta_A - beta_B) is not a single design-matrix coefficient, so term=null. Using A alone would compare A with B plus neither, which is a different claim. Operational assumptions: 'only logical refutations' means at least one logical refutation and no comment with specific empirical evidence. Overlap and neither cases are preserved by the definitions. Current text is used. OC_comments may contain outcome announcements, and that is a source risk. Results are associations only."
+}

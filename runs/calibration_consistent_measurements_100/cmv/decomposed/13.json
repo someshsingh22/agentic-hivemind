@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "validates_dignity_before_correcting",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly validate the OP's personal dignity or effort before introducing corrective logic in that same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than OP). Return 1 if at least one single comment both (a) explicitly validates the OP's personal dignity, worth, or effort (e.g., praising their effort, respecting their feelings/intent as a person) and (b) afterwards in that same comment introduces corrective logic (disagreement, counterpoint, or correction of reasoning). Validation must come before the corrective logic within the comment; separate comments cannot jointly satisfy it. Generic politeness without reference to the OP's dignity/effort does not count. Ignore quoted text unless the commenter adopts it. Ignore any OP view-change/delta-award announcements, post-outcome updates, or reports of the outcome as evidence. Return 0 for a valid empty list or when no comment qualifies; null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "There is no difference in view-change rate between discussions with validates_dignity_before_correcting = 1 and those with 0.",
+  "h1": "Discussions with validates_dignity_before_correcting = 1 have a higher view-change rate than those with 0.",
+  "rhs": "validates_dignity_before_correcting",
+  "term": null,
+  "sign": "+",
+  "note": "The comparison group is \"purely logical refutations\", i.e. discussions with corrective logic but no dignity/effort validation. The feature's 0 group also includes discussions with no refutation at all and discussions where validation occurs without correction. The claimed comparison therefore cannot be measured exactly, and a not-A coefficient would not be the named contrast. Because no pure-logic-refutation measurement is defined, term is null. Reported associations only. conversation is not used. OC_comments may contain outcome-related text, and its timing relative to the outcome is unknown."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "has_counterargument_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does the discussion have at least one counter-argument comment in the supplied comment list?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list. Return 1 if the list has at least one entry (len>0), 0 if it is a valid empty list, null if missing or malformed. Raw count of list entries only; no semantic filtering."
+    }
+  ],
+  "h0": "has_counterargument_comment has no association with the probability of delta.",
+  "h1": "Rows with has_counterargument_comment=1 have a higher probability of delta than rows with 0.",
+  "rhs": "has_counterargument_comment",
+  "term": null,
+  "sign": "+",
+  "note": "\"Logged counterargument\" is interpreted as a counter-argument comment present in OC_comments. Inspection showed every one of the 2,000 rows has at least 1 comment (min length 1), so the feature is constant in this corpus. It is perfectly collinear with the intercept, so no coefficient can test the claim; term=null. No absent-comment group exists, and no substitute such as comment count is used. The feature is raw-text based and comments may contain outcome announcements."
+}

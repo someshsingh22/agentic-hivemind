@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "any_comment_quotes_op_argument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment directly quote wording from the OP's argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Output 1 if at least one comment directly quotes verbatim or near-verbatim wording from the OP's argument text (argument column only, not title), e.g. in quotation marks or blockquote format, reproducing OP's words. Quotations of other sources or paraphrases without reproduced wording do not count; endorsement or refutation is not required. Ignore OP view-change/delta-award announcements and outcome reports as evidence. Output 0 if no comment qualifies, including an empty list; null if OC_comments or argument is missing or malformed."
+    }
+  ],
+  "h0": "Discussions with any_comment_quotes_op_argument=1 have the same association with changed view as those with 0.",
+  "h1": "Discussions with any_comment_quotes_op_argument=1 are more frequently associated with a changed view than those with 0.",
+  "rhs": "any_comment_quotes_op_argument",
+  "term": "any_comment_quotes_op_argument",
+  "sign": "+",
+  "note": "Quote presence is binary (at least one comment); no endorsement needed. Uses current argument text, which may include edits or outcome announcements; comments may be after the OP's edits. Association only. OLS on binary outcome gives a linear probability difference."
+}

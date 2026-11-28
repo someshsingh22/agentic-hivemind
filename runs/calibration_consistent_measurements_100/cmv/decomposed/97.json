@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_specific_empirical_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain specific empirical evidence (e.g., concrete data, statistics, study findings, or documented factual cases)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of counter-argument comments by users other than the OP). Return 1 if at least one single comment, in its own assertions or with an external source it cites as support, contains specific empirical evidence: concrete data, statistics, named studies or research findings, or documented real-world factual cases that are checkable. Return 0 if none do (vague claims, pure opinion, logic, hypotheticals, or generic anecdotes without specifics do not count). Quotations of other speakers count only if the commenter cites them as support. Ignore any OP view-change or delta-award announcements, post-outcome updates, or reports of the outcome as evidence. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "There is no association between any_comment_specific_empirical_evidence and the odds/likelihood of delta (coefficient is 0).",
+  "h1": "Rows with any_comment_specific_empirical_evidence equal to 1 have a higher likelihood of delta than rows with 0.",
+  "rhs": "any_comment_specific_empirical_evidence",
+  "term": "any_comment_specific_empirical_evidence",
+  "sign": "+",
+  "note": "Presence is assumed (\"containing\" = at least one comment). Operationalized as the row-level any over OC_comments; the OLS coefficient is a linear probability difference. Comment order/timing unknown; association only. OC_comments may include text revealing the outcome, which the prompt is told to ignore. 'Specific empirical evidence' is judged by the annotator without a numeric scale."
+}

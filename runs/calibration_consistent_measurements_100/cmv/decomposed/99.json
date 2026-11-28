@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_specific_numerical_data",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain specific numerical data or statistics offered as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of counter-argument comments by other users). Return 1 if at least one comment contains specific numerical data or statistics (e.g., concrete figures, percentages, rates, dated or measured quantities, study results) used as support for its argument, whether the commenter asserts them or cites an external source for them. Return 0 if no comment does (only general assertions, or numbers that are not data, such as list numbering or incidental counts). Ignore any OP view-change/delta-award announcements, post-outcome resolution updates, or reports of the outcome as evidence. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "any_comment_specific_numerical_data has no association with the probability of OP view change (delta).",
+  "h1": "Discussions where any_comment_specific_numerical_data is 1 have a higher probability of OP view change than those where it is 0.",
+  "rhs": "any_comment_specific_numerical_data",
+  "term": "any_comment_specific_numerical_data",
+  "sign": "+",
+  "note": "Operational assumption: \"specific numerical data or statistics\" is measured as presence in at least one comment; the comparison group \"relying on general assertions\" is operationalized as the absence of such data (0), which may include discussions with other specific evidence types. Association only, not causal. Comments are unordered and may include text after the outcome; the instruction to ignore outcome announcements is applied, but timing is unknown."
+}

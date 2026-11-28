@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_exceeds_100_words",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument contain more than one hundred words?",
+      "kind": "code",
+      "spec": "If df['argument'] is missing/non-string, return null. Otherwise count words as len(str(argument).split()) (whitespace-separated tokens, raw current text including any edits or outcome announcements). Return 1 if count > 100, else 0 (empty string gives 0 words -> 0)."
+    }
+  ],
+  "h0": "There is no difference in the likelihood of view change between discussions where `argument_exceeds_100_words` is 1 and those where it is 0.",
+  "h1": "Discussions with `argument_exceeds_100_words` equal to 1 have a lower likelihood of view change than those with 0.",
+  "rhs": "argument_exceeds_100_words",
+  "term": "argument_exceeds_100_words",
+  "sign": "-",
+  "note": "Word count uses whitespace tokenization of the current argument text only (title excluded). The text may contain edits or view-change announcements, so it is not guaranteed to be the initial argument; this mechanical count is not filtered. OLS on binary delta is a linear probability model; the association is not causal."
+}

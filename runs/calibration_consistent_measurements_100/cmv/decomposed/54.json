@@ -1,0 +1,34 @@
+{
+  "features": [
+    {
+      "name": "any_comment_quotes_op_text",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly quote the original poster's text (title or argument)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment explicitly reproduces wording from the OP's title or argument as a quotation (quotation marks or blockquote markers such as '>' containing text that matches or closely copies OP wording). Verify against title and argument. Quotation of someone other than the OP (e.g., an external source or another commenter) does not count. Paraphrase without reproduced wording does not count. Ignore any OP view-change/delta-award announcements or post-outcome updates as evidence. Return 0 if the list is valid but empty or has no qualifying comment; null if OC_comments, title or argument is missing or malformed."
+    },
+    {
+      "name": "any_comment_paraphrases_op_without_quoting",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment restate the original poster's position in its own words without quoting the OP's text in that comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Return 1 if at least one comment restates or summarizes the OP's title/argument claims in the commenter's own words and that same comment contains no explicit quotation of OP wording (no quotation marks or blockquote with OP text). Verify against title and argument. Ignore OP view-change/delta-award announcements or post-outcome updates as evidence. Return 0 if the list is valid but empty or no comment qualifies; null if OC_comments, title or argument is missing or malformed."
+    }
+  ],
+  "h0": "Discussions with any_comment_quotes_op_text and those with any_comment_paraphrases_op_without_quoting show no difference in view-change probability attributable to quoting rather than paraphrasing.",
+  "h1": "Discussions where counter-arguments quote OP text (any_comment_quotes_op_text) rather than only paraphrase it have a higher probability of view change.",
+  "rhs": "any_comment_quotes_op_text + any_comment_paraphrases_op_without_quoting",
+  "term": null,
+  "sign": "+",
+  "note": "The claim contrasts quoting versus paraphrasing. Both sides are measured, and they can overlap or both be absent. In the chosen OLS formula, the coefficient on any_comment_quotes_op_text is conditional on the paraphrase indicator. It is not the quote-minus-paraphrase contrast, so no single coefficient represents the claim and term is null. Current text is used. Unordered comments carry no chronology. OP delta announcements may appear in the text, and the prompts ignore them. Quotation matching against OP text is judged by an LLM."
+}

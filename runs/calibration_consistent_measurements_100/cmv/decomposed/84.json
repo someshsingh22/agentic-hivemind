@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "oc_quotes_op_text",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment directly quote wording from the original post (title or argument)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment contains a direct, verbatim (or near-verbatim) textual quotation of wording that appears in the OP's title or argument (e.g., markdown '>' blockquote or quotation marks around OP text), checked against title and argument. Return 0 if the list is valid but no comment does so (including an empty list). Quotations of other sources, paraphrases without reuse of OP wording, and quotation marks around non-OP text do not count. Ignore any OP view-change/delta-award announcements or outcome reports as the quoted material or as evidence. Return null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "There is no difference in view change (delta) between discussions with oc_quotes_op_text=1 and those with oc_quotes_op_text=0.",
+  "h1": "Discussions with oc_quotes_op_text=1 have higher view change (delta) than those with oc_quotes_op_text=0.",
+  "rhs": "oc_quotes_op_text",
+  "term": "oc_quotes_op_text",
+  "sign": "+",
+  "note": "Operational assumption: \"avoiding explicit text reuse\" is operationalized as the absence of any direct OP quotation in comments (complement of presence); paraphrase is not separately measured. Quotation is judged against current title/argument, which may contain edits or outcome announcements; the conversation field is not used. Comment order/timing unknown. Association only, not causal."
+}

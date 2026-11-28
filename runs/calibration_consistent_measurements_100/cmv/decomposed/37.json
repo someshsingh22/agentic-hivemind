@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "oc_contrasts_op_with_personal_experience",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly contrast the OP's view with a relatable real-world personal experience?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one single comment explicitly sets the OP's stated view (as in title/argument, used only to identify the view) against a real, relatable personal experience (the commenter's own or a first-hand account of a real person they describe) that is offered as a contrast to that view. Hypothetical scenarios, generic statistics, and purely abstract arguments do not count; experiences merely quoted as background and not adopted as the commenter's contrast do not count. Do not count OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Return 0 if the list is valid but empty or no comment qualifies; null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "oc_contrasts_op_with_personal_experience has no association with the likelihood of view change (delta).",
+  "h1": "Discussions with oc_contrasts_op_with_personal_experience=1 have a higher likelihood of view change than those with 0.",
+  "rhs": "oc_contrasts_op_with_personal_experience",
+  "term": "oc_contrasts_op_with_personal_experience",
+  "sign": "+",
+  "note": "Presence interpretation (at least one comment). \"Relatable\" is judged by the annotator as a general, understandable real-life experience; no scale is invented. Comment order and timing are unknown. Current text may contain outcome announcements, which are excluded from semantic evidence. OLS on the binary delta gives a linear probability association, not causal."
+}

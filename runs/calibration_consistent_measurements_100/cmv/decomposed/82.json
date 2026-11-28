@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_has_concrete_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment use a specific, concrete illustrative example?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment itself offers a specific, concrete illustrative example (a particular named case, real or described scenario, instance, or anecdote) to illustrate or support its point; return 0 otherwise. Purely abstract or general claims, and vague gestures like 'for example, things like that' without specifics, do not count. Hypothetical examples count only if specific and concrete. Examples in quotations count only if the commenter adopts them as their own illustration. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "oc_has_concrete_example has no association with the probability that the OP changed their view (delta).",
+  "h1": "Discussions with oc_has_concrete_example = 1 have a higher probability of OP view change than those with 0.",
+  "rhs": "oc_has_concrete_example",
+  "term": "oc_has_concrete_example",
+  "sign": "+",
+  "note": "Presence is used since no quantity was specified. Includes both real and specific hypothetical examples as stated. OLS on binary delta is a linear probability model; association only. OC_comments are current text with unknown timing and may contain outcome announcements, which the spec excludes as evidence. Unordered comments; no chronology."
+}

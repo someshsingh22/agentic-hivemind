@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_argument_pleas_nonviolence",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original poster's argument contain a direct plea for non-violence?",
+      "kind": "prompt",
+      "spec": "Read only `argument` (OP's argument body; do not use title). Output 1 if the OP, in their own voice, directly urges or pleads for non-violence (e.g., explicitly asks people/groups/governments to refrain from violence, or to resolve matters peacefully without violence). Output 0 if not: merely discussing violence, describing violence, or opposing it without an explicit appeal, or quoting others' pleas the OP does not adopt. Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome as evidence. Return null if argument is missing or malformed; empty text gives 0."
+    }
+  ],
+  "h0": "op_argument_pleas_nonviolence has no association with the likelihood of view change (delta).",
+  "h1": "Discussions with op_argument_pleas_nonviolence=1 have a lower likelihood of view change than those with 0.",
+  "rhs": "op_argument_pleas_nonviolence",
+  "term": "op_argument_pleas_nonviolence",
+  "sign": "-",
+  "note": "The hypothesis text is garbled (\"non-violация\"); I interpret it as non-violence. Presence is binary, with no intensity scale. The argument is current text and may contain edits or outcome announcements. The prompt excludes those announcements as evidence, but the text is not a pre-outcome snapshot. This is an association test only, using OLS (a linear probability model) on delta."
+}
