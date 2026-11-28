@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "share_measured_logical_comments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counterargument comments present measured, logical reasoning (calm, reasoned argument with premises or evidence leading to conclusions)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment decide whether the comment's own assertions present measured, logical reasoning: calm, civil, reasoned argumentation with explicit premises, evidence or inference supporting a point. Quoted text from others counts only if adopted by the commenter. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. A comment may satisfy both this and emotional aggression; judge each independently. Return the number of qualifying comments divided by total comments (0 to 1). Empty list: null. Malformed/missing: null."
+    },
+    {
+      "name": "share_emotionally_aggressive_comments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counterargument comments contain emotional aggression (hostile, angry, insulting or belittling language toward the OP or their view)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment decide whether the commenter's own text contains emotional aggression: angry, hostile, insulting, contemptuous or belittling language directed at the OP or their view. Mere disagreement or blunt but civil criticism does not count; quoted hostile text counts only if adopted by the commenter. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Judge independently of logical reasoning. Return number of qualifying comments divided by total comments (0 to 1). Empty list: null. Malformed/missing: null."
+    }
+  ],
+  "h0": "Holding share_emotionally_aggressive_comments constant, share_measured_logical_comments has no association with the OP changing their view.",
+  "h1": "Holding share_emotionally_aggressive_comments constant, higher share_measured_logical_comments is associated with a higher likelihood of the OP changing their view.",
+  "rhs": "share_measured_logical_comments + share_emotionally_aggressive_comments",
+  "term": "share_measured_logical_comments",
+  "sign": "+",
+  "note": "The claimed comparison (logical vs aggressive) is operationalized as two separate row-level shares entered together; the exact contrast beta_logical - beta_aggressive is not directly tested by the single term, and the aggressive coefficient should be expected negative. Comments are unordered and without timing; rows with empty comment lists get null. Comment text may contain outcome/delta announcements, excluded in the semantic prompts but contamination risk remains. Association only, not causal."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "has_three_plus_counter_comments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does the discussion contain at least three distinct counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list. If missing or malformed (not a list), return null. Keep entries that are strings with non-whitespace content; count distinct entries by exact string equality after strip(). Return 1 if the distinct count >= 3, else 0 (an empty list gives 0)."
+    }
+  ],
+  "h0": "has_three_plus_counter_comments has no association with the probability that the OP changed their view.",
+  "h1": "Discussions with has_three_plus_counter_comments = 1 have a higher probability of OP view change than those with fewer than three.",
+  "rhs": "has_three_plus_counter_comments",
+  "term": "has_three_plus_counter_comments",
+  "sign": "+",
+  "note": "Distinct is operationalized as unique comment strings in OC_comments; distinct commenters cannot be determined. OC_comments only holds the available counter-comments, which may be a subset of the full thread, and may include later replies or text revealing the outcome (raw count, not filtered). Association only, tested via OLS (linear probability)."
+}

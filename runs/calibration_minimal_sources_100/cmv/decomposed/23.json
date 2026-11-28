@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_specific_procedural_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment give a specific, verifiable procedural example (a concrete named process, rule, step sequence or documented real case) as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. Return 1 if at least one comment offers a specific, verifiable procedural example as support: a concrete, checkable description of how a particular procedure, rule, process, or documented case actually works or occurred (e.g., named law/policy steps, a specific institutional procedure, a particular real case with checkable details). Purely abstract, theoretical, hypothetical or general-principle reasoning does not count; vague anecdotes without checkable specifics do not count. Quoted external text counts only if cited as support by the commenter. Ignore any statements that the OP changed their view, delta awards, or post-outcome resolution reports as evidence. Return 0 if the list is valid but no comment qualifies or the list is empty; null if missing or malformed."
+    }
+  ],
+  "h0": "Discussions with and without any_specific_procedural_example have the same view-change rate.",
+  "h1": "Discussions with any_specific_procedural_example=1 have a higher view-change rate than those without.",
+  "rhs": "any_specific_procedural_example",
+  "term": "any_specific_procedural_example",
+  "sign": "+",
+  "note": "Operational assumption: the comparison group (\"relying solely on abstract theoretical rebuttals\") is approximated by the complement (no comment has a specific verifiable procedural example), which also includes discussions with non-theoretical or empty comments. \"Verifiable\" is judged from text only, not externally checked. Comment order, timing and per-comment outcomes are unavailable; OC_comments may contain text revealing the outcome (e.g., delta mentions), and such text is excluded from the semantic judgment. Association only, not causal."
+}

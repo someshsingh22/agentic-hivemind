@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_oc_specific_real_world_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment offer a specific real-world example as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of counter-argument comments by users other than the OP). Return 1 if at least one comment itself cites a specific, concrete real-world example (a named or identifiable real case, event, person, organization, study, place, statistic from a real instance, or concrete personal/real experience) as support for its counter-argument; an external source cited as support counts. Return 0 if the list is valid but no comment does (including only hypotheticals, generic claims, or abstract reasoning), and 0 for a valid empty list. Return null if missing or malformed. Ignore any text announcing OP view change/delta awards, post-outcome resolution updates, or reports of the outcome; these are not evidence of an example. Do not read other columns."
+    }
+  ],
+  "h0": "any_oc_specific_real_world_example has no association with the probability of OP view change (delta).",
+  "h1": "Discussions with any_oc_specific_real_world_example = 1 have a higher probability of OP view change than those with 0.",
+  "rhs": "any_oc_specific_real_world_example",
+  "term": "any_oc_specific_real_world_example",
+  "sign": "+",
+  "note": "Operational assumption: \"discussions containing counter-arguments with specific real-world examples\" is measured as at least one counter-argument comment in OC_comments containing such an example. Comment order/timing unknown; associations only, not causal. OC_comments may contain outcome announcements or later replies, which are excluded semantically from the measurement, but timing relative to the OP's decision is unknown. Outcome delta is not used as input."
+}

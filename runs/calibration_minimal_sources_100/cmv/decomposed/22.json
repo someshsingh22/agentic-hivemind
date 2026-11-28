@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_counter_comment_url",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a direct URL or external link?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; if missing or malformed return null. Empty list -> 0. Return 1 if any comment matches regex r'(https?://|www\\.)\\S+' (case-insensitive), else 0. Raw text match; no semantic filtering."
+    }
+  ],
+  "h0": "any_counter_comment_url is unrelated to the likelihood of OP view change.",
+  "h1": "Discussions with any_counter_comment_url=1 have a higher likelihood of view change than those with 0.",
+  "rhs": "any_counter_comment_url",
+  "term": "any_counter_comment_url",
+  "sign": "+",
+  "note": "Operational assumption: \"solely internal text\" is operationalized as no URL in any counter-comment. Detection is literal http(s)/www matching; markdown links with URLs are caught, bare domains without scheme are not. Comments may contain outcome-related text or links to delta rules; not filtered. Comment timing unknown. Association only, not causal."
+}

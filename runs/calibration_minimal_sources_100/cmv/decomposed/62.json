@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_has_personal_anecdote",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument text include a direct personal anecdote about the OP's own experience?",
+      "kind": "prompt",
+      "spec": "Read only the `argument` column (OP's text). Return 1 if the OP's own assertions include at least one direct personal anecdote: a specific account of something that happened to or was done/experienced by the OP themself (e.g., 'when I was in school, my teacher...'). Return 0 if there is none: only general claims, hypotheticals, others' experiences, statistics, or quoted/cited sources not adopted as the OP's own experience. Quotation marks alone do not establish another speaker. Ignore view-change/delta-award announcements, post-outcome edits/resolution updates and reports of the outcome; they do not count as anecdotes. Missing or malformed argument gives null; empty text gives 0."
+    }
+  ],
+  "h0": "op_has_personal_anecdote has no association with the probability that the OP changed their view (delta).",
+  "h1": "Posts with op_has_personal_anecdote = 1 are associated with a lower probability of the OP changing their view than posts with 0.",
+  "rhs": "op_has_personal_anecdote",
+  "term": "op_has_personal_anecdote",
+  "sign": "-",
+  "note": "Operational assumption: personal anecdote means a specific account of the OP's own experience, judged from the current argument text. The argument may include later edits or outcome announcements, and no timestamps establish timing; the prompt excludes these as evidence. Association only, not causal."
+}

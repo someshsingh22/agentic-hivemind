@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_requests_emotional_support_or_assistance",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original poster explicitly request emotional support or assistance in the argument text?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's text). Return 1 if the OP, in their own words, explicitly asks readers for emotional support (e.g., comfort, reassurance, encouragement) or for assistance/help (e.g., asks for help with their situation or problem). Return 0 if no such explicit request exists; a plain request to 'change my view' alone does not count. Ignore quoted text not adopted by the OP. Exclude view-change/delta-award announcements, post-outcome updates and reports of the outcome; they are not evidence. Return null if argument is missing or malformed."
+    }
+  ],
+  "h0": "op_requests_emotional_support_or_assistance has no association with the probability of a view change.",
+  "h1": "Posts with op_requests_emotional_support_or_assistance=1 have a lower probability of a view change than those with 0.",
+  "rhs": "op_requests_emotional_support_or_assistance",
+  "term": "op_requests_emotional_support_or_assistance",
+  "sign": "-",
+  "note": "Assumption: \"assistance\" is read as an explicit request for help beyond the standard CMV request to change the view. The argument text is the current text and may contain edits or outcome announcements; the prompt excludes these, but timing is unknown. Association only, not causal."
+}

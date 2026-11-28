@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "ack_then_counterexample_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly acknowledge the validity of a specific component of the OP's argument and then, in that same comment, present a counter-example?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Read argument only to identify which OP claims/components a comment refers to. Return 1 if at least one single comment (a) explicitly acknowledges that a specific component, claim or premise of the OP's argument is valid/correct/fair (not mere generic politeness or vague agreement) in its own assertions, and (b) afterwards in that same comment presents a counter-example (a specific case, instance or scenario that contradicts or challenges the OP's view). Both conditions must be met within one comment; separate comments cannot jointly satisfy it. Acknowledgment must be by the commenter, not merely quoted OP text. Ignore any text where the OP announces a view change, awards a delta, or reports the outcome, and post-outcome resolution updates; generic delta-rule discussion is eligible but is not itself evidence. Return 0 if the list is valid but empty or no comment qualifies; null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "ack_then_counterexample_comment has no association with delta (view change) rate.",
+  "h1": "Discussions with ack_then_counterexample_comment = 1 have a higher view change rate than those with 0.",
+  "rhs": "ack_then_counterexample_comment",
+  "term": "ack_then_counterexample_comment",
+  "sign": "+",
+  "note": "Assumes \"discussions where counter-arguments...\" means at least one comment satisfies the conjunction (any-comment). Association only. OC_comments order carries no chronology; \"before\" is interpreted within a single comment's text. Comments may contain outcome announcements or delta-related text, which the prompt excludes as evidence. The argument column is used only to identify the OP's components; current text may include edits."
+}

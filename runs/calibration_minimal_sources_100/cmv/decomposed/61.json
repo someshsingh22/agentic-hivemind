@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "share_comments_second_person_address",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments use second-person direct address to the original poster?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). For each comment decide whether the commenter's own wording directly addresses the reader/OP in the second person (e.g. 'you', 'your', 'you're' referring to the OP or interlocutor, as in 'you say', 'your view'). Generic/impersonal 'you' (meaning 'one'), and second-person wording only inside quotations of others, do not count. Ignore any OP view-change/delta-award announcements, outcome reports or post-outcome resolution text. Return number of qualifying comments divided by total comments (0 to 1). Empty list: null. Malformed/missing: null."
+    },
+    {
+      "name": "share_comments_third_person_analysis",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments rely on third-person analysis of the issue rather than directly addressing the original poster?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. For each comment decide whether its argument is framed as third-person analysis of the topic, groups, or arguments (e.g. 'people', 'they', 'the policy', 'one could') WITHOUT second-person direct address to the OP in the commenter's own wording. Comments using direct second-person address to the OP do not count (mixed comments are excluded from this feature). Ignore OP view-change/delta-award announcements, outcome reports or post-outcome resolution text. Return qualifying comments divided by total comments (0 to 1). Empty list: null. Malformed/missing: null."
+    }
+  ],
+  "h0": "share_comments_second_person_address has no association with view change, controlling for share_comments_third_person_analysis.",
+  "h1": "Higher share_comments_second_person_address is associated with higher OP view-change rates, relative to third-person analysis share.",
+  "rhs": "share_comments_second_person_address + share_comments_third_person_analysis",
+  "term": "share_comments_second_person_address",
+  "sign": "+",
+  "note": "Both named groups are measured, but the OLS coefficient on the second-person share (holding third-person share fixed) is not exactly the contrast second-person minus third-person; the two shares exclude mixed comments and are not complements. Comment order/timing unknown; text may contain outcome announcements (excluded from semantic measurement). Association only. Impersonal 'you' is excluded by judgment of the annotator. Discussion-level association, not causal."
+}

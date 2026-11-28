@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "institutional_precedent_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What share of the counter-argument comments cite a specific, functioning institutional precedent (a real, named policy, law, organization or jurisdiction that actually operates or has operated) as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment decide whether the commenter themself cites at least one specific, real institutional precedent that is functioning/in operation (e.g., a named law, policy, program, court practice, or country/state/organization whose arrangement works in practice) as support for their counter-argument. Purely hypothetical institutions, vague generalities ('some countries'), and abstract principles alone do not count. Quotations of others count only if the commenter adopts them as support. Ignore any statements about the OP changing their view, delta awards, or outcome reports; generic delta-rule discussion is neither evidence nor excluded as topic. Output = number of qualifying comments / total comments (0 to 1). Empty list -> null; missing or malformed -> null. Comment order is not meaningful."
+    },
+    {
+      "name": "abstract_principle_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What share of the counter-argument comments rely on abstract normative principles (e.g., fairness, rights, morality) rather than specific institutional precedents?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment decide whether its counter-argument relies mainly on abstract normative principles or values (e.g., fairness, liberty, rights, justice, what 'ought' to be) stated in general terms, without resting on a specific, real, functioning institutional precedent. Comments citing a specific functioning institutional precedent as their main support do not count; comments with neither (e.g., purely factual or personal anecdote) do not count. Ignore any statements about the OP changing their view, delta awards, or outcome reports. Output = number of qualifying comments / total comments (0 to 1). Empty list -> null; missing or malformed -> null. Comment order is not meaningful."
+    }
+  ],
+  "h0": "Holding abstract_principle_comment_share fixed, institutional_precedent_comment_share has no association with the probability of view change.",
+  "h1": "Higher institutional_precedent_comment_share is associated with a higher probability of view change, relative to abstract_principle_comment_share.",
+  "rhs": "institutional_precedent_comment_share + abstract_principle_comment_share",
+  "term": "institutional_precedent_comment_share",
+  "sign": "+",
+  "note": "Both named groups are measured as shares of a row's comments. The contrast (beta_precedent - beta_principle) is not directly expressible as a single term in this OLS; the tested term is the precedent coefficient with the principle share as covariate. Comments can fall in neither group. Shares are per comment, not per distinct commenter; no chronology or per-comment outcomes are available. OC_comments text may contain outcome announcements (excluded from semantic judgment). 'Functioning' is judged from the comment text alone; no external verification. Association only."
+}

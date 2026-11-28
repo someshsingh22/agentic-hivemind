@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_concrete_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment offer a concrete real-world example (a specific real case, event, person, place, study or personal experience) as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of counter-argument comments by other users). Return 1 if at least one comment, in the commenter's own argument, gives a concrete real-world example as support: a specific named or clearly identifiable real case, event, person, organization, place, study, statistic from a particular source, or a specific personal/real experience. Quoted OP text or generic hypotheticals, general principles and purely abstract reasoning do not count. Ignore any OP view-change/delta-award announcements or reports of outcome (e.g., delta awarded, 'you changed my view') as evidence; generic delta-rule discussion is fine. Return 0 if the list is valid but empty or no comment has such an example (i.e., comments rely solely on abstract logic). Return null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "any_comment_concrete_example has no association with OP view change (delta).",
+  "h1": "Discussions with any_comment_concrete_example = 1 have a higher rate of OP view change than those without.",
+  "rhs": "any_comment_concrete_example",
+  "term": "any_comment_concrete_example",
+  "sign": "+",
+  "note": "Operationalization: \"relying solely on abstract logic\" is taken as the complement (no comment has a concrete example); rows with mixed content count as example-containing. Comments are unordered, with no timing; the example's role is judged from current text. OC_comments may include post-outcome text; the prompt excludes outcome announcements, but contamination risk remains. Association only, not causal."
+}

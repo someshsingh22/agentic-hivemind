@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "post_score_below_median",
+      "dtype": "binary",
+      "source_columns": [
+        "post_score"
+      ],
+      "definition": "Is the post's observed score below the median post score of the corpus?",
+      "kind": "code",
+      "spec": "s = pd.to_numeric(df['post_score'], errors='coerce'); med = s.median(); result = (s < med).astype(float).where(s.notna()); null if post_score missing/malformed. Posts equal to the median count as 0 (not below). Median is computed over all rows of the supplied dataset (about 7 in the 2,000-row corpus)."
+    }
+  ],
+  "h0": "Posts with post_score_below_median = 1 have the same probability of the OP changing their view as posts with post_score_below_median = 0.",
+  "h1": "Posts with post_score_below_median = 1 have a lower probability of the OP changing their view than posts with post_score_below_median = 0.",
+  "rhs": "post_score_below_median",
+  "term": "post_score_below_median",
+  "sign": "-",
+  "note": "Median is taken over the supplied corpus (assumed reference). Posts exactly at the median are grouped with the higher-scored group. The timing of the score measurement relative to the outcome is unknown, and the score may have been affected by or reflect the discussion. post_created_utc does not resolve this. The association is descriptive, not causal. The OLS on binary delta is a linear probability model."
+}

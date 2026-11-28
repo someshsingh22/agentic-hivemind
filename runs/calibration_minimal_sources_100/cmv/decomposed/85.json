@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "validate_then_narrow_caveat_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments explicitly acknowledge the OP's view as valid or partly valid before introducing a narrower, specific caveat in that same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than OP). For each comment decide whether, within that same comment, the commenter first explicitly acknowledges some validity/correctness of the OP's view or point (e.g. 'you're right that...', 'fair point') and THEN introduces a narrower, specific caveat, exception or qualification (not a blanket rejection of the whole view). Acknowledgment must be the commenter's own assertion, not a quoted or attributed statement they do not adopt. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of outcome as evidence. Return the number of qualifying comments divided by total comments, a value in [0,1]. Empty list returns null; missing or malformed input returns null."
+    },
+    {
+      "name": "immediate_blanket_contradiction_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments immediately contradict the OP's view in a blanket way, without first acknowledging any validity?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than OP). For each comment decide whether it opens with direct, general contradiction or rejection of the OP's overall view (blanket, not a narrow specific caveat) with no explicit acknowledgment of validity of the OP's view before it. Comments that acknowledge validity first, or that only add a narrow caveat, or that do not contradict, do not count. Only the commenter's own assertions count, not quoted text they do not adopt. Ignore OP view-change/delta-award announcements, post-outcome updates and outcome reports as evidence. Return qualifying comments divided by total comments, in [0,1]. Empty list returns null; missing or malformed input returns null."
+    }
+  ],
+  "h0": "validate_then_narrow_caveat_comment_share has no association with view-change rate, controlling for immediate_blanket_contradiction_comment_share.",
+  "h1": "Higher validate_then_narrow_caveat_comment_share is associated with higher view-change rate, relative to immediate_blanket_contradiction_comment_share.",
+  "rhs": "validate_then_narrow_caveat_comment_share + immediate_blanket_contradiction_comment_share",
+  "term": "validate_then_narrow_caveat_comment_share",
+  "sign": "+",
+  "note": "Both named groups are measured as comment shares; they can overlap with neither (other comments). The OLS coefficient on the first share is not an exact contrast between the two shares. Row-level shares approximate 'discussions where' comments behave this way. Comments are unordered; the acknowledgment-before-caveat order is judged within a single comment only. OC_comments may contain delta-award or outcome text, which semantic specs exclude; contamination risk remains. Outcome delta is a binary change indicator, so 'rate' is the row-level mean of delta."
+}

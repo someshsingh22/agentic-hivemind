@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_discloses_emotional_vulnerability",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original poster, in their own words in the argument, disclose a personal emotional vulnerability (e.g., their own fear, shame, insecurity, pain, distress or emotional struggle)?",
+      "kind": "prompt",
+      "spec": "Read only `argument` (OP's text). Return 1 if the OP, in their own voice, discloses a personal emotional vulnerability about themselves (e.g., admitting feeling afraid, ashamed, insecure, anxious, hurt, depressed, lonely, or emotionally struggling). Return 0 if no such disclosure exists, including purely abstract opinions, disclosures only about other people, or emotional states only in quotations from others not adopted by the OP. Ignore any OP view-change/delta-award announcements, post-outcome edits/updates and reports of the outcome; these are not evidence. Return null if argument is missing or malformed; empty text gives 0."
+    }
+  ],
+  "h0": "op_discloses_emotional_vulnerability has no association with the likelihood of delta (coefficient = 0).",
+  "h1": "op_discloses_emotional_vulnerability is associated with a higher likelihood of delta (coefficient > 0).",
+  "rhs": "op_discloses_emotional_vulnerability",
+  "term": "op_discloses_emotional_vulnerability",
+  "sign": "+",
+  "note": "Operational assumption: vulnerability is judged from the current argument text as a binary presence; no intensity scale. Argument text may include edits or outcome announcements (excluded in the semantic spec, but timing of text relative to outcome is unknown). OLS on binary delta is a linear probability model; association only, not causal."
+}

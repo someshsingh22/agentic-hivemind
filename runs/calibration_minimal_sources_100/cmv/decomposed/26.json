@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_comment_acknowledges_op_premise_before_diverging",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "argument",
+        "title"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly acknowledge the validity of the original post's initial premise before introducing its divergence from the OP?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Read title and argument only to identify the OP's initial premise. Return 1 if at least one single comment, in its own words, explicitly acknowledges that the OP's initial premise (the starting claim/assumption in title/argument) is valid, correct, reasonable or fair, and then, later in that same comment, introduces a point of divergence or disagreement. Acknowledgment and divergence must both occur within the same comment, in that order. Do not count generic politeness, acknowledging only a side point, or acknowledging something other than the OP's initial premise. Ignore quoted text unless the commenter adopts it. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Return 0 if no comment qualifies or the list is validly empty; null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "any_comment_acknowledges_op_premise_before_diverging has no association with view change.",
+  "h1": "any_comment_acknowledges_op_premise_before_diverging is associated with a higher likelihood of view change.",
+  "rhs": "any_comment_acknowledges_op_premise_before_diverging",
+  "term": "any_comment_acknowledges_op_premise_before_diverging",
+  "sign": "+",
+  "note": "Operational assumptions: 'discussions where counter-arguments...' is operationalized as at least one comment doing so (any). The OP's initial premise is judged from current title/argument, which may contain edits or outcome announcements; the extractor is told to ignore those. Comment order and timing are unknown. OLS on binary delta is a linear probability model; association only."
+}

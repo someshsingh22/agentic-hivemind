@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_hedging_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "What proportion of the OP's own assertive sentences in the argument use hedging or qualifying language rather than absolute declarative phrasing?",
+      "kind": "prompt",
+      "spec": "Read only the argument text (OP's body). Consider the OP's own declarative claims/assertions (ignore questions, quotations of others not adopted by the OP, and any view-change/delta-award announcements, post-outcome edits or reports of the outcome). Count claims that use hedging/qualifying language (e.g., 'might', 'perhaps', 'I think', 'in some cases', 'generally', 'tend to', 'seems') as hedged; claims stated flatly or absolutely (e.g., 'always', 'never', 'obviously', unqualified 'X is Y') as absolute. Return hedged / (hedged + absolute) as a number in [0,1]. If argument is missing or malformed return null; if there are no eligible claims return null."
+    }
+  ],
+  "h0": "argument_hedging_share has no association with the likelihood of view change.",
+  "h1": "Higher argument_hedging_share is associated with a higher likelihood of view change.",
+  "rhs": "argument_hedging_share",
+  "term": "argument_hedging_share",
+  "sign": "+",
+  "note": "Operationalized as a continuous share of hedged vs absolute claims in the OP's argument; the hedged-vs-absolute comparison is a continuum, not two separate groups. Current argument text may include edits or outcome announcements (the prompt excludes them semantically, but edit timing is unknown). OLS on binary delta is a linear probability model; association only."
+}

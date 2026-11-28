@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_addressing_op_as_you",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments use second-person direct address (e.g., you/your) to speak to the original poster?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of counter-argument comments by users other than the OP. For each comment decide whether the commenter's own text directly addresses the original poster with second-person words (you, your, yours, yourself) referring to the OP or the OP's views/statements/actions. Do not count generic/impersonal 'you' (meaning people in general), 'you' inside quotations attributed to someone else unless the commenter adopts it as addressed to the OP, or text that is an OP view-change/delta-award announcement or report of the outcome. Output the number of comments with direct address divided by the total number of comments (0 to 1). Empty list gives null; missing or malformed input gives null."
+    }
+  ],
+  "h0": "share_comments_addressing_op_as_you has no association with the likelihood of view change.",
+  "h1": "Higher share_comments_addressing_op_as_you is associated with a higher likelihood of view change.",
+  "rhs": "share_comments_addressing_op_as_you",
+  "term": "share_comments_addressing_op_as_you",
+  "sign": "+",
+  "note": "Operationalized as share of comments (rather than any/count) with direct second-person address to OP; this is an assumption. Distinguishing OP-directed from generic 'you' is semantic. Comment order/timing unknown; comments may contain outcome-related text, which is excluded from the semantic judgment. Association only, not causal."
+}

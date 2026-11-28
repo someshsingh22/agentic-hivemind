@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "cites_named_program_or_location",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment refer to a specific, named external program or named location as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment itself refers to a specific, named external program (e.g. a named government/educational/social program, initiative, or software program) or a specific named location (e.g. a named city, country, institution site) as part of its argument. Return 0 if the comments (list non-empty) contain no such named reference, i.e. rely on abstract/general reasoning or unnamed generic examples. Empty list -> 0; missing/malformed -> null. Ignore any statements that the OP changed their view, delta awards or post-outcome resolution updates; do not count them as evidence. Generic delta-rule discussion is eligible but contains no named program/location evidence by itself. Quoted OP text does not count unless the commenter adopts it. Order of comments is not meaningful."
+    }
+  ],
+  "h0": "Discussions with counter-arguments naming specific external programs or locations have the same view-change rate as other discussions (coefficient of cites_named_program_or_location = 0).",
+  "h1": "Discussions with counter-arguments naming specific external programs or locations have a higher view-change rate (positive coefficient of cites_named_program_or_location).",
+  "rhs": "cites_named_program_or_location",
+  "term": "cites_named_program_or_location",
+  "sign": "+",
+  "note": "Operationalization: comparison group is the complement (no named program/location in any comment), which approximates 'only abstract logical refutation'; rows with no comments are coded 0 and cannot be separated from abstract-only discussions without an extra semantic measure. 'Named external program or location' interpretation is made by the annotator. OC_comments may contain later replies and outcome announcements, and no timing is available; semantic exclusion of those is applied. Association only, not causal."
+}

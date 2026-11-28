@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_meta_commentary_platform_or_status",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument contain explicit self-referential meta-commentary by the author about platform mechanics (e.g., subreddit rules, deltas, posting or moderation mechanics) or about the author's own status (e.g., being new, a long-time user, or their credentials)?",
+      "kind": "prompt",
+      "spec": "Read only the `argument` text (OP's own words). Return 1 if the OP's own assertions explicitly comment on the platform itself or its mechanics (subreddit rules, delta system, moderation, posting/formatting, voting) or explicitly comment on the OP's own status on the platform or in life as a poster/author (e.g., new user, throwaway account, long-time lurker, credentials stated as status), in a self-referential way. Return 0 if none. Exclude OP view-change or delta-award announcements, edits reporting that the view changed, post-outcome resolution updates and any reports of the outcome; these do not count as evidence. Generic discussion of platform rules without self-reference by the OP is eligible only if framed as the OP's own meta-comment about their post. Quotations of other users' text do not count unless the OP adopts them. Empty or missing argument gives null."
+    }
+  ],
+  "h0": "Original-argument meta-commentary on platform mechanics or author status (op_meta_commentary_platform_or_status) is not associated with view change probability.",
+  "h1": "Discussions whose original argument has op_meta_commentary_platform_or_status = 1 have lower probability of view change than those with 0.",
+  "rhs": "op_meta_commentary_platform_or_status",
+  "term": "op_meta_commentary_platform_or_status",
+  "sign": "-",
+  "note": "Linear probability model on binary delta; association only. The argument text is current text and may include edits or outcome announcements added after the discussion; these are excluded by the prompt, but timing cannot be verified. The union of platform-mechanics and author-status commentary is treated as one construct, as stated in the hypothesis. Ambiguity about what counts as \"explicit\" is left to the annotator."
+}

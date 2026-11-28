@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "personal_anecdote_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments use a concrete personal anecdote (the commenter's own specific lived experience or a specific event they witnessed) as part of their argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by users other than the OP. For each comment decide whether it relies on a concrete personal anecdote: a specific experience, event or situation from the commenter's own life told as support (e.g. 'when I worked as a nurse, a patient...'). Generic hypotheticals, statistics, cited external sources, and quoted text of others are not the commenter's own anecdote unless the commenter adopts it as their own experience. Ignore any text announcing that the OP changed their view, delta awards, or post-outcome updates; these do not count as anecdote evidence. Comments may be both anecdotal and abstract. Output = number of comments with a personal anecdote / total number of comments, a number in [0,1]. Empty list -> null; missing or malformed -> null."
+    },
+    {
+      "name": "abstract_reasoning_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments argue using abstract reasoning (general principles, logic, or hypotheticals rather than concrete personal experience)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by users other than the OP. For each comment decide whether it argues through abstract reasoning: general principles, logical or conceptual argument, definitions, or generic/hypothetical scenarios, not grounded in the commenter's own specific personal experience. A comment can count as both abstract and anecdotal if it contains both. Ignore any text announcing that the OP changed their view, delta awards, or post-outcome updates; these do not count as evidence. Output = number of comments with abstract reasoning / total number of comments, a number in [0,1]. Empty list -> null; missing or malformed -> null."
+    }
+  ],
+  "h0": "personal_anecdote_comment_share has no association with delta, controlling for abstract_reasoning_comment_share.",
+  "h1": "Higher personal_anecdote_comment_share is associated with higher likelihood of delta than abstract_reasoning_comment_share.",
+  "rhs": "personal_anecdote_comment_share + abstract_reasoning_comment_share",
+  "term": "personal_anecdote_comment_share",
+  "sign": "+",
+  "note": "Both named sides are measured as separate comment shares; the OLS coefficient on the anecdote share (holding abstract share fixed) is not exactly the contrast between anecdote and abstract, which this contract cannot express directly. Categories can overlap or neither apply. Comment order, timing and reply links are unknown; comment text may contain outcome announcements (excluded in the semantic specs). Associations only, not causal."
+}

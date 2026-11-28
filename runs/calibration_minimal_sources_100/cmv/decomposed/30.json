@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_hedged_epistemic_stance",
+      "dtype": "numeric",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument body predominantly frame its claims with modest or uncertain epistemic markers (hedges, tentative wording) rather than high-modality assertions?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's argument body; ignore title, comments). Consider the OP's own assertions only, not quoted text attributed to others. Ignore OP view-change/delta-award announcements, post-outcome edits and reports of the outcome. Count markers of modest/uncertain epistemic stance (e.g. 'maybe', 'I think', 'perhaps', 'might', 'seems', 'I'm not sure') as H, and markers of high-modality/certain assertion (e.g. 'definitely', 'must', 'obviously', 'clearly', 'always', 'never', 'undeniably', 'without a doubt') as C. Return the share H/(H+C) as a number between 0 and 1; return 0.5 if H+C=0 is NOT allowed: return null if no such markers exist or if argument is missing/empty. Higher means more hedged, lower means more high-modality."
+    }
+  ],
+  "h0": "op_hedged_epistemic_stance has no association with the likelihood of view change.",
+  "h1": "Higher op_hedged_epistemic_stance (more modest/uncertain markers relative to high-modality assertions) is associated with a higher likelihood of view change.",
+  "rhs": "op_hedged_epistemic_stance",
+  "term": "op_hedged_epistemic_stance",
+  "sign": "+",
+  "note": "Operational assumption: hedge-vs-high-modality is measured as the share of hedge markers among all hedge plus high-modality markers in the OP's current argument text; rows with no markers are null, so the comparison is continuous rather than a strict two-group split. The argument text may contain edits or outcome announcements, which the prompt excludes; current text is not an initial snapshot and timing is unknown. Association only, not causal."
+}

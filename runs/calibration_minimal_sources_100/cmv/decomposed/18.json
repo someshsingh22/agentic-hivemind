@@ -1,0 +1,32 @@
+{
+  "features": [
+    {
+      "name": "any_comment_internal_contradiction",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment point out a logical contradiction within the OP's own stated premises?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Read title and argument as the OP's stated premises. Return 1 if at least one comment, in its own assertion, argues that two or more of the OP's own stated premises (in title/argument) contradict or are logically inconsistent with each other (or the OP's conclusion contradicts their own premises). Return 0 if no comment does, including when comments only disagree using outside facts or values. Quoted text counts only if the commenter adopts it. Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome as evidence. Empty comment list: 0. Missing/malformed OC_comments, title or argument: null."
+    },
+    {
+      "name": "any_comment_cites_external_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment cite external evidence (e.g., data, studies, sources, or real-world facts or examples from outside the OP's post) in support of its counter-argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment cites external evidence as support: statistics, studies, named sources, links to sources, or specific verifiable real-world facts/examples not drawn from the OP's own text. An external source cited as support counts without being the commenter's own experience. Return 0 if no comment does (pure reasoning or internal-consistency arguments only). Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome. Empty list: 0. Missing/malformed: null."
+    }
+  ],
+  "h0": "Discussions with any_comment_internal_contradiction =1 have the same view-change rate as discussions with any_comment_cites_external_evidence =1 (beta of any_comment_internal_contradiction is 0, controlling for any_comment_cites_external_evidence).",
+  "h1": "Discussions with any_comment_internal_contradiction =1 have a higher view-change rate than those with any_comment_cites_external_evidence =1 (beta of any_comment_internal_contradiction is positive).",
+  "rhs": "any_comment_internal_contradiction + any_comment_cites_external_evidence",
+  "term": "any_comment_internal_contradiction",
+  "sign": "+",
+  "note": "The claim is a comparison of two groups; the regression coefficient on the contradiction feature is the association holding external-evidence presence fixed, not a direct beta_A minus beta_B contrast. The two features can overlap (both present) or be absent together. Operationalized as row-level any-comment presence; \"citing external evidence\" is read as any comment citing it. Comments are unordered with unknown timing; the text may contain delta/view-change announcements, so the outcome contamination risk is mitigated only by the prompt exclusions. Associations only, not causal."
+}

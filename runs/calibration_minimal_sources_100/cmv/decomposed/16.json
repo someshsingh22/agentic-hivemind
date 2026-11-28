@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "concrete_labor_detail_comment_present",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment introduce concrete, personal details of how work or labor is actually carried out (e.g., the commenter's own job tasks, workplace procedures, or hands-on work experience)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. Return 1 if at least one comment, in the commenter's own assertions, gives concrete, personal details of a labor process (their own or first-hand experience of specific job tasks, steps, workplace routines, conditions or hands-on work practice). Return 0 if comments exist but none do (including comments that only state abstract principles, general claims, or non-labor anecdotes). Quoted material from others counts only if adopted by the commenter. Ignore any OP view-change or delta-award announcements, post-outcome updates, or reports of the outcome as evidence. If the list is empty return 0; if missing or malformed return null."
+    },
+    {
+      "name": "abstract_normative_only_comments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Do the counter-argument comments rely solely on abstract normative principles (what should or ought to be) without any concrete personal labor-process detail?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list. Return 1 if there is at least one comment and the comments' arguments rest solely on abstract normative/principled reasoning (rights, fairness, ethics, should/ought claims) with no concrete personal labor-process details from any comment. Return 0 if at least one comment contains concrete personal labor-process details, or if the comments are neither normative-principle based nor concrete (e.g., purely other kinds of argument). Ignore OP view-change or delta-award announcements, post-outcome updates, and outcome reports. Empty list: null; missing or malformed: null."
+    }
+  ],
+  "h0": "There is no difference in view-change rate between discussions with concrete_labor_detail_comment_present = 1 and those without.",
+  "h1": "Discussions with concrete_labor_detail_comment_present = 1 have a higher view-change rate than those without, including those relying solely on abstract normative principles.",
+  "rhs": "concrete_labor_detail_comment_present + abstract_normative_only_comments",
+  "term": "concrete_labor_detail_comment_present",
+  "sign": "+",
+  "note": "Both comparison sides are measured, but the contract tests the concrete-detail coefficient with the abstract-only indicator as a covariate, not an explicit contrast. Comment order, timing and reply links are unknown. OC_comments may contain delta announcements or outcome text; prompts exclude them but source contamination risk remains. Associations only, not causal."
+}

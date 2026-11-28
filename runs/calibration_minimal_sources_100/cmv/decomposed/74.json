@@ -1,0 +1,31 @@
+{
+  "features": [
+    {
+      "name": "anecdote_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "title",
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments give a concrete personal anecdote illustrating real-world consequences of the original claim?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Read title as the OP's claim. For each comment decide whether the commenter themself (or someone they personally know) narrates a concrete, specific personal experience or case that illustrates real-world consequences of the claim in title. Generic hypotheticals, statistics, abstract arguments, and quoted/attributed experiences not adopted by the commenter do not count. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Return the number of qualifying comments divided by the total number of comments (0 to 1). Empty list -> null; missing or malformed -> null."
+    },
+    {
+      "name": "abstract_rebuttal_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments rely on abstract theoretical rebuttal rather than concrete personal anecdotes?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). For each comment decide whether its rebuttal rests on abstract, theoretical, general, principle- or logic-based reasoning and contains no concrete personal anecdote. Comments with a personal anecdote do not count. Ignore OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Return the number of qualifying comments divided by total comments (0 to 1). Empty list -> null; missing or malformed -> null."
+    }
+  ],
+  "h0": "anecdote_comment_share has no association with view-change (delta) rate, controlling for abstract_rebuttal_comment_share.",
+  "h1": "Higher anecdote_comment_share is associated with a higher view-change rate, relative to discussions with more abstract_rebuttal_comment_share.",
+  "rhs": "anecdote_comment_share + abstract_rebuttal_comment_share",
+  "term": "anecdote_comment_share",
+  "sign": "+",
+  "note": "Both comparison sides are measured as shares of comments; the regression coefficient on anecdote share (holding abstract share fixed) approximates but does not exactly equal the anecdote-vs-abstract contrast. Comment list order carries no chronology; commenters may repeat. Only title is used for the claim; the anecdote must illustrate consequences of that claim. Comments may contain outcome-related text; prompts exclude it but source timing relative to the outcome is unknown. Association only, not causal."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_concrete_external_analogy",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment introduce a concrete, external factual analogy (a specific real-world case, example or comparison from outside the OP's own scenario) to support its point?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment itself introduces a concrete, external factual analogy: a specific real-world case, event, institution, or parallel situation from outside the OP's own scenario, used as an analogy or comparison to support its argument. Return 0 if comments are valid but none contain such analogies (e.g. purely abstract logical refutation, or only generic statements). Quoting the OP does not count. Ignore any OP view-change/delta-award announcements, thanks, or post-outcome resolution updates as evidence; generic delta-rule discussion is not evidence either. Empty list -> 0; missing or malformed -> null."
+    }
+  ],
+  "h0": "any_concrete_external_analogy has no association with view-change (delta) rate.",
+  "h1": "Discussions with any_concrete_external_analogy = 1 have a higher view-change rate than those without.",
+  "rhs": "any_concrete_external_analogy",
+  "term": "any_concrete_external_analogy",
+  "sign": "+",
+  "note": "Operational assumption: the comparison group \"relying solely on abstract logical refutation\" is operationalized as discussions with no comment containing a concrete external analogy (feature = 0), which also includes discussions with other non-analogy content. Comment order, timing and per-comment outcomes are unavailable. OC_comments may contain post-outcome text; the prompt excludes such announcements as evidence. Association only, not causal."
+}

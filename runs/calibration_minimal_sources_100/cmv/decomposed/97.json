@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_specific_empirical_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain specific empirical evidence (e.g., concrete data, statistics, studies, documented facts or cited sources) in support of its argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of counter-argument comments by other users). Return 1 if at least one comment itself offers specific empirical evidence as support: concrete statistics or numbers, named studies/research, documented historical or factual cases, or cited sources/links presented as support. Cited external sources count as evidence even though the wording is not the commenter's own. Return 0 if none do: generic reasoning, opinion, hypotheticals, vague appeals ('studies show' without any specifics) or purely personal anecdote without verifiable specifics do not count. Ignore any text announcing that the OP changed their view or awarded a delta, post-outcome updates, and reports of the outcome; these are not evidence. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "any_comment_specific_empirical_evidence has no association with the likelihood of delta.",
+  "h1": "Rows with any_comment_specific_empirical_evidence=1 have a higher likelihood of delta.",
+  "rhs": "any_comment_specific_empirical_evidence",
+  "term": "any_comment_specific_empirical_evidence",
+  "sign": "+",
+  "note": "Assumptions: \"a counterargument\" is operationalized as any comment in OC_comments (any, not share or all). \"Specific empirical evidence\" is judged by the prompt with the criteria in the spec. Comment order, timing and per-comment outcomes are unavailable, and OC_comments may include comments after a delta was awarded, so timing is unknown. Association only, not causal. Delta announcements are excluded from the evidence judgement."
+}

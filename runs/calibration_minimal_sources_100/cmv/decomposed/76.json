@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "has_specific_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment present a specific counterargument (a concrete, particular point, reason or example against the OP's view) rather than only vague or non-substantive pushback?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. Return 1 if at least one comment itself offers a specific counterargument: a concrete, identifiable reason, evidence, example or reasoning against the OP's position. Return 0 if the list is non-empty but no comment does (only vague disagreement, questions, jokes, agreement, or off-topic remarks). Empty list -> 0; missing or malformed -> null. Ignore OP view-change or delta-award announcements and post-outcome resolution remarks as evidence; generic delta-rule discussion is not a counterargument by itself."
+    },
+    {
+      "name": "explicit_agreement_marker_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many explicit agreement markers (e.g., 'I agree', 'you're right', 'good point') appear across the counter-argument comments?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list. Count the distinct explicit agreement expressions made by the comment authors in their own voice (e.g., 'I agree', 'you're right', 'fair point', 'good point', 'exactly', 'I concur'), summed across all comments. Agreement may be toward the OP or another party. Do not count expressions inside quotations of others unless the comment author adopts them, nor negated/sarcastic agreement. Do not count OP view-change or delta-award announcements, or post-outcome resolution reports. Raw count, not normalized by length. Empty list -> 0; missing or malformed -> null."
+    }
+  ],
+  "h0": "Mean explicit_agreement_marker_count does not differ between posts with has_specific_counterargument = 1 and those with 0.",
+  "h1": "Posts with has_specific_counterargument = 1 have higher explicit_agreement_marker_count than posts with has_specific_counterargument = 0.",
+  "rhs": "has_specific_counterargument + explicit_agreement_marker_count",
+  "term": null,
+  "sign": "+",
+  "note": "The claim requires explicit_agreement_marker_count as the dependent variable, but the fixed outcome is delta, so no valid term exists; term=null and the rhs is only a listing of the two measured features. Assumptions: both features are read from OC_comments only (agreement markers by commenters, not OP); 'frequency' is operationalized as a raw count, which scales with the number of comments. A specific counterargument and agreement can occur in the same comments, so the measures overlap. Current text may contain outcome announcements; the semantic specs exclude them, but timing is unknown. Associations only."
+}

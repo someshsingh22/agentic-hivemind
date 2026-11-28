@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_explicit_conditional_outcome_language",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument contain explicit conditional language that links an outcome or consequence to a specific antecedent condition?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's own text). Return 1 if the OP's own assertions include at least one explicit conditional statement (e.g., 'if X, then Y', 'unless', 'provided that', 'whenever', 'in the case that', 'when X, Y results') that links a stated outcome/consequence to a specific antecedent condition. Return 0 if there is no such statement; purely hypothetical wording without a condition-outcome link, bare questions, and the word 'if' used as 'whether' do not count. Conditionals appearing only in quotations attributed to others and not adopted by the OP do not count. Ignore any OP view-change/delta-award announcements, post-outcome edits or resolution updates, and reports of the outcome; do not treat them as evidence. Generic delta-rule discussion may count only if it itself is an explicit conditional statement by the OP. Return null if argument is missing or malformed; empty text gives 0."
+    }
+  ],
+  "h0": "argument_explicit_conditional_outcome_language has no association with the likelihood of view change (delta).",
+  "h1": "argument_explicit_conditional_outcome_language is associated with a lower likelihood of view change (delta).",
+  "rhs": "argument_explicit_conditional_outcome_language",
+  "term": "argument_explicit_conditional_outcome_language",
+  "sign": "-",
+  "note": "Association only, not causal. Current argument text is used; it may include edits or outcome announcements, and no timestamps establish pre-outcome timing. The prompt excludes such announcements as evidence. 'Specific antecedent condition' is judged by the annotator; no scoring scale is invented. Binary presence is assumed rather than count or intensity."
+}

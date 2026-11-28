@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_substantive_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one comment offer a substantive counterargument, meaning a reasoned challenge to the OP's view with specific reasons, evidence or examples?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment, in its own assertions (not unadopted quotations), gives a substantive counterargument: a reasoned challenge to the OP's position supported by specific reasons, evidence, examples or logic. Return 0 if the list is non-empty and no comment does (e.g., only supportive, off-topic, joking, or bare disagreement with no reasoning). Empty list gives 0; missing or malformed input gives null. Ignore any OP view-change or delta-award announcements, post-outcome updates and reports of the outcome; they are not evidence of substantiveness."
+    },
+    {
+      "name": "only_supportive_comments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Are all of the comments supportive of the OP's view, with none offering a counterargument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if the list is non-empty and every comment, in its own assertions (not unadopted quotations), expresses support, agreement or validation of the OP's view, with no comment offering any counterargument or challenge to the OP's view. Return 0 if the list is non-empty and at least one comment is not supportive (counterargument, neutral, off-topic, etc.). Empty list gives 0; missing or malformed input gives null. Ignore OP view-change or delta-award announcements, post-outcome updates and reports of the outcome as evidence."
+    }
+  ],
+  "h0": "Posters whose rows have any_substantive_counterargument = 1 are no more likely to change their view than those with only_supportive_comments = 1, holding the other indicator fixed.",
+  "h1": "Rows with any_substantive_counterargument = 1 have higher view-change (delta) than rows with only_supportive_comments = 1.",
+  "rhs": "any_substantive_counterargument + only_supportive_comments",
+  "term": "any_substantive_counterargument",
+  "sign": "+",
+  "note": "Both named groups are measured. The groups are not exhaustive: rows with neither indicator (empty comments, or only non-substantive non-supportive comments) form the reference category, so the coefficient on any_substantive_counterargument is a contrast against that reference, not directly against only-supportive rows; the exact difference beta_substantive minus beta_supportive is not a single design-matrix term. 'Higher view modification' is operationalised as the binary delta outcome. OC_comments are described as counter-argument comments, so supportive-only rows may be rare. Comment order and timing are unknown. Comments may contain outcome announcements or delta-related text, which are excluded from semantic judgments; the raw text is not outcome-free. Associations only, not causal."
+}

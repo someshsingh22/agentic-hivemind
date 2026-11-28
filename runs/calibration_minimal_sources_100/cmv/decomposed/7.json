@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "distinct_counterargument_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many distinct counter-arguments against the OP's view are made across the posted comments?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. Count the number of distinct counter-arguments (separate reasons, points or lines of reasoning that challenge the OP's view) across all comments. Repeated or paraphrased versions of the same point count once; one comment may contribute several distinct counter-arguments; comments that only ask questions, agree, joke or are off-topic contribute none. Do not count OP view-change or delta-award announcements, post-outcome resolution updates, or reports of the outcome as counter-arguments. Return a non-negative integer. Empty list gives 0; missing or malformed input gives null."
+    },
+    {
+      "name": "has_three_plus_counterarguments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Are there at least three distinct counter-arguments in the posted comments?",
+      "kind": "code",
+      "spec": "Using `distinct_counterargument_count`: df['has_three_plus_counterarguments'] = (df['distinct_counterargument_count'] >= 3).astype(float), with null where df['distinct_counterargument_count'] is null. Yields 1 if count >= 3, else 0."
+    }
+  ],
+  "h0": "has_three_plus_counterarguments has no association with the likelihood that the OP changed their view (delta).",
+  "h1": "Discussions with has_three_plus_counterarguments = 1 have a higher likelihood of the OP changing their view than those with 0.",
+  "rhs": "has_three_plus_counterarguments",
+  "term": "has_three_plus_counterarguments",
+  "sign": "+",
+  "note": "Operational assumptions: \"distinct counter-argument\" is judged by an LLM as a separate reason challenging the OP's view, deduplicating paraphrases; threshold of 3 as stated. Only OC_comments is used (the supplied available comments, possibly incomplete; list order is not chronology). Comments may contain quoted text or outcome-related remarks; the prompt excludes outcome announcements, but the comment set may still be influenced by the outcome (e.g., comments retained after a delta). OLS on a binary outcome gives a linear probability model; association only, not causal."
+}

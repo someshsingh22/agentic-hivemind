@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_cites_specific_real_world_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly cite a specific real-world example (a named or concretely identifiable real case, event, person, study or situation) as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of counter-argument comments by other users). Return 1 if at least one comment explicitly cites a specific, concrete real-world example (e.g., a named or identifiable real event, person, organization, place, study, statistic from a particular source, or a concretely described real case) in support of its argument; return 0 if none does (generic claims, hypotheticals, and vague 'some people' statements do not count). A cited external example counts as support even if the commenter did not experience it. Ignore any text that announces the OP's view change, delta awards, or post-outcome resolution updates, and do not treat them as examples. Use only OC_comments. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "There is no association between any_comment_cites_specific_real_world_example and the likelihood of OP view change.",
+  "h1": "Discussions with any_comment_cites_specific_real_world_example equal to 1 have a higher likelihood of OP view change than those with 0.",
+  "rhs": "any_comment_cites_specific_real_world_example",
+  "term": "any_comment_cites_specific_real_world_example",
+  "sign": "+",
+  "note": "Operationalized \"featuring\" as at least one counter-comment citing a specific real-world example (any, not share/count). Comment order/timing unknown; comments may contain outcome-related text, which is excluded from the semantic judgment. Association only, not causal. OLS on binary delta is a linear probability model."
+}

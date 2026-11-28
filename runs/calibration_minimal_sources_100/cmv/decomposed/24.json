@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_has_question_marker",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument text contain a question mark?",
+      "kind": "code",
+      "spec": "df['argument'].apply(lambda s: None if not isinstance(s, str) else int('?' in s)). Missing or non-string argument gives null; empty string gives 0. Counts any '?' character in current argument text, including inside quotations."
+    }
+  ],
+  "h0": "argument_has_question_marker is not associated with the probability of view change.",
+  "h1": "Discussions with argument_has_question_marker = 1 have a higher probability of view change than those with 0.",
+  "rhs": "argument_has_question_marker",
+  "term": "argument_has_question_marker",
+  "sign": "+",
+  "note": "\"Specific counter-question markers\" is not defined in the hypothesis; assumed operationalization is the literal presence of a question mark in the OP argument. This is a mechanical proxy and does not verify that questions are counter-questions or rhetorical, and wording-based markers (e.g., 'what if', 'why') are not captured. Raw text may include quotations, edits, and view-change or outcome announcements; the code does not filter these, so contamination/timing risk remains. Association only, not causal."
+}

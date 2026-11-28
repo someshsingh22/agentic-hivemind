@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_comment_quotes_and_refutes_op_phrase",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly quote specific wording from the original post and refute that quoted wording within the same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Read title and argument only to verify that quoted text is the OP's wording. Return 1 if at least one single comment both (a) explicitly quotes or near-verbatim reproduces a specific phrase from the OP's title or argument (quotation marks or blockquote/'>' formatting) and (b) in that same comment argues against, disputes or refutes that quoted phrase. Quote and refutation must co-occur in one comment; separate comments cannot jointly satisfy it. Return 0 if no comment does so, including quoting without refuting, refuting without quoting, or quoting non-OP text. Empty comment list gives 0; missing or malformed OC_comments, title or argument gives null. Ignore OP view-change/delta-award announcements, post-outcome resolution updates and reports of the outcome as evidence; generic delta-rule discussion is eligible."
+    }
+  ],
+  "h0": "any_comment_quotes_and_refutes_op_phrase has no association with the likelihood of view change (delta).",
+  "h1": "Discussions with any_comment_quotes_and_refutes_op_phrase = 1 have a higher likelihood of view change (delta) than those with 0.",
+  "rhs": "any_comment_quotes_and_refutes_op_phrase",
+  "term": "any_comment_quotes_and_refutes_op_phrase",
+  "sign": "+",
+  "note": "Operationalized as at least one comment (any, not share) with quote and refutation in the same comment. Comment order/timing unknown. OC_comments and the OP text may contain outcome announcements; semantic spec excludes them. Association only. OP text is current, possibly edited. Quotes counted only if from OP text."
+}

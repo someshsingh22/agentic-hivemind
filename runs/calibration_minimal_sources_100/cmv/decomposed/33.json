@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "post_score_above_50",
+      "dtype": "binary",
+      "source_columns": [
+        "post_score"
+      ],
+      "definition": "Is the observed original-post score greater than 50?",
+      "kind": "code",
+      "spec": "df['post_score_above_50'] = (pd.to_numeric(df['post_score'], errors='coerce') > 50).astype('float') with null where post_score is missing or non-numeric; 1.0 if score > 50 (strictly), 0.0 if score <= 50."
+    }
+  ],
+  "h0": "post_score_above_50 has no association with the likelihood of view change (delta).",
+  "h1": "Discussions with post_score_above_50 = 1 have a lower likelihood of view change than those with post_score_above_50 = 0.",
+  "rhs": "post_score_above_50",
+  "term": "post_score_above_50",
+  "sign": "-",
+  "note": "Uses supplied post_score as-is. Its measurement time relative to the outcome is unknown (it may be observed after the view change), and post_created_utc cannot establish timing. Threshold is strictly greater than 50. Association only, not causal. Outcome delta is added automatically by OLS (linear probability model)."
+}

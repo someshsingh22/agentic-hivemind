@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "share_comments_quoting_op",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "argument",
+        "title"
+      ],
+      "definition": "What proportion of the counter-argument comments directly quote wording from the original post (title or argument)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment, decide whether it contains a direct quotation (verbatim or near-verbatim wording, e.g. in quote marks or markdown '>' blockquote) of text that appears in the OP's title or argument. Compare against title and argument to verify the quoted text is from the OP, not from another source or another commenter. Quote marks alone do not suffice; the quoted text must match OP wording. Paraphrases without quoted OP wording do not count. Ignore content that only announces OP view change/delta awards or reports the outcome; such content is not evidence of quoting. Output = (comments with an OP quote) / (total comments), in [0,1]. Return null if OC_comments is missing or malformed, or if the list is empty."
+    }
+  ],
+  "h0": "share_comments_quoting_op has no association with the likelihood of view change (delta).",
+  "h1": "A higher share_comments_quoting_op is associated with a higher likelihood of view change.",
+  "rhs": "share_comments_quoting_op",
+  "term": "share_comments_quoting_op",
+  "sign": "+",
+  "note": "Operationalization: \"frequently embedding\" is measured as the share of comments quoting the OP, a continuous measure rather than a threshold. The \"lacking explicit anchoring\" comparison corresponds to low values of the share, including 0. Comment order and timing are unknown. OC_comments and the OP text may contain outcome announcements; the quote feature ignores these, but the text sources are not outcome-free. Association only, not causal. Rows with an empty comment list get null."
+}

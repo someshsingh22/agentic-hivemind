@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_named_realworld_analogy_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment use a named, real-world analogy (e.g., a specific historical or scientific example) to argue against the OP?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment itself offers a named, specific real-world analogy or example (e.g., a named historical event, person, scientific case or study) as a counter-argument/analogy; otherwise 0. Generic hypotheticals or unnamed vague examples do not count. Ignore OP view-change/delta-award announcements and outcome reports as evidence. Quoted text counts only if the commenter adopts it as support. Empty list gives 0; missing/malformed gives null."
+    },
+    {
+      "name": "any_abstract_logical_rebuttal_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment give an abstract logical rebuttal without any named real-world analogy or example?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Return 1 if at least one comment rebuts the OP primarily through abstract logical reasoning (e.g., pointing out premises, inconsistencies, definitions, inference flaws) and contains no named specific real-world analogy or example (historical or scientific) in that same comment; otherwise 0. Ignore OP view-change/delta-award announcements and outcome reports as evidence. Empty list gives 0; missing/malformed gives null."
+    }
+  ],
+  "h0": "There is no association between any_named_realworld_analogy_comment and delta, controlling for any_abstract_logical_rebuttal_comment.",
+  "h1": "Rows with any_named_realworld_analogy_comment=1 have a higher view-change rate than rows without, controlling for any_abstract_logical_rebuttal_comment.",
+  "rhs": "any_named_realworld_analogy_comment + any_abstract_logical_rebuttal_comment",
+  "term": "any_named_realworld_analogy_comment",
+  "sign": "+",
+  "note": "Row-level unit; comments are unordered and have no per-comment outcomes, so comment-level view-change rates cannot be computed. Both groups are measured as row-level presence; the model coefficient is not a direct contrast between named-analogy and abstract-rebuttal comments, and rows may contain both or neither. The abstract feature is defined as no named analogy within the comment. OC_comments may contain delta/outcome text; semantic specs exclude it. Association only. OLS on binary delta is a linear probability model."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_argument_tone_policing_request",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument text explicitly ask others to change their tone or manner of expression (e.g., be civil, calm, polite, not rude or angry)?",
+      "kind": "prompt",
+      "spec": "Read only `argument` (the OP's own text). Return 1 if the OP's own assertions explicitly request that readers/commenters adjust their tone or manner of communication (e.g., asking them to be civil, polite, calm, respectful, non-hostile, or to stop being rude/aggressive/emotional). Return 0 if no such explicit request is present. Requests about content, evidence, or topic rather than tone do not count. Quoted text from others counts only if the OP adopts it as their own request. Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome; they are not evidence. Generic discussion of platform rules is eligible only if it is itself a tone request by the OP. Return null if argument is missing or malformed; empty text gives 0."
+    }
+  ],
+  "h0": "Discussions whose argument contains an explicit tone-policing request have the same likelihood of view change (delta) as those without (coefficient of op_argument_tone_policing_request = 0).",
+  "h1": "Discussions with op_argument_tone_policing_request = 1 have a lower likelihood of view change than those with 0 (coefficient < 0).",
+  "rhs": "op_argument_tone_policing_request",
+  "term": "op_argument_tone_policing_request",
+  "sign": "-",
+  "note": "Operational assumption: tone-policing is the OP's explicit request in their own argument text for others to alter tone/manner. Argument is current text and may include edits or outcome announcements, which are excluded from the semantic judgment; timing relative to replies is unknown. OLS on binary delta is a linear probability model; association only, not causal."
+}

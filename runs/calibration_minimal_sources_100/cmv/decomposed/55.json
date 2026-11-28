@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_validates_emotion_before_rebuttal",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly validate the original poster's emotional experience before giving its logical rebuttal within that same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than OP). Return 1 if at least one single comment both (a) explicitly acknowledges or validates the OP's feelings or emotional experience (e.g., 'I understand why you feel frustrated', 'that sounds painful') in the commenter's own words, and (b) afterwards in that same comment gives a logical rebuttal or counter-argument to the OP's view; the validation must come earlier in the comment than the rebuttal. Separate comments cannot jointly satisfy this. Do not count validation only of the OP's reasoning or effort without emotion, validation appearing after the rebuttal, or merely quoted emotional wording not adopted by the commenter. Ignore any OP view-change or delta-award announcements, outcome reports, and post-outcome resolution text as evidence. Return 0 if the list is valid but empty or no comment qualifies; null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "any_comment_validates_emotion_before_rebuttal has no association with the probability of OP view change (delta).",
+  "h1": "Discussions with any_comment_validates_emotion_before_rebuttal = 1 have a higher view-change rate than those with 0.",
+  "rhs": "any_comment_validates_emotion_before_rebuttal",
+  "term": "any_comment_validates_emotion_before_rebuttal",
+  "sign": "+",
+  "note": "Operational assumption: 'discussions containing' means at least one such comment. Order is assessed within a single comment's text only; no chronology across comments is available. OC_comments may include text post-dating the outcome, with unknown timing; the semantic spec excludes outcome announcements. Outcome delta is modeled by OLS (linear probability), describing association only."
+}

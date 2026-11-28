@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "op_first_person_singular_pronoun_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "How many explicit first-person singular pronouns appear in the original argument text?",
+      "kind": "code",
+      "spec": "Input: df['argument'] (OP argument body only; title excluded). If missing/non-string return null. Count case-insensitive whole-word regex matches of r\"\\b(I|me|my|mine|myself|I'm|I've|I'll|I'd)\\b\" (treat curly apostrophes as straight; contractions with I counted once each, not also as 'I'). Return integer count; empty string gives 0. Raw mechanical count over current text, including any quoted text and edits."
+    },
+    {
+      "name": "has_op_first_person_singular_pronoun",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument contain at least one explicit first-person singular pronoun?",
+      "kind": "code",
+      "spec": "Return 1 if df['op_first_person_singular_pronoun_count'] > 0, 0 if it equals 0, null if it is null."
+    }
+  ],
+  "h0": "has_op_first_person_singular_pronoun has no association with the probability of view change.",
+  "h1": "Discussions with has_op_first_person_singular_pronoun = 1 have a higher probability of view change than those with 0.",
+  "rhs": "has_op_first_person_singular_pronoun",
+  "term": "has_op_first_person_singular_pronoun",
+  "sign": "+",
+  "note": "Presence is the primary measurement; the count is a supporting feature. Pronoun list is an operational assumption (I, me, my, mine, myself and I-contractions). Raw regex counts include quoted text and edits, and the current argument text may contain post-outcome edits or delta announcements; these are not filtered. Pronouns are nearly universal in OP arguments, so variation may be small. Association only, not causal."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_acknowledges_alternative_perspectives",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument explicitly acknowledge that alternative perspectives or opposing views exist?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's own text). Return 1 if the OP, in their own voice, explicitly acknowledges that other perspectives, views, or reasonable disagreement exist (e.g., 'some people think...', 'I know others see it differently', 'I may be wrong, there are other sides'). Return 0 if the argument is presented without such acknowledgment (singularly deterministic framing) or only quotes others without adopting the acknowledgment. Ignore any OP view-change/delta-award announcements, edits reporting outcomes, or post-outcome updates; do not count them as evidence. Generic mention of platform rules is fine. Missing or malformed argument gives null; empty text gives 0."
+    }
+  ],
+  "h0": "Discussions whose original argument explicitly acknowledges alternative perspectives have the same likelihood of view change as those that do not (op_acknowledges_alternative_perspectives coefficient = 0).",
+  "h1": "Discussions with op_acknowledges_alternative_perspectives = 1 have higher likelihood of view change than those with 0.",
+  "rhs": "op_acknowledges_alternative_perspectives",
+  "term": "op_acknowledges_alternative_perspectives",
+  "sign": "+",
+  "note": "Operational assumption: the 'singularly deterministic' comparison group is operationalized as the absence of explicit acknowledgment of alternatives (not-A), since no separate deterministic-framing measure was requested. Argument text is current text and may include edits or outcome announcements; the prompt excludes these, but timing relative to the outcome is unknown. Association only, tested with OLS (linear probability model) on delta."
+}

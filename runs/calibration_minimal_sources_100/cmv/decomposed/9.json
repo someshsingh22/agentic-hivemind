@@ -1,0 +1,32 @@
+{
+  "features": [
+    {
+      "name": "op_invites_critique_or_tentative",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "Does the original post explicitly invite critique or use tentative, hedged language about its own view?",
+      "kind": "prompt",
+      "spec": "Read title and argument (OP's own words). Return 1 if the OP explicitly invites challenge/critique/counterarguments (e.g. 'change my view', 'tell me why I'm wrong') beyond the bare 'CMV' title prefix, or states their own view tentatively (e.g. 'I think maybe', 'I'm not sure', 'it seems to me', 'might'). Otherwise 0. Only OP's own assertions count; quoted text from others does not unless adopted. Ignore view-change/delta-award announcements, edits reporting outcomes, and post-outcome updates. Empty/missing title and argument: null."
+    },
+    {
+      "name": "op_uses_absolute_declarations",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "Does the original post state its view using absolute, definitive declarations?",
+      "kind": "prompt",
+      "spec": "Read title and argument (OP's own words). Return 1 if the OP asserts their central view in absolute/definitive terms (e.g. 'always', 'never', 'all', 'obviously', 'undeniably', 'without a doubt', flat categorical claims) without hedging. Otherwise 0. Only OP's own assertions count; quotations of others do not unless adopted. Ignore view-change/delta-award announcements, edits reporting outcomes, and post-outcome updates. Empty/missing title and argument: null."
+    }
+  ],
+  "h0": "Discussions with op_invites_critique_or_tentative=1 have the same view-change rate as others, holding op_uses_absolute_declarations constant.",
+  "h1": "Discussions with op_invites_critique_or_tentative=1 have a higher view-change rate than those with op_uses_absolute_declarations=1.",
+  "rhs": "op_invites_critique_or_tentative + op_uses_absolute_declarations",
+  "term": "op_invites_critique_or_tentative",
+  "sign": "+",
+  "note": "Two separate binary measures preserve both named groups; they can overlap or both be 0. The contrast (beta_tentative minus beta_absolute) is not directly expressed by the chosen term, which tests only the tentative/invite coefficient with absolute held constant. Text is current supplied text and may contain edits or outcome announcements; the prompts exclude those, but timing is unknown. Associations only. 'Change my view' title convention is excluded as a generic invitation."
+}

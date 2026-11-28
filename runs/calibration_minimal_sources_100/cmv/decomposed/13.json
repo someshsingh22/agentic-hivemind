@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_validation_before_correction",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly validate the OP's personal dignity or effort before introducing corrective logic in that same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one single comment both (a) explicitly validates the OP's personal dignity, worth, or effort (e.g., praising their effort, thoughtfulness, or respecting them as a person; not merely agreeing with an argument point or generic politeness) and (b) afterwards, in that same comment, introduces corrective/counter logic against the OP's view. Validation must precede the corrective logic within the comment. Separate comments cannot jointly satisfy it. Only the commenter's own assertions count, not quoted text unless adopted. Ignore any OP view-change/delta-award announcements, post-outcome updates, or reports of the outcome as evidence. Return 0 if the list is valid but empty or no comment qualifies; null if missing or malformed."
+    }
+  ],
+  "h0": "Discussions with any_validation_before_correction=1 have the same view-change rate as those without it.",
+  "h1": "Discussions with any_validation_before_correction=1 have a higher view-change rate than those without it.",
+  "rhs": "any_validation_before_correction",
+  "term": "any_validation_before_correction",
+  "sign": "+",
+  "note": "Operational assumption: the comparison group \"purely logical refutations\" is operationalized as discussions lacking any comment with validation-before-correction (includes discussions with no corrective logic or with non-qualifying validation). Comment order/timing within list is unknown; \"before\" is within-comment text order only. OC_comments text may contain outcome announcements or delta-related text; these are excluded from the semantic judgment, but contamination risk remains. Association only, not causal."
+}

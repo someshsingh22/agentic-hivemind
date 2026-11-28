@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_acknowledges_counterpoints",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original post's argument explicitly acknowledge potential counterpoints, objections or opposing views to the OP's own position?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's text). Return 1 if the OP, in their own voice, explicitly acknowledges potential counterpoints, objections, counterarguments or opposing views to their position (e.g., 'some may argue...', 'I know the counterargument is...', 'one objection is...'). Return 0 if no such explicit acknowledgment exists. Quotations of others count only if the OP adopts them as a counterpoint to their own view. Ignore view-change/delta-award announcements, post-outcome edits or updates, and reports of the outcome; do not treat them as acknowledgment. Generic platform-rule discussion is eligible but not itself an acknowledgment. Return null if argument is missing or malformed; empty text gives 0."
+    }
+  ],
+  "h0": "op_acknowledges_counterpoints has no association with the likelihood of the view changing (delta).",
+  "h1": "Discussions with op_acknowledges_counterpoints = 1 have a higher likelihood of the view changing than those with 0.",
+  "rhs": "op_acknowledges_counterpoints",
+  "term": "op_acknowledges_counterpoints",
+  "sign": "+",
+  "note": "Uses current argument text, which may include later edits or outcome announcements; no timestamps establish pre-outcome timing. Explicitness is judged by the prompt without a fixed scale. Association only, not causal. OLS on binary outcome is a linear probability model."
+}

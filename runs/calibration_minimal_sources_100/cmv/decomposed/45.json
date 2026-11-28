@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_direct_nonviolence_plea",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original poster's argument contain a direct plea for non-violence?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's own text). Return 1 if the OP, in their own voice, directly urges, begs or calls for non-violence (e.g., asks people or groups to refrain from violence, or states that violence should not be used). Return 0 if there is no such plea, if violence is merely discussed or described, or if a non-violence plea appears only in a quotation not adopted by the OP. Do not count OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Return null if argument is missing or malformed."
+    }
+  ],
+  "h0": "argument_direct_nonviolence_plea has no association with the likelihood of view change.",
+  "h1": "Discussions with argument_direct_nonviolence_plea = 1 have a lower likelihood of view change than those with 0.",
+  "rhs": "argument_direct_nonviolence_plea",
+  "term": "argument_direct_nonviolence_plea",
+  "sign": "-",
+  "note": "The hypothesis text contains a garbled word (\"non-violация\"), which I interpreted as \"non-violence\". The measurement uses the current argument text, which may include edits or outcome announcements. Those are excluded from the semantic judgment, but the text is not guaranteed to be pre-outcome. The test is an OLS (linear probability) association, not a causal effect."
+}

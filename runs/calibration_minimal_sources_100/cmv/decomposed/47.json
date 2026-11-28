@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "has_logged_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does the discussion row contain at least one logged counter-argument comment by another user?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list. Return 1 if it parses to a list with at least one non-empty string entry; 0 if it parses to a valid empty list (or only empty strings); null if missing or malformed. Python: lst=json.loads(x); int(any(isinstance(c,str) and c.strip() for c in lst))."
+    }
+  ],
+  "h0": "has_logged_counterargument has no association with the probability of delta (OP view change).",
+  "h1": "has_logged_counterargument is positively associated with the probability of delta.",
+  "rhs": "has_logged_counterargument",
+  "term": "has_logged_counterargument",
+  "sign": "+",
+  "note": "Operationalized \"logged counterargument\" as at least one entry in OC_comments (comments by other users, assumed to be counterarguments). Inspection showed every row has at least one comment (min count 1), so the feature is likely constant in this corpus and the coefficient will be unidentifiable/collinear with the intercept; the claim likely cannot be tested here. Comment text may contain delta/outcome announcements and the list may be selected conditional on the outcome; no timing is available. Associations only."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_has_second_person_pronoun",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument text contain second-person pronouns (you, your, yours, yourself, yourselves, you're, you've, you'll, you'd, y'all)?",
+      "kind": "code",
+      "spec": "Return null if df['argument'] is missing or not a string. Otherwise return 1 if case-insensitive regex r\"\\b(you|your|yours|yourself|yourselves|you're|you've|you'll|you'd|youre|y'all)\\b\" (also matching curly apostrophes ’) matches anywhere in argument, else 0. Empty string gives 0. Purely mechanical; quotations and any edit/outcome text in the current argument are not excluded."
+    }
+  ],
+  "h0": "Discussions whose argument contains second-person pronouns (argument_has_second_person_pronoun=1) have the same likelihood of view change as those without.",
+  "h1": "Discussions whose argument contains second-person pronouns (argument_has_second_person_pronoun=1) have a higher likelihood of view change than those without.",
+  "rhs": "argument_has_second_person_pronoun",
+  "term": "argument_has_second_person_pronoun",
+  "sign": "+",
+  "note": "Operational assumption: \"second-person direct address\" is operationalized as presence of second-person pronouns in the argument; \"impersonal phrasing\" is operationalized as their absence. This cannot distinguish generic/idiomatic 'you' or quoted 'you' from true address to the reader, and absence of 'you' does not guarantee impersonal phrasing otherwise. Raw text is current text and may include edits or delta/outcome announcements (e.g. addressing commenters); timing relative to outcome is unknown. Association only, via OLS (linear probability) on delta."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_requests_feedback_or_advice",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument explicitly ask the community for feedback or advice?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's own text). Return 1 if the OP's own words explicitly request feedback, advice, input, or responses from the community/readers (e.g., 'please give me advice', 'I'd like your feedback', 'tell me what you think'). Return 0 otherwise. Generic requests to 'change my view' alone do not count unless they explicitly ask for feedback or advice. Ignore quoted text not adopted by the OP. Exclude OP view-change/delta-award announcements, post-outcome edits/updates and reports of the outcome; do not count requests appearing only in such passages. Return null if argument is missing or malformed; empty text gives 0."
+    }
+  ],
+  "h0": "Argument_requests_feedback_or_advice has no association with the likelihood of view change (coefficient = 0).",
+  "h1": "Discussions with argument_requests_feedback_or_advice = 1 have a higher likelihood of view change (coefficient > 0).",
+  "rhs": "argument_requests_feedback_or_advice",
+  "term": "argument_requests_feedback_or_advice",
+  "sign": "+",
+  "note": "Operational assumption: 'explicitly requests feedback or advice' is judged from current argument text only; generic CMV 'change my view' framing is not counted. Current text may contain post-outcome edits; these are excluded semantically, but timing is unknown. OLS on binary delta is a linear probability model; association only, not causal."
+}

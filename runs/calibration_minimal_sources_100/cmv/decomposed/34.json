@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_uncertainty_marker_present",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original poster's argument text contain at least one explicit marker of uncertainty about their own view or claims?",
+      "kind": "prompt",
+      "spec": "Read only the `argument` column (OP's argument body). Return 1 if the OP's own assertions contain at least one explicit uncertainty marker (e.g., 'I'm not sure', 'maybe', 'I might be wrong', 'perhaps', 'I could be mistaken', 'I'm unsure', 'I don't know if', hedges expressing doubt about their own view). Return 0 if none. Ignore quoted text attributed to others unless the OP adopts it. Ignore view-change/delta-award announcements, post-outcome edits or updates reporting the outcome (e.g., 'EDIT: my view has changed', 'delta awarded'); these are not evidence. Generic platform/delta-rule discussion is eligible but only counts if it expresses uncertainty. Null if argument is missing or malformed; empty string gives 0."
+    }
+  ],
+  "h0": "op_uncertainty_marker_present has no association with delta (coefficient = 0).",
+  "h1": "op_uncertainty_marker_present is positively associated with the OP changing their view (coefficient > 0).",
+  "rhs": "op_uncertainty_marker_present",
+  "term": "op_uncertainty_marker_present",
+  "sign": "+",
+  "note": "Association only. \"Explicit uncertainty markers\" operationalized as hedges/expressions of doubt by the OP about their own view; no fixed lexicon supplied, so judgment is by the prompt. Argument text is current text and may include post-outcome edits or view-change announcements; the prompt excludes them, but timing cannot be verified (no edit timestamps). Binary presence chosen since hypothesis states \"contains\"; no count or intensity is measured."
+}

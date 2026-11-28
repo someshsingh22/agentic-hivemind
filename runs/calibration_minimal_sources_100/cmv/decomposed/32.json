@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "redraft_before_refute_any",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment restate the OP's viewpoint in a more nuanced form and then go on to refute it in that same comment?",
+      "kind": "prompt",
+      "spec": "Read OC_comments (JSON list of comments by other users; parse it) and, for interpreting the OP viewpoint being restated, title and argument. Return 1 if at least one single comment (a) rewrites/reformulates the OP's viewpoint in the commenter's own words from a more nuanced, qualified or refined perspective (not a mere verbatim quote or a bare summary) AND (b) then refutes or argues against that reformulated or original view, within that same comment. Both parts must occur in one comment; separate comments cannot jointly satisfy it. Return 0 if no comment does so. Empty comment list gives 0; missing or malformed OC_comments gives null. Ignore OP view-change or delta-award announcements, post-outcome resolution updates and any reports of the outcome as evidence; generic delta-rule discussion is eligible. Quotations of the OP alone do not count as redrafting. Comment order carries no chronology."
+    }
+  ],
+  "h0": "redraft_before_refute_any has no association with view change (delta).",
+  "h1": "Discussions with redraft_before_refute_any = 1 have higher view change (delta) than those with 0.",
+  "rhs": "redraft_before_refute_any",
+  "term": "redraft_before_refute_any",
+  "sign": "+",
+  "note": "Operationalized as any single comment that both nuance-reframes the OP's view and refutes it. \"Nuanced perspective\" is judged by the LLM without a fixed scale. OC_comments may contain outcome-related text; the prompt excludes it. Association only; comment timing and reply links unknown."
+}

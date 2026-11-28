@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counterarg_cognitive_complexity_mean",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "On average, how cognitively complex (differentiating multiple considerations or perspectives and integrating them, with nuance or qualification) are the counter-argument comments?",
+      "kind": "prompt",
+      "spec": "Read only OC_comments (JSON list of counter-argument comments by users other than the OP). Parse the list. Rate each comment's own reasoning for cognitive complexity on a 1-5 scale: 1 = single simple assertion or one-sided/absolutist claim, no reasoning; 2 = one reason, little qualification; 3 = several distinct considerations or some qualification/acknowledgement of alternatives; 4 = explicitly differentiates multiple perspectives, conditions or trade-offs and relates them; 5 = integrates multiple perspectives into a coherent, nuanced higher-level synthesis. Judge the commenter's own assertions; quoted text from others counts only if the commenter adopts it. Ignore any OP view-change or delta-award announcements, thanks-for-changing-my-view text, and reports of the outcome as evidence of complexity; if a comment contains only such content, exclude it from the mean. Return the arithmetic mean of ratings across the remaining comments. Empty list or no rateable comments: null; malformed input: null."
+    }
+  ],
+  "h0": "counterarg_cognitive_complexity_mean has no association with the likelihood that the OP changed their view.",
+  "h1": "Higher counterarg_cognitive_complexity_mean is associated with a higher likelihood that the OP changed their view.",
+  "rhs": "counterarg_cognitive_complexity_mean",
+  "term": "counterarg_cognitive_complexity_mean",
+  "sign": "+",
+  "note": "No cognitive complexity definition was supplied; operationalized as a 1-5 LLM rubric (differentiation/integration) averaged over comments, which is an assumption. The mean is over all available comments with no weighting. Comment order and timing are unknown, and comments may include post-outcome text; announcements are excluded semantically. The test describes association only, not causal effect. Association is tested with an OLS linear probability model."
+}

@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "cc_external_facts_present",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly introduce a verifiable external fact that is distinct from what the original argument already states?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than OP). Read argument only to judge whether a fact is distinct from the OP's own argument. Return 1 if at least one comment explicitly introduces a verifiable external fact (e.g., a specific statistic, study, documented event, law, historical or scientific fact, or cited source) that is not already stated in argument; the comment itself must assert it or cite it as support. Return 0 if no comment does (opinions, reasoning, hypotheticals, personal anecdotes that cannot be verified, and facts merely restating the OP do not count). Ignore any OP view-change/delta-award announcements, post-outcome resolution updates, and reports of the outcome as evidence; generic delta-rule discussion is eligible. Quoted text counts only as cited support, not as the commenter's own assertion unless adopted. Empty or valid empty list gives 0; missing or malformed input gives null. Comment order carries no chronology."
+    }
+  ],
+  "h0": "cc_external_facts_present has no association with the probability of view change (delta).",
+  "h1": "Discussions with cc_external_facts_present=1 have a higher probability of view change than those with 0.",
+  "rhs": "cc_external_facts_present",
+  "term": "cc_external_facts_present",
+  "sign": "+",
+  "note": "Operational assumption: \"discussions where counter-arguments introduce\" is measured as any comment introducing such facts. Verifiability is judged from the text alone, with no external checking. Distinctness from the original argument is judged against current argument text, which may include edits or outcome announcements. OC_comments may contain outcome-related content, and reply timing is unknown. The association is not causal."
+}

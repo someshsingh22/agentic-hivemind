@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "title_has_absolute_quantifier",
+      "dtype": "binary",
+      "source_columns": [
+        "title"
+      ],
+      "definition": "Does the title explicitly contain an absolute universal quantifier such as 'all', 'never', 'always', 'every', 'none' or 'no one'?",
+      "kind": "code",
+      "spec": "Read df['title']. If missing/non-string return null. Lowercase and test case-insensitive whole-word regex r\"\\b(all|never|always|every|everyone|everybody|everything|none|no one|nobody|nothing|no)\\b\"; return 1 if any match else 0. Raw literal match; no semantic filtering."
+    },
+    {
+      "name": "title_has_probabilistic_quantifier",
+      "dtype": "binary",
+      "source_columns": [
+        "title"
+      ],
+      "definition": "Does the title explicitly contain a variable or probabilistic term such as 'some', 'many', 'most', 'often', 'sometimes', 'usually', 'may' or 'might'?",
+      "kind": "code",
+      "spec": "Read df['title']. If missing/non-string return null. Lowercase and test case-insensitive whole-word regex r\"\\b(some|many|most|often|sometimes|usually|generally|typically|rarely|seldom|few|may|might|can|could|probably|likely|unlikely|perhaps|occasionally)\\b\"; return 1 if any match else 0. Raw literal match; no semantic filtering."
+    }
+  ],
+  "h0": "Discussions with titles containing absolute universal quantifiers (title_has_absolute_quantifier=1) have the same or higher view-change rate as those without, holding title_has_probabilistic_quantifier constant.",
+  "h1": "Discussions with title_has_absolute_quantifier=1 have lower view-change rate than those with title_has_probabilistic_quantifier=1 and no absolute term.",
+  "rhs": "title_has_absolute_quantifier + title_has_probabilistic_quantifier",
+  "term": "title_has_absolute_quantifier",
+  "sign": "-",
+  "note": "Term lists are operational assumptions (not supplied by hypothesis); keyword matching ignores context (e.g. 'no' as determiner, negation, 'can' as noun). Comparison group is titles with probabilistic terms; the model's absolute coefficient compares against titles with neither term plus controls for probabilistic, so it is only an approximation of the absolute-vs-probabilistic contrast. Titles with both terms or neither are possible. Titles are current text; association only."
+}

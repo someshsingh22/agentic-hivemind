@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "share_comments_engaging_op_examples_premises",
+      "dtype": "numeric",
+      "source_columns": [
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments explicitly engage with a specific example or premise cited in the OP's argument text?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). For each comment, decide whether it explicitly engages (addresses, rebuts, questions, or builds on by specific reference) a particular example or premise stated in the OP's argument text, rather than only giving generic or unrelated points. Read argument to identify the OP's examples/premises. Count only the commenter's own engagement; ignore OP view-change/delta-award announcements, post-outcome resolution updates and reports of the outcome as evidence. Output = engaging comments / total comments (0 to 1). Empty list: null. Malformed/missing input: null."
+    }
+  ],
+  "h0": "share_comments_engaging_op_examples_premises has no association with likelihood of view change.",
+  "h1": "Higher share_comments_engaging_op_examples_premises is associated with a higher likelihood of view change.",
+  "rhs": "share_comments_engaging_op_examples_premises",
+  "term": "share_comments_engaging_op_examples_premises",
+  "sign": "+",
+  "note": "Operationalized as share of comments (the hypothesis doesn't specify any/share). Comment order and timing unknown; OC_comments and argument text may contain outcome announcements or edits (excluded semantically in the prompt). Association only, not causal."
+}

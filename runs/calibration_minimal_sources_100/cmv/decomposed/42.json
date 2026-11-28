@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "any_comment_quotes_argument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment directly quote wording from the OP's argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment directly reproduces a verbatim or near-verbatim passage from the OP's argument text (argument column), typically in quotation marks or blockquote (>) formatting; verify that the quoted text actually appears in argument. Quotes of other sources, or paraphrases without reproduced wording, do not count. Endorsement is not required. Ignore any text that is merely an OP view-change/delta announcement or outcome report. Return 0 if the list is valid but empty or no comment qualifies; null if OC_comments or argument is missing or malformed."
+    }
+  ],
+  "h0": "any_comment_quotes_argument has no association with the probability of a changed view.",
+  "h1": "Discussions with any_comment_quotes_argument = 1 have a higher probability of a changed view than those with 0.",
+  "rhs": "any_comment_quotes_argument",
+  "term": "any_comment_quotes_argument",
+  "sign": "+",
+  "note": "Association only. Argument text is current version (may include edits/outcome announcements); comment timing is unknown. Quoting is judged against current argument text, which may contain later edits. OLS on binary delta is a linear probability model."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_has_hedging_or_self_doubt",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original poster's argument contain explicit hedging or self-doubt markers in the OP's own voice?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's text). Return 1 if the OP's own assertions contain at least one explicit hedging or self-doubt marker (e.g., 'I might be wrong', 'maybe', 'I'm not sure', 'perhaps', 'it seems to me', 'I could be mistaken', 'I'm unsure'). Return 0 if the argument has none and is presented with unwavering certainty or neutral assertion. Ignore hedges inside quotations attributed to other people unless the OP adopts them. Ignore OP view-change/delta-award announcements, post-outcome edits/resolution updates and reports of the outcome (e.g., 'EDIT: my view has changed', 'Δ'); these are not evidence of hedging. Return null if argument is missing or malformed; empty string gives 0."
+    }
+  ],
+  "h0": "There is no difference in view-change rate between discussions whose argument has hedging/self-doubt markers and those without (argument_has_hedging_or_self_doubt coefficient = 0).",
+  "h1": "Discussions with argument_has_hedging_or_self_doubt = 1 have a higher view-change rate than those with 0.",
+  "rhs": "argument_has_hedging_or_self_doubt",
+  "term": "argument_has_hedging_or_self_doubt",
+  "sign": "+",
+  "note": "Operational assumption: \"unwavering certainty\" is operationalized as absence of detected hedging/self-doubt markers (a neutral assertion without hedges counts as 0), since no separate certainty scale is supplied. Argument text is current text and may include later edits; hedges could be added after the outcome, and timing is unknown. Association only, not causal."
+}

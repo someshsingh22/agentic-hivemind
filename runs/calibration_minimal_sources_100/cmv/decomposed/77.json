@@ -1,0 +1,34 @@
+{
+  "features": [
+    {
+      "name": "any_comment_challenges_assumption",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly challenge an underlying assumption or premise of the OP's view, not merely dispute its factual conclusion?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Read title and argument to identify the OP's stated view and its underlying assumptions/premises. Return 1 if at least one comment, in its own assertion (not a quotation merely of others unless adopted), explicitly questions or rejects an underlying assumption, premise, definition or value framing that the OP's reasoning relies on. Return 0 if comments exist but none do (including comments that only dispute facts or the conclusion). Return 0 for an empty list; null if OC_comments is missing or malformed. Ignore OP view-change/delta-award announcements and any post-outcome reports as evidence."
+    },
+    {
+      "name": "any_comment_challenges_conclusion_only",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment dispute the OP's factual claims or conclusion without challenging an underlying assumption?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Read title and argument for the OP's view. Return 1 if at least one comment, in its own assertion, disputes the OP's factual claims or conclusion without explicitly challenging an underlying assumption or premise within that comment. Else 0. Empty list gives 0; missing or malformed gives null. Ignore OP view-change/delta-award announcements and post-outcome reports as evidence."
+    }
+  ],
+  "h0": "any_comment_challenges_assumption has no association with view-change rate, controlling for any_comment_challenges_conclusion_only.",
+  "h1": "Discussions with any_comment_challenges_assumption = 1 have a higher view-change rate, controlling for any_comment_challenges_conclusion_only.",
+  "rhs": "any_comment_challenges_assumption + any_comment_challenges_conclusion_only",
+  "term": "any_comment_challenges_assumption",
+  "sign": "+",
+  "note": "Operational assumptions: \"challenge assumptions rather than just factual conclusions\" is measured as presence of an assumption-challenging comment, with a conclusion-only presence control; the two are not mutually exclusive and the coefficient is not a strict contrast. Comment order/timing unknown; text may contain outcome announcements (excluded in the semantic specs). Associations only; the OLS on a binary outcome is a linear probability model."
+}

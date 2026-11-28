@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_compares_to_science_history_norms",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument explicitly compare the OP's view or case to an established scientific or historical norm?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's own text). Return 1 if the OP's own assertions explicitly compare their view, claim or situation to an established scientific norm/consensus/standard or an established historical norm/precedent (e.g., 'unlike the scientific consensus on X', 'as in historical practice of Y'). Return 0 if no such explicit comparison exists. A mere mention of science or history without comparison does not count. Quoted material counts only if the OP adopts it as their own comparison. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Missing or malformed argument: null."
+    }
+  ],
+  "h0": "Mean delta does not differ by argument_compares_to_science_history_norms.",
+  "h1": "Discussions with argument_compares_to_science_history_norms=1 have lower view change (delta) than those with 0.",
+  "rhs": "argument_compares_to_science_history_norms",
+  "term": "argument_compares_to_science_history_norms",
+  "sign": "-",
+  "note": "Operational assumption: 'established norms' is judged by the annotator from the OP's text; no list of norms is supplied. Argument text is current text and may contain edits or outcome announcements, which the prompt excludes as evidence. Association only, not causal."
+}

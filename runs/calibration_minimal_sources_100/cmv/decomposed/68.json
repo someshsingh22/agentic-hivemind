@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counterargument_content_word_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of words across the counterargument comments are content words (nouns, verbs, adjectives or adverbs)?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; missing or malformed -> null. Concatenate all comments (pooled, not per-comment mean). Tokenize into words (alphabetic tokens, e.g. nltk word_tokenize, keeping tokens with at least one letter) and POS-tag with a fixed tagger (e.g. NLTK averaged perceptron, Penn tags). Content words are tags starting with NN, VB, JJ or RB. Value = content-word tokens / total word tokens. Empty list or zero word tokens -> null. Raw text is used as supplied; it may contain outcome announcements and is not filtered."
+    }
+  ],
+  "h0": "counterargument_content_word_share has no association with the likelihood of the OP changing their view (delta).",
+  "h1": "Higher counterargument_content_word_share is associated with a lower likelihood of the OP changing their view.",
+  "rhs": "counterargument_content_word_share",
+  "term": "counterargument_content_word_share",
+  "sign": "-",
+  "note": "Lexical density is operationalized as the pooled share of content words (NN, VB, JJ, RB POS tags) across all counterargument comments. The tagger and tokenization are assumptions. OC_comments are current text; they may include post-outcome content, and reply timing is unknown. The test is an association only. OLS is used per the contract, so it is a linear probability model."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "has_multi_turn_speaker_exchange",
+      "dtype": "binary",
+      "source_columns": [
+        "conversation"
+      ],
+      "definition": "Does the conversation text contain a back-and-forth in which at least one speaker has two or more turns, with at least one other speaker's turn also present?",
+      "kind": "code",
+      "spec": "Parse df['conversation'] into turns: a turn starts at a line beginning with regex r'^\\[([^\\]\\n]+)\\]:' (multiline) and runs until the next such marker. Let speakers be the list of turn speaker labels. Return 1 if the number of distinct speakers >= 2 and at least one speaker label occurs in >= 2 turns; else 0. Return null if conversation is missing/non-string; return 0 if it is an empty string or has no parseable turns. Raw text parse, no semantic filtering; reply links are not inferred and conversation may contain later replies and outcome announcements."
+    }
+  ],
+  "h0": "Discussions with has_multi_turn_speaker_exchange = 1 have the same likelihood of the OP changing their view as those with has_multi_turn_speaker_exchange = 0.",
+  "h1": "Discussions with has_multi_turn_speaker_exchange = 1 have a higher likelihood of the OP changing their view than those with has_multi_turn_speaker_exchange = 0.",
+  "rhs": "has_multi_turn_speaker_exchange",
+  "term": "has_multi_turn_speaker_exchange",
+  "sign": "+",
+  "note": "Operational assumption: \"multi-turn reply interactions\" is approximated as a repeated speaker label plus at least one other speaker in the conversation text. Actual reply links and timing are unknown and not inferred from speaker order. The OP's username is not supplied, so the repeated speaker may or may not be the OP. The conversation text may include later replies and view-change/delta announcements, so the feature may be contaminated by the outcome. The association is descriptive, not causal."
+}

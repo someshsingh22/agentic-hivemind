@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_requests_restraint_or_karma",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original poster's argument text explicitly ask the audience for restraint (e.g., to be civil, gentle, not downvote or not pile on) or ask for karma/upvotes?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's text). Return 1 if the OP, in their own assertions (not quoted others), explicitly requests that readers show restraint (e.g., be civil/gentle/polite, not downvote, not pile on, go easy) or explicitly requests karma/upvotes/karma building. Return 0 otherwise. Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome; do not count them as evidence. Generic mentions of subreddit/delta rules are not requests unless they explicitly ask for restraint or karma. Missing or empty argument: null."
+    }
+  ],
+  "h0": "op_requests_restraint_or_karma has no association with the probability of the OP changing their view.",
+  "h1": "op_requests_restraint_or_karma is associated with a lower probability of the OP changing their view.",
+  "rhs": "op_requests_restraint_or_karma",
+  "term": "op_requests_restraint_or_karma",
+  "sign": "-",
+  "note": "Association only. Argument text is current text and may include edits or outcome announcements; these are excluded from the semantic judgment, but timing is unknown. Treating 'restraint' as requests for civility/non-downvoting is an operational assumption. Test is OLS (linear probability) on the delta outcome."
+}

@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "distinct_factual_premises_challenged",
+      "dtype": "numeric",
+      "source_columns": [
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "How many distinct factual premises stated in the OP's argument are challenged by the counter-argument comments?",
+      "kind": "prompt",
+      "spec": "Read argument (OP text) and OC_comments (JSON list of other users' comments; parse it). Identify factual premises in the argument: empirical or descriptive claims about the world that could be true or false (not pure value judgments or preferences). Count the distinct such premises that are explicitly challenged (disputed, contradicted, or shown by counter-evidence to be false or unsupported) by at least one comment's own assertions. A premise challenged by several comments counts once; separate premises count separately. Do not count challenges to values, logic only, or non-factual claims; do not count mere quotations of the OP unless the commenter disputes the premise. Ignore any OP view-change/delta-award announcements, post-outcome updates, and reports of the outcome. Output a non-negative integer. If OC_comments is a valid empty list, output 0. If argument or OC_comments is missing or malformed, output null."
+    }
+  ],
+  "h0": "distinct_factual_premises_challenged has no association with view change (delta).",
+  "h1": "Higher distinct_factual_premises_challenged is positively associated with view change (delta).",
+  "rhs": "distinct_factual_premises_challenged",
+  "term": "distinct_factual_premises_challenged",
+  "sign": "+",
+  "note": "Operational assumption: \"frequently challenging multiple distinct factual premises\" is measured as the count of distinct OP factual premises challenged across all comments in the row (list order carries no chronology; comments may come from the same commenter). No threshold of \"multiple\" is imposed; the count is used linearly. Premise identification is a semantic judgment. Argument and comments are current text, may contain edits or outcome announcements, which the prompt excludes; the timing of replies relative to the outcome is unknown. Association only, not causal."
+}

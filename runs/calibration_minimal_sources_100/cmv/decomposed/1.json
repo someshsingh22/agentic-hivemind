@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_expresses_fear_of_rejection_or_isolation",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument explicitly express the OP's own fear of social rejection or isolation?",
+      "kind": "prompt",
+      "spec": "Read only the argument text (OP's body). Return 1 if the OP, in their own assertions (not merely quoted others' words unless adopted), explicitly states fear, worry or dread of being rejected, ostracized, excluded, abandoned, disliked by others, or isolated/lonely as a consequence of their view or of changing it. Return 0 otherwise, including when the OP merely states beliefs. Ignore any OP view-change/delta-award announcements, post-outcome edits or reports of the outcome as evidence. Empty or missing argument gives null."
+    }
+  ],
+  "h0": "Among arguments, op_expresses_fear_of_rejection_or_isolation is not associated with the view-change (delta) rate.",
+  "h1": "Arguments with op_expresses_fear_of_rejection_or_isolation=1 have lower view-change rates than those without.",
+  "rhs": "op_expresses_fear_of_rejection_or_isolation",
+  "term": "op_expresses_fear_of_rejection_or_isolation",
+  "sign": "-",
+  "note": "Operational assumption: the comparison group is all arguments lacking explicit fear of rejection/isolation (including those stating beliefs plainly); \"emotional self-defense\" is not separately measured, so the contrast is fear vs. not-fear rather than fear vs. belief-only without any emotion. Argument text is current and may contain edits or outcome announcements (excluded from the semantic judgment, but the text is not guaranteed pre-outcome). Association only."
+}

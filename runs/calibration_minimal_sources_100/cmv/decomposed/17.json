@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_quantifies_systemic_third_party_harm",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly quantify systemic material harms to third parties (e.g., with numbers, rates, amounts or scale)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment itself asserts a quantified (numbers, rates, amounts, counts, or explicit scale) systemic material harm (e.g., economic, health, physical, loss of resources) borne by third parties (people other than the OP and commenter, e.g., a group or society). Return 0 if no comment does. Vague harm claims without quantification, harms only to the OP, and purely moral or logical objections do not count. Quoted material counts only if the commenter adopts it or cites it as support. Ignore any OP view-change/delta-award announcements or outcome reports. Empty list gives 0; missing or malformed gives null."
+    },
+    {
+      "name": "any_comment_asserts_propositional_falsity",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment assert that a claim of the OP is factually or logically false, without quantifying systemic material harm to third parties?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Return 1 if at least one comment asserts that a proposition in the OP's view is false, incorrect or logically unsound, and that comment does not itself quantify systemic material harms to third parties. Return 0 otherwise. Quoted wording counts only if adopted by the commenter. Ignore any OP view-change/delta-award announcements or outcome reports. Empty list gives 0; missing or malformed gives null."
+    }
+  ],
+  "h0": "Controlling for any_comment_asserts_propositional_falsity, any_comment_quantifies_systemic_third_party_harm has no association with view change.",
+  "h1": "Controlling for any_comment_asserts_propositional_falsity, any_comment_quantifies_systemic_third_party_harm is associated with higher likelihood of view change.",
+  "rhs": "any_comment_quantifies_systemic_third_party_harm + any_comment_asserts_propositional_falsity",
+  "term": "any_comment_quantifies_systemic_third_party_harm",
+  "sign": "+",
+  "note": "Operationalised as row-level any-comment presence of each counter-argument style; the \"rather than\" contrast is approximated by including both features, and the harm coefficient is not an exact difference between the two. Falsity feature excludes comments that also quantify harm. Comments are unordered and lack timestamps; current text may contain outcome announcements, which the prompts are told to ignore. Associations only, not causal."
+}

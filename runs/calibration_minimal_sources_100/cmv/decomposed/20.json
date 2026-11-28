@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_has_polite_apology",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument contain an explicit polite apology phrase (e.g., 'sorry', 'I apologize', 'apologies', 'excuse me', 'pardon')?",
+      "kind": "code",
+      "spec": "Input: df['argument'] (OP argument text). If missing/non-string return null. Otherwise return 1 if case-insensitive regex r\"\\b(sorry|apologi[sz]e[sd]?|apologies|apology|pardon( me)?|excuse me|forgive me|my bad)\\b\" matches anywhere in the text, else 0. Empty string gives 0. Mechanical match: no semantic filtering; does not distinguish apologies in quotations or edits, and 'apology' noun uses (e.g., discussing apologies in general) also match. Raw text may contain edits or outcome announcements."
+    }
+  ],
+  "h0": "argument_has_polite_apology has no association with the likelihood of view change (delta).",
+  "h1": "Arguments with argument_has_polite_apology = 1 are associated with a lower likelihood of view change than arguments without.",
+  "rhs": "argument_has_polite_apology",
+  "term": "argument_has_polite_apology",
+  "sign": "-",
+  "note": "Operational assumption: 'explicit polite apology phrases' is operationalized with a fixed keyword list (sorry, apologize/apologies, pardon, excuse me, forgive me, my bad). The list may include non-apology uses (e.g., 'sorry' in quotes or discussing apologies) and miss paraphrases. Uses current argument text, which may include later edits or outcome announcements; the timing of any apology relative to the outcome is unknown. Association only, not causal."
+}

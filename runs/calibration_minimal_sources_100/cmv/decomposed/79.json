@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_explicit_personal_experience_narrative",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original poster's argument contain an explicit narrative of the OP's own personal experience?",
+      "kind": "prompt",
+      "spec": "Read only the `argument` text (OP's body). Return 1 if the OP's own assertions include an explicit personal experience narrative, i.e. the OP recounts something that happened to or was done by the OP themself (a specific event or sequence of events in first person, e.g. 'when I worked at...', 'my sister and I...'). Return 0 if there is none: abstract claims, generic opinions, hypotheticals, or experiences of others/quoted sources that the OP does not adopt as their own experience. Quotation marks alone do not establish another speaker. Ignore any OP view-change/delta-award announcements, post-outcome edits/resolution updates or reports of the outcome; these do not count as narrative. Return null if argument is missing or malformed; empty text gives 0."
+    }
+  ],
+  "h0": "op_explicit_personal_experience_narrative has no association with the likelihood of view change (delta).",
+  "h1": "Discussions with op_explicit_personal_experience_narrative = 1 have a higher likelihood of view change than those with 0.",
+  "rhs": "op_explicit_personal_experience_narrative",
+  "term": "op_explicit_personal_experience_narrative",
+  "sign": "+",
+  "note": "Uses current argument text, which may contain edits or outcome announcements; these are excluded by the prompt, but timing relative to the outcome is unknown. Association only, not causal. OLS on binary delta is a linear probability model."
+}

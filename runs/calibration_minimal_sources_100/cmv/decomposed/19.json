@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counter_comments_with_specific_data_or_citation",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment provide specific factual data or a verifiable citation as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of counter-argument comments by other users). Return 1 if at least one comment offers specific factual data (e.g., concrete statistics, figures, dates, named studies or reports) or a verifiable citation (named source, link, reference that could be checked) in support of its argument. External sources cited as support count; the commenter need not have personally produced them. Vague appeals, generic assertions, opinions and personal anecdotes without checkable data do not count. Ignore any text that announces the OP's view change, delta awards, or reports the outcome; such text is not evidence. Generic delta-rule discussion is neither evidence nor excluded otherwise. Return 0 if the list is valid but empty or no comment qualifies; null if missing or malformed. Use only OC_comments."
+    }
+  ],
+  "h0": "Counter_comments_with_specific_data_or_citation has no association with the probability of the OP changing their view.",
+  "h1": "Counter_comments_with_specific_data_or_citation is associated with a higher probability of the OP changing their view.",
+  "rhs": "counter_comments_with_specific_data_or_citation",
+  "term": "counter_comments_with_specific_data_or_citation",
+  "sign": "+",
+  "note": "Operationalized as presence of at least one such comment (any), since the hypothesis says discussions where counter-arguments provide data/citations. Current OC_comments text is used; the timing of comments relative to the outcome is unknown, and comments may contain outcome-related text, which the prompt is told to ignore. Association only, not causal. Outcome delta is modeled by OLS (linear probability) as set by the contract."
+}

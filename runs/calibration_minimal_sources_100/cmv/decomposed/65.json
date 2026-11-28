@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "multiple_counter_comments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does the discussion contain more than one counter-argument comment?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list. Return 1 if len(list) >= 2, 0 if len(list) == 1 (an empty list gives 0). Return null if missing or malformed. Counts list entries, not verified distinct commenters or distinct arguments."
+    }
+  ],
+  "h0": "multiple_counter_comments has no association with view change (delta).",
+  "h1": "Discussions with multiple_counter_comments = 1 have a higher likelihood of view change than those with a single comment.",
+  "rhs": "multiple_counter_comments",
+  "term": "multiple_counter_comments",
+  "sign": "+",
+  "note": "\"Distinct\" is operationalized as separate list entries; the list may include multiple comments by the same commenter and no per-comment authorship is supplied. Order and timing are unknown. The comment list may contain outcome announcements or later replies; this is a raw count and not filtered for them. Association only, not causal."
+}

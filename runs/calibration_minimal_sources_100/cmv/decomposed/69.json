@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_cites_specific_local_example",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment cite a specific, localized example (a particular named or concretely situated case, place, event, person or instance) as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of counter-argument comments by users other than the OP). Return 1 if at least one comment offers a specific, localized example as support for its point: a concrete particular case tied to an identifiable place, event, person, institution, time or situation (e.g., a named country's law, a specific incident, a particular local community or personal anecdote with concrete details). Generic hypotheticals, abstract principles, broad statistics without a particular case, and general categories do not count. An example cited from an external source or the commenter's own experience counts. Ignore any text that is an OP view-change/delta-award announcement or a report of the outcome; such text is not evidence. Return 0 if the list is valid but empty or no comment qualifies. Return null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "any_comment_cites_specific_local_example has no association with the likelihood of the OP changing their view (delta).",
+  "h1": "Discussions where any_comment_cites_specific_local_example is 1 have a higher likelihood of OP view change than those where it is 0.",
+  "rhs": "any_comment_cites_specific_local_example",
+  "term": "any_comment_cites_specific_local_example",
+  "sign": "+",
+  "note": "Operationalized as presence of at least one such comment (hypothesis says \"containing counter-arguments\"; any-vs-share not specified). \"Specific, localized\" is judged by the prompt without a numeric scale. OC_comments order carries no chronology; comments may be posted after or contain outcome text, so contamination/timing risk exists despite exclusion instruction. Association only, not causal."
+}

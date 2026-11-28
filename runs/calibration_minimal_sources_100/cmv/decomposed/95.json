@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "supplied_log_length",
+      "dtype": "numeric",
+      "source_columns": [
+        "log_length"
+      ],
+      "definition": "What is the supplied log-transformed length value for the discussion?",
+      "kind": "code",
+      "spec": "df['supplied_log_length'] = pd.to_numeric(df['log_length'], errors='coerce'); missing or non-numeric values become null. Use the supplied value as is; do not recompute or rebase."
+    }
+  ],
+  "h0": "supplied_log_length has no association with the probability that the OP changed their view.",
+  "h1": "Higher supplied_log_length is associated with a higher probability that the OP changed their view.",
+  "rhs": "supplied_log_length",
+  "term": "supplied_log_length",
+  "sign": "+",
+  "note": "log_length is used as supplied; its construction, source text, log base and timing are undocumented. It is not assumed to equal argument word count. It may include text produced after the outcome, so timing and contamination risk exist. The test is a linear OLS association with delta, not causal."
+}

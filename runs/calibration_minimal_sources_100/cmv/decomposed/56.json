@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_analogy_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment use an analogy to a familiar scenario?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of counter-argument comments by other users. Return 1 if at least one comment itself uses an analogy, i.e. compares the OP's issue to a different, familiar everyday or well-known scenario to make its point (e.g. 'it's like when ...'). Return 0 if no comment does so. Count the commenter's own analogies, not analogies merely quoted from others unless the commenter adopts them. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Literal examples of the OP's own topic are not analogies. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "any_analogy_counterargument has no association with the likelihood of the OP changing their view (delta).",
+  "h1": "Discussions with any_analogy_counterargument=1 have a higher likelihood of the OP changing their view than those with 0.",
+  "rhs": "any_analogy_counterargument",
+  "term": "any_analogy_counterargument",
+  "sign": "+",
+  "note": "Operationalized as presence of at least one analogy-using counter-argument comment; \"familiar scenarios\" is judged by the annotator. OC_comments may contain text after the outcome and no timing is available, so analogy use may follow or reflect the view change. Association only, not causal."
+}

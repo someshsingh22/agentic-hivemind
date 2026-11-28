@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_comment_quotes_op_text",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment directly quote wording from the original poster's title or argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment contains an explicit, direct textual quotation (verbatim or near-verbatim reuse, e.g. a markdown '>' blockquote or quotation-marked words) of wording that actually appears in the OP's title or argument; compare against title and argument to verify the quoted text comes from the OP. Quotation marks alone do not suffice: the quoted text must match OP text, not another source or a paraphrase. Quotations of other commenters or external sources do not count. Ignore any quoted OP text that is merely an OP view-change/delta-award announcement or post-outcome resolution/edit reporting the outcome; such text is not evidence. Return 0 if the list is valid but empty or no comment quotes OP text. Return null if OC_comments, title or argument is missing or malformed."
+    }
+  ],
+  "h0": "any_comment_quotes_op_text has no association with view change (delta).",
+  "h1": "Discussions with any_comment_quotes_op_text = 1 have higher view change than those with 0.",
+  "rhs": "any_comment_quotes_op_text",
+  "term": "any_comment_quotes_op_text",
+  "sign": "+",
+  "note": "Operational assumption: \"counter-arguments contain direct quotations from the OP\" is measured as at least one comment quoting OP title/argument text; the comparison group is discussions with no such quotation. Argument text is current text and may include edits or outcome announcements; the feature ignores those announcements as evidence, but comment timing is unknown. Comments are unordered, with no reply links inferred. Association only, not causal."
+}

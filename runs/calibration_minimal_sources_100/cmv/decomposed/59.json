@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_specific_empirical_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment offer specific empirical evidence (e.g., concrete data, statistics, studies, documented facts or cited real-world cases) to support its point?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment itself presents specific empirical evidence as support: concrete statistics, named studies or sources, documented historical/real-world cases or measurable data. Vague appeals to common sense, generic assertions, hypotheticals and purely logical argument do not count. An external source cited as support counts. Ignore any text announcing that the OP changed their view/awarded a delta or reporting the outcome; do not count it as evidence. Generic delta-rule discussion is neutral. Return 0 if the list is valid but empty or no comment qualifies; null if missing or malformed."
+    },
+    {
+      "name": "only_logical_refutation_comments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Do the counter-argument comments contain at least one logical refutation (reasoning against the OP's view) and no comment with specific empirical evidence?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment offers a logical refutation (reasoning, conceptual distinctions, internal inconsistency or counter-logic against the OP's view) AND no comment presents specific empirical evidence (concrete statistics, named studies/sources, documented real-world cases or measurable data). Return 0 if the list is empty, has no logical refutation, or any comment contains specific empirical evidence. Ignore text announcing the OP changed their view/awarded a delta or reporting the outcome; it is not evidence of either. Null if missing or malformed."
+    }
+  ],
+  "h0": "Controlling for only_logical_refutation_comments, any_comment_specific_empirical_evidence is unrelated to the probability that the OP changed their view.",
+  "h1": "Discussions with any_comment_specific_empirical_evidence=1 have a higher probability of OP view change than those with only_logical_refutation_comments=1.",
+  "rhs": "any_comment_specific_empirical_evidence + only_logical_refutation_comments",
+  "term": "any_comment_specific_empirical_evidence",
+  "sign": "+",
+  "note": "Reference group is neither feature (no empirical evidence and no logical refutation), so the empirical coefficient is relative to that group, not directly versus only-logical; the exact contrast beta_emp - beta_logical is not expressible as a single term. Comment order, timing and per-comment outcomes are unavailable. Comment text may contain delta/view-change announcements, which the prompts are told to ignore. Associations only, not causal."
+}

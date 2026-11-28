@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_acknowledges_valid_point_before_discrepancy",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly acknowledge a valid underlying point of the original poster before introducing a discrepancy or disagreement in that same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one single comment, in its own words, explicitly acknowledges that the OP has a valid/reasonable underlying point (e.g., 'you're right that...', 'I agree that X is fair') and THEN, later in that same comment, introduces a discrepancy, counterpoint or disagreement. Acknowledgment and discrepancy must co-occur in the same comment; separate comments cannot jointly satisfy it. Quoted text from others counts only if the commenter adopts it. Ignore any statements that the OP changed their view, delta awards, or post-outcome updates as evidence. Pure refutations with no explicit acknowledgment, generic politeness, or acknowledgment after the disagreement give 0. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "Discussions with any_comment_acknowledges_valid_point_before_discrepancy = 1 have the same view-change rate as discussions with value 0 (pure refutations).",
+  "h1": "Discussions with any_comment_acknowledges_valid_point_before_discrepancy = 1 have a higher view-change rate than discussions with value 0.",
+  "rhs": "any_comment_acknowledges_valid_point_before_discrepancy",
+  "term": "any_comment_acknowledges_valid_point_before_discrepancy",
+  "sign": "+",
+  "note": "Operational assumption: the comparison group \"pure refutations\" is operationalized as discussions with no comment having acknowledgment-then-discrepancy (feature = 0), which may also include discussions with other non-refutation comments. Order within a comment is judged from text order. Comments have no timestamps; OC_comments may contain outcome announcements, which the prompt is told to ignore. Associations only, not causal."
+}

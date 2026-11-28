@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "any_comment_quotes_op",
+      "dtype": "binary",
+      "source_columns": [
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment directly quote wording from the original post's argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment directly quotes the OP's wording from the argument text (verbatim or near-verbatim excerpt, e.g. in quote marks or blockquote '>' format, that matches a passage in the argument column). Verify the match against argument. Quotation marks alone do not suffice; quoted text from other sources does not count. Quote presence needs no endorsement or refutation. Ignore quoted text that is only an OP view-change/delta announcement or post-outcome update. Return 0 if the list is valid but empty or no comment quotes the OP. Return null if OC_comments or argument is missing or malformed."
+    }
+  ],
+  "h0": "any_comment_quotes_op is unassociated with the probability of the OP changing their view.",
+  "h1": "Discussions with any_comment_quotes_op = 1 have a higher probability of the OP changing their view.",
+  "rhs": "any_comment_quotes_op",
+  "term": "any_comment_quotes_op",
+  "sign": "+",
+  "note": "Association only. Operationalized as presence of at least one comment quoting the OP's argument text; title quotes are not included. Current argument text may include edits or outcome announcements, and comment order/timing is unknown. OLS on the binary delta outcome is a linear probability model."
+}

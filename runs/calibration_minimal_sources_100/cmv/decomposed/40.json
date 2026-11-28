@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counterargument_comment_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many counter-argument comments by other users are in the list?",
+      "kind": "code",
+      "spec": "import json; parse df['OC_comments'] as a JSON list; return len(list). Missing or malformed input gives null; an empty list gives 0."
+    }
+  ],
+  "h0": "Counterargument comment count is not associated with the frequency of OP attribution replies.",
+  "h1": "Posts with a single highly-rated counterargument have a higher frequency of OP attribution replies.",
+  "rhs": "counterargument_comment_count",
+  "term": null,
+  "sign": "+",
+  "note": "Unsupported. The claim needs (1) a per-comment rating, and none is supplied: post_score is the score of the OP's post, not of a comment. It also needs (2) the frequency of OP attribution replies as the outcome. The only outcome is delta, and OP replies are not available separately. conversation overlaps OC_comments, has unknown reply timing, and may include view-change announcements. I did not substitute a proxy. counterargument_comment_count only captures \"single comment\" and is not a test of the claim, so term=null."
+}

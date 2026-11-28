@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "argument_over_100_words",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument contain more than one hundred words?",
+      "kind": "code",
+      "spec": "If df['argument'] is missing or not a string, return null. Otherwise count words as len(re.findall(r\"\\S+\", argument.strip())) (whitespace-delimited tokens) and return 1 if count > 100 else 0. Empty string gives 0 (count 0). Raw text count; no semantic filtering."
+    }
+  ],
+  "h0": "Discussions with argument_over_100_words equal to 1 have the same likelihood of view change as those with 0.",
+  "h1": "Discussions with argument_over_100_words equal to 1 have a lower likelihood of view change than those with 0.",
+  "rhs": "argument_over_100_words",
+  "term": "argument_over_100_words",
+  "sign": "-",
+  "note": "Word count uses whitespace tokens of the current argument text (OP body only, not title). Argument text may include edits or outcome announcements (e.g., delta awards), which are counted as raw words; the text is not outcome-free and its timing is unknown. OLS on binary delta is a linear probability model; association only. The supplied log_length is not used because its construction is undocumented."
+}

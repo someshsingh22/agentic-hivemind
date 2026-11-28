@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_with_concrete_example",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments employ a specific, concrete illustrative example?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of counter-argument comments by users other than the OP). For each comment decide whether the commenter's own text employs a specific, concrete illustrative example (a particular named case, scenario, instance, or detailed real or hypothetical illustration) to support their argument, rather than only abstract or general claims. Quoted text from others counts only if the commenter adopts it as an illustration. Ignore any OP view-change/delta-award announcements, thanks-for-changing-my-view statements, or reports of the outcome; they are not evidence. Generic delta-rule discussion is eligible but is not itself an example. Return the number of comments with such an example divided by total number of comments (0 to 1). If the list is empty return null; if missing or malformed return null."
+    }
+  ],
+  "h0": "share_comments_with_concrete_example has no association with the probability that the OP changed their view.",
+  "h1": "Higher share_comments_with_concrete_example is associated with a higher probability that the OP changed their view.",
+  "rhs": "share_comments_with_concrete_example",
+  "term": "share_comments_with_concrete_example",
+  "sign": "+",
+  "note": "Operational assumption: the hypothesis says 'counter-arguments employ' examples without quantity; measured as the share of comments with a concrete example. Comments are unordered, with no timing; the OC_comments text may contain post-outcome content, which the prompt excludes as evidence. Association only, not causal. OLS on binary delta is a linear probability model."
+}

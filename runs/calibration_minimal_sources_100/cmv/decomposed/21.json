@@ -1,0 +1,32 @@
+{
+  "features": [
+    {
+      "name": "has_first_person_vulnerable_admission",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "Does the original post contain the OP's own first-person admission of a vulnerability, such as a personal weakness, mistake, fear, insecurity or hardship?",
+      "kind": "prompt",
+      "spec": "Read title and argument (the OP's post). Return 1 if the OP, in their own voice (I/me/my/we), admits a personal vulnerability: a weakness, mistake, fear, shame, insecurity, struggle or emotional hardship that they themselves have. Return 0 if there is none, or if such content appears only as a third-party account or an attributed quotation not adopted by the OP. Ignore any OP statements that announce a view change, award a delta, or report the discussion outcome, and any post-outcome edits/updates; these are not evidence. Generic discussion of platform or delta rules is neutral. Return null if both title and argument are missing."
+    },
+    {
+      "name": "has_distant_third_person_observation",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument"
+      ],
+      "definition": "Does the original post contain distant, third-person observations about others or society, rather than the OP's own personal experience?",
+      "kind": "prompt",
+      "spec": "Read title and argument (the OP's post). Return 1 if the OP makes detached observations about other people, groups, or society in the third person (they/people/he/she/society) as support or framing, without personal involvement. Return 0 if there are none. First-person vulnerable admissions do not count as such observations, but a post may satisfy both this feature and `has_first_person_vulnerable_admission`. Ignore OP view-change/delta announcements, outcome reports and post-outcome updates; generic platform/delta-rule discussion is neutral. Return null if both title and argument are missing."
+    }
+  ],
+  "h0": "Controlling for has_distant_third_person_observation, has_first_person_vulnerable_admission has no association with delta (view change).",
+  "h1": "Posts with has_first_person_vulnerable_admission have higher view-change likelihood than posts with has_distant_third_person_observation.",
+  "rhs": "has_first_person_vulnerable_admission + has_distant_third_person_observation",
+  "term": "has_first_person_vulnerable_admission",
+  "sign": "+",
+  "note": "Hypothesis compares two post types; the OLS cannot express the contrast beta_A - beta_B directly, so the term tests the vulnerable-admission coefficient while holding the observation feature fixed. Features are not mutually exclusive; posts with neither or both are possible. Text is current supplied text; it may contain outcome announcements or edits and has no timestamps, so timing relative to the outcome is unknown. Semantic prompts exclude such announcements. Associations only, not causal."
+}

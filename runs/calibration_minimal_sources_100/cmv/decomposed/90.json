@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "has_empirical_example_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment give a specific empirical example (a concrete real-world case, data, study or statistic) in support of its counter-argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment makes a specific counter-argument that cites a concrete empirical example as support: a named or particular real-world case, event, study, statistic, dataset or documented observation (including the commenter's own concrete experience or an external source cited as support). Return 0 if no comment does (only abstract reasoning, generic claims, hypotheticals, or vague appeals). Ignore comments' mentions of OP view change, delta awards, or post-outcome resolution updates as evidence; generic delta-rule discussion is not evidence either. Purely background quotations of others that are not used as support do not count. Empty list gives 0; missing or unparseable OC_comments gives null."
+    }
+  ],
+  "h0": "Discussions with a specific empirical-example counter-argument (has_empirical_example_counterargument=1) have the same association with OP view change (delta) as those without.",
+  "h1": "Discussions with has_empirical_example_counterargument=1 are more likely to have OP view change than those with 0.",
+  "rhs": "has_empirical_example_counterargument",
+  "term": "has_empirical_example_counterargument",
+  "sign": "+",
+  "note": "Association only. Operationally, \"specific counter-argument citing empirical examples\" is assessed as any available comment in OC_comments containing a concrete empirical example. Comment order/timing unknown; comments may contain outcome announcements, which are excluded as evidence in the semantic judgment. The comment list may be incomplete. Comparison group is discussions lacking such comments."
+}

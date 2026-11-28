@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "op_acknowledges_counterargument_or_limitation",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original poster's argument text explicitly acknowledge a counter-argument or a limitation of their own view?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's argument text). Return 1 if the OP, in their own voice, explicitly acknowledges a possible or known counter-argument, objection, exception, weakness or limitation of their own view (e.g., 'I admit this ignores X', 'one counterpoint is Y', 'I may be wrong because Z'). Return 0 if no such explicit acknowledgment is present. Do not count generic requests to change my view, quoted/other-speaker text not adopted by the OP, or any OP statement that a view was changed, delta awarded, or post-outcome edit/resolution update (ignore such text entirely as evidence). Missing or malformed argument gives null; empty text gives 0."
+    }
+  ],
+  "h0": "op_acknowledges_counterargument_or_limitation has no association with the probability of view change (delta).",
+  "h1": "Higher op_acknowledges_counterargument_or_limitation is associated with a higher probability of view change.",
+  "rhs": "op_acknowledges_counterargument_or_limitation",
+  "term": "op_acknowledges_counterargument_or_limitation",
+  "sign": "+",
+  "note": "Only current argument text is available; the 'initial' argument cannot be recovered since edits, timestamps and later additions are not distinguishable. The text may contain edits or outcome announcements; the prompt excludes these as evidence, but acknowledgments added after discussion may still be present. Association only, not causal."
+}

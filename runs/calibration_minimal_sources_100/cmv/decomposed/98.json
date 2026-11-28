@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "has_well_reasoned_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment present a well-reasoned counterargument (clear logic, support for its claims)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment gives a well-reasoned counterargument: it makes a clear, logically coherent case against the OP's view with explicit reasoning or supporting evidence. Return 0 if the list is valid but no comment does (including empty list). Return null if missing or malformed. Ignore any text announcing that the OP changed their view, delta awards, or post-outcome resolution updates as evidence. Comment order carries no meaning."
+    }
+  ],
+  "h0": "has_well_reasoned_counterargument is unrelated to the frequency of OP logical concession statements.",
+  "h1": "has_well_reasoned_counterargument is associated with a higher frequency of OP logical concession statements.",
+  "rhs": "has_well_reasoned_counterargument",
+  "term": null,
+  "sign": "+",
+  "note": "The claimed outcome is frequency of logical concession statements by the OP, not the dataset outcome delta. OP concessions in the supplied text would be largely concessions/view-change announcements that reveal the outcome, and the OP's replies are not separately supplied other than within conversation, with unknown timing. No faithful measure or test with delta is available, so term=null; a delta regression would substitute a different claim. The predictor feature is provided only as a measurement of the counterargument side; well-reasoned is judged by the extractor without a supplied scale."
+}

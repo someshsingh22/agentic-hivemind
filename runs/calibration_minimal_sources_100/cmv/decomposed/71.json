@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "concrete_example_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments offer a concrete, locally verifiable example (specific case, instance, figure or checkable detail) as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment decide whether, in the commenter's own assertions (or an external source adopted as support), it gives at least one concrete, specific, checkable example as support (a named/specific case, event, data point, or particular instance whose details could be verified). Generic hypotheticals, vague appeals and purely abstract principles do not count. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome; do not count them as evidence. Output the number of qualifying comments divided by total comments (0-1). Empty list: null; malformed/missing: null. 'Locally verifiable' is interpreted as checkable from specifics given in the comment itself."
+    },
+    {
+      "name": "abstract_principle_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments rely on abstract principles or general reasoning without any concrete, locally verifiable example?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment decide whether its argument rests on abstract principles, general claims or general reasoning AND contains no concrete, specific, checkable example (named case, event, data point, particular instance). Use the commenter's own assertions. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome. Output number of qualifying comments divided by total comments (0-1). Empty list: null; malformed/missing: null. Comments with neither (e.g. questions, pleasantries) are not counted in the numerator."
+    }
+  ],
+  "h0": "concrete_example_comment_share has no association with the probability of view change, holding abstract_principle_comment_share fixed.",
+  "h1": "Higher concrete_example_comment_share is associated with a higher probability of view change, holding abstract_principle_comment_share fixed.",
+  "rhs": "concrete_example_comment_share + abstract_principle_comment_share",
+  "term": "concrete_example_comment_share",
+  "sign": "+",
+  "note": "Both named groups measured as comment shares; the coefficient on the concrete share conditional on the abstract share only approximates the contrast. Comments can be in neither group, so shares are not complements. 'Locally verifiable' operationalized as checkable from specifics in the comment; no external verification. OC_comments may contain later replies or view-change announcements (excluded from semantic judgments) and no timing is available. Associations only; OLS on binary delta is a linear probability model."
+}

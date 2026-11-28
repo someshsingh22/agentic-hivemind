@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_cites_numerical_data",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment give specific numerical data or statistics as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment itself offers specific numerical data or statistics (e.g., percentages, counts, rates, measured quantities, cited study figures) as support for its argument; attributed figures from a cited source count. Return 0 if none do (only general assertions, or numbers that are not evidence such as list numbering, dates alone, or hypothetical illustrative numbers). Ignore any text announcing OP view change/delta awards or outcome reports as evidence. Empty list gives 0; missing or malformed gives null."
+    }
+  ],
+  "h0": "any_comment_cites_numerical_data has no association with the likelihood of OP view change.",
+  "h1": "Discussions with any_comment_cites_numerical_data=1 have a higher likelihood of OP view change than those without.",
+  "rhs": "any_comment_cites_numerical_data",
+  "term": "any_comment_cites_numerical_data",
+  "sign": "+",
+  "note": "Operational assumption: \"relying on general assertions\" is operationalized as no comment containing specific numerical data (any-comment presence), not as a separate measured category. Comments are unordered, with no timing; the comments may be after or contain outcome-related text, which is excluded from the measure. Association only."
+}

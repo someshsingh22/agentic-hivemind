@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_comment_quotes_or_references_op_text",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "argument",
+        "title"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly quote or reference a specific textual element of the original post?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment explicitly quotes (verbatim or near-verbatim, e.g. block quote or quotation marks matching OP wording) or explicitly points to a specific passage, sentence, phrase, claim or wording of the OP's title or argument (e.g. 'you said X', 'your point about Y in the post'). Use title and argument only to verify that the quoted/referenced element comes from the OP post. Generic references to the OP's overall view without a specific textual element do not count. Quotation marks alone do not suffice if the text is not from the OP post. Ignore OP view-change/delta announcements and post-outcome resolution updates as evidence. Return 0 if no comment qualifies or the list is empty; null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "any_comment_quotes_or_references_op_text has no association with the probability of view change (delta).",
+  "h1": "Rows with any_comment_quotes_or_references_op_text = 1 have a higher probability of view change.",
+  "rhs": "any_comment_quotes_or_references_op_text",
+  "term": "any_comment_quotes_or_references_op_text",
+  "sign": "+",
+  "note": "Operationalized as \"at least one comment\" for \"discussions containing\" such counter-arguments. Linear probability model on binary delta. Comments may be from after the OP's text was edited; the current text may contain edits or outcome announcements, and comment timing is unknown. Association only."
+}

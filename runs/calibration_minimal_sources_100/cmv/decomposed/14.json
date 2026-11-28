@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_with_concrete_example",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments provide a concrete real-world example (specific case, event, person, data point or personal experience) as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than OP). For each comment decide whether it offers at least one concrete real-world example (specific named or described real case, event, person, institution, statistic or firsthand experience) as support for its point, as opposed to purely abstract/general reasoning or hypotheticals. Return the number of such comments divided by the total number of comments (0 to 1). Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Quotations from others count only if cited as an example supporting the commenter's point. Empty list: null. Missing or malformed input: null."
+    }
+  ],
+  "h0": "share_comments_with_concrete_example has no association with the likelihood of view change.",
+  "h1": "Higher share_comments_with_concrete_example is associated with a higher likelihood of view change.",
+  "rhs": "share_comments_with_concrete_example",
+  "term": "share_comments_with_concrete_example",
+  "sign": "+",
+  "note": "Operationalization: \"relying primarily on abstract reasoning\" is treated as the low end of the share of comments with concrete examples; a continuous share is used rather than a majority-based dichotomy. Comments are unordered, with no timing; OC_comments may contain outcome-related text, which is excluded semantically. Association only, not causal."
+}

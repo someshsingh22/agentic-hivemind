@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "has_direct_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment directly argue against the OP's stated view or a specific claim in it?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Read title and argument only to identify the OP's stated view. Return 1 if at least one comment itself asserts a reason, evidence, or reasoning that directly opposes the OP's view or a specific OP claim. Return 0 if no comment does (e.g., only questions, clarifications, agreement, jokes, off-topic, or tangents). Quotations of others count only if the commenter adopts them. Ignore any OP view-change/delta-award announcements, post-outcome resolution statements, or reports of the outcome as evidence. Empty list gives 0; missing or malformed OC_comments gives null."
+    }
+  ],
+  "h0": "has_direct_counterargument has no association with delta.",
+  "h1": "Higher has_direct_counterargument is associated with higher likelihood of delta=1.",
+  "rhs": "has_direct_counterargument",
+  "term": "has_direct_counterargument",
+  "sign": "+",
+  "note": "The outcome is delta (OP changed view). The hypothesis's 'upvoting the reply' alternative is not measured, so only the view-change part is tested. Associations only. Comments are unordered with no timestamps; OC_comments may contain text revealing outcomes, which the prompt excludes as evidence. Nearly every post may have some counterargument, so the feature may have low variance. Operational assumption: the 'post contains direct counterarguments' is measured as at least one comment directly opposing the OP's view."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counter_argument_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many counter-argument comments are in the discussion's available list?",
+      "kind": "code",
+      "spec": "import json; parse df['OC_comments'] as a JSON list; return len(list). Return null if missing or not parseable as a list; empty list gives 0. Counts comments, not distinct commenters."
+    }
+  ],
+  "h0": "counter_argument_count has no association with the likelihood that the OP changed their view.",
+  "h1": "Higher counter_argument_count is associated with a higher likelihood of the OP changing their view (fewer responses, lower likelihood).",
+  "rhs": "counter_argument_count",
+  "term": "counter_argument_count",
+  "sign": "+",
+  "note": "\"Fewer\" is operationalized as a lower count of comments in OC_comments, tested linearly. The supplied list is \"available\" comments and may be a filtered subset of all replies. It may include comments that led to or followed a delta, so the count could be tied to the outcome. List length counts comments, not distinct commenters. This is an association only. The hypothesis says \"original argument contains\" responses; the responses come from OC_comments, not the argument text."
+}

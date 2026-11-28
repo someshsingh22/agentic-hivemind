@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "op_admits_uncertainty",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument contain an explicit admission by the OP of their own uncertainty about their view or claims?",
+      "kind": "prompt",
+      "spec": "Read only `argument` (OP's body text). Return 1 if the OP, in their own voice, explicitly admits uncertainty, doubt, or fallibility about their view or claims (e.g., 'I'm not sure', 'I might be wrong', 'I'm unsure whether'). Return 0 otherwise. Do not count uncertainty merely in quoted other-speaker text unless the OP adopts it, generic hedging words not about the OP's own stance, or any OP view-change/delta-award announcement, post-outcome edit/update, or report of the outcome. Empty text gives 0; missing or malformed gives null."
+    },
+    {
+      "name": "op_asserts_absolute_certainty",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the original argument assert absolute certainty about the OP's view, such as claiming it cannot possibly be wrong?",
+      "kind": "prompt",
+      "spec": "Read only `argument`. Return 1 if the OP, in their own voice, explicitly asserts absolute certainty or infallibility about their view (e.g., 'I am 100% certain', 'there is no possible way I'm wrong', 'undeniably true'). Return 0 otherwise. Do not count quoted other-speaker text unless adopted, ordinary confident statements without explicit absolute-certainty claims, or any OP view-change/delta-award announcement, post-outcome update, or outcome report. Empty text gives 0; missing or malformed gives null."
+    }
+  ],
+  "h0": "op_admits_uncertainty has no association with the probability of view change, controlling for op_asserts_absolute_certainty.",
+  "h1": "op_admits_uncertainty is associated with a higher probability of view change than op_asserts_absolute_certainty cases, i.e., its coefficient is positive.",
+  "rhs": "op_admits_uncertainty + op_asserts_absolute_certainty",
+  "term": "op_admits_uncertainty",
+  "sign": "+",
+  "note": "The contrast is operationalized with two separate indicators; the coefficient on op_admits_uncertainty is relative to rows with neither, and does not equal the difference between the two coefficients. Both can be 1 or 0 in a row. Argument text is current text and may include edits or outcome announcements (contamination/timing risk); the semantic features exclude those. Associations only, not causal."
+}

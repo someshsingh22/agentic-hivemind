@@ -1,0 +1,33 @@
+{
+  "features": [
+    {
+      "name": "any_comment_refutes_op_example",
+      "dtype": "binary",
+      "source_columns": [
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly refute a specific example or anecdote that the original poster gave in their argument?",
+      "kind": "prompt",
+      "spec": "Read argument (OP text) and OC_comments (JSON list of other users' comments; parse it). Return 1 if at least one comment, in its own assertions, explicitly disputes, rebuts or debunks a specific example, case or anecdote that the OP provided in argument (e.g., argues the OP's cited case is factually wrong or does not show what OP claims). Return 0 if no comment does so, including when comments only address the general premise. Ignore any OP view-change/delta-award announcements, post-outcome updates and reports of the outcome as evidence. Quoted text counts only if the commenter adopts the refutation. Empty comment list: 0. Missing/malformed input: null."
+    },
+    {
+      "name": "any_comment_addresses_main_premise",
+      "dtype": "binary",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment directly argue against the OP's main premise or overall claim rather than a specific example?",
+      "kind": "prompt",
+      "spec": "Read title and argument (OP's main claim) and OC_comments (JSON list of other users' comments; parse it). Return 1 if at least one comment, in its own assertions, directly argues against the OP's central premise/general claim (not merely a specific example or anecdote). Return 0 otherwise. Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome as evidence. Empty comment list: 0. Missing/malformed input: null."
+    }
+  ],
+  "h0": "any_comment_refutes_op_example has no association with the probability of view change, controlling for any_comment_addresses_main_premise.",
+  "h1": "Discussions with any_comment_refutes_op_example=1 have a higher probability of view change than those without, controlling for any_comment_addresses_main_premise.",
+  "rhs": "any_comment_refutes_op_example + any_comment_addresses_main_premise",
+  "term": "any_comment_refutes_op_example",
+  "sign": "+",
+  "note": "The hypothesis compares example-refuting vs main-premise-addressing arguments; the OLS contrast beta_example - beta_premise is not directly a single term, so the example coefficient is tested with premise held fixed (approximation). Features are not mutually exclusive; both can be 1. List order gives no chronology; no reply links inferred. Comment text and conversation may contain outcome announcements; semantic features exclude them, but residual contamination is possible. Associations only."
+}

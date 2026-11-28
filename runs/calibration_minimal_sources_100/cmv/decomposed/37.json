@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "contrasts_op_view_with_personal_experience",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly contrast the OP's view with a relatable real-world personal experience (the commenter's own or someone they know) in that same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Read argument only to identify the OP's view. Return 1 if at least one single comment both (a) describes a real-world personal experience (the commenter's own or a concrete first-hand/known-person experience, not hypothetical, generic or merely quoted-from-others unless adopted as the commenter's own) and (b) explicitly sets that experience against or in contrast with the OP's stated view (e.g., 'unlike what you say, in my case...'). The two elements must co-occur in the same comment; separate comments cannot jointly satisfy it. Return 0 if no comment qualifies, including when the list is valid but empty. Return null if OC_comments is missing or malformed. Ignore any text announcing the OP's view change, delta awards, or post-outcome resolution updates as evidence; generic delta-rule discussion is eligible. List order implies no chronology."
+    }
+  ],
+  "h0": "Discussions with and without a counter-argument contrasting the OP's view with a personal experience (contrasts_op_view_with_personal_experience) have equal likelihood of view change.",
+  "h1": "Discussions with contrasts_op_view_with_personal_experience=1 have a higher likelihood of view change.",
+  "rhs": "contrasts_op_view_with_personal_experience",
+  "term": "contrasts_op_view_with_personal_experience",
+  "sign": "+",
+  "note": "Operational assumptions: 'relatable' is not separately scored; it is operationalized as a concrete real-world personal experience. Association only. OLS on binary delta is a linear probability model. Comment text may contain outcome announcements or later replies; these are excluded from the semantic judgment, but no timing information is available. Comment-level reply timing is unknown."
+}

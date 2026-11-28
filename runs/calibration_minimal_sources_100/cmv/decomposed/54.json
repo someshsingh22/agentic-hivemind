@@ -1,0 +1,34 @@
+{
+  "features": [
+    {
+      "name": "any_comment_quotes_op",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly quote the OP's own title or argument wording?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment explicitly quotes the OP's wording from title or argument (verbatim or near-verbatim text, e.g. in quotation marks or blockquote '>' lines, matching OP's text). Return 0 if no comment does so (including empty list). Quotes of other sources or other users do not count. Paraphrase without reproducing OP wording does not count. Ignore OP view-change/delta-award announcements or outcome reports as evidence. Missing or malformed OC_comments, title or argument: null."
+    },
+    {
+      "name": "any_comment_paraphrases_op",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment restate the OP's view in its own words without quoting the OP's wording?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Return 1 if at least one comment explicitly restates or summarizes the OP's claim/argument from title or argument in its own words (paraphrase, not reproducing OP wording in quotes or blockquote). Return 0 if none does (including empty list). Ignore OP view-change/delta-award announcements or outcome reports as evidence. Missing or malformed inputs: null."
+    }
+  ],
+  "h0": "any_comment_quotes_op is not associated with probability of view change (delta) when controlling for any_comment_paraphrases_op.",
+  "h1": "any_comment_quotes_op is associated with a higher probability of view change than its absence, controlling for any_comment_paraphrases_op.",
+  "rhs": "any_comment_quotes_op + any_comment_paraphrases_op",
+  "term": "any_comment_quotes_op",
+  "sign": "+",
+  "note": "Operational assumption: \"quote rather than paraphrase\" is measured at discussion level as presence of quoting, with paraphrase presence as a covariate; the coefficient is not an exact quote-vs-paraphrase contrast (overlap and neither cases preserved). Quoting is judged against current title/argument, which may include edits or outcome announcements (excluded semantically). Comment order and timing unknown; OC_comments may include comments after the view change. Associations only."
+}

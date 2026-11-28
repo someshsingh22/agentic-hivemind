@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "title_absolute_certainty_marker",
+      "dtype": "binary",
+      "source_columns": [
+        "title"
+      ],
+      "definition": "Does the original post title use absolute certainty markers (e.g., always, never, everyone, no one, obviously, undeniably, definitely, 100%)?",
+      "kind": "prompt",
+      "spec": "Read only the title. Return 1 if the title itself asserts with absolute certainty markers, such as universal/absolute quantifiers or intensifiers (always, never, all, every, everyone, no one, nobody, absolutely, obviously, undeniably, definitely, certainly, without a doubt, 100%, completely, impossible). Return 0 if no such marker appears. Ignore hedged uses (e.g., 'I think', 'maybe') only if the marker is not itself asserted as absolute; do not count markers in quoted words attributed to others. Ignore any text announcing view changes or delta awards (not expected in title). Return null if the title is missing or empty."
+    }
+  ],
+  "h0": "title_absolute_certainty_marker has no association with the likelihood of the OP changing their view.",
+  "h1": "Titles with title_absolute_certainty_marker=1 are associated with a lower likelihood of the OP changing their view than titles without.",
+  "rhs": "title_absolute_certainty_marker",
+  "term": "title_absolute_certainty_marker",
+  "sign": "-",
+  "note": "Operational assumption: absolute certainty markers are defined by the listed examples (absolute quantifiers and certainty adverbs) with LLM judgment; the list is not exhaustive. Title only is used. Association only, not causal. Titles may rarely contain edits or outcome text, a contamination risk."
+}

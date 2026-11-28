@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "post_created_timestamp",
+      "dtype": "numeric",
+      "source_columns": [
+        "post_created_utc"
+      ],
+      "definition": "What is the original post's creation time as a Unix timestamp (later = larger)?",
+      "kind": "code",
+      "spec": "df['post_created_timestamp'] = pd.to_numeric(df['post_created_utc'], errors='coerce'); null if missing or malformed. Units: Unix seconds."
+    }
+  ],
+  "h0": "post_created_timestamp has no association with the likelihood of view change.",
+  "h1": "Higher post_created_timestamp (later posts) is associated with a higher likelihood of view change.",
+  "rhs": "post_created_timestamp",
+  "term": "post_created_timestamp",
+  "sign": "+",
+  "note": "\"Later in the dataset period\" is operationalized as a linear trend in the raw Unix timestamp of post creation (range ~2013 to 2025). Only an association is tested, with a linear OLS term; non-linear time trends are not modeled. The timestamp is the OP's post time, not any comment or outcome time. The sample is balanced 1,000 changed and 1,000 unchanged, so the baseline rate is not natural."
+}

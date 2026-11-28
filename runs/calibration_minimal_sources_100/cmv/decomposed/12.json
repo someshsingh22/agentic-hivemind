@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "quote_and_refute_op_factual_claim",
+      "dtype": "binary",
+      "source_columns": [
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly quote or closely reproduce a specific factual claim from the OP's argument and, in that same comment, refute it?",
+      "kind": "prompt",
+      "spec": "Read argument (OP text) and OC_comments (JSON list of comments by other users; parse it). Return 1 if at least one single comment both (a) explicitly quotes (verbatim or near-verbatim, e.g. block quote or quotation marks) a specific factual claim that appears in the OP's argument, and (b) in that same comment argues that this factual claim is false, inaccurate or unsupported. Both must occur within the same comment; separate comments cannot jointly satisfy it. Quoting opinions/value judgments or refuting without quoting gives no credit. Ignore any OP view-change or delta-award announcements, post-outcome updates, and reports of the outcome as evidence. Return 0 if the list is valid but empty or no comment qualifies; null if OC_comments or argument is missing or malformed."
+    }
+  ],
+  "h0": "quote_and_refute_op_factual_claim has no association with the probability of view change.",
+  "h1": "Discussions with quote_and_refute_op_factual_claim = 1 have a higher rate of view change than those with 0.",
+  "rhs": "quote_and_refute_op_factual_claim",
+  "term": "quote_and_refute_op_factual_claim",
+  "sign": "+",
+  "note": "Operational assumptions: \"specific factual claim\" is judged by the annotator; quoting includes near-verbatim reproduction. Comments are unordered and may be after-the-fact; OP argument text may include edits or outcome announcements (excluded from semantic judgment). Association only, tested via OLS linear probability on delta."
+}
