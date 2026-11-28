@@ -1,0 +1,31 @@
+{
+  "constructs": {
+    "surface_features": [
+      "number of entries in OC_comments",
+      "more than one comment vs exactly one"
+    ],
+    "theoretical_construct": "breadth of counter-argument exposure (multiple distinct counter-argument comments)",
+    "secondary_constructs": [
+      "engagement volume"
+    ],
+    "domain": "Reddit r/changemyview discussions"
+  },
+  "features": [
+    {
+      "name": "multiple_counter_comments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does the discussion contain more than one counter-argument comment (versus exactly one)?",
+      "kind": "code",
+      "spec": "Parse OC_comments as JSON list; df['multiple_counter_comments'] = 1 if len(list) >= 2, 0 if len(list) == 1. Empty list gives 0 (valid empty input; none observed in data); missing/malformed gives null."
+    }
+  ],
+  "h0": "multiple_counter_comments has no association with the likelihood of view change.",
+  "h1": "Discussions with multiple_counter_comments = 1 have a higher likelihood of view change than those with a single comment.",
+  "rhs": "multiple_counter_comments",
+  "term": "multiple_counter_comments",
+  "sign": "+",
+  "note": "Comment count is list length, not verified distinct commenters or semantically distinct arguments; \"distinct\" is operationalized as separate list entries. All rows have at least one comment. The list may be a sample/subset of the discussion and may include comments after the view change; timing is unknown. Association only, via OLS (linear probability) on delta."
+}

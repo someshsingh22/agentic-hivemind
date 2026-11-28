@@ -1,0 +1,390 @@
+{
+  "env": {
+    "name": "cmv",
+    "target": "delta",
+    "group": "post_id",
+    "csv": "data/cmv.csv",
+    "hypotheses": "data/hypotheses_ssh_eval/cmv.json",
+    "description": "Measure the supplied hypotheses; do not discover, rewrite or refine them. Each feature is\none scalar measurement of a discussion row, not a separate observation for every comment.\nThe full supplied corpus contains 2,000 rows: 1,000 changed and 1,000 unchanged outcomes.\nDescribe associations, not proven causal effects or prospective prediction.\n\nColumns:\n  - post_created_utc: Unix timestamp for the original post, not a comment or score-measurement\n    timestamp. Response delay cannot be calculated from it.\n  - title: the original poster's (OP's) heading or claim statement, not the argument body.\n  - argument: the OP's explanation of their view. Use this field for argument-body measurements;\n    include title only when the requested scope includes the heading or when it is needed to\n    interpret a comment's target. Text can contain quotations, edits and outcome announcements.\n  - OC_comments: a JSON-encoded list of available counter-argument comments by OTHER users,\n    not the OP. Parse the list before counting comments, words or semantic instances.\n    Specify any/all/count/share/mean explicitly. List order is not rank, importance or chronology.\n    If properties must coexist in one comment, assess their conjunction within that comment;\n    separate comments cannot jointly satisfy it. The row-level extractor still returns one scalar.\n    List length counts comments, not necessarily distinct commenters. No per-comment outcomes,\n    scores or timestamps are supplied. OP-language measurements use title/argument instead.\n  - conversation: formatted interaction text overlapping OC_comments, not extra independent\n    evidence. It may include later replies and explicit view-change announcements. Do not use\n    it as an initial-argument snapshot. When interaction is required, specify speaker/turn\n    selection. Disclose unknown reply timing and do not infer reply links from speaker order alone.\n  - log_length: a supplied log-transformed length measure. Construction, source text, log base\n    and timing are undocumented. When named by the hypothesis, use the supplied value and state\n    that limitation; do not equate it with argument word count or reconstruct its log base.\n  - post_score: the observed original-post score, not a comment score, voter count or initial\n    endorsement. Its measurement time relative to the outcome is unknown; post_created_utc\n    does not establish that timing.\n  - delta: OUTCOME, 1 if the OP changed their view, else 0. Never a predictor or annotation input.\n  - post_id, comment_id: identifiers, never predictors.\n\nAttribution and unavailable measurements:\n  - No measured personality scores, Big Five questionnaires or author demographics are supplied.\n    A personality inference from writing is a linguistic proxy, not an observed trait; do not\n    substitute it silently when the hypothesis requires an unavailable measurement.\n  - Distinguish the author's own assertions or experiences from attributed quotations.\n    An external source cited as support can count for an evidence feature without making the\n    source's wording or experience the author's own. Background/rebuttal quotations are not\n    automatically adopted support. Apply this distinction to OP text and other users' comments.\n    Quotation marks alone do not establish another speaker.\n\nComputation and source suitability:\n  - Use code for raw counts, regex/literal matching, supplied numeric columns and fixed\n    computational recipes. Use a prompt when the measurement requires understanding meaning.\n    Do not add semantic filtering to a raw count or URL detector merely because outcome text\n    may occur in its source. Disclose that contamination risk; raw text is not outcome-free.\n  - Semantic feature specs must exclude OP view-change/delta-award announcements, post-outcome\n    resolution updates and reports of the outcome as evidence of the construct. Generic\n    platform/delta-rule discussion remains eligible. Explicitly requested semantic exclusions\n    remain part of any measurement; never remove one just to force code.\n  - Use current supplied text unless the hypothesis restricts time. Deleting edits does not\n    recover initial/pre-outcome text. No supplied comment/edit timestamps establish timing.\n    If a required temporal measurement is unavailable, explain it and set term=null.\n  - delta remains the fixed outcome. A hypothesis requiring a different outcome or an\n    outcome-revealing predictor is unsupported: preserve the claim, explain it and set\n    term=null rather than substituting another test or a cleaned concession/attitude proxy.\n"
+  },
+  "decomposed": [
+    {
+      "id": 5,
+      "hypothesis": "Counter-arguments frequently challenging multiple distinct factual premises within the argument are positively associated with view change.",
+      "constructs": {
+        "surface_features": [
+          "counter-argument comments disputing several distinct factual claims in the OP's argument"
+        ],
+        "theoretical_construct": "breadth of factual premise-level rebuttal",
+        "secondary_constructs": [
+          "counterargument specificity",
+          "epistemic challenge"
+        ],
+        "domain": "Reddit r/changemyview OP arguments and counter-comments"
+      },
+      "features": [
+        {
+          "name": "share_comments_challenging_multiple_factual_premises",
+          "dtype": "numeric",
+          "source_columns": [
+            "title",
+            "argument",
+            "OC_comments"
+          ],
+          "definition": "What share of counter-argument comments each challenge two or more distinct factual premises of the OP's argument?",
+          "kind": "prompt",
+          "spec": "Parse OC_comments (JSON list of other users' comments). For each comment, using title and argument to identify the OP's factual (empirical/descriptive, not value or normative) premises, decide whether that single comment itself challenges, disputes or presents counter-evidence against at least two distinct factual premises of the OP. Count only the commenter's own assertions, not quoted OP text or quoted others unless adopted. Challenges to values, logic only, or tone do not count; separate comments cannot combine to satisfy the condition. Ignore any OP view-change/delta-award announcements, thanks, post-outcome updates or reports of the outcome as evidence. Return qualifying comments divided by total comments (0 to 1). Return null if the list is empty, missing or malformed."
+        },
+        {
+          "name": "count_distinct_factual_premises_challenged",
+          "dtype": "numeric",
+          "source_columns": [
+            "title",
+            "argument",
+            "OC_comments"
+          ],
+          "definition": "How many distinct factual premises in the OP's argument are challenged by the counter-argument comments overall?",
+          "kind": "prompt",
+          "spec": "Parse OC_comments. Identify the OP's factual (empirical/descriptive) premises from title and argument. Count the distinct premises challenged, disputed or countered with evidence by at least one comment's own assertions (not quotations unless adopted). Same premise challenged by several comments counts once. Exclude value/normative disputes and any OP view-change/delta announcements, post-outcome updates or outcome reports. Return a non-negative integer; 0 for a valid empty comment list; null if missing or malformed."
+        }
+      ],
+      "h0": "share_comments_challenging_multiple_factual_premises has no association with delta.",
+      "h1": "share_comments_challenging_multiple_factual_premises is positively associated with delta.",
+      "rhs": "share_comments_challenging_multiple_factual_premises",
+      "term": "share_comments_challenging_multiple_factual_premises",
+      "sign": "+",
+      "note": "\"Frequently\" operationalized as the share of comments each challenging at least two distinct factual premises; the secondary count feature is a related overall-breadth measure and is not in the tested model. Factual vs. normative premise distinction is judged by the annotator. Comments are unordered, with no timing, and the current text may include outcome announcements, which are excluded semantically. Association only, not causal."
+    },
+    {
+      "id": 33,
+      "hypothesis": "Discussions where the observed original-post score exceeds 50 are associated with a lower likelihood of view change than those with lower observed scores.",
+      "constructs": {
+        "surface_features": [
+          "observed original-post score above 50"
+        ],
+        "theoretical_construct": "post popularity/visibility as signaled by score",
+        "secondary_constructs": [
+          "community endorsement"
+        ],
+        "domain": "Reddit r/changemyview discussions"
+      },
+      "features": [
+        {
+          "name": "post_score_above_50",
+          "dtype": "binary",
+          "source_columns": [
+            "post_score"
+          ],
+          "definition": "Is the observed original-post score greater than 50?",
+          "kind": "code",
+          "spec": "pd.Series(np.where(pd.to_numeric(df['post_score'], errors='coerce').isna(), np.nan, (pd.to_numeric(df['post_score'], errors='coerce') > 50).astype(float))). 1 if post_score > 50 (strictly), 0 if <= 50, null if missing or non-numeric."
+        }
+      ],
+      "h0": "post_score_above_50 has no association with the likelihood of view change (delta).",
+      "h1": "Discussions with post_score_above_50 equal to 1 have a lower likelihood of view change than those with 0.",
+      "rhs": "post_score_above_50",
+      "term": "post_score_above_50",
+      "sign": "-",
+      "note": "Threshold is strictly >50 as stated. post_score measurement time relative to the outcome is unknown and may reflect post-outcome popularity; post_created_utc does not establish timing. Association only, not causal. OLS on binary delta is a linear probability model."
+    },
+    {
+      "id": 38,
+      "hypothesis": "Discussion posts with titles containing explicit emotional or personal identifiers are associated with a lower likelihood of the original poster changing their view.",
+      "constructs": {
+        "surface_features": [
+          "title contains explicit emotional words or personal identifiers (e.g., 'I hate', first-person self-reference, identity statements)"
+        ],
+        "theoretical_construct": "emotional/personal framing of the post title",
+        "secondary_constructs": [
+          "personal involvement",
+          "affective language",
+          "OP openness to changing view"
+        ],
+        "domain": "Reddit r/changemyview discussion posts"
+      },
+      "features": [
+        {
+          "name": "title_emotional_or_personal_identifier",
+          "dtype": "binary",
+          "source_columns": [
+            "title"
+          ],
+          "definition": "Does the post title contain an explicit emotional expression or explicit personal identifier (e.g., first-person self-reference or stated personal identity/experience)?",
+          "kind": "prompt",
+          "spec": "Read only the title. Return 1 if the title explicitly contains (a) emotion words/expressions (e.g., hate, love, angry, afraid, annoyed, feel) or (b) explicit personal identifiers: first-person self-reference (I, me, my, I'm) or a stated personal identity, role or experience of the author (e.g., 'as a woman', 'I'm a veteran'). Return 0 otherwise. Ignore the 'CMV:' prefix. Judge only the title's literal wording; do not infer from the argument. Do not treat any view-change/delta announcement as evidence. Empty or missing title gives null."
+        }
+      ],
+      "h0": "title_emotional_or_personal_identifier has no association with the probability of delta (coefficient = 0).",
+      "h1": "Posts with title_emotional_or_personal_identifier = 1 have lower probability of OP view change than those with 0 (coefficient < 0).",
+      "rhs": "title_emotional_or_personal_identifier",
+      "term": "title_emotional_or_personal_identifier",
+      "sign": "-",
+      "note": "'Emotional or personal identifiers' is ambiguous; operationalized as explicit emotion words or first-person/personal identity references in the title, combined as OR. Binary presence only; no intensity scale. OLS on binary delta is a linear probability model; association only. Title text is current supplied text; timing unknown, though titles rarely contain outcome announcements."
+    },
+    {
+      "id": 49,
+      "hypothesis": "Discussions where counter-arguments explicitly acknowledge the original poster's underlying valid point before introducing the discrepancy are associated with higher view-change rates than pure refutations.",
+      "constructs": {
+        "surface_features": [
+          "counter-comment explicitly acknowledges OP's valid point before introducing a discrepancy",
+          "pure refutation without acknowledgment"
+        ],
+        "theoretical_construct": "validation before disagreement (face-saving, conciliatory counterargument framing)",
+        "secondary_constructs": [
+          "politeness",
+          "perceived receptiveness",
+          "refutation style"
+        ],
+        "domain": "Reddit r/changemyview discussions"
+      },
+      "features": [
+        {
+          "name": "any_comment_acknowledges_then_discrepancy",
+          "dtype": "binary",
+          "source_columns": [
+            "OC_comments",
+            "title",
+            "argument"
+          ],
+          "definition": "Does at least one counter-argument comment explicitly acknowledge the OP's underlying valid point before, in that same comment, introducing a discrepancy or disagreement?",
+          "kind": "prompt",
+          "spec": "Parse OC_comments (JSON list of comments by other users). Use title and argument only to interpret what the OP's point is. Return 1 if at least one single comment both (a) explicitly acknowledges that some underlying point of the OP is valid/reasonable/correct and (b) afterwards in the same comment introduces a discrepancy, counterexample or disagreement. Both parts must be in the same comment; separate comments cannot jointly satisfy it. Return 0 if no comment does (including when all comments are pure refutations or empty list). Null if OC_comments is missing or malformed. Ignore OP view-change/delta-award announcements, post-outcome updates, and any reports of the outcome as evidence; generic delta-rule discussion is eligible. Quoted OP text alone is not acknowledgment unless the commenter adopts it as valid."
+        },
+        {
+          "name": "all_comments_pure_refutation",
+          "dtype": "binary",
+          "source_columns": [
+            "OC_comments",
+            "title",
+            "argument"
+          ],
+          "definition": "Is every counter-argument comment a pure refutation with no explicit acknowledgment of any valid point by the OP?",
+          "kind": "prompt",
+          "spec": "Parse OC_comments. Use title and argument only for context. Return 1 if the list is nonempty and every comment challenges or refutes the OP's view without explicitly acknowledging any OP point as valid. Return 0 if at least one comment explicitly acknowledges a valid OP point. Null if OC_comments is missing/malformed or empty. Ignore OP view-change/delta announcements, post-outcome updates and outcome reports as evidence."
+        }
+      ],
+      "h0": "any_comment_acknowledges_then_discrepancy is not associated with delta (coefficient is zero).",
+      "h1": "any_comment_acknowledges_then_discrepancy is associated with higher view-change (delta) rates than discussions without it.",
+      "rhs": "any_comment_acknowledges_then_discrepancy",
+      "term": "any_comment_acknowledges_then_discrepancy",
+      "sign": "+",
+      "note": "Operational assumption: discussion-level \"acknowledge-then-discrepancy\" is any comment with the conjunction; the comparison group \"pure refutations\" is operationalized as the absence of such a comment (a related feature all_comments_pure_refutation is defined, but the model uses the single predictor; discussions mixing types are in the reference group). Comment order/timing unknown; comments are current text and may contain contamination from view-change announcements (excluded semantically). Association only."
+    },
+    {
+      "id": 51,
+      "hypothesis": "Discussions where counter-arguments explicitly quote and refute specific phrases from the original post are associated with a higher likelihood of view change.",
+      "constructs": {
+        "surface_features": [
+          "counter-argument comments quoting specific phrases from the original post",
+          "refuting the quoted phrase"
+        ],
+        "theoretical_construct": "specific, targeted engagement with the OP's wording (quote-and-rebut)",
+        "secondary_constructs": [
+          "close reading",
+          "argument specificity"
+        ],
+        "domain": "Reddit r/changemyview discussions"
+      },
+      "features": [
+        {
+          "name": "any_comment_quotes_and_refutes_op_phrase",
+          "dtype": "binary",
+          "source_columns": [
+            "OC_comments",
+            "title",
+            "argument"
+          ],
+          "definition": "Does at least one counter-argument comment explicitly quote a specific phrase from the original post and, in that same comment, refute it?",
+          "kind": "prompt",
+          "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Use title and argument only to check that a quoted phrase actually comes from the OP's post. Return 1 if at least one single comment both (a) explicitly quotes (quotation marks or block-quote formatting) a specific phrase or sentence taken from the OP's title/argument, and (b) in that same comment disagrees with, rebuts or refutes that quoted phrase. Quote and refutation must be in the same comment; separate comments cannot jointly satisfy it. Return 0 if no comment does, including quoting without refutation, quoting other sources, or refutation without quoting. Return 0 if the list is empty; null if OC_comments is missing or malformed. Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome as evidence; generic delta-rule discussion is not evidence either way."
+        }
+      ],
+      "h0": "any_comment_quotes_and_refutes_op_phrase has no association with the likelihood of view change.",
+      "h1": "Discussions with any_comment_quotes_and_refutes_op_phrase=1 have a higher likelihood of view change than those with 0.",
+      "rhs": "any_comment_quotes_and_refutes_op_phrase",
+      "term": "any_comment_quotes_and_refutes_op_phrase",
+      "sign": "+",
+      "note": "Operationalized as presence of at least one comment (any, not share/count) doing quote-and-refute. OLS on binary delta (linear probability); association only. OC_comments are current text with unknown timing and may include post-outcome material; no per-comment timestamps. Quotation marks alone do not prove the phrase is from the OP; the check against title/argument is required. Edited OP text may alter matching."
+    },
+    {
+      "id": 53,
+      "hypothesis": "Discussions where the original argument uses hedging or qualifying language are associated with a higher likelihood of view change than those using absolute declarative statements.",
+      "constructs": {
+        "surface_features": [
+          "hedging words",
+          "qualifying language",
+          "absolute declarative statements in the OP argument"
+        ],
+        "theoretical_construct": "epistemic tentativeness vs. certainty in the OP's argument",
+        "secondary_constructs": [
+          "openness to revision",
+          "rhetorical assertiveness"
+        ],
+        "domain": "Reddit r/changemyview original posts"
+      },
+      "features": [
+        {
+          "name": "op_hedging_dominant",
+          "dtype": "binary",
+          "source_columns": [
+            "argument"
+          ],
+          "definition": "Does the OP's argument mainly use hedging or qualifying language rather than absolute declarative statements?",
+          "kind": "prompt",
+          "spec": "Read only the OP's argument text (not title, comments or conversation). Judge the OP's own assertions (not quoted others' words unless adopted). Return 1 if the argument's claims are predominantly hedged or qualified (e.g., 'might', 'perhaps', 'I think', 'in most cases', 'tend to', 'somewhat', explicit caveats); return 0 if they are predominantly absolute, unqualified declaratives (e.g., 'always', 'never', 'obviously', flat assertions). For mixed text, choose the dominant style; if roughly equal, return 0. Ignore edits or statements announcing a view change, delta awards, or post-outcome updates; do not treat them as evidence. Return null if argument is missing or empty."
+        }
+      ],
+      "h0": "op_hedging_dominant has no association with the probability of view change.",
+      "h1": "Higher op_hedging_dominant (hedged rather than absolute argument) is associated with a higher probability of view change.",
+      "rhs": "op_hedging_dominant",
+      "term": "op_hedging_dominant",
+      "sign": "+",
+      "note": "Binary dominant-style operationalization is an assumption; the two groups (hedged vs. absolute) are compared via one indicator, so mixed texts are forced into one side (ties go to 0). Argument text is current text and may contain edits or outcome announcements; the prompt excludes these, but timing is unknown. Association only, not causal."
+    },
+    {
+      "id": 61,
+      "hypothesis": "Discussions where counter-arguments utilize second-person direct address are associated with higher original poster view-change rates than arguments relying on third-person analysis.",
+      "constructs": {
+        "surface_features": [
+          "second-person direct address (you/your) in counter-arguments",
+          "third-person analysis in counter-arguments"
+        ],
+        "theoretical_construct": "direct interpersonal address versus impersonal analytic framing in counter-arguments",
+        "secondary_constructs": [
+          "personalization",
+          "engagement with OP",
+          "argument style"
+        ],
+        "domain": "Reddit r/changemyview discussions; OP view change"
+      },
+      "features": [
+        {
+          "name": "share_comments_second_person_address",
+          "dtype": "numeric",
+          "source_columns": [
+            "OC_comments"
+          ],
+          "definition": "What share of counter-argument comments use second-person direct address to the OP?",
+          "kind": "prompt",
+          "spec": "Parse OC_comments (JSON list of comments by other users). Return the fraction of comments that directly address the OP in the commenter's own voice using second-person language (you, your, yours, yourself) referring to the OP. Do not count 'you' used generically, or only inside quotations of others unless the commenter adopts it as address to the OP. Ignore any OP view-change/delta-award announcements or outcome reports as evidence. Denominator: all comments in the list. Empty list -> null; malformed -> null."
+        },
+        {
+          "name": "share_comments_third_person_analysis",
+          "dtype": "numeric",
+          "source_columns": [
+            "OC_comments"
+          ],
+          "definition": "What share of counter-argument comments rely on third-person analysis without directly addressing the OP?",
+          "kind": "prompt",
+          "spec": "Parse OC_comments. Return the fraction of comments whose argument is framed as impersonal third-person analysis (about the topic, people, groups, or the view in the abstract, using they/he/she/it/people/one) and that contain no second-person direct address to the OP. Comments with direct address to the OP do not count, so groups can both be absent in a comment (neither). Ignore OP view-change/delta announcements or outcome reports as evidence. Denominator: all comments in the list. Empty list -> null; malformed -> null."
+        }
+      ],
+      "h0": "share_comments_second_person_address has no association with the OP view-change rate, controlling for share_comments_third_person_analysis.",
+      "h1": "Higher share_comments_second_person_address is associated with a higher OP view-change rate, relative to third-person analysis.",
+      "rhs": "share_comments_second_person_address + share_comments_third_person_analysis",
+      "term": "share_comments_second_person_address",
+      "sign": "+",
+      "note": "Discussion-level comparison operationalized as comment shares; the coefficient on second-person share holds the third-person share fixed, which is not exactly the difference of the two coefficients. The two shares can be correlated (they are mutually exclusive per comment but there are also neither cases). Comments may include quoted text and outcome announcements; the prompts exclude those semantically, but the OC_comments text is current, with unknown timing and may be post-outcome. Comments may be from the same commenter. Associations only."
+    },
+    {
+      "id": 62,
+      "hypothesis": "Original posts with direct personal anecdotes in the argument are associated with a lower probability of the original poster changing their view.",
+      "constructs": {
+        "surface_features": [
+          "first-person narrative of the OP's own experience in the argument text",
+          "personal anecdote"
+        ],
+        "theoretical_construct": "reliance on personal experiential evidence in the OP's argument",
+        "secondary_constructs": [
+          "experience-based entrenchment of the view"
+        ],
+        "domain": "Reddit r/changemyview original posts"
+      },
+      "features": [
+        {
+          "name": "op_has_personal_anecdote",
+          "dtype": "binary",
+          "source_columns": [
+            "argument"
+          ],
+          "definition": "Does the OP's argument include a direct personal anecdote about the OP's own experience?",
+          "kind": "prompt",
+          "spec": "Read only the argument column (OP's post body). Return 1 if the OP's own text recounts at least one specific personal experience or event involving the OP themselves (or someone directly in their life narrated from their own first-hand experience) used to illustrate or support the view. Return 0 if there is none: abstract reasoning, general statements, hypotheticals, statistics, or experiences only found in text quoted from other people or external sources and not adopted by the OP. Quotation marks alone do not establish another speaker. Do not count OP view-change, delta-award announcements, post-outcome edits or reports of the outcome as anecdotes; generic platform-rule discussion is not an anecdote. Missing or malformed argument gives null; empty text gives 0."
+        }
+      ],
+      "h0": "op_has_personal_anecdote has no association with the probability that the OP changed their view (delta).",
+      "h1": "Posts with op_has_personal_anecdote=1 have a lower probability of OP view change than posts without.",
+      "rhs": "op_has_personal_anecdote",
+      "term": "op_has_personal_anecdote",
+      "sign": "-",
+      "note": "Association only. Uses current argument text, which may include edits or outcome announcements; the prompt excludes these as evidence but timing of edits is unknown. \"Direct personal anecdote\" operationalized as the OP narrating a specific own experience. OLS on a binary delta is a linear probability model."
+    },
+    {
+      "id": 65,
+      "hypothesis": "Discussions containing multiple distinct counter-argument comments are associated with a higher likelihood of view change than those containing only a single comment.",
+      "constructs": {
+        "surface_features": [
+          "number of entries in OC_comments",
+          "more than one comment vs exactly one"
+        ],
+        "theoretical_construct": "breadth of counter-argument exposure (multiple distinct counter-argument comments)",
+        "secondary_constructs": [
+          "engagement volume"
+        ],
+        "domain": "Reddit r/changemyview discussions"
+      },
+      "features": [
+        {
+          "name": "multiple_counter_comments",
+          "dtype": "binary",
+          "source_columns": [
+            "OC_comments"
+          ],
+          "definition": "Does the discussion contain more than one counter-argument comment (versus exactly one)?",
+          "kind": "code",
+          "spec": "Parse OC_comments as JSON list; df['multiple_counter_comments'] = 1 if len(list) >= 2, 0 if len(list) == 1. Empty list gives 0 (valid empty input; none observed in data); missing/malformed gives null."
+        }
+      ],
+      "h0": "multiple_counter_comments has no association with the likelihood of view change.",
+      "h1": "Discussions with multiple_counter_comments = 1 have a higher likelihood of view change than those with a single comment.",
+      "rhs": "multiple_counter_comments",
+      "term": "multiple_counter_comments",
+      "sign": "+",
+      "note": "Comment count is list length, not verified distinct commenters or semantically distinct arguments; \"distinct\" is operationalized as separate list entries. All rows have at least one comment. The list may be a sample/subset of the discussion and may include comments after the view change; timing is unknown. Association only, via OLS (linear probability) on delta."
+    },
+    {
+      "id": 97,
+      "hypothesis": "A counterargument containing specific empirical evidence is associated with a higher likelihood of the original poster awarding a delta.",
+      "constructs": {
+        "surface_features": [
+          "counterargument cites specific data, studies, statistics, named cases or documented examples"
+        ],
+        "theoretical_construct": "empirical evidential support in counterarguments",
+        "secondary_constructs": [
+          "persuasion through factual specificity"
+        ],
+        "domain": "Reddit r/ChangeMyView counterarguments to OP posts"
+      },
+      "features": [
+        {
+          "name": "any_comment_specific_empirical_evidence",
+          "dtype": "binary",
+          "source_columns": [
+            "OC_comments",
+            "title",
+            "argument"
+          ],
+          "definition": "Does at least one counterargument comment contain specific empirical evidence, such as particular data, statistics, studies, or documented concrete cases?",
+          "kind": "prompt",
+          "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment itself offers specific empirical evidence against/in response to the OP's view: concrete statistics or figures, named or described studies/reports, documented historical or real-world cases, or verifiable factual data (a cited external source counts as support). Return 0 if comments only give reasoning, opinion, hypotheticals, generic assertions or anecdotes without specific verifiable detail. Use title and argument only to interpret the comment's target. Ignore OP view-change/delta-award announcements, post-outcome resolution updates and reports of the outcome as evidence; generic delta-rule discussion is eligible. Empty or unparseable list: empty list gives 0, malformed/missing gives null."
+        }
+      ],
+      "h0": "any_comment_specific_empirical_evidence has no association with the likelihood of delta.",
+      "h1": "Rows with any_comment_specific_empirical_evidence=1 have a higher likelihood of delta than rows with 0.",
+      "rhs": "any_comment_specific_empirical_evidence",
+      "term": "any_comment_specific_empirical_evidence",
+      "sign": "+",
+      "note": "Operational assumption: \"a counterargument\" is measured as any available comment in the row containing such evidence. Comments are unordered, without scores or timestamps; the available comments may not be the one that earned the delta, and comments may include later replies or outcome-related text (excluded semantically). Association only, not causal. OLS on a binary outcome is a linear probability model."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "constructs": {
+    "surface_features": [
+      "counter-argument comments disputing several distinct factual claims in the OP's argument"
+    ],
+    "theoretical_construct": "breadth of factual premise-level rebuttal",
+    "secondary_constructs": [
+      "counterargument specificity",
+      "epistemic challenge"
+    ],
+    "domain": "Reddit r/changemyview OP arguments and counter-comments"
+  },
+  "features": [
+    {
+      "name": "share_comments_challenging_multiple_factual_premises",
+      "dtype": "numeric",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "What share of counter-argument comments each challenge two or more distinct factual premises of the OP's argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). For each comment, using title and argument to identify the OP's factual (empirical/descriptive, not value or normative) premises, decide whether that single comment itself challenges, disputes or presents counter-evidence against at least two distinct factual premises of the OP. Count only the commenter's own assertions, not quoted OP text or quoted others unless adopted. Challenges to values, logic only, or tone do not count; separate comments cannot combine to satisfy the condition. Ignore any OP view-change/delta-award announcements, thanks, post-outcome updates or reports of the outcome as evidence. Return qualifying comments divided by total comments (0 to 1). Return null if the list is empty, missing or malformed."
+    },
+    {
+      "name": "count_distinct_factual_premises_challenged",
+      "dtype": "numeric",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "How many distinct factual premises in the OP's argument are challenged by the counter-argument comments overall?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Identify the OP's factual (empirical/descriptive) premises from title and argument. Count the distinct premises challenged, disputed or countered with evidence by at least one comment's own assertions (not quotations unless adopted). Same premise challenged by several comments counts once. Exclude value/normative disputes and any OP view-change/delta announcements, post-outcome updates or outcome reports. Return a non-negative integer; 0 for a valid empty comment list; null if missing or malformed."
+    }
+  ],
+  "h0": "share_comments_challenging_multiple_factual_premises has no association with delta.",
+  "h1": "share_comments_challenging_multiple_factual_premises is positively associated with delta.",
+  "rhs": "share_comments_challenging_multiple_factual_premises",
+  "term": "share_comments_challenging_multiple_factual_premises",
+  "sign": "+",
+  "note": "\"Frequently\" operationalized as the share of comments each challenging at least two distinct factual premises; the secondary count feature is a related overall-breadth measure and is not in the tested model. Factual vs. normative premise distinction is judged by the annotator. Comments are unordered, with no timing, and the current text may include outcome announcements, which are excluded semantically. Association only, not causal."
+}

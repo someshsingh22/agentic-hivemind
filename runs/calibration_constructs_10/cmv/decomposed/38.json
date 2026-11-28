@@ -1,0 +1,32 @@
+{
+  "constructs": {
+    "surface_features": [
+      "title contains explicit emotional words or personal identifiers (e.g., 'I hate', first-person self-reference, identity statements)"
+    ],
+    "theoretical_construct": "emotional/personal framing of the post title",
+    "secondary_constructs": [
+      "personal involvement",
+      "affective language",
+      "OP openness to changing view"
+    ],
+    "domain": "Reddit r/changemyview discussion posts"
+  },
+  "features": [
+    {
+      "name": "title_emotional_or_personal_identifier",
+      "dtype": "binary",
+      "source_columns": [
+        "title"
+      ],
+      "definition": "Does the post title contain an explicit emotional expression or explicit personal identifier (e.g., first-person self-reference or stated personal identity/experience)?",
+      "kind": "prompt",
+      "spec": "Read only the title. Return 1 if the title explicitly contains (a) emotion words/expressions (e.g., hate, love, angry, afraid, annoyed, feel) or (b) explicit personal identifiers: first-person self-reference (I, me, my, I'm) or a stated personal identity, role or experience of the author (e.g., 'as a woman', 'I'm a veteran'). Return 0 otherwise. Ignore the 'CMV:' prefix. Judge only the title's literal wording; do not infer from the argument. Do not treat any view-change/delta announcement as evidence. Empty or missing title gives null."
+    }
+  ],
+  "h0": "title_emotional_or_personal_identifier has no association with the probability of delta (coefficient = 0).",
+  "h1": "Posts with title_emotional_or_personal_identifier = 1 have lower probability of OP view change than those with 0 (coefficient < 0).",
+  "rhs": "title_emotional_or_personal_identifier",
+  "term": "title_emotional_or_personal_identifier",
+  "sign": "-",
+  "note": "'Emotional or personal identifiers' is ambiguous; operationalized as explicit emotion words or first-person/personal identity references in the title, combined as OR. Binary presence only; no intensity scale. OLS on binary delta is a linear probability model; association only. Title text is current supplied text; timing unknown, though titles rarely contain outcome announcements."
+}

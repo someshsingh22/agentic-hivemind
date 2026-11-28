@@ -1,0 +1,33 @@
+{
+  "constructs": {
+    "surface_features": [
+      "hedging words",
+      "qualifying language",
+      "absolute declarative statements in the OP argument"
+    ],
+    "theoretical_construct": "epistemic tentativeness vs. certainty in the OP's argument",
+    "secondary_constructs": [
+      "openness to revision",
+      "rhetorical assertiveness"
+    ],
+    "domain": "Reddit r/changemyview original posts"
+  },
+  "features": [
+    {
+      "name": "op_hedging_dominant",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument mainly use hedging or qualifying language rather than absolute declarative statements?",
+      "kind": "prompt",
+      "spec": "Read only the OP's argument text (not title, comments or conversation). Judge the OP's own assertions (not quoted others' words unless adopted). Return 1 if the argument's claims are predominantly hedged or qualified (e.g., 'might', 'perhaps', 'I think', 'in most cases', 'tend to', 'somewhat', explicit caveats); return 0 if they are predominantly absolute, unqualified declaratives (e.g., 'always', 'never', 'obviously', flat assertions). For mixed text, choose the dominant style; if roughly equal, return 0. Ignore edits or statements announcing a view change, delta awards, or post-outcome updates; do not treat them as evidence. Return null if argument is missing or empty."
+    }
+  ],
+  "h0": "op_hedging_dominant has no association with the probability of view change.",
+  "h1": "Higher op_hedging_dominant (hedged rather than absolute argument) is associated with a higher probability of view change.",
+  "rhs": "op_hedging_dominant",
+  "term": "op_hedging_dominant",
+  "sign": "+",
+  "note": "Binary dominant-style operationalization is an assumption; the two groups (hedged vs. absolute) are compared via one indicator, so mixed texts are forced into one side (ties go to 0). Argument text is current text and may contain edits or outcome announcements; the prompt excludes these, but timing is unknown. Association only, not causal."
+}

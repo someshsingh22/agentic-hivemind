@@ -1,0 +1,32 @@
+{
+  "constructs": {
+    "surface_features": [
+      "counterargument cites specific data, studies, statistics, named cases or documented examples"
+    ],
+    "theoretical_construct": "empirical evidential support in counterarguments",
+    "secondary_constructs": [
+      "persuasion through factual specificity"
+    ],
+    "domain": "Reddit r/ChangeMyView counterarguments to OP posts"
+  },
+  "features": [
+    {
+      "name": "any_comment_specific_empirical_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counterargument comment contain specific empirical evidence, such as particular data, statistics, studies, or documented concrete cases?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment itself offers specific empirical evidence against/in response to the OP's view: concrete statistics or figures, named or described studies/reports, documented historical or real-world cases, or verifiable factual data (a cited external source counts as support). Return 0 if comments only give reasoning, opinion, hypotheticals, generic assertions or anecdotes without specific verifiable detail. Use title and argument only to interpret the comment's target. Ignore OP view-change/delta-award announcements, post-outcome resolution updates and reports of the outcome as evidence; generic delta-rule discussion is eligible. Empty or unparseable list: empty list gives 0, malformed/missing gives null."
+    }
+  ],
+  "h0": "any_comment_specific_empirical_evidence has no association with the likelihood of delta.",
+  "h1": "Rows with any_comment_specific_empirical_evidence=1 have a higher likelihood of delta than rows with 0.",
+  "rhs": "any_comment_specific_empirical_evidence",
+  "term": "any_comment_specific_empirical_evidence",
+  "sign": "+",
+  "note": "Operational assumption: \"a counterargument\" is measured as any available comment in the row containing such evidence. Comments are unordered, without scores or timestamps; the available comments may not be the one that earned the delta, and comments may include later replies or outcome-related text (excluded semantically). Association only, not causal. OLS on a binary outcome is a linear probability model."
+}

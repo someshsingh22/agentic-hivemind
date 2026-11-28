@@ -1,0 +1,43 @@
+{
+  "constructs": {
+    "surface_features": [
+      "second-person direct address (you/your) in counter-arguments",
+      "third-person analysis in counter-arguments"
+    ],
+    "theoretical_construct": "direct interpersonal address versus impersonal analytic framing in counter-arguments",
+    "secondary_constructs": [
+      "personalization",
+      "engagement with OP",
+      "argument style"
+    ],
+    "domain": "Reddit r/changemyview discussions; OP view change"
+  },
+  "features": [
+    {
+      "name": "share_comments_second_person_address",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What share of counter-argument comments use second-person direct address to the OP?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return the fraction of comments that directly address the OP in the commenter's own voice using second-person language (you, your, yours, yourself) referring to the OP. Do not count 'you' used generically, or only inside quotations of others unless the commenter adopts it as address to the OP. Ignore any OP view-change/delta-award announcements or outcome reports as evidence. Denominator: all comments in the list. Empty list -> null; malformed -> null."
+    },
+    {
+      "name": "share_comments_third_person_analysis",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What share of counter-argument comments rely on third-person analysis without directly addressing the OP?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Return the fraction of comments whose argument is framed as impersonal third-person analysis (about the topic, people, groups, or the view in the abstract, using they/he/she/it/people/one) and that contain no second-person direct address to the OP. Comments with direct address to the OP do not count, so groups can both be absent in a comment (neither). Ignore OP view-change/delta announcements or outcome reports as evidence. Denominator: all comments in the list. Empty list -> null; malformed -> null."
+    }
+  ],
+  "h0": "share_comments_second_person_address has no association with the OP view-change rate, controlling for share_comments_third_person_analysis.",
+  "h1": "Higher share_comments_second_person_address is associated with a higher OP view-change rate, relative to third-person analysis.",
+  "rhs": "share_comments_second_person_address + share_comments_third_person_analysis",
+  "term": "share_comments_second_person_address",
+  "sign": "+",
+  "note": "Discussion-level comparison operationalized as comment shares; the coefficient on second-person share holds the third-person share fixed, which is not exactly the difference of the two coefficients. The two shares can be correlated (they are mutually exclusive per comment but there are also neither cases). Comments may include quoted text and outcome announcements; the prompts exclude those semantically, but the OC_comments text is current, with unknown timing and may be post-outcome. Comments may be from the same commenter. Associations only."
+}

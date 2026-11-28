@@ -1,0 +1,34 @@
+{
+  "constructs": {
+    "surface_features": [
+      "counter-argument comments quoting specific phrases from the original post",
+      "refuting the quoted phrase"
+    ],
+    "theoretical_construct": "specific, targeted engagement with the OP's wording (quote-and-rebut)",
+    "secondary_constructs": [
+      "close reading",
+      "argument specificity"
+    ],
+    "domain": "Reddit r/changemyview discussions"
+  },
+  "features": [
+    {
+      "name": "any_comment_quotes_and_refutes_op_phrase",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly quote a specific phrase from the original post and, in that same comment, refute it?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Use title and argument only to check that a quoted phrase actually comes from the OP's post. Return 1 if at least one single comment both (a) explicitly quotes (quotation marks or block-quote formatting) a specific phrase or sentence taken from the OP's title/argument, and (b) in that same comment disagrees with, rebuts or refutes that quoted phrase. Quote and refutation must be in the same comment; separate comments cannot jointly satisfy it. Return 0 if no comment does, including quoting without refutation, quoting other sources, or refutation without quoting. Return 0 if the list is empty; null if OC_comments is missing or malformed. Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome as evidence; generic delta-rule discussion is not evidence either way."
+    }
+  ],
+  "h0": "any_comment_quotes_and_refutes_op_phrase has no association with the likelihood of view change.",
+  "h1": "Discussions with any_comment_quotes_and_refutes_op_phrase=1 have a higher likelihood of view change than those with 0.",
+  "rhs": "any_comment_quotes_and_refutes_op_phrase",
+  "term": "any_comment_quotes_and_refutes_op_phrase",
+  "sign": "+",
+  "note": "Operationalized as presence of at least one comment (any, not share/count) doing quote-and-refute. OLS on binary delta (linear probability); association only. OC_comments are current text with unknown timing and may include post-outcome material; no per-comment timestamps. Quotation marks alone do not prove the phrase is from the OP; the check against title/argument is required. Edited OP text may alter matching."
+}

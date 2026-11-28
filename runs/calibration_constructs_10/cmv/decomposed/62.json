@@ -1,0 +1,31 @@
+{
+  "constructs": {
+    "surface_features": [
+      "first-person narrative of the OP's own experience in the argument text",
+      "personal anecdote"
+    ],
+    "theoretical_construct": "reliance on personal experiential evidence in the OP's argument",
+    "secondary_constructs": [
+      "experience-based entrenchment of the view"
+    ],
+    "domain": "Reddit r/changemyview original posts"
+  },
+  "features": [
+    {
+      "name": "op_has_personal_anecdote",
+      "dtype": "binary",
+      "source_columns": [
+        "argument"
+      ],
+      "definition": "Does the OP's argument include a direct personal anecdote about the OP's own experience?",
+      "kind": "prompt",
+      "spec": "Read only the argument column (OP's post body). Return 1 if the OP's own text recounts at least one specific personal experience or event involving the OP themselves (or someone directly in their life narrated from their own first-hand experience) used to illustrate or support the view. Return 0 if there is none: abstract reasoning, general statements, hypotheticals, statistics, or experiences only found in text quoted from other people or external sources and not adopted by the OP. Quotation marks alone do not establish another speaker. Do not count OP view-change, delta-award announcements, post-outcome edits or reports of the outcome as anecdotes; generic platform-rule discussion is not an anecdote. Missing or malformed argument gives null; empty text gives 0."
+    }
+  ],
+  "h0": "op_has_personal_anecdote has no association with the probability that the OP changed their view (delta).",
+  "h1": "Posts with op_has_personal_anecdote=1 have a lower probability of OP view change than posts without.",
+  "rhs": "op_has_personal_anecdote",
+  "term": "op_has_personal_anecdote",
+  "sign": "-",
+  "note": "Association only. Uses current argument text, which may include edits or outcome announcements; the prompt excludes these as evidence but timing of edits is unknown. \"Direct personal anecdote\" operationalized as the OP narrating a specific own experience. OLS on a binary delta is a linear probability model."
+}

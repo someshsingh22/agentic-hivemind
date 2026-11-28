@@ -1,0 +1,30 @@
+{
+  "constructs": {
+    "surface_features": [
+      "observed original-post score above 50"
+    ],
+    "theoretical_construct": "post popularity/visibility as signaled by score",
+    "secondary_constructs": [
+      "community endorsement"
+    ],
+    "domain": "Reddit r/changemyview discussions"
+  },
+  "features": [
+    {
+      "name": "post_score_above_50",
+      "dtype": "binary",
+      "source_columns": [
+        "post_score"
+      ],
+      "definition": "Is the observed original-post score greater than 50?",
+      "kind": "code",
+      "spec": "pd.Series(np.where(pd.to_numeric(df['post_score'], errors='coerce').isna(), np.nan, (pd.to_numeric(df['post_score'], errors='coerce') > 50).astype(float))). 1 if post_score > 50 (strictly), 0 if <= 50, null if missing or non-numeric."
+    }
+  ],
+  "h0": "post_score_above_50 has no association with the likelihood of view change (delta).",
+  "h1": "Discussions with post_score_above_50 equal to 1 have a lower likelihood of view change than those with 0.",
+  "rhs": "post_score_above_50",
+  "term": "post_score_above_50",
+  "sign": "-",
+  "note": "Threshold is strictly >50 as stated. post_score measurement time relative to the outcome is unknown and may reflect post-outcome popularity; post_created_utc does not establish timing. Association only, not causal. OLS on binary delta is a linear probability model."
+}

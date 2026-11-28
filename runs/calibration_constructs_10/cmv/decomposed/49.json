@@ -1,0 +1,47 @@
+{
+  "constructs": {
+    "surface_features": [
+      "counter-comment explicitly acknowledges OP's valid point before introducing a discrepancy",
+      "pure refutation without acknowledgment"
+    ],
+    "theoretical_construct": "validation before disagreement (face-saving, conciliatory counterargument framing)",
+    "secondary_constructs": [
+      "politeness",
+      "perceived receptiveness",
+      "refutation style"
+    ],
+    "domain": "Reddit r/changemyview discussions"
+  },
+  "features": [
+    {
+      "name": "any_comment_acknowledges_then_discrepancy",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly acknowledge the OP's underlying valid point before, in that same comment, introducing a discrepancy or disagreement?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Use title and argument only to interpret what the OP's point is. Return 1 if at least one single comment both (a) explicitly acknowledges that some underlying point of the OP is valid/reasonable/correct and (b) afterwards in the same comment introduces a discrepancy, counterexample or disagreement. Both parts must be in the same comment; separate comments cannot jointly satisfy it. Return 0 if no comment does (including when all comments are pure refutations or empty list). Null if OC_comments is missing or malformed. Ignore OP view-change/delta-award announcements, post-outcome updates, and any reports of the outcome as evidence; generic delta-rule discussion is eligible. Quoted OP text alone is not acknowledgment unless the commenter adopts it as valid."
+    },
+    {
+      "name": "all_comments_pure_refutation",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Is every counter-argument comment a pure refutation with no explicit acknowledgment of any valid point by the OP?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Use title and argument only for context. Return 1 if the list is nonempty and every comment challenges or refutes the OP's view without explicitly acknowledging any OP point as valid. Return 0 if at least one comment explicitly acknowledges a valid OP point. Null if OC_comments is missing/malformed or empty. Ignore OP view-change/delta announcements, post-outcome updates and outcome reports as evidence."
+    }
+  ],
+  "h0": "any_comment_acknowledges_then_discrepancy is not associated with delta (coefficient is zero).",
+  "h1": "any_comment_acknowledges_then_discrepancy is associated with higher view-change (delta) rates than discussions without it.",
+  "rhs": "any_comment_acknowledges_then_discrepancy",
+  "term": "any_comment_acknowledges_then_discrepancy",
+  "sign": "+",
+  "note": "Operational assumption: discussion-level \"acknowledge-then-discrepancy\" is any comment with the conjunction; the comparison group \"pure refutations\" is operationalized as the absence of such a comment (a related feature all_comments_pure_refutation is defined, but the model uses the single predictor; discussions mixing types are in the reference group). Comment order/timing unknown; comments are current text and may contain contamination from view-change announcements (excluded semantically). Association only."
+}
