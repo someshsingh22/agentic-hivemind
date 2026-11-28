@@ -45,6 +45,14 @@ in `note`. Explicitly requested exclusions remain part of the measurement. Seman
 exclude outcome reports as evidence of the construct. Raw word count is therefore not the same
 measurement as the previous semantically filtered count; compare runs accordingly.
 
+Source selection uses the smallest sufficient input set, not optional context added
+just to interpret a target. Self-contained comment measurements use comments alone;
+OP-relative measurements retain the OP text needed for verification. Argument-only
+and title-or-argument scopes remain distinct. This prompt correction addresses inconsistent
+context selection such as H10/H75; it does not establish equivalence or override source gates.
+Existing artifacts and file-exists caching are unchanged. Use a fresh output directory
+to evaluate the corrected prompt; no old feature definitions are rewritten.
+
 `envs/cmv.yaml` describes source scope, attribution, unavailable measurements and these source risks.
 The feature schema, direct per-row extraction, statistical evaluator, models, merge rules and distance
 thresholds are unchanged. These prompt instructions do not establish measured classification accuracy

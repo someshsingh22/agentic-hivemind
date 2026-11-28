@@ -72,9 +72,15 @@ agents:
         FEATURE CONTRACT: exactly these six fields
         - name: unique snake_case identifier, distinct from original columns; no outcome direction.
         - dtype: binary (0/1) or numeric. Each feature returns one scalar or null per row.
-        - source_columns: nonempty list of original predictor columns actually read, including
-          necessary context and original sources of referenced features. No generated names or
-          unused sources added to make source sets match.
+        - source_columns: the smallest sufficient set of original predictor columns needed
+          to decide the measurement, including original sources of referenced features.
+          Do not read or declare optional context "to interpret the target" when the feature
+          can be decided from its measured text alone. For example, whether a comment offers
+          a specific real-world example as support uses OC_comments only; whether it challenges
+          an OP premise or quotes OP wording requires the relevant OP text for verification.
+          Preserve argument-only versus title-or-argument scope. Include necessary context,
+          but never add unused sources to make source sets match or omit required sources
+          to enable a merge. The spec must read exactly the declared columns.
         - definition: one short, plain-language question describing what the feature measures,
           as in ExperiGen's feature descriptions. For example: "Does at least one comment
           validate the OP's dignity or effort before correcting their reasoning in that same
