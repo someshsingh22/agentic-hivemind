@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "conditional_counterarg_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments contain explicit if-then conditional logic in their own reasoning?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment decide whether the commenter's own argument uses explicit if-then conditional logic (e.g. 'if X, then Y', 'if X, Y would follow', 'unless', 'provided that' used to state a premise-consequence relation). Merely hypothetical wording without a conditional inference, or conditionals appearing only inside quoted OP text or other quoted material not adopted by the commenter, do not count. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome; they are not evidence. Output the number of comments meeting this divided by total number of comments (0 to 1). Empty list or missing/malformed input gives null."
+    }
+  ],
+  "h0": "conditional_counterarg_share has no association with the probability that the OP changed their view (delta).",
+  "h1": "A higher conditional_counterarg_share is associated with a lower probability of the OP changing their view.",
+  "rhs": "conditional_counterarg_share",
+  "term": "conditional_counterarg_share",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). Row-level share of comments with conditionals is an assumption; 'counter-arguments with conditionals' vs without is a comment-level comparison, here aggregated per row. OC_comments may contain unflagged outcome text, and comment timing is unknown; the prompt excludes such announcements. Association only, not causal."
+}

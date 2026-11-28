@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_links_major_news_domain",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a link to a recognized news or media organization?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; if missing/malformed return null; empty list gives 0. Return 1 if any comment contains a URL (http/https or www.) whose hostname (lowercased, with subdomains allowed) equals or ends with '.'+ one of this fixed list: nytimes.com, theguardian.com, guardian.co.uk, bbc.com, bbc.co.uk, reuters.com, apnews.com, washingtonpost.com, wsj.com, cnn.com, npr.org, bloomberg.com, economist.com, ft.com, nbcnews.com, cbsnews.com, abcnews.go.com, usatoday.com, latimes.com, time.com, theatlantic.com, newyorker.com, foxnews.com, politico.com, aljazeera.com, pbs.org. Else 0. Raw text match; no semantic filtering. Comment text may contain outcome announcements; not outcome-free."
+    }
+  ],
+  "h0": "any_comment_links_major_news_domain has no association with the probability that the OP changed their view.",
+  "h1": "Discussions with a counter-argument linking to a recognized news organization have a higher rate of OP view change.",
+  "rhs": "any_comment_links_major_news_domain",
+  "term": "any_comment_links_major_news_domain",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change) at discussion level; comment-level persuasion is unavailable. \"Recognized news and media organizations\" is operationalized as a fixed domain list (the \"etc.\" is unspecified, so the list is an assumption and not exhaustive). Link presence is only detected in OC_comments text; shortened URLs or unlinked citations are missed. Comment text may contain outcome announcements; the raw match does not filter them. Association only, not causal."
+}

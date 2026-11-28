@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_research_citation_verbs",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments use a research citation verb phrase, such as 'research shows' or 'data indicate', to present evidence?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). For each comment, decide whether the commenter's own text uses a research-citation construction attributing a claim to research/studies/data/evidence/statistics/scientists with a reporting verb (e.g. 'research shows', 'studies suggest', 'data indicate', 'a study found', 'evidence demonstrates'). Quoted text from another person counts only if the commenter adopts it as their own support. Ignore generic uses without a research source (e.g. 'I show', 'you indicate'), and ignore any text announcing a view change, delta award, or outcome of the discussion; such text is not evidence. Return (number of qualifying comments)/(total comments) as a number between 0 and 1. Empty list gives null; missing or malformed input gives null. List order is not meaningful."
+    }
+  ],
+  "h0": "share_comments_research_citation_verbs has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher share_comments_research_citation_verbs is associated with a higher probability that the OP changed their view (delta).",
+  "rhs": "share_comments_research_citation_verbs",
+  "term": "share_comments_research_citation_verbs",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change), tested as an association, not causal. The hypothesis does not specify any/count/share; share of comments was chosen as an assumption. Comments are not individually linked to outcomes, so the share does not identify which comment persuaded. OC_comments may include post-outcome text; the prompt excludes such announcements, but timing of comments is unknown. Rows with no comments yield null."
+}

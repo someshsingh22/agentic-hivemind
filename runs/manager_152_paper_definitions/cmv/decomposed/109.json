@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counter_comment_nonstopword_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of all words across the counter-argument comments are non-stopwords (content words)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; if missing/malformed return null. Concatenate all comments (pooled across comments). Tokenize each with re.findall(r\"[A-Za-z']+\", text.lower()) (alphabetic words, apostrophes kept). Stopwords = NLTK English stopword list (nltk.corpus.stopwords.words('english')). Value = (number of tokens not in stopword list) / (total tokens). Empty list or zero tokens -> null. Range 0-1. Raw text, no semantic filtering; quoted text and any outcome announcements inside comments are counted as-is."
+    }
+  ],
+  "h0": "counter_comment_nonstopword_share has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher counter_comment_nonstopword_share is associated with a higher probability that the OP changed their view (delta).",
+  "rhs": "counter_comment_nonstopword_share",
+  "term": "counter_comment_nonstopword_share",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). Content words are taken as non-stopwords per the hypothesis parenthetical, using the NLTK English stopword list (assumed; no list was specified). Share is pooled over all words in all OC_comments, not a per-comment mean. Comment order/timing unknown; comments are by other users but may include quotes of OP or others, and may contain post-outcome text, which is counted as raw text. Association only, not causal."
+}

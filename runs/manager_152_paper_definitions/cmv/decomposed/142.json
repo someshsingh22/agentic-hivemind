@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "hedged_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments contain epistemic hedging such as 'it appears that', 'arguably' or 'apparently'?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' counter-argument comments). For each comment, decide whether the commenter's own assertions use epistemic hedging, i.e. words/phrases marking reduced certainty about the claim's truth (e.g. 'it appears that', 'arguably', 'apparently', 'seemingly', 'it seems'). Hedges inside quotations of others count only if the commenter adopts them. Do not count non-epistemic uses (e.g. 'it seems' about physical appearance is not epistemic only if clearly literal) or text announcing the OP changed their view/awarded a delta or reporting the outcome. Output the number of comments with at least one hedge divided by the total number of comments, a value in [0,1]. Empty list gives null; malformed or missing input gives null."
+    }
+  ],
+  "h0": "hedged_comment_share has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher hedged_comment_share is associated with a higher probability that the OP changed their view.",
+  "rhs": "hedged_comment_share",
+  "term": "hedged_comment_share",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). The share of hedged comments is an operational choice; the hypothesis does not specify any/share/count. Comments are unordered, with no timing; the OLS association is not causal. OC_comments may contain delta announcements or outcome reports, which are excluded from the semantic judgment, but contamination risk remains. Comment length may confound the share."
+}

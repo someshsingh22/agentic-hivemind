@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "share_comments_appeal_expertise_evidence",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "What proportion of the counter-argument comments appeal to expertise or evidence (e.g., a study, research, data, cited evidence, or expert authority) in support of their own argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment decide whether the commenter themself appeals to expertise or evidence as support: citing or referring to a study, research, data/statistics, documented evidence, a source/link, or claimed expert authority (their own professional expertise or named experts). Use title/argument only to interpret the target. Quoted material counts only if the commenter adopts it as support; quotations of the OP or background/rebuttal quotes do not count. Bare opinion, anecdote or logic without evidence/expertise appeals do not count. Ignore any statements that OP changed their view, delta awards, or reports of the outcome; these are not evidence of the construct (generic delta-rule discussion is neutral). Output = number of qualifying comments / total comments, in [0,1]. Empty list gives null; malformed input gives null. List order carries no meaning."
+    }
+  ],
+  "h0": "share_comments_appeal_expertise_evidence has no association with the probability that the OP changed their view.",
+  "h1": "Higher share_comments_appeal_expertise_evidence is associated with a higher probability that the OP changed their view.",
+  "rhs": "share_comments_appeal_expertise_evidence",
+  "term": "share_comments_appeal_expertise_evidence",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP view change); association only. Comparison is implicit (share of evidence/expertise-appealing comments versus other comments). Comments are unordered with no timing; comment text may contain outcome announcements, which the prompt excludes as evidence. Share is a row-level aggregate; commenter identity not distinguished."
+}

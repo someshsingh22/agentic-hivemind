@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "cm_any_clarity_marker",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain the word clearly, obviously or certainly?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads. If missing or malformed, return null. If the list is empty, return 0. Otherwise return 1 if any comment string matches case-insensitive regex r'\\b(clearly|obviously|certainly)\\b', else 0. Raw literal matching; no semantic filtering, no check of negation or quotation."
+    },
+    {
+      "name": "cm_clarity_marker_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many clarity-marker words (clearly, obviously, certainly) appear across the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads. Missing or malformed gives null; empty list gives 0. Otherwise sum, over all comments, the number of case-insensitive matches of r'\\b(clearly|obviously|certainly)\\b'. Raw count, not normalized by length."
+    }
+  ],
+  "h0": "cm_any_clarity_marker has no association with delta.",
+  "h1": "Rows whose counter-arguments contain clarity markers (cm_any_clarity_marker = 1) have higher odds or probability of delta = 1.",
+  "rhs": "cm_any_clarity_marker",
+  "term": "cm_any_clarity_marker",
+  "sign": "+",
+  "note": "Operational assumptions: \"clarity markers\" are limited to the three listed words, matched literally, and counted regardless of negation, quotation or who is quoted. \"More persuasive\" is operationalized as the dataset outcome delta, an association only. OC_comments is the current text and may contain post-outcome text; no timing is available. Comments are not tied to individual outcomes, so the row-level presence of a marker cannot show which comment persuaded the OP. The count feature is an alternative intensity measure and is not in rhs."
+}

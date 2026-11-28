@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counter_quote_mark_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many quotation mark characters appear across all counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If missing, unparseable or not a list, return null. If the list is empty return 0. Otherwise return the sum over all comments (non-string entries skipped) of the number of characters in the set: straight double quote \", curly double quotes “ and ”. Single quotes/apostrophes and '>' blockquote markers are not counted. Pure raw character count, no semantic filtering of who is quoted or whether the quote is adopted."
+    }
+  ],
+  "h0": "counter_quote_mark_count has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher counter_quote_mark_count is associated with a lower probability that the OP changed their view (delta).",
+  "rhs": "counter_quote_mark_count",
+  "term": "counter_quote_mark_count",
+  "sign": "-",
+  "note": "Operational assumptions: \"more quotation marks\" is measured as total count of double-quotation-mark characters across all available counter-argument comments (not normalized by length, so it is correlated with total comment length/number of comments; no control is added). Quotation marks also mark scare quotes, titles or the OP's own words, not only quoting others; the raw count does not verify quoted speaker. Blockquote markers not counted. \"Persuasive\" is operationalized only as the dataset outcome delta (OP view change); association only, not causal. Comments may include text after outcome/delta announcements; the raw count is not outcome-free and comment timing is unknown."
+}

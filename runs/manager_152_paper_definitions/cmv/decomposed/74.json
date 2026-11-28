@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "mean_opening_paragraph_words",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the average number of words in the opening paragraph of the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; if missing/malformed return null; if empty list return null (no comments to average). For each comment (string), strip leading/trailing whitespace, split on blank lines using re.split(r'\\n\\s*\\n', text), take the first nonempty segment as the opening paragraph, and count words with len(re.findall(r\"\\b\\w+(?:['’-]\\w+)*\\b\", para)). Skip comments that are empty after stripping. Return the mean of these counts across the remaining comments; null if none remain. Raw text counting; no semantic filtering."
+    }
+  ],
+  "h0": "mean_opening_paragraph_words has no association with the probability the OP changed their view (delta).",
+  "h1": "Lower mean_opening_paragraph_words is associated with a higher probability of delta (negative coefficient).",
+  "rhs": "mean_opening_paragraph_words",
+  "term": "mean_opening_paragraph_words",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). Opening paragraph is the first blank-line-separated block of each comment; comments lacking paragraph breaks count entirely as the opening paragraph. Row-level aggregate is the mean across comments in OC_comments (list order carries no meaning); this measures the row's comments, not individual comment persuasiveness, since no per-comment outcomes exist. Word count is raw text, so quoted text or edits/outcome announcements within a comment may be included. Association only, not causal."
+}

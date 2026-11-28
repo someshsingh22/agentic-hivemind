@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "share_comments_quoting_op",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "argument",
+        "title"
+      ],
+      "definition": "What proportion of the counter-argument comments directly quote the OP's own title or argument text?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). For each comment, decide whether it directly quotes the OP's words (verbatim or near-verbatim excerpt from title or argument, e.g. markdown > blockquote or quotation marks reproducing OP's text), using title and argument to verify the quoted text is the OP's. Quotation of other sources, or paraphrase without quoted words, does not count. Ignore any quoted text that is an OP view-change/delta-award announcement or post-outcome resolution update; such text does not count as quoting. Output = number of comments quoting the OP divided by total number of comments, in [0,1]. Empty list gives null; malformed/missing OC_comments gives null."
+    }
+  ],
+  "h0": "share_comments_quoting_op has no association with delta.",
+  "h1": "Higher share_comments_quoting_op is associated with lower probability of delta (OP view change).",
+  "rhs": "share_comments_quoting_op",
+  "term": "share_comments_quoting_op",
+  "sign": "-",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP changed view); associations only. Comments are unordered and have no per-comment outcomes, so the row-level share of quoting comments is used as a proxy for quoting counter-arguments; this is not a comparison of quoting vs non-quoting comments' persuasiveness within a row. Text is current and may include edits/outcome announcements, which the spec excludes from quote evidence. Rows with no comments are null."
+}

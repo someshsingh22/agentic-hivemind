@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "mean_counter_comment_words",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the mean number of words per counter-argument comment in the row?",
+      "kind": "code",
+      "spec": "Parse OC_comments as JSON list of strings; if missing or malformed return null; if empty list return null. For each comment, word count = len(re.findall(r'\\S+', comment)). Return the mean across all comments in the list. Raw text count, no semantic filtering; comments may contain outcome announcements."
+    }
+  ],
+  "h0": "mean_counter_comment_words has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher mean_counter_comment_words is associated with a higher probability that the OP changed their view (delta).",
+  "rhs": "mean_counter_comment_words",
+  "term": "mean_counter_comment_words",
+  "sign": "+",
+  "note": "Row-level operationalization: per-comment outcomes are not supplied, so the claim is tested at row level using the mean comment length (comment-level winning comment cannot be identified). Maximum length could be an alternative but mean was chosen. Rows with no comments get null. List order has no meaning; comments may include outcome announcements or later replies, and timing is unknown. Association only, OLS on the binary outcome (linear probability)."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "mean_sentences_per_counter_comment",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the mean number of sentences per counter-argument comment?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If missing/malformed return null; if the list is empty return null. For each comment, count sentences by splitting on regex (?<=[.!?])\\s+ after stripping, dropping empty segments (newline-separated paragraphs also split sentences when non-empty). Return the mean sentence count across comments (sentences per comment)."
+    }
+  ],
+  "h0": "mean_sentences_per_counter_comment has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher mean_sentences_per_counter_comment is associated with a higher probability that the OP changed their view.",
+  "rhs": "mean_sentences_per_counter_comment",
+  "term": "mean_sentences_per_counter_comment",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). Row-level aggregation by mean sentences per comment is an assumption; the hypothesis does not specify mean vs total or maximum. Sentence splitting is a regex heuristic (abbreviations, lists, and URLs may be miscounted). OC_comments may include comments posted after or containing delta/view-change announcements; raw counts are not outcome-free. Comment order and timing are unknown. Association only, not causal."
+}

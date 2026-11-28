@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_with_meta_commentary",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments contain a meta-commentary phrase such as 'it is worth noting' or 'importantly'?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment, decide whether the commenter's own text contains at least one meta-commentary phrase, i.e. a phrase that comments on or flags the significance/status of what is being said rather than adding content (e.g. 'it is worth noting', 'importantly', 'it's important to note', 'notably', 'keep in mind that'). Do not count phrases appearing only inside text quoted from another speaker (e.g. the OP) unless the commenter adopts it. Ignore any text announcing that the OP changed their view, delta awards, or post-outcome resolution; such text is not evidence. Return number of comments with such a phrase divided by total number of comments (0 to 1). Return null if the list is empty, missing or malformed."
+    }
+  ],
+  "h0": "share_comments_with_meta_commentary has no association with the likelihood the OP changed their view (delta).",
+  "h1": "A higher share_comments_with_meta_commentary is associated with a higher likelihood that the OP changed their view.",
+  "rhs": "share_comments_with_meta_commentary",
+  "term": "share_comments_with_meta_commentary",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change) at row level, not per-comment persuasion. Comments are unordered and have no per-comment outcome, so the share measures prevalence across the row's counter-arguments; the delta may stem from any comment. The meta-commentary category is interpreted broadly beyond the two example phrases (assumption). OC_comments may contain outcome announcements, which are excluded from the semantic judgement. Association only, not causal."
+}

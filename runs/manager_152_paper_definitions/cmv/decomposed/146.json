@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_oc_link_gov_edu_org",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a link to a .gov, .edu, or .org website?",
+      "kind": "code",
+      "spec": "Parse OC_comments as JSON list of strings; malformed/missing -> null; empty list -> 0. For each comment, find URLs via regex r'https?://[^\\s)\\]>]+|www\\.[^\\s)\\]>]+'; extract host (text after scheme up to first '/', '?', '#' or ':'), lowercase; a URL matches if host ends with '.gov', '.edu' or '.org' (also e.g. .gov.uk/.edu.au where gov/edu is a dot-delimited label ending the TLD segment). Return 1 if any comment has a matching URL, else 0."
+    }
+  ],
+  "h0": "any_oc_link_gov_edu_org has no association with the probability that the OP changed their view.",
+  "h1": "Discussions with a counter-argument linking to .gov, .edu or .org sites are more likely to have the OP change their view.",
+  "rhs": "any_oc_link_gov_edu_org",
+  "term": "any_oc_link_gov_edu_org",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the delta outcome (OP view change) at row level. Raw URL text matching is mechanical; comments may contain outcome announcements and URL timing relative to the outcome is unknown. The hypothesis has no explicit comparison group; the implied comparison is rows with no such link (including rows with only other-domain links). Links to .org sites include any organization, e.g. wikipedia.org. Link presence does not imply the comment's claim is supported by the link. Association only."
+}

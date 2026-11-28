@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_counter_comment_has_url",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a URL or hyperlink?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings. If missing/malformed, return null. If the list is empty, return 0. Return 1 if any comment matches regex r'(https?://|www\\.)\\S+' or markdown link r'\\[[^\\]]+\\]\\([^)]+\\)' (case-insensitive); else 0. Mechanical match, no semantic filtering."
+    }
+  ],
+  "h0": "any_counter_comment_has_url has no association with the probability that the OP changed their view (delta).",
+  "h1": "Rows with a counter-argument containing a URL/hyperlink have a higher probability of delta.",
+  "rhs": "any_counter_comment_has_url",
+  "term": "any_counter_comment_has_url",
+  "sign": "+",
+  "note": "Row-level test: comments lack per-comment outcomes, so we cannot tell which comment won the delta; this tests whether a row has any URL-bearing counter-argument, not that the specific URL comment earned the delta. Raw text matching may include URLs in delta-award or other post-outcome text (e.g., bot messages); this contamination is not filtered. Comment timing is unknown. Association only; OLS on binary outcome is a linear probability model."
+}

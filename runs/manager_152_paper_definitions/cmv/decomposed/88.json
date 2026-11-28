@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "bold_phrase_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many bold-formatted (**text**) phrases appear across the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments as JSON list of strings; if missing or malformed return null; empty list gives 0. For each comment count regex matches of r'\\*\\*(?=\\S)(.+?)(?<=\\S)\\*\\*' with re.DOTALL disabled (single-line spans); sum across all comments. Raw count, no semantic filtering."
+    }
+  ],
+  "h0": "bold_phrase_count has no association with delta.",
+  "h1": "Higher bold_phrase_count is associated with higher probability of delta (OP view change).",
+  "rhs": "bold_phrase_count",
+  "term": "bold_phrase_count",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view); association only. Count is summed across all comments in the row, not per-comment. Markdown asterisks may be altered in the supplied text; comment text may contain outcome announcements or quoted bold text from others (raw count, not filtered). Bold counts are sparse (mean ~0.24). Comment timing unknown."
+}

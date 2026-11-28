@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "mean_counterargument_ttr",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the average type-token ratio (unique words divided by total words) of the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of comment strings. For each comment, lowercase and tokenize with re.findall(r\"[a-z0-9]+(?:'[a-z]+)?\", text.lower()); tokens = words. Comment TTR = len(set(tokens))/len(tokens); skip comments with zero tokens. Return the mean of comment TTRs across comments with at least one token. If the list is valid but empty (or no comment has tokens), return null; if malformed/missing, return null. No stemming or stopword removal. Raw text is used as is, so quoted text and any outcome announcements in comments are included; TTR is length-sensitive (shorter comments tend to have higher TTR)."
+    }
+  ],
+  "h0": "mean_counterargument_ttr has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher mean_counterargument_ttr is associated with a higher probability that the OP changed their view.",
+  "rhs": "mean_counterargument_ttr",
+  "term": "mean_counterargument_ttr",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); the association is not causal. Type-token ratio is computed per comment and averaged (the unit of aggregation is an assumption; pooling all comments would be an alternative). TTR strongly depends on comment length, and no length control is included, as it was not part of the claim. OC_comments is the available set of counter-comments; list order is not chronology, and comments may include post-outcome text because raw text is used. Tokenization is a simple regex assumption."
+}

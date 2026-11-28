@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "contraction_rate_oc",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of words across the counter-argument comments are contractions (e.g., I'm, don't, isn't)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads (malformed/missing -> null). Concatenate all comment strings; empty list -> null. Normalize curly apostrophes (’) to '. Words = re.findall(r\"[A-Za-z]+(?:'[A-Za-z]+)*\", text). Contractions = words matching case-insensitive r\"^[A-Za-z]+(?:n't|'m|'re|'ve|'ll|'d)$\" or the specific forms it's, that's, what's, there's, here's, he's, she's, let's, who's, where's, how's (other 's treated as possessive and not counted); also can't, won't, ain't, y'all. Value = contraction count / total word count (null if zero words). Raw text count: includes any quoted text in comments and any outcome announcements; no semantic filtering."
+    }
+  ],
+  "h0": "contraction_rate_oc has no association with delta.",
+  "h1": "Higher contraction_rate_oc is associated with lower likelihood of delta (view change).",
+  "rhs": "contraction_rate_oc",
+  "term": "contraction_rate_oc",
+  "sign": "-",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP changed view). Contraction use is measured as a rate per word (normalizing for length), an operational assumption; the hypothesis says \"more contractions\" without specifying count vs rate. Pooled across all OC_comments; list order and individual commenters unknown. Contractions are a proxy for informality; the \"formal language more persuasive\" interpretation is not separately measured. Possessive 's excluded by assumption. Raw text may contain outcome announcements or quotes of others; not filtered. Association only, not causal."
+}

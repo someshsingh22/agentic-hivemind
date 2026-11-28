@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "mean_negative_sentiment_of_counterarguments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "On average across the counter-argument comments, how negative is the sentiment or tone of each comment's own wording?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). For each comment, rate the negative sentiment of the commenter's own assertions on an integer 0-4 scale: 0 = calm/neutral or positive, no negativity; 1 = slight negativity; 2 = moderate (clear criticism, frustration); 3 = strong (hostile, sarcastic, insulting); 4 = extremely hostile or abusive. Do not rate text the commenter merely quotes from others (e.g., the OP) unless the commenter adopts it. Ignore any statements that announce or report that the OP changed their view, delta awards, or post-outcome resolution updates; do not use them as evidence of tone. Generic discussion of delta rules is eligible. Return the arithmetic mean of the per-comment ratings across all comments. Return null if OC_comments is missing or malformed; return null if the list is empty (no comments to average)."
+    }
+  ],
+  "h0": "mean_negative_sentiment_of_counterarguments has no association with the probability that the OP changed their view (delta).",
+  "h1": "Lower mean_negative_sentiment_of_counterarguments is associated with a higher probability that the OP changed their view (negative coefficient).",
+  "rhs": "mean_negative_sentiment_of_counterarguments",
+  "term": "mean_negative_sentiment_of_counterarguments",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). The 0-4 negativity rubric and the mean aggregation across comments are operational assumptions, since the hypothesis does not specify them. \"Calmer tone\" is treated as lower negative sentiment only. OC_comments are unordered and have no timestamps; comments may be reply-linked in unknown ways, and the current text may contain outcome announcements, which the prompt is told to ignore. Associations only, not causal. The test is OLS on binary delta (linear probability model)."
+}

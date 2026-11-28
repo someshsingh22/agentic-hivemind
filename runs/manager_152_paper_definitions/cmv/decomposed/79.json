@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_long_bold_phrase",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a bolded phrase of 15 or more characters?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads; if missing/malformed return null; empty list -> 0. For each comment string, find markdown bold spans with re.findall(r'\\*\\*(?=\\S)(.+?)(?<=\\S)\\*\\*', text, flags=re.S) (also accept __...__ is NOT used). A span qualifies if len(span.strip()) >= 15 characters. Return 1 if any comment has a qualifying span, else 0. Purely mechanical on raw text; no semantic filtering."
+    }
+  ],
+  "h0": "any_comment_long_bold_phrase has no association with delta.",
+  "h1": "Rows with any_comment_long_bold_phrase=1 have a higher rate of delta (OP view change) than rows with 0.",
+  "rhs": "any_comment_long_bold_phrase",
+  "term": "any_comment_long_bold_phrase",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as OP view change (delta). Bold is detected as markdown **...** in the current comment text; 15+ characters measured on the stripped span inside the markers. Row-level any-comment measure; the hypothesis is about individual comments but no per-comment outcome is supplied, so association is row-level only. Raw text may contain outcome announcements; not outcome-free. Comment timing unknown; rendering/formatting may have been altered in the corpus."
+}

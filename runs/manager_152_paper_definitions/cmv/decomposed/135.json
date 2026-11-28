@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "counterintuitive_challenge_comment_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "How many counter-argument comments explicitly challenge common intuition by presenting their own point as counterintuitive, surprising or paradoxical?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Count comments in which the commenter, in their own assertions (not merely quoted or attributed text they do not adopt), explicitly frames their counter-argument or a key claim as counterintuitive, surprising, paradoxical, or contrary to common intuition/common belief. Use title and argument only to interpret what a comment targets. Do not count OP view-change/delta-award announcements, post-outcome resolution updates, or reports of the outcome as evidence; generic platform/delta-rule discussion is eligible but only counts if it meets the criterion. Each comment counts at most once. Empty list gives 0; missing or malformed OC_comments gives null. List order carries no meaning."
+    }
+  ],
+  "h0": "counterintuitive_challenge_comment_count has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher counterintuitive_challenge_comment_count is associated with a higher probability that the OP changed their view (delta).",
+  "rhs": "counterintuitive_challenge_comment_count",
+  "term": "counterintuitive_challenge_comment_count",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta; association only, not causal. Comments have no per-comment outcomes, so this is a row-level count, not comment-level persuasiveness. Operational assumption: explicit self-framing as counterintuitive/surprising/paradoxical; implicit counterintuitive content without such framing is not counted. Comment text may contain outcome announcements (excluded by the prompt spec); timing of comments is unknown. Count is not normalized by number of comments."
+}

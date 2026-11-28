@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "polysyllabic_word_share_counterarguments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of words across the counter-argument comments have three or more syllables?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; malformed/missing -> null; empty list or zero words -> null. Pool all comments. Tokenize words with regex [A-Za-z]+(?:'[A-Za-z]+)? lowercased. Count syllables per word with a deterministic heuristic: count groups of consecutive vowels (aeiouy), subtract 1 for a trailing silent 'e' (not 'le' after consonant) when count>1, minimum 1. Value = (words with syllables>=3) / (total words) across all comments. Raw text computation; text may contain outcome announcements or quoted material, not filtered."
+    }
+  ],
+  "h0": "polysyllabic_word_share_counterarguments has no association with delta.",
+  "h1": "Higher polysyllabic_word_share_counterarguments is associated with higher probability of delta (OP view change).",
+  "rhs": "polysyllabic_word_share_counterarguments",
+  "term": "polysyllabic_word_share_counterarguments",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP changed view). Syllable counting is a heuristic approximation. Share of polysyllabic words pooled across all available counter-argument comments; the hypothesis could also mean counts, but the share avoids length confounding. Comments may include quoted text from the OP or others and possible outcome announcements; not filtered. Association only, not causal."
+}

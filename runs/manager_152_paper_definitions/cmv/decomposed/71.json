@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counter_capitalized_word_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of all words across the counter-argument comments are capitalized words that are not sentence-initial?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads (malformed/missing -> null). Empty list -> null (no words). For each comment, tokenize words with re.findall(r\"[A-Za-z][A-Za-z'’-]*\", text). A token is capitalized if its first character is uppercase A-Z, excluding the standalone pronoun 'I' (and I'm/I'll/I've/I'd) and excluding tokens at the start of the comment or immediately following sentence-ending punctuation (. ! ?) or a newline. Result = total capitalized tokens across all comments / total word tokens across all comments; null if total tokens is 0. Raw mechanical text computation, no semantic filtering."
+    }
+  ],
+  "h0": "counter_capitalized_word_share has no association with delta.",
+  "h1": "Higher counter_capitalized_word_share is associated with higher probability of delta (OP view change).",
+  "rhs": "counter_capitalized_word_share",
+  "term": "counter_capitalized_word_share",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP changed view); association only. Capitalized words are a mechanical proxy for proper nouns/specific entities, not semantic entity recognition; acronyms and capitalized emphasis count, sentence-initial words excluded by heuristic. Share (length-normalized) used as the 'more' quantity; raw count not used. Comments may contain quoted text and possibly outcome announcements (e.g., delta awards); these are not filtered. Comment order/timing unknown."
+}

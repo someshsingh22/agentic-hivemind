@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "mean_first_paragraph_words",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the mean number of words in the first paragraph of the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings. For each comment, strip leading/trailing whitespace, split on one or more blank lines (regex r'\\n\\s*\\n'), take the first non-empty chunk as the first paragraph, and count words as len(re.findall(r\"\\b\\w+(?:['’-]\\w+)*\\b\", chunk)). Return the mean across comments with non-empty text. Empty list or no non-empty comments -> null; missing or unparseable JSON -> null. Comments with no blank-line break count their whole text as the first paragraph. Raw text, no semantic filtering."
+    }
+  ],
+  "h0": "mean_first_paragraph_words has no association with the probability that the OP changed their view (delta).",
+  "h1": "Lower mean_first_paragraph_words is associated with a higher probability that the OP changed their view.",
+  "rhs": "mean_first_paragraph_words",
+  "term": "mean_first_paragraph_words",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); association only, not causal. Shorter first paragraph is measured as mean word count of first paragraph across all supplied counter-comments, assuming paragraphs are separated by blank lines (newline formatting may be lost in some comments, making the whole comment one paragraph). The hypothesis does not specify aggregation across comments; mean chosen. Comments are unordered; no per-comment outcome, so the mean is a row-level summary. Raw text may include quoted text, edits or outcome announcements; this is not filtered. Comment timing relative to the outcome is unknown."
+}

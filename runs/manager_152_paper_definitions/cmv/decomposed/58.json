@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_perspective_taking_invitation",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly invite the reader (the OP) to take a perspective, for example by asking them to consider, imagine or suppose something?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment contains the commenter's own explicit invitation addressed to the OP/reader to adopt a perspective or entertain a scenario (e.g. 'consider...', 'imagine...', 'suppose...', 'put yourself in...', 'think about it from X's view'). Return 0 if none do. Merely using the words in a non-inviting sense (e.g. 'I consider him smart') does not count; invitations only appearing inside quotations of others and not adopted by the commenter do not count. Exclude any OP view-change/delta-award announcements, post-outcome resolution updates and reports of the outcome as evidence. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "any_perspective_taking_invitation has no association with the probability that the OP changed their view (delta).",
+  "h1": "Discussions with at least one perspective-taking invitation in counter-arguments have a higher rate of OP view change.",
+  "rhs": "any_perspective_taking_invitation",
+  "term": "any_perspective_taking_invitation",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). Comparison is at discussion-row level with 'any' aggregation, an assumption since the hypothesis does not specify any/share. No per-comment outcomes exist, so which comment persuaded is unknown. OC_comments may contain delta announcements or outcome text; the prompt excludes them as evidence, but contamination risk remains. Association only, not causal."
+}

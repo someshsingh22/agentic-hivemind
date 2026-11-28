@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "share_comments_tracing_causal_chains",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What share of the counter-argument comments trace a causal chain, explaining how one thing leads to another (because of this, as a result of)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users, not OP). For each comment decide whether the commenter's own argument traces a causal chain: explicitly links at least one cause to a consequence, or a sequence of steps (A leads to B, which results in C), using reasoning such as 'because', 'as a result', 'therefore', 'leads to'. Merely mentioning a connective without a real cause-effect explanation does not count; mere assertions, opinions, or purely descriptive text do not count. Causal chains only inside quotations of others count only if the commenter adopts them. Ignore any content announcing OP view change, delta awards, or outcome reports; these are not evidence. Return number of comments qualifying divided by total number of comments, in [0,1]. Empty list gives null; missing or malformed gives null."
+    },
+    {
+      "name": "any_comment_traces_causal_chain",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment trace a causal chain (because of this, as a result of)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (comments by other users). Return 1 if at least one comment's own argument explicitly traces a causal chain linking cause(s) to consequence(s) through reasoning such as 'because', 'as a result', 'leads to', otherwise 0. Connective words without real cause-effect explanation do not count; quoted text counts only if adopted by commenter. Ignore view-change/delta-award announcements and outcome reports. Empty list gives 0; missing or malformed gives null."
+    }
+  ],
+  "h0": "share_comments_tracing_causal_chains has no association with delta.",
+  "h1": "Higher share_comments_tracing_causal_chains is associated with higher likelihood of delta (OP view change).",
+  "rhs": "share_comments_tracing_causal_chains",
+  "term": "share_comments_tracing_causal_chains",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). Association only, not causal. The row-level share is one of two operationalizations of 'counter-arguments that trace causal chains'; the any-version is an alternative. Comment order and timing are unknown; OC_comments may contain view-change announcements or outcome text, which are excluded from the semantic judgments. Operational assumption: causal chain means explicit cause-effect reasoning in the commenter's own argument. Rows with no comments get null share and are likely dropped."
+}

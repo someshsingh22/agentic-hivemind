@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_list_with_colon",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment combine a bullet or numbered list with a colon?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. Malformed or missing input gives null; an empty list gives 0. For each comment, list_line = re.search(r'(?m)^\\s*(?:[-*•+]|\\d+[.)])\\s+\\S', text) is not None, and colon = ':' in text. Return 1 if any single comment has both list_line and colon, else 0. Both properties must co-occur in the same comment."
+    }
+  ],
+  "h0": "any_comment_list_with_colon has no association with the probability that the OP changed their view.",
+  "h1": "Rows with any_comment_list_with_colon = 1 have a higher probability of OP view change than rows with 0.",
+  "rhs": "any_comment_list_with_colon",
+  "term": "any_comment_list_with_colon",
+  "sign": "+",
+  "note": "Operational assumptions: \"rich formatting\" is operationalized as a markdown-style bullet or numbered list line plus a colon in the same comment. The regex only reads raw text, so it can miss other markdown or catch colons that have nothing to do with the list. Comment text may contain outcome announcements, and no timing is available. \"Strongly\" is not tested separately. The result is an association and is not causal. Persuasion is measured only through the delta outcome. The row-level feature does not tell which comment persuaded the OP."
+}

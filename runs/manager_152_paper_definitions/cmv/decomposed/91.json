@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_list_and_colon",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain both a bulleted or numbered list and a colon?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads; malformed or missing -> null; empty list -> 0. For each comment string c: has_list = at least 2 lines matching regex (?m)^\\s*(?:[-*•+]|\\d+[.)])\\s+\\S ; has_colon = ':' in c. Value = 1 if any comment has has_list and has_colon in the same comment, else 0. Raw text matching; no semantic filtering."
+    }
+  ],
+  "h0": "Discussions with and without a comment combining a list and a colon (any_comment_list_and_colon) have the same association with delta.",
+  "h1": "Discussions with any_comment_list_and_colon=1 are more likely to have delta=1 than those with 0.",
+  "rhs": "any_comment_list_and_colon",
+  "term": "any_comment_list_and_colon",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view); association only. Operational assumptions: \"combine\" means list and colon co-occur in the same comment (colon anywhere, not necessarily introducing the list); list = at least 2 line-start bullet or numbered items; markdown-stripped formatting may be lost. Comments are unordered and have no per-comment outcomes, so effect is at discussion level. Raw text may contain outcome announcements (not filtered)."
+}

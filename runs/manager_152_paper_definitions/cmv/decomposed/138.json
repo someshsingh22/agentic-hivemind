@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "distinct_places_in_counterarguments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many distinct country or region names are mentioned across the counter-argument comments?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Count distinct countries or regions (e.g., France, Middle East, Texas-level subnational names count as regions only if clearly a geographic region) named anywhere across all comments, counting each place once after merging obvious variants (US/United States/America; UK/Britain). Count place names used as geographic references, including in quotations of sources or the OP cited within comments. Demonyms alone (e.g., 'French') do not count unless clearly naming the place. Ignore text that announces OP view change, delta awards, or reports of the outcome. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "distinct_places_in_counterarguments has no association with the probability that the OP changed their view.",
+  "h1": "Higher distinct_places_in_counterarguments is associated with a higher probability that the OP changed their view.",
+  "rhs": "distinct_places_in_counterarguments",
+  "term": "distinct_places_in_counterarguments",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the delta outcome. Counts are over all available counter-comments pooled per row (not per comment), so more comments may mechanically yield more places. Sub-national regions are ambiguous; the spec counts only clear geographic regions. Comment text may contain outcome announcements, which are excluded from the count. Association only, not causal."
+}

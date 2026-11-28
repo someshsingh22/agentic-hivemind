@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_marking_central_claim",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments explicitly mark their own central claim with a phrase such as \"I argue that\" or \"my argument is\"?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). For each comment, decide whether the commenter, in their own voice, explicitly labels their central claim or thesis with an announcing phrase such as 'I argue that', 'my argument is', 'my point is', 'my claim is', 'I'm arguing'. Count it only if the phrase is in the commenter's own assertion, not in a quotation of the OP or another person, and not merely a hedge like 'I think' without labeling an argument/claim. Ignore any text announcing that the OP changed their view, delta awards, or post-outcome updates. Output = (number of qualifying comments)/(total comments), a value in [0,1]. Empty list -> null; missing or malformed input -> null."
+    }
+  ],
+  "h0": "share_comments_marking_central_claim has no association with delta.",
+  "h1": "Higher share_comments_marking_central_claim is associated with higher delta (OP view change).",
+  "rhs": "share_comments_marking_central_claim",
+  "term": "share_comments_marking_central_claim",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP changed view). Row-level share of comments used since the hypothesis is about comments and no per-comment outcomes exist; comparison against comments without marking is only implicit. List order gives no chronology. Comment text may contain view-change announcements or outcome reports, which are excluded from the construct. Association only, not causal."
+}

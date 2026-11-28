@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_multiple_evidence_types",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain at least two of three evidence types: a URL, a year, and a proper noun?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings (comments by other users). Missing/malformed -> null; valid empty list -> 0. For each comment text c: url = bool(re.search(r'https?://|www\\.', c)); year = bool(re.search(r'\\b(1[0-9]{3}|20[0-9]{2})\\b', c)); proper = True if c contains a capitalized word (regex [A-Z][a-z]+) that is not the first word of a sentence (not at string start and not preceded by [.!?] plus whitespace) and is not the standalone word 'I' (and its contractions); else False. Comment qualifies if url+year+proper >= 2. Output 1 if any comment qualifies, else 0. All three types need not be in the same comment pair; types are evaluated within a single comment, not pooled across comments."
+    }
+  ],
+  "h0": "any_comment_multiple_evidence_types has no association with the probability that the OP changed their view (delta).",
+  "h1": "Rows with at least one counter-argument comment combining multiple evidence types (URL, year, proper noun) have higher delta rates.",
+  "rhs": "any_comment_multiple_evidence_types",
+  "term": "any_comment_multiple_evidence_types",
+  "sign": "+",
+  "note": "Operational assumptions: \"multiple types\" = at least two of the three named types within one comment; the row-level any-comment form is used. Proper nouns are approximated by a capitalization heuristic (mid-sentence capitalized words), which misses sentence-initial names and mis-flags some capitalized words; no NER is used. Years limited to 1000-2099 four-digit numbers. Raw text matching is not semantically filtered and comments may contain outcome/delta announcements or later replies; timing relative to the outcome is unknown. Persuasiveness is operationalized only as the dataset outcome delta; association, not causation. List order carries no chronology."
+}

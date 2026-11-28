@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_ending_with_question",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments end with a question mark?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings. If malformed/missing, return null. If the list is empty, return null. For each comment, strip trailing whitespace and trailing closing characters (any of ) ] \" ' * _ ~ and >), then test whether the final character is '?'. Return the number of such comments divided by the total number of comments in the list (empty/whitespace-only comments count in the denominator and as not ending with a question). Pure literal check, no semantic filtering."
+    }
+  ],
+  "h0": "share_comments_ending_with_question has no association with delta.",
+  "h1": "A higher share_comments_ending_with_question is associated with a higher probability of delta.",
+  "rhs": "share_comments_ending_with_question",
+  "term": "share_comments_ending_with_question",
+  "sign": "+",
+  "note": "Operational assumption: \"end with a question\" means the comment's final character (after trailing whitespace/closing punctuation/markdown) is '?'; this is a surface proxy for inviting reflection, and rhetorical vs genuine questions are not distinguished. Row-level share across comments is used since no per-comment outcomes exist; persuasiveness is the row's delta, so this is an association only. Comment order/timing unknown; comments may include text added after the outcome (e.g., delta announcements) and raw text is not outcome-free. Questions followed by trailing text such as signatures or edits are not counted."
+}

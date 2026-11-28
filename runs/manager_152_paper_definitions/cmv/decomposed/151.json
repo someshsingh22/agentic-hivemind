@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_oc_comment_has_decimal",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a decimal number such as 3.14 or 0.75?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. Return 1 if any comment matches regex r'(?<![\\w.])\\d+\\.\\d+(?![\\w]*\\.\\d)' (digits, a period, digits; e.g. 3.14, 0.75, 2.5, 1.96), else 0. Empty list gives 0. Missing or unparseable OC_comments gives null. Raw text match, no semantic filtering; version numbers or IP-like strings may match, and sentence-ending periods without digits after do not."
+    }
+  ],
+  "h0": "any_oc_comment_has_decimal has no association with the probability that the OP changed their view.",
+  "h1": "Discussions with any_oc_comment_has_decimal = 1 have a higher rate of OP view change than those with 0.",
+  "rhs": "any_oc_comment_has_decimal",
+  "term": "any_oc_comment_has_decimal",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the supplied delta outcome (OP view change) at row level. Comments are unordered and have no per-comment outcomes, so the test is whether a discussion has at least one decimal-containing counter-comment. This is an association, not causal. The raw text could include outcome announcements or later replies, and its timing is unknown. The regex is mechanical: it may match non-quantitative decimals such as version numbers, and it does not separate quoted text from the commenter's own words."
+}

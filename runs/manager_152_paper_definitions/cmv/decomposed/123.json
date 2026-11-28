@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "any_counterargument_over_twice_op_length",
+      "dtype": "binary",
+      "source_columns": [
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "Is at least one counter-argument comment more than twice as many words as the OP's argument?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; unparseable or missing -> null. Word count = len(text.split()) on the string. OP word count = len(argument.split()) on the current argument column (title excluded). If argument is missing or has 0 words -> null. Empty comment list -> 0. Otherwise 1 if any comment has word count > 2 * OP word count (strictly greater), else 0. Raw-text count: no semantic filtering; text may contain edits or outcome announcements."
+    }
+  ],
+  "h0": "any_counterargument_over_twice_op_length has no association with the probability that the OP changed their view (delta).",
+  "h1": "Rows with at least one counter-argument more than twice the length of the OP's argument are more likely to have delta=1.",
+  "rhs": "any_counterargument_over_twice_op_length",
+  "term": "any_counterargument_over_twice_op_length",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); association only, not causal. Length is whitespace-delimited word count. The hypothesis is about individual counter-arguments; the row-level feature is the \"any\" version, and it does not identify which comment persuaded (no per-comment outcomes). The OC_comments list is only the available comments; the argument text is current text and may include edits or delta announcements, and comments may too (raw text, not outcome-free). log_length not used because its construction is undocumented and it is not equivalent to word count. Rows with zero-word arguments yield null."
+}

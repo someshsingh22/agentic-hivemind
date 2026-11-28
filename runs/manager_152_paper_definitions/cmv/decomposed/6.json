@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "mean_paragraphs_per_counter_comment",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the average number of paragraphs per counter-argument comment?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads. For each comment string, count paragraphs: split on regex r'\\n\\s*\\n', strip each piece, count nonempty pieces. Return the mean across comments. Empty list -> null; missing/malformed JSON -> null. Raw text count, not semantically filtered; may include outcome announcements or quotations."
+    }
+  ],
+  "h0": "mean_paragraphs_per_counter_comment has no association with delta.",
+  "h1": "Higher mean_paragraphs_per_counter_comment is associated with higher likelihood of delta.",
+  "rhs": "mean_paragraphs_per_counter_comment",
+  "term": "mean_paragraphs_per_counter_comment",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). \"Counter-arguments with more paragraphs\" is operationalized as the row-level mean paragraph count per comment; blank-line separation is assumed to mark paragraphs. Comments are unordered, with no per-comment outcomes, so this is a row-level association, not a per-comment effect. Comment length is not controlled. Text may contain outcome announcements (not filtered)."
+}

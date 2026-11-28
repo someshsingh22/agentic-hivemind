@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_numbered_list",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a numbered list (lines beginning 1., 2., etc.)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads. Return null if missing or malformed. For each comment string, find line-start markers with regex r'(?m)^\\s*(\\d{1,2})[.)]\\s+\\S'. A comment has a numbered list if it has markers with number 1 and number 2 (both present, 2 appearing after 1). Return 1 if any comment qualifies, else 0 (empty list gives 0)."
+    }
+  ],
+  "h0": "any_comment_numbered_list has no association with the probability that the OP changed their view (delta).",
+  "h1": "Discussions with any_comment_numbered_list=1 have a higher probability of OP view change than those with 0.",
+  "rhs": "any_comment_numbered_list",
+  "term": "any_comment_numbered_list",
+  "sign": "+",
+  "note": "Persuasiveness is operationalised as the dataset outcome delta (OP changed view); association only, not causal. Numbered-list detection is a mechanical regex on current comment text: it requires line-start \"1.\" and \"2.\" markers, so inline lists (\"1) ... 2)\" within a sentence) or non-line-start numbering are missed. Comments are not linked to the delta-awarding comment, so a list comment may not be the persuasive one. Row-level \"any\" is used because per-comment outcomes are not supplied. Text may contain outcome announcements; the regex is not filtered for them."
+}

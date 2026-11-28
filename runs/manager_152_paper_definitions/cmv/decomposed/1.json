@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "counter_content_word_reuse_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "What proportion of content words (nouns, verbs, adjectives, adverbs) across the counter-argument comments also appear among the content words of the OP's title and argument?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of comment strings; malformed/missing OC_comments, title or argument -> null; empty list -> null (no content words). Tokenize with nltk word_tokenize on lowercased text, keep alphabetic tokens, POS-tag with nltk pos_tag (Penn tags) and keep content words: tags starting NN, VB, JJ, RB. Build the OP set from the content-word tokens (same procedure) of title + ' ' + argument. Pool the content-word tokens of all comments (each token occurrence counted). Value = (number of comment content-word tokens whose lowercase surface form is in the OP set) / (total comment content-word tokens); null if the denominator is 0. Do not use conversation."
+    }
+  ],
+  "h0": "counter_content_word_reuse_share has no association with the probability that the OP changed their view.",
+  "h1": "Higher counter_content_word_reuse_share (less fresh vocabulary) is associated with a lower probability of view change.",
+  "rhs": "counter_content_word_reuse_share",
+  "term": "counter_content_word_reuse_share",
+  "sign": "-",
+  "note": "Operational assumptions: \"reuse of OP content words\" is lexical overlap of exact lowercase surface forms (no lemmatization), pooled over all counter-comments; the OP vocabulary is the current title+argument text, which may include edits or post-outcome/delta announcements (contamination/timing risk; raw text is not outcome-free). Overlap measures vocabulary reuse only, not whether perspectives are actually fresh; \"persuasive\" is measured only by the dataset outcome delta. Comment order/timing unknown; comments may include quotes of the OP, which count as reuse mechanically. Association only, not causal."
+}

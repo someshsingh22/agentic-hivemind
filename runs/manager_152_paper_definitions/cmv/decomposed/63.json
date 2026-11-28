@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "mean_comment_title_vocab_overlap",
+      "dtype": "numeric",
+      "source_columns": [
+        "title",
+        "OC_comments"
+      ],
+      "definition": "On average across counter-argument comments, what proportion of a comment's distinct words also appear in the OP's CMV title?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings (malformed/missing -> null; empty list -> null). Strip a leading 'CMV:' (case-insensitive) from title. Tokenize title and each comment: lowercase, regex [a-z0-9']+ . Title vocabulary = set of title tokens (no stopword removal; if the title has no tokens -> null). For each comment with at least one token, overlap = |distinct comment tokens in title vocabulary| / |distinct comment tokens|. Comments with no tokens are skipped. Return the mean overlap across comments; null if no comment has tokens."
+    }
+  ],
+  "h0": "mean_comment_title_vocab_overlap has no association with the probability that the OP changed their view (delta).",
+  "h1": "Lower mean_comment_title_vocab_overlap is associated with a higher probability of delta (negative coefficient).",
+  "rhs": "mean_comment_title_vocab_overlap",
+  "term": "mean_comment_title_vocab_overlap",
+  "sign": "-",
+  "note": "Operational assumptions: 'overlap with title vocabulary' is the mean per-comment share of distinct comment tokens found in the title tokens, with no stopword removal or stemming; this is a lexical proxy, and the 'fresh perspectives' mechanism is not measured. Comments are pooled from OC_comments, which has no order or timing; they may include text after the outcome (e.g. delta announcements); raw text is not outcome-free. Short comments give noisier shares. Association only, not causal."
+}

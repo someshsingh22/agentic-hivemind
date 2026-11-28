@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_three_plus_numbered_points",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain 3 or more distinct numbered points, in any numbering format?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of counter-argument comments by other users). Return 1 if at least one single comment itself contains 3 or more distinct points that are explicitly numbered or enumerated in order, in any format (e.g., '1.', '1)', '(1)', '#1', 'Point 1', bullets with numbers, number words, or ordinal markers like 'First... Second... Third...'). The 3+ points must be within the same comment; points from separate comments cannot be combined. Points must be distinct (not repeated or the same point restated). Count only the commenter's own numbered points; ignore numbered lists that only appear inside text quoted from someone else and are not adopted. Ignore any OP view-change or delta-award announcements or reports of the outcome; they are not evidence. Return 0 if no comment qualifies, including when the list is valid but empty. Return null if OC_comments is missing or malformed. Comment order is irrelevant."
+    }
+  ],
+  "h0": "any_comment_three_plus_numbered_points has no association with the OP changing their view (delta).",
+  "h1": "Rows with at least one counter-argument comment having 3 or more distinct numbered points are more likely to have delta=1.",
+  "rhs": "any_comment_three_plus_numbered_points",
+  "term": "any_comment_three_plus_numbered_points",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP changed view); association only, not causal. The hypothesis is read as \"any counter-argument comment\" with 3+ numbered points within one comment; the comparison group is rows with no such comment. Numbering format is judged semantically. OC_comments have no timestamps or per-comment outcomes, so cannot tell which comment persuaded; text may contain outcome announcements (excluded from judgment by the prompt but not otherwise verified)."
+}

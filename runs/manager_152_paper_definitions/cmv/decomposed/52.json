@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "colon_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments contain at least one colon?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of comment strings. If missing or malformed, return null. If the list is empty, return null. For each comment, remove URL schemes via re.sub(r'https?://|ftp://','',text) and then test whether ':' appears in the remainder. Return the number of comments with a colon divided by the total number of comments (0 to 1). Mechanical raw-text rule; no semantic filtering for list/explanation use, and text may contain outcome announcements."
+    }
+  ],
+  "h0": "colon_comment_share has no association with the probability that the OP changed their view.",
+  "h1": "Higher colon_comment_share is associated with a higher probability that the OP changed their view.",
+  "rhs": "colon_comment_share",
+  "term": "colon_comment_share",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the delta outcome (association only). Colon use is measured mechanically as presence of the ':' character (excluding URL schemes), so it does not verify that colons introduce lists or explanations; other uses (e.g. emoticons, times, ratios) count. Share across comments is an assumed aggregation; comment lengths are not controlled. Comment text may include outcome announcements, and timing is unknown."
+}

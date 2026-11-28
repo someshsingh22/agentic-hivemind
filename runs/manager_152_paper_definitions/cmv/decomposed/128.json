@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_acknowledging_exceptions",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments explicitly acknowledge exceptions to a generalization (e.g. not all, not every, not always)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). For each comment decide whether, in the commenter's own assertion, it explicitly acknowledges an exception or limit to a generalization, e.g. 'not all', 'not every', 'not always', 'some but not all', 'there are exceptions'. Mere hedging without reference to exceptions, and quoted/attributed text not adopted by the commenter (e.g. quoting the OP) do not count. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Output = number of qualifying comments / total number of comments, in [0,1]. Empty list gives null; malformed or missing input gives null."
+    }
+  ],
+  "h0": "share_comments_acknowledging_exceptions has no association with the probability that the OP changed their view.",
+  "h1": "A higher share_comments_acknowledging_exceptions is associated with a higher probability that the OP changed their view.",
+  "rhs": "share_comments_acknowledging_exceptions",
+  "term": "share_comments_acknowledging_exceptions",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). The row-level measure is the share of counter-arguments with explicit exception acknowledgment; the share (vs any/count) is an assumption. Comments are unordered, with no timing. Rows with empty comment lists get null. Association only, not causal. Comment text may contain outcome announcements; these are excluded by the prompt."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "cc_has_emphasis_marker",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain an emphasis marker (importantly, crucially, notably, it is worth noting, key point)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If missing or malformed, return null. If the list is empty, return 0. Lowercase each comment and search with regex r'\\b(importantly|crucially|notably|it is worth noting|key point)\\b'. Return 1 if any comment matches, else 0. Raw literal match with no semantic filtering; matches inside quotations or in any speaker's wording count."
+    }
+  ],
+  "h0": "cc_has_emphasis_marker has no association with delta.",
+  "h1": "Rows whose counter-arguments contain emphasis markers (cc_has_emphasis_marker=1) have a higher probability of delta than rows without them.",
+  "rhs": "cc_has_emphasis_marker",
+  "term": "cc_has_emphasis_marker",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the row's delta outcome, so this describes an association and not a causal effect. The marker list is taken literally from the hypothesis and is not exhaustive. A row-level any-comment indicator was chosen because the hypothesis does not specify a count or share. Comments are unordered and have no individual outcomes. Comment text may contain quoted text or post-outcome content, and this raw text is not guaranteed to be outcome-free."
+}

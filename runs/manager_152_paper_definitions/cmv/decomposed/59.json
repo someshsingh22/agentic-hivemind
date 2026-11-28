@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_with_comparative_phrase",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments contain the explicit comparative phrase 'more than' or 'less than'?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If missing/malformed, return null. If the list is empty, return null. For each comment, flag 1 if re.search(r'\\b(more|less)\\s+than\\b', comment, flags=re.I) matches, else 0. Return sum(flags)/len(list). Raw text match with no semantic filtering; quoted text and any outcome announcements are not excluded."
+    }
+  ],
+  "h0": "share_comments_with_comparative_phrase has no association with delta.",
+  "h1": "Higher share_comments_with_comparative_phrase is associated with higher probability of delta (OP view change).",
+  "rhs": "share_comments_with_comparative_phrase",
+  "term": "share_comments_with_comparative_phrase",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). Explicit comparative language is operationalized only as the literal phrases 'more than' and 'less than' (case-insensitive); other comparatives (-er, 'better', 'fewer') are not counted. Share of comments is the assumed aggregation. The match is mechanical, so quoted text (including quotes of the OP) is counted, and conversation outcome announcements could appear in comments. Comment order and timing are unknown. Association only, not causal."
+}

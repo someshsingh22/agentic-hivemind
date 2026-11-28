@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_with_epistemic_hedge",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments contain an epistemic hedge phrase such as \"I think\", \"I believe\" or \"in my view\"?",
+      "kind": "code",
+      "spec": "Parse df['OC_comments'] as a JSON list of strings; malformed/missing -> null; empty list -> null. For each comment, case-insensitive regex match with word boundaries for the literal hedge phrases: \"i think\", \"i believe\", \"in my view\" (also allow curly apostrophes not needed). Output = (number of comments matching at least one phrase) / (total number of comments). Raw text matching: matches inside quotations of others or in comments containing outcome announcements are still counted; no semantic filtering."
+    }
+  ],
+  "h0": "share_comments_with_epistemic_hedge has no association with the probability that the OP changed their view (delta).",
+  "h1": "A higher share_comments_with_epistemic_hedge is associated with a lower probability that the OP changed their view (delta).",
+  "rhs": "share_comments_with_epistemic_hedge",
+  "term": "share_comments_with_epistemic_hedge",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); association only, not causal. Hedge phrase list is limited to the three examples given; other hedges (e.g. \"maybe\", \"I feel\") are not counted. Row-level share of comments is used, so comment-level persuasiveness is not measured (no per-comment outcomes). Matches may occur in quoted text or in comments mentioning the outcome (contamination risk); raw text is not outcome-free. Comment order/timing unknown. Rows with empty comment lists yield null."
+}

@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "markdown_link_share_of_urls",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Among all link URLs in the counter-argument comments, what proportion are in formatted Markdown links ([text](url)) rather than bare URLs?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads; malformed or missing -> null. Join comments. Markdown links: regex r'\\[[^\\]]*\\]\\((https?://[^)\\s]+)[^)]*\\)' count = m. Remove those matches from the text, then bare URLs: regex r'https?://[^\\s<>\\)\\]]+' count = b. Return m/(m+b); if m+b==0 (including empty list) return null. Raw text matching, no semantic filtering; comment text may contain outcome announcements."
+    },
+    {
+      "name": "has_any_url_in_counterarguments",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain any URL, Markdown-formatted or bare?",
+      "kind": "code",
+      "spec": "Parse OC_comments JSON; malformed/missing -> null; empty list -> 0. Return 1 if any comment matches r'https?://' else 0."
+    }
+  ],
+  "h0": "Among discussions with counter-argument links, the share of URLs that are Markdown-formatted is not associated with delta, controlling for having any URL.",
+  "h1": "A higher share of Markdown-formatted links (vs. bare URLs) in counter-arguments is associated with higher likelihood of delta.",
+  "rhs": "markdown_link_share_of_urls",
+  "term": "markdown_link_share_of_urls",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta. The share feature is null when no URLs exist, so the OLS only uses rows with URLs (patsy drops NaN); the second feature is supplied but not in rhs. Mixed Markdown/bare rows are intermediate shares. Association only; raw text may contain outcome announcements, and comment order/timing is unknown. Regex may miss unusual link syntax (e.g. reference links, angle-bracketed URLs)."
+}

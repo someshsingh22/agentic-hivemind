@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_long_parenthetical_in_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a parenthetical aside of 20 or more characters?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; malformed/missing -> null; empty list -> 0. For each comment, find matches of regex r'\\(([^()]*)\\)' (innermost parentheses, no nesting); a match counts if len(inner text) >= 20 characters (inner text between the parentheses, including spaces, no stripping). Return 1 if any comment has at least one such match, else 0. Purely mechanical; no semantic filtering; URLs in markdown links like [text](url) are matched too unless the match is immediately preceded by ']' (those are excluded)."
+    }
+  ],
+  "h0": "any_long_parenthetical_in_counterargument has no association with delta.",
+  "h1": "Discussions with at least one counter-argument containing a long (20+ character) parenthetical aside are more likely to have delta=1.",
+  "rhs": "any_long_parenthetical_in_counterargument",
+  "term": "any_long_parenthetical_in_counterargument",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view); association only. \"Counter-arguments with\" interpreted as any comment in the row having such an aside (alternatives: share or count). Parentheses are detected mechanically; unbalanced or nested parentheses are missed, and markdown link URLs are excluded. Comment text may contain outcome announcements or later edits; timing is unknown, and list order is not chronology."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "connector_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many occurrences of the formal reasoning connectors therefore, hence or thus appear across all counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If missing or malformed, return null. If the list is empty return 0. Otherwise, across all comments, count case-insensitive whole-word regex matches of r'\\b(therefore|hence|thus)\\b' and sum them. Raw text count, no semantic filtering; no stemming or other connectors."
+    }
+  ],
+  "h0": "connector_count has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher connector_count is associated with a lower probability of delta, i.e. fewer connectors go with more persuasion.",
+  "rhs": "connector_count",
+  "term": "connector_count",
+  "sign": "-",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP changed view). Connectors are limited to the three listed words; other connectors are not counted. Count is raw, not length-normalized, so longer comment sets have more opportunity; length is not controlled. OC_comments are current text, may include post-outcome content; comment order/timing unknown. Association only."
+}

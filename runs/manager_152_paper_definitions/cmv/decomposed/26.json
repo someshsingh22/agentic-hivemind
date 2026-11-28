@@ -1,0 +1,9 @@
+{
+  "features": [],
+  "h0": "Reply delay in hours after post creation is not associated with the probability that the reply wins a delta from the OP.",
+  "h1": "Replies made fewer hours after post creation are more likely to win a delta from the OP.",
+  "rhs": "1",
+  "term": null,
+  "sign": "-",
+  "note": "Unsupported. The claim needs each reply's delay (hours after post creation) and a per-reply delta outcome. post_created_utc is only the post's creation time, and OC_comments and conversation carry no comment timestamps. List order is not chronology, and reply timing is unknown. The supplied delta is a row-level outcome, not a per-comment one. Any substitute, such as comment count, list position or post-level proxies, would measure a different claim, so no features are defined. rhs is the placeholder '1' and tests nothing."
+}

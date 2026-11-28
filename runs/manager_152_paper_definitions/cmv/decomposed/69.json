@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_has_edit_eta_marker",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain an explicit \"Edit:\" or \"ETA:\" section marker?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings (null if missing/malformed; empty list -> 0). Return 1 if any comment matches regex r'(?i)\\b(?:edit|eta)\\s*:' ; else 0. Raw literal match on current text, not semantically filtered; may match non-revision uses and cannot confirm revision after posting."
+    }
+  ],
+  "h0": "any_comment_has_edit_eta_marker has no association with the probability that the OP changed their view (delta).",
+  "h1": "Rows with a counter-argument containing an Edit:/ETA: marker have a higher delta rate than rows without.",
+  "rhs": "any_comment_has_edit_eta_marker",
+  "term": "any_comment_has_edit_eta_marker",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (row level, not per-comment; no per-comment outcomes are supplied). The marker is only a proxy for revision; edit timing is unknown. The marker is rare (~0.5% of rows in a quick check), so power is low. Edit text may include delta/outcome acknowledgements (e.g. 'Edit: !delta'), a contamination risk not filtered here. 'Substantially' has no threshold; the test is of direction/association only, not causation."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_conditional_would",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments use the modal \"would\" conditionally to express uncertainty or hypotheticality in the commenter's own wording?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of counter-argument comments by other users. For each comment decide whether the commenter's OWN assertions contain at least one use of the modal 'would' (including 'wouldn't', 'would've', and 'd' contractions of would) as a conditional/hypothetical modal that signals uncertainty or a hypothetical outcome (e.g. 'that would probably happen', 'if X, Y would follow'). Do not count 'would' used only inside quotations of other people (e.g. quoting the OP) unless the commenter adopts the quoted statement as their own; do not count habitual past 'would' ('he would always go'), polite requests ('would you ...'), or non-modal uses. Ignore any text announcing an OP view change or delta award, post-outcome resolution updates, or reports of the outcome; these do not count as evidence. Output = (number of comments meeting the criterion) / (total number of comments in the list), a value from 0 to 1. Empty list -> null; missing or malformed JSON -> null. List order is irrelevant."
+    }
+  ],
+  "h0": "share_comments_conditional_would has no association with delta.",
+  "h1": "Higher share_comments_conditional_would is associated with lower probability of delta (view change).",
+  "rhs": "share_comments_conditional_would",
+  "term": "share_comments_conditional_would",
+  "sign": "-",
+  "note": "Operational assumptions: 'less persuasive' is measured as lower association with the dataset outcome delta (OP view change); association only, not causal. The share of comments (rather than count or any-use) is my chosen aggregation since the hypothesis does not specify; the 'conditional modal indicating uncertainty' judgment is semantic and based on current supplied text. OC_comments lack timestamps and per-comment outcomes, so persuasiveness of individual comments cannot be assessed; row-level share is used. Comment text may contain outcome announcements, which are excluded from the semantic judgment; contamination remains possible. Rows with empty comment lists yield null."
+}

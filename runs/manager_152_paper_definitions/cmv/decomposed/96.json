@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "mean_title_overlap",
+      "dtype": "numeric",
+      "source_columns": [
+        "title",
+        "OC_comments"
+      ],
+      "definition": "On average across counter-argument comments, what share of the OP title's distinct content words also appear in each comment?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. Take title, strip a leading 'CMV:' (case-insensitive), lowercase, tokenize with re.findall(r\"[a-z0-9']+\"), drop sklearn ENGLISH_STOP_WORDS, keep distinct tokens as set T. For each comment, tokenize identically into set C; overlap = len(T & C)/len(T). Return the mean overlap over all comments. Return null if title is missing/malformed, T is empty, or OC_comments is malformed or an empty list. Raw text mechanical measure; comments/title may contain outcome announcements and no filtering is applied. List order is ignored."
+    }
+  ],
+  "h0": "mean_title_overlap has no association with delta.",
+  "h1": "Higher mean_title_overlap is associated with lower probability of delta (OP view change).",
+  "rhs": "mean_title_overlap",
+  "term": "mean_title_overlap",
+  "sign": "-",
+  "note": "Operational assumptions: topic overlap is operationalized as lexical overlap of comment words with title content words (stopwords removed, no stemming); mean across comments is used since 'counter-arguments' is plural and the row-level scalar must aggregate. Persuasiveness is measured by the dataset outcome delta (OP changed view); the association is not causal. Comments are unordered, and some may be posted after or contain outcome announcements; raw text is not outcome-free. Comments are current supplied text only; the row-level outcome is not per-comment."
+}

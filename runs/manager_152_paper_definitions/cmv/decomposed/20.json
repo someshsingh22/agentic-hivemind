@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "second_person_word_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of all words across the counter-argument comments are second-person words (you, your and their variants)?",
+      "kind": "code",
+      "spec": "Parse OC_comments as JSON list of strings; if missing/malformed return null; if empty list or zero total words return null. Lowercase each comment; tokenize words with re.findall(r\"[a-z]+(?:'[a-z]+)?\", text) (curly apostrophes normalized to '). Count tokens matching ^(you|your|yours|yourself|yourselves)$ or you're/you've/you'll/you'd. Result = total matched tokens across all comments / total tokens across all comments. Mechanical count over raw text, including quoted text and any outcome announcements; no semantic filtering."
+    }
+  ],
+  "h0": "second_person_word_share has no association with whether the OP changed their view (delta).",
+  "h1": "Higher second_person_word_share in counter-arguments is associated with higher likelihood of delta.",
+  "rhs": "second_person_word_share",
+  "term": "second_person_word_share",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view); association only, not causal. Operational assumptions: 'more second-person language' is measured as the share of words (rate, not raw count) pooled across all available counter-comments, including you-contractions and yours/yourself. Quoted OP text within comments is counted mechanically, as are possible delta announcements in raw text, so contamination is possible. Comment order/timing unknown; comments may be by repeated commenters; available comments may include later replies."
+}

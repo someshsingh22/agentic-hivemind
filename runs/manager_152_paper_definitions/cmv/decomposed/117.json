@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counter_sentence_length_sd",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the standard deviation of sentence lengths (in words) across all sentences in the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; malformed/missing -> null; empty list -> null (no sentences). Concatenate sentences from all comments (pooling sentences across comments; do not average per-comment). Split each comment into sentences with regex split on (?<=[.!?])\\s+ and newlines, drop empty segments. Sentence length = count of tokens matching \\b\\w+\\b (apostrophes kept within words via [\\w']+). Return population standard deviation (ddof=0) of lengths across all sentences; if fewer than 2 sentences, return 0 if exactly one sentence, null if none."
+    }
+  ],
+  "h0": "counter_sentence_length_sd has no association with the probability that the OP changed their view (delta).",
+  "h1": "Greater counter_sentence_length_sd is associated with a higher probability that the OP changed their view.",
+  "rhs": "counter_sentence_length_sd",
+  "term": "counter_sentence_length_sd",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as delta (OP view change). Variation operationalized as pooled sentence-length SD in words across all counter-comments, with regex sentence splitting (imprecise for abbreviations, lists, quotes, URLs). SD is correlated with overall comment length and number of sentences; no controls added. Raw text may include quoted text or outcome announcements; not filtered. Comment order/timing unknown. Association only."
+}

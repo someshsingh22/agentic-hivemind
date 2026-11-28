@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "example_phrase_comment_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many counter-argument comments contain an example phrase such as 'for example', 'for instance' or 'e.g.'?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; malformed/missing -> null; empty list -> 0. Count comments where case-insensitive regex r'\\b(for example|for instance|e\\.g\\.?)' matches (also 'e.g.' with trailing punctuation/comma). Return the integer count. Raw text matching with no semantic filtering; matches inside quotations or outcome announcements are counted."
+    },
+    {
+      "name": "has_example_phrase_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain an example phrase such as 'for example', 'for instance' or 'e.g.'?",
+      "kind": "code",
+      "spec": "df['example_phrase_comment_count'] > 0 as 1/0; null if `example_phrase_comment_count` is null."
+    }
+  ],
+  "h0": "has_example_phrase_comment has no association with delta.",
+  "h1": "Discussions with at least one counter-argument containing example phrases have higher delta rates.",
+  "rhs": "has_example_phrase_comment",
+  "term": "has_example_phrase_comment",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the row's delta outcome (OP changed view), an association only. Comments are not individually linked to outcomes, so comparison is at discussion level: presence of example-phrase comments vs. none. Literal phrase matching only; it does not verify a real example is given. Comment text may include quoted material or outcome announcements, which are not excluded. Comment timing unknown. The count feature is an alternative intensity measure; its count scale depends on number of comments available."
+}

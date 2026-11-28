@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "op_vocab_coverage_by_counterarguments",
+      "dtype": "numeric",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "What fraction of the OP's distinct content words (nouns, verbs, adjectives, adverbs) also appear in the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; malformed/missing OC_comments, title or argument -> null; an empty list -> null. Tokenize text (lowercase, alphabetic tokens), POS-tag with a fixed tagger (e.g. spaCy en_core_web_sm or NLTK averaged perceptron) and keep content words = tokens tagged NOUN, VERB, ADJ or ADV (Penn tags NN*, VB*, JJ*, RB*), lemmatized, excluding stopwords/auxiliaries by POS only. OP vocabulary V_op = set of distinct content lemmas in title + ' ' + argument (current text). Comment vocabulary V_c = union of distinct content lemmas across all comments in OC_comments. Value = len(V_op & V_c) / len(V_op), in [0,1]. If V_op is empty -> null. Computed once per row over the pooled comments; no ordering used."
+    }
+  ],
+  "h0": "op_vocab_coverage_by_counterarguments has no association with the probability that the OP changed their view (delta).",
+  "h1": "Lower op_vocab_coverage_by_counterarguments is associated with higher probability of OP view change (negative coefficient).",
+  "rhs": "op_vocab_coverage_by_counterarguments",
+  "term": "op_vocab_coverage_by_counterarguments",
+  "sign": "-",
+  "note": "Assumptions: \"OP's content vocabulary\" = distinct content-word lemmas of title plus argument; counter-arguments pooled across all OC_comments (a row-level pooled measure, not per-comment average). \"Persuasive\" operationalised as the dataset outcome delta (association only). Coverage is the share of OP vocabulary appearing in comments, so it rises with comment count/length; no control is added. Raw-text code is not semantically filtered: argument may contain edits or delta/view-change announcements and comments may quote the OP, inflating overlap; text timing relative to outcome is unknown. Tagger/lemmatizer choice is an implementation assumption."
+}

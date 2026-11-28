@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "short_word_share_oc",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of all words across the counter-argument comments are short words (three letters or fewer)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings (malformed/missing -> null). Concatenate all comments' text. Tokenize words with re.findall(r\"[A-Za-z]+(?:'[A-Za-z]+)*\", text.lower()). A short word is a token whose letters (excluding apostrophes) number at most 3. Value = short tokens / total tokens pooled across all comments (not mean of per-comment shares). Empty list or zero tokens -> null. Raw mechanical text count; no semantic filtering."
+    }
+  ],
+  "h0": "short_word_share_oc has no association with delta (coefficient = 0).",
+  "h1": "Higher short_word_share_oc is associated with a lower probability of delta (coefficient < 0).",
+  "rhs": "short_word_share_oc",
+  "term": "short_word_share_oc",
+  "sign": "-",
+  "note": "Assumptions: \"short words\" operationalized as tokens of ≤3 letters (threshold not supplied by hypothesis); pooled share across all available counter-argument comments. \"Persuasive\" is measured by the dataset outcome delta (OP changed view), an association only. OC_comments are raw text and may contain view-change/delta announcements or quoted text; these are not removed. Comment order/timing unknown. Simple vocabulary is only proxied by short word share."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "nonalpha_word_share_oc",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of words across the counter-argument comments contain at least one non-alphabetic character?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; missing/malformed -> null. Tokenize every comment by whitespace (str.split()) into words; pool all words across all comments. A word counts if it contains at least one character that is not an ASCII letter A-Z/a-z (re.search(r'[^A-Za-z]', w)), e.g. digits, hyphens, percent signs, periods in abbreviations, and also other punctuation attached to the word. Value = count of such words / total words pooled. Empty list or zero words -> null. Raw text, no semantic filtering; may include quoted text and outcome announcements."
+    }
+  ],
+  "h0": "nonalpha_word_share_oc has no association with delta.",
+  "h1": "Higher nonalpha_word_share_oc is associated with higher likelihood of delta (OP view change).",
+  "rhs": "nonalpha_word_share_oc",
+  "term": "nonalpha_word_share_oc",
+  "sign": "+",
+  "note": "Operational assumptions: \"more words containing non-alphabetic characters\" is operationalized as a share (proportion) of whitespace-delimited words, pooled across all counter-argument comments; a count could alternatively be intended. The definition counts any non-letter character, including trailing punctuation like commas or sentence-ending periods, since the hypothesis does not exclude them; this makes the feature sensitive to punctuation style. Persuasiveness is operationalized as delta. Comments are unordered, and text may contain quotations of others, URLs, and post-outcome delta announcements (not filtered). Association only, not causal."
+}

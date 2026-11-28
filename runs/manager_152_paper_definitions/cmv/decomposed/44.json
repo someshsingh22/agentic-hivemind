@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_formal_citation_syntax",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain formal citation syntax (numbered bracket reference, markdown hyperlink, or author-year parenthetical)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; missing/malformed -> null; empty list -> 0. For each comment test regex (case-insensitive) r'\\[\\d{1,3}\\]|\\]\\(\\s*https?://[^)]+\\)|\\([A-Z][A-Za-z\\-]+(?: et al\\.?| and [A-Z][A-Za-z\\-]+| & [A-Z][A-Za-z\\-]+)?,? \\(?(?:19|20)\\d{2}[a-z]?\\)?\\)|\\bet al\\.'. Return 1 if any comment matches, else 0. Purely mechanical on raw text; no semantic filtering."
+    }
+  ],
+  "h0": "any_comment_formal_citation_syntax is unrelated to delta.",
+  "h1": "Rows with any_comment_formal_citation_syntax=1 have higher delta rates than rows with 0.",
+  "rhs": "any_comment_formal_citation_syntax",
+  "term": "any_comment_formal_citation_syntax",
+  "sign": "+",
+  "note": "Operational assumption: \"formal citation syntax\" is defined as a fixed regex set (numbered brackets, markdown links, author-year parentheticals, et al.); it is not exhaustive and bare URLs are excluded. Persuasiveness is measured via delta at the row level, as an association only. Comments are unordered and unscored; the row-level any-flag cannot tell which comment persuaded the OP. Raw comment text may contain outcome announcements; no semantic filtering applied. Rows have at most a few comments and comment timing is unknown."
+}

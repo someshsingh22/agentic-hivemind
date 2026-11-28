@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_counter_comment_markdown_emphasis",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain markdown bold or italic formatting?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; if missing or malformed return null; empty list returns 0. Return 1 if any comment matches regex for markdown emphasis: \\*\\*[^*\\n]+\\*\\*|__[^_\\n]+__|(?<![\\*\\w])\\*[^*\\s][^*\\n]*\\*(?!\\*)|(?<![_\\w])_[^_\\s][^_\\n]*_(?![_\\w]). Else 0. Purely mechanical on raw text; no semantic filtering."
+    }
+  ],
+  "h0": "any_counter_comment_markdown_emphasis has no association with delta.",
+  "h1": "Rows with counter-argument comments containing markdown bold/italic have higher delta probability than rows without.",
+  "rhs": "any_counter_comment_markdown_emphasis",
+  "term": "any_counter_comment_markdown_emphasis",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the OP changed view (delta) at row level; association only. Comments are not individually linked to outcomes, so the formatted comment may not be the persuasive one. Row-level 'any' is an assumption (alternatives: share of formatted comments). Regex may catch literal asterisks/underscores (e.g., snake_case, lists) and misses formatting stripped from the data. Raw text may contain outcome announcements; no timing information."
+}

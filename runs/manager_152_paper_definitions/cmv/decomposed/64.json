@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "distinct_url_domains_in_oc",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many distinct URL domains are cited across all counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; if missing or malformed return null; empty list gives 0. For each comment extract URLs with regex r'https?://[^\\s)\\]>\"]+|www\\.[^\\s)\\]>\"]+'. Take hostname (lowercase, strip leading 'www.', port, and trailing punctuation). Return the number of unique hostnames across all comments. Raw mechanical count, no semantic filtering."
+    }
+  ],
+  "h0": "distinct_url_domains_in_oc has no association with the probability that the OP changed their view (delta).",
+  "h1": "Greater distinct_url_domains_in_oc is associated with a higher probability of delta.",
+  "rhs": "distinct_url_domains_in_oc",
+  "term": "distinct_url_domains_in_oc",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the delta outcome (OP view change). Association only, not causal. Counts domains across all supplied counter-argument comments (OC_comments); the list is unordered with no timing, and may include comments after or announcing the outcome. Raw URL text is not outcome-free. Total URL domain count, not per comment; number of comments is not controlled."
+}

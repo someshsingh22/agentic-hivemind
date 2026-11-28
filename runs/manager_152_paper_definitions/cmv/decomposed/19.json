@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "first_person_share_oc",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of words across the counter-argument comments are first-person singular pronouns (I, me, my)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; if missing or malformed return null. Concatenate all comments. Tokenize words with re.findall(r\"[A-Za-z']+\", text.lower()). Count tokens in {'i','me','my'} (also count contractions I'm, I've, I'll, I'd as 'i' by tokens starting with \"i'\" ; exclude 'mine','myself'). Return count / total word tokens. Empty list or zero words returns null."
+    }
+  ],
+  "h0": "first_person_share_oc has no association with the probability that the OP changed their view.",
+  "h1": "Lower first_person_share_oc is associated with a higher probability of view change (negative coefficient).",
+  "rhs": "first_person_share_oc",
+  "term": "first_person_share_oc",
+  "sign": "-",
+  "note": "Operational assumption: first-person language is measured as share of I/me/my words (with I-contractions) pooled across all counter-comments; list order carries no meaning. The parenthetical 'less anecdotal' is only the rationale; anecdotes are not measured separately. Raw text may include quoted text from others or OP-change announcements (contamination/timing risk), and no comment timing is supplied. Association only, not causal."
+}

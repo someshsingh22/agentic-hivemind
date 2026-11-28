@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_oc_cites_empirical_evidence",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment reference a research study, survey, or data as support?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment itself cites or refers to a research study, survey, statistics, or empirical data (including a named external source, e.g. a study or dataset, cited as support for its point); else 0. Vague appeals ('studies show' with nothing else) still count as references to research. Pure anecdote or logic without research/survey/data does not count. Quoted text from other users counts only if the commenter adopts it as support. Ignore any text announcing that the OP changed their view, delta awards, or post-outcome updates; they are not evidence. Empty list gives 0; missing/malformed gives null."
+    }
+  ],
+  "h0": "any_oc_cites_empirical_evidence has no association with the probability that the OP changed their view.",
+  "h1": "Discussions with any_oc_cites_empirical_evidence=1 have a higher probability of OP view change.",
+  "rhs": "any_oc_cites_empirical_evidence",
+  "term": "any_oc_cites_empirical_evidence",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (association only). 'Counter-arguments that reference...' is operationalized as any comment in OC_comments doing so; share or count alternatives not chosen. List order and timing unknown; comments may include outcome text, which the prompt is told to ignore."
+}

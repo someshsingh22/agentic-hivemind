@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "hedge_term_rate",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Across all counter-argument comments, how many hedging words (might, could, perhaps) occur per 100 words?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads (malformed/missing -> null). Empty list -> 0. Lowercase all comments; tokenise words with re.findall(r\"[a-z']+\", text). hedges = number of tokens equal to 'might', 'could' or 'perhaps' across all comments; total = total tokens across all comments. Return 100*hedges/total; if total==0 return null. Purely literal matching, no semantic filtering."
+    }
+  ],
+  "h0": "hedge_term_rate has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher hedge_term_rate in counter-arguments is associated with a higher probability of the OP changing their view.",
+  "rhs": "hedge_term_rate",
+  "term": "hedge_term_rate",
+  "sign": "+",
+  "note": "\"Persuasive\" operationalised as the dataset outcome delta (OP changed view); association only, not causal. Hedging is operationalised only by the literal listed words might/could/perhaps (the hypothesis's examples); other hedges (maybe, possibly, seems) are not counted, and 'could' may be non-hedging (e.g. quoted or in questions). Comments are pooled by row; no per-comment outcome is available so comment-level persuasiveness cannot be tested. Comment text may include post-outcome content; timing is unknown. Fit with a linear probability model (OLS)."
+}

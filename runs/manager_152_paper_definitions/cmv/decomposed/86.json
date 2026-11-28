@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_negation_first_sentence",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments have a first sentence containing a negation word (not, no, never, don't)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; malformed or missing -> null; empty list -> null. For each comment, strip whitespace; first sentence = text up to the first '.', '!' or '?' followed by whitespace or end, or up to the first newline, whichever comes first. Match case-insensitively with regex r\"\\b(not|no|never|don't|don’t)\\b\" on that first sentence. Result = number of comments with a match divided by total number of comments (empty-string comments count in the denominator and are non-matches). Raw mechanical matching with no semantic filtering; 'n't' contractions other than don't are not counted."
+    }
+  ],
+  "h0": "share_comments_negation_first_sentence has no association with delta.",
+  "h1": "A higher share_comments_negation_first_sentence is associated with lower probability of delta (OP view change).",
+  "rhs": "share_comments_negation_first_sentence",
+  "term": "share_comments_negation_first_sentence",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta at row level. Comments have no per-comment outcomes, so this is a row-level share, not comment-level persuasion. Sentence splitting is heuristic (abbreviations may split early). The negation list is the four given words; the don't curly-apostrophe variant is included. OC_comments is current text and could contain outcome announcements; the raw match is not outcome-free. List order carries no chronology. Association only."
+}

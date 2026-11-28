@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_oc_comment_has_proportion_expression",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain an explicit proportion expression such as 'X in Y' or 'X% of Y'?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads (missing/malformed -> null; empty list -> 0). For each comment string, case-insensitive regex search for any of: r'\\b\\d+(?:\\.\\d+)?\\s*(?:%|percent|per\\s?cent)\\s+of\\b'; r'\\b\\d+(?:,\\d{3})*(?:\\.\\d+)?\\s+(?:in|out\\s+of)\\s+(?:every\\s+)?\\d+(?:,\\d{3})*\\b'; r'\\b\\d+(?:\\.\\d+)?\\s*(?:%|percent)\\s+(?:in|among)\\b'. Return 1 if any comment matches, else 0. Pure mechanical matching of current text; spelled-out numbers (e.g. 'one in five') and fractions are not matched."
+    }
+  ],
+  "h0": "any_oc_comment_has_proportion_expression has no association with the probability of the OP changing their view.",
+  "h1": "Rows with any_oc_comment_has_proportion_expression = 1 have a higher probability of the OP changing their view.",
+  "rhs": "any_oc_comment_has_proportion_expression",
+  "term": "any_oc_comment_has_proportion_expression",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change), tested as a row-level association, not causal. Operational assumptions: \"counter-arguments with proportion expressions\" is measured as presence in at least one comment of the row; numeric-digit patterns only (spelled-out numbers and fractions missed). The regex is mechanical and not semantically filtered, so it may match quotations of the OP or other text, and comment text may contain outcome announcements or later replies; the timing of comments relative to the outcome is unknown. Per-comment persuasiveness is not available, so the effect cannot be attributed to the specific comment."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_counter_rhetorical_question",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment by another user contain a rhetorical question?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than OP). Return 1 if at least one comment contains a rhetorical question asked by the commenter in their own voice: a question posed for rhetorical effect or to make a point, not to genuinely seek information or clarification from the OP. Genuine information-seeking questions, and questions only appearing inside quotations of others (unless the commenter adopts them), do not count. Ignore any OP view-change/delta-award announcements, outcome reports or post-outcome updates as evidence. Return 0 for a valid empty list; null if missing or malformed."
+    }
+  ],
+  "h0": "any_counter_rhetorical_question has no association with the probability that the OP changed their view.",
+  "h1": "Rows with any_counter_rhetorical_question = 1 have a higher probability of OP view change than rows with 0.",
+  "rhs": "any_counter_rhetorical_question",
+  "term": "any_counter_rhetorical_question",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). Operationalized as presence of at least one rhetorical question in any counter-comment (the hypothesis does not specify count or share). Rhetorical vs genuine question is a judgment. OC_comments are unordered, with no timestamps; comments may contain outcome-related text, which is excluded from the semantic judgment. Association only, not causal."
+}

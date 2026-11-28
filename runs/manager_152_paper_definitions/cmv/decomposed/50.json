@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counter_content_word_ttr",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the type-token ratio of content words (nouns, verbs, adjectives, adverbs) pooled across all counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; malformed/missing -> null; empty list -> null (no tokens). Concatenate all comments, tokenize into lowercase alphabetic words, POS-tag (e.g. spaCy or NLTK), keep tokens tagged NOUN, VERB, ADJ, ADV (exclude auxiliaries, stopwords/function words, numbers, URLs). Lemmatize to lowercase lemmas. Value = number of distinct content lemmas / total content tokens; null if zero content tokens."
+    }
+  ],
+  "h0": "counter_content_word_ttr has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher counter_content_word_ttr is associated with a higher probability that the OP changed their view.",
+  "rhs": "counter_content_word_ttr",
+  "term": "counter_content_word_ttr",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); association only. Comments are pooled per row, so TTR is a row-level pooled measure and is strongly length-dependent (longer text lowers TTR); no length control is imposed beyond what rhs states. POS tagger and lemmatization are assumptions. Raw text may contain view-change or delta announcements; not filtered. Comment list may be incomplete and unordered."
+}

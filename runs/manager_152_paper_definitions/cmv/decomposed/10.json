@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_ordinal_markers",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments contain explicit ordinal structure markers such as first, second, and finally?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If missing or malformed, return null; if the list is empty return null. For each comment, lowercase and find distinct markers among the word-boundary regex groups: first|firstly|1st; second|secondly|2nd; third|thirdly|3rd; finally|lastly|last but not least. A comment counts as 1 if it contains at least two distinct marker groups (so a sequence, not a single incidental 'first'), else 0. Return the sum of counted comments divided by number of comments. Raw literal matching, no semantic filtering; quoted text and OP-quoted text inside comments is not excluded."
+    }
+  ],
+  "h0": "share_comments_ordinal_markers has no association with the probability that the OP changed their view.",
+  "h1": "Higher share_comments_ordinal_markers is associated with a higher probability that the OP changed their view.",
+  "rhs": "share_comments_ordinal_markers",
+  "term": "share_comments_ordinal_markers",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (association only). Operational assumptions: 'explicit ordinal structure' means at least two distinct ordinal markers in one comment; the regex may match non-structural uses (e.g. 'first time', 'second amendment'), and can miss numbered lists or other enumerations. Share across comments is used because comments are not individually outcome-labeled; list order has no meaning. Comment text may contain outcome announcements or later replies; raw regex is not outcome-free and timing is unknown."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "question_mark_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many question marks appear across all counter-argument comments?",
+      "kind": "code",
+      "spec": "import json; lst=json.loads(df['OC_comments']) per row; value = sum(c.count('?') for c in lst if isinstance(c,str)). Empty list -> 0; missing or malformed JSON -> null. Raw count over current comment text; no semantic filtering."
+    }
+  ],
+  "h0": "question_mark_count has no association with the probability that the OP changed their view.",
+  "h1": "Higher question_mark_count is associated with a lower probability that the OP changed their view.",
+  "rhs": "question_mark_count",
+  "term": "question_mark_count",
+  "sign": "-",
+  "note": "Operational assumption: 'questions' are measured as literal question marks in the counter-argument comments, a mechanical proxy that counts rhetorical questions, questions inside quotations, and URLs with '?', and misses questions without a question mark. Persuasiveness is operationalized as the dataset outcome delta (OP view change). Counts are not normalized by comment number or length, so more comments or longer text raise the count. Comment text is current text and may include post-outcome content or delta announcements; reply timing is unknown. Association only, not causal."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_oc_comments_referencing_evidence",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments explicitly reference evidence, proof, or a demonstration in support of their own counter-argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment, decide whether the commenter's own text explicitly refers to evidence, proof, data, studies, sources, or demonstrations (e.g. 'evidence shows', 'studies', 'this proves', 'demonstrated by', cited links or sources) as support for their counter-argument. Quoted material from others counts only if the commenter adopts it as support or cites it as an external source. Do not count generic mentions that are unrelated to supporting the argument, nor any OP view-change/delta-award announcements, post-outcome resolution updates, or reports of the outcome. Return number of qualifying comments divided by total comments, between 0 and 1. Empty list returns null; missing or malformed input returns null."
+    }
+  ],
+  "h0": "share_oc_comments_referencing_evidence has no association with the probability that the OP changed their view (delta).",
+  "h1": "A higher share_oc_comments_referencing_evidence is associated with a higher probability that the OP changed their view (delta).",
+  "rhs": "share_oc_comments_referencing_evidence",
+  "term": "share_oc_comments_referencing_evidence",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta. The association is at row level and is not causal. The comment list has no order, timestamps or per-comment outcomes, so the share is a row-level aggregate. It cannot show which comment persuaded the OP. Comment text may contain delta announcements or outcome reports. The prompt excludes these, but contamination risk remains. Evidence references are judged from the current supplied text, and quotation attribution is judged semantically."
+}

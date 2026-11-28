@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counterarg_comma_density",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the number of commas per word across all counter-argument comments pooled?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If missing/malformed return null. Concatenate-count: commas = sum(c.count(',') for c in comments); words = sum(len(re.findall(r\"\\S+\", c)) for c in comments). If the list is empty or words==0 return null; else commas/words (commas per word, pooled over all comments)."
+    }
+  ],
+  "h0": "counterarg_comma_density has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher counterarg_comma_density is associated with a higher probability that the OP changed their view.",
+  "rhs": "counterarg_comma_density",
+  "term": "counterarg_comma_density",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). Comma density is a mechanical proxy for sentence complexity/information richness, which is not measured directly. Pooled commas per whitespace-delimited word across all comments; comments are not weighted equally. Comment text is raw and may include quotations, URLs, or delta-award/outcome announcements; no semantic filtering is applied. Comment order and timing are unknown. Association only, not causal."
+}

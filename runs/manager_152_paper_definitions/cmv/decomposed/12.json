@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "share_comments_with_numeric_evidence",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments use numbers or statistics in making their argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). For each comment decide whether the commenter themself uses a specific number, quantity, percentage, or statistic (e.g. data figures, rates, counts, study results) as part of their counter-argument. Incidental numbers (list numbering, 'two reasons', dates used only as labels, usernames, URLs) do not count; numbers or statistics in quotations of the OP or others count only if the commenter adopts them. Ignore any content announcing OP view change, delta awards, or outcome reports. Return (comments qualifying)/(total comments) in [0,1]. Null if OC_comments is missing or malformed; null if the list is empty."
+    },
+    {
+      "name": "any_comment_digit_present",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a numeral digit?",
+      "kind": "code",
+      "spec": "import json; l=json.loads(df['OC_comments']); return null if missing/malformed; return int(any(re.search(r'\\d', c) for c in l)); empty list gives 0. Raw text match: no semantic filtering, so digits in URLs, quotations or delta announcements count; outcome contamination possible."
+    }
+  ],
+  "h0": "share_comments_with_numeric_evidence has no association with whether the OP changed their view (delta).",
+  "h1": "Higher share_comments_with_numeric_evidence is associated with a greater likelihood that the OP changed their view.",
+  "rhs": "share_comments_with_numeric_evidence",
+  "term": "share_comments_with_numeric_evidence",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). Comments are unordered with no per-comment outcomes, so the test is row-level share, not comparison of individual comments; association only, not causal. The digit-detector is a mechanical secondary measure (not in rhs) and may match URLs, quotes, or outcome announcements. OC_comments text is current text with unknown timing relative to the outcome."
+}

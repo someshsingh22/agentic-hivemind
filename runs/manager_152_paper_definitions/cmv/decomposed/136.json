@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "hedge_modal_be_density",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Across all counter-argument comments, how many occurrences of 'can be', 'could be', 'may be' or 'would be' appear per word?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings (null if missing or malformed). Concatenate all comments. Count case-insensitive regex matches of r\"\\b(can|could|may|would)\\s+be\\b\" in the text. Count words with r\"\\b\\w+\\b\" (same text). Return matches / words. Empty list or zero words: null. No semantic filtering; quoted text and any outcome announcements are included."
+    }
+  ],
+  "h0": "hedge_modal_be_density has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher hedge_modal_be_density is associated with a lower probability of delta.",
+  "rhs": "hedge_modal_be_density",
+  "term": "hedge_modal_be_density",
+  "sign": "-",
+  "note": "Assumptions: \"persuasive\" is operationalized as the dataset outcome delta (OP changed view). Density is per word, pooled over all available counter-comments in the row. Only the four literal phrases are counted, with no other hedges. \"Sounds uncertain\" is the hypothesized mechanism and is not measured. The count is mechanical, so it also counts quoted text, non-hedging uses (e.g. \"would be\" in hypotheticals), and any outcome announcements in the comments. Comment order and timing are unknown. Results are associations only."
+}

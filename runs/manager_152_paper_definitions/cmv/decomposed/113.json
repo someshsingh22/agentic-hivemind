@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_technical_vocab",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments use technical or academic vocabulary (e.g., methodology, empirical, correlation, hypothesis)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of counter-argument comments by other users. For each comment, decide whether the commenter's own wording uses technical/academic vocabulary of the kind exemplified by methodology, empirical, correlation, hypothesis (scholarly/scientific/statistical/analytic terms). Ordinary everyday words do not count; mere quoted text attributed to someone else and not adopted by the commenter does not count. Ignore any text announcing OP view change, delta awards, or outcome reports; these are not evidence. Output the number of qualifying comments divided by total comments, in [0,1]. Empty list gives null; malformed/missing gives null."
+    }
+  ],
+  "h0": "share_comments_technical_vocab has no association with the probability that the OP changed their view.",
+  "h1": "Higher share_comments_technical_vocab is associated with a higher probability that the OP changed their view.",
+  "rhs": "share_comments_technical_vocab",
+  "term": "share_comments_technical_vocab",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); association only, not causal. Comments are unordered, have no individual outcomes, so a row-level share is used. The vocabulary category is open-ended ('etc.'); the LLM judges it from the examples given. OC_comments may contain delta/outcome announcements; the prompt excludes them as evidence, but residual contamination risk remains. Rows with no comments get null."
+}

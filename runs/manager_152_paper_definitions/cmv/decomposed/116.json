@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "number_led_sentence_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many sentences across the counter-argument comments begin with a number?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; malformed or missing -> null; empty list -> 0. For each comment, split into sentences with a regex splitting on (?<=[.!?])\\s+ and on newlines/blank lines (also treat list-item lines as separate sentences). Strip leading whitespace and leading markdown/bullet characters (*, -, >, #, opening quotes/parentheses/brackets). A sentence is number-led if it then matches ^\\d+([.,]\\d+)*(%|st|nd|rd|th|s)?\\b, i.e. starts with a digit character. Spelled-out numbers (e.g. 'Two') are not counted. Output the total count of number-led sentences summed across all comments. Raw mechanical count with no semantic filtering; ordinal list markers like '1.' or '1)' at the sentence start are counted as number-led."
+    }
+  ],
+  "h0": "number_led_sentence_count has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher number_led_sentence_count is associated with a higher probability that the OP changed their view (delta).",
+  "rhs": "number_led_sentence_count",
+  "term": "number_led_sentence_count",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). \"More sentences\" is operationalized as the raw count across all supplied counter-comments, not a share; the count is not length-adjusted, and the supplied comments may be a subset. Numbered-list markers (e.g. '1.') count as number-led, and spelled-out numbers are excluded. Raw text may contain outcome announcements, and comment timing is unknown. This describes an association, not a causal effect."
+}

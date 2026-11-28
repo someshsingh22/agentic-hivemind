@@ -1,0 +1,34 @@
+{
+  "features": [
+    {
+      "name": "any_analogy_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment by another user use analogical reasoning, such as comparing the OP's view to a similar case (\"just like\", \"analogous to\")?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment itself argues by analogy: it asserts that the issue under discussion is similar to a different case/situation and draws an inference from the similarity (cue phrases like 'just like', 'analogous to', 'similar to', 'it's like' count only when they introduce a real analogy; the reasoning may be analogical without the cue phrase). Use title/argument only to interpret what a comment targets. Count only the commenter's own assertions, not analogies merely quoted from the OP or others unless the commenter adopts them. Ignore mere figurative phrases without inference, and ignore OP view-change/delta-award announcements, post-outcome resolution updates and reports of the outcome as evidence. Return 0 if no comment qualifies, 0 for a valid empty list, null if OC_comments is missing or malformed."
+    },
+    {
+      "name": "share_analogy_counterarguments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "What proportion of counter-argument comments by other users use analogical reasoning?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (list of comments by non-OP users). Numerator: comments that themselves argue by analogy (compare the issue to a different, similar case and draw an inference; cues like 'just like', 'analogous to' count only when they introduce a real analogy). Denominator: total comments in the list. Return numerator/denominator in [0,1]. Use title/argument only to interpret targets. Do not count analogies only quoted from others unless adopted by the commenter. Ignore OP view-change/delta-award announcements, post-outcome updates and reports of the outcome as evidence. Null for empty list or missing/malformed input."
+    }
+  ],
+  "h0": "any_analogy_counterargument has no association with delta (coefficient is zero).",
+  "h1": "Rows with any_analogy_counterargument=1 have higher odds/probability of delta=1 than rows with 0.",
+  "rhs": "any_analogy_counterargument + share_analogy_counterarguments",
+  "term": "any_analogy_counterargument",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). Row-level association only, not causal. Analogy judged from current comment text; reply timing unknown; comments are unordered and there are no per-comment outcomes, so rows with an analogical comment may simply have more or longer comments. Both features are included in rhs, so the term estimates the any-analogy coefficient conditional on share; they are correlated. Semantic judgment of analogy is an assumption beyond the literal cue phrases."
+}

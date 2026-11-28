@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_sequenced_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment lay out its reasoning in an explicit ordered sequence (e.g., first... then... second...)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment itself presents its own argument as an explicit logical sequence with ordinal/sequential markers (e.g., first/firstly, then, second/secondly, third, finally, step by step) structuring its reasoning points. Markers must organize the commenter's own argument; sequences only in quoted text from others, or unrelated lists, do not count. Ignore any OP view-change/delta-award announcements, outcome reports or post-outcome updates as evidence. Return 0 if no comment qualifies or the list is empty; null if missing/malformed. List order is not chronology."
+    }
+  ],
+  "h0": "any_sequenced_counterargument has no association with delta.",
+  "h1": "Rows with any_sequenced_counterargument = 1 have higher delta rates than rows with 0.",
+  "rhs": "any_sequenced_counterargument",
+  "term": "any_sequenced_counterargument",
+  "sign": "+",
+  "note": "\"More persuasive\" is operationalized as the dataset outcome delta (OP changed view). Row-level \"any comment\" is an assumption; the hypothesis does not specify any/share. Association only; reply timing unknown and comments lack individual outcomes, so the specific sequenced comment cannot be linked to persuasion. Comment text may contain outcome announcements; the prompt excludes them."
+}

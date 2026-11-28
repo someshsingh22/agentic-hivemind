@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_line_break_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many line-break characters appear in total across the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. Return the sum over comments of comment.count('\\n'). Empty list -> 0. Missing or unparseable -> null. Raw count, no semantic filtering; comment text may contain outcome announcements (contamination risk)."
+    }
+  ],
+  "h0": "oc_line_break_count has no association with the probability that the OP changed their view.",
+  "h1": "Greater oc_line_break_count is associated with a higher probability that the OP changed their view.",
+  "rhs": "oc_line_break_count",
+  "term": "oc_line_break_count",
+  "sign": "+",
+  "note": "Assumptions: line breaks are a proxy for structure as the hypothesis states; persuasiveness is measured by the dataset outcome delta. The count is a total across comments, so it also rises with comment count and length (no length control is added). Comment text may contain outcome announcements and the timing of edits is unknown. The result is an association only."
+}

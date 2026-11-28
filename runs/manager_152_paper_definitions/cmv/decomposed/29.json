@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_statistical_terms",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments contain statistical language such as percentages or averages?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If missing or malformed, return null. If the list is empty, return null. A comment counts if re.search(r'\\d\\s*(%|percent\\b|per cent\\b)|\\b(percent|percentage|average|averages|averaged|mean|median|statistic|statistics|statistical)\\b', comment, re.I) matches (case-insensitive literal/regex match, no semantic filtering). Return count of matching comments divided by total number of comments."
+    }
+  ],
+  "h0": "share_comments_statistical_terms has no association with the probability that the OP changed their view (delta).",
+  "h1": "A higher share_comments_statistical_terms is associated with a higher probability of delta.",
+  "rhs": "share_comments_statistical_terms",
+  "term": "share_comments_statistical_terms",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (association only, not causal). Statistical language is operationalized as a mechanical regex for percentages and average-type words (percent, average, mean, median, statistic*); this is a lexical proxy, and \"mean\" may match non-statistical uses. Comments are unordered with no per-comment outcomes, so the share is row-level only. Raw comment text may contain delta/view-change announcements or other outcome contamination, and timing relative to the outcome is unknown. Empty comment list gives null (share)."
+}

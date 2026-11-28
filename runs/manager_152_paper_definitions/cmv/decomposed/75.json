@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "has_comment_with_three_numbered_points",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain three or more numbered points?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of comment strings. Malformed or missing -> null; empty list -> 0. For each comment, find numbered-point markers at the start of a line (after optional whitespace, optional markdown symbols like '*', '**', '>' or '('): regex r'(?m)^[\\s>*_(]*(\\d{1,2})\\s*[.):\\]]'. Collect distinct integers found. A comment qualifies if it has at least 3 distinct markers including 1, 2 and 3. Output 1 if any comment qualifies, else 0. Purely mechanical; ordinal words (firstly, second) and inline numbering are not counted."
+    }
+  ],
+  "h0": "has_comment_with_three_numbered_points has no association with delta.",
+  "h1": "Rows with at least one counter-argument comment containing 3+ numbered points have higher delta likelihood.",
+  "rhs": "has_comment_with_three_numbered_points",
+  "term": "has_comment_with_three_numbered_points",
+  "sign": "+",
+  "note": "Operational assumption: \"numbered points\" means explicit line-start numeric list markers (1., 2), etc.) in a single comment, detected by regex; spelled-out or inline enumerations are missed. Persuasiveness is operationalized as the row-level delta outcome; per-comment persuasion is not available, and the row-level feature does not identify which comment persuaded. Association only. Raw text may contain outcome announcements; not filtered. Comment order and timing unknown."
+}

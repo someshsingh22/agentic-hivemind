@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_concession_opening_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment begin with a concession to the OP, such as saying they are right, agreeing, or granting a good point?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. Return 1 if at least one comment's opening sentence or opening clause (its beginning, before its main counter-argument) explicitly concedes to or agrees with the OP, e.g. 'you are right', 'I agree', 'good point', 'fair point', 'you're not wrong'. The concession must be the comment's own assertion and at the start, not a later concession mid-comment and not a quoted statement from someone else unless adopted. Ignore any OP view-change or delta-award announcements, post-outcome updates or reports of the outcome as evidence. Return 0 if no comment qualifies, 0 for an empty list, and null if OC_comments is missing or malformed."
+    },
+    {
+      "name": "share_concession_opening_comments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments begin with a concession to the OP, such as saying they are right, agreeing, or granting a good point?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment decide whether its opening sentence or clause explicitly concedes to or agrees with the OP (e.g. 'you are right', 'I agree', 'good point', 'fair point'), as the commenter's own assertion at the start; mid-comment concessions and unadopted quotations do not count. Ignore OP view-change or delta-award announcements, post-outcome updates and reports of the outcome as evidence. Return concession-opening comments divided by total comments, as a number from 0 to 1. Return null for an empty list or missing/malformed input."
+    }
+  ],
+  "h0": "any_concession_opening_comment has no association with delta (likelihood of the OP changing their view).",
+  "h1": "Rows with a concession-opening counter-argument have a higher likelihood of delta than rows without.",
+  "rhs": "any_concession_opening_comment",
+  "term": "any_concession_opening_comment",
+  "sign": "+",
+  "note": "Persuasiveness is operationalised as the dataset outcome delta at row level; no per-comment outcomes exist, so the association is between rows containing such comments and delta, not comment-level persuasiveness. Comments are unordered and may include text after the OP's view changed; concession wording is judged only from the comment's own beginning. A comment-level outcome cannot be isolated, and the row may contain other persuasive comments. The share feature is an alternative intensity measure, not in rhs. Comment text may contain outcome contamination."
+}

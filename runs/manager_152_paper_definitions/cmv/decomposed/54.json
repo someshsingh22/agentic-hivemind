@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_pivot_concession_word_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain however, nevertheless, or nonetheless?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings. Return 1 if any comment matches case-insensitive regex r'\\b(however|nevertheless|nonetheless)\\b', else 0. Empty list gives 0; missing or malformed JSON gives null. Raw text match, no semantic filtering; may include quoted text or text from outcome announcements."
+    }
+  ],
+  "h0": "any_pivot_concession_word_comment has no association with whether the OP changed their view.",
+  "h1": "Rows with a counter-argument containing a pivot concession word have a higher rate of OP view change.",
+  "rhs": "any_pivot_concession_word_comment",
+  "term": "any_pivot_concession_word_comment",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change), an association only. Row-level presence of the words in any counter-argument is used; the hypothesis could instead concern share of comments or per-comment effects, and per-comment outcomes are not supplied. Matching is literal: it does not check that the word is used as a pivot concession, may match quoted text, and the comments could contain outcome-related text. Comment timing is unknown."
+}

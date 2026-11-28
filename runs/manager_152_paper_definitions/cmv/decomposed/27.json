@@ -1,0 +1,9 @@
+{
+  "features": [],
+  "h0": "Commenter flair delta count is not associated with the likelihood that the OP awards a delta.",
+  "h1": "Commenters with higher flair delta counts are more likely to win a delta from the OP.",
+  "rhs": "1",
+  "term": null,
+  "sign": "+",
+  "note": "Unsupported. The claim needs each commenter's flair delta count, which is not in the supplied columns. OC_comments holds only comment text, with no flair or author metadata or per-comment outcomes. conversation has speaker names but no flair; a search of the text for \"flair\" found nothing. Estimating experience from writing style or username would be a different construct, so no proxy is used. Outcome-revealing text such as delta announcements in the conversation is not used either. No feature is defined and the test is unsupported, so term is null. The rhs of 1 is only a placeholder."
+}

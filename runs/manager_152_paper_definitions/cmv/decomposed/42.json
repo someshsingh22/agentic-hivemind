@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "conclusion_marker_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments contain at least one explicit conclusion marker word or phrase?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If missing or unparseable, return null; if the list is empty, return null. For each comment, lowercase it and test for a case-insensitive regex with word boundaries: r\"\\b(therefore|thus|hence|consequently|accordingly|in conclusion|to conclude|in summary|to sum up|in short|overall|as a result|it follows that|this means that|which means|so in the end|ergo)\\b\". Comment is positive if any match. Return positives/total comments as a float in [0,1]. Purely mechanical literal matching; no semantic check that the marker actually introduces a conclusion."
+    }
+  ],
+  "h0": "conclusion_marker_comment_share has no association with delta.",
+  "h1": "Higher conclusion_marker_comment_share is associated with a higher probability that the OP changed their view (delta=1).",
+  "rhs": "conclusion_marker_comment_share",
+  "term": "conclusion_marker_comment_share",
+  "sign": "+",
+  "note": "Operational assumptions: 'explicit conclusion markers' is operationalized as a fixed lexicon (listed in spec); the lexicon is my assumption and is not exhaustive (e.g., bare 'so' omitted as ambiguous). 'More persuasive' is measured as the OP's delta outcome; association only, not causal. Share across comments is used; list order carries no chronology and comments may share authors. Raw text matching may include quotations of OP text, and comments may contain post-outcome text; no semantic filtering is applied. Row-level comment-share is a proxy for 'counter-arguments with markers' and does not isolate which comment persuaded."
+}

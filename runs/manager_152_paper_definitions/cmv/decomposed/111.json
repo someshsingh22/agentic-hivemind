@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "blockquote_marker_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many Reddit blockquote markers (&gt;) appear across all counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. Return the sum over comments of comment.count('&gt;') (literal, case-sensitive). Valid empty list gives 0; missing or unparseable value gives null. Raw mechanical count with no semantic filtering; text may include quoted OP text or outcome announcements."
+    }
+  ],
+  "h0": "blockquote_marker_count has no association with delta.",
+  "h1": "Higher blockquote_marker_count is associated with lower likelihood of delta (OP view change).",
+  "rhs": "blockquote_marker_count",
+  "term": "blockquote_marker_count",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view); association only, not causal. \"Excessive\" quoting is measured as a continuous count of literal &gt; markers across all counter-comments, with no threshold invented. Count is not normalized by comment length or number of comments, and it counts markers, not quoted passages (multiple markers can be in one quote). It does not distinguish quoting the OP from quoting other sources. The count depends on the number of comments available; list order and timing are unknown. Comments may contain outcome announcements; raw count does not filter them."
+}

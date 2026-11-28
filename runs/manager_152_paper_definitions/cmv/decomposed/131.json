@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "share_comments_explaining_relevance",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "What proportion of the counter-argument comments explicitly explain why their point is relevant to the OP's view (e.g., 'which is why', 'this is why')?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). For each comment, decide whether the commenter's own assertion explicitly explains why their point matters or is relevant to the OP's claim (title/argument give context for the target), e.g. connective explanations such as 'which is why' or 'this is why' that link a point to the OP's view, or equivalent explicit relevance-linking statements. Do not count mere quoted text from others unless adopted by the commenter. Ignore OP view-change or delta-award announcements, post-outcome resolution updates and reports of the outcome; generic platform/delta-rule discussion is eligible but is not itself relevance explanation. Return number of qualifying comments divided by total comments (0 to 1). Empty list -> null; missing or malformed OC_comments -> null."
+    }
+  ],
+  "h0": "share_comments_explaining_relevance has no association with delta.",
+  "h1": "Higher share_comments_explaining_relevance is associated with higher probability of delta.",
+  "rhs": "share_comments_explaining_relevance",
+  "term": "share_comments_explaining_relevance",
+  "sign": "+",
+  "note": "Operational assumption: 'counter-arguments' are the OC_comments; persuasiveness is the dataset outcome delta; the exposure is a row-level share of comments (an any-comment version would be a different measurement). Relevance explanation is judged semantically, not by literal phrase matching; the example phrases are illustrative. Comment order/timing unknown; comments may contain quotes or outcome text, which the prompt is told to exclude. Association only, not causal."
+}

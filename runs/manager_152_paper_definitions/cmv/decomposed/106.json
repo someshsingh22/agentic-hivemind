@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_assertive_phrase_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain the assertive phrase \"in fact\" or \"as a matter of fact\"?",
+      "kind": "code",
+      "spec": "import json,re; parse df['OC_comments'] with json.loads to a list of strings; if missing/malformed/not a list return null; empty list -> 0. Return 1 if any comment matches re.search(r\"\\b(in fact|as a matter of fact)\\b\", comment, re.I), else 0. Mechanical literal match: no semantic filtering, quoted text and any outcome announcements inside comments are not excluded."
+    }
+  ],
+  "h0": "any_assertive_phrase_comment has no association with the probability that the OP changed their view (delta).",
+  "h1": "Rows with any_assertive_phrase_comment = 1 have a higher probability of OP view change than rows with 0.",
+  "rhs": "any_assertive_phrase_comment",
+  "term": "any_assertive_phrase_comment",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP view change); association only, not causal. Assertive phrases operationalized as only the two literal phrases given (\"in fact\", \"as a matter of fact\"), case-insensitive; other assertive wording not counted. Row-level any-presence chosen; comments are unordered and no per-comment outcomes exist, so the specific comment using the phrase cannot be linked to the delta. Raw text may include quoted text from others, or post-outcome announcements; not filtered. \"In fact\" also has non-assertive uses; accepted as part of the literal definition."
+}

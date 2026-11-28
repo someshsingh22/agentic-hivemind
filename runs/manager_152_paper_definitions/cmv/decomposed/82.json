@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "distinct_proper_nouns_in_counterarguments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many distinct proper nouns (specific named entities) appear across the counter-argument comments?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users, not the OP). Count the distinct specific named entities (proper nouns: people, places, organizations, nations, brands, titles of works, events, named groups) mentioned across all comments combined. Count each entity once even if repeated or written in variant forms or across comments (case-insensitive). Do not count sentence-initial common words, generic common nouns, or usernames. Include entities in quotations or cited sources since the construct is entity mention in the counter-argument text. Ignore any text that announces an OP view change, delta award, or post-outcome resolution/outcome report (e.g., delta confirmations, 'view changed'); entities appearing only there do not count. Generic delta-rule discussion is eligible. Output a non-negative integer. Empty list gives 0; missing or malformed input gives null."
+    }
+  ],
+  "h0": "distinct_proper_nouns_in_counterarguments has no association with delta.",
+  "h1": "Greater distinct_proper_nouns_in_counterarguments is associated with higher probability of delta.",
+  "rhs": "distinct_proper_nouns_in_counterarguments",
+  "term": "distinct_proper_nouns_in_counterarguments",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as delta (OP view change); association only. Row-level count pools all counter-comments, so it scales with number and length of comments (no length control added per supplied claim). Proper-noun identification is by LLM judgement. Comments' timing relative to outcome unknown; comment text may contain outcome announcements, which the spec excludes. OC_comments only used, not conversation."
+}

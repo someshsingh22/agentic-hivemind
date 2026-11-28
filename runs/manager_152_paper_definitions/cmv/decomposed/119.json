@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counter_personal_pronoun_density",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of all words across the counter-argument comments are personal pronouns (I, we, you, he, she, they, etc.)?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; malformed or missing -> null. Lowercase each comment and tokenize with regex [a-z']+ . Count tokens in the set {i, me, we, us, you, he, him, she, her, they, them, it, i'm, i've, i'll, i'd, we're, we've, we'll, you're, you've, you'll, you'd, he's, she's, they're, they've, they'll, they'd} across all comments (excluding possessives, reflexives and demonstratives; 'it' included as a personal pronoun). Value = pronoun tokens / total tokens across all comments. Empty list or zero tokens -> null. Quoted text is counted as raw text."
+    }
+  ],
+  "h0": "counter_personal_pronoun_density has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher counter_personal_pronoun_density is associated with a lower probability that the OP changed their view.",
+  "rhs": "counter_personal_pronoun_density",
+  "term": "counter_personal_pronoun_density",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta. Pronoun density is pooled over all supplied counter-comments, and the pronoun list is an operational assumption (including 'it'). Raw text may contain delta announcements or quotations of the OP, and no timing is available. The result is an association, not a causal effect."
+}

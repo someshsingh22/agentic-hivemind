@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "name": "mean_comment_op_stopword_jaccard",
+      "dtype": "numeric",
+      "source_columns": [
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "On average, how much do the counter-argument comments' sets of stopwords overlap with the stopwords used in the OP's argument text?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; if missing/malformed, return null; if the list is empty, return null. Tokenize text by lowercasing and extracting regex [a-z']+ tokens. Stopword set S = sklearn.feature_extraction.text.ENGLISH_STOP_WORDS. For the OP, A = set of tokens in argument that are in S (if argument is missing/not a string return null). For each comment c, C = set of tokens in c that are in S; the comment's overlap = |A ∩ C| / |A ∪ C| (Jaccard of stopword type sets); if A ∪ C is empty, skip that comment. Return the mean of per-comment overlaps across comments (equal weights, each comment counted once); null if no comment has a defined value. Raw text is used as supplied; no semantic filtering."
+    }
+  ],
+  "h0": "mean_comment_op_stopword_jaccard has no association with the probability that the OP changed their view (delta).",
+  "h1": "Lower mean_comment_op_stopword_jaccard is associated with higher probability of OP view change (negative coefficient).",
+  "rhs": "mean_comment_op_stopword_jaccard",
+  "term": "mean_comment_op_stopword_jaccard",
+  "sign": "-",
+  "note": "Operational assumptions: stopword overlap (style matching) is operationalized as the mean per-comment Jaccard overlap of stopword type sets between each counter-argument comment and the OP argument body (title excluded), using the sklearn English stopword list; the hypothesis does not specify the exact metric. Tan et al. used different similarity measures and a pairwise OP–reply framing; this is an approximation. Comments are treated as counter-arguments in general; OC_comments order/timing unknown, and no per-comment outcomes exist, so the mean over all available comments is used rather than only the persuasive ones. The argument text may include edits and delta/view-change announcements, and comments may contain outcome-related text; raw-text code does not filter these, so contamination/timing risks remain. Association only, not causal."
+}

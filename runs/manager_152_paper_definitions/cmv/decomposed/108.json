@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "n_comments_with_precise_figures",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many counter-argument comments contain a precise quantitative figure (a percentage, a multi-decimal number, or a large number)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads (null if missing/malformed; empty list gives 0). For each comment string, mark it positive if it matches any of: percentage regex r'\\d+(?:\\.\\d+)?\\s?(?:%|percent\\b|per cent\\b)'; multi-decimal number r'\\b\\d+\\.\\d{2,}\\b'; large number r'\\b\\d{1,3}(?:,\\d{3})+(?:\\.\\d+)?\\b' or r'\\b\\d{4,}\\b' excluding 4-digit integers from 1000-2099 that are not comma-formatted (likely years), or r'\\b\\d+(?:\\.\\d+)?\\s?(?:thousand|million|billion|trillion)\\b' (case-insensitive). Return the number of positive comments. Raw text matching; no semantic filtering."
+    }
+  ],
+  "h0": "n_comments_with_precise_figures has no association with the probability that the OP changed their view (delta).",
+  "h1": "A higher n_comments_with_precise_figures is associated with a higher probability that the OP changed their view.",
+  "rhs": "n_comments_with_precise_figures",
+  "term": "n_comments_with_precise_figures",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); association only. Precise quantitative data is operationalized by a regex with assumed thresholds (percentages, decimals with 2+ places, numbers ≥1000 or million/billion words; bare years excluded). It captures numerals only, not whether figures are accurate or used as evidence, and may match numbers in quoted text or in unrelated contexts. Count scales with number of comments; no per-comment outcomes exist. OC_comments may contain post-outcome text; reply timing is unknown."
+}

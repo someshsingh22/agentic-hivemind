@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_hypothetical_framing_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment use hypothetical framing, such as asking the reader to imagine or suppose a scenario?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment itself uses hypothetical framing in its own wording (e.g. 'imagine if', 'suppose that', 'what if', 'let's say', extended hypothetical scenario posed to illustrate the argument); else 0. Ignore hypotheticals only inside quoted OP text or quoted others unless the comment adopts them. Ignore any text announcing OP view change, delta awards, or outcome reports. Empty list gives 0; missing or malformed gives null."
+    },
+    {
+      "name": "share_hypothetical_framing_comments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments use hypothetical framing such as 'imagine if' or 'suppose that'?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Compute number of comments that themselves use hypothetical framing (imagine if, suppose that, what if, let's say, posed hypothetical scenario) divided by total number of comments, a value in [0,1]. Ignore hypotheticals only in quoted text not adopted by the commenter. Ignore text announcing OP view change, delta awards or outcome reports. Empty list gives null; missing or malformed gives null."
+    }
+  ],
+  "h0": "any_hypothetical_framing_comment has no association with the likelihood that the OP changed their view.",
+  "h1": "Rows with any_hypothetical_framing_comment equal to 1 have a higher likelihood of OP view change.",
+  "rhs": "any_hypothetical_framing_comment",
+  "term": "any_hypothetical_framing_comment",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the delta outcome (OP changed view) at the row level; association only, not causal. Comments are unordered, no per-comment outcomes, so comment-level persuasiveness is not observable; row-level presence is used. Hypothetical framing is judged from current comment text; it is not matched to the specific comment that persuaded. Comment text may contain delta/outcome announcements, which are excluded from the semantic judgment. The share feature is an alternative intensity measure and is not in the tested model."
+}

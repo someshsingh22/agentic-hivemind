@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "share_empathic_acknowledgment_comments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "What proportion of the counter-argument comments explicitly acknowledge the OP's perspective empathetically (e.g., 'I understand that', 'I see your point')?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Use title and argument only to interpret what the OP's perspective is. For each comment, decide whether the commenter's OWN words explicitly acknowledge, understand or validate the OP's perspective, feelings or point in an empathetic/understanding way (e.g. 'I understand why you think', 'I see your point', 'I get where you're coming from'). Quoted text from others does not count unless the commenter adopts it. Merely stating disagreement, or restating the OP without acknowledgment, does not count. Ignore any text announcing that the OP changed their view, delta awards, or reports of the outcome; do not treat them as evidence. Output = (comments meeting the criterion) / (total comments), range 0-1. Empty list -> null; malformed/missing -> null. List order is not meaningful."
+    }
+  ],
+  "h0": "share_empathic_acknowledgment_comments has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher share_empathic_acknowledgment_comments is associated with a higher probability of delta=1.",
+  "rhs": "share_empathic_acknowledgment_comments",
+  "term": "share_empathic_acknowledgment_comments",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view), at the row level; association only, not causal. Operationalized as the share of counter-comments with empathetic acknowledgment (hypothesis does not specify any vs share). Comments have no per-comment outcomes or timing, and OC_comments may contain outcome announcements (excluded by the semantic prompt). Linear OLS on a binary outcome (linear probability model)."
+}

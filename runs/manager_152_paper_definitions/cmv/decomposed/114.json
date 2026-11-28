@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "quant_sentence_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of sentences across the counter-argument comments contain a number, URL, or percentage?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads (malformed/missing -> null). Concatenate all comment strings; split each into sentences with a regex split on (?<=[.!?])\\s+ and newlines, dropping empty/whitespace-only pieces. A sentence is quantitative if it matches r'\\d|%|https?://|www\\.' (digit characters, percent sign, or URL). Value = quantitative sentences / total sentences pooled across all comments. Empty list or zero sentences -> null. Purely mechanical on current text; no semantic filtering."
+    }
+  ],
+  "h0": "quant_sentence_share has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher quant_sentence_share is associated with a higher probability that the OP changed their view.",
+  "rhs": "quant_sentence_share",
+  "term": "quant_sentence_share",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). Numbers/URLs/percentages are detected mechanically by regex; digits may include non-evidential numbers (list numbering, dates, quotes of OP). Sentence splitting is approximate. Comments are pooled across the row; list order carries no chronology. Raw text could contain delta-award announcements or outcome text (e.g., '!delta'), which are not removed. Association only, not causal."
+}

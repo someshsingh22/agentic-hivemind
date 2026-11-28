@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_oc_cites_wikipedia_or_academic",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment cite Wikipedia or an academic source (e.g., a study, journal paper, scholarly book or researcher) as support for its point?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment itself cites Wikipedia or an academic/scholarly source (peer-reviewed paper, study, journal, university research, academic book, named researcher's findings, DOI, or link to Wikipedia/academic domain) as support for its argument; the commenter must be using the source as support (a quoted source cited as support counts, but the source's wording is not the commenter's own). Return 0 if no comment does. Do not count news/blog/other non-academic links, vague appeals like 'studies show' with no identifiable source only if clearly unspecific, or sources the commenter only mentions in order to dismiss them. Ignore any OP view-change or delta-award announcements, post-outcome updates, and reports of the outcome. Empty list gives 0; missing or malformed gives null."
+    }
+  ],
+  "h0": "Discussions with and without a counter-argument citing Wikipedia or academic sources do not differ in probability of OP view change (delta).",
+  "h1": "Discussions with a counter-argument citing Wikipedia or academic sources have a higher probability of OP view change.",
+  "rhs": "any_oc_cites_wikipedia_or_academic",
+  "term": "any_oc_cites_wikipedia_or_academic",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view), tested as an association only. The row-level 'any comment' measure is an assumption since the hypothesis does not specify any/share. Comments have no per-comment outcomes, so it cannot be established that the citing comment was the persuasive one. Comment timing is unknown, and OC_comments may contain outcome-related text; the prompt excludes it. 'Academic source' is judged by the LLM with no fixed scale."
+}

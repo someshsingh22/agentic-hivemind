@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_mentions_year",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment mention a specific year?",
+      "kind": "code",
+      "spec": "Parse OC_comments as JSON list of strings (null if missing/malformed; empty list -> 0). Return 1 if any comment matches regex r'\\b(1[0-9]{3}|20[0-9]{2})\\b' (four-digit years 1000-2099, case-insensitive, also matches inside e.g. '1990s'; no semantic filtering), else 0. Raw text may include outcome announcements; no filtering applied."
+    },
+    {
+      "name": "count_comments_mentioning_year",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many counter-argument comments mention a specific year?",
+      "kind": "code",
+      "spec": "Parse OC_comments as JSON list of strings (null if missing/malformed; empty list -> 0). Count comments matching regex r'\\b(1[0-9]{3}|20[0-9]{2})\\b'. Raw mechanical count; no semantic filtering."
+    }
+  ],
+  "h0": "any_comment_mentions_year has no association with the probability that the OP changed their view.",
+  "h1": "Rows where any counter-argument comment mentions a specific year have a higher probability of OP view change.",
+  "rhs": "any_comment_mentions_year",
+  "term": "any_comment_mentions_year",
+  "sign": "+",
+  "note": "Year mention is a literal proxy for historical/empirical grounding; it does not verify that the year is used as evidence (e.g., could be a date reference or unrelated). Persuasiveness operationalized as delta; association only. Comment order/timing unknown; text may contain outcome announcements and was not filtered. A count version is also provided as an alternative intensity measure."
+}

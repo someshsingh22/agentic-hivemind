@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "negation_word_density_oc",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of all words across the counter-argument comments are negation words (not, no, never, nothing, etc.)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads; if missing/malformed return null. If list empty or total word count is 0 return null. Lowercase each comment; tokenize words with re.findall(r\"[a-z]+(?:'[a-z]+)?\", text). Negation tokens: the set {not, no, never, nothing, none, nobody, nowhere, neither, nor, cannot, without} plus any token ending in \"n't\" (e.g. don't, isn't, can't, won't). Value = total negation tokens across all comments / total word tokens across all comments (pooled over comments, in [0,1]). Raw mechanical count; no semantic filtering, so quoted text and any outcome announcements in comments are included."
+    }
+  ],
+  "h0": "negation_word_density_oc has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher negation_word_density_oc is associated with a lower probability that the OP changed their view.",
+  "rhs": "negation_word_density_oc",
+  "term": "negation_word_density_oc",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); association only, not causal. Negation lexicon is an operational assumption (the hypothesis gives \"not, no, never, nothing, etc.\"). Density is pooled across all OC_comments; comments are unordered with unknown timing. Raw text may contain quotations of others and view-change/delta announcements; these are not excluded. Rows with no comments get null."
+}

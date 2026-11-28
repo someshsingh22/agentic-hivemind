@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_comment_explicit_alternative_perspective",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment explicitly present its point as an alternative perspective or alternative way of looking at the issue (e.g. 'another perspective', 'alternatively')?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Return 1 if at least one comment itself explicitly signals that it is offering an alternative perspective/view/way of looking at the matter, e.g. 'another perspective', 'another way to look at it', 'alternatively', 'from a different angle', and then offers it. The signal must be in the commenter's own assertion, not merely in a quotation of the OP or others that the commenter does not adopt. Mere disagreement without explicit alternative-perspective framing gives 0. Use title/argument only to interpret the comment's target. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence. Empty list gives 0; missing or malformed OC_comments gives null."
+    }
+  ],
+  "h0": "any_comment_explicit_alternative_perspective has no association with the probability that the OP changed their view.",
+  "h1": "Rows with any_comment_explicit_alternative_perspective equal to 1 have a higher probability of OP view change.",
+  "rhs": "any_comment_explicit_alternative_perspective",
+  "term": "any_comment_explicit_alternative_perspective",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view), tested at row level. Row-level 'any' presence is used; comments are unordered, with no per-comment outcomes, so it cannot show which comment persuaded. OC_comments may contain post-outcome text; the prompt excludes outcome announcements. Explicit framing is interpreted semantically beyond the example phrases; this is an assumption."
+}

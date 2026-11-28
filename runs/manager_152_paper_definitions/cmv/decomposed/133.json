@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "share_comments_naming_op_reasoning",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "What proportion of the counter-argument comments explicitly name or refer to the OP's logic or reasoning?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment, decide whether the comment's own text explicitly names or refers to the OP's logic, reasoning, argument structure, or inference (e.g., 'your reasoning', 'your logic is flawed', 'your argument assumes', 'the logic behind your view'). Use title and argument only to interpret the target. Merely disagreeing with the conclusion, or quoting the OP without commenting on their logic/reasoning, does not count. Ignore OP view-change/delta announcements, post-outcome updates and reports of the outcome as evidence. Output the number of qualifying comments divided by the total number of comments (0 to 1). Empty list gives null; malformed or missing input gives null."
+    }
+  ],
+  "h0": "share_comments_naming_op_reasoning has no association with delta.",
+  "h1": "Higher share_comments_naming_op_reasoning is associated with lower probability of delta.",
+  "rhs": "share_comments_naming_op_reasoning",
+  "term": "share_comments_naming_op_reasoning",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). Row-level share is used since comments lack individual outcomes; comment-level persuasiveness cannot be tested. Comment order/timing unknown; OC_comments may contain outcome-related text, which is excluded from semantic judgment. Association only, not causal."
+}

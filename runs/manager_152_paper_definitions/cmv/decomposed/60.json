@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_expert_authority_appeal",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment appeal to expert authority (e.g., experts, scientists, researchers, studies by them) as support for its own argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by users other than the OP). Return 1 if at least one comment itself invokes expert authority (experts, scientists, researchers, scholars, expert consensus, or named credentialed authorities) as support for the comment author's counter-argument, including an external expert source cited as support. Return 0 if none do, and also 0 for a valid empty list. Return null if OC_comments is missing or malformed. Do not count mere mentions of experts that are not used as support, quotations of the OP or others that are only rebutted and not adopted, or any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome. Generic platform-rule discussion is eligible but is not itself an authority appeal. List order carries no meaning."
+    }
+  ],
+  "h0": "any_expert_authority_appeal has no association with delta (OP view change).",
+  "h1": "Rows with any_expert_authority_appeal=1 have a higher probability of delta=1 than rows with 0.",
+  "rhs": "any_expert_authority_appeal",
+  "term": "any_expert_authority_appeal",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta at row level (OP changed view); no per-comment outcomes exist, so this is a row-level association, not proof that the specific comment persuaded. Presence (any) chosen since no count/share was specified. Comments may contain delta announcements or outcome reports, which are excluded from the semantic judgment, but the text's timing relative to the outcome is unknown. Association only, not causal."
+}

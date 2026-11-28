@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "contrast_marker_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments contain at least one contrast marker (whereas, in contrast, unlike, as opposed to)?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings (malformed/missing -> null; empty list -> null). For each comment, test case-insensitively with regex r\"\\b(whereas|in contrast|unlike|as opposed to)\\b\" on the raw comment text (no semantic filtering; quoted text and any outcome announcements in the raw text are included). Return the number of comments with at least one match divided by the total number of comments in the list."
+    }
+  ],
+  "h0": "contrast_marker_comment_share has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher contrast_marker_comment_share is associated with a higher probability that the OP changed their view (delta).",
+  "rhs": "contrast_marker_comment_share",
+  "term": "contrast_marker_comment_share",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); association only, not causal. Markers are literal matches of the four listed terms; \"unlike\" etc. are matched anywhere in the comment, including quoted OP text, and not checked for rhetorical contrast function. Share (not any/count) chosen as comment-level prevalence; the hypothesis does not specify. Comment order/timing unknown; raw text may contain outcome announcements (contamination risk). Rows with an empty comment list get null."
+}

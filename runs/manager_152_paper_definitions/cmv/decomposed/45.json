@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_with_actually",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments use the word \"actually\"?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings. If it is malformed or missing, return null; if the list is empty, return null. Otherwise, for each comment, test case-insensitively with regex r'\\bactually\\b' (whole word, any position, including inside quotations). Return (number of comments matching)/(total number of comments), a value in [0,1]. Raw text matching; no semantic filtering."
+    }
+  ],
+  "h0": "share_comments_with_actually has no association with delta.",
+  "h1": "Higher share_comments_with_actually is associated with lower likelihood of delta (view change).",
+  "rhs": "share_comments_with_actually",
+  "term": "share_comments_with_actually",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). Use of \"actually\" is a literal word match, so quoted text, other senses (non-corrective use) and the corrective intent are not distinguished. The share is a row-level proportion of comments, and comments are unordered and may include several from one commenter. Comment text may contain outcome announcements or later-reply content; raw matching does not exclude them. Association only, not causal."
+}

@@ -1,0 +1,34 @@
+{
+  "features": [
+    {
+      "name": "share_comments_identify_specific_problem",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "What proportion of the counter-argument comments identify a specific problem in the OP's argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Use title and argument only to interpret what the OP argued. For each comment, decide whether the commenter's own assertion points out a specific, concrete problem in the OP's argument (e.g. a particular flawed premise, logical gap, factual error, counterexample or overlooked case, tied to something the OP said), rather than only vague disagreement, general opinion, off-topic remarks, or an unrelated alternative view. Problems merely stated in quotations attributed to others are not counted unless the commenter adopts them. Ignore any OP view-change/delta announcements, post-outcome updates or reports of outcome as evidence. Output = number of qualifying comments / total comments, in [0,1]. Empty list gives null; malformed input gives null. List order carries no meaning."
+    },
+    {
+      "name": "any_comment_identifies_specific_problem",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment identify a specific problem in the OP's argument?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Use title and argument only to interpret the OP's claims. Return 1 if at least one comment, in the commenter's own assertion, points out a specific, concrete problem in the OP's argument (flawed premise, logical gap, factual error, counterexample, overlooked case tied to something the OP said); return 0 if none do (only vague disagreement, opinion, off-topic, or unadopted quotations). Ignore OP view-change/delta announcements, post-outcome updates and outcome reports as evidence. Empty list gives 0; malformed input gives null."
+    }
+  ],
+  "h0": "share_comments_identify_specific_problem has no association with the probability the OP changed their view.",
+  "h1": "Higher share_comments_identify_specific_problem is associated with a higher probability the OP changed their view.",
+  "rhs": "share_comments_identify_specific_problem",
+  "term": "share_comments_identify_specific_problem",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change), tested as an association only. Comments are unordered, with no per-comment outcomes, so the comment-level comparison (problem-identifying vs not) is aggregated to a row-level share; any-version is an alternate presence measure. Comment text may contain delta/outcome announcements, which the prompts exclude; reply timing is unknown. 'Specific' requires a judgment with no supplied scale."
+}

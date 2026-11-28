@@ -1,0 +1,34 @@
+{
+  "features": [
+    {
+      "name": "share_concessive_counterarguments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "What share of the counter-argument comments acknowledge a point of the OP before countering it within the same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). For each comment decide whether, in the comment's own voice, it explicitly acknowledges or concedes a point, claim or merit of the OP (use title and argument to interpret the target) and then counters, disagrees or qualifies it in the same comment (concessive structure, e.g. 'while it is true...', 'you're right that X, but...'). Acknowledgement and counter must both be in the same comment; separate comments cannot combine. Do not count mere quotations of the OP without acknowledgement, concessions attributed to others, or OP view-change/delta announcements, post-outcome updates or reports of the outcome. Generic delta-rule discussion is not evidence. Output = number of qualifying comments / total comments, in [0,1]. Empty list gives null; missing or malformed input gives null."
+    },
+    {
+      "name": "any_concessive_counterargument",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment acknowledge a point of the OP before countering it in that same comment?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments. Return 1 if at least one comment, in its own voice, explicitly acknowledges or concedes a point or merit of the OP (use title and argument to interpret the target) and then counters, disagrees or qualifies in that same comment; else 0. Do not count bare quotes of the OP, concessions attributed to others, or OP view-change/delta announcements, post-outcome updates or outcome reports. Empty list gives 0; missing or malformed gives null."
+    }
+  ],
+  "h0": "share_concessive_counterarguments has no association with delta.",
+  "h1": "Higher share_concessive_counterarguments is associated with higher likelihood of delta (OP view change).",
+  "rhs": "share_concessive_counterarguments",
+  "term": "share_concessive_counterarguments",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view); association only, not causal. Comments are unordered with no per-comment outcomes, so row-level share/any of concessive comments is used rather than comment-level persuasion; a row-level association may reflect other differences. Concession is judged semantically, with the OP's title/argument used for context. Current text may contain outcome announcements, which the prompts exclude as evidence. any_concessive_counterargument is an alternative measurement and is not included in the tested rhs."
+}

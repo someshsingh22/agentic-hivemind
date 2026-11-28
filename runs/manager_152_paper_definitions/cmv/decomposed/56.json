@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "share_comments_address_op_you",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "What proportion of the counter-argument comments directly address the OP using second-person \"you\"/\"your\"?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). For each comment decide whether, in the commenter's own words, it uses second-person pronouns (you, your, you're, yours, yourself) to speak directly to the OP (referring to the OP, their post, view or reasoning; use title and argument only to interpret the target). Do not count generic/impersonal 'you' (e.g. 'you can't trust everyone'), 'you' addressed to third parties, or 'you' occurring only inside quoted text from others unless the commenter adopts it as addressing the OP. Ignore any text that announces the OP's view change, delta awards, or reports the outcome; such text is not evidence. Output = number of qualifying comments / total number of comments (0 to 1). Empty list gives null; missing or malformed input gives null. List order carries no meaning."
+    }
+  ],
+  "h0": "share_comments_address_op_you has no association with the probability that the OP changed their view.",
+  "h1": "Higher share_comments_address_op_you is associated with a higher probability that the OP changed their view.",
+  "rhs": "share_comments_address_op_you",
+  "term": "share_comments_address_op_you",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). Comments are not individually linked to outcomes, so this is a row-level share, not per-comment persuasiveness. Association only. Unordered comments; conversation may contain outcome announcements and was not used; comment text itself might contain outcome announcements or delta-related text, which the prompt excludes as evidence. Distinguishing generic vs. directed 'you' is a judgment call."
+}

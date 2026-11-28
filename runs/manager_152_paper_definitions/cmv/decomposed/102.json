@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "first_person_plural_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of words across the counter-argument comments are first-person plural words (we, our, us)?",
+      "kind": "code",
+      "spec": "import json,re; parse df['OC_comments'] as JSON list of strings; if missing/malformed return null; if list empty return null (no words). For all comments, tokenize with re.findall(r\"[A-Za-z]+(?:'[A-Za-z]+)?\", text.lower()) and count total words; count tokens equal to we, our, us, or starting with \"we'\" (we're, we'll, we've, we'd). Value = plural count / total words across all comments. Raw mechanical count; quotations and any outcome announcements in the text are not excluded."
+    }
+  ],
+  "h0": "first_person_plural_share has no association with delta.",
+  "h1": "Higher first_person_plural_share is associated with a higher probability of delta (OP view change).",
+  "rhs": "first_person_plural_share",
+  "term": "first_person_plural_share",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP changed view); association only. Language measured as share of words pooled over all available counter-argument comments (list order and per-comment outcomes unknown). Counts are raw text matches: quoted text (including quotes of OP) and possible outcome-related text within comments are not excluded, and 'ours/ourselves' are not counted since only we, our, us were named. Contractions with we' are counted as 'we'. Empty comment list gives null."
+}

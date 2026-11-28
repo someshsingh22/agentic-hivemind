@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_moral_language",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments use moral or ethical language (e.g., moral, ethical, rights, freedom, justice, harm)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of counter-argument comments by other users. For each comment, decide whether the commenter's own text uses moral/ethical language, i.e. vocabulary or reasoning explicitly about morality, ethics, rights, freedom, justice, fairness, harm, or right/wrong (examples: moral, ethical, rights, freedom, justice, harm; the list is illustrative, so judge by meaning). Words quoted from the OP or others count only if the commenter adopts them. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome; these are not evidence. Generic discussion of platform or delta rules is eligible but not moral language by itself. Return the number of comments with moral/ethical language divided by the total number of comments, in the range 0 to 1. Return null if OC_comments is missing or malformed, or if the list is empty. List order is irrelevant."
+    }
+  ],
+  "h0": "share_comments_moral_language has no association with the probability that the OP changed their view (delta).",
+  "h1": "A higher share_comments_moral_language is associated with a lower probability that the OP changed their view.",
+  "rhs": "share_comments_moral_language",
+  "term": "share_comments_moral_language",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta, so this is an association and not a causal effect. Rows are discussions, so the feature is the share of comments in a row with moral/ethical language. It is not per-comment persuasion, because no per-comment outcomes are supplied. The \"etc.\" in the hypothesis's word list makes the construct semantic, and the judgement is by meaning, not a fixed lexicon. Comments may contain quotations or outcome announcements that are excluded by instruction. Reply timing is unknown, and a comment may be one of several in a row."
+}

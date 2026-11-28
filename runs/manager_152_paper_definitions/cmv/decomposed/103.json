@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "polite_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments use polite language such as please, thank you, or I appreciate?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of counter-argument comments by other users. For each comment decide whether the commenter's own wording uses polite language (e.g., please, thank you/thanks, I appreciate, courteous acknowledgment phrases). Quoted text from others does not count unless the commenter adopts it. Ignore any OP view-change/delta-award announcements, post-outcome updates or reports of the outcome as evidence of politeness; thanks for a delta award is not evidence. Return number of polite comments divided by total comments (0 to 1). Empty list gives null; malformed/missing gives null."
+    }
+  ],
+  "h0": "polite_comment_share has no association with delta.",
+  "h1": "Higher polite_comment_share is associated with higher likelihood of delta (view change).",
+  "rhs": "polite_comment_share",
+  "term": "polite_comment_share",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP changed view). Share of comments chosen as row-level quantity since hypothesis does not specify any/count/share. Politeness judged from lexical cues plus meaning; list order has no chronology. Text may contain thanks after a delta or outcome announcements; these are excluded by instruction, but contamination risk remains. Association only, not causal."
+}

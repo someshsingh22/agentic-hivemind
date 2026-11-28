@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_fk_grade_mean",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the mean Flesch-Kincaid grade level across the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads; keep string comments with at least one word (regex [A-Za-z']+). For each, sentences = max(1, count of runs of [.!?]+ followed by space/end, fallback 1); words = count of [A-Za-z']+ tokens; syllables = sum over words of max(1, count of vowel groups [aeiouy]+ in lowercase word, minus 1 if word ends in silent 'e' and has >1 group). FK = 0.39*words/sentences + 11.8*syllables/words - 15.59. Return the mean FK across comments. Empty list gives null (no comments to score); malformed/missing gives null."
+    }
+  ],
+  "h0": "oc_fk_grade_mean has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher oc_fk_grade_mean is associated with a higher probability that the OP changed their view.",
+  "rhs": "oc_fk_grade_mean",
+  "term": "oc_fk_grade_mean",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); the association is not causal. Mean FK across comments is an assumed aggregation, since the hypothesis does not specify one. FK is computed with a heuristic syllable counter, and URLs, quotes and markdown are not stripped. OC_comments may contain text that announces the outcome, such as delta awards, because this is raw-text code with no semantic filtering. Comment order and timing are unknown."
+}

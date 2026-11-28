@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_explicit_example_label",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain an explicitly labeled example phrase such as \"example:\" or \"one example is\"?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings (missing/malformed -> null; empty list -> 0). Return 1 if any comment matches, case-insensitive, regex r'\\b(for example|for instance|e\\.g\\.|one example|an example|example\\s*:|examples\\s*:|example\\s+\\d+\\s*:|here is an example|here\\'s an example)' ... restricted to explicit labels: r'(\\bexamples?\\s*:|\\b(one|another|a|an|first|second)\\s+example\\s+(is|would be|being)\\b|\\bhere(\\'s| is)\\s+an\\s+example\\b)'. Otherwise 0. Raw text matching; no semantic filtering."
+    }
+  ],
+  "h0": "any_comment_explicit_example_label is unrelated to the probability that the OP changed their view (delta).",
+  "h1": "Discussions with at least one counter-argument containing an explicitly labeled example have higher probability of OP view change.",
+  "rhs": "any_comment_explicit_example_label",
+  "term": "any_comment_explicit_example_label",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as delta (OP view change) at discussion row level; no per-comment outcomes are supplied, so the association is row-level only. Label detection is literal regex (a narrow set of explicit labels such as 'example:' and 'one example is'); unlabeled examples and generic 'for example' are not counted. Raw text may include quoted text or outcome announcements; not outcome-free, and reply timing is unknown. Association only, not causal."
+}

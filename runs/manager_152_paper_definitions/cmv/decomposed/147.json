@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_triple_enumeration",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a triple inline enumeration of the form 'X, Y, and Z' or 'X; Y; and Z'?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of comment strings. Missing/unparseable input -> null. Empty list -> 0. Otherwise return 1 if any comment matches (re.IGNORECASE) the regex r\"[^,;.!?\\n]+[,;]\\s+[^,;.!?\\n]+[,;]\\s+(?:and|&)\\s+[^,;.!?\\n]+\" (three items within one sentence/line separated by comma or semicolon, with 'and' before the last item), else 0. Purely mechanical matching on raw current text: no semantic filtering, quotations inside comments are not excluded, and the pattern may match non-list clauses (e.g., 'However, I think, and ...'). Do not read title, argument or conversation."
+    }
+  ],
+  "h0": "any_comment_triple_enumeration has no association with delta.",
+  "h1": "Rows with any_comment_triple_enumeration = 1 have a higher probability of delta than rows with 0.",
+  "rhs": "any_comment_triple_enumeration",
+  "term": "any_comment_triple_enumeration",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); association only, not causal. The row-level feature is 'any comment has a triple enumeration' because the claim does not specify count or share. Regex is an approximation (false positives/negatives, e.g., Oxford-comma-less lists, longer lists, non-list clauses). Comments are unordered, with no per-comment outcome, so the delta-winning comment cannot be identified; the feature may be driven by comment count/length (no controls added). Raw comment text may contain view-change/delta announcements; this contamination risk is not filtered."
+}

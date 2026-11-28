@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "mean_comment_op_content_overlap",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "On average across counter-argument comments, what proportion of a comment's distinct content words also appear in the OP's title and argument?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; malformed/missing OC_comments, or missing title and argument, -> null. Empty list -> null. Tokenize text with re.findall(r\"[a-z]+(?:'[a-z]+)?\", text.lower()). Content words = tokens not in sklearn's ENGLISH_STOP_WORDS (fixed stopword list, an operational stand-in since no POS tagger is specified) and with length>=3. OP set = distinct content words in (title + ' ' + argument) (current text; may include edits/outcome announcements, not filtered). For each comment with at least one content word, overlap = |distinct comment content words in OP set| / |distinct comment content words|. Comments with no content words are skipped. Return the unweighted mean of overlap over comments; null if no comment has content words or the OP set is empty/missing. Each comment is counted equally; list order is ignored."
+    }
+  ],
+  "h0": "mean_comment_op_content_overlap has no association with the probability that the OP changed their view (delta).",
+  "h1": "Lower mean_comment_op_content_overlap is associated with a higher probability of delta (negative coefficient).",
+  "rhs": "mean_comment_op_content_overlap",
+  "term": "mean_comment_op_content_overlap",
+  "sign": "-",
+  "note": "Operational assumptions: content words = non-stopwords (sklearn list), length>=3, no lemmatization; overlap is lexical type overlap against OP title+argument, a proxy for echoing vs. novel information (novelty itself is not measured). Persuasiveness is operationalized as the delta outcome at row level. Comments are pooled as an unweighted mean; the row-level result cannot isolate the most persuasive comment since no per-comment outcomes exist. Raw text may contain view-change announcements or edits in OP argument or later comments; not filtered, so contamination/timing risk remains. Association only."
+}

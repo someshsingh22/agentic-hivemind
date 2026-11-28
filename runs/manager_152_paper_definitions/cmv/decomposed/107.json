@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "mean_parentheticals_per_counterargument",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "On average, how many parenthetical phrases (text inside round brackets) does each counter-argument comment contain?",
+      "kind": "code",
+      "spec": "import json,re; parse OC_comments as a JSON list of strings; if missing or malformed return None; if the list is empty return None. For each comment count matches of re.findall(r'\\([^()]*\\)', text) (innermost balanced round-bracket spans; emoticons and list markers like '1)' do not match as they lack an opening parenthesis). Return the mean count across comments. Raw text count, no semantic filtering; comments may include quoted text or outcome announcements."
+    }
+  ],
+  "h0": "mean_parentheticals_per_counterargument has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher mean_parentheticals_per_counterargument is associated with a higher probability that the OP changed their view.",
+  "rhs": "mean_parentheticals_per_counterargument",
+  "term": "mean_parentheticals_per_counterargument",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). Per-row mean parentheticals per comment is chosen as the \"more parenthetical phrases\" measure; a total count would be confounded with the number of comments. Association only, not causal. Comments are of unknown timing, and the text may include quoted material from the OP or others. Rows with an empty comment list get null. Parentheses are counted mechanically, including non-elaborative uses such as citations."
+}

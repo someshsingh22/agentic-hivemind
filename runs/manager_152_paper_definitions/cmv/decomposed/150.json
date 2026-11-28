@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "cc_fraction_expression_any",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a fraction expression such as 1/3, 2/5, one-half, two-thirds or three-quarters?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads; malformed/missing -> null; empty list -> 0. Return 1 if any comment string matches (case-insensitive) either numeric fraction regex r'(?<![\\d/])\\d{1,3}\\s?/\\s?\\d{1,3}(?![\\d/])' or word fraction regex r'\\b(one|two|three|four|five|six|seven|eight|nine|a|an)[- ](half|halves|third|thirds|quarter|quarters|fourth|fourths|fifth|fifths|sixth|sixths|seventh|sevenths|eighth|eighths|ninth|ninths|tenth|tenths)\\b' or r'\\bhalf\\b'. Else 0. Raw text match, no semantic filtering."
+    }
+  ],
+  "h0": "cc_fraction_expression_any has no association with delta.",
+  "h1": "Rows whose counter-arguments include a fraction expression (cc_fraction_expression_any=1) have higher odds/rate of delta than rows without.",
+  "rhs": "cc_fraction_expression_any",
+  "term": "cc_fraction_expression_any",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as OP delta at row level (association only). Comments are pooled per row; no per-comment outcomes. Regex may match non-fraction uses (dates, 'and/or'-like slashes, 'a half' idioms, scores) and misses other forms like '50%'. Raw text may contain post-outcome content; timing unknown. Numeric regex excludes slash chains but not dates like 1/3."
+}

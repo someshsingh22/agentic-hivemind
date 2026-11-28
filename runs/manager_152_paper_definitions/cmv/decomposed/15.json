@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "absolutist_word_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of all words across the counter-argument comments are absolutist words (always, never, certainly, obviously)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads (malformed/missing -> null). Join all comment strings; lowercase; tokenize words with re.findall(r\"[a-z']+\", text). Count tokens exactly equal to one of {always, never, certainly, obviously}. Return count / total tokens. Empty list or zero tokens -> null. Raw lexical match with no semantic filtering; quoted text and any outcome announcements in comments are included."
+    }
+  ],
+  "h0": "absolutist_word_share has no association with delta.",
+  "h1": "Higher absolutist_word_share in counter-arguments is associated with lower likelihood of delta (fewer absolutist words, more persuasive).",
+  "rhs": "absolutist_word_share",
+  "term": "absolutist_word_share",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). The word list is limited to the four given examples, as the hypothesis lists them and gives no wider lexicon; share normalizes for comment length. Comments are pooled across all counter-arguments, and quoted text is not separated from the commenter's own words. Comment timing is unknown, and comments may contain outcome-related text. Association only, not causal."
+}

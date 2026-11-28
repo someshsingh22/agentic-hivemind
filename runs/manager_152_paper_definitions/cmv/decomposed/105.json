@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_however_pivot",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments use the word \"however\" as a discourse pivot, shifting from a concession or prior point to a contrasting point?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of counter-argument comments. For each comment, decide whether the commenter's own text uses \"however\" (case-insensitive) as a discourse pivot, i.e. a contrastive transition turning from a prior point/concession to a contrasting one. Do not count non-pivot uses (e.g. \"however much\", \"however you define it\"), or \"however\" appearing only inside a quotation of someone else's text that the commenter does not adopt. Ignore any OP view-change/delta-award announcements or outcome reports as evidence. Output = number of qualifying comments / total number of comments, in [0,1]. Empty list gives null; missing or malformed input gives null."
+    }
+  ],
+  "h0": "share_comments_however_pivot has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher share_comments_however_pivot is associated with a higher probability that the OP changed their view.",
+  "rhs": "share_comments_however_pivot",
+  "term": "share_comments_however_pivot",
+  "sign": "+",
+  "note": "\"More persuasive\" operationalised as the dataset outcome delta (OP changed view); an association, not causal. Row-level share of comments is used since per-comment outcomes are unavailable; rows with no comments get null. Comments are current text; timing is unknown, and comment text may contain outcome announcements, which the prompt excludes as evidence. The OLS is a linear probability model."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "cc_word_length_variance",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the variance of word length (in characters) across all words in the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; malformed/missing -> null; empty list -> null. Concatenate all comments, extract words with re.findall(r\"[A-Za-z']+\", text) (apostrophes kept, counted in length? no: strip apostrophes before measuring), compute each word's length in characters, and return the population variance (np.var, ddof=0) pooled over all words in all comments. If fewer than 2 words, return null. Raw text computation; no semantic filtering, so comments may contain outcome announcements."
+    }
+  ],
+  "h0": "cc_word_length_variance has no association with delta.",
+  "h1": "Higher cc_word_length_variance is associated with higher likelihood of delta (OP view change).",
+  "rhs": "cc_word_length_variance",
+  "term": "cc_word_length_variance",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the delta outcome. Variance is pooled across all words in all counter-comments (the hypothesis does not specify per-comment vs pooled); variance of character length, population variance, with a simple regex tokenizer. Comments may include quotations, URLs, and outcome announcements; raw text is not outcome-free, and timing of replies is unknown. Association only, not causal. Comment count/length may affect variance; no controls added."
+}

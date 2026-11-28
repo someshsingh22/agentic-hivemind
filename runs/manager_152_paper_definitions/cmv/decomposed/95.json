@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_two_plus_urls",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain 2 or more URLs?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; if missing or malformed return null; empty list returns 0. For each comment count matches of regex r'https?://\\S+|www\\.\\S+' (each match is one URL occurrence; markdown links count by their URL, duplicates counted). Return 1 if any comment has count >= 2, else 0."
+    }
+  ],
+  "h0": "Rows with any_comment_two_plus_urls = 1 have the same delta rate as rows with any_comment_two_plus_urls = 0.",
+  "h1": "Rows with any_comment_two_plus_urls = 1 have a higher delta rate than rows with any_comment_two_plus_urls = 0.",
+  "rhs": "any_comment_two_plus_urls",
+  "term": "any_comment_two_plus_urls",
+  "sign": "+",
+  "note": "Operational assumptions: persuasiveness is measured by the dataset outcome delta (OP changed view), at row level. The comparison is rows with at least one comment having >=2 URLs vs rows where every comment has 0 or 1 URL (including rows with no comments). Comment-level pairing to the persuaded comment is unavailable (no per-comment outcomes), so this is a row-level association. Regex is mechanical; URLs may appear in quoted text or after-outcome text, and timing is unknown. Not causal."
+}

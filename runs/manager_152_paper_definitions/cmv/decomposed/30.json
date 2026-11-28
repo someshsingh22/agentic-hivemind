@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counter_comment_url_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many URLs appear across all counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; if missing or malformed return null; empty list returns 0. Sum over comments the number of regex matches of r'(https?://|www\\.)[^\\s)\\]>]+' (case-insensitive), including markdown link targets. Raw text count, no semantic filtering; duplicates counted each time."
+    }
+  ],
+  "h0": "counter_comment_url_count has no association with delta.",
+  "h1": "Higher counter_comment_url_count is associated with higher probability of delta (OP view change).",
+  "rhs": "counter_comment_url_count",
+  "term": "counter_comment_url_count",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). URL count is a mechanical proxy for evidence; it does not verify that links are evidence or relevant. Raw text may include outcome announcements or later replies; list order/timing unknown. Association only, not causal."
+}

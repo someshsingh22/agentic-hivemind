@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "max_distinct_link_domains_per_comment",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the largest number of distinct source domains linked within any single counter-argument comment?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; missing/malformed -> null; empty list -> 0. For each comment, extract URLs with regex r'https?://[^\\s)\\]>]+' (also markdown link targets), take hostname lowercased, strip leading 'www.', and count distinct hostnames (exact hostname after www removal; no registered-domain collapsing). Return the maximum over comments. Raw text matching only; no semantic filtering."
+    },
+    {
+      "name": "any_comment_links_three_plus_domains",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment include links to 3 or more distinct source domains?",
+      "kind": "code",
+      "spec": "df['max_distinct_link_domains_per_comment'] >= 3 as 0/1; null if df['max_distinct_link_domains_per_comment'] is null; 0 for an empty comment list."
+    }
+  ],
+  "h0": "any_comment_links_three_plus_domains has no association with the probability that the OP changed their view (delta).",
+  "h1": "Rows with a counter-argument linking 3 or more distinct domains have a higher rate of OP view change than rows without.",
+  "rhs": "any_comment_links_three_plus_domains",
+  "term": "any_comment_links_three_plus_domains",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); association only, not causal. Ambiguity: the threshold is applied within a single comment (a comment citing 3+ distinct domains), not pooled across comments. Domains are exact hostnames minus 'www' (assumption). Links are only about 12% of rows, so the feature will be sparse. Only current text is available, so URLs may appear in comments after or alongside the outcome; no timing is known. Raw URL detection does not check that links are evidence or whether they are quoted. OC_comments only; conversation is not used."
+}

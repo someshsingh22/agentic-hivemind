@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "cc_opener_type_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many distinct clause-opener types (although, because, if, when, so that) appear across the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; malformed/missing -> null; empty list -> 0. Lowercase all comment texts. For each of the five types, test whether any comment matches the regex: although -> r'\\balthough\\b'; because -> r'\\bbecause\\b'; if -> r'\\bif\\b'; when -> r'\\bwhen\\b'; so that -> r'\\bso that\\b'. Value = number of types (0-5) with at least one match across all comments. Raw literal matching only; no semantic filtering, and it counts occurrences anywhere in the comment text including quoted text."
+    }
+  ],
+  "h0": "cc_opener_type_count has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher cc_opener_type_count is associated with higher probability that the OP changed their view (delta).",
+  "rhs": "cc_opener_type_count",
+  "term": "cc_opener_type_count",
+  "sign": "+",
+  "note": "Operational assumptions: variety is measured pooled across all counter-argument comments in a row (not per comment), as the number of distinct types among the five listed. Clause openers are approximated by literal word presence anywhere in the text, not syntactically verified (e.g., 'if'/'when' may be non-clause uses; 'so that' is the only phrase). Quoted OP text within comments is counted. More comments/longer text mechanically raise the count (length confound, not controlled). Persuasiveness is operationalized as delta. Raw text may contain outcome announcements or delta-related text; not outcome-free. Comment order/timing unknown. Association only."
+}

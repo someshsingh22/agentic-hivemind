@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_example_after_opening",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment introduce an example or illustration after its opening portion (e.g., 'for instance' mid-reply)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). For each comment, decide whether it provides a concrete example, instance or illustration (e.g., 'for example', 'for instance', a specific case) that begins after the comment's opening sentence/first segment, i.e., not as the very first thing in the reply. Examples must be the commenter's own assertions or adopted support, not merely a quoted passage from the OP or others that is rebutted. Ignore any text that announces the OP changed their view, delta awards, or post-outcome updates as evidence. Return 1 if at least one comment qualifies, else 0. Empty list -> 0; missing/malformed -> null."
+    }
+  ],
+  "h0": "any_comment_example_after_opening has no association with delta.",
+  "h1": "Discussions where any_comment_example_after_opening is 1 are more likely to have delta=1.",
+  "rhs": "any_comment_example_after_opening",
+  "term": "any_comment_example_after_opening",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as association with delta (OP view change). 'After the opening' operationalized as not in the first sentence/segment of the comment; this is an assumption. 'Any comment' aggregation chosen since hypothesis is about counter-arguments generally. Comment order/timing unknown; current text may contain outcome announcements (excluded in the prompt). Association only, not causal."
+}

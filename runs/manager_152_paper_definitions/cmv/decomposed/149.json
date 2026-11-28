@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_formal_evaluative_adjectives",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments use at least one formal evaluative adjective (e.g., significant, compelling, robust, effective, extraordinary)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of counter-argument comments by other users. For each comment, decide whether the commenter's own text uses at least one formal evaluative adjective, i.e. a register-formal adjective that judges the quality, magnitude, or strength of something (examples: significant, compelling, robust, effective, extraordinary, substantial, persuasive, valid, rigorous). Casual or purely emotive words (awesome, dumb, great, stupid) do not count; neutral descriptive adjectives do not count. Adjectives inside quoted text attributed to someone else (e.g., quoting the OP) do not count unless the commenter adopts them. Ignore any text announcing that the OP changed their view, delta awards, or post-outcome updates; adjectives there do not count. Output = (number of comments with at least one qualifying adjective) / (total number of comments), a value in [0,1]. Empty list gives null; missing or malformed input gives null."
+    }
+  ],
+  "h0": "share_comments_formal_evaluative_adjectives has no association with the probability that the OP changed their view (delta).",
+  "h1": "A higher share_comments_formal_evaluative_adjectives is associated with a higher probability that the OP changed their view.",
+  "rhs": "share_comments_formal_evaluative_adjectives",
+  "term": "share_comments_formal_evaluative_adjectives",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). The adjective list is open-ended (\"etc.\"), so the formal-evaluative judgment is by an LLM; formality boundary is an assumption. Share-of-comments aggregation is an assumption (hypothesis does not specify any/count/share). OC_comments may contain outcome-related text (e.g., delta announcements), which is excluded by the semantic spec, but timing relative to the outcome is unknown. Association only, not causal."
+}

@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "any_concessive_while_acknowledging_op",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "Does at least one counter-argument comment use a concessive \"while\" clause that acknowledges a point made by the OP?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). Return 1 if at least one comment itself contains a concessive 'while' clause (while meaning 'although', e.g. 'While you are right that...') that acknowledges, grants or concedes a point the OP made (use title and argument to interpret what the OP's point is). Temporal 'while' (meaning 'during') and 'while' clauses not conceding an OP point do not count; concessive 'while' acknowledging something other than the OP's point, or only inside quoted text not adopted by the commenter, does not count. Ignore any text that announces the OP's view change, delta awards or outcome reports. Return 0 if no comment qualifies or the list is empty; null if OC_comments is missing or malformed."
+    }
+  ],
+  "h0": "any_concessive_while_acknowledging_op has no association with delta.",
+  "h1": "Rows with any_concessive_while_acknowledging_op = 1 have higher probability of OP view change (delta) than rows with 0.",
+  "rhs": "any_concessive_while_acknowledging_op",
+  "term": "any_concessive_while_acknowledging_op",
+  "sign": "+",
+  "note": "Operational assumption: 'more persuasive' is measured as the dataset outcome delta (OP view change), at row level; comments have no individual outcomes, so row-level presence of any such comment is used. Order/timing of comments unknown; comment text may include outcome contamination, which the prompt is told to ignore. Association only, not causal."
+}

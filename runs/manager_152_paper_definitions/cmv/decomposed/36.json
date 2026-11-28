@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "anecdote_opener_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments open with a personal-anecdote phrase such as \"when I\" or \"in my experience\"?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If missing or malformed, return null; if the list is empty, return null. For each comment, lowercase, strip leading whitespace and markdown characters (>, *, _, quotes), normalize curly apostrophes, and test regex r'^(when i\\b|in my experience\\b|in my own experience\\b|from my experience\\b|in my case\\b|when i was\\b|i remember when\\b|personally, i\\b)' (case-insensitive) at the very start of the comment. Return the number of matching comments divided by the total number of comments. Purely mechanical matching; no semantic filtering of quotations or outcome announcements."
+    }
+  ],
+  "h0": "anecdote_opener_comment_share has no association with the probability the OP changed their view (delta).",
+  "h1": "Higher anecdote_opener_comment_share is associated with a lower probability of delta.",
+  "rhs": "anecdote_opener_comment_share",
+  "term": "anecdote_opener_comment_share",
+  "sign": "-",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP view change) at the row level, so it is an association of the share of such comments with delta, not a per-comment persuasion test. No per-comment outcomes are supplied, so we cannot tell which comment persuaded. The opener phrase list is an operational assumption: the two quoted examples plus a few close variants, matched only at the start of the comment. Comments with the anecdote later in the text are not counted. Rows with no comments get null. Comment text is current text and may contain outcome announcements or quotations; raw matching is not filtered for these."
+}

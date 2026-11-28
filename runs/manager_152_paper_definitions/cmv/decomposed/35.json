@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "parenthetical_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments contain at least one parenthetical (text inside a matched pair of parentheses)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of comment strings. If missing/malformed, return null. If the list is empty, return null. For each comment, flag 1 if re.search(r'\\([^()]*\\S[^()]*\\)', comment) matches (non-empty text within parentheses), else 0. Return the mean of flags (flagged comments / total comments). Raw text matching, no semantic filtering; markdown-link URLs like [x](http://...) are not excluded unless the pattern is changed, so exclude matches whose '(' is immediately preceded by ']' via pattern r'(?<!\\])\\([^()]*\\S[^()]*\\)'."
+    }
+  ],
+  "h0": "parenthetical_comment_share has no association with the probability that the OP changed their view (delta).",
+  "h1": "A higher parenthetical_comment_share is associated with a higher probability that the OP changed their view.",
+  "rhs": "parenthetical_comment_share",
+  "term": "parenthetical_comment_share",
+  "sign": "+",
+  "note": "Operational assumptions: persuasiveness is measured by the dataset outcome delta (association only). \"Parenthetical clarification\" is operationalized mechanically as any non-empty parenthesized text, which may include non-clarifying uses (citations, emoticons, lists); no semantic check that it clarifies. Exposure is the share of comments with one (an any-comment alternative was not chosen). Comment list order, timing, and per-comment outcomes are unavailable, so the row-level share cannot show which comment persuaded. Raw text may contain outcome announcements (e.g., delta mentions); not filtered. Rows with no comments get null."
+}

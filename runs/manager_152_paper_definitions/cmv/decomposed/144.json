@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "distinct_domains_in_counterarguments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "How many distinct semantic domains among economics, science, history, social and legal are referenced across the counter-argument comments?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Using title/argument only to interpret the target, read the counter-argument comments and determine which of five domains each comment's own content references: economics, science, history, social (society, culture, social behavior), legal (law, courts, rights as legal matters). Return the integer count (0-5) of distinct domains referenced in at least one comment, pooled across all comments. Each domain counts once regardless of how many comments or mentions. Ignore comments' mentions of OP view-change/delta-award announcements, post-outcome updates or reports of outcome; generic delta-rule discussion is eligible. Quotations of others count only if used as part of the commenter's argument. Empty list gives 0; missing or malformed OC_comments gives null."
+    }
+  ],
+  "h0": "distinct_domains_in_counterarguments has no association with delta.",
+  "h1": "Higher distinct_domains_in_counterarguments is associated with higher probability of delta.",
+  "rhs": "distinct_domains_in_counterarguments",
+  "term": "distinct_domains_in_counterarguments",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as delta (OP view change). Pooled across all available comments, so domains need not coexist in one comment; list order gives no chronology. The five-domain list is taken from the hypothesis; the examples are treated as exhaustive. Comment text may contain outcome announcements, which the prompt excludes. Association only, not causal."
+}

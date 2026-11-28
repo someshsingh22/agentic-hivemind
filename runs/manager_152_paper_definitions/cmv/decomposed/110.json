@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_multiword_proper_noun",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments contain at least one multi-word proper noun (e.g., a named country, organization or person)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment, decide whether it contains at least one multi-word proper noun: a name of a specific entity written as two or more words (e.g., 'United States', 'World Health Organization', 'Supreme Court of Canada', full person names). Exclude single-word names, ordinary capitalized words at sentence start, generic common nouns, and capitalization for emphasis. Names inside quotations count if they appear in the comment text. Ignore any text that announces the OP changed their view, delta awards, or reports the outcome (such text does not count as a proper noun instance). Output = number of comments with at least one qualifying proper noun divided by total number of comments, in [0,1]. Empty list gives null; missing or malformed input gives null."
+    }
+  ],
+  "h0": "share_comments_multiword_proper_noun has no association with the probability the OP changed their view.",
+  "h1": "Higher share_comments_multiword_proper_noun is associated with a higher probability the OP changed their view.",
+  "rhs": "share_comments_multiword_proper_noun",
+  "term": "share_comments_multiword_proper_noun",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change); association only, not causal. The share of comments with a multi-word proper noun is an assumed row-level aggregation of 'counter-arguments that contain...'. Detection requires semantic judgment of proper-noun status (not a capitalization regex), so it is a prompt. Comments are not ordered and no per-comment outcomes exist, so row-level share is used. Comment text may contain outcome announcements or later replies; these are excluded from the semantic judgment but the text source is not outcome-free. Timing is unknown."
+}

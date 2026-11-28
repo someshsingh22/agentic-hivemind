@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_oc_comments_citing_sources",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments explicitly reference an external source (e.g., study, article, statistic with attribution, book, link, named authority)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of counter-argument comments by other users. For each comment decide whether the commenter's own text explicitly references an external source as support (URL/link, named study, article, book, report, statistic attributed to a source, named expert or institution cited as authority). Mere personal experience, unsourced claims, or generic 'studies show' without any identifiable source do not count unless a source is explicitly named or linked. Quoting the OP does not count. Exclude any text announcing OP view change/delta award, post-outcome updates, or reports of the outcome; these are not evidence. Output = (comments that reference a source) / (total comments), range 0-1. Empty list -> null; malformed -> null. List order carries no meaning."
+    }
+  ],
+  "h0": "share_oc_comments_citing_sources has no association with delta.",
+  "h1": "Higher share_oc_comments_citing_sources is associated with higher probability of delta (OP view change).",
+  "rhs": "share_oc_comments_citing_sources",
+  "term": "share_oc_comments_citing_sources",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP view change). Share chosen as the row-level measure of 'counter-arguments that reference sources'; any/count are alternatives. Comments are unordered, with no timing; conversation is not used. Comments may contain outcome-related text, which is excluded from the semantic judgment. Association only, not causal."
+}

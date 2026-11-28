@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "novel_content_word_types",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "How many distinct content words (nouns, verbs, adjectives, adverbs) across the counter-argument comments do not appear anywhere in the OP's title or argument?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads (missing/malformed -> null; empty list -> 0). OP vocabulary: lowercase, tokenize title + ' ' + argument with regex [a-z']+ , lemmatize with NLTK WordNetLemmatizer (noun and verb pass) to a set; missing argument and title both -> null, one missing treated as empty. For each comment string, lowercase, tokenize the same way, POS-tag with NLTK averaged perceptron tagger, keep tokens tagged NN*, VB*, JJ*, RB* excluding stopwords of NLTK English list, lemmatize. Take the union of such lemmas across all comments (distinct types) and count those not in the OP vocabulary set. Output integer count. Raw text; no semantic filtering."
+    }
+  ],
+  "h0": "novel_content_word_types has no association with the probability that the OP changed their view.",
+  "h1": "Higher novel_content_word_types is associated with a higher probability that the OP changed their view.",
+  "rhs": "novel_content_word_types",
+  "term": "novel_content_word_types",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the delta outcome. OP text = current title + argument (may include edits or outcome announcements; raw code does not filter them). Comments are pooled across the row, so the count is also driven by number and length of comments (no length control is specified); comments may include text after view change. Content words defined by POS tags (NN, VB, JJ, RB) minus stopwords, lemma-matched; this is an assumed recipe. Conversation column not used to avoid overlap. Association only."
+}

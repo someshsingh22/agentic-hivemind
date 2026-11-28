@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "share_comments_opening_with_argument_reference",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments open with the literal phrases 'Your argument', 'The argument' or 'Consider'?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings (malformed/missing -> null). Empty list -> null. For each comment, take the string, strip leading whitespace and leading quote/markdown characters (>, *, _, \", ') and match case-insensitively with regex r'^(your argument|the argument|consider)\\b'. Output = number of matching comments / total number of comments (0 to 1). Mechanical literal matching only; no semantic filtering, so comments mentioning outcomes are not excluded."
+    }
+  ],
+  "h0": "share_comments_opening_with_argument_reference has no association with delta.",
+  "h1": "Higher share_comments_opening_with_argument_reference is associated with higher likelihood of delta (OP view change).",
+  "rhs": "share_comments_opening_with_argument_reference",
+  "term": "share_comments_opening_with_argument_reference",
+  "sign": "+",
+  "note": "Operationalized \"open with direct reference to the OP's argument\" as the three literal example openers only; other direct references (e.g. \"You say\", \"OP's claim\") are missed. Persuasiveness is measured by the dataset outcome delta, an association not causal. Row-level share of comments; comment order and individual comment outcomes are unavailable, so it does not show that the opening comment was the persuasive one. Raw text may contain outcome announcements; not filtered. Possible opening quotations of OP text are stripped only for quote markers."
+}

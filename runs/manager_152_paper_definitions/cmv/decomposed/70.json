@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_distinct_content_words",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "How many distinct content words (nouns, verbs, adjectives, adverbs) appear across the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; malformed/missing -> null; empty list -> 0. Concatenate all comments (pooled across comments). Tokenize and POS-tag with spaCy en_core_web_sm (fixed). Keep alphabetic tokens whose universal POS is NOUN, PROPN, VERB, ADJ or ADV (auxiliaries and stopword function words excluded by POS). Lowercase and lemmatize each token. Return the number of unique lemmas in the pooled set. Raw text; not semantically filtered."
+    }
+  ],
+  "h0": "oc_distinct_content_words has no association with the probability that the OP changed their view (delta).",
+  "h1": "Greater oc_distinct_content_words is associated with higher probability of delta.",
+  "rhs": "oc_distinct_content_words",
+  "term": "oc_distinct_content_words",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the delta outcome. Vocabulary breadth is measured as pooled count of unique content-word lemmas across all available counter-argument comments (POS-based: noun, proper noun, verb, adjective, adverb); this is an assumption since the hypothesis does not specify per-comment vs pooled, nor lemma vs surface form. The count rises with total length/number of comments, so it is confounded with length; no length control is added here. Comment text may include OP view-change or delta announcements (raw code, not filtered); no timing is available. Association only."
+}

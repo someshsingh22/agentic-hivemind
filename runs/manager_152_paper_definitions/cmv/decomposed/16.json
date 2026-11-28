@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "counterarg_mean_positive_sentiment",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the average sentiment positivity of the counter-argument comments, from very negative to very positive?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of comments by other users). Rate each comment's overall sentiment expressed in the commenter's own words on an integer scale: -2 very negative, -1 negative, 0 neutral/mixed, 1 positive, 2 very positive. Ignore quoted text from others unless the commenter adopts it. Ignore any OP view-change/delta-award announcements, thanks for changing view, post-outcome updates or reports of the outcome; do not use them as sentiment evidence. Return the mean across comments with a rating. Empty list gives null; malformed input gives null."
+    }
+  ],
+  "h0": "Counter-argument mean positive sentiment has no association with the probability the OP changed their view (delta).",
+  "h1": "Higher counterarg_mean_positive_sentiment is associated with higher probability of the OP changing their view.",
+  "rhs": "counterarg_mean_positive_sentiment",
+  "term": "counterarg_mean_positive_sentiment",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta. Sentiment scale (-2..2) and mean aggregation are operational assumptions; \"counter-arguments\" are all OC_comments, whose order and timing are unknown. Comments may contain post-outcome text, which the prompt excludes from sentiment evidence. Association only, not causal."
+}

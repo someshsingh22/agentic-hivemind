@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "share_comments_addressing_op_claims",
+      "dtype": "numeric",
+      "source_columns": [
+        "title",
+        "argument",
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments directly address a specific claim or point made by the OP (e.g. 'your argument', 'your point') rather than generic or tangential content?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. For each comment, decide whether the commenter's own text directly engages a specific claim, premise or point stated in the OP's title/argument (for example by referring to it with 'your argument' or 'your point', restating it, or rebutting it specifically). Use title and argument only to interpret the target. Generic remarks, off-topic content, or arguments not tied to an OP claim do not count. Quoted text counts only if the commenter adopts or directly responds to it. Ignore any OP view-change/delta-award announcements, post-outcome resolution updates or reports of the outcome as evidence. Output = (number of qualifying comments)/(total number of comments), a value in 0..1. Empty list gives null; malformed or missing input gives null."
+    }
+  ],
+  "h0": "share_comments_addressing_op_claims has no association with the probability that the OP changed their view.",
+  "h1": "A higher share_comments_addressing_op_claims is associated with a higher probability that the OP changed their view.",
+  "rhs": "share_comments_addressing_op_claims",
+  "term": "share_comments_addressing_op_claims",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view), an association only. The hypothesis is about comments; the row-level share is used as a scalar proxy. The phrases 'your argument'/'your point' are examples, not required literals, so a semantic prompt is used. Comment order, timing and per-comment outcomes are unavailable. Comments may include post-outcome text; the prompt excludes outcome announcements."
+}

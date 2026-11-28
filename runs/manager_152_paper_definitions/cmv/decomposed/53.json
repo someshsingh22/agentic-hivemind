@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "semicolon_comment_share",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the counter-argument comments contain at least one semicolon?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If parsing fails or the value is missing, return null. If the list is empty, return null. Otherwise return (number of comments containing the ';' character) / (number of comments). Raw literal matching on current text; no semantic filtering, and quoted text or URLs/HTML entities containing ';' are counted too."
+    }
+  ],
+  "h0": "semicolon_comment_share has no association with delta (the probability that the OP changed their view).",
+  "h1": "Higher semicolon_comment_share is associated with a lower probability of delta.",
+  "rhs": "semicolon_comment_share",
+  "term": "semicolon_comment_share",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view). Semicolon presence is only a literal proxy for 'overly complex compound sentences'. Complexity itself is not measured. The share is used as the row-level scalar because comments are pooled per row. A semicolon-containing comment is counted even if the semicolon is in a quotation or entity such as &amp;. Comment order and timing are unknown. Text may contain outcome announcements, and raw text is not outcome-free. The test is an association, not causal."
+}

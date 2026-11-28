@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_numbered_list_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a numbered list (items numbered 1 and 2 in sequence, separated by newlines or double spaces)?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings; malformed/missing -> null; empty list -> 0. For each comment c, positive if re.search(r'(?:^|\\n|  )\\s*\\(?1[.)]\\s+\\S', c) AND re.search(r'(?:\\n|  )\\s*\\(?2[.)]\\s+\\S', c) (marker 1 then marker 2, each preceded by line start, newline or double space). Return 1 if any comment is positive else 0. Raw mechanical text matching; no semantic filtering."
+    }
+  ],
+  "h0": "any_numbered_list_comment has no association with delta.",
+  "h1": "Discussions with at least one numbered-list counter-argument comment have a higher rate of OP view change (delta) than those without.",
+  "rhs": "any_numbered_list_comment",
+  "term": "any_numbered_list_comment",
+  "sign": "+",
+  "note": "Row-level operationalization: \"counter-arguments with numbered lists\" is measured as presence of at least one such comment in a discussion; per-comment persuasion is not available (no per-comment outcomes). The regex requires markers 1 and 2 in \"1.\" or \"1)\" style after a newline, line start or double-space; it may miss other formats or catch non-list numbering. Comments are raw text and may include outcome announcements (e.g. delta awards), and timing is unknown. Association only."
+}

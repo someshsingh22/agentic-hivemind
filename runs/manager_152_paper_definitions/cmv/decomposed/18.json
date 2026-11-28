@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_comment_has_disagreement_word",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain an explicit disagreement word (wrong, incorrect, or disagree)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. Malformed/missing input -> null. Empty list -> 0. Otherwise 1 if any comment matches case-insensitive regex r'\\b(wrong|incorrect|disagree)\\b', else 0. Pure literal matching: no semantic filtering (negations, quotations, or outcome announcements are not excluded). Inflected forms like 'disagreed' or 'incorrectly' do not match."
+    },
+    {
+      "name": "share_comments_with_disagreement_word",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of counter-argument comments contain an explicit disagreement word (wrong, incorrect, or disagree)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. Malformed/missing -> null. Empty list -> null. Otherwise share = (number of comments matching case-insensitive regex r'\\b(wrong|incorrect|disagree)\\b') / (total comments in list). Range 0-1. Literal matching only; no semantic filtering."
+    }
+  ],
+  "h0": "There is no association between share_comments_with_disagreement_word and the probability that the OP changed their view.",
+  "h1": "Higher share_comments_with_disagreement_word is associated with a lower probability that the OP changed their view.",
+  "rhs": "share_comments_with_disagreement_word",
+  "term": "share_comments_with_disagreement_word",
+  "sign": "-",
+  "note": "\"Less persuasive\" is operationalized as lower delta (OP view change) at the row level. Rows are discussions, not individual comments, so per-comment persuasiveness is unavailable; the share is a row-level proxy and any_comment_has_disagreement_word is an alternative exposure. The word list (wrong, incorrect, disagree) is matched literally on whole words, so negation, quotation of OP text, and other inflections are not distinguished. Comment order and timing are unknown. OC_comments may contain post-outcome text, including delta announcements; this is not filtered. Associations only, not causal."
+}

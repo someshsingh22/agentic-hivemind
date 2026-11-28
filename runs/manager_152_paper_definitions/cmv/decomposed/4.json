@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_mean_word_length",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the average number of characters per word across all words in the counter-argument comments?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If malformed/missing return null; if empty list return null. Concatenate all comments' text, extract words with re.findall(r\"[A-Za-z0-9']+\", text) (case preserved, apostrophes kept), and return total characters in these tokens divided by number of tokens (pooled across all comments). Return null if there are zero tokens. Raw text; includes any quoted text or outcome announcements present in comments."
+    }
+  ],
+  "h0": "oc_mean_word_length has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher oc_mean_word_length is associated with a higher probability of delta.",
+  "rhs": "oc_mean_word_length",
+  "term": "oc_mean_word_length",
+  "sign": "+",
+  "note": "Reading complexity is operationalized only as average word length (characters per word), as the hypothesis states \"longer average words\"; no readability index is used. Persuasiveness is operationalized as the dataset outcome delta (OP view change). Pooled over all words in all available comments; comment order and timing are unknown. Comments may contain quotations of others or outcome-related text (e.g., delta mentions), not removed since this is a raw code measure. Association only, not causal."
+}

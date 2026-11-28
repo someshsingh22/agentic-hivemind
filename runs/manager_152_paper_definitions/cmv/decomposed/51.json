@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "polysyllabic_share_unique_counter_vocab",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What proportion of the distinct words used across the counter-argument comments are polysyllabic (three or more syllables)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; malformed/missing input -> null. Concatenate all comments. Lowercase and tokenize with re.findall(r\"[a-z]+(?:'[a-z]+)?\", text) (URLs removed first via re.sub(r'https?://\\S+','',text)). Take the set of unique word types. Count syllables per word with a fixed heuristic: count groups of consecutive vowels [aeiouy] in the word, subtract 1 if the word ends in a silent 'e' (ends with 'e' but not 'le' preceded by consonant) and count>1; minimum 1. A word is polysyllabic if syllables >= 3. Value = (number of unique polysyllabic types) / (number of unique types). Valid empty list or no words -> null. Pure mechanical computation on raw text; no semantic filtering."
+    }
+  ],
+  "h0": "There is no association between polysyllabic_share_unique_counter_vocab and the probability that the OP changed their view.",
+  "h1": "Higher polysyllabic_share_unique_counter_vocab is associated with a higher probability that the OP changed their view.",
+  "rhs": "polysyllabic_share_unique_counter_vocab",
+  "term": "polysyllabic_share_unique_counter_vocab",
+  "sign": "+",
+  "note": "Operational assumptions: \"more polysyllabic words in unique vocabulary\" is measured as the share of distinct word types with >=3 syllables, pooled over all counter-comments in OC_comments (other users, not OP). Syllables are a heuristic estimate, not a dictionary count. Persuasiveness is operationalized by the dataset outcome delta (OP view change); association only, not causal. Raw text may contain quoted text, URLs (removed), or outcome/delta announcements; not filtered. Pooled vocabulary size depends on number/length of comments, which may confound the share; no controls added. List order carries no meaning; reply timing unknown."
+}

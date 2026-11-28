@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "no_comment_uses_first_person_i",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Is it true that none of the counter-argument comments uses the first-person pronoun \"I\"?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If missing/malformed or not a list, return None. If the list is empty, return None. Otherwise, for each comment string, test re.search(r\"\\bI\\b\", text) (case-sensitive, standalone capital I; contractions such as I'm, I've, I'd count because the apostrophe is a word boundary; lowercase 'i', 'me', 'my' do not count). Return 1 if no comment matches, else 0. Purely mechanical: quotations, roman numerals, and 'I' inside quoted text are counted too; no semantic filtering."
+    }
+  ],
+  "h0": "There is no difference in delta between rows where no counter-argument comment uses \\\"I\\\" and rows where at least one does (no_comment_uses_first_person_i has zero association).",
+  "h1": "Rows where no counter-argument comment uses \\\"I\\\" (no_comment_uses_first_person_i = 1) have higher delta (OP view-change) than rows where at least one comment does.",
+  "rhs": "no_comment_uses_first_person_i",
+  "term": "no_comment_uses_first_person_i",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP changed view). Interpreted \"counter-arguments that never use I\" as a row-level condition: no available counter-argument comment contains standalone \"I\". Rows with empty/missing comment lists get null. Mechanical regex also counts \"I\" in quotations, roman numerals or non-pronoun uses; may be contaminated by outcome-related text in comments; comment timing unknown. Rows with more comments are less likely to satisfy the condition, so comment count is a confound that is not controlled here. Association only, not causal. \"Fully impersonal/objective tone\" is measured solely by absence of \"I\", not other personal pronouns."
+}

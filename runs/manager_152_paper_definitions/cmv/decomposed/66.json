@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "oc_mean_words_per_sentence",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Across all counter-argument comments, what is the average number of words per sentence?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings; if missing/malformed return null; if empty list return null. Concatenate all comments' text. Split into sentences with a regex on terminal punctuation (re.split(r'(?<=[.!?])\\s+|\\n+', text)), dropping empty segments. Words = regex tokens re.findall(r\"[A-Za-z0-9']+\", text). Return total words / total sentences across all comments (pooled); null if zero sentences."
+    }
+  ],
+  "h0": "oc_mean_words_per_sentence has no association with delta.",
+  "h1": "Lower oc_mean_words_per_sentence is associated with higher probability of delta (negative coefficient).",
+  "rhs": "oc_mean_words_per_sentence",
+  "term": "oc_mean_words_per_sentence",
+  "sign": "-",
+  "note": "Persuasiveness operationalised as OP view change (delta). Sentence splitting is a regex heuristic; pooled across all comments (words/sentences), not per-comment mean. Raw text may include quotations, markdown, URLs, and outcome announcements; not filtered. Association only."
+}

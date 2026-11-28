@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "mean_distinct_punct_types_per_comment",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "On average, how many distinct punctuation types (!, ?, ., ,, ;, :, parentheses) appear in each counter-argument comment?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads (list of strings). If missing/malformed -> null; if empty list -> null. For each comment string, count how many of these 7 types occur at least once: '!', '?', '.', ',', ';', ':', parentheses (either '(' or ')' counts as the one parentheses type). Each comment value is 0-7. Return the mean across all comments in the list (every comment included, including those with 0). Raw text, no semantic filtering; text may contain outcome announcements."
+    }
+  ],
+  "h0": "mean_distinct_punct_types_per_comment has no association with the probability that the OP changed their view (delta).",
+  "h1": "Higher mean_distinct_punct_types_per_comment is associated with a higher probability that the OP changed their view.",
+  "rhs": "mean_distinct_punct_types_per_comment",
+  "term": "mean_distinct_punct_types_per_comment",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change). Row-level aggregation (mean per comment of distinct punctuation types among the 7 listed) is an operational assumption; comment length is not controlled, and longer comments naturally have more variety. Parentheses are treated as one type. Raw text may include quotations or outcome announcements; no filtering applied. Association only, not causal."
+}

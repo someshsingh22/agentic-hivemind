@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "mean_first100_type_token_ratio",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the average type-token ratio (distinct words divided by total words) of the first 100 words of each counter-argument comment?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads (malformed or missing -> null). For each comment string, lowercase it and extract tokens with re.findall(r\"[a-z0-9]+(?:'[a-z0-9]+)?\", text); take the first 100 tokens (all if fewer). Skip comments with zero tokens. Per-comment TTR = len(set(tokens))/len(tokens). Return the unweighted mean of TTR across the retained comments; empty list or no retained comments -> null. Raw text; no semantic filtering."
+    }
+  ],
+  "h0": "mean_first100_type_token_ratio has no association with delta.",
+  "h1": "Higher mean_first100_type_token_ratio is associated with higher likelihood of delta (OP view change).",
+  "rhs": "mean_first100_type_token_ratio",
+  "term": "mean_first100_type_token_ratio",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP changed view), an association not causal. Row-level aggregation is the mean across comments, an assumption since the hypothesis does not specify one. Tokenization is my assumption. TTR is length-sensitive, and comments shorter than 100 words use all their words, which tends to raise TTR. Comment order and timing are unknown. Comments may contain quoted text or outcome announcements, since raw text is used and is not filtered. Because OC_comments are not per-comment outcome-labelled, the test cannot isolate which comment persuaded."
+}

@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "mean_content_word_length_oc",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Across all counter-argument comments, what is the average character length of content words (non-stopwords)?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. If malformed/missing, return null. Lowercase all comments and extract tokens with re.findall(r\"[a-z]+(?:'[a-z]+)?\", text) (alphabetic words; URLs not specially removed). Remove tokens in the NLTK English stopword list (nltk.corpus.stopwords.words('english')). Pool the remaining content-word tokens across all comments and return the mean number of letters/characters per token (apostrophes excluded from length). If the list is empty or no content words remain, return null."
+    }
+  ],
+  "h0": "mean_content_word_length_oc has no association with the probability that the OP changed their view (delta).",
+  "h1": "Greater mean_content_word_length_oc is associated with a higher probability that the OP changed their view.",
+  "rhs": "mean_content_word_length_oc",
+  "term": "mean_content_word_length_oc",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as the dataset outcome delta (OP view change); association only, not causal. Assumptions: content words = tokens not in NLTK English stopwords; length in characters; words pooled across all available comments (word-weighted, not per-comment mean). Raw text may contain view-change/delta announcements or later replies; no semantic filtering applied. Comment order/timing unknown. Only OC_comments is used, not conversation."
+}

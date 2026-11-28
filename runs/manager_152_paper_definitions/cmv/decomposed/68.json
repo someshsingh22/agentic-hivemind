@@ -1,0 +1,32 @@
+{
+  "features": [
+    {
+      "name": "share_comments_open_with_op_quote",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "argument",
+        "title"
+      ],
+      "definition": "What proportion of the counter-argument comments open with a blockquote (starting with >) that quotes the OP's own text?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). For each comment, decide whether its first content (after leading whitespace) is a blockquote line beginning with '>' AND the quoted text reproduces or closely paraphrases wording from the OP's title or argument. Comments opening with '>' that quote another commenter or an external source, or comments with a quote only later, do not count. Compare against title/argument only to identify the quoted speaker; ignore any OP view-change/delta announcements or outcome reports as evidence. Output = (count qualifying comments)/(total comments), in [0,1]. Empty list -> null; unparseable -> null."
+    },
+    {
+      "name": "any_comment_starts_with_gt",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment begin with the '>' blockquote character?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads; return 1 if any comment string, after lstrip(), startswith('>'), else 0. Empty list -> 0; missing/malformed -> null. Raw text match; does not check whom is quoted."
+    }
+  ],
+  "h0": "share_comments_open_with_op_quote has no association with delta.",
+  "h1": "Higher share_comments_open_with_op_quote is associated with lower probability of delta (OP view change).",
+  "rhs": "share_comments_open_with_op_quote",
+  "term": "share_comments_open_with_op_quote",
+  "sign": "-",
+  "note": "Persuasiveness is operationalized as the row-level delta outcome; no per-comment outcomes exist, so this is a row-level association, not a comment-level comparison of quote-opening vs other comments. 'Strongly' is not tested beyond sign. Row share is confounded by number of comments. Unordered comments; OC_comments may include text with outcome announcements. Whether '>' text quotes OP requires semantic judgment; any_comment_starts_with_gt is a mechanical looser companion measure not used in the test (can be swapped into the rhs)."
+}

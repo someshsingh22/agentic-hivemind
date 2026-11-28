@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "mean_reply_word_count",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the mean number of words per counter-argument comment?",
+      "kind": "code",
+      "spec": "Parse OC_comments with json.loads into a list of strings. Word count of a comment = len(re.findall(r\"\\S+\", comment)). Return the mean of word counts across all comments. Empty list -> null; missing or malformed JSON -> null. Raw text count with no semantic filtering; text may include outcome announcements."
+    },
+    {
+      "name": "mean_reply_word_count_squared",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What is the square of the mean number of words per counter-argument comment?",
+      "kind": "code",
+      "spec": "df['mean_reply_word_count'] ** 2; null if df['mean_reply_word_count'] is null."
+    }
+  ],
+  "h0": "The coefficient on mean_reply_word_count_squared is zero (no accelerating or decelerating effect of reply length on delta, controlling for mean_reply_word_count).",
+  "h1": "The coefficient on mean_reply_word_count_squared is positive (reply length has a super-linear, accelerating association with delta).",
+  "rhs": "mean_reply_word_count + mean_reply_word_count_squared",
+  "term": "mean_reply_word_count_squared",
+  "sign": "+",
+  "note": "Operational assumptions: reply length is measured as mean word count across all supplied counter-argument comments per row (no per-comment outcomes supplied, so row-level mean is used; one long comment among many short ones is diluted). Persuasiveness is operationalized as the dataset outcome delta (OP view change). A quadratic term tests super-linearity; it is a functional-form proxy for 'disproportionate benefit for very long replies' and does not specifically isolate the extreme tail. The OLS is a linear probability model. Associations only, not causal. Comment text may contain outcome announcements and the list order carries no chronology; log_length is not used because its construction is undocumented."
+}

@@ -1,0 +1,22 @@
+{
+  "features": [
+    {
+      "name": "share_practical_reality_comments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments",
+        "title",
+        "argument"
+      ],
+      "definition": "What proportion of the counter-argument comments ground their claims in practical reality (e.g., how things work in practice or real life)?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments (JSON list of other users' comments). For each comment, decide whether the commenter's own assertions ground their claims in practical reality, i.e. appeal to how things actually work in practice, real-life experience or real-world application (explicit phrases like 'in practice' or 'in real life' count, as do clear equivalents), rather than purely abstract/theoretical or hypothetical reasoning. Use title and argument only to interpret the comment's target. Do not count text only quoted from others unless the commenter adopts it. Ignore OP view-change/delta-award announcements, thanks for changing view, and post-outcome resolution updates or reports of the outcome as evidence. Generic platform/delta-rule discussion is eligible but is not itself practical grounding. Output = number of qualifying comments / total number of comments, in [0,1]. Empty list gives null; missing or malformed input gives null."
+    }
+  ],
+  "h0": "share_practical_reality_comments has no association with whether the OP changed their view (delta).",
+  "h1": "A higher share_practical_reality_comments is associated with a higher likelihood that the OP changed their view.",
+  "rhs": "share_practical_reality_comments",
+  "term": "share_practical_reality_comments",
+  "sign": "+",
+  "note": "Operational assumptions: \"persuasive\" is measured by the dataset outcome delta (OP changed view), an association only. Hypothesis gives no quantity, so the share of counter-argument comments is used. Practical-reality grounding is judged semantically, with explicit phrases as examples, not required. List order carries no chronology; comments may not be from distinct commenters. Comments could contain outcome announcements, which are excluded from the semantic judgment. Rows with no comments get null."
+}

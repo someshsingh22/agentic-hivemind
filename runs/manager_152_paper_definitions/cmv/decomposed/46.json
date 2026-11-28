@@ -1,0 +1,30 @@
+{
+  "features": [
+    {
+      "name": "any_quote_response_block_comment",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain a blockquote line followed by non-quoted reply text?",
+      "kind": "code",
+      "spec": "Parse OC_comments as JSON list of strings; malformed/missing -> null; empty list -> 0. For each comment, split into lines (after replacing '&gt;' at line start with '>'). A comment qualifies if some line matches regex ^\\s*>\\s*\\S (blockquote) and a later line (after that line) exists that is non-empty and does not start with '>' (reply text). Output 1 if any comment qualifies else 0. Mechanical on raw text; no semantic filtering; text may contain outcome announcements."
+    },
+    {
+      "name": "share_quote_response_block_comments",
+      "dtype": "numeric",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "What share of counter-argument comments contain a blockquote line followed by non-quoted reply text?",
+      "kind": "code",
+      "spec": "Parse OC_comments JSON list; malformed/missing -> null; empty list -> null. Qualifying comment as defined: after replacing line-initial '&gt;' with '>', has a line matching ^\\s*>\\s*\\S followed later by a non-empty line not starting with '>'. Value = qualifying comments / total comments. Raw-text mechanical; no semantic filtering."
+    }
+  ],
+  "h0": "share_quote_response_block_comments has no association with delta.",
+  "h1": "Higher share_quote_response_block_comments is associated with lower likelihood of delta.",
+  "rhs": "share_quote_response_block_comments",
+  "term": "share_quote_response_block_comments",
+  "sign": "-",
+  "note": "Operationalised structured quote-response as Markdown blockquote (> or &gt;) followed by non-quoted text in the same comment. Persuasiveness is operationalised as the dataset outcome delta (association only). The hypothesis does not specify any-vs-share; share is the primary term, any-comment feature is an alternative measure. Comments are unordered, no timing; raw text may contain view-change announcements (not filtered). Rows with no comments get null for share."
+}

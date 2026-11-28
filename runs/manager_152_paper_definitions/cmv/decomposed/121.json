@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_counter_comment_math_notation",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain mathematical notation such as arithmetic operations, equations, Greek letters or math functions?",
+      "kind": "prompt",
+      "spec": "Parse OC_comments as a JSON list of comments by other users. Return 1 if at least one comment itself contains actual mathematical notation: arithmetic operations used as math (e.g. 3+4, 5*2, 10/2 used as calculation), equations (e.g. x=2y+1), Greek letters (e.g. α, π, sigma symbols), or math functions (e.g. log(x), sqrt, sin, sum notation). Do not count ordinary numbers, dates, scores, ranges, hyphens, list bullets, URLs, emoticons or plain-language mention of math without notation. Notation inside quotations of another user counts only if the comment's author adopts it; mere quoted material from the OP does not count. Ignore any OP view-change/delta-award announcements or outcome reports as evidence. Return 0 if the list is valid but empty or no comment qualifies; null if missing or malformed."
+    }
+  ],
+  "h0": "any_counter_comment_math_notation has no association with the probability that the OP changed their view.",
+  "h1": "Rows with any_counter_comment_math_notation = 1 have a higher probability of OP view change than rows with 0.",
+  "rhs": "any_counter_comment_math_notation",
+  "term": "any_counter_comment_math_notation",
+  "sign": "+",
+  "note": "Persuasiveness is operationalized as the dataset outcome delta (OP view change), an association only. Row-level \"any comment\" is the aggregation, since per-comment outcomes are not supplied. Comments are unordered; no timing information. OC_comments may include text contaminated by outcome announcements; the prompt excludes them as evidence. Distinguishing math notation from ordinary numerals requires judgment."
+}

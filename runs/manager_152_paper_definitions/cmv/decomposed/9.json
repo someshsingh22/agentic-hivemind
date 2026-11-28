@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "name": "any_comment_bullet_list",
+      "dtype": "binary",
+      "source_columns": [
+        "OC_comments"
+      ],
+      "definition": "Does at least one counter-argument comment contain bullet-list formatting?",
+      "kind": "code",
+      "spec": "Parse OC_comments as a JSON list of strings (json.loads). If missing/malformed, return null. If empty list, return 0. Return 1 if any comment contains at least two lines, each matching regex r'^\\s*(\\\\?[-*+•])\\s+\\S' (multiline, markdown unordered bullet markers, optionally backslash-escaped), else 0. Numbered lists are not counted. Raw text matching only; no semantic filtering."
+    }
+  ],
+  "h0": "any_comment_bullet_list has no association with the probability that the OP changed their view (delta).",
+  "h1": "Discussions with any_comment_bullet_list = 1 have a higher rate of OP view change than those with 0.",
+  "rhs": "any_comment_bullet_list",
+  "term": "any_comment_bullet_list",
+  "sign": "+",
+  "note": "Persuasiveness operationalized as dataset outcome delta (OP view change). Bullet list defined as markdown unordered list with at least two bullet lines; the threshold of two is an operational assumption. Numbered lists excluded. Comments are unordered, per-comment outcomes unavailable, so row-level presence is a coarse measure; the bullet comment need not be the persuasive one. Raw text may include outcome announcements or later replies; the feature is mechanical and not outcome-free. Association only, not causal."
+}
