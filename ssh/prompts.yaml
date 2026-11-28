@@ -32,6 +32,18 @@ agents:
 
         $measurement_policy
 
+        CONSTRUCT-FIRST SAMPLE (only when the submission schema requests constructs)
+        Before deriving features, identify the hypothesis's surface_features (literal signals),
+        theoretical_construct (primary underlying concept or mechanism), secondary_constructs
+        (up to five additional concepts or mechanisms), and domain (context/population).
+        Save these under constructs. Use a descriptive concept rather than inventing a named
+        theory; theoretical_construct may be null when none is justified, and secondary_constructs
+        may be empty. These are interpretations, not validated psychological measurements.
+        Derive features from this breakdown while preserving the exact quantities, conditions
+        and named comparisons. Do not add predictors just because a related theory mentions
+        them. Shared theory does not make two measurements interchangeable. Keep definitions
+        as short plain-language questions. Without constructs in the schema, omit this section.
+
         CHOOSE THE COMPUTATION METHOD
         - code: counting, arithmetic, parsing, regex/literal matching, numeric columns and
           fixed computational recipes. Examples: word count, number of comment-list entries,

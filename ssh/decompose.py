@@ -37,6 +37,21 @@ def decompose_all(hypotheses, env, cfg, out):
     forbidden = {env["target"], env.get("group"), "post_id", "comment_id"}
     columns = [column for column in columns if column not in forbidden]
     schema = json.loads(SCHEMA.read_text())
+    if cfg.get("constructs", False):
+        constructs = {
+            "type": "object",
+            "properties": {
+                "surface_features": {"type": "array", "items": {"type": "string"}},
+                "theoretical_construct": {"type": ["string", "null"]},
+                "secondary_constructs": {"type": "array", "maxItems": 5,
+                                         "items": {"type": "string"}},
+                "domain": {"type": "string"},
+            },
+            "required": ["surface_features", "theoretical_construct", "secondary_constructs", "domain"],
+            "additionalProperties": False,
+        }
+        schema["properties"] = {"constructs": constructs, **schema["properties"]}
+        schema["required"] = ["constructs", *schema["required"]]
     schema["properties"]["features"]["items"]["properties"]["source_columns"]["items"]["enum"] = columns
     home = pi_home(cfg, Path(out, "pi"))
     (home / "schema.json").write_text(json.dumps(schema, indent=2))

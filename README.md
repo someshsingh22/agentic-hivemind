@@ -53,6 +53,21 @@ technically withheld. Structural submission validation does not establish scient
 A simulated-agent smoke exercised fresh prompt delivery, code-feature submission and cached restart;
 all 41 existing tests passed. No paid model calls were used; model compliance remains unverified.
 
+### Construct-first sample (experimental)
+
+`bash run_decomposition.sh config_constructs_10.yaml` runs the same seed-0 ten-hypothesis
+sample in `runs/calibration_constructs_10/cmv/`. Each hypothesis adds a `constructs` object
+with literal `surface_features`, primary `theoretical_construct` (nullable), up to five
+`secondary_constructs`, and `domain`, before deriving the existing feature/test contract.
+This is one Sonnet call per uncached hypothesis, not another extraction stage.
+The opt-in is `agent.constructs: true`; `config.yaml` and the accepted bank are unchanged.
+No searches, embeddings, merges, row annotations or statistical tests run in this command.
+Construct labels are interpretations, not validated traits or permission to merge features.
+Review `decomposed.json` against the earlier ten-hypothesis run before adopting this approach.
+The default and opt-in CLI paths were smoke-checked with simulated agent responses; actual
+Sonnet construct quality remains unverified until the GPU run.
+
+
 ## Caching like main
 
 If `decomposed/<hypothesis_id>.json` exists, reuse it; otherwise generate it. Cached features still undergo

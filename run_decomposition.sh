@@ -15,4 +15,4 @@ pi --version
 
 printf 'Starting decomposition only; no embeddings, merging, annotation or statistical tests.\n'
 printf 'The agent is silent; each completed hypothesis appears in the configured output/decomposed/ directory.\n'
-exec "$VENV/bin/python" -u -m ssh decompose envs/cmv.yaml --config config.yaml
+exec "$VENV/bin/python" -u -m ssh decompose envs/cmv.yaml --config "${1:-config.yaml}"
